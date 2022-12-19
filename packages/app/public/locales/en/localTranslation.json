@@ -1,0 +1,11 @@
+{
+  "dino": "Little Dino 🦖",
+  "de": "German",
+  "en": "English",
+  "noApiUsersLoaded": "No API-Users loaded",
+  "apiUsersLoaded": "API-User loaded",
+  "loadApiUsers": "Load API-Users",
+  "removeApiUsers": "Remove API-Users",
+  "usersGivenByProp": "users given by prop",
+  "itWorks": "It works!"
+}

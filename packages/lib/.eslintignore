@@ -1,0 +1,4 @@
+.prettierignore
+tailwind.config.cjs
+postcss.config.cjs
+dist/

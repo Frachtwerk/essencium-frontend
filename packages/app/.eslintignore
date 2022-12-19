@@ -1,0 +1,6 @@
+.prettierignore
+vite.config.ts
+tailwind.config.cjs
+postcss.config.cjs
+i18n.js
+dist/
