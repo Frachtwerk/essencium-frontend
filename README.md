@@ -76,7 +76,7 @@ For enforcing code style and utilizing static code analyzing we use ESLint along
 
 ### Commits
 
-[`Commitlint`](https://commitlint.js.org/#/) makes sure you are following the rules of [`conventional-commits`](https://www.conventionalcommits.org/) (`type(scope?): message`). In combination with [`husky`](https://typicode.github.io/husky/#/) we can use the the Git `commit-msg` hook to lint the commit message. If the commit message doesn’t follow the convention of conventional-commits, commitlint will error out and husky gives you an idea of what is wrong.
+[`Commitlint`](https://commitlint.js.org/#/) makes sure you are following the rules of [`conventional-commits`](https://www.conventionalcommits.org/) (`type(scope): message`). In combination with [`husky`](https://typicode.github.io/husky/#/) we can use the the Git `commit-msg` hook to lint the commit message. If the commit message doesn’t follow the convention of conventional-commits, commitlint will error out and husky gives you an idea of what is wrong.
 
 ### Build a new release
 
