@@ -10,6 +10,6 @@
     "moduleResolution": "node",
     "emitDeclarationOnly": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "rollup.config.js"],
   "exclude": ["dist", "node_modules", ".rollup.cache"]
 }
