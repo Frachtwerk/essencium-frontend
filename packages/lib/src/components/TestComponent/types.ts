@@ -15,4 +15,4 @@ interface Props {
 }
 
 export { userSchema }
-export type { User, Props }
+export type { Props, User }

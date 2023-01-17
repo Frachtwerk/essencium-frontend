@@ -1,8 +1,7 @@
 import create from 'zustand'
 
-import { createDinoSlice, createUserSlice } from './slices'
-
 import type { DinoSlice, UserSlice } from './slices'
+import { createDinoSlice, createUserSlice } from './slices'
 
 type Store = UserSlice & DinoSlice
 

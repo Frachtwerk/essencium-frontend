@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-import { useMemo } from 'react'
 import { List, Title } from '@mantine/core'
 import { useQuery } from '@tanstack/react-query'
+import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Props, User, userSchema } from './types'

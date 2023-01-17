@@ -1,13 +1,11 @@
-import { useEffect, useState } from 'react'
-import { Box, Button, Text } from '@mantine/core'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee } from '@fortawesome/free-solid-svg-icons'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Box, Button, Text } from '@mantine/core'
+import { TestComponent } from 'lib'
+import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import useStore from '@/store'
-import { TestComponent } from 'lib'
 
 interface Languages {
   en: { nativeName: string }

@@ -1,6 +1,7 @@
+import 'virtual:vite-plugin-sentry/sentry-config'
+
 import * as Sentry from '@sentry/react'
 import { BrowserTracing } from '@sentry/tracing'
-import 'virtual:vite-plugin-sentry/sentry-config'
 
 const { dist, release } = import.meta.env.VITE_PLUGIN_SENTRY_CONFIG
 

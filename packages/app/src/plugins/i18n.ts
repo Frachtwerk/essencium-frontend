@@ -1,8 +1,8 @@
 import i18n from 'i18next'
-import { initReactI18next } from 'react-i18next'
-import ChainedBackend from 'i18next-chained-backend'
 import LanguageDetector from 'i18next-browser-languagedetector'
+import ChainedBackend from 'i18next-chained-backend'
 import HttpBackend from 'i18next-http-backend'
+import { initReactI18next } from 'react-i18next'
 
 // change path from backendTranslations to Starter API
 const backendTranslations = '/backendLocales/{{lng}}/{{ns}}.json'
