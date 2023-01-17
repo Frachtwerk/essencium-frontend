@@ -27,7 +27,7 @@ function App() {
 
   const users = useStore(state => state.users)
 
-  useEffect(
+  useMemo(
     () =>
       addUser({
         id: Math.floor(Math.random() * 100),
@@ -35,7 +35,7 @@ function App() {
         username: 'dinopower',
         email: 'dino@power.io',
       }),
-    []
+    [addUser]
   )
 
   const [loadApiUsers, setLoadApiUsers] = useState(false)
