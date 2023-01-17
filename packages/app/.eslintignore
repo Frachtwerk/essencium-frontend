@@ -4,3 +4,4 @@ tailwind.config.cjs
 postcss.config.cjs
 i18n.js
 dist/
+coverage/

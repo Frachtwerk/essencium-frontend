@@ -2,3 +2,4 @@
 tailwind.config.cjs
 postcss.config.cjs
 dist/
+coverage/
