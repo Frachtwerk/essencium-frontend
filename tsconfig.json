@@ -10,5 +10,6 @@
     "allowJs": false,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
+    "allowSyntheticDefaultImports": true
   }
 }
