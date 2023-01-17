@@ -27,10 +27,18 @@
   "scripts": {
     "setup-env": "pnpm install && husky install",
     "clean": "rimraf dist node_modules && pnpm install -w && nx run-many --target=clean",
+    "lint": "nx run-many --target=lint",
     "dev": "nx dev app",
     "build": "nx build app"
   },
   "devDependencies": {
+    "@nrwl/eslint-plugin-nx": "15.5.1",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-jsx-a11y": "6.7.1",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-react": "7.32.1",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "eslint-plugin-simple-import-sort": "9.0.0",
     "husky": "8.0.2",
     "nx": "15.3.0",
     "rimraf": "3.0.2"
