@@ -1,7 +1,5 @@
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Box, Button, Text } from '@mantine/core'
-import { TestComponent } from 'lib'
+import { AppShell, Box, Button, Center, Text } from '@mantine/core'
+import { CommonFooter, CommonHeader, CommonNavBar, TestComponent } from 'lib'
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -40,52 +38,71 @@ function App() {
 
   const [loadApiUsers, setLoadApiUsers] = useState(false)
 
+  const [openedNav, setOpenedNav] = useState(false)
+
+  function handleOpenNav(): void {
+    setOpenedNav(o => !o)
+  }
+
   return (
-    <Box className="grid place-items-center gap-4">
-      <Text className="text-3xl font-bold font-mono pt-5">{t('itWorks')}</Text>
-      <FontAwesomeIcon icon={faCoffee} size="3x" />
-      <Button
-        onClick={() => {
-          throw Error('failed intentionally with Sentry')
-        }}
-      >
-        Get started
-      </Button>
-
-      <Text className="text-3xl font-bold font-mono p-5">{t('dino')}</Text>
-
-      <Box>
-        {Object.keys(languages).map(language => (
+    <AppShell
+      asideOffsetBreakpoint="sm"
+      navbarOffsetBreakpoint="sm"
+      navbar={<CommonNavBar isOpen={openedNav} />}
+      footer={<CommonFooter />}
+      header={
+        <CommonHeader isOpen={openedNav} handleOpenNav={() => handleOpenNav} />
+      }
+    >
+      <Center sx={{ width: '100%', height: '80%' }}>
+        <Box className="grid place-items-center gap-4">
+          <Text className="text-3xl font-bold font-mono pt-5">
+            {t('itWorks')}
+          </Text>
           <Button
-            key={language}
-            type="submit"
-            onClick={() => i18n.changeLanguage(language)}
-            className="mx-2"
-            variant="light"
+            onClick={() => {
+              throw Error('failed intentionally with Sentry')
+            }}
           >
-            {languages[language as keyof Languages].nativeName}
+            Get started
           </Button>
-        ))}
-      </Box>
 
-      <Box>
-        <Button
-          variant="gradient"
-          gradient={{ from: 'teal', to: 'blue', deg: 60 }}
-          onClick={increaseCount}
-        >
-          Add Dinos
-        </Button>
+          <Text className="text-3xl font-bold font-mono p-5">{t('dino')}</Text>
 
-        <Text className="mt-5 text-center">{dinoCount} Dinos</Text>
-      </Box>
+          <Box>
+            {Object.keys(languages).map(language => (
+              <Button
+                key={language}
+                type="submit"
+                onClick={() => i18n.changeLanguage(language)}
+                className="mx-2"
+                variant="light"
+              >
+                {languages[language as keyof Languages].nativeName}
+              </Button>
+            ))}
+          </Box>
 
-      <TestComponent users={users} shouldLoadApiUsers={loadApiUsers} />
+          <Box>
+            <Button
+              variant="gradient"
+              gradient={{ from: 'teal', to: 'blue', deg: 60 }}
+              onClick={increaseCount}
+            >
+              Add Dinos
+            </Button>
 
-      <Button onClick={() => setLoadApiUsers(!loadApiUsers)}>
-        {loadApiUsers ? t('removeApiUsers') : t('loadApiUsers')}
-      </Button>
-    </Box>
+            <Text className="mt-5 text-center">{dinoCount} Dinos</Text>
+          </Box>
+
+          <TestComponent users={users} shouldLoadApiUsers={loadApiUsers} />
+
+          <Button onClick={() => setLoadApiUsers(!loadApiUsers)}>
+            {loadApiUsers ? t('removeApiUsers') : t('loadApiUsers')}
+          </Button>
+        </Box>
+      </Center>
+    </AppShell>
   )
 }
 

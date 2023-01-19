@@ -1,2 +1,6 @@
+export { CommonFooter } from './common/Footer'
+export { CommonHeader } from './common/Header'
+export { CommonNavBar } from './common/NavBar'
+export { NavLinks } from './common/NavBar/components/NavLinks'
 export type { Props, User } from './TestComponent'
 export { TestComponent, userSchema } from './TestComponent'
