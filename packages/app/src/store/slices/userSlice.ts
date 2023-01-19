@@ -1,7 +1,6 @@
+import { User } from 'lib'
 import { StateCreator } from 'zustand'
 import { devtools } from 'zustand/middleware'
-
-import { User } from 'lib'
 
 import { Store } from '@/store'
 

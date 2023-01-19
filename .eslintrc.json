@@ -19,8 +19,28 @@
     "sourceType": "module",
     "project": ["./tsconfig.json", "./packages/*/.eslintrc.json"]
   },
-  "plugins": ["react", "@typescript-eslint", "prettier", "@nrwl/nx"],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "prettier",
+    "@nrwl/nx",
+    "simple-import-sort"
+  ],
   "rules": {
+    "react/react-in-jsx-scope": "off",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/extensions": [
+      1, // Severity should be one of the following: 0 = off, 1 = warn, 2 = error
+      "ignorePackages",
+      {
+        "": "never",
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
     "@nrwl/nx/enforce-module-boundaries": [
       "error",
       {
@@ -28,7 +48,11 @@
         "depConstraints": [
           {
             "sourceTag": "scope:app",
-            "onlyDependOnLibsWithTags": ["scope:app"]
+            "onlyDependOnLibsWithTags": ["scope:app", "scope:lib"]
+          },
+          {
+            "sourceTag": "scope:lib",
+            "onlyDependOnLibsWithTags": ["scope:lib"]
           }
         ]
       }

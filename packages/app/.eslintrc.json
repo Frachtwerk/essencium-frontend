@@ -1,14 +1,5 @@
 {
-  "rules": {
-    "import/extensions": [
-      "warning",
-      "ignorePackages",
-      {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
-    ]
+  "parserOptions": {
+    "project": ["./tsconfig.json"]
   }
 }
