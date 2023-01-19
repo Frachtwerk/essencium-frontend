@@ -26,8 +26,9 @@
   ],
   "scripts": {
     "setup-env": "pnpm install && husky install",
-    "clean": "rimraf dist node_modules && pnpm install -w && nx run-many --target=clean",
+    "clean": "rimraf dist node_modules && pnpm install",
     "lint": "nx run-many --target=lint",
+    "test": "nx run-many --target=test",
     "dev": "nx dev app",
     "build": "nx build app"
   },
