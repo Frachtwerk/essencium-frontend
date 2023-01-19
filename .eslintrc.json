@@ -17,7 +17,11 @@
   "parserOptions": {
     "ecmaVersion": 2022,
     "sourceType": "module",
-    "project": ["./tsconfig.json", "./packages/*/.eslintrc.json"]
+    "project": [
+      "./tsconfig.json",
+      "./packages/*/.eslintrc.json",
+      "./packages/*/vite.config.ts"
+    ]
   },
   "plugins": [
     "react",
@@ -39,6 +43,17 @@
         "jsx": "never",
         "ts": "never",
         "tsx": "never"
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.test.ts",
+          "**/*.test.tsx",
+          "**/*.config.js",
+          "**/*.config.ts"
+        ]
       }
     ],
     "@nrwl/nx/enforce-module-boundaries": [
