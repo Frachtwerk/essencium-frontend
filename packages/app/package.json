@@ -68,6 +68,8 @@
   },
   "dependencies": {
     "@emotion/react": "11.10.5",
+    "@fontsource/fira-code": "4.5.13",
+    "@fontsource/fira-sans": "4.5.10",
     "@fortawesome/fontawesome-svg-core": "6.2.1",
     "@fortawesome/free-solid-svg-icons": "6.2.1",
     "@fortawesome/react-fontawesome": "0.2.0",
@@ -78,6 +80,7 @@
     "@mantine/spotlight": "5.9.4",
     "@sentry/react": "7.26.0",
     "@sentry/tracing": "7.26.0",
+    "@tabler/icons": "1.119.0",
     "@tanstack/react-query": "4.20.4",
     "@tanstack/react-query-devtools": "4.20.4",
     "dayjs": "1.11.7",
