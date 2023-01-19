@@ -17,7 +17,11 @@
   "parserOptions": {
     "ecmaVersion": 2022,
     "sourceType": "module",
-    "project": ["./tsconfig.json", "./packages/*/.eslintrc.json"]
+    "project": [
+      "./tsconfig.json",
+      "./packages/*/.eslintrc.json",
+      "./packages/*/vite.config.ts"
+    ]
   },
   "plugins": [
     "react",
