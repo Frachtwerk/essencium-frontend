@@ -37,7 +37,9 @@ function TestComponent({ users, shouldLoadApiUsers = false }: Props) {
       </Title>
       <List>
         {users.map(user => (
-          <List.Item key={user.id}>{user.id}</List.Item>
+          <List.Item key={user.id}>
+            {user.username} ({user.id})
+          </List.Item>
         ))}
       </List>
       <Title order={2}>

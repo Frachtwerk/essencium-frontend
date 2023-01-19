@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import path from 'path'
 
 import { defineConfig } from 'vite'
@@ -51,5 +52,8 @@ export default defineConfig({
         replacement: path.resolve(__dirname, '../lib/src/index.ts'),
       },
     ],
+  },
+  test: {
+    environment: 'happy-dom',
   },
 })
