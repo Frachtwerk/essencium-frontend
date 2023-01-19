@@ -39,8 +39,6 @@
   },
   "devDependencies": {
     "@babel/core": "7.20.5",
-    "@commitlint/cli": "17.3.0",
-    "@commitlint/config-conventional": "17.3.0",
     "@nrwl/vite": "15.3.3",
     "@tanstack/react-query-devtools": "4.20.4",
     "@testing-library/react": "13.4.0",
