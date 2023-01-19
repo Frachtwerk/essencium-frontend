@@ -1,5 +1,5 @@
-import { beforeEach, describe, vi, it, expect, afterEach } from 'vitest'
 import { render, RenderResult, screen } from '@testing-library/react'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import TestComponent from './TestComponent'
 

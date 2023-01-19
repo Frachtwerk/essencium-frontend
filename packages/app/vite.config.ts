@@ -1,15 +1,13 @@
 /// <reference types="vitest" />
-import path from 'path'
-
-import { defineConfig } from 'vite'
-
 import react from '@vitejs/plugin-react'
+import dotenv from 'dotenv'
+import path from 'path'
+import { defineConfig } from 'vite'
 import type { ViteSentryPluginOptions } from 'vite-plugin-sentry'
 import viteSentry from 'vite-plugin-sentry'
 
 import packageJson from './package.json'
 
-import dotenv from 'dotenv'
 dotenv.config()
 
 const sentryConfig: ViteSentryPluginOptions = {
