@@ -41,6 +41,17 @@
         "tsx": "never"
       }
     ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.test.ts",
+          "**/*.test.tsx",
+          "**/*.config.js",
+          "**/*.config.ts"
+        ]
+      }
+    ],
     "@nrwl/nx/enforce-module-boundaries": [
       "error",
       {
