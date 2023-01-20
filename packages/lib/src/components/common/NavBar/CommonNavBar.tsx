@@ -1,10 +1,7 @@
 import { Navbar } from '@mantine/core'
 
 import { NavLinks } from './components/NavLinks'
-
-type NavBarProps = {
-  isOpen: boolean
-}
+import { NavBarProps } from './types'
 
 export function CommonNavBar({ isOpen }: NavBarProps) {
   return (

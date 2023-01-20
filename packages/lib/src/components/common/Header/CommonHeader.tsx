@@ -13,11 +13,7 @@ import { useTranslation } from 'react-i18next'
 
 import { SearchBar } from './components/SearchBar'
 import { UserMenu } from './components/UserMenu'
-
-type CommonHeaderProps = {
-  isOpen: boolean
-  handleOpenNav: () => void
-}
+import { CommonHeaderProps } from './types'
 
 export function CommonHeader({ isOpen, handleOpenNav }: CommonHeaderProps) {
   const { t } = useTranslation()

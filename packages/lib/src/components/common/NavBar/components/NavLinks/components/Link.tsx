@@ -1,11 +1,6 @@
 import { Group, Text, ThemeIcon, UnstyledButton } from '@mantine/core'
 
-interface LinkProps {
-  icon: React.ReactNode
-  color: string
-  label: string
-  href: string
-}
+import { LinkProps } from './types'
 
 export function Link({ icon, color, label, href }: LinkProps) {
   return (
