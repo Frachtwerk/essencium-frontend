@@ -157,7 +157,7 @@ importers:
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-typescript': 9.0.2
       '@tabler/icons': 1.119.0
-      '@tanstack/react-query': 4.14.5
+      '@tanstack/react-query': 4.20.4
       '@testing-library/react': 13.4.0
       '@types/react': 18.0.25
       '@typescript-eslint/eslint-plugin': 5.42.1
@@ -202,7 +202,7 @@ importers:
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.2.5
       '@rollup/plugin-typescript': 9.0.2_skqhbvp355vci76ty3pdffvjrq
       '@tabler/icons': 1.119.0_biqbaboplfbrettd7655fr4n2y
-      '@tanstack/react-query': 4.14.5_biqbaboplfbrettd7655fr4n2y
+      '@tanstack/react-query': 4.20.4_biqbaboplfbrettd7655fr4n2y
       '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
       '@types/react': 18.0.25
       '@typescript-eslint/eslint-plugin': 5.42.1_2udltptbznfmezdozpdoa2aemq
@@ -2021,13 +2021,8 @@ packages:
       remove-accents: 0.4.2
     dev: false
 
-  /@tanstack/query-core/4.14.5:
-    resolution: {integrity: sha512-Su1AyrPb6xnm7wXTvpN5tt+B7LViYSh9k04vvuc6+eMVH0HkE9ktZTXibRrTvV83BI1KP5MG7v/k90ne/4zQzw==}
-    dev: true
-
   /@tanstack/query-core/4.20.4:
     resolution: {integrity: sha512-lhLtGVNJDsJ/DyZXrLzekDEywQqRVykgBqTmkv0La32a/RleILXy6JMLBb7UmS3QCatg/F/0N9/5b0i5j6IKcA==}
-    dev: false
 
   /@tanstack/react-query-devtools/4.20.4_fu3ixcwltlssi3ozitelgaebme:
     resolution: {integrity: sha512-4e4wOmqAYjLS1RQ7gRBLCk3koCjbOfCMvbxS3CPCAN5+FLBemLAvoYvFJ/i/7DPsIsltGwsnd7YAFFGMzdSx7A==}
@@ -2043,24 +2038,6 @@ packages:
       superjson: 1.11.0
       use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
-
-  /@tanstack/react-query/4.14.5_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-CuWl/SxSB0zHhHaTja8LNhy9Vdk+vk9IkW3Oiq3lo4gPnTguHmbUzfjEA1x3RfvPeHfPMuq/pYMSbV+CX4aDQA==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-native: '*'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-      react-native:
-        optional: true
-    dependencies:
-      '@tanstack/query-core': 4.14.5
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-      use-sync-external-store: 1.2.0_react@18.2.0
-    dev: true
 
   /@tanstack/react-query/4.20.4_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-SJRxx13k/csb9lXAJfycgVA1N/yU/h3bvRNWP0+aHMfMjmbyX82FdoAcckDBbOdEyAupvb0byelNHNeypCFSyA==}
@@ -2078,7 +2055,6 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       use-sync-external-store: 1.2.0_react@18.2.0
-    dev: false
 
   /@testing-library/dom/8.19.1:
     resolution: {integrity: sha512-P6iIPyYQ+qH8CvGauAqanhVnjrnRe0IZFSYCeGkSRW9q3u8bdVn2NPI+lasFyVsEQn1J/IFmp5Aax41+dAP9wg==}
