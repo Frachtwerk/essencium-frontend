@@ -47,8 +47,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         },
         loader: 'dots',
         transitionTimingFunction: 'ease-in-out',
-        dateFormat: 'DD.MM.YYYY',
-        datesLocale: 'de',
+        dateFormat: 'YYYY-MM-DD',
+        datesLocale: 'en',
       }}
     >
       <QueryClientProvider client={queryClient}>
