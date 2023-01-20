@@ -18,9 +18,9 @@ function CommonFooter() {
           </Flex>
         </MediaQuery>
         <Flex direction="row" gap="xl">
-          <Anchor href="/">{t('footer.privacy')}</Anchor>
-          <Anchor href="/">{t('footer.imprint')}</Anchor>
-          <Anchor href="/">{t('footer.contact')}</Anchor>
+          <Anchor href="/privacy">{t('footer.privacy')}</Anchor>
+          <Anchor href="/imprint">{t('footer.imprint')}</Anchor>
+          <Anchor href="/contact">{t('footer.contact')}</Anchor>
         </Flex>
       </Flex>
     </Footer>

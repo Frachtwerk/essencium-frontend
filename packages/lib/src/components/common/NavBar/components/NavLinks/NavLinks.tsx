@@ -1,3 +1,4 @@
+import { Anchor } from '@mantine/core'
 import {
   IconHome2,
   IconLanguage,
@@ -17,7 +18,7 @@ function NavLinks() {
       icon: <IconHome2 size={20} />,
       color: 'blue',
       label: t('navigation.home'),
-      href: '/',
+      href: '/home',
     },
     {
       icon: <IconUsers size={20} />,
@@ -46,13 +47,14 @@ function NavLinks() {
   ]
 
   const links = data.map(link => (
-    <Link
-      icon={link.icon}
-      color={link.color}
-      label={link.label}
-      href={link.href}
-      key={link.label}
-    />
+    <Anchor href={link.href} key={link.label} variant="text">
+      <Link
+        icon={link.icon}
+        color={link.color}
+        label={link.label}
+        href={link.href}
+      />
+    </Anchor>
   ))
   return <div>{links}</div>
 }
