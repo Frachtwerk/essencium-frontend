@@ -34,6 +34,8 @@ importers:
     specifiers:
       '@babel/core': 7.20.5
       '@emotion/react': 11.10.5
+      '@fontsource/fira-code': 4.5.13
+      '@fontsource/fira-sans': 4.5.10
       '@fortawesome/fontawesome-svg-core': 6.2.1
       '@fortawesome/free-solid-svg-icons': 6.2.1
       '@fortawesome/react-fontawesome': 0.2.0
@@ -45,6 +47,7 @@ importers:
       '@nrwl/vite': 15.3.3
       '@sentry/react': 7.26.0
       '@sentry/tracing': 7.26.0
+      '@tabler/icons': 1.119.0
       '@tanstack/react-query': 4.20.4
       '@tanstack/react-query-devtools': 4.20.4
       '@testing-library/react': 13.4.0
@@ -84,6 +87,8 @@ importers:
       zustand: 4.1.5
     dependencies:
       '@emotion/react': 11.10.5_xl5my4wapvq2ctl7qwehtbgorq
+      '@fontsource/fira-code': 4.5.13
+      '@fontsource/fira-sans': 4.5.10
       '@fortawesome/fontawesome-svg-core': 6.2.1
       '@fortawesome/free-solid-svg-icons': 6.2.1
       '@fortawesome/react-fontawesome': 0.2.0_z27bm67dtmuyyvss23ckjdrcuy
@@ -94,6 +99,7 @@ importers:
       '@mantine/spotlight': 5.9.4_akxvflpdc4qclfp7ngtfppkada
       '@sentry/react': 7.26.0_react@18.2.0
       '@sentry/tracing': 7.26.0
+      '@tabler/icons': 1.119.0_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-query': 4.20.4_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-query-devtools': 4.20.4_fu3ixcwltlssi3ozitelgaebme
       dayjs: 1.11.7
@@ -150,6 +156,7 @@ importers:
       '@rollup/plugin-commonjs': 23.0.2
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-typescript': 9.0.2
+      '@tabler/icons': 1.119.0
       '@tanstack/react-query': 4.14.5
       '@testing-library/react': 13.4.0
       '@types/react': 18.0.25
@@ -194,6 +201,7 @@ importers:
       '@rollup/plugin-commonjs': 23.0.2_rollup@3.2.5
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.2.5
       '@rollup/plugin-typescript': 9.0.2_skqhbvp355vci76ty3pdffvjrq
+      '@tabler/icons': 1.119.0_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-query': 4.14.5_biqbaboplfbrettd7655fr4n2y
       '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
       '@types/react': 18.0.25
@@ -1076,6 +1084,14 @@ packages:
       '@floating-ui/dom': 1.0.4
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+
+  /@fontsource/fira-code/4.5.13:
+    resolution: {integrity: sha512-T1IG6/2AXSwEKwlrEm3kyIL3RQTMblPyj68HgnBGl0IBGFxgS5LZ7StRdDo/QimJ4Tz6FQGHuy1Y/ShNxaUefA==}
+    dev: false
+
+  /@fontsource/fira-sans/4.5.10:
+    resolution: {integrity: sha512-4Edj+GA0LYSqfXOvdTwVGmCShT8Ycd8bKzdfzM302n+I6Hsg6h3gBkBeNgN19PhkcngDznZyHv3EkyrKqvMTGw==}
+    dev: false
 
   /@fortawesome/fontawesome-common-types/6.2.0:
     resolution: {integrity: sha512-rBevIsj2nclStJ7AxTdfsa3ovHb1H+qApwrxcTVo+NNdeJiB9V75hsKfrkG5AwNcRUNxrPPiScGYCNmLMoh8pg==}
@@ -1983,6 +1999,20 @@ packages:
     dependencies:
       tslib: 2.4.1
     dev: true
+
+  /@tabler/icons/1.119.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-Fk3Qq4w2SXcTjc/n1cuL5bccPkylrOMo7cYpQIf/yw6zP76LQV9dtLcHQUjFiUnaYuswR645CnURIhlafyAh9g==}
+    peerDependencies:
+      react: ^16.x || 17.x || 18.x
+      react-dom: ^16.x || 17.x || 18.x
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
 
   /@tanstack/match-sorter-utils/8.7.2:
     resolution: {integrity: sha512-bptNeoexeDB947fWoCPwUchPSx5FA9gwzU0bkXz0du5pT8Ud2+1ob+xOgHj6EF3VN0kdXtLhwjPyhY7/dJglkg==}

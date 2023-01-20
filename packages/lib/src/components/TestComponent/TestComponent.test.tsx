@@ -1,7 +1,7 @@
 import { render, RenderResult, screen } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import TestComponent from './TestComponent'
+import { TestComponent } from './TestComponent'
 
 /**
  * This is only a demo that does not cover a full coverage test of the component.

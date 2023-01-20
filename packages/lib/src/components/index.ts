@@ -1,2 +1,2 @@
-export type { Props, User } from './TestComponent'
-export { TestComponent, userSchema } from './TestComponent'
+export * from './common'
+export * from './TestComponent'

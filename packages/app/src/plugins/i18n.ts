@@ -27,7 +27,7 @@ i18n
     defaultNS: 'backendTranslation',
     fallbackNS: 'localTranslation',
 
-    lng: 'de',
+    lng: 'en',
 
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default

@@ -4,9 +4,12 @@ import { useQuery } from '@tanstack/react-query'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Props, User, userSchema } from './types'
+import { User, UserProps, userSchema } from './types'
 
-function TestComponent({ users, shouldLoadApiUsers = false }: Props) {
+export function TestComponent({
+  users,
+  shouldLoadApiUsers = false,
+}: UserProps) {
   const { t } = useTranslation()
 
   const apiUsers = useQuery<User[]>(
@@ -52,5 +55,3 @@ function TestComponent({ users, shouldLoadApiUsers = false }: Props) {
     </>
   )
 }
-
-export default TestComponent

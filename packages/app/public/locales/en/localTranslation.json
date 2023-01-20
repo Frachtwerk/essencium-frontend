@@ -7,5 +7,23 @@
   "loadApiUsers": "Load API-Users",
   "removeApiUsers": "Remove API-Users",
   "usersGivenByProp": "users given by prop",
-  "itWorks": "It works!"
+  "itWorks": "It works!",
+
+  "header": {
+    "title": "Essencium",
+    "search": "Search"
+  },
+  "navigation": {
+    "home": "Home",
+    "users": "Users",
+    "roles": "Roles",
+    "rights": "Rights",
+    "translations": "Translations"
+  },
+  "footer": {
+    "license": "2023 Essencium License",
+    "privacy": "Privacy",
+    "imprint": "Imprint",
+    "contact": "Contact"
+  }
 }
