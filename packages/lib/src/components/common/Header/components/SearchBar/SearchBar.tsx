@@ -2,7 +2,7 @@ import { Input, Kbd, MediaQuery } from '@mantine/core'
 import { IconSearch } from '@tabler/icons'
 import { useTranslation } from 'react-i18next'
 
-function SearchBar() {
+export function SearchBar() {
   const { t } = useTranslation()
 
   return (
@@ -23,5 +23,3 @@ function SearchBar() {
     </MediaQuery>
   )
 }
-
-export default SearchBar

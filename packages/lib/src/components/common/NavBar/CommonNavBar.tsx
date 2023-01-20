@@ -6,12 +6,10 @@ type NavBarProps = {
   isOpen: boolean
 }
 
-function NavBar({ isOpen }: NavBarProps) {
+export function CommonNavBar({ isOpen }: NavBarProps) {
   return (
     <Navbar hidden={!isOpen} p="md" hiddenBreakpoint="sm" width={{ sm: 220 }}>
       <NavLinks />
     </Navbar>
   )
 }
-
-export default NavBar

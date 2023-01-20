@@ -8,9 +8,9 @@ import {
 } from '@tabler/icons'
 import { useTranslation } from 'react-i18next'
 
-import Link from './components/Link'
+import { Link } from './components/Link'
 
-function NavLinks() {
+export function NavLinks() {
   const { t } = useTranslation()
 
   const data = [
@@ -58,5 +58,3 @@ function NavLinks() {
   ))
   return <div>{links}</div>
 }
-
-export default NavLinks

@@ -2,7 +2,7 @@ import { Anchor, Flex, Footer, MediaQuery, Text } from '@mantine/core'
 import { IconCopyright } from '@tabler/icons'
 import { useTranslation } from 'react-i18next'
 
-function CommonFooter() {
+export function CommonFooter() {
   const { t } = useTranslation()
   return (
     <Footer height={60} p="md">
@@ -26,5 +26,3 @@ function CommonFooter() {
     </Footer>
   )
 }
-
-export default CommonFooter

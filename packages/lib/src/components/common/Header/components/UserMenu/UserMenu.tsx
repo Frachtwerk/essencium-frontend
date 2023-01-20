@@ -1,7 +1,7 @@
 import { Box, Group, Text, UnstyledButton } from '@mantine/core'
 import { IconChevronRight, IconUserCircle } from '@tabler/icons'
 
-function UserMenu() {
+export function UserMenu() {
   return (
     <Box>
       <UnstyledButton
@@ -37,5 +37,3 @@ function UserMenu() {
     </Box>
   )
 }
-
-export default UserMenu

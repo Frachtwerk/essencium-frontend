@@ -7,7 +7,7 @@ interface LinkProps {
   href: string
 }
 
-function Link({ icon, color, label, href }: LinkProps) {
+export function Link({ icon, color, label, href }: LinkProps) {
   return (
     <UnstyledButton
       sx={{
@@ -33,5 +33,3 @@ function Link({ icon, color, label, href }: LinkProps) {
     </UnstyledButton>
   )
 }
-
-export default Link

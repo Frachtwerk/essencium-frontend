@@ -19,7 +19,7 @@ type CommonHeaderProps = {
   handleOpenNav: () => void
 }
 
-function CommonHeader({ isOpen, handleOpenNav }: CommonHeaderProps) {
+export function CommonHeader({ isOpen, handleOpenNav }: CommonHeaderProps) {
   const { t } = useTranslation()
 
   return (
@@ -85,5 +85,3 @@ function CommonHeader({ isOpen, handleOpenNav }: CommonHeaderProps) {
     </Header>
   )
 }
-
-export default CommonHeader

@@ -1,2 +1,2 @@
-// eslint-disable-next-line import/prefer-default-export
-export { default as NavLinks } from './NavLinks'
+export * from './components'
+export * from './NavLinks'
