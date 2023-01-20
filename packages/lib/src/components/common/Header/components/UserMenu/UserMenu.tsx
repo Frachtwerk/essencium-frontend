@@ -22,10 +22,12 @@ export function UserMenu() {
           noWrap
         >
           <IconUserCircle size="28" />
+
           <Box sx={{ flex: 1 }}>
             <Text size="sm" weight={500}>
               Admin User
             </Text>
+
             <Text color="dimmed" size="xs">
               admin@mail.com
             </Text>

@@ -43,6 +43,7 @@ export function CommonHeader({ isOpen, handleOpenNav }: CommonHeaderProps) {
             <ThemeIcon size="lg" variant="filled">
               <IconBrandReact />
             </ThemeIcon>
+
             <Text size={24} mx={4}>
               {t('header.title')}
             </Text>
@@ -63,6 +64,7 @@ export function CommonHeader({ isOpen, handleOpenNav }: CommonHeaderProps) {
             >
               <IconMoon />
             </ActionIcon>
+
             <ActionIcon
               color="dark"
               sx={{
