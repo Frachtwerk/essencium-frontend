@@ -51,7 +51,10 @@ function App() {
       navbar={<CommonNavBar isOpen={openedNav} />}
       footer={<CommonFooter />}
       header={
-        <CommonHeader isOpen={openedNav} handleOpenNav={() => handleOpenNav} />
+        <CommonHeader
+          isOpen={openedNav}
+          handleOpenNav={() => handleOpenNav()}
+        />
       }
     >
       <Center sx={{ width: '100%', height: '80%' }}>
