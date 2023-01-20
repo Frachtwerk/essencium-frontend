@@ -9,10 +9,10 @@ const userSchema = y.object({
 
 type User = y.InferType<typeof userSchema>
 
-interface Props {
+interface UserProps {
   users: User[]
   shouldLoadApiUsers?: boolean
 }
 
 export { userSchema }
-export type { Props, User }
+export type { User, UserProps }
