@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 
 export function CommonFooter() {
   const { t } = useTranslation()
+
   return (
     <Footer height={60} p="md">
       <Flex
