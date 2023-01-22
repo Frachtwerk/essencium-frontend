@@ -30,7 +30,8 @@
     "mantine"
   ],
   "scripts": {
-    "clean": "rimraf dist node_modules && pnpm install",
+    "clean": "rimraf dist node_modules",
+    "clean:install": "pnpm clean && pnpm install",
     "release": "standard-version",
     "format": "prettier --write .",
     "lint": "eslint .",
