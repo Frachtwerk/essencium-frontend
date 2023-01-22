@@ -35,8 +35,8 @@
     "test": "vitest run",
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage",
-    "dev": "vite",
-    "build": "tsc && vite build && rimraf dist/**/*.js.map",
+    "dev": "node ./utils/build-tsconfig.js --development && prettier ./tsconfig.json --write && vite",
+    "build": "node ./utils/build-tsconfig.js && prettier ./tsconfig.json --write && tsc && vite build && rimraf dist/**/*.js.map",
     "preview": "vite preview"
   },
   "devDependencies": {
@@ -85,6 +85,7 @@
     "@tanstack/react-query": "4.20.4",
     "@tanstack/react-query-devtools": "4.20.4",
     "dayjs": "1.11.7",
+    "fast-glob": "3.2.12",
     "i18next": "22.4.5",
     "i18next-browser-languagedetector": "7.0.1",
     "i18next-chained-backend": "4.2.0",
