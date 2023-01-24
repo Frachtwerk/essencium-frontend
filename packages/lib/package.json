@@ -1,27 +1,7 @@
 {
   "name": "lib",
-  "author": "Frachtwerk GmbH",
-  "license": "MIT",
   "version": "0.1.0",
-  "main": "dist/index.js",
-  "files": [
-    "dist"
-  ],
-  "types": "dist/index.d.ts",
-  "engines": {
-    "node": ">=16",
-    "pnpm": "7"
-  },
-  "type": "module",
   "description": "This is the component library for the starter boilerplate.",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:Frachtwerk/essencium-frontend.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Frachtwerk/essencium-frontend/issues"
-  },
-  "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/master/README.md",
   "keywords": [
     "starter",
     "boilerplate",
@@ -29,87 +9,111 @@
     "react",
     "mantine"
   ],
+  "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/master/README.md",
+  "bugs": {
+    "url": "https://github.com/Frachtwerk/essencium-frontend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Frachtwerk/essencium-frontend.git"
+  },
+  "license": "MIT",
+  "author": "Frachtwerk GmbH",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "clean": "rimraf dist node_modules && pnpm install",
-    "release": "standard-version",
+    "build": "rimraf dist && rollup -c",
+    "clean": "rimraf dist node_modules",
+    "clean:install": "pnpm clean && pnpm install",
     "format": "prettier --write .",
     "lint": "eslint .",
+    "release": "standard-version",
     "test": "vitest run",
-    "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage",
-    "build": "rimraf dist && rollup -c"
+    "test:watch": "vitest watch"
   },
   "devDependencies": {
-    "@babel/core": "7.20.2",
+    "@babel/core": "7.20.12",
     "@emotion/react": "11.10.5",
-    "@fortawesome/fontawesome-svg-core": "6.2.0",
-    "@fortawesome/free-solid-svg-icons": "6.2.0",
+    "@fortawesome/fontawesome-svg-core": "6.2.1",
+    "@fortawesome/free-solid-svg-icons": "6.2.1",
     "@fortawesome/react-fontawesome": "0.2.0",
-    "@mantine/core": "5.7.1",
-    "@mantine/dates": "5.7.1",
-    "@mantine/hooks": "5.7.1",
-    "@mantine/modals": "5.7.1",
-    "@mantine/spotlight": "5.7.1",
-    "@rollup/plugin-commonjs": "23.0.2",
+    "@mantine/core": "5.10.1",
+    "@mantine/dates": "5.10.1",
+    "@mantine/hooks": "5.10.1",
+    "@mantine/modals": "5.10.1",
+    "@mantine/spotlight": "5.10.1",
+    "@rollup/plugin-commonjs": "24.0.1",
     "@rollup/plugin-node-resolve": "15.0.1",
-    "@rollup/plugin-typescript": "9.0.2",
+    "@rollup/plugin-terser": "0.3.0",
+    "@rollup/plugin-typescript": "11.0.0",
     "@tabler/icons": "1.119.0",
-    "@tanstack/react-query": "4.20.4",
+    "@tanstack/react-query": "4.22.4",
     "@testing-library/react": "13.4.0",
-    "@types/react": "18.0.25",
-    "@typescript-eslint/eslint-plugin": "5.42.1",
-    "@typescript-eslint/parser": "5.42.1",
-    "@vitest/coverage-c8": "0.27.1",
+    "@types/react": "18.0.27",
+    "@typescript-eslint/eslint-plugin": "5.48.2",
+    "@typescript-eslint/parser": "5.48.2",
+    "@vitest/coverage-c8": "0.28.1",
     "autoprefixer": "10.4.13",
-    "dayjs": "1.11.6",
-    "eslint": "8.27.0",
+    "dayjs": "1.11.7",
+    "eslint": "8.32.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.0.0",
-    "eslint-config-prettier": "8.5.0",
-    "happy-dom": "8.1.4",
-    "i18next": "21.10.0",
-    "postcss": "8.4.18",
-    "prettier": "2.7.1",
+    "eslint-config-prettier": "8.6.0",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-jsx-a11y": "6.7.1",
+    "eslint-plugin-react": "7.32.1",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "happy-dom": "8.1.5",
+    "i18next": "22.4.9",
+    "postcss": "8.4.21",
+    "prettier": "2.8.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-i18next": "11.18.6",
-    "rimraf": "3.0.2",
-    "rollup": "3.2.5",
-    "rollup-plugin-dts": "5.0.0",
+    "react-i18next": "12.1.4",
+    "rimraf": "4.1.1",
+    "rollup": "3.10.1",
+    "rollup-plugin-dts": "5.1.1",
     "rollup-plugin-peer-deps-external": "2.2.4",
-    "rollup-plugin-terser": "7.0.2",
     "standard-version": "9.5.0",
-    "tailwindcss": "3.2.2",
-    "tslib": "2.4.1",
-    "typescript": "4.8.4",
-    "vitest": "0.27.1",
+    "tailwindcss": "3.2.4",
+    "typescript": "4.9.4",
+    "vitest": "0.28.1",
     "yup": "0.32.11"
   },
   "peerDependencies": {
     "@emotion/react": "11.10.5",
-    "@fortawesome/fontawesome-svg-core": "6.2.0",
-    "@fortawesome/free-solid-svg-icons": "6.2.0",
+    "@fortawesome/fontawesome-svg-core": "6.2.1",
+    "@fortawesome/free-solid-svg-icons": "6.2.1",
     "@fortawesome/react-fontawesome": "0.2.0",
-    "@mantine/core": "5.7.1",
-    "@mantine/dates": "5.7.1",
-    "@mantine/hooks": "5.7.1",
-    "@mantine/modals": "5.7.1",
-    "@mantine/spotlight": "5.7.1",
+    "@mantine/core": "5.10.1",
+    "@mantine/dates": "5.10.1",
+    "@mantine/hooks": "5.10.1",
+    "@mantine/modals": "5.10.1",
+    "@mantine/spotlight": "5.10.1",
     "@tabler/icons": "1.119.0",
-    "@tanstack/react-query": "4.20.4",
-    "i18next": "21.10.0",
+    "@tanstack/react-query": "4.22.4",
+    "i18next": "22.4.9",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-i18next": "11.18.6",
-    "tailwindcss": "3.2.2",
+    "react-i18next": "12.1.4",
+    "tailwindcss": "3.2.4",
     "yup": "0.32.11"
+  },
+  "engines": {
+    "node": ">=16",
+    "pnpm": "7"
+  },
+  "volta": {
+    "node": "16.19.0"
   },
   "nx": {
     "tags": [
       "scope:lib"
     ]
-  },
-  "volta": {
-    "node": "16.19.0"
   }
 }
