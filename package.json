@@ -1,22 +1,8 @@
 {
   "name": "@frachtwerk/essencium-frontend",
-  "author": "Frachtwerk GmbH",
-  "license": "MIT",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": ">=16",
-    "pnpm": "7"
-  },
   "description": "This is a React-based starter monorepo consisting of a component library, docs and a boilerplate.",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:Frachtwerk/essencium-frontend.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Frachtwerk/essencium-frontend/issues"
-  },
-  "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/master/README.md",
   "keywords": [
     "starter",
     "boilerplate",
@@ -24,28 +10,42 @@
     "react",
     "mantine"
   ],
+  "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/master/README.md",
+  "bugs": {
+    "url": "https://github.com/Frachtwerk/essencium-frontend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Frachtwerk/essencium-frontend.git"
+  },
+  "license": "MIT",
+  "author": "Frachtwerk GmbH",
   "scripts": {
-    "setup-env": "pnpm install && husky install",
+    "build": "nx build app",
     "clean": "nx run-many --target=clean && rimraf dist node_modules",
     "clean:install": "pnpm i -w && pnpm clean && pnpm install",
-    "lint": "nx run-many --target=lint",
-    "test": "nx run-many --target=test",
     "dev": "nx dev app",
-    "build": "nx build app"
+    "lint": "nx run-many --target=lint",
+    "setup-env": "pnpm install && husky install",
+    "test": "nx run-many --target=test"
   },
   "devDependencies": {
-    "@nrwl/eslint-plugin-nx": "15.5.1",
-    "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-jsx-a11y": "6.7.1",
-    "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-react": "7.32.1",
-    "eslint-plugin-react-hooks": "4.6.0",
-    "eslint-plugin-simple-import-sort": "9.0.0",
     "@commitlint/cli": "17.4.2",
     "@commitlint/config-conventional": "17.4.2",
-    "husky": "8.0.2",
-    "nx": "15.3.0",
-    "rimraf": "3.0.2"
+    "@nrwl/eslint-plugin-nx": "15.5.3",
+    "@typescript-eslint/parser": "5.48.2",
+    "eslint": "8.32.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-simple-import-sort": "9.0.0",
+    "husky": "8.0.3",
+    "nx": "15.5.3",
+    "prettier": "2.8.3",
+    "rimraf": "4.1.1",
+    "typescript": "4.9.4"
+  },
+  "engines": {
+    "node": ">=16",
+    "pnpm": "7"
   },
   "volta": {
     "node": "16.19.0"

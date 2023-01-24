@@ -1,24 +1,8 @@
 {
   "name": "app",
-  "author": "Frachtwerk GmbH",
-  "license": "MIT",
   "version": "0.0.4",
   "private": true,
-  "main": "index.js",
-  "engines": {
-    "node": ">=16",
-    "pnpm": "7"
-  },
-  "type": "module",
   "description": "This is the starter application consuming the library.",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:Frachtwerk/essencium-frontend.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Frachtwerk/essencium-frontend/issues"
-  },
-  "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/master/README.md",
   "keywords": [
     "starter",
     "boilerplate",
@@ -26,46 +10,30 @@
     "react",
     "mantine"
   ],
+  "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/master/README.md",
+  "bugs": {
+    "url": "https://github.com/Frachtwerk/essencium-frontend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Frachtwerk/essencium-frontend.git"
+  },
+  "license": "MIT",
+  "author": "Frachtwerk GmbH",
+  "type": "module",
+  "main": "index.js",
   "scripts": {
+    "build": "node ./utils/build-tsconfig.js && prettier ./tsconfig.json --write && tsc && vite build && rimraf dist/**/*.js.map",
     "clean": "rimraf dist node_modules",
     "clean:install": "pnpm clean && pnpm install",
-    "release": "standard-version",
+    "dev": "node ./utils/build-tsconfig.js --development && prettier ./tsconfig.json --write && vite",
     "format": "prettier --write .",
     "lint": "eslint .",
+    "preview": "vite preview",
+    "release": "standard-version",
     "test": "vitest run",
-    "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage",
-    "dev": "node ./utils/build-tsconfig.js --development && prettier ./tsconfig.json --write && vite",
-    "build": "node ./utils/build-tsconfig.js && prettier ./tsconfig.json --write && tsc && vite build && rimraf dist/**/*.js.map",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "@babel/core": "7.20.5",
-    "@nrwl/vite": "15.3.3",
-    "@testing-library/react": "13.4.0",
-    "@types/node": "18.11.18",
-    "@types/react": "18.0.26",
-    "@types/react-dom": "18.0.9",
-    "@typescript-eslint/eslint-plugin": "5.46.1",
-    "@typescript-eslint/parser": "5.46.1",
-    "@vitejs/plugin-react": "3.0.0",
-    "@vitest/coverage-c8": "0.27.1",
-    "autoprefixer": "10.4.13",
-    "dotenv": "16.0.3",
-    "eslint": "8.29.0",
-    "eslint-config-airbnb": "19.0.4",
-    "eslint-config-airbnb-typescript": "17.0.0",
-    "eslint-config-prettier": "8.5.0",
-    "happy-dom": "8.1.4",
-    "postcss": "8.4.20",
-    "prettier": "2.8.1",
-    "rimraf": "3.0.2",
-    "standard-version": "9.5.0",
-    "tailwindcss": "3.2.4",
-    "typescript": "4.9.4",
-    "vite": "4.0.1",
-    "vite-plugin-sentry": "1.1.7",
-    "vitest": "0.27.1"
+    "test:watch": "vitest watch"
   },
   "dependencies": {
     "@emotion/react": "11.10.5",
@@ -97,12 +65,47 @@
     "yup": "0.32.11",
     "zustand": "4.1.5"
   },
+  "devDependencies": {
+    "@babel/core": "7.20.5",
+    "@testing-library/react": "13.4.0",
+    "@types/node": "18.11.18",
+    "@types/react": "18.0.26",
+    "@types/react-dom": "18.0.9",
+    "@typescript-eslint/eslint-plugin": "5.46.1",
+    "@typescript-eslint/parser": "5.46.1",
+    "@vitejs/plugin-react": "3.0.0",
+    "@vitest/coverage-c8": "0.27.1",
+    "autoprefixer": "10.4.13",
+    "dotenv": "16.0.3",
+    "eslint": "8.29.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-airbnb-typescript": "17.0.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-jsx-a11y": "6.7.1",
+    "eslint-plugin-react": "7.32.1",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "eslint-config-prettier": "8.5.0",
+    "happy-dom": "8.1.4",
+    "postcss": "8.4.20",
+    "prettier": "2.8.1",
+    "rimraf": "3.0.2",
+    "standard-version": "9.5.0",
+    "tailwindcss": "3.2.4",
+    "typescript": "4.9.4",
+    "vite": "4.0.1",
+    "vite-plugin-sentry": "1.1.7",
+    "vitest": "0.27.1"
+  },
+  "engines": {
+    "node": ">=16",
+    "pnpm": "7"
+  },
+  "volta": {
+    "node": "16.19.0"
+  },
   "nx": {
     "tags": [
       "scope:app"
     ]
-  },
-  "volta": {
-    "node": "16.19.0"
   }
 }
