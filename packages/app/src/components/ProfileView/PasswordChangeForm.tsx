@@ -1,37 +1,45 @@
-import { Button, PasswordInput } from '@mantine/core'
+import { Button, Flex, PasswordInput } from '@mantine/core'
 import { IconCheck } from '@tabler/icons'
 
-export default function PasswordChangeForm() {
+export function PasswordChangeForm() {
   return (
     <form>
-      <PasswordInput
-        placeholder="Ihr altes Passwort"
-        label="Altes Passwort"
-        radius="md"
-        maw="60%"
-        withAsterisk
-        mb="md"
-      />
-      <PasswordInput
-        placeholder="Ihr neues Passwort"
-        label="Neues Passwort"
-        radius="md"
-        maw="60%"
-        withAsterisk
-        mb="md"
-      />
-      <PasswordInput
-        placeholder="Wiederholen Sie Ihr neues Passwort"
-        label="Neues Passwort bestätigen"
-        radius="md"
-        mb="md"
-        maw="60%"
-        withAsterisk
-      />
+      <Flex
+        direction={{ base: 'column', xs: 'column' }}
+        gap={{ base: 'sm', xs: 'lg' }}
+        align={{ base: 'center', xs: 'flex-start' }}
+      >
+        <PasswordInput
+          placeholder="Ihr altes Passwort"
+          label="Altes Passwort"
+          radius="md"
+          miw="60%"
+          withAsterisk
+          mb="md"
+        />
 
-      <Button uppercase mt="md" leftIcon={<IconCheck />}>
-        Speichern
-      </Button>
+        <PasswordInput
+          placeholder="Ihr neues Passwort"
+          label="Neues Passwort"
+          radius="md"
+          miw="60%"
+          withAsterisk
+          mb="md"
+        />
+
+        <PasswordInput
+          placeholder="Wiederholen Sie Ihr neues Passwort"
+          label="Neues Passwort bestätigen"
+          radius="md"
+          mb="md"
+          miw="60%"
+          withAsterisk
+        />
+
+        <Button mt="md" leftIcon={<IconCheck />}>
+          Passwort ändern
+        </Button>
+      </Flex>
     </form>
   )
 }

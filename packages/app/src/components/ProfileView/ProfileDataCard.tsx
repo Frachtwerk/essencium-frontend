@@ -2,21 +2,22 @@ import { Card, Tabs } from '@mantine/core'
 import { IconLock, IconUser } from '@tabler/icons'
 import { useTranslation } from 'react-i18next'
 
-import PasswordChangeForm from './PasswordChangeForm'
-import PersonalDataForm from './PersonalDataForm'
+import { PasswordChangeForm } from './PasswordChangeForm'
+import { PersonalDataForm } from './PersonalDataForm'
 
-export default function ProfileDataCard() {
-  const { t, i18n } = useTranslation()
+export function ProfileDataCard() {
+  const { t } = useTranslation()
 
   return (
     <Card shadow="sm" p="lg" radius="md" withBorder>
       <Tabs defaultValue="personalDataForm">
         <Tabs.List>
           <Tabs.Tab value="personalDataForm" icon={<IconUser size={14} />}>
-            {t('Persönliche Daten')}
+            {t('ProfileView.dataCard.tab.personalData')}
           </Tabs.Tab>
+
           <Tabs.Tab value="passwordChange" icon={<IconLock size={14} />}>
-            {t('Passwort ändern')}
+            {t('ProfileView.dataCard.tab.passwordChange')}
           </Tabs.Tab>
         </Tabs.List>
 
