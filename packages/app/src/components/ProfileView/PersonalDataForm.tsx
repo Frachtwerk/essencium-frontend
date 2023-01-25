@@ -1,7 +1,13 @@
-import { TextInput, Select, Flex, Button } from '@mantine/core'
-import { useState } from 'react'
-import { Switch, useMantineTheme } from '@mantine/core'
+import {
+  Button,
+  Flex,
+  Select,
+  Switch,
+  TextInput,
+  useMantineTheme,
+} from '@mantine/core'
 import { IconCheck, IconX } from '@tabler/icons'
+import { useState } from 'react'
 
 export default function PersonalDataForm() {
   const theme = useMantineTheme()
