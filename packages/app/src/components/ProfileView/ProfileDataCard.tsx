@@ -1,10 +1,10 @@
-import { Card, Text } from '@mantine/core'
-import PersonalDataForm from './PersonalDataForm'
-import { Tabs } from '@mantine/core'
+import { Card, Tabs } from '@mantine/core'
 import { IconLock, IconUser } from '@tabler/icons'
-import PasswordChangeForm from './PasswordChangeForm'
 
-export default function ProfileViewCard() {
+import PasswordChangeForm from './PasswordChangeForm'
+import PersonalDataForm from './PersonalDataForm'
+
+export default function ProfileDataCard() {
   return (
     <Card shadow="sm" p="lg" radius="md" withBorder>
       <Tabs defaultValue="personalDataForm">
