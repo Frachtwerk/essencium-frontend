@@ -1,4 +1,4 @@
-import { Grid, MediaQuery } from '@mantine/core'
+import { Grid } from '@mantine/core'
 
 import ProfileCardSmall from './ProfilCardSmall'
 import ProfileDataCard from './ProfileDataCard'
