@@ -1,4 +1,4 @@
-import { PasswordInput, Button } from '@mantine/core'
+import { Button, PasswordInput } from '@mantine/core'
 import { IconCheck } from '@tabler/icons'
 
 export default function PasswordChangeForm() {
@@ -28,6 +28,7 @@ export default function PasswordChangeForm() {
         maw="60%"
         withAsterisk
       />
+
       <Button uppercase mt="md" leftIcon={<IconCheck />}>
         Speichern
       </Button>
