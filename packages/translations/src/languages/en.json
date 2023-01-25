@@ -33,6 +33,7 @@
     "dataCard": {
       "tabs": {
         "personalData": {
+<<<<<<< main:packages/translations/src/languages/en.json
           "title": "Personal Data",
           "content": {
             "firstName": "First Name",
@@ -58,6 +59,21 @@
             "role": "Role",
             "saveSettings": "Save Settings"
           }
+=======
+          "title": "personal data",
+          "content": {
+            "firstName": "first name",
+            "lastName": "last name",
+            "email": "e-mail",
+            "phone": "phone number",
+            "mobile": "mobile number",
+            "language": "language",
+            "role": "role"
+          }
+        },
+        "passwordChange": {
+          "title": "change password"
+>>>>>>> feat: add translation to PersonalDataForm:packages/app/public/locales/en/localTranslation.json
         }
       }
     }
