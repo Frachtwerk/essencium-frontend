@@ -28,5 +28,14 @@
     "privacy": "Privacy",
     "imprint": "Imprint",
     "contact": "Contact"
+  },
+
+  "ProfileView": {
+    "dataCard": {
+      "tab": {
+        "personalData": "personal data",
+        "passwordChange": "change password"
+      }
+    }
   }
 }

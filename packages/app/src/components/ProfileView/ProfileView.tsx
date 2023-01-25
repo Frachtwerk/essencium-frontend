@@ -1,14 +1,15 @@
 import { Grid } from '@mantine/core'
 
-import ProfileCardSmall from './ProfilCardSmall'
-import ProfileDataCard from './ProfileDataCard'
+import { ProfileDataCard } from './ProfileDataCard'
+import { ProfileOverviewCard } from './ProfilOverviewCard'
 
-export default function ProfileView() {
+export function ProfileView() {
   return (
     <Grid>
       <Grid.Col md={3}>
-        <ProfileCardSmall />
+        <ProfileOverviewCard />
       </Grid.Col>
+
       <Grid.Col md={9}>
         <ProfileDataCard />
       </Grid.Col>
