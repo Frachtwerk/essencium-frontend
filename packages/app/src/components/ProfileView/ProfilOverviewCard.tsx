@@ -1,6 +1,6 @@
-import { Avatar, Card, Flex, Text } from '@mantine/core'
+import { Avatar, Badge, Card, Flex, Text, Title } from '@mantine/core'
 
-export default function ProfileCardSmall() {
+export function ProfileOverviewCard() {
   const testUser = {
     firstName: 'John',
     lastName: 'Doe',
@@ -11,13 +11,7 @@ export default function ProfileCardSmall() {
 
   return (
     <Card shadow="sm" p="lg" radius="md" withBorder>
-      <Flex
-        gap="md"
-        justify="center"
-        align="center"
-        direction="column"
-        wrap="wrap"
-      >
+      <Flex gap="md" justify="center" align="center" direction="column">
         <Avatar
           size="xl"
           radius="xl"
@@ -25,10 +19,14 @@ export default function ProfileCardSmall() {
           alt="no image here"
           color="indigo"
         />
-        <h2>
+
+        <Title order={2}>
           {testUser.firstName} {testUser.lastName}
-        </h2>
+        </Title>
+
         <Text>{testUser.role === 'user' ? 'Nutzer' : 'Adminstator'}</Text>
+
+        <Badge size="lg">active</Badge>
       </Flex>
     </Card>
   )
