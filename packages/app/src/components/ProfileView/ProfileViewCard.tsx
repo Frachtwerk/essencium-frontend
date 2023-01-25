@@ -2,6 +2,7 @@ import { Card, Text } from '@mantine/core'
 import PersonalDataForm from './PersonalDataForm'
 import { Tabs } from '@mantine/core'
 import { IconLock, IconUser } from '@tabler/icons'
+import PasswordChangeForm from './PasswordChangeForm'
 
 export default function ProfileViewCard() {
   return (
@@ -16,12 +17,12 @@ export default function ProfileViewCard() {
           </Tabs.Tab>
         </Tabs.List>
 
-        <Tabs.Panel value="personalDataForm" pt="xs">
+        <Tabs.Panel value="personalDataForm" pt="lg">
           <PersonalDataForm />
         </Tabs.Panel>
 
-        <Tabs.Panel value="passwordChange" pt="xs">
-          PW Change tab content
+        <Tabs.Panel value="passwordChange" pt="lg">
+          <PasswordChangeForm />
         </Tabs.Panel>
       </Tabs>
     </Card>

@@ -1,6 +1,6 @@
 import { TextInput, Select, Flex, Button } from '@mantine/core'
 import { useState } from 'react'
-import { Switch, Group, useMantineTheme } from '@mantine/core'
+import { Switch, useMantineTheme } from '@mantine/core'
 import { IconCheck, IconX } from '@tabler/icons'
 
 export default function PersonalDataForm() {
@@ -108,7 +108,7 @@ export default function PersonalDataForm() {
           ]}
         />
       </Flex>
-      <Button uppercase mt="md">
+      <Button uppercase mt="md" leftIcon={<IconCheck />}>
         Speichern
       </Button>
     </form>
