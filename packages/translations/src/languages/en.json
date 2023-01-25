@@ -32,9 +32,22 @@
 
   "ProfileView": {
     "dataCard": {
-      "tab": {
-        "personalData": "personal data",
-        "passwordChange": "change password"
+      "tabs": {
+        "personalData": {
+          "title": "personal data",
+          "content": {
+            "firstName": "first name",
+            "lastName": "last name",
+            "email": "e-mail",
+            "phone": "phone number",
+            "mobile": "mobile number",
+            "language": "language",
+            "role": "role"
+          }
+        },
+        "passwordChange": {
+          "title": "change password"
+        }
       }
     }
   }

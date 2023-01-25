@@ -1,7 +1,9 @@
 import { Button, Container, Flex, Select, TextInput } from '@mantine/core'
 import { IconCheck } from '@tabler/icons'
+import { useTranslation } from 'react-i18next'
 
 export function PersonalDataForm() {
+  const { t } = useTranslation()
   const testUser = {
     firstName: 'John',
     lastName: 'Doe',
@@ -19,8 +21,12 @@ export function PersonalDataForm() {
       >
         <TextInput
           mb="md"
-          placeholder="Vorname"
-          label="Vorname"
+          placeholder={
+            t(
+              'ProfileView.dataCard.tabs.personalData.content.firstName'
+            ) as string
+          }
+          label={t('ProfileView.dataCard.tabs.personalData.content.firstName')}
           size="sm"
           variant="filled"
           miw="45%"
@@ -30,8 +36,12 @@ export function PersonalDataForm() {
 
         <TextInput
           mb="md"
-          placeholder="Nachname"
-          label="Nachname"
+          placeholder={
+            t(
+              'ProfileView.dataCard.tabs.personalData.content.lastName'
+            ) as string
+          }
+          label={t('ProfileView.dataCard.tabs.personalData.content.lastName')}
           size="sm"
           variant="filled"
           miw="45%"
@@ -47,8 +57,10 @@ export function PersonalDataForm() {
       >
         <TextInput
           mb="md"
-          placeholder="Telefon"
-          label="Telefon"
+          placeholder={
+            t('ProfileView.dataCard.tabs.personalData.content.phone') as string
+          }
+          label={t('ProfileView.dataCard.tabs.personalData.content.phone')}
           size="sm"
           variant="filled"
           miw="45%"
@@ -57,8 +69,10 @@ export function PersonalDataForm() {
 
         <TextInput
           mb="md"
-          placeholder="Mobil"
-          label="Mobil"
+          placeholder={
+            t('ProfileView.dataCard.tabs.personalData.content.mobile') as string
+          }
+          label={t('ProfileView.dataCard.tabs.personalData.content.mobile')}
           size="sm"
           variant="filled"
           miw="45%"
@@ -73,8 +87,10 @@ export function PersonalDataForm() {
       >
         <TextInput
           mb="md"
-          placeholder="Your Email"
-          label="Email"
+          placeholder={
+            t('ProfileView.dataCard.tabs.personalData.content.email') as string
+          }
+          label={t('ProfileView.dataCard.tabs.personalData.content.email')}
           withAsterisk
           size="sm"
           variant="filled"
@@ -87,14 +103,20 @@ export function PersonalDataForm() {
           <Flex
             direction={{ base: 'column', sm: 'row' }}
             gap={{ base: 'sm', sm: 'lg' }}
-            align={{ sm: 'space-between' }}
+            align={{ base: 'center', sm: 'space-evenly' }}
           >
             <Select
               miw="45%"
               mb="md"
               radius="md"
-              label="Sprache"
-              placeholder="Wählen Sie Ihre Sprache"
+              label={t(
+                'ProfileView.dataCard.tabs.personalData.content.language'
+              )}
+              placeholder={
+                t(
+                  'ProfileView.dataCard.tabs.personalData.content.language'
+                ) as string
+              }
               value={testUser.language}
               data={[
                 { value: 'deutsch', label: 'Deutsch' },
@@ -106,8 +128,12 @@ export function PersonalDataForm() {
               mb="md"
               miw="45%"
               radius="md"
-              label="Rolle"
-              placeholder="Wählen Sie Ihre Rolle"
+              label={t('ProfileView.dataCard.tabs.personalData.content.role')}
+              placeholder={
+                t(
+                  'ProfileView.dataCard.tabs.personalData.content.role'
+                ) as string
+              }
               value={testUser.role}
               data={[
                 { value: 'user', label: 'Nutzer' },
