@@ -55,6 +55,7 @@ export function CommonHeader({ isOpen, handleOpenNav }: CommonHeaderProps) {
         <Group noWrap>
           <Group noWrap>
             <ActionIcon
+              data-testid="darkmode-toggle"
               color="dark"
               sx={{
                 '&:hover': {
@@ -66,6 +67,7 @@ export function CommonHeader({ isOpen, handleOpenNav }: CommonHeaderProps) {
             </ActionIcon>
 
             <ActionIcon
+              data-testid="language-toggle"
               color="dark"
               sx={{
                 '&:hover': {

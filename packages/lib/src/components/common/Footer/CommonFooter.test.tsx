@@ -1,19 +1,25 @@
-import { render, screen } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { render, RenderResult, screen } from '@testing-library/react'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { CommonFooter } from './CommonFooter'
 
-vi.mock('react-i18next', () => {
-  return {
-    useTranslation: () => ({
-      t: (key: unknown) => key,
-    }),
-  }
-})
-
 describe('CommonFooter', () => {
-  it('should render the footer', () => {
-    render(<CommonFooter />)
+  let CommonFooterMounted: RenderResult
+
+  beforeEach(() => {
+    vi.mock('react-i18next', () => ({
+      useTranslation: () => {
+        return {
+          t: (str: unknown) => str,
+        }
+      },
+    }))
+
+    CommonFooterMounted = render(<CommonFooter />)
+  })
+
+  afterEach(() => {
+    CommonFooterMounted.unmount()
   })
 
   it('should contain the correct content', () => {
