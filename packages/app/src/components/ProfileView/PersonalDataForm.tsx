@@ -6,6 +6,14 @@ import { IconCheck, IconX } from '@tabler/icons'
 export default function PersonalDataForm() {
   const theme = useMantineTheme()
   const [checked, setChecked] = useState(false)
+  const testUser = {
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'john@doe.de',
+    role: 'user',
+    language: 'deutsch',
+  }
+
   return (
     <form>
       <Flex gap="md" justify="space-between">
@@ -18,6 +26,7 @@ export default function PersonalDataForm() {
           variant="filled"
           miw="45%"
           radius="md"
+          value={testUser.email}
         />
         <Switch
           mt="lg"
@@ -53,6 +62,7 @@ export default function PersonalDataForm() {
           variant="filled"
           miw="45%"
           radius="md"
+          value={testUser.firstName}
         />
         <TextInput
           mb="md"
@@ -62,6 +72,7 @@ export default function PersonalDataForm() {
           variant="filled"
           miw="45%"
           radius="md"
+          value={testUser.lastName}
         />
       </Flex>
       <Flex gap="md" justify="space-between">
@@ -91,6 +102,7 @@ export default function PersonalDataForm() {
           radius="md"
           label="Sprache"
           placeholder="Wählen Sie Ihre Sprache"
+          value={testUser.language}
           data={[
             { value: 'deutsch', label: 'deutsch' },
             { value: 'english', label: 'english' },
@@ -102,6 +114,7 @@ export default function PersonalDataForm() {
           radius="md"
           label="Rolle"
           placeholder="Wählen Sie Ihre Rolle"
+          value={testUser.role}
           data={[
             { value: 'user', label: 'Nutzer' },
             { value: 'admin', label: 'Administrator' },
