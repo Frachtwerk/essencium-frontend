@@ -1,18 +1,19 @@
 import { Grid } from '@mantine/core'
 
-import { ProfileDataCard } from './ProfileDataCard'
-import { ProfileOverviewCard } from './ProfilOverviewCard'
+type ProfileViewProps = {
+  profileData: JSX.Element
+  profileOverview: JSX.Element
+}
 
-export function ProfileView() {
+export function ProfileView({
+  profileData,
+  profileOverview,
+}: ProfileViewProps) {
   return (
     <Grid>
-      <Grid.Col md={3}>
-        <ProfileOverviewCard />
-      </Grid.Col>
+      <Grid.Col md={3}>{profileOverview}</Grid.Col>
 
-      <Grid.Col md={9}>
-        <ProfileDataCard />
-      </Grid.Col>
+      <Grid.Col md={9}>{profileData}</Grid.Col>
     </Grid>
   )
 }

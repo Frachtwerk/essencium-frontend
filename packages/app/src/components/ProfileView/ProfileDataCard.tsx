@@ -13,11 +13,11 @@ export function ProfileDataCard() {
       <Tabs defaultValue="personalDataForm">
         <Tabs.List>
           <Tabs.Tab value="personalDataForm" icon={<IconUser size={14} />}>
-            {t('ProfileView.dataCard.tab.personalData')}
+            {t('ProfileView.dataCard.tabs.personalData.title')}
           </Tabs.Tab>
 
           <Tabs.Tab value="passwordChange" icon={<IconLock size={14} />}>
-            {t('ProfileView.dataCard.tab.passwordChange')}
+            {t('ProfileView.dataCard.tabs.passwordChange.title')}
           </Tabs.Tab>
         </Tabs.List>
 
