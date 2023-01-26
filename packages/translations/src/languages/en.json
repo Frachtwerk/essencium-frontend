@@ -66,6 +66,14 @@
             "savePassword": "save password"
 >>>>>>> feat: add settings tab and content:packages/app/public/locales/en/localTranslation.json
           }
+        },
+        "settings": {
+          "title": "settings",
+          "content": {
+            "status": "status",
+            "role": "role",
+            "saveSettings": "save settings"
+          }
         }
       }
     }
