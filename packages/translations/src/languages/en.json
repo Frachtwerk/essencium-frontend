@@ -46,7 +46,12 @@
           }
         },
         "passwordChange": {
-          "title": "change password"
+          "title": "change password",
+          "content": {
+            "currentPassword": "current password",
+            "newPassword": "new password",
+            "savePassword": "save password"
+          }
         }
       }
     }
