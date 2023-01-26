@@ -19,7 +19,7 @@ export function ProfileSettingsForm() {
         color="blue"
         size="md"
         mt="sm"
-        label={checked ? 'active' : 'inactive'}
+        label={t('ProfileView.dataCard.tabs.settings.content.status')}
         thumbIcon={
           checked ? (
             <IconCheck
@@ -41,9 +41,9 @@ export function ProfileSettingsForm() {
         mb="md"
         miw="45%"
         radius="md"
-        label={t('ProfileView.dataCard.tabs.personalData.content.role')}
+        label={t('ProfileView.dataCard.tabs.settings.content.role')}
         placeholder={
-          t('ProfileView.dataCard.tabs.personalData.content.role') as string
+          t('ProfileView.dataCard.tabs.settings.content.role') as string
         }
         data={[
           { value: 'user', label: 'Nutzer' },

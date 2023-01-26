@@ -82,7 +82,18 @@
             "newPassword": "new password",
             "savePassword": "save password"
           }
+<<<<<<< main:packages/translations/src/languages/en.json
 >>>>>>> feat: add settings tab and content:packages/app/public/locales/en/localTranslation.json
+=======
+        },
+        "settings": {
+          "title": "settings",
+          "content": {
+            "status": "status",
+            "role": "role",
+            "saveSettings": "save settings"
+          }
+>>>>>>> feat: add translation to settings:packages/app/public/locales/en/localTranslation.json
         }
       }
     }
