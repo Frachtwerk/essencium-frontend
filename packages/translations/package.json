@@ -1,0 +1,42 @@
+{
+  "name": "translations",
+  "author": "Frachtwerk GmbH",
+  "license": "MIT",
+  "version": "0.1.0",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "engines": {
+    "node": ">=16",
+    "pnpm": "7"
+  },
+  "type": "module",
+  "description": "This is the translations library for the app.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Frachtwerk/essencium-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Frachtwerk/essencium-frontend/issues"
+  },
+  "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/master/README.md",
+  "keywords": [
+    "starter",
+    "boilerplate",
+    "frontend",
+    "react",
+    "mantine"
+  ],
+  "scripts": {
+    "clean": "rimraf node_modules && pnpm install",
+    "format": "prettier --write .",
+    "lint": "eslint ."
+  },
+  "nx": {
+    "tags": [
+      "scope:translations"
+    ]
+  },
+  "volta": {
+    "node": "16.19.0"
+  }
+}

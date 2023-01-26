@@ -59,6 +59,7 @@
     "i18next-chained-backend": "4.2.0",
     "i18next-http-backend": "2.1.0",
     "lib": "workspace:*",
+    "translations": "workspace:*",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-i18next": "12.1.1",

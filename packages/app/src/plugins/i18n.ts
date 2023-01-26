@@ -3,11 +3,7 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 import ChainedBackend from 'i18next-chained-backend'
 import HttpBackend from 'i18next-http-backend'
 import { initReactI18next } from 'react-i18next'
-
-// change path from backendTranslations to Starter API
-const backendTranslations = '/backendLocales/{{lng}}/{{ns}}.json'
-
-const localTranslations = '/locales/{{lng}}/{{ns}}.json'
+import { de, en } from 'translations'
 
 i18n
   // detect user language

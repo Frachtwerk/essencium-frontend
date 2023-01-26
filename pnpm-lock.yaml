@@ -83,6 +83,7 @@ importers:
       rimraf: 3.0.2
       standard-version: 9.5.0
       tailwindcss: 3.2.4
+      translations: workspace:*
       typescript: 4.9.4
       vite: 4.0.1
       vite-plugin-sentry: 1.1.7
@@ -116,6 +117,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-i18next: 12.1.1_ewanii43wbrufvukcu3uzq3hsy
+      translations: link:../translations
       yup: 0.32.11
       zustand: 4.1.5_react@18.2.0
     devDependencies:
@@ -195,6 +197,7 @@ importers:
       rollup-plugin-peer-deps-external: 2.2.4
       standard-version: 9.5.0
       tailwindcss: 3.2.4
+      translations: workspace:*
       typescript: 4.9.4
       vitest: 0.28.1
       yup: 0.32.11
@@ -243,9 +246,13 @@ importers:
       rollup-plugin-peer-deps-external: 2.2.4_rollup@3.10.1
       standard-version: 9.5.0
       tailwindcss: 3.2.4_postcss@8.4.21
+      translations: link:../translations
       typescript: 4.9.4
       vitest: 0.28.1_happy-dom@8.1.5
       yup: 0.32.11
+
+  packages/translations:
+    specifiers: {}
 
 packages:
 
