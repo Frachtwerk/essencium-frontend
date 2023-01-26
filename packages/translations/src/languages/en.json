@@ -52,6 +52,14 @@
             "newPassword": "new password",
             "savePassword": "save password"
           }
+        },
+        "settings": {
+          "title": "settings",
+          "content": {
+            "status": "status",
+            "role": "role",
+            "saveSettings": "save settings"
+          }
         }
       }
     }
