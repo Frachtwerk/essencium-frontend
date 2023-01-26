@@ -65,11 +65,19 @@
         "depConstraints": [
           {
             "sourceTag": "scope:app",
-            "onlyDependOnLibsWithTags": ["scope:app", "scope:lib"]
+            "onlyDependOnLibsWithTags": [
+              "scope:app",
+              "scope:lib",
+              "scope:translations"
+            ]
           },
           {
             "sourceTag": "scope:lib",
-            "onlyDependOnLibsWithTags": ["scope:lib"]
+            "onlyDependOnLibsWithTags": ["scope:lib", "scope:translations"]
+          },
+          {
+            "sourceTag": "scope:translations",
+            "onlyDependOnLibsWithTags": ["scope:translations"]
           }
         ]
       }
