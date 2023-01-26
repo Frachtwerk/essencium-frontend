@@ -34,6 +34,7 @@
     "react/react-in-jsx-scope": "off",
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
+    "prettier/prettier": "warn",
     "import/extensions": [
       1, // Severity should be one of the following: 0 = off, 1 = warn, 2 = error
       "ignorePackages",
