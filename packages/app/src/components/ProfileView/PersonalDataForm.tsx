@@ -99,50 +99,24 @@ export function PersonalDataForm() {
           value={testUser.email}
         />
 
-        <Container w="45%" p={0} m={0}>
-          <Flex
-            direction={{ base: 'column', sm: 'row' }}
-            gap={{ base: 'sm', sm: 'lg' }}
-            align={{ base: 'center', sm: 'space-evenly' }}
-          >
-            <Select
-              miw="45%"
-              mb="md"
-              radius="md"
-              label={t(
-                'ProfileView.dataCard.tabs.personalData.content.language'
-              )}
-              placeholder={
-                t(
-                  'ProfileView.dataCard.tabs.personalData.content.language'
-                ) as string
-              }
-              value={testUser.language}
-              data={[
-                { value: 'deutsch', label: 'Deutsch' },
-                { value: 'english', label: 'English' },
-              ]}
-            />
-
-            <Select
-              mb="md"
-              miw="45%"
-              radius="md"
-              label={t('ProfileView.dataCard.tabs.personalData.content.role')}
-              placeholder={
-                t(
-                  'ProfileView.dataCard.tabs.personalData.content.role'
-                ) as string
-              }
-              value={testUser.role}
-              data={[
-                { value: 'user', label: 'Nutzer' },
-                { value: 'admin', label: 'Administrator' },
-              ]}
-            />
-          </Flex>
-        </Container>
+        <Select
+          miw="45%"
+          mb="md"
+          radius="md"
+          label={t('ProfileView.dataCard.tabs.personalData.content.language')}
+          placeholder={
+            t(
+              'ProfileView.dataCard.tabs.personalData.content.language'
+            ) as string
+          }
+          value={testUser.language}
+          data={[
+            { value: 'deutsch', label: 'Deutsch' },
+            { value: 'english', label: 'English' },
+          ]}
+        />
       </Flex>
+
       <Button mt="md" leftIcon={<IconCheck />}>
         Speichern
       </Button>

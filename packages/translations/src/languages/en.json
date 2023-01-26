@@ -72,8 +72,17 @@
           }
         },
         "passwordChange": {
+<<<<<<< main:packages/translations/src/languages/en.json
           "title": "change password"
 >>>>>>> feat: add translation to PersonalDataForm:packages/app/public/locales/en/localTranslation.json
+=======
+          "title": "change password",
+          "content": {
+            "currentPassword": "current password",
+            "newPassword": "new password",
+            "savePassword": "save password"
+          }
+>>>>>>> feat: add settings tab and content:packages/app/public/locales/en/localTranslation.json
         }
       }
     }
