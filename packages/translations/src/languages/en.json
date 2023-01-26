@@ -44,6 +44,7 @@
           }
         },
         "passwordChange": {
+<<<<<<< main:packages/translations/src/languages/en.json
           "title": "Change Password",
           "content": {
             "currentPassword": "Current Password",
@@ -57,6 +58,13 @@
             "status": "Status",
             "role": "Role",
             "saveSettings": "Save Settings"
+=======
+          "title": "change password",
+          "content": {
+            "currentPassword": "current password",
+            "newPassword": "new password",
+            "savePassword": "save password"
+>>>>>>> feat: add settings tab and content:packages/app/public/locales/en/localTranslation.json
           }
         }
       }
