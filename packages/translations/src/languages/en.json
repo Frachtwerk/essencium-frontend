@@ -34,31 +34,30 @@
     "dataCard": {
       "tabs": {
         "personalData": {
-          "title": "personal data",
+          "title": "Personal Data",
           "content": {
-            "firstName": "first name",
-            "lastName": "last name",
-            "email": "e-mail",
-            "phone": "phone number",
-            "mobile": "mobile number",
-            "language": "language",
-            "role": "role"
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "email": "E-Mail",
+            "phone": "Phone Number",
+            "mobile": "Mobile Number",
+            "language": "Language"
           }
         },
         "passwordChange": {
-          "title": "change password",
+          "title": "Change Password",
           "content": {
-            "currentPassword": "current password",
-            "newPassword": "new password",
-            "savePassword": "save password"
+            "currentPassword": "Current Password",
+            "newPassword": "New Password",
+            "savePassword": "Save Password"
           }
         },
         "settings": {
-          "title": "settings",
+          "title": "Settings",
           "content": {
-            "status": "status",
-            "role": "role",
-            "saveSettings": "save settings"
+            "status": "Status",
+            "role": "Role",
+            "saveSettings": "Save Settings"
           }
         }
       }
