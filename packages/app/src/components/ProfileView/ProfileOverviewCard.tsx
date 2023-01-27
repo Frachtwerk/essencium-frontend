@@ -7,6 +7,7 @@ export function ProfileOverviewCard() {
     email: 'john@doe.de',
     role: 'user',
     language: 'deutsch',
+    status: 'active',
   }
 
   return (
@@ -24,9 +25,9 @@ export function ProfileOverviewCard() {
           {testUser.firstName} {testUser.lastName}
         </Title>
 
-        <Text>{testUser.role === 'user' ? 'Nutzer' : 'Adminstator'}</Text>
+        <Text>{testUser.role}</Text>
 
-        <Badge size="lg">active</Badge>
+        <Badge size="lg">{testUser.status}</Badge>
       </Flex>
     </Card>
   )
