@@ -20,8 +20,9 @@ export function ProfileDataCard() {
           <Tabs.Tab value="passwordChange" icon={<IconLock size={14} />}>
             {t('ProfileView.dataCard.tabs.passwordChange.title')}
           </Tabs.Tab>
+
           <Tabs.Tab value="settings" icon={<IconSettings size={14} />}>
-            {t('settings')}
+            {t('ProfileView.dataCard.tabs.settings.title')}
           </Tabs.Tab>
         </Tabs.List>
 
