@@ -1,5 +1,4 @@
-import { Button, Container, Flex, Select, TextInput } from '@mantine/core'
-import { IconCheck } from '@tabler/icons'
+import { Button, Flex, Select, TextInput } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
 export function PersonalDataForm() {
@@ -117,8 +116,8 @@ export function PersonalDataForm() {
         />
       </Flex>
 
-      <Button mt="md" leftIcon={<IconCheck />}>
-        Speichern
+      <Button mt="md" variant="light">
+        Save Changes
       </Button>
     </form>
   )
