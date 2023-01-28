@@ -1,4 +1,1 @@
-import de from './de.json'
-import en from './en.json'
-
-export { de, en }
+export { initI18n } from './initI18n'

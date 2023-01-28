@@ -26,6 +26,9 @@ export default {
     paths: {
       '@/*': ['./src/*'],
       lib: [isDevelopment ? '../lib/src' : './node_modules/lib'],
+      translations: [
+        isDevelopment ? '../translations/src' : './node_modules/translations',
+      ],
     },
   },
   include: ['src/**/*.ts', 'src/**/*.tsx'],

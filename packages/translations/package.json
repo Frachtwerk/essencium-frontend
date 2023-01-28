@@ -3,8 +3,11 @@
   "author": "Frachtwerk GmbH",
   "license": "MIT",
   "version": "0.1.0",
-  "main": "src/index.js",
-  "types": "src/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "engines": {
     "node": ">=16",
     "pnpm": "7"
@@ -27,9 +30,30 @@
     "mantine"
   ],
   "scripts": {
-    "clean": "rimraf node_modules && pnpm install",
+    "build": "rimraf dist && rollup -c",
+    "clean": "rimraf dist node_modules && pnpm install",
     "format": "prettier --write .",
     "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "24.0.1",
+    "@rollup/plugin-node-resolve": "15.0.1",
+    "@rollup/plugin-terser": "0.3.0",
+    "@rollup/plugin-typescript": "11.0.0",
+    "rollup": "3.10.1",
+    "rollup-plugin-dts": "5.1.1",
+    "rollup-plugin-peer-deps-external": "2.2.4",
+    "tslib": "2.4.1",
+    "typescript": "4.9.4",
+    "@rollup/plugin-json": "6.0.0",
+    "i18next": "22.4.9",
+    "i18next-browser-languagedetector": "7.0.1",
+    "react": "18.2.0",
+    "react-i18next": "12.1.4"
+  },
+  "peerDependencies": {
+    "i18next": "22.4.9",
+    "i18next-browser-languagedetector": "7.0.1"
   },
   "nx": {
     "tags": [

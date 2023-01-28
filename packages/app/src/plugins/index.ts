@@ -1,2 +1,2 @@
-import './i18n'
 import './sentry'
+import './i18n'

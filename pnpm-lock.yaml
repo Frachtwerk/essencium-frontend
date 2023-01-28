@@ -71,7 +71,6 @@ importers:
       fast-glob: 3.2.12
       happy-dom: 8.1.4
       i18next: 22.4.5
-      i18next-browser-languagedetector: 7.0.1
       lib: workspace:*
       postcss: 8.4.20
       prettier: 2.8.1
@@ -108,7 +107,6 @@ importers:
       dayjs: 1.11.7
       fast-glob: 3.2.12
       i18next: 22.4.5
-      i18next-browser-languagedetector: 7.0.1
       lib: link:../lib
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -182,7 +180,6 @@ importers:
       eslint-plugin-react-hooks: 4.6.0
       happy-dom: 8.1.5
       i18next: 22.4.9
-      i18next-browser-languagedetector: 7.0.1
       postcss: 8.4.21
       prettier: 2.8.3
       react: 18.2.0
@@ -232,7 +229,6 @@ importers:
       eslint-plugin-react-hooks: 4.6.0_eslint@8.32.0
       happy-dom: 8.1.5
       i18next: 22.4.9
-      i18next-browser-languagedetector: 7.0.1
       postcss: 8.4.21
       prettier: 2.8.3
       react: 18.2.0
@@ -250,7 +246,36 @@ importers:
       yup: 0.32.11
 
   packages/translations:
-    specifiers: {}
+    specifiers:
+      '@rollup/plugin-commonjs': 24.0.1
+      '@rollup/plugin-json': 6.0.0
+      '@rollup/plugin-node-resolve': 15.0.1
+      '@rollup/plugin-terser': 0.3.0
+      '@rollup/plugin-typescript': 11.0.0
+      i18next: 22.4.9
+      i18next-browser-languagedetector: 7.0.1
+      react: 18.2.0
+      react-i18next: 12.1.4
+      rollup: 3.10.1
+      rollup-plugin-dts: 5.1.1
+      rollup-plugin-peer-deps-external: 2.2.4
+      tslib: 2.4.1
+      typescript: 4.9.4
+    devDependencies:
+      '@rollup/plugin-commonjs': 24.0.1_rollup@3.10.1
+      '@rollup/plugin-json': 6.0.0_rollup@3.10.1
+      '@rollup/plugin-node-resolve': 15.0.1_rollup@3.10.1
+      '@rollup/plugin-terser': 0.3.0_rollup@3.10.1
+      '@rollup/plugin-typescript': 11.0.0_p43amxpejtdwpxblcvkyxliyyq
+      i18next: 22.4.9
+      i18next-browser-languagedetector: 7.0.1
+      react: 18.2.0
+      react-i18next: 12.1.4_zpqpq2sidzwymqvcsceprnd3va
+      rollup: 3.10.1
+      rollup-plugin-dts: 5.1.1_p3yyytxbmytz5gvmi4zzszibjy
+      rollup-plugin-peer-deps-external: 2.2.4_rollup@3.10.1
+      tslib: 2.4.1
+      typescript: 4.9.4
 
 packages:
 
@@ -264,6 +289,7 @@ packages:
   /@babel/code-frame/7.18.6:
     resolution: {integrity: sha512-TDCmlK5eOvH+eH7cdAFlNXeVJqWIQ7gW9tY1GJIpUtFb6CmjVyq2VM3u71bOyR8CRihcCgMUYoDNyLXao3+70Q==}
     engines: {node: '>=6.9.0'}
+    requiresBuild: true
     dependencies:
       '@babel/highlight': 7.18.6
 
@@ -1731,6 +1757,19 @@ packages:
       rollup: 3.10.1
     dev: true
 
+  /@rollup/plugin-json/6.0.0_rollup@3.10.1:
+    resolution: {integrity: sha512-i/4C5Jrdr1XUarRhVu27EEwjt4GObltD7c+MkCIpO2QIbojw8MUs+CCTqOphQi3Qtg1FLmYt+l+6YeoIf51J7w==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 5.0.2_rollup@3.10.1
+      rollup: 3.10.1
+    dev: true
+
   /@rollup/plugin-node-resolve/15.0.1_rollup@3.10.1:
     resolution: {integrity: sha512-ReY88T7JhJjeRVbfCyNj+NXAG3IIsVMsX9b5/9jC98dRP8/yxlZdz7mHZbHk5zHr24wZZICS5AcXsFZAXYUQEg==}
     engines: {node: '>=14.0.0'}
@@ -1780,6 +1819,26 @@ packages:
       '@rollup/pluginutils': 5.0.2_rollup@3.10.1
       resolve: 1.22.1
       rollup: 3.10.1
+      typescript: 4.9.4
+    dev: true
+
+  /@rollup/plugin-typescript/11.0.0_p43amxpejtdwpxblcvkyxliyyq:
+    resolution: {integrity: sha512-goPyCWBiimk1iJgSTgsehFD5OOFHiAknrRJjqFCudcW8JtWiBlK284Xnn4flqMqg6YAjVG/EE+3aVzrL5qNSzQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^2.14.0||^3.0.0
+      tslib: '*'
+      typescript: '>=3.7.0'
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+      tslib:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 5.0.2_rollup@3.10.1
+      resolve: 1.22.1
+      rollup: 3.10.1
+      tslib: 2.4.1
       typescript: 4.9.4
     dev: true
 
@@ -1932,7 +1991,7 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       '@babel/code-frame': 7.18.6
-      '@babel/runtime': 7.20.6
+      '@babel/runtime': 7.20.7
       '@types/aria-query': 5.0.1
       aria-query: 5.1.3
       chalk: 4.1.2
@@ -4793,6 +4852,7 @@ packages:
     resolution: {integrity: sha512-Pa5kFwaczXJAeHE56CHG2aWzFBMJNUNghf0Pm4SwSrEMps/PTKqW90EYWlIvhuYStf3Sn1K0vw+gH3+TLdkH1g==}
     dependencies:
       '@babel/runtime': 7.20.7
+    dev: true
 
   /i18next/22.4.5:
     resolution: {integrity: sha512-Kc+Ow0guRetUq+kv02tj0Yof9zveROPBAmJ8UxxNODLVBRSwsM4iD0Gw3BEieOmkWemF6clU3K1fbnCuTqiN2Q==}
@@ -6187,6 +6247,25 @@ packages:
       i18next: 22.4.9
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: true
+
+  /react-i18next/12.1.4_zpqpq2sidzwymqvcsceprnd3va:
+    resolution: {integrity: sha512-XQND7jYtgM7ht5PH3yIZljCRpAMTlH/zmngM9ZjToqa+0BR6xuu8c7QF0WIIOEjcMTB2S3iOfpN/xG/ZrAnO6g==}
+    peerDependencies:
+      i18next: '>= 19.0.0'
+      react: '>= 16.8.0'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.20.7
+      html-parse-stringify: 3.0.1
+      i18next: 22.4.9
+      react: 18.2.0
     dev: true
 
   /react-is/16.13.1:
