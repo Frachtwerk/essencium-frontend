@@ -31,6 +31,6 @@ export default {
       ],
     },
   },
-  include: ['src/**/*.ts', 'src/**/*.tsx'],
+  include: ['tsconfig.js', 'src/**/*.ts', 'src/**/*.js', 'src/**/*.tsx'],
   references: [{ path: './tsconfig.node.json' }],
 }
