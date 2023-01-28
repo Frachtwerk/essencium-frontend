@@ -104,6 +104,7 @@
     "react-i18next": "12.1.4",
     "tailwindcss": "3.2.4",
     "translations": "workspace:*",
+    "yup": "0.32.11"
   },
   "engines": {
     "node": ">=16",
