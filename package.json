@@ -50,5 +50,8 @@
   },
   "volta": {
     "node": "16.19.0"
+  },
+  "dependencies": {
+    "@nrwl/nx-cloud": "15.0.2"
   }
 }
