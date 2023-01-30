@@ -49,6 +49,10 @@ export default defineConfig({
         find: 'lib',
         replacement: path.resolve(__dirname, '../lib/src/index.ts'),
       },
+      {
+        find: 'translations',
+        replacement: path.resolve(__dirname, '../translations/src/index.ts'),
+      },
     ],
   },
   test: {

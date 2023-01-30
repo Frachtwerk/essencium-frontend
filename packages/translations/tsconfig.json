@@ -7,8 +7,9 @@
     "declarationDir": "types",
     "declarationMap": true,
     "sourceMap": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "resolveJsonModule": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "rollup.config.js"],
-  "exclude": ["dist", "node_modules", ".rollup.cache"]
+  "include": ["src/**/*.ts", "index.d.ts", "rollup.config.js"],
+  "exclude": ["dist", "node_modules", ".rollup.cache", "src/**/*.json"]
 }

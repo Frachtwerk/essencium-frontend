@@ -21,13 +21,14 @@
   "license": "MIT",
   "author": "Frachtwerk GmbH",
   "scripts": {
-    "build": "nx build app",
+    "build": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx build app",
     "clean": "nx run-many --target=clean && rimraf dist node_modules",
     "clean:install": "pnpm i -w && pnpm clean && pnpm install",
     "dev": "nx dev app",
-    "lint": "nx run-many --target=lint",
+    "lint": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx run-many --target=lint",
+    "format": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx run-many --target=format",
     "setup-env": "pnpm install && husky install",
-    "test": "nx run-many --target=test"
+    "test": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx run-many --target=test"
   },
   "devDependencies": {
     "@commitlint/cli": "17.4.2",
@@ -49,5 +50,8 @@
   },
   "volta": {
     "node": "16.19.0"
+  },
+  "dependencies": {
+    "@nrwl/nx-cloud": "15.0.2"
   }
 }
