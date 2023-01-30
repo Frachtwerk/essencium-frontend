@@ -10,62 +10,65 @@ import {
 import { IconEye, IconEyeOff } from '@tabler/icons'
 import { useTranslation } from 'react-i18next'
 
-export function LoginForm() {
+import { LoginFormProps } from './types'
+
+export function LoginForm({ loginCredentials }: LoginFormProps) {
   const { t } = useTranslation()
 
-  function onVisibilityToggleIcon(reveal: boolean, size: number) {
+  function onVisibilityToggleIcon(reveal: boolean, size: number): JSX.Element {
     return reveal ? <IconEyeOff size={size} /> : <IconEye size={size} />
   }
 
   return (
-    <Paper shadow="xs" p={30} mt="xl" radius="sm">
-      <TextInput
-        placeholder={t('login.form.emailPlaceholder') as string}
-        label={t('login.form.email')}
-        required
-        styles={{
-          label: {
-            fontWeight: 900,
-          },
-        }}
-        withAsterisk
-      />
-
-      <PasswordInput
-        placeholder={t('login.form.passwordPlaceholder') as string}
-        label={t('login.form.password')}
-        required
-        styles={{
-          label: {
-            fontWeight: 900,
-          },
-        }}
-        withAsterisk
-        mt="md"
-        visibilityToggleIcon={({ reveal }) =>
-          onVisibilityToggleIcon(reveal, 16)
-        }
-      />
-
-      <Group position="apart" mt="md">
-        <Checkbox
-          label={t('login.form.rememberLogin')}
+    <Paper shadow="md" p={30} mt="md" radius="md">
+      <form>
+        <TextInput
+          value={loginCredentials.email}
+          placeholder={t('login.form.emailPlaceholder') as string}
+          label={t('login.form.email')}
+          required
           styles={{
             label: {
-              fontWeight: 900,
+              fontWeight: 600,
             },
           }}
-          color="cyan"
-          size="xs"
+          withAsterisk
         />
-        <Anchor href="/resetPassword" color="cyan" size="xs" weight={900}>
-          {t('login.form.resetPassword')}
-        </Anchor>
-      </Group>
 
-      <Button fullWidth mt="xl" color="cyan">
-        {t('login.form.submit')}
-      </Button>
+        <PasswordInput
+          value={loginCredentials.password}
+          placeholder={t('login.form.passwordPlaceholder') as string}
+          label={t('login.form.password')}
+          required
+          fw={800}
+          styles={{
+            label: {
+              fontWeight: 600,
+            },
+          }}
+          withAsterisk
+          mt="md"
+          visibilityToggleIcon={({ reveal }) =>
+            onVisibilityToggleIcon(reveal, 16)
+          }
+        />
+
+        <Group position="apart" mt="md">
+          <Checkbox
+            label={t('login.form.rememberLogin')}
+            fw={600}
+            color="cyan"
+            size="xs"
+          />
+          <Anchor href="/resetPassword" color="cyan" size="xs" fw={600}>
+            {t('login.form.resetPassword')}
+          </Anchor>
+        </Group>
+
+        <Button type="submit" fullWidth mt="md" color="cyan">
+          {t('login.form.submit')}
+        </Button>
+      </form>
     </Paper>
   )
 }
