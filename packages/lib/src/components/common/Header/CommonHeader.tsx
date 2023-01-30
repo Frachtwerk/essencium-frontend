@@ -4,11 +4,14 @@ import {
   Flex,
   Group,
   Header,
+  HoverCard,
   MediaQuery,
   Text,
   ThemeIcon,
+  useMantineColorScheme,
+  useMantineTheme,
 } from '@mantine/core'
-import { IconBrandReact, IconLanguage, IconMoon } from '@tabler/icons'
+import { IconBrandReact, IconLanguage, IconMoon, IconSun } from '@tabler/icons'
 import { useTranslation } from 'react-i18next'
 
 import { SearchBar } from './components/SearchBar'
@@ -17,6 +20,8 @@ import { CommonHeaderProps } from './types'
 
 export function CommonHeader({ isOpen, handleOpenNav }: CommonHeaderProps) {
   const { t } = useTranslation()
+  const theme = useMantineTheme()
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme()
 
   return (
     <Header height={{ base: 70 }} p="md">
@@ -54,24 +59,41 @@ export function CommonHeader({ isOpen, handleOpenNav }: CommonHeaderProps) {
 
         <Group noWrap>
           <Group noWrap>
-            <ActionIcon
-              data-testid="darkmode-toggle"
-              color="dark"
-              sx={{
-                '&:hover': {
-                  backgroundColor: '#f3f4f6',
-                },
-              }}
-            >
-              <IconMoon />
-            </ActionIcon>
+            <HoverCard>
+              <HoverCard.Target>
+                <ActionIcon
+                  onClick={() => toggleColorScheme()}
+                  color="dark"
+                  sx={{
+                    '&:hover': {
+                      backgroundColor:
+                        theme.colorScheme === 'dark'
+                          ? theme.colors.gray[9]
+                          : theme.colors.gray[0],
+                    },
+                  }}
+                >
+                  {colorScheme === 'light' ? <IconMoon /> : <IconSun />}
+                </ActionIcon>
+              </HoverCard.Target>
+              <HoverCard.Dropdown>
+                {colorScheme === 'light' ? (
+                  <Text size="sm">{t('header.themeToggle.darkMode')}</Text>
+                ) : (
+                  <Text size="sm">{t('header.themeToggle.lightMode')}</Text>
+                )}
+              </HoverCard.Dropdown>
+            </HoverCard>
 
             <ActionIcon
               data-testid="language-toggle"
               color="dark"
               sx={{
                 '&:hover': {
-                  backgroundColor: '#f3f4f6',
+                  backgroundColor:
+                    theme.colorScheme === 'dark'
+                      ? theme.colors.gray[9]
+                      : theme.colors.gray[0],
                 },
               }}
             >

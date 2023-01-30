@@ -1,7 +1,15 @@
-import { Box, Group, Text, UnstyledButton } from '@mantine/core'
+import {
+  Box,
+  Group,
+  Text,
+  UnstyledButton,
+  useMantineTheme,
+} from '@mantine/core'
 import { IconChevronRight, IconUserCircle } from '@tabler/icons'
 
 export function UserMenu() {
+  const theme = useMantineTheme()
+
   return (
     <Box>
       <UnstyledButton
@@ -16,7 +24,10 @@ export function UserMenu() {
             borderRadius: '6px',
 
             '&:hover': {
-              backgroundColor: '#f3f4f6',
+              backgroundColor:
+                theme.colorScheme === 'dark'
+                  ? theme.colors.gray[9]
+                  : theme.colors.gray[0],
             },
           }}
           noWrap
