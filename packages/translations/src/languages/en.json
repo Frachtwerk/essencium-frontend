@@ -97,5 +97,16 @@
         }
       }
     }
+  },
+  "ContactForm": {
+    "title": "Contact us",
+    "form": {
+      "email": "Your Email",
+      "name": "Your Name",
+      "number": "Your Phone Number",
+      "subject": "Subject",
+      "message": "Message",
+      "sendMessage": "Send Message"
+    }
   }
 }
