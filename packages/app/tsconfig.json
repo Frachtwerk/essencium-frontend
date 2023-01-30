@@ -11,7 +11,7 @@
     "module": "ESNext",
     "paths": {
       "@/*": ["./src/*"],
-      "lib": ["./node_modules/lib"],
+      "lib": ["../lib/src"],
       "translations": ["./node_modules/translations"]
     }
   },

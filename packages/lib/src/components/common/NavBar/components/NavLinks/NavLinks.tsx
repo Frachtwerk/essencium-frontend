@@ -1,4 +1,4 @@
-import { Anchor } from '@mantine/core'
+import { Anchor, Stack } from '@mantine/core'
 import {
   IconHome2,
   IconLanguage,
@@ -56,5 +56,5 @@ export function NavLinks() {
       />
     </Anchor>
   ))
-  return <div>{links}</div>
+  return <Stack spacing="md">{links}</Stack>
 }
