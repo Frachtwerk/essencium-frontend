@@ -1,11 +1,4 @@
-import {
-  AppShell,
-  Box,
-  Button,
-  Center,
-  Text,
-  useMantineColorScheme,
-} from '@mantine/core'
+import { AppShell, Box, Button, Center, Text } from '@mantine/core'
 import { CommonFooter, CommonHeader, CommonNavBar, TestComponent } from 'lib'
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -47,8 +40,6 @@ function App() {
 
   const [openedNav, setOpenedNav] = useState(false)
 
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme()
-
   function handleOpenNav(): void {
     setOpenedNav(o => !o)
   }
@@ -63,8 +54,6 @@ function App() {
         <CommonHeader
           isOpen={openedNav}
           handleOpenNav={() => handleOpenNav()}
-          colorScheme={colorScheme}
-          toggleColorScheme={toggleColorScheme}
         />
       }
     >

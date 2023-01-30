@@ -8,6 +8,7 @@ import {
   MediaQuery,
   Text,
   ThemeIcon,
+  useMantineColorScheme,
   useMantineTheme,
 } from '@mantine/core'
 import { IconBrandReact, IconLanguage, IconMoon, IconSun } from '@tabler/icons'
@@ -17,14 +18,10 @@ import { SearchBar } from './components/SearchBar'
 import { UserMenu } from './components/UserMenu'
 import { CommonHeaderProps } from './types'
 
-export function CommonHeader({
-  isOpen,
-  handleOpenNav,
-  colorScheme,
-  toggleColorScheme,
-}: CommonHeaderProps) {
+export function CommonHeader({ isOpen, handleOpenNav }: CommonHeaderProps) {
   const { t } = useTranslation()
   const theme = useMantineTheme()
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme()
 
   return (
     <Header height={{ base: 70 }} p="md">
