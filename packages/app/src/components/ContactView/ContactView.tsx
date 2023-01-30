@@ -13,6 +13,7 @@ export function ContactView({ contactPersonContent }: ContactPersonProps) {
       <Grid.Col md={4}>
         <ContactPersonCard contactPersonContent={contactPersonContent} />
       </Grid.Col>
+
       <Grid.Col md={8}>
         <ContactForm />
       </Grid.Col>

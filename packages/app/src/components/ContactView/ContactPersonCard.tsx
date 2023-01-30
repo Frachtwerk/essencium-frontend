@@ -16,6 +16,7 @@ export function ContactPersonCard({
         align={{ base: 'center', md: 'flex-start' }}
       >
         <Title order={3}>Your Contact Person</Title>
+
         <Avatar
           size="xl"
           radius="xl"
@@ -28,6 +29,7 @@ export function ContactPersonCard({
         <Title order={5} mb="sm" mt="sm">
           Firstname Lastname
         </Title>
+
         {contactPersonContent}
       </Flex>
     </Card>

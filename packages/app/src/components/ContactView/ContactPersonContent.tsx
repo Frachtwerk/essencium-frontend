@@ -38,9 +38,11 @@ export function ContactPersonContent() {
         <ThemeIcon variant="light" radius="md">
           <IconBrandLinkedin size={15} />
         </ThemeIcon>
+
         <ThemeIcon variant="light" radius="md">
           <IconBrandFacebook size={15} />
         </ThemeIcon>
+
         <ThemeIcon variant="light" radius="md">
           <IconBrandInstagram size={15} />
         </ThemeIcon>
