@@ -86,6 +86,7 @@ export function CommonHeader({ isOpen, handleOpenNav }: CommonHeaderProps) {
             </HoverCard>
 
             <ActionIcon
+              data-testid="language-toggle"
               color="dark"
               sx={{
                 '&:hover': {
