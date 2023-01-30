@@ -1,25 +1,25 @@
 import { Anchor, Container, Text, Title } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
-import { LoginForm } from './components/LoginForm/LoginForm'
+import { CommonLoginProps } from './types'
 
-export function Login() {
+export function CommonLogin({ form: LoginForm }: CommonLoginProps) {
   const { t } = useTranslation()
 
   return (
-    <Container size={420} my={40}>
-      <Title align="center" order={2} weight={1000}>
+    <Container size={450} my={40}>
+      <Title align="center" order={2} fw={800}>
         {t('login.title')}
       </Title>
 
-      <Text size="xs" align="center" mt="sm">
-        {t('login.noAccount')}
-        <Anchor href="" target="" color="cyan" size="xs" weight={900}>
+      <Text size="xs" align="center" mt="md">
+        {t('login.noAccount')}{' '}
+        <Anchor href="" target="" color="cyan" size="xs" fw={600}>
           {t('login.register')}
         </Anchor>
       </Text>
 
-      <LoginForm />
+      {LoginForm}
     </Container>
   )
 }
