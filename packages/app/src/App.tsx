@@ -1,5 +1,12 @@
 import { AppShell, Box, Button, Center, Text } from '@mantine/core'
-import { CommonFooter, CommonHeader, CommonNavBar, TestComponent } from 'lib'
+import {
+  CommonFooter,
+  CommonHeader,
+  CommonLogin,
+  CommonNavBar,
+  LoginForm,
+  TestComponent,
+} from 'lib'
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -44,6 +51,12 @@ function App() {
     setOpenedNav(o => !o)
   }
 
+  const initialLoginCredentials = {
+    email: '',
+    password: '',
+    rememberUser: false,
+  }
+
   return (
     <AppShell
       asideOffsetBreakpoint="sm"
@@ -57,6 +70,10 @@ function App() {
         />
       }
     >
+      <CommonLogin
+        form={<LoginForm loginCredentials={initialLoginCredentials} />}
+      />
+
       <Center sx={{ width: '100%', height: '80%' }}>
         <Box className="grid place-items-center gap-4">
           <Text className="text-3xl font-bold font-mono pt-5">
