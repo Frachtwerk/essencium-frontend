@@ -1,4 +1,5 @@
 import commonjs from '@rollup/plugin-commonjs'
+import json from '@rollup/plugin-json'
 import resolve from '@rollup/plugin-node-resolve'
 import terser from '@rollup/plugin-terser'
 import typescript from '@rollup/plugin-typescript'
@@ -20,31 +21,13 @@ export default [
       resolve(),
       commonjs(),
       typescript({ tsconfig: './tsconfig.json' }),
+      json(),
       terser(),
     ],
-    external: [
-      '@emotion/reactd',
-      '@fortawesome/fontawesome-svg-core',
-      '@fortawesome/free-solid-svg-icons',
-      '@fortawesome/react-fontawesome',
-      '@mantine/core',
-      '@mantine/dates',
-      '@mantine/hooks',
-      '@mantine/modals',
-      '@mantine/spotlight',
-      '@tabler/icons',
-      '@tanstack/react-query',
-      'i18next',
-      'react',
-      'react-dom',
-      'react-i18next',
-      'tailwindcss',
-      'translations',
-      'yup',
-    ],
+    external: ['i18next', 'i18next-browser-languagedetector'],
   },
   {
-    input: 'dist/types/index.d.ts',
+    input: 'dist/index.js',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     plugins: [dts()],
   },

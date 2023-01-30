@@ -1,0 +1,28 @@
+{
+  "dino": "Kleiner Dino 🦖",
+  "de": "Deutsch",
+  "en": "Englisch",
+  "noApiUsersLoaded": "Keine API-User geladen",
+  "apiUsersLoaded": "API-User geladen",
+  "loadApiUsers": "API-User laden",
+  "removeApiUsers": "API-User entfernen",
+  "usersGivenByProp": "User über Props erhalten",
+  "itWorks": "Es funktioniert!",
+  "header": {
+    "title": "Essencium",
+    "search": "Suche"
+  },
+  "navigation": {
+    "home": "Home",
+    "users": "Nutzer",
+    "roles": "Rollen",
+    "rights": "Rechte",
+    "translations": "Übersetzungen"
+  },
+  "footer": {
+    "license": "2023 Essencium Lizenz",
+    "privacy": "Datenschutz",
+    "imprint": "Impressum",
+    "contact": "Kontakt"
+  }
+}

@@ -10,7 +10,7 @@ interface Languages {
   de: { nativeName: string }
 }
 
-function App() {
+function Demo() {
   const { t, i18n } = useTranslation()
 
   const languages: Languages = {
@@ -38,6 +38,59 @@ function App() {
 
   const [loadApiUsers, setLoadApiUsers] = useState(false)
 
+  return (
+    <Center sx={{ width: '100%', height: '80%' }}>
+      <Box className="grid place-items-center gap-4">
+        <Text className="text-3xl font-bold font-mono pt-5">
+          {t('itWorks')}
+        </Text>
+        <Button
+          onClick={() => {
+            throw Error('failed intentionally with Sentry')
+          }}
+        >
+          Get started
+        </Button>
+
+        <Text className="text-3xl font-bold font-mono p-5">{t('dino')}</Text>
+
+        <Box>
+          {Object.keys(languages).map(language => (
+            <Button
+              key={language}
+              type="submit"
+              onClick={() => i18n.changeLanguage(language)}
+              className="mx-2"
+              variant="light"
+            >
+              {languages[language as keyof Languages].nativeName}
+            </Button>
+          ))}
+        </Box>
+
+        <Box>
+          <Button
+            variant="gradient"
+            gradient={{ from: 'teal', to: 'blue', deg: 60 }}
+            onClick={increaseCount}
+          >
+            Add Dinos
+          </Button>
+
+          <Text className="mt-5 text-center">{dinoCount} Dinos</Text>
+        </Box>
+
+        <TestComponent users={users} shouldLoadApiUsers={loadApiUsers} />
+
+        <Button onClick={() => setLoadApiUsers(!loadApiUsers)}>
+          {loadApiUsers ? t('removeApiUsers') : t('loadApiUsers')}
+        </Button>
+      </Box>
+    </Center>
+  )
+}
+
+function App() {
   const [openedNav, setOpenedNav] = useState(false)
 
   function handleOpenNav(): void {
@@ -57,54 +110,7 @@ function App() {
         />
       }
     >
-      <Center sx={{ width: '100%', height: '80%' }}>
-        <Box className="grid place-items-center gap-4">
-          <Text className="text-3xl font-bold font-mono pt-5">
-            {t('itWorks')}
-          </Text>
-          <Button
-            onClick={() => {
-              throw Error('failed intentionally with Sentry')
-            }}
-          >
-            Get started
-          </Button>
-
-          <Text className="text-3xl font-bold font-mono p-5">{t('dino')}</Text>
-
-          <Box>
-            {Object.keys(languages).map(language => (
-              <Button
-                key={language}
-                type="submit"
-                onClick={() => i18n.changeLanguage(language)}
-                className="mx-2"
-                variant="light"
-              >
-                {languages[language as keyof Languages].nativeName}
-              </Button>
-            ))}
-          </Box>
-
-          <Box>
-            <Button
-              variant="gradient"
-              gradient={{ from: 'teal', to: 'blue', deg: 60 }}
-              onClick={increaseCount}
-            >
-              Add Dinos
-            </Button>
-
-            <Text className="mt-5 text-center">{dinoCount} Dinos</Text>
-          </Box>
-
-          <TestComponent users={users} shouldLoadApiUsers={loadApiUsers} />
-
-          <Button onClick={() => setLoadApiUsers(!loadApiUsers)}>
-            {loadApiUsers ? t('removeApiUsers') : t('loadApiUsers')}
-          </Button>
-        </Box>
-      </Center>
+      <Demo />
     </AppShell>
   )
 }

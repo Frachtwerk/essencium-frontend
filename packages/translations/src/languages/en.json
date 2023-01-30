@@ -8,10 +8,13 @@
   "removeApiUsers": "Remove API-Users",
   "usersGivenByProp": "users given by prop",
   "itWorks": "It works!",
-
   "header": {
     "title": "Essencium",
-    "search": "Search"
+    "search": "Search",
+    "themeToggle": {
+      "lightMode": "Light Mode",
+      "darkMode": "Dark Mode"
+    }
   },
   "navigation": {
     "home": "Home",

@@ -1,4 +1,2 @@
 # Ignore artifacts:
 dist
-coverage
-.rollup.cache
