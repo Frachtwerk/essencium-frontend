@@ -103,21 +103,15 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: 🃏 Build
+        if: steps.cache-dist.outputs.cache-hit != 'true'
         run: NX_BRANCH=$GITHUB_HEAD_REF npx nx build app
 
-      - name: Cache app dist
-        id: cache-app-dist
+      - name: Cache dist
+        id: cache-dist
         uses: actions/cache@v3
         with:
           path: packages/app/dist
-          key: ${{ runner.os }}-app-dist
-
-      - name: Cache lib dist
-        id: cache-lib-dist
-        uses: actions/cache@v3
-        with:
-          path: packages/lib/dist
-          key: ${{ runner.os }}-lib-dist
+          key: $GITHUB_HEAD_REF-dist
 
       - name: Archive app build artifacts
         uses: actions/upload-artifact@v3
