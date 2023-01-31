@@ -115,18 +115,18 @@ jobs:
           path: packages/app/dist
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Archive app build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: dist_app
-          path: |
-            packages/app/dist
-          retention-days: 2
+      # - name: Archive app build artifacts
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: dist_app
+      #     path: |
+      #       packages/app/dist
+      #     retention-days: 2
 
-      - name: Archive lib build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: dist_lib
-          path: |
-            packages/lib/dist
-          retention-days: 2
+      # - name: Archive lib build artifacts
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: dist_lib
+      #     path: |
+      #       packages/lib/dist
+      #     retention-days: 2
