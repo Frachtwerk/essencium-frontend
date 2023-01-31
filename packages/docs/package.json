@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Essencium Frontend Docs",
   "scripts": {
-    "clean": "rimraf node_modules",
+    "clean": "rimraf node_modules .next",
     "clean:install": "pnpm clean && pnpm install",
     "lint": "eslint .",
     "dev": "next dev",
