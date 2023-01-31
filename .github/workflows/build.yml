@@ -1,4 +1,4 @@
-name: 🚀 Deployment
+name: 🚀 Build
 on:
   push:
     branches:
@@ -104,6 +104,20 @@ jobs:
 
       - name: 🃏 Build
         run: NX_BRANCH=$GITHUB_HEAD_REF npx nx build app
+
+      - name: Cache app dist
+        id: cache-app-dist
+        uses: actions/cache@v3
+        with:
+          path: packages/app/dist
+          key: ${{ runner.os }}-app-dist
+
+      - name: Cache lib dist
+        id: cache-lib-dist
+        uses: actions/cache@v3
+        with:
+          path: packages/lib/dist
+          key: ${{ runner.os }}-lib-dist
 
       - name: Archive app build artifacts
         uses: actions/upload-artifact@v3
