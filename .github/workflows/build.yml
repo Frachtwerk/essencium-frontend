@@ -109,9 +109,11 @@ jobs:
       - name: Cache dist
         id: cache-dist
         uses: actions/cache@v3
+        env:
+          cache-name: cache-dist
         with:
           path: packages/app/dist
-          key: ${{ GITHUB_HEAD_REF }}-dist
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('pnpm-lock.yaml') }}
 
       - name: Archive app build artifacts
         uses: actions/upload-artifact@v3
