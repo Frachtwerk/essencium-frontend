@@ -1,0 +1,8 @@
+{
+  "setup": "Environment setup",
+  "codestyle": "Code style and linting",
+  "components": "Component Structure",
+  "pr": "Pull Requests",
+  "commits": "Commits",
+  "releases": "Releases"
+}

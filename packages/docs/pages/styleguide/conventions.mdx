@@ -1,0 +1,37 @@
+To maintain consistency across the codebase, we adhere to the following conventions:
+
+## Mantine
+
+### Component Styles
+
+In general, this could be the styling hierarchy, staying as close to native Mantine functionality as possible.
+
+[Component Style Props](https://mantine.dev/styles/style-props/) > [Styles API](https://mantine.dev/styles/styles-api/) >[ sx Emotion Prop](https://mantine.dev/styles/sx/)
+
+### Colors
+
+I think colors should never be hardcoded anywhere in the codebase except for the Mantine theme config. So I agree, either we just use color names from the [Mantine Color palette](https://yeun.github.io/open-color/) or color names we define ourselves in the theme config.
+
+### Margin
+
+Same as for colors, I think as long as we stay to the Mantine sizing scale `xs` --> `xl` there should be little issues. `md` is probably a good default.
+
+### Padding
+
+Same as for margin.
+
+### Radius
+
+I would vote for `sm` as default, `md` is also fine though.
+
+### Shadow
+
+`sm` is a good choice I think, it's a good compromise between flat design and giving some depth to the elements.
+
+### Font Size
+
+I think it's hard to define a default for all cases here. But `md` fits probably best in most cases
+
+### Font Weight
+
+I think `normal`/`400` makes most sense as a default.

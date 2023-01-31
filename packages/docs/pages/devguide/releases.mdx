@@ -1,0 +1,7 @@
+### Build a new release
+
+Usually, a build is created inside the GitLab CI/CD pipeline which executes the command `pnpm build` but it can be executed locally either. Behind this command, the TypeScript files get transpiled to JavaScript files, and afterwards, these files get bundled with [Rollup](https://rollupjs.org/guide/en/) for production. A new folder `dist` is created holding the build that can be distributed.
+
+### Releasing a new version
+
+This repository follows the [semantic versioning](https://semver.org/) approach using the npm package [`standard-version`](https://github.com/conventional-changelog/standard-version) following the [`conventional-commits`](https://www.conventionalcommits.org/) specification. A new release can be created by running the script `pnpm release` with optional flags `standard-version` provides, see [`standard-version README`](https://github.com/conventional-changelog/standard-version/blob/master/README.md). After running the command, the `version` inside `package.json` gets bumped and a new changelog paragraph for the version gets added to the [`CHANGELOG.md`](https://git.frachtwerk.de/react-starter/frontend/-/blob/main/CHANGELOG.md) file.
