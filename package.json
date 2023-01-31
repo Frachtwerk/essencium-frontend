@@ -25,10 +25,10 @@
     "clean": "nx run-many --target=clean && rimraf dist node_modules",
     "clean:install": "pnpm i -w && pnpm clean && pnpm install",
     "dev": "nx dev app",
-    "lint": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=lint --parallel=3",
-    "format": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=format --parallel=3",
+    "lint": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=lint --parallel=5",
+    "format": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=format --parallel=5",
     "setup-env": "pnpm install && husky install",
-    "test": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=test --parallel=3",
+    "test": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=test --parallel=5"
   },
   "devDependencies": {
     "@commitlint/cli": "17.4.2",
