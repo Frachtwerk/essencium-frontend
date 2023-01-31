@@ -1,12 +1,12 @@
 import { render, RenderResult, screen } from '@testing-library/react'
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { CommonFooter } from './CommonFooter'
 
 describe('CommonFooter', () => {
   let CommonFooterMounted: RenderResult
 
-  beforeEach(() => {
+  beforeAll(() => {
     vi.mock('react-i18next', () => ({
       useTranslation: () => {
         return {
@@ -18,7 +18,7 @@ describe('CommonFooter', () => {
     CommonFooterMounted = render(<CommonFooter />)
   })
 
-  afterEach(() => {
+  afterAll(() => {
     CommonFooterMounted.unmount()
   })
 

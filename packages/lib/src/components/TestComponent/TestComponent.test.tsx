@@ -1,5 +1,5 @@
 import { render, RenderResult, screen } from '@testing-library/react'
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { TestComponent } from './TestComponent'
 
@@ -18,7 +18,7 @@ describe('TestComponent', () => {
 
   let TestComponentMounted: RenderResult
 
-  beforeEach(() => {
+  beforeAll(() => {
     vi.mock('@tanstack/react-query', () => ({
       QueryClient: vi.fn(),
       QueryClientProvider: vi.fn(),
@@ -36,7 +36,7 @@ describe('TestComponent', () => {
     TestComponentMounted = render(<TestComponent users={users} />)
   })
 
-  afterEach(() => {
+  afterAll(() => {
     TestComponentMounted.unmount()
   })
 

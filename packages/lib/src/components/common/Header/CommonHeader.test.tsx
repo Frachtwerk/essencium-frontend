@@ -1,5 +1,5 @@
 import { render, RenderResult, screen } from '@testing-library/react'
-import { afterEach, assert, beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterAll, assert, beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { CommonHeader } from './CommonHeader'
 import { SearchBar, UserMenu } from './components'
@@ -7,7 +7,7 @@ import { SearchBar, UserMenu } from './components'
 describe('CommonHeader', () => {
   let CommonHeaderMounted: RenderResult
 
-  beforeEach(() => {
+  beforeAll(() => {
     vi.mock('react-i18next', () => ({
       useTranslation: () => {
         return {
@@ -21,7 +21,7 @@ describe('CommonHeader', () => {
     )
   })
 
-  afterEach(() => {
+  afterAll(() => {
     CommonHeaderMounted.unmount()
   })
 
