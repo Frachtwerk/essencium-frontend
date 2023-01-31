@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/main/README.md",
   "dependencies": {
-    "clsx": "^1.2.1",
+    "clsx": "1.2.1",
     "next": "13.0.6",
     "nextra": "2.0.1",
     "nextra-theme-docs": "2.0.1",
