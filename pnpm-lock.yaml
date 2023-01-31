@@ -151,7 +151,7 @@ importers:
   packages/docs:
     specifiers:
       '@types/node': 18.11.10
-      clsx: ^1.2.1
+      clsx: 1.2.1
       next: 13.0.6
       nextra: 2.0.1
       nextra-theme-docs: 2.0.1
