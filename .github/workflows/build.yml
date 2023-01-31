@@ -111,7 +111,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: packages/app/dist
-          key: $GITHUB_HEAD_REF-dist
+          key: ${{ GITHUB_HEAD_REF }}-dist
 
       - name: Archive app build artifacts
         uses: actions/upload-artifact@v3
