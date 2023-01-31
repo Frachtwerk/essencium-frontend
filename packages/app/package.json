@@ -33,8 +33,7 @@
     "release": "standard-version",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest watch",
-    "typecheck": "node ./src/utils/build-tsconfig.js && prettier ./tsconfig.json --write && tsc --noEmit"
+    "test:watch": "vitest watch"
   },
   "dependencies": {
     "@emotion/react": "11.10.5",

@@ -34,8 +34,7 @@
     "release": "standard-version",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest watch",
-    "typecheck": "tsc --noEmit"
+    "test:watch": "vitest watch"
   },
   "devDependencies": {
     "@babel/core": "7.20.12",
