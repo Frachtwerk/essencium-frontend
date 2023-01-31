@@ -123,7 +123,7 @@ jobs:
         with:
           name: dist app
           path: |
-            pacakges/app/dist
+            packages/app/dist
           retention-days: 2
 
       - name: Archive lib build artifacts
@@ -131,5 +131,5 @@ jobs:
         with:
           name: dist lib
           path: |
-            pacakges/lib/dist
+            packages/lib/dist
           retention-days: 2
