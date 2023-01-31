@@ -3,7 +3,7 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "test", "lint", "format"]
+        "cacheableOperations": ["build", "test", "lint", "format", "typecheck"]
       }
     }
   },
