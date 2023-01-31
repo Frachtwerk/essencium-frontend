@@ -1,3 +1,4 @@
+import * as mantine from '@mantine/core'
 import { render, RenderResult, screen } from '@testing-library/react'
 import { afterAll, assert, beforeAll, describe, expect, it, vi } from 'vitest'
 
@@ -14,6 +15,11 @@ describe('CommonHeader', () => {
           t: (str: unknown) => str,
         }
       },
+    }))
+
+    vi.spyOn(mantine, 'useMantineColorScheme').mockImplementation(() => ({
+      colorScheme: 'light',
+      toggleColorScheme: () => {},
     }))
 
     CommonHeaderMounted = render(
