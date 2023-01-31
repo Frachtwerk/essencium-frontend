@@ -121,7 +121,7 @@ jobs:
       - name: Archive app build artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: dist app
+          name: dist_app
           path: |
             packages/app/dist
           retention-days: 2
@@ -129,7 +129,7 @@ jobs:
       - name: Archive lib build artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: dist lib
+          name: dist_lib
           path: |
             packages/lib/dist
           retention-days: 2
