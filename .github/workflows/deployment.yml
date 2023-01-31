@@ -9,6 +9,8 @@ jobs:
   lint:
     name: ⬣ ESLint
     runs-on: ubuntu-latest
+    env:
+      NX_CLOUD_ACCESS_TOKEN: ${{secrets.NX_CLOUD_ACCESS_TOKEN}}
     steps:
       - name: 🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.11.0
