@@ -25,8 +25,11 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 7.18.1
-          run_install: |
-            - args: [--frozen-lockfile]
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
 
       - name: 🔬 Lint
         run: pnpm lint
@@ -50,8 +53,11 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 7.18.1
-          run_install: |
-            - args: [--frozen-lockfile]
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
 
       - name: 🔎 Type check
         run: pnpm typecheck
@@ -75,8 +81,11 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 7.18.1
-          run_install: |
-            - args: [--frozen-lockfile]
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
 
       - name: 🃏 Run Vitest
         run: pnpm test
@@ -100,8 +109,27 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 7.18.1
-          run_install: |
-            - args: [--frozen-lockfile]
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
 
       - name: 🃏 Build
         run: pnpm build
+
+      - name: Archive app build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist app
+          path: |
+            pacakges/app/dist
+          retention-days: 2
+
+      - name: Archive lib build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist lib
+          path: |
+            pacakges/lib/dist
+          retention-days: 2
