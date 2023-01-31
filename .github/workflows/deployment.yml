@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NX_CLOUD_ACCESS_TOKEN: ${{secrets.NX_CLOUD_ACCESS_TOKEN}}
-      NX_BRANCH: ${{GITHUB_HEAD_REF}}
     steps:
       - name: 🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.11.0
@@ -38,12 +37,12 @@ jobs:
       - run: |
           echo "BASE: ${{ env.NX_BASE }}"
           echo "HEAD: ${{ env.NX_HEAD }}"
-          echo "BRANCH: ${{ env.NX_BRANCH }}"
+          echo "BRANCH: $GITHUB_HEAD_REF"
 
       - run: pnpm install --frozen-lockfile
 
       - name: 🔬 Lint
-        run: npx nx affected --target=lint --parallel=3
+        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=lint --parallel=3
 
   vitest:
     name: 🃏 Vitest
