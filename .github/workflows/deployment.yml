@@ -37,7 +37,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: 🔬 Lint
-        run: pnpm lint
+        run: npx nx affected --base ${{GITHUB_REF_NAME}} --head ${{GITHUB_HEAD_REF}} --target=lint --parallel=3
 
   vitest:
     name: 🃏 Vitest
