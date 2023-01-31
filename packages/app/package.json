@@ -34,7 +34,7 @@
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest watch",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "node ./src/utils/build-tsconfig.js && prettier ./tsconfig.json --write && tsc --noEmit"
   },
   "dependencies": {
     "@emotion/react": "11.10.5",
