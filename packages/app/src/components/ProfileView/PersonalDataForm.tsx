@@ -1,4 +1,4 @@
-import { Button, Container, Flex, Select, TextInput } from '@mantine/core'
+import { Button, Flex, Select, TextInput } from '@mantine/core'
 import { IconCheck } from '@tabler/icons'
 import { useTranslation } from 'react-i18next'
 
