@@ -127,6 +127,19 @@ function App() {
         form={<LoginForm loginCredentials={initialLoginCredentials} />}
       />
 
+      <Center sx={{ width: '100%', height: '80%' }}>
+        <Box className="grid place-items-center gap-4">
+          <Text className="text-3xl font-bold font-mono pt-5">
+            {t('itWorks')}
+          </Text>
+          <Button
+            onClick={() => {
+              throw Error('failed intentionally with Sentry')
+            }}
+          >
+            Get started
+          </Button>
+
       <Demo />
     </AppShell>
   )
