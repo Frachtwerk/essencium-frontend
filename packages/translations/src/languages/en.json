@@ -62,7 +62,8 @@
           "title": "change password",
           "content": {
             "currentPassword": "current password",
-            "newPassword": "new password",
+            "newPassword": "New Password",
+            "confirm": "Confirm Password",
             "savePassword": "save password"
 >>>>>>> feat: add settings tab and content:packages/app/public/locales/en/localTranslation.json
           }
@@ -78,6 +79,7 @@
       }
     }
   },
+<<<<<<< main:packages/translations/src/languages/en.json
   "contactForm": {
     "title": "Contact us",
     "form": {
@@ -104,5 +106,15 @@
     "forgotPassword": "Forgot Password?",
     "register": "Register",
     "noAccount": "No Account?"
+=======
+
+  "SetPasswordView": {
+    "title": "Set new Password",
+    "form": {
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password",
+      "submit": "Save Password"
+    }
+>>>>>>> feat(app): add translation:packages/app/public/locales/en/localTranslation.json
   }
 }
