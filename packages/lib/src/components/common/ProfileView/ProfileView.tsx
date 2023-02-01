@@ -1,18 +1,15 @@
 import { Grid } from '@mantine/core'
 
-import type { ProfileViewProps } from './types'
+import { ProfileDataCard, ProfileOverviewCard } from './components'
 
-export function ProfileView({
-  PersonalInformation: ProfileDataCard,
-  PersonalOverview: ProfileOverviewCard,
-}: ProfileViewProps) {
+export function ProfileView() {
   return (
     <Grid>
-      <Grid.Col md={ProfileOverviewCard ? 3 : 12}>
+      <Grid.Col md={3}>
         <ProfileOverviewCard />
       </Grid.Col>
 
-      <Grid.Col md={ProfileDataCard ? 9 : 12}>
+      <Grid.Col md={9}>
         <ProfileDataCard />
       </Grid.Col>
     </Grid>
