@@ -6,11 +6,8 @@ const config: DocsThemeConfig = {
   project: {
     link: 'https://github.com/Frachtwerk/essencium-frontend',
   },
-  // chat: {
-  //   link: 'https://discord.com',
-  // },
   docsRepositoryBase:
-    'https://github.com/Frachtwerk/essencium-frontend/packages/docs',
+    'https://github.com/Frachtwerk/essencium-frontend/tree/main/packages/docs',
   footer: {
     text: 'Essencium Frontend Docs',
   },
