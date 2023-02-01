@@ -62,6 +62,7 @@ export function CommonHeader({ isOpen, handleOpenNav }: CommonHeaderProps) {
             <HoverCard>
               <HoverCard.Target>
                 <ActionIcon
+                  data-testid="darkmode-toggle"
                   onClick={() => toggleColorScheme()}
                   color="dark"
                   sx={{

@@ -1,5 +1,6 @@
+import * as mantine from '@mantine/core'
 import { render, RenderResult, screen } from '@testing-library/react'
-import { afterEach, assert, beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterAll, assert, beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { CommonHeader } from './CommonHeader'
 import { SearchBar, UserMenu } from './components'
@@ -7,7 +8,7 @@ import { SearchBar, UserMenu } from './components'
 describe('CommonHeader', () => {
   let CommonHeaderMounted: RenderResult
 
-  beforeEach(() => {
+  beforeAll(() => {
     vi.mock('react-i18next', () => ({
       useTranslation: () => {
         return {
@@ -16,12 +17,17 @@ describe('CommonHeader', () => {
       },
     }))
 
+    vi.spyOn(mantine, 'useMantineColorScheme').mockImplementation(() => ({
+      colorScheme: 'light',
+      toggleColorScheme: () => {},
+    }))
+
     CommonHeaderMounted = render(
       <CommonHeader isOpen handleOpenNav={() => {}} />
     )
   })
 
-  afterEach(() => {
+  afterAll(() => {
     CommonHeaderMounted.unmount()
   })
 

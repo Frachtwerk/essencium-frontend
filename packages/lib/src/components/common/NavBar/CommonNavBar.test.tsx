@@ -1,12 +1,12 @@
 import { render, RenderResult, screen } from '@testing-library/react'
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { CommonNavBar } from './CommonNavBar'
 
 describe('CommonNavBar', () => {
   let CommonNavBarMounted: RenderResult
 
-  beforeEach(() => {
+  beforeAll(() => {
     vi.mock('react-i18next', () => ({
       useTranslation: () => {
         return {
@@ -18,7 +18,7 @@ describe('CommonNavBar', () => {
     CommonNavBarMounted = render(<CommonNavBar isOpen />)
   })
 
-  afterEach(() => {
+  afterAll(() => {
     CommonNavBarMounted.unmount()
   })
 
