@@ -28,5 +28,38 @@
     "privacy": "Privacy",
     "imprint": "Imprint",
     "contact": "Contact"
+  },
+  "profileView": {
+    "dataCard": {
+      "tabs": {
+        "personalData": {
+          "title": "Personal Data",
+          "content": {
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "email": "E-Mail",
+            "phone": "Phone Number",
+            "mobile": "Mobile Number",
+            "language": "Language"
+          }
+        },
+        "passwordChange": {
+          "title": "Change Password",
+          "content": {
+            "currentPassword": "Current Password",
+            "newPassword": "New Password",
+            "savePassword": "Save Password"
+          }
+        },
+        "settings": {
+          "title": "Settings",
+          "content": {
+            "status": "Status",
+            "role": "Role",
+            "saveSettings": "Save Settings"
+          }
+        }
+      }
+    }
   }
 }
