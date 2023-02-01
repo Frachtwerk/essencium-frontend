@@ -10,23 +10,23 @@ env:
 
 jobs:
   lint:
-    name: ⬣ ESLint
+    name: 🧹 ESLint
     runs-on: ubuntu-latest
     steps:
-      - name: 🛑 Cancel Previous Runs
+      - name: 🧹 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.11.0
 
-      - name: ⬇️ Checkout repo
+      - name: 🧹 Checkout repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: ⎔ Setup node
+      - name: 🧹 Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - name: 📦 Install pnpm & deps
+      - name: 🧹 Install pnpm & deps
         uses: pnpm/action-setup@v2
         with:
           version: 7.18.1
@@ -38,27 +38,27 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - name: 🔬 Lint
+      - name: 🧹 Lint
         run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=lint --parallel=5
 
   vitest:
-    name: 🃏 Vitest
+    name: 🔬 Vitest
     runs-on: ubuntu-latest
     steps:
-      - name: 🛑 Cancel Previous Runs
+      - name: 🔬 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.11.0
 
-      - name: ⬇️ Checkout repo
+      - name: 🔬 Checkout repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: ⎔ Setup node
+      - name: 🔬 Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - name: 📦 Install pnpm & deps
+      - name: 🔬 Install pnpm & deps
         uses: pnpm/action-setup@v2
         with:
           version: 7.18.1
@@ -70,27 +70,27 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - name: 🃏 Run Vitest
+      - name: 🔬 Run Vitest
         run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test --parallel=5
 
   build:
-    name: 🏗️ Build
+    name: 🔨 Build
     runs-on: ubuntu-latest
     steps:
-      - name: 🛑 Cancel Previous Runs
+      - name: 🔨 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.11.0
 
-      - name: ⬇️ Checkout repo
+      - name: 🔨 Checkout repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: ⎔ Setup node
+      - name: 🔨 Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - name: 📦 Install pnpm & deps
+      - name: 🔨 Install pnpm & deps
         uses: pnpm/action-setup@v2
         with:
           version: 7.18.1
@@ -102,11 +102,11 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - name: 🃏 Build
+      - name: 🔨 Build
         if: steps.cache-dist.outputs.cache-hit != 'true'
         run: NX_BRANCH=$GITHUB_HEAD_REF npx nx build app
 
-      - name: Cache dist
+      - name: 🔨 Cache dist
         id: cache-dist
         uses: actions/cache@v3
         env:
