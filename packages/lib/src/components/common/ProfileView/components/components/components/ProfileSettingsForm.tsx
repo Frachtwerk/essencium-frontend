@@ -12,8 +12,11 @@ import { useTranslation } from 'react-i18next'
 
 export function ProfileSettingsForm() {
   const { t } = useTranslation()
+
   const theme = useMantineTheme()
+
   const [checked, setChecked] = useState(false)
+
   return (
     <>
       <Flex direction="column" gap="sm">

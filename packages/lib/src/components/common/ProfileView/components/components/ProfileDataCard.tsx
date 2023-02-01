@@ -2,9 +2,11 @@ import { Card, Tabs } from '@mantine/core'
 import { IconLock, IconSettings, IconUser } from '@tabler/icons'
 import { useTranslation } from 'react-i18next'
 
-import { PasswordChangeForm } from './PasswordChangeForm'
-import { PersonalDataForm } from './PersonalDataForm'
-import { ProfileSettingsForm } from './ProfileSettingsForm'
+import {
+  PasswordChangeForm,
+  PersonalDataForm,
+  ProfileSettingsForm,
+} from './components'
 
 export function ProfileDataCard() {
   const { t } = useTranslation()
