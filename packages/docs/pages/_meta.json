@@ -1,0 +1,16 @@
+{
+  "index": "Introduction",
+  "architecture": "Project Architecture",
+  "devguide": "Development Guide",
+  "styleguide": "Style Guide",
+  "about": {
+    "title": "About",
+    "type": "page"
+  },
+  "contact": {
+    "title": "Contact ↗",
+    "type": "page",
+    "href": "https://frachtwerk.de/kontakt",
+    "newWindow": true
+  }
+}

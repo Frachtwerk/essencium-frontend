@@ -1,0 +1,36 @@
+{
+  "name": "docs",
+  "version": "0.0.1",
+  "description": "Essencium Frontend Docs",
+  "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/main/README.md",
+  "bugs": {
+    "url": "https://github.com/Frachtwerk/essencium-frontend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Frachtwerk/essencium-frontend.git"
+  },
+  "license": "MIT",
+  "author": "Frachtwerk GmbH",
+  "scripts": {
+    "build": "next build",
+    "clean": "rimraf node_modules .next",
+    "clean:install": "pnpm clean && pnpm install",
+    "dev": "next dev",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "start": "next start"
+  },
+  "dependencies": {
+    "clsx": "1.2.1",
+    "next": "13.1.6",
+    "nextra": "2.2.14",
+    "nextra-theme-docs": "2.2.14",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.18",
+    "typescript": "4.9.5"
+  }
+}
