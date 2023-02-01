@@ -1,3 +1,5 @@
+[![🚀 Build](https://github.com/Frachtwerk/essencium-frontend/actions/workflows/build.yml/badge.svg)](https://github.com/Frachtwerk/essencium-frontend/actions/workflows/build.yml)
+
 # Essencium
 
 ## Table of Contents
