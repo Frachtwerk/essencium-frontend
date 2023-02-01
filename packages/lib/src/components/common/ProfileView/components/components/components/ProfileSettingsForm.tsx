@@ -26,7 +26,7 @@ export function ProfileSettingsForm() {
           color="blue"
           size="md"
           mt="sm"
-          label={t('ProfileView.dataCard.tabs.settings.content.status')}
+          label={t('profileView.dataCard.tabs.settings.content.status')}
           thumbIcon={
             checked ? (
               <IconCheck
@@ -49,9 +49,9 @@ export function ProfileSettingsForm() {
             mb="md"
             maw="60%"
             radius="md"
-            label={t('ProfileView.dataCard.tabs.settings.content.role')}
+            label={t('profileView.dataCard.tabs.settings.content.role')}
             placeholder={
-              t('ProfileView.dataCard.tabs.settings.content.role') as string
+              t('profileView.dataCard.tabs.settings.content.role') as string
             }
             data={[
               { value: 'user', label: 'Nutzer' },
@@ -62,7 +62,7 @@ export function ProfileSettingsForm() {
       </Flex>
 
       <Button mt="md" variant="light">
-        {t('ProfileView.dataCard.tabs.settings.content.saveSettings')}
+        {t('profileView.dataCard.tabs.settings.content.saveSettings')}
       </Button>
     </>
   )

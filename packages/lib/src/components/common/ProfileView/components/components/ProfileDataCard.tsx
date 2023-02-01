@@ -16,15 +16,15 @@ export function ProfileDataCard() {
       <Tabs defaultValue="personalDataForm">
         <Tabs.List>
           <Tabs.Tab value="personalDataForm" icon={<IconUser size={14} />}>
-            {t('ProfileView.dataCard.tabs.personalData.title')}
+            {t('profileView.dataCard.tabs.personalData.title')}
           </Tabs.Tab>
 
           <Tabs.Tab value="passwordChange" icon={<IconLock size={14} />}>
-            {t('ProfileView.dataCard.tabs.passwordChange.title')}
+            {t('profileView.dataCard.tabs.passwordChange.title')}
           </Tabs.Tab>
 
           <Tabs.Tab value="settings" icon={<IconSettings size={14} />}>
-            {t('ProfileView.dataCard.tabs.settings.title')}
+            {t('profileView.dataCard.tabs.settings.title')}
           </Tabs.Tab>
         </Tabs.List>
 

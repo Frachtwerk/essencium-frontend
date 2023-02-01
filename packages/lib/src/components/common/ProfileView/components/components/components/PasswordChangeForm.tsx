@@ -11,11 +11,11 @@ export function PasswordChangeForm() {
           <PasswordInput
             placeholder={
               t(
-                'ProfileView.dataCard.tabs.passwordChange.content.currentPassword'
+                'profileView.dataCard.tabs.passwordChange.content.currentPassword'
               ) as string
             }
             label={t(
-              'ProfileView.dataCard.tabs.passwordChange.content.currentPassword'
+              'profileView.dataCard.tabs.passwordChange.content.currentPassword'
             )}
             radius="md"
             miw="60%"
@@ -28,11 +28,11 @@ export function PasswordChangeForm() {
           <PasswordInput
             placeholder={
               t(
-                'ProfileView.dataCard.tabs.passwordChange.content.newPassword'
+                'profileView.dataCard.tabs.passwordChange.content.newPassword'
               ) as string
             }
             label={t(
-              'ProfileView.dataCard.tabs.passwordChange.content.newPassword'
+              'profileView.dataCard.tabs.passwordChange.content.newPassword'
             )}
             radius="md"
             miw="60%"
@@ -45,11 +45,11 @@ export function PasswordChangeForm() {
           <PasswordInput
             placeholder={
               t(
-                'ProfileView.dataCard.tabs.passwordChange.content.newPassword'
+                'profileView.dataCard.tabs.passwordChange.content.newPassword'
               ) as string
             }
             label={t(
-              'ProfileView.dataCard.tabs.passwordChange.content.newPassword'
+              'profileView.dataCard.tabs.passwordChange.content.newPassword'
             )}
             radius="md"
             mb="md"
@@ -59,7 +59,7 @@ export function PasswordChangeForm() {
         </MediaQuery>
 
         <Button mt="md" variant="light">
-          {t('ProfileView.dataCard.tabs.passwordChange.content.savePassword')}
+          {t('profileView.dataCard.tabs.passwordChange.content.savePassword')}
         </Button>
       </Flex>
     </form>

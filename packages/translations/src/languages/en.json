@@ -29,8 +29,7 @@
     "imprint": "Imprint",
     "contact": "Contact"
   },
-
-  "ProfileView": {
+  "profileView": {
     "dataCard": {
       "tabs": {
         "personalData": {

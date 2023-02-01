@@ -22,10 +22,10 @@ export function PersonalDataForm() {
           mb="md"
           placeholder={
             t(
-              'ProfileView.dataCard.tabs.personalData.content.firstName'
+              'profileView.dataCard.tabs.personalData.content.firstName'
             ) as string
           }
-          label={t('ProfileView.dataCard.tabs.personalData.content.firstName')}
+          label={t('profileView.dataCard.tabs.personalData.content.firstName')}
           size="sm"
           variant="filled"
           miw="45%"
@@ -37,10 +37,10 @@ export function PersonalDataForm() {
           mb="md"
           placeholder={
             t(
-              'ProfileView.dataCard.tabs.personalData.content.lastName'
+              'profileView.dataCard.tabs.personalData.content.lastName'
             ) as string
           }
-          label={t('ProfileView.dataCard.tabs.personalData.content.lastName')}
+          label={t('profileView.dataCard.tabs.personalData.content.lastName')}
           size="sm"
           variant="filled"
           miw="45%"
@@ -57,9 +57,9 @@ export function PersonalDataForm() {
         <TextInput
           mb="md"
           placeholder={
-            t('ProfileView.dataCard.tabs.personalData.content.phone') as string
+            t('profileView.dataCard.tabs.personalData.content.phone') as string
           }
-          label={t('ProfileView.dataCard.tabs.personalData.content.phone')}
+          label={t('profileView.dataCard.tabs.personalData.content.phone')}
           size="sm"
           variant="filled"
           miw="45%"
@@ -69,9 +69,9 @@ export function PersonalDataForm() {
         <TextInput
           mb="md"
           placeholder={
-            t('ProfileView.dataCard.tabs.personalData.content.mobile') as string
+            t('profileView.dataCard.tabs.personalData.content.mobile') as string
           }
-          label={t('ProfileView.dataCard.tabs.personalData.content.mobile')}
+          label={t('profileView.dataCard.tabs.personalData.content.mobile')}
           size="sm"
           variant="filled"
           miw="45%"
@@ -87,9 +87,9 @@ export function PersonalDataForm() {
         <TextInput
           mb="md"
           placeholder={
-            t('ProfileView.dataCard.tabs.personalData.content.email') as string
+            t('profileView.dataCard.tabs.personalData.content.email') as string
           }
-          label={t('ProfileView.dataCard.tabs.personalData.content.email')}
+          label={t('profileView.dataCard.tabs.personalData.content.email')}
           withAsterisk
           size="sm"
           variant="filled"
@@ -102,10 +102,10 @@ export function PersonalDataForm() {
           miw="45%"
           mb="md"
           radius="md"
-          label={t('ProfileView.dataCard.tabs.personalData.content.language')}
+          label={t('profileView.dataCard.tabs.personalData.content.language')}
           placeholder={
             t(
-              'ProfileView.dataCard.tabs.personalData.content.language'
+              'profileView.dataCard.tabs.personalData.content.language'
             ) as string
           }
           value={testUser.language}
