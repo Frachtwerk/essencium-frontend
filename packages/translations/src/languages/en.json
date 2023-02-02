@@ -61,5 +61,32 @@
         }
       }
     }
+  },
+  "contactForm": {
+    "title": "Contact us",
+    "form": {
+      "email": "Your Email",
+      "name": "Your Name",
+      "number": "Your Phone Number",
+      "subject": "Subject",
+      "message": "Message",
+      "sendMessage": "Send Message"
+    }
+  },
+  "login": {
+    "title": "Login",
+    "form": {
+      "email": "E-Mail",
+      "password": "Password",
+      "login": "Login",
+      "resetPassword": "Reset Password",
+      "submit": "Login",
+      "rememberLogin": "Remember Login",
+      "emailPlaceholder": "E-Mail",
+      "passwordPlaceholder": "Password"
+    },
+    "forgotPassword": "Forgot Password?",
+    "register": "Register",
+    "noAccount": "No Account?"
   }
 }
