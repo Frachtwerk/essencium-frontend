@@ -1,7 +1,7 @@
 import { Grid } from '@mantine/core'
 
-import { ContactPersonCard } from './components/components/ContactPersonCard'
 import { ContactForm } from './components/ContactForm'
+import { ContactPersonCard } from './components/ContactPersonCard'
 
 export function ContactView() {
   return (
