@@ -88,5 +88,13 @@
     "forgotPassword": "Forgot Password?",
     "register": "Register",
     "noAccount": "No Account?"
+  },
+  "setPasswordView": {
+    "title": "Set new password",
+    "form": {
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password",
+      "submit": "Save Password"
+    }
   }
 }
