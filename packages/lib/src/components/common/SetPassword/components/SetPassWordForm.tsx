@@ -8,27 +8,27 @@ export function SetPasswordForm() {
   return (
     <Card w={450} shadow="sm" p="lg" radius="md" withBorder>
       <Title order={2} mb="md">
-        {t('SetPasswordView.title')}
+        {t('setPasswordView.title')}
       </Title>
 
       <PasswordInput
-        placeholder={t('SetPasswordView.form.newPassword') as string}
-        label={t('SetPasswordView.form.newPassword')}
+        placeholder={t('setPasswordView.form.newPassword') as string}
+        label={t('setPasswordView.form.newPassword')}
         radius="md"
         withAsterisk
         mb="md"
       />
 
       <PasswordInput
-        placeholder={t('SetPasswordView.form.confirmPassword') as string}
-        label={t('SetPasswordView.form.confirmPassword')}
+        placeholder={t('setPasswordView.form.confirmPassword') as string}
+        label={t('setPasswordView.form.confirmPassword')}
         radius="md"
         withAsterisk
         mb="md"
       />
 
       <Button mt="md" leftIcon={<IconCheck />}>
-        {t('SetPasswordView.form.submit')}
+        {t('setPasswordView.form.submit')}
       </Button>
     </Card>
   )
