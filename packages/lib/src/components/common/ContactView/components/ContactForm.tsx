@@ -18,7 +18,7 @@ export function ContactForm() {
     <Card shadow="sm" p="lg" radius="md" withBorder>
       <form>
         <Title order={3} mb="md">
-          {t('ContactForm.title')}
+          {t('contactForm.title')}
         </Title>
 
         <Grid gutter={30}>
@@ -26,7 +26,7 @@ export function ContactForm() {
             <Container p={0} m={0}>
               <TextInput
                 mb="md"
-                label={t('ContactForm.form.email')}
+                label={t('contactForm.form.email')}
                 withAsterisk
                 size="sm"
                 radius="md"
@@ -34,14 +34,14 @@ export function ContactForm() {
 
               <TextInput
                 mb="md"
-                label={t('ContactForm.form.name')}
+                label={t('contactForm.form.name')}
                 size="sm"
                 radius="md"
               />
 
               <TextInput
                 mb="md"
-                label={t('ContactForm.form.number')}
+                label={t('contactForm.form.number')}
                 size="sm"
                 radius="md"
               />
@@ -51,7 +51,7 @@ export function ContactForm() {
           <Grid.Col md={6}>
             <TextInput
               mb="md"
-              label={t('ContactForm.form.subject')}
+              label={t('contactForm.form.subject')}
               size="sm"
               radius="md"
               variant="filled"
@@ -59,7 +59,7 @@ export function ContactForm() {
 
             <Textarea
               placeholder="Write your message here"
-              label={t('ContactForm.form.message')}
+              label={t('contactForm.form.message')}
               withAsterisk
               minRows={8}
               maxRows={15}
@@ -71,7 +71,7 @@ export function ContactForm() {
 
         <Group position="right" mt="md">
           <Button leftIcon={<IconSend size={20} />}>
-            {t('ContactForm.form.sendMessage')}
+            {t('contactForm.form.sendMessage')}
           </Button>
         </Group>
       </form>

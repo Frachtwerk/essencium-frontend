@@ -33,7 +33,6 @@
     "dataCard": {
       "tabs": {
         "personalData": {
-<<<<<<< main:packages/translations/src/languages/en.json
           "title": "Personal Data",
           "content": {
             "firstName": "First Name",
@@ -59,46 +58,11 @@
             "role": "Role",
             "saveSettings": "Save Settings"
           }
-=======
-          "title": "personal data",
-          "content": {
-            "firstName": "first name",
-            "lastName": "last name",
-            "email": "e-mail",
-            "phone": "phone number",
-            "mobile": "mobile number",
-            "language": "language",
-            "role": "role"
-          }
-        },
-        "passwordChange": {
-<<<<<<< main:packages/translations/src/languages/en.json
-          "title": "change password"
->>>>>>> feat: add translation to PersonalDataForm:packages/app/public/locales/en/localTranslation.json
-=======
-          "title": "change password",
-          "content": {
-            "currentPassword": "current password",
-            "newPassword": "new password",
-            "savePassword": "save password"
-          }
-<<<<<<< main:packages/translations/src/languages/en.json
->>>>>>> feat: add settings tab and content:packages/app/public/locales/en/localTranslation.json
-=======
-        },
-        "settings": {
-          "title": "settings",
-          "content": {
-            "status": "status",
-            "role": "role",
-            "saveSettings": "save settings"
-          }
->>>>>>> feat: add translation to settings:packages/app/public/locales/en/localTranslation.json
         }
       }
     }
   },
-  "ContactForm": {
+  "contactForm": {
     "title": "Contact us",
     "form": {
       "email": "Your Email",
@@ -108,5 +72,21 @@
       "message": "Message",
       "sendMessage": "Send Message"
     }
+  },
+  "login": {
+    "title": "Login",
+    "form": {
+      "email": "E-Mail",
+      "password": "Password",
+      "login": "Login",
+      "resetPassword": "Reset Password",
+      "submit": "Login",
+      "rememberLogin": "Remember Login",
+      "emailPlaceholder": "E-Mail",
+      "passwordPlaceholder": "Password"
+    },
+    "forgotPassword": "Forgot Password?",
+    "register": "Register",
+    "noAccount": "No Account?"
   }
 }
