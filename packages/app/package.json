@@ -105,5 +105,10 @@
     "tags": [
       "scope:app"
     ]
+  },
+  "dependenciesMeta": {
+    "lib": {
+      "injected": true
+    }
   }
 }
