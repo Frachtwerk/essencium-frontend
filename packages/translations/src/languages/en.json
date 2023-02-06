@@ -96,5 +96,18 @@
       "confirmPassword": "Confirm Password",
       "submit": "Save Password"
     }
+  },
+  "resetPassword": {
+    "form": {
+      "description": "Forgot your password? Enter your E-Mail and we will send you a link to reset your password.",
+      "label": "Your Email",
+      "placeholder": "Your Email",
+      "submitButton": "Reset Password",
+      "cancelButton": "Cancel"
+    },
+    "successMessage": {
+      "title": "Email sent",
+      "description": "We sent an email with a link to reset your password to your account. Please check your inbox and follow the instructions in the email. "
+    }
   }
 }
