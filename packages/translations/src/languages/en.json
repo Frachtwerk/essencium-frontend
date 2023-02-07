@@ -71,6 +71,7 @@
       "number": "Your Phone Number",
       "subject": "Subject",
       "message": "Message",
+      "messagePlaceholder": "Write your message here",
       "sendMessage": "Send Message"
     }
   },
