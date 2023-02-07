@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction } from 'react'
+import type { Dispatch, SetStateAction } from 'react'
 
-export interface ResetPasswordProps {
+export type ResetPasswordProps = {
   setOpen: Dispatch<SetStateAction<boolean>>
   setSent: Dispatch<SetStateAction<boolean>>
 }

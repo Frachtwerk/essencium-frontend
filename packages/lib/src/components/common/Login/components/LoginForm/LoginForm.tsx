@@ -6,13 +6,11 @@ import {
   Paper,
   PasswordInput,
   TextInput,
-  Transition,
 } from '@mantine/core'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { ResetPasswordForm } from '../../../ResetPassword'
-import { ResetPasswordSuccessMessage } from '../../../ResetPassword/components/ResetPasswordSuccessMessage'
+import { ResetPasswordForm, ResetPasswordSuccessMessage } from './components'
 import { LoginFormProps } from './types'
 
 export function LoginForm({ loginCredentials }: LoginFormProps) {
@@ -20,13 +18,6 @@ export function LoginForm({ loginCredentials }: LoginFormProps) {
 
   const [isOpened, setIsOpened] = useState(false)
   const [isSent, setIsSent] = useState(false)
-
-  const customTransition = {
-    in: { opacity: 1, transform: 'scaleY(1)' },
-    out: { opacity: 1, transform: 'scaleY(0)' },
-    common: { transformOrigin: 'center' },
-    transitionProperty: 'transform, opacity',
-  }
 
   return (
     <Paper shadow="md" p={30} mt="md" radius="md">
@@ -84,33 +75,11 @@ export function LoginForm({ loginCredentials }: LoginFormProps) {
         </form>
       )}
 
-      {!isSent && (
-        <Transition
-          mounted={isOpened}
-          transition={customTransition}
-          duration={300}
-          timingFunction="ease-in"
-        >
-          {styles => (
-            <div style={styles}>
-              <ResetPasswordForm setOpen={setIsOpened} setSent={setIsSent} />
-            </div>
-          )}
-        </Transition>
+      {isOpened && !isSent && (
+        <ResetPasswordForm setOpen={setIsOpened} setSent={setIsSent} />
       )}
 
-      <Transition
-        mounted={isSent}
-        transition={customTransition}
-        duration={300}
-        timingFunction="ease-in"
-      >
-        {styles => (
-          <div style={styles}>
-            <ResetPasswordSuccessMessage />
-          </div>
-        )}
-      </Transition>
+      {isSent && <ResetPasswordSuccessMessage />}
     </Paper>
   )
 }

@@ -1,7 +1,7 @@
 import { Button, Container, Group, Text, TextInput } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
-import { ResetPasswordProps } from '../types'
+import type { ResetPasswordProps } from './types'
 
 export function ResetPasswordForm({ setOpen, setSent }: ResetPasswordProps) {
   const { t } = useTranslation()
