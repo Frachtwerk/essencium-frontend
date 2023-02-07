@@ -40,7 +40,8 @@
             "email": "E-Mail",
             "phone": "Phone Number",
             "mobile": "Mobile Number",
-            "language": "Language"
+            "language": "Language",
+            "saveChanges": "Save Changes"
           }
         },
         "passwordChange": {
