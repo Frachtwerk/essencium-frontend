@@ -298,14 +298,14 @@ Even though your implementation is fine, warning or even error can occur. Someti
 - [ ] All props are typed correctly and destructured.
 - [ ] The return type of the component is specified.
 - [ ] All types are declared in a seperate file inside the component. 
-- [ ] Any is not used in type declaration.
+- [ ] `any` is not used in type declaration.
 - [ ] Logic that belonges together is grouped together and separated by a blank line. 
 - [ ] JSX Elements, that have the same indentation are separated by a blank line. 
-- [ ] Lazy loading is implemented if it makes sense. 
+- [ ] Lazy loading of imported components is implemented if it makes sense. 
 - [ ] All texts are replaced with a corresponding `i18n` variable.
 - [ ] Server requests are treated as sensible.
 - [ ] Feedback is provided for the user for every write, delete and update operation.
-- [ ] The code is formatted and linted properly via Prettier, ESLint.
+- [ ] The code is formatted and linted properly via Prettier & ESLint.
 - [ ] The console does not show any errors or warnings. 
 
 
@@ -335,11 +335,11 @@ export function NewComponent({name, email}: User): JSX.Element {
     return (
     <div>
       <div>
-        <h2>{t('newComponent.title')}</h2>
+        <h2> {t('newComponent.title')} </h2>
       </div>
  
       <div>
-        <h3>{name}</h3>
+        <h3> {name} </h3>
       </div>
     </div>
   )
