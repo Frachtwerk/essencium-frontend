@@ -12,7 +12,7 @@ The Header component does have other components it uses. Because they're specifi
 
 ![Hello](/images/tightly-coupled-principle.png)
 
-## Checklist
+## Details
 
 - component name is equal to the file name (both `PascalCase`)
 
@@ -281,3 +281,68 @@ Tools like Prettier (semantic) and ESLint (syntax) ensure a consistent codebase 
 <summary>Why?</summary>
 Even though your implementation is fine, warning or even error can occur. Sometimes they're not reflected in the UI but in the console.
 </details>
+
+
+## Checklist  
+
+  -
+
+- [ ] The files and folder structure is tightly coupled. 
+
+- [ ] The name of the component is equal to the file name and both are written in PascalCase.
+- [ ] The component is a functional component.
+- [ ] Types are imported with the correct syntax.
+- [ ] The size of the imports has been calculated and is ok (green).
+- [ ] All functions are declared with function declaration.
+- [ ] The component is exported as named export.
+- [ ] All props are typed correctly and destructured.
+- [ ] The return type of the component is specified.
+- [ ] All types are declared in a seperate file inside the component. 
+- [ ] Any is not used in type declaration.
+- [ ] Logic that belonges together is grouped together and separated by a blank line. 
+- [ ] JSX Elements, that have the same indentation are separated by a blank line. 
+- [ ] Lazy loading is implemented if it makes sense. 
+- [ ] All texts are replaced with a corresponding `i18n` variable.
+- [ ] Server requests are treated as sensible.
+- [ ] Feedback is provided for the user for every write, delete and update operation.
+- [ ] The code is formatted and linted properly via Prettier, ESLint.
+- [ ] The console does not show any errors or warnings. 
+
+
+
+
+## Example 
+
+```tsx
+// NewComponent.tsx
+
+import type { User } from './types'  
+
+export function NewComponent({name, email}: User): JSX.Element {
+  const { t } = useTranslation()
+
+  const [user, setUser] = useState<User>({ name: '', email: '' })
+
+ 
+  const [toggleColorTheme, setToggleColorTheme] = useState('light')
+ 
+  function onToggleColorTheme(): void {
+    ...
+    setToggleColorTheme('dark')
+    ...
+  }
+
+    return (
+    <div>
+      <div>
+        <h2>{t('newComponent.title')}</h2>
+      </div>
+ 
+      <div>
+        <h3>{name}</h3>
+      </div>
+    </div>
+  )
+}
+
+```
