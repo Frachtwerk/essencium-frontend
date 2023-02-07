@@ -9,7 +9,7 @@ import { User, UserProps, userSchema } from './types'
 export function TestComponent({
   users,
   shouldLoadApiUsers = false,
-}: UserProps) {
+}: UserProps): JSX.Element {
   const { t } = useTranslation()
 
   const apiUsers = useQuery<User[]>(
@@ -38,6 +38,7 @@ export function TestComponent({
       <Title order={2}>
         {users.length} {t('usersGivenByProp')}
       </Title>
+
       <List>
         {users.map(user => (
           <List.Item key={user.id}>
@@ -45,6 +46,7 @@ export function TestComponent({
           </List.Item>
         ))}
       </List>
+
       <Title order={2}>
         {shouldLoadApiUsers
           ? `${apiUsers.data?.length ?? 'no'} ${t('apiUsersLoaded')}`
