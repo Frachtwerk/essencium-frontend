@@ -58,7 +58,7 @@ function App({ children }: AppProps) {
     <AppShell
       asideOffsetBreakpoint="sm"
       navbarOffsetBreakpoint="sm"
-      navbar={<NavBar isOpen={openedNav} inks={NAV_LINKS} />}
+      navbar={<NavBar isOpen={openedNav} links={NAV_LINKS} />}
       footer={<Footer />}
       header={
         <Header isOpen={openedNav} handleOpenNav={() => handleOpenNav()} />
