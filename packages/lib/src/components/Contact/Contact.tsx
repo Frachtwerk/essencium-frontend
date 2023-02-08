@@ -2,7 +2,7 @@ import { Grid } from '@mantine/core'
 
 import { ContactForm, ContactPersonCard } from './components'
 
-export function Contact() {
+export function Contact(): JSX.Element {
   return (
     <Grid>
       <Grid.Col md={4}>
