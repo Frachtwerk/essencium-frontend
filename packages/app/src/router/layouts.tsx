@@ -12,7 +12,10 @@ export const layoutRouteAppShell = new Route({
   component: () => (
     <App>
       <Outlet />
-      <TanStackRouterDevtools initialIsOpen={false} />
+
+      {process.env.NODE_ENV === 'development' && (
+        <TanStackRouterDevtools initialIsOpen={false} />
+      )}
     </App>
   ),
 })
@@ -24,7 +27,10 @@ export const layoutRouteLogin = new Route({
   component: () => (
     <Center>
       <Outlet />
-      <TanStackRouterDevtools initialIsOpen={false} />
+
+      {process.env.NODE_ENV === 'development' && (
+        <TanStackRouterDevtools initialIsOpen={false} />
+      )}
     </Center>
   ),
 })
