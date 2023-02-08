@@ -1,8 +1,8 @@
-import { CommonLogin, LoginForm } from 'lib'
+import { Login, LoginForm } from 'lib'
 
 export function LoginView(): JSX.Element {
   return (
-    <CommonLogin
+    <Login
       form={
         <LoginForm
           loginCredentials={{
