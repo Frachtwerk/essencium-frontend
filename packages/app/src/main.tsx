@@ -24,10 +24,11 @@ import {
 import { useHotkeys, useLocalStorage } from '@mantine/hooks'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { RouterProvider } from '@tanstack/react-router'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
-import App from './App'
+import { router } from './router/init'
 
 function Root() {
   const queryClient = new QueryClient()
@@ -72,8 +73,10 @@ function Root() {
         }}
       >
         <QueryClientProvider client={queryClient}>
-          <App />
           <ReactQueryDevtools initialIsOpen={false} />
+          <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+
+          <RouterProvider router={router} />
         </QueryClientProvider>
       </MantineProvider>
     </ColorSchemeProvider>

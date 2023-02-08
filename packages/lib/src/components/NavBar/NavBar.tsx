@@ -1,12 +1,12 @@
 import { Navbar } from '@mantine/core'
 
 import { NavLinks } from './components/NavLinks'
-import type { NavBarProps } from './types'
+import { NavBarProps } from './types'
 
-export function NavBar({ isOpen }: NavBarProps): JSX.Element {
+export function NavBar({ isOpen, links }: NavBarProps): JSX.Element {
   return (
     <Navbar hidden={!isOpen} p="sm" hiddenBreakpoint="sm" width={{ sm: 170 }}>
-      <NavLinks />
+      <NavLinks links={links} />
     </Navbar>
   )
 }
