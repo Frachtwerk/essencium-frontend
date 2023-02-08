@@ -16,7 +16,7 @@ import {
   IconPhoneCall,
 } from '@tabler/icons'
 
-export function ContactPersonCard() {
+export function ContactPersonCard(): JSX.Element {
   return (
     <Card shadow="sm" p="lg" radius="md" withBorder>
       <Flex
