@@ -15,6 +15,7 @@ import {
   IconMail,
   IconPhoneCall,
 } from '@tabler/icons'
+import { t } from 'i18next'
 
 export function ContactPersonCard(): JSX.Element {
   return (
@@ -25,7 +26,7 @@ export function ContactPersonCard(): JSX.Element {
         justify={{ sm: 'center' }}
         align={{ base: 'center', md: 'flex-start' }}
       >
-        <Title order={3}>Your Contact Person</Title>
+        <Title order={3}>{t('contactPersonCard.title')}</Title>
 
         <Avatar
           size="xl"

@@ -75,6 +75,9 @@
       "sendMessage": "Send Message"
     }
   },
+"contactPersonCard": {
+"title": "Your Contact Person"
+},
   "login": {
     "title": "Login",
     "form": {
