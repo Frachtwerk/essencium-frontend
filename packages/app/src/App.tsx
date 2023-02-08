@@ -1,5 +1,5 @@
 import { AppShell, Box, Button, Center, Text } from '@mantine/core'
-import { CommonFooter, CommonHeader, CommonNavBar, TestComponent } from 'lib'
+import { Footer, Header, NavBar, TestComponent } from 'lib'
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -101,13 +101,10 @@ function App() {
     <AppShell
       asideOffsetBreakpoint="sm"
       navbarOffsetBreakpoint="sm"
-      navbar={<CommonNavBar isOpen={openedNav} />}
-      footer={<CommonFooter />}
+      navbar={<NavBar isOpen={openedNav} />}
+      footer={<Footer />}
       header={
-        <CommonHeader
-          isOpen={openedNav}
-          handleOpenNav={() => handleOpenNav()}
-        />
+        <Header isOpen={openedNav} handleOpenNav={() => handleOpenNav()} />
       }
     >
       <Demo />

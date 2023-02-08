@@ -40,7 +40,8 @@
             "email": "E-Mail",
             "phone": "Phone Number",
             "mobile": "Mobile Number",
-            "language": "Language"
+            "language": "Language",
+            "saveChanges": "Save Changes"
           }
         },
         "passwordChange": {
@@ -70,9 +71,13 @@
       "number": "Your Phone Number",
       "subject": "Subject",
       "message": "Message",
+      "messagePlaceholder": "Write your message here",
       "sendMessage": "Send Message"
     }
   },
+"contactPersonCard": {
+"title": "Your Contact Person"
+},
   "login": {
     "title": "Login",
     "form": {
