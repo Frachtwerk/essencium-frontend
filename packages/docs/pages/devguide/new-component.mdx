@@ -1,0 +1,348 @@
+# Writing a new component
+
+> Some sections are still drafts and marked with a 📝 symbol. Feel free to contribute 🎉.
+
+## Location
+
+The files and folder structure follows the [tightly-coupled architecture](https://nordicapis.com/the-difference-between-tight-coupling-and-loose-coupling/). That means that a file should live as close as possible to its context.
+In the image below you can see we've a Header component. On the same level we declare its types as well as its test. This is the closest place for those files to the Header component.
+The Header component does have other components it uses. Because they're specific to it, they live in the `Header/components` folder and follow the same architecture. The `index.ts` files just export all named imports to the next-level `index.ts`.
+
+📝 (replace the image after issue [#56](https://github.com/Frachtwerk/essencium-frontend/issues/56))
+
+![Hello](/images/tightly-coupled-principle.png)
+
+## Details
+
+- component name is equal to the file name (both `PascalCase`)
+
+- use functional components instead of class components
+
+```tsx
+// ❌
+class NewComponent extends PureComponent { ... }
+
+// ✅
+function NewComponent(...) { ... }
+```
+
+<details>
+<summary>Why? 📝</summary>
+...
+</details>
+
+- import types with `import type { ... } from ...` syntax
+
+```typescript
+// ❌
+import { NewType } from ...
+
+// ✅
+import type { NewType } from ...
+```
+
+<details>
+<summary>Why? 📝</summary>
+...
+</details>
+
+- check size of imports (i.e. with VSCode plugin [import costs](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost)) and reduce where possible (green is fine, red should be reviewed)
+
+![Import Cost Valid](/images/import-cost-green.png)
+
+<details>
+<summary>Why? 📝</summary>
+...
+</details>
+
+- use function declaration syntax instead of arrow function syntax
+
+```tsx
+// ❌
+const NewComponent = (...) => { ... }
+
+// ✅
+function NewComponent(...) { ... }
+```
+
+<details>
+<summary>Why? 📝</summary>
+...
+</details>
+
+- export the functional component as named export (`export function MyComponent(...)`)
+
+```tsx
+// ❌
+export default function NewComponent(...) { ... }
+
+// ✅
+export function NewComponent(...) { ... }
+```
+
+<details>
+<summary>Why?</summary>
+
+Exporting functions, variables and types via the named export syntax has the advantage of automatic bulk-renaming if needed.
+</details>
+
+- type the component's props with a TypeScript `type` and destructure them where possible
+
+```tsx
+// ❌
+function NewComponent(cmpProps: { username: string; age: number; }) { ... }
+
+// ❌
+function NewComponent({ username, age }: { username: string; age: number; }) { ... }
+
+// ✅
+type NewComponentProps = {
+  username: string;
+  age: number;
+}
+
+function NewComponent({ username, age }: NewComponentProps) { ... }
+```
+
+<details>
+<summary>Why? 📝</summary>
+...
+</details>
+
+- specify return type of component
+
+```tsx
+// ❌
+function NewComponent(...) { ... }
+
+// ✅
+function NewComponent(...): JSX.Element { ... }
+```
+
+<details>
+<summary>Why?</summary>
+
+By specifying the concret return type, TypeScript will give you an error if you accidentally return a wrong type.
+Additionally, it increases the consistency of always specifying the return type of functions throughout the codebase and provides a better readability if you can directly recognize what a function returns.
+</details>
+
+- declare types in a separate file on the same level as the component inside a `types.ts` file
+
+<details>
+<summary>Why? 📝</summary>
+...
+</details>
+
+- logic that belongs together should live as close together as possible and they should be separated through a blank line
+
+```tsx
+// ❌
+function NewComponent(...): JSX.Element {
+  const [toggleColorTheme, setToggleColorTheme] = useState('light')
+  const { t } = useTranslation()
+  function onToggleColorTheme(): void {
+    ...
+    setToggleColorTheme('dark')
+    ...
+  }
+}
+
+// ✅
+function NewComponent(...): JSX.Element {
+  const { t } = useTranslation()
+
+  const [toggleColorTheme, setToggleColorTheme] = useState('light')
+
+  function onToggleColorTheme(): void {
+    ...
+    setToggleColorTheme('dark')
+    ...
+  }
+}
+```
+
+- separate JSX elements with a blank line if they have the same indentation
+
+```tsx
+// ❌
+function NewComponent(...): JSX.Element {
+  return (
+    <div>
+      <div>
+        <h2> Foo </h2>
+      </div>
+      <div>
+        <h3> Bar </h3>
+      </div>
+    </div>
+  )
+}
+
+// ✅
+function NewComponent(...): JSX.Element {
+  return (
+    <div>
+      <div>
+        <h2> Foo </h2>
+      </div>
+
+      <div>
+        <h3> Bar </h3>
+      </div>
+    </div>
+  )
+}
+```
+
+<details>
+<summary>Why? 📝</summary>
+...
+</details>
+
+- lazy load components if it makes sense
+
+<details>
+<summary>Why? 📝</summary>
+...
+</details>
+
+- all texts are replaced with a corresponding `i18n` variable
+
+```tsx
+// ❌
+<h3> Login </h3>
+
+// ✅
+<h3> {t('login.title')} </h3>
+```
+
+<details>
+<summary>Why? 📝</summary>
+...
+</details>
+
+- no TypeScript `any`
+
+```tsx
+// ❌
+function NewComponent(...): JSX.Element {
+  const { t } = useTranslation()
+
+  const [user, setUser] = useState<any>({ name: '', email: '' })
+}
+
+// ✅
+// types.ts
+export type User = {
+  name: string
+  email: string
+}
+
+// NewComponent.tsx
+import type { User } from './types'
+
+function NewComponent(...): JSX.Element {
+  const { t } = useTranslation()
+
+  const [user, setUser] = useState<User>({ name: '', email: '' })
+}
+```
+
+<details>
+<summary>Why?</summary>
+By telling TypeScript that a variable or function is of type `any` you disable TypeScript for it and don't get any type-safety anymore.
+Some typing is hard, we all know that, but at least ask for help and don't go the simple and insecure way.
+</details>
+
+- treat server requests as sensible
+
+<details>
+<summary>Why?</summary>
+Double-check if you make unnecessary or too many server requests caused by a suboptimal implementation. It could led to a bad performance and UX.
+</details>
+
+- provide feedback for every write, delete, update operation
+
+<details>
+<summary>Why?</summary>
+A good UX consists of proper user feedback i.e. notifications. That gives the user confidence that his action was successful or has failed.
+</details>
+
+- proper code formatting via Prettier & linting via ESLint
+
+<details>
+<summary>Why?</summary>
+Tools like Prettier (semantic) and ESLint (syntax) ensure a consistent codebase and keep readability on a high level.
+</details>
+
+- check console (browser and terminal) for any errors or warnings
+
+<details>
+<summary>Why?</summary>
+Even though your implementation is fine, warning or even error can occur. Sometimes they're not reflected in the UI but in the console.
+</details>
+
+
+## Checklist  
+
+  -
+
+- [ ] The files and folder structure is tightly coupled. 
+
+- [ ] The name of the component is equal to the file name and both are written in PascalCase.
+- [ ] The component is a functional component.
+- [ ] Types are imported with the correct syntax.
+- [ ] The size of the imports has been calculated and is ok (green).
+- [ ] All functions are declared with function declaration.
+- [ ] The component is exported as named export.
+- [ ] All props are typed correctly and destructured.
+- [ ] The return type of the component is specified.
+- [ ] All types are declared in a seperate file inside the component. 
+- [ ] `any` is not used in type declaration.
+- [ ] Logic that belonges together is grouped together and separated by a blank line. 
+- [ ] JSX Elements, that have the same indentation are separated by a blank line. 
+- [ ] Lazy loading of imported components is implemented if it makes sense. 
+- [ ] All texts are replaced with a corresponding `i18n` variable.
+- [ ] Server requests are treated as sensible.
+- [ ] Feedback is provided for the user for every write, delete and update operation.
+- [ ] The code is formatted and linted properly via Prettier & ESLint.
+- [ ] The console does not show any errors or warnings. 
+
+
+
+
+## Example 
+
+```tsx
+// NewComponent.tsx
+
+import type { User } from './types'  
+
+export function NewComponent({name, email}: User): JSX.Element {
+  const { t } = useTranslation()
+
+  const [user, setUser] = useState<User>({ name: '', email: '' })
+
+ 
+  const [toggleColorTheme, setToggleColorTheme] = useState('light')
+ 
+  function onToggleColorTheme(): void {
+    ...
+    setToggleColorTheme('dark')
+    ...
+  }
+
+    return (
+    <div>
+      <div>
+        <h2> {t('newComponent.title')} </h2>
+      </div>
+ 
+      <div>
+        <h3> {name} </h3>
+      </div>
+    </div>
+  )
+}
+
+```
