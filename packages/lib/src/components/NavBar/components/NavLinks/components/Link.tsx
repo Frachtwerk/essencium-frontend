@@ -1,6 +1,6 @@
 import { NavLink, useMantineTheme } from '@mantine/core'
 
-import { LinkProps } from './types'
+import type { LinkProps } from './types'
 
 export function Link({ icon, label, href }: LinkProps): JSX.Element {
   const theme = useMantineTheme()
