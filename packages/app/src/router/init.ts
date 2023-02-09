@@ -18,7 +18,7 @@ declare module '@tanstack/react-router' {
 }
 
 // The hierarchy of all routes
-export const routeTree = rootRoute.addChildren([
+const routeTree = rootRoute.addChildren([
   layoutRouteAppShell.addChildren([indexRoute, contactRoute, profileRoute]),
   layoutRouteLogin.addChildren([loginRoute, setPasswordRoute]),
 ])
