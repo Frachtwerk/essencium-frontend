@@ -1,0 +1,27 @@
+{
+  "folders": [
+    {
+      "path": "../"
+    },
+    {
+      "name": "lib",
+      "path": "../packages/lib"
+    },
+    {
+      "name": "app",
+      "path": "../packages/app"
+    },
+    {
+      "name": "translations",
+      "path": "../packages/translations"
+    },
+    {
+      "name": "docs",
+      "path": "../packages/docs"
+    }
+  ],
+  "settings": {
+    "i18n-ally.keystyle": "nested",
+    "i18n-ally.sourceLanguage": "en"
+  }
+}
