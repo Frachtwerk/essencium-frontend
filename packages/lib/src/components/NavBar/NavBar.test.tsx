@@ -48,6 +48,10 @@ describe('NavBar', () => {
   ]
 
   beforeAll(() => {
+    vi.mock('@tanstack/react-router', () => ({
+      Link: ({ children }: { children: React.ReactNode }) => children,
+    }))
+
     vi.mock('react-i18next', () => ({
       useTranslation: () => {
         return {
