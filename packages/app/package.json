@@ -23,10 +23,10 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "build": "node ./src/utils/build-tsconfig.js && prettier ./tsconfig.json --write && tsc && vite build && rimraf dist/**/*.js.map",
+    "build": "tsc -p tsconfig.build.json && vite build && rimraf dist/**/*.js.map",
     "clean": "rimraf dist node_modules",
     "clean:install": "pnpm clean && pnpm install",
-    "dev": "node ./src/utils/build-tsconfig.js --development && prettier ./tsconfig.json --write && vite",
+    "dev": "vite",
     "format": "prettier --write .",
     "lint": "eslint .",
     "preview": "vite preview",
