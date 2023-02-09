@@ -11,8 +11,8 @@
     "module": "ESNext",
     "paths": {
       "@/*": ["./src/*"],
-      "lib": ["../lib/src"],
-      "translations": ["./node_modules/translations"]
+      "lib": ["../lib/dist"],
+      "translations": ["../translations/dist"]
     }
   },
   "include": ["tsconfig.js", "src/**/*.ts", "src/**/*.js", "src/**/*.tsx"],
