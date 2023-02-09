@@ -54,11 +54,11 @@
     "@tanstack/react-query-devtools": "4.22.4",
     "dayjs": "1.11.7",
     "fast-glob": "3.2.12",
-    "i18next": "22.4.5",
+    "i18next": "22.4.9",
     "lib": "workspace:*",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-i18next": "12.1.1",
+    "react-i18next": "12.1.4",
     "translations": "workspace:*",
     "yup": "0.32.11",
     "zustand": "4.1.5"
@@ -105,5 +105,10 @@
     "tags": [
       "scope:app"
     ]
+  },
+  "dependenciesMeta": {
+    "lib": {
+      "injected": true
+    }
   }
 }

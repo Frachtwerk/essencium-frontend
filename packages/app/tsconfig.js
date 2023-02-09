@@ -25,9 +25,9 @@ export default {
     module: 'ESNext',
     paths: {
       '@/*': ['./src/*'],
-      lib: [isDevelopment ? '../lib/src' : './node_modules/lib'],
+      lib: [isDevelopment ? '../lib/src' : '../lib/dist'],
       translations: [
-        isDevelopment ? '../translations/src' : './node_modules/translations',
+        isDevelopment ? '../translations/src' : '../translations/dist',
       ],
     },
   },
