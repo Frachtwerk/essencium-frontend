@@ -1,0 +1,19 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "target": "ES6",
+    "esModuleInterop": false,
+    "isolatedModules": true,
+    "noEmit": true,
+    "types": ["vite-plugin-sentry/client"],
+    "resolveJsonModule": true,
+    "module": "ESNext"
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}

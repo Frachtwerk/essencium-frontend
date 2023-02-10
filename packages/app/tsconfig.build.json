@@ -3,8 +3,8 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"],
-      "lib": ["../lib/src"],
-      "translations": ["../translations/src"]
+      "lib": ["../lib/dist"],
+      "translations": ["../translations/dist"]
     }
   }
 }
