@@ -73,7 +73,6 @@ function Root() {
         }}
       >
         <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools initialIsOpen={false} />
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
 
           <RouterProvider router={router} />
