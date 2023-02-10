@@ -44,7 +44,7 @@ export default defineConfig({
         find: '@',
         replacement: path.resolve(__dirname, 'src'),
       },
-      // this entry enables HMR for the lib development
+      // this entry enables HMR for the lib & translations development
       {
         find: 'lib',
         replacement: path.resolve(__dirname, '../lib/src/index.ts'),
