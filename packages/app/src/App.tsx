@@ -1,96 +1,53 @@
-import { AppShell, Box, Button, Center, Text } from '@mantine/core'
-import { Footer, Header, NavBar, TestComponent } from 'lib'
-import { useMemo, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { AppShell } from '@mantine/core'
+import {
+  IconHome2,
+  IconLanguage,
+  IconShieldCheck,
+  IconUserCheck,
+  IconUsers,
+} from '@tabler/icons'
+import type { NavLink } from 'lib'
+import { Footer, Header, NavBar } from 'lib'
+import { useState } from 'react'
 
-import useStore from '@/store'
-
-interface Languages {
-  en: { nativeName: string }
-  de: { nativeName: string }
+type AppProps = {
+  children: React.ReactNode
 }
 
-function Demo() {
-  const { t, i18n } = useTranslation()
+export const NAV_LINKS: NavLink[] = [
+  {
+    icon: <IconHome2 size={20} />,
+    color: 'blue',
+    label: 'navigation.home',
+    to: '/home',
+  },
+  {
+    icon: <IconUsers size={20} />,
+    color: 'blue',
+    label: 'navigation.users',
+    to: '/users',
+  },
+  {
+    icon: <IconUserCheck size={20} />,
+    color: 'blue',
+    label: 'navigation.roles',
+    to: '/roles',
+  },
+  {
+    icon: <IconShieldCheck size={20} />,
+    color: 'blue',
+    label: 'navigation.rights',
+    to: '/rights',
+  },
+  {
+    icon: <IconLanguage size={20} />,
+    color: 'blue',
+    label: 'navigation.translations',
+    to: '/translations',
+  },
+]
 
-  const languages: Languages = {
-    de: { nativeName: t('de') },
-    en: { nativeName: t('en') },
-  }
-
-  const increaseCount = useStore(state => state.increaseCount)
-  const dinoCount = useStore(state => state.dinos)
-
-  const addUser = useStore(state => state.addUser)
-
-  const users = useStore(state => state.users)
-
-  useMemo(
-    () =>
-      addUser({
-        id: Math.floor(Math.random() * 100),
-        name: 'Daniel Dino',
-        username: 'dinopower',
-        email: 'dino@power.io',
-      }),
-    [addUser]
-  )
-
-  const [loadApiUsers, setLoadApiUsers] = useState(false)
-
-  return (
-    <Center sx={{ width: '100%', height: '80%' }}>
-      <Box className="grid place-items-center gap-4">
-        <Text className="text-3xl font-bold font-mono pt-5">
-          {t('itWorks')}
-        </Text>
-        <Button
-          onClick={() => {
-            throw Error('failed intentionally with Sentry')
-          }}
-        >
-          Get started
-        </Button>
-
-        <Text className="text-3xl font-bold font-mono p-5">{t('dino')}</Text>
-
-        <Box>
-          {Object.keys(languages).map(language => (
-            <Button
-              key={language}
-              type="submit"
-              onClick={() => i18n.changeLanguage(language)}
-              className="mx-2"
-              variant="light"
-            >
-              {languages[language as keyof Languages].nativeName}
-            </Button>
-          ))}
-        </Box>
-
-        <Box>
-          <Button
-            variant="gradient"
-            gradient={{ from: 'teal', to: 'blue', deg: 60 }}
-            onClick={increaseCount}
-          >
-            Add Dinos
-          </Button>
-
-          <Text className="mt-5 text-center">{dinoCount} Dinos</Text>
-        </Box>
-
-        <TestComponent users={users} shouldLoadApiUsers={loadApiUsers} />
-
-        <Button onClick={() => setLoadApiUsers(!loadApiUsers)}>
-          {loadApiUsers ? t('removeApiUsers') : t('loadApiUsers')}
-        </Button>
-      </Box>
-    </Center>
-  )
-}
-
-function App() {
+function App({ children }: AppProps) {
   const [openedNav, setOpenedNav] = useState(false)
 
   function handleOpenNav(): void {
@@ -101,13 +58,13 @@ function App() {
     <AppShell
       asideOffsetBreakpoint="sm"
       navbarOffsetBreakpoint="sm"
-      navbar={<NavBar isOpen={openedNav} />}
+      navbar={<NavBar isOpen={openedNav} links={NAV_LINKS} />}
       footer={<Footer />}
       header={
         <Header isOpen={openedNav} handleOpenNav={() => handleOpenNav()} />
       }
     >
-      <Demo />
+      {children}
     </AppShell>
   )
 }

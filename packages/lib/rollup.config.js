@@ -41,6 +41,7 @@ export default [
       'tailwindcss',
       'translations',
       'yup',
+      '@tanstack/react-router',
     ],
   },
   {
