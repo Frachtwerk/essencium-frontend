@@ -11,7 +11,6 @@ import {
   useMantineColorScheme,
   useMantineTheme,
 } from '@mantine/core'
-import { useLocalStorage } from '@mantine/hooks'
 import { IconBrandReact, IconMoon, IconSun } from '@tabler/icons'
 import { useTranslation } from 'react-i18next'
 
@@ -19,21 +18,21 @@ import { SearchBar } from './components/SearchBar'
 import { UserMenu } from './components/UserMenu'
 import type { HeaderProps } from './types'
 
+const LANGUAGES = {
+  DE: 'de',
+  EN: 'en',
+}
+
 export function Header({ isOpen, handleOpenNav }: HeaderProps): JSX.Element {
   const { t, i18n } = useTranslation()
-
-  const [language, setLanguage] = useLocalStorage<string>({
-    key: 'selected-language',
-    defaultValue: i18n.resolvedLanguage,
-  })
 
   const theme = useMantineTheme()
 
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
 
   function onToggleLanguage() {
-    const selectedLanguage = language === 'en' ? 'de' : 'en'
-    setLanguage(selectedLanguage)
+    const selectedLanguage =
+      i18n.language === LANGUAGES.EN ? LANGUAGES.DE : LANGUAGES.EN
     i18n.changeLanguage(selectedLanguage)
   }
 
@@ -117,12 +116,12 @@ export function Header({ isOpen, handleOpenNav }: HeaderProps): JSX.Element {
                     },
                   }}
                 >
-                  <Text size="lg">{language === 'en' ? 'EN' : 'DE'}</Text>
+                  <Text size="lg">{i18n.language.toUpperCase()}</Text>
                 </ActionIcon>
               </HoverCard.Target>
 
               <HoverCard.Dropdown>
-                {language === 'en' ? (
+                {i18n.language === LANGUAGES.EN ? (
                   <Text size="sm">{t('header.languageToggle.german')}</Text>
                 ) : (
                   <Text size="sm">{t('header.languageToggle.english')}</Text>
