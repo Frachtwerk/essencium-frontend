@@ -14,6 +14,10 @@
     "themeToggle": {
       "lightMode": "Light Mode",
       "darkMode": "Dark Mode"
+    },
+    "languageToggle": {
+      "german": "Switch to german",
+      "english": "Switch to english"
     }
   },
   "navigation": {
@@ -75,9 +79,9 @@
       "sendMessage": "Send Message"
     }
   },
-"contactPersonCard": {
-"title": "Your Contact Person"
-},
+  "contactPersonCard": {
+    "title": "Your Contact Person"
+  },
   "login": {
     "title": "Login",
     "form": {

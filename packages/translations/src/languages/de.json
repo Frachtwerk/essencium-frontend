@@ -10,7 +10,11 @@
   "itWorks": "Es funktioniert!",
   "header": {
     "title": "Essencium",
-    "search": "Suche"
+    "search": "Suche",
+    "languageToggle": {
+      "german": "Auf Deutsch anzeigen",
+      "english": "Auf Englisch anzeigen"
+    }
   },
   "navigation": {
     "home": "Home",
