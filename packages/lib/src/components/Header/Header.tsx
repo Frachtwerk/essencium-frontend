@@ -11,8 +11,8 @@ import {
   useMantineColorScheme,
   useMantineTheme,
 } from '@mantine/core'
+import { useLocalStorage } from '@mantine/hooks'
 import { IconBrandReact, IconMoon, IconSun } from '@tabler/icons'
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { SearchBar } from './components/SearchBar'
@@ -22,7 +22,10 @@ import type { HeaderProps } from './types'
 export function Header({ isOpen, handleOpenNav }: HeaderProps): JSX.Element {
   const { t, i18n } = useTranslation()
 
-  const [language, setLanguage] = useState<string>(i18n.resolvedLanguage)
+  const [language, setLanguage] = useLocalStorage<string>({
+    key: 'selected-language',
+    defaultValue: i18n.resolvedLanguage,
+  })
 
   const theme = useMantineTheme()
 

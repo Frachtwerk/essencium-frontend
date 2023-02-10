@@ -26,7 +26,6 @@ function initI18n(reacti18n: ThirdPartyModule): void {
           translation: de,
         },
       },
-      lng: 'en',
       fallbackLng: 'en',
       interpolation: {
         escapeValue: false, // not needed for react as it escapes by default
