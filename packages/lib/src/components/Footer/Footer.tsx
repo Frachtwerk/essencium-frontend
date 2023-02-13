@@ -1,15 +1,20 @@
 import {
-  Anchor,
   Flex,
   Footer as MantineFooter,
   MediaQuery,
   Text,
+  useMantineTheme,
 } from '@mantine/core'
 import { IconCopyright } from '@tabler/icons'
+import { Link as RouterLink } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 
-export function Footer(): JSX.Element {
+import type { FooterLinksProps } from './types'
+
+export function Footer({ links }: FooterLinksProps): JSX.Element {
   const { t } = useTranslation()
+
+  const theme = useMantineTheme()
 
   return (
     <MantineFooter height="sm" p="md">
@@ -27,11 +32,19 @@ export function Footer(): JSX.Element {
         </MediaQuery>
 
         <Flex direction="row" gap="xl">
-          <Anchor href="/privacy"> {t('footer.privacy')} </Anchor>
-
-          <Anchor href="/imprint"> {t('footer.imprint')} </Anchor>
-
-          <Anchor href="/contact"> {t('footer.contact')} </Anchor>
+          {links.map(link => {
+            return (
+              <RouterLink
+                key={link.to}
+                to={link.to}
+                search={{}}
+                params={{}}
+                style={{ textDecoration: 'none', color: theme.colors.blue[8] }}
+              >
+                {t(link.label)}
+              </RouterLink>
+            )
+          })}
         </Flex>
       </Flex>
     </MantineFooter>

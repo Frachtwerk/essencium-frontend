@@ -47,6 +47,21 @@ export const NAV_LINKS: NavLink[] = [
   },
 ]
 
+export const FOOTER_LINKS = [
+  {
+    label: 'footer.privacy',
+    to: '/',
+  },
+  {
+    label: 'footer.imprint',
+    to: '/',
+  },
+  {
+    label: 'footer.contact',
+    to: '/contact',
+  },
+]
+
 function App({ children }: AppProps) {
   const [openedNav, setOpenedNav] = useState(false)
 
@@ -59,7 +74,7 @@ function App({ children }: AppProps) {
       asideOffsetBreakpoint="sm"
       navbarOffsetBreakpoint="sm"
       navbar={<NavBar isOpen={openedNav} links={NAV_LINKS} />}
-      footer={<Footer />}
+      footer={<Footer links={FOOTER_LINKS} />}
       header={
         <Header isOpen={openedNav} handleOpenNav={() => handleOpenNav()} />
       }
