@@ -40,8 +40,10 @@ export default [
       'react-i18next',
       'tailwindcss',
       'translations',
-      'yup',
       '@tanstack/react-router',
+      'zod',
+      'react-hook-form',
+      '@hookform/resolvers',
     ],
   },
   {

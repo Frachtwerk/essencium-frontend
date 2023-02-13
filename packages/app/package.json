@@ -62,8 +62,10 @@
     "react-dom": "18.2.0",
     "react-i18next": "12.1.4",
     "translations": "workspace:*",
-    "yup": "0.32.11",
-    "zustand": "4.1.5"
+    "zustand": "4.1.5",
+    "@hookform/resolvers": "2.9.11",
+    "react-hook-form": "7.43.1",
+    "zod": "3.20.6"
   },
   "devDependencies": {
     "@babel/core": "7.20.5",
