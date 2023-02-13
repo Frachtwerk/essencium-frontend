@@ -116,7 +116,9 @@ export function Header({ isOpen, handleOpenNav }: HeaderProps): JSX.Element {
                     },
                   }}
                 >
-                  <Text size="lg">{i18n.language.toUpperCase()}</Text>
+                  <Text data-testid="selected-language" size="lg">
+                    {i18n.language.toUpperCase()}
+                  </Text>
                 </ActionIcon>
               </HoverCard.Target>
 
