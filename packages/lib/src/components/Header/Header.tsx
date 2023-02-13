@@ -11,18 +11,30 @@ import {
   useMantineColorScheme,
   useMantineTheme,
 } from '@mantine/core'
-import { IconBrandReact, IconLanguage, IconMoon, IconSun } from '@tabler/icons'
+import { IconBrandReact, IconMoon, IconSun } from '@tabler/icons'
 import { useTranslation } from 'react-i18next'
 
 import { SearchBar } from './components/SearchBar'
 import { UserMenu } from './components/UserMenu'
 import type { HeaderProps } from './types'
 
+const LANGUAGES = {
+  DE: 'de',
+  EN: 'en',
+}
+
 export function Header({ isOpen, handleOpenNav }: HeaderProps): JSX.Element {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   const theme = useMantineTheme()
+
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
+
+  function onToggleLanguage() {
+    const selectedLanguage =
+      i18n.language === LANGUAGES.EN ? LANGUAGES.DE : LANGUAGES.EN
+    i18n.changeLanguage(selectedLanguage)
+  }
 
   return (
     <MantineHeader height={{ base: 70 }} p="md">
@@ -87,20 +99,37 @@ export function Header({ isOpen, handleOpenNav }: HeaderProps): JSX.Element {
               </HoverCard.Dropdown>
             </HoverCard>
 
-            <ActionIcon
-              data-testid="language-toggle"
-              color="dark"
-              sx={{
-                '&:hover': {
-                  backgroundColor:
-                    theme.colorScheme === 'dark'
-                      ? theme.colors.gray[9]
-                      : theme.colors.gray[0],
-                },
-              }}
-            >
-              <IconLanguage />
-            </ActionIcon>
+            <HoverCard>
+              <HoverCard.Target>
+                <ActionIcon
+                  data-testid="language-toggle"
+                  color="dark"
+                  onClick={() => {
+                    onToggleLanguage()
+                  }}
+                  sx={{
+                    '&:hover': {
+                      backgroundColor:
+                        theme.colorScheme === 'dark'
+                          ? theme.colors.gray[9]
+                          : theme.colors.gray[0],
+                    },
+                  }}
+                >
+                  <Text data-testid="selected-language" size="lg">
+                    {i18n.language.toUpperCase()}
+                  </Text>
+                </ActionIcon>
+              </HoverCard.Target>
+
+              <HoverCard.Dropdown>
+                {i18n.language === LANGUAGES.EN ? (
+                  <Text size="sm">{t('header.languageToggle.german')}</Text>
+                ) : (
+                  <Text size="sm">{t('header.languageToggle.english')}</Text>
+                )}
+              </HoverCard.Dropdown>
+            </HoverCard>
           </Group>
           <UserMenu />
         </Group>
