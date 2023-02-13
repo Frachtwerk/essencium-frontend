@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "build": "rimraf dist && rollup -c",
-    "clean": "rimraf dist node_modules",
+    "clean": "rimraf dist node_modules .rollup.cache",
     "clean:install": "pnpm clean && pnpm install",
     "format": "prettier --write .",
     "lint": "eslint .",
