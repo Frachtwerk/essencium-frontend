@@ -1,13 +1,13 @@
-import * as y from 'yup'
+import { z } from 'zod'
 
-export const userSchema = y.object({
-  id: y.number().required(),
-  name: y.string().required(),
-  email: y.string().email().required(),
-  username: y.string().optional(),
+export const userSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  email: z.string().email(),
+  username: z.string().optional(),
 })
 
-export type User = y.InferType<typeof userSchema>
+export type User = z.infer<typeof userSchema>
 
 export type UserProps = {
   users: User[]

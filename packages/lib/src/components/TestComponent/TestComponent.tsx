@@ -27,7 +27,7 @@ export function TestComponent({
     console.log('React Query RESPONSE:', apiUsers)
 
     const isValidUserArray = apiUsers.data?.every(user =>
-      userSchema.isValidSync(user)
+      userSchema.safeParse(user)
     )
 
     console.log('VALIDATION SUCCEEDED:', String(isValidUserArray))
