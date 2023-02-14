@@ -6,7 +6,7 @@ import {
   IconUserCheck,
   IconUsers,
 } from '@tabler/icons'
-import type { NavLink } from 'lib'
+import type { FooterLink, NavLink } from 'lib'
 import { Footer, Header, NavBar } from 'lib'
 import { useState } from 'react'
 
@@ -47,6 +47,21 @@ export const NAV_LINKS: NavLink[] = [
   },
 ]
 
+export const FOOTER_LINKS: FooterLink[] = [
+  {
+    label: 'footer.privacy',
+    to: '/',
+  },
+  {
+    label: 'footer.imprint',
+    to: '/',
+  },
+  {
+    label: 'footer.contact',
+    to: '/contact',
+  },
+]
+
 function App({ children }: AppProps) {
   const [openedNav, setOpenedNav] = useState(false)
 
@@ -59,7 +74,7 @@ function App({ children }: AppProps) {
       asideOffsetBreakpoint="sm"
       navbarOffsetBreakpoint="sm"
       navbar={<NavBar isOpen={openedNav} links={NAV_LINKS} />}
-      footer={<Footer />}
+      footer={<Footer links={FOOTER_LINKS} />}
       header={
         <Header isOpen={openedNav} handleOpenNav={() => handleOpenNav()} />
       }

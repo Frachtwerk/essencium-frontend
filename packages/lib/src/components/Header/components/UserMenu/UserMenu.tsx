@@ -6,46 +6,54 @@ import {
   useMantineTheme,
 } from '@mantine/core'
 import { IconChevronRight, IconUserCircle } from '@tabler/icons'
+import { Link as RouterLink } from '@tanstack/react-router'
 
 export function UserMenu(): JSX.Element {
   const theme = useMantineTheme()
 
   return (
     <Box>
-      <UnstyledButton
-        sx={{
-          display: 'block',
-          width: '100%',
-        }}
+      <RouterLink
+        to="/profile"
+        search={{}}
+        params={{}}
+        style={{ textDecoration: 'none' }}
       >
-        <Group
-          p="sm"
+        <UnstyledButton
           sx={{
-            borderRadius: theme.radius.sm,
-            '&:hover': {
-              backgroundColor:
-                theme.colorScheme === 'dark'
-                  ? theme.colors.gray[9]
-                  : theme.colors.gray[0],
-            },
+            display: 'block',
+            width: '100%',
           }}
-          noWrap
         >
-          <IconUserCircle size="28" />
+          <Group
+            p="sm"
+            sx={{
+              borderRadius: theme.radius.sm,
+              '&:hover': {
+                backgroundColor:
+                  theme.colorScheme === 'dark'
+                    ? theme.colors.gray[9]
+                    : theme.colors.gray[0],
+              },
+            }}
+            noWrap
+          >
+            <IconUserCircle size="28" />
 
-          <Box sx={{ flex: 1 }}>
-            <Text size="sm" weight="500">
-              Admin User
-            </Text>
+            <Box sx={{ flex: 1 }}>
+              <Text size="sm" weight="500">
+                Admin User
+              </Text>
 
-            <Text color="dimmed" size="xs">
-              admin@mail.com
-            </Text>
-          </Box>
+              <Text color="dimmed" size="xs">
+                admin@mail.com
+              </Text>
+            </Box>
 
-          <IconChevronRight size={18} />
-        </Group>
-      </UnstyledButton>
+            <IconChevronRight size={18} />
+          </Group>
+        </UnstyledButton>
+      </RouterLink>
     </Box>
   )
 }

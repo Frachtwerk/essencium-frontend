@@ -1,9 +1,11 @@
 import { RootRoute, Route } from '@tanstack/react-router'
-import { Contact, Profile, SetPassword } from 'lib'
+import { SetPassword } from 'lib'
 
 import { layoutRouteAppShell, layoutRouteLogin } from '@/router/layouts'
+import { ContactView } from '@/views/ContactView'
 import { HomeView } from '@/views/HomeView'
 import { LoginView } from '@/views/LoginView'
+import { ProfileView } from '@/views/ProfileView'
 
 export const rootRoute = new RootRoute()
 
@@ -28,11 +30,11 @@ export const loginRoute = new Route({
 export const contactRoute = new Route({
   getParentRoute: () => layoutRouteAppShell,
   path: 'contact',
-  component: Contact,
+  component: ContactView,
 })
 
 export const profileRoute = new Route({
   getParentRoute: () => layoutRouteAppShell,
   path: 'profile',
-  component: Profile,
+  component: ProfileView,
 })
