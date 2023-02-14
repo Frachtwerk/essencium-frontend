@@ -17,6 +17,10 @@ describe('Header', () => {
       },
     }))
 
+    vi.mock('@tanstack/react-router', () => ({
+      Link: ({ children }: { children: React.ReactNode }) => children,
+    }))
+
     vi.spyOn(mantine, 'useMantineColorScheme').mockImplementation(() => ({
       colorScheme: 'light',
       toggleColorScheme: () => {},
