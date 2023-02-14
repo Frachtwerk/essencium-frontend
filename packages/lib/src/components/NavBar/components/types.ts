@@ -3,6 +3,7 @@ export type NavLink = {
   label: string
   color: string
   to: string
+  description?: string
 }
 
 export type NavLinksProps = {

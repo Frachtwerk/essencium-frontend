@@ -1,14 +1,19 @@
 import { AppShell } from '@mantine/core'
+import type { SpotlightAction } from '@mantine/spotlight'
+import { SpotlightProvider } from '@mantine/spotlight'
 import {
   IconHome2,
   IconLanguage,
+  IconSearch,
   IconShieldCheck,
   IconUserCheck,
   IconUsers,
 } from '@tabler/icons'
+import { useNavigate } from '@tanstack/react-router'
 import type { FooterLink, NavLink } from 'lib'
 import { Footer, Header, NavBar } from 'lib'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 type AppProps = {
   children: React.ReactNode
@@ -19,31 +24,36 @@ export const NAV_LINKS: NavLink[] = [
     icon: <IconHome2 size={20} />,
     color: 'blue',
     label: 'navigation.home',
-    to: '/home',
+    to: '/',
+    description: 'Lorem Ipsum',
   },
   {
     icon: <IconUsers size={20} />,
     color: 'blue',
     label: 'navigation.users',
     to: '/users',
+    description: 'Lorem Ipsum',
   },
   {
     icon: <IconUserCheck size={20} />,
     color: 'blue',
     label: 'navigation.roles',
     to: '/roles',
+    description: 'Lorem Ipsum',
   },
   {
     icon: <IconShieldCheck size={20} />,
     color: 'blue',
     label: 'navigation.rights',
     to: '/rights',
+    description: 'Lorem Ipsum',
   },
   {
     icon: <IconLanguage size={20} />,
     color: 'blue',
     label: 'navigation.translations',
     to: '/translations',
+    description: 'Lorem Ipsum',
   },
 ]
 
@@ -69,6 +79,19 @@ function App({ children }: AppProps) {
     setOpenedNav(o => !o)
   }
 
+  const navigate = useNavigate()
+
+  const { t } = useTranslation()
+
+  const actions: SpotlightAction[] = NAV_LINKS.map(link => {
+    return {
+      title: t(link.label),
+      description: link.description,
+      onTrigger: () => navigate({ to: `/${link.to}` }),
+      icon: link.icon,
+    }
+  })
+
   return (
     <AppShell
       asideOffsetBreakpoint="sm"
@@ -79,6 +102,13 @@ function App({ children }: AppProps) {
         <Header isOpen={openedNav} handleOpenNav={() => handleOpenNav()} />
       }
     >
+      <SpotlightProvider
+        actions={actions}
+        searchPlaceholder="Search..."
+        searchIcon={<IconSearch size={18} />}
+        highlightQuery
+      />
+
       {children}
     </AppShell>
   )
