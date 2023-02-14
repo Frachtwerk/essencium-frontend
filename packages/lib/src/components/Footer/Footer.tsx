@@ -32,19 +32,17 @@ export function Footer({ links }: FooterLinksProps): JSX.Element {
         </MediaQuery>
 
         <Flex direction="row" gap="xl">
-          {links.map(link => {
-            return (
-              <RouterLink
-                key={link.to}
-                to={link.to}
-                search={{}}
-                params={{}}
-                style={{ textDecoration: 'none', color: theme.colors.blue[8] }}
-              >
-                <Text>{t(link.label)}</Text>
-              </RouterLink>
-            )
-          })}
+          {links.map(link => (
+            <RouterLink
+              key={link.label}
+              to={link.to}
+              search={{}}
+              params={{}}
+              style={{ textDecoration: 'none', color: theme.colors.blue[8] }}
+            >
+              <Text>{t(link.label)}</Text>
+            </RouterLink>
+          ))}
         </Flex>
       </Flex>
     </MantineFooter>
