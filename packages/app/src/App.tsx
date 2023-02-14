@@ -8,6 +8,7 @@ import {
 } from '@tabler/icons'
 import type { NavLink } from 'lib'
 import { Footer, Header, NavBar } from 'lib'
+import type { FooterLink } from 'lib/src/components/Footer/types'
 import { useState } from 'react'
 
 type AppProps = {
@@ -47,7 +48,7 @@ export const NAV_LINKS: NavLink[] = [
   },
 ]
 
-export const FOOTER_LINKS = [
+export const FOOTER_LINKS: FooterLink[] = [
   {
     label: 'footer.privacy',
     to: '/',

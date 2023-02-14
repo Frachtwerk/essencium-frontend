@@ -41,7 +41,7 @@ export function Footer({ links }: FooterLinksProps): JSX.Element {
                 params={{}}
                 style={{ textDecoration: 'none', color: theme.colors.blue[8] }}
               >
-                {t(link.label)}
+                <span>{t(link.label)}</span>
               </RouterLink>
             )
           })}
