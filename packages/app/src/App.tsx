@@ -6,9 +6,8 @@ import {
   IconUserCheck,
   IconUsers,
 } from '@tabler/icons'
-import type { NavLink } from 'lib'
+import type { FooterLink, NavLink } from 'lib'
 import { Footer, Header, NavBar } from 'lib'
-import type { FooterLink } from 'lib/src/components/Footer/types'
 import { useState } from 'react'
 
 type AppProps = {
