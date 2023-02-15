@@ -1,11 +1,14 @@
-import { AppShell } from '@mantine/core'
+import { AppShell, useMantineTheme } from '@mantine/core'
 import type { SpotlightAction } from '@mantine/spotlight'
 import { SpotlightProvider } from '@mantine/spotlight'
 import {
   IconHome2,
   IconLanguage,
+  IconMessage,
   IconSearch,
+  IconSectionSign,
   IconShieldCheck,
+  IconShieldLock,
   IconUserCheck,
   IconUsers,
 } from '@tabler/icons'
@@ -17,6 +20,14 @@ import { useTranslation } from 'react-i18next'
 
 type AppProps = {
   children: React.ReactNode
+}
+
+type SearchItems = {
+  icon?: JSX.Element
+  label: string
+  color?: string
+  to: string
+  description?: string
 }
 
 export const NAV_LINKS: NavLink[] = [
@@ -59,16 +70,33 @@ export const NAV_LINKS: NavLink[] = [
 
 export const FOOTER_LINKS: FooterLink[] = [
   {
+    icon: <IconShieldLock size={20} />,
     label: 'footer.privacy',
     to: '/',
+    description: 'Lorem Ipsum',
   },
   {
+    icon: <IconSectionSign size={20} />,
     label: 'footer.imprint',
     to: '/',
+    description: 'Lorem Ipsum',
   },
   {
+    icon: <IconMessage size={20} />,
     label: 'footer.contact',
     to: '/contact',
+    description: 'Lorem Ipsum',
+  },
+]
+
+export const SEARCH_ITEMS: SearchItems[] = [
+  ...NAV_LINKS,
+  ...FOOTER_LINKS,
+  {
+    icon: <IconUsers size={20} />,
+    label: 'profileView.title',
+    to: '/profile',
+    description: 'Lorem Ipsum',
   },
 ]
 
@@ -81,9 +109,11 @@ function App({ children }: AppProps) {
 
   const navigate = useNavigate()
 
+  const theme = useMantineTheme()
+
   const { t } = useTranslation()
 
-  const actions: SpotlightAction[] = NAV_LINKS.map(link => {
+  const actions: SpotlightAction[] = SEARCH_ITEMS.map(link => {
     return {
       title: t(link.label),
       description: link.description,
@@ -107,6 +137,8 @@ function App({ children }: AppProps) {
         searchPlaceholder="Search..."
         searchIcon={<IconSearch size={18} />}
         highlightQuery
+        highlightColor={theme.colors.blue[6]}
+        nothingFoundMessage="Nothing found..."
       />
 
       {children}

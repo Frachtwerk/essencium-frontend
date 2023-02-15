@@ -34,6 +34,7 @@
     "contact": "Contact"
   },
   "profileView": {
+    "title": "Profile",
     "dataCard": {
       "tabs": {
         "personalData": {
