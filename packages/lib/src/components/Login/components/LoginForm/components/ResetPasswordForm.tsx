@@ -13,12 +13,12 @@ export function ResetPasswordForm({
     <Container w={358} h={224} p={0} m={0}>
       <form>
         <Text size="sm" fw="bold" my="md">
-          {t('resetPassword.form.description')}
+          {t('loginView.resetPassword.form.description')}
         </Text>
 
         <TextInput
-          placeholder={t('resetPassword.form.placeholder') as string}
-          label={t('resetPassword.form.label') as string}
+          placeholder={t('loginView.resetPassword.form.placeholder') as string}
+          label={t('loginView.resetPassword.form.label') as string}
           withAsterisk
           radius="sm"
           mb="md"
@@ -26,7 +26,7 @@ export function ResetPasswordForm({
 
         <Group>
           <Button mt="md" color="cyan" onClick={() => setSent(true)}>
-            {t('resetPassword.form.submitButton')}
+            {t('loginView.resetPassword.form.submitButton')}
           </Button>
 
           <Button
@@ -35,7 +35,7 @@ export function ResetPasswordForm({
             color="cyan"
             onClick={() => setOpen(false)}
           >
-            {t('resetPassword.form.cancelButton')}
+            {t('loginView.resetPassword.form.cancelButton')}
           </Button>
         </Group>
       </form>

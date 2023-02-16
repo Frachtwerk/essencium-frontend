@@ -51,7 +51,7 @@ export function Home(): JSX.Element {
                   : theme.colors.gray[6]
               }
             >
-              {t('home.action.search')}
+              {t('homeView.action.search')}
             </Text>
 
             <ActionIcon
@@ -72,7 +72,7 @@ export function Home(): JSX.Element {
                   : theme.colors.gray[6]
               }
             >
-              {t('home.action.users')}
+              {t('homeView.action.users')}
             </Text>
 
             <RouterLink to="users" aria-label="users">
@@ -94,7 +94,7 @@ export function Home(): JSX.Element {
                   : theme.colors.gray[6]
               }
             >
-              {t('home.action.profile')}
+              {t('homeView.action.profile')}
             </Text>
 
             <RouterLink to="profile">

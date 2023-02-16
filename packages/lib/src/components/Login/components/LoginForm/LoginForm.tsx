@@ -26,8 +26,8 @@ export function LoginForm({ loginCredentials }: LoginFormProps): JSX.Element {
         <form>
           <TextInput
             value={loginCredentials.email}
-            placeholder={t('login.form.emailPlaceholder') as string}
-            label={t('login.form.email')}
+            placeholder={t('loginView.form.emailPlaceholder') as string}
+            label={t('loginView.form.email')}
             required
             styles={{
               label: {
@@ -39,8 +39,8 @@ export function LoginForm({ loginCredentials }: LoginFormProps): JSX.Element {
 
           <PasswordInput
             // value={loginCredentials.password}
-            placeholder={t('login.form.passwordPlaceholder') as string}
-            label={t('login.form.password')}
+            placeholder={t('loginView.form.passwordPlaceholder') as string}
+            label={t('loginView.form.password')}
             required
             styles={{
               label: {
@@ -53,7 +53,7 @@ export function LoginForm({ loginCredentials }: LoginFormProps): JSX.Element {
 
           <Group position="apart" mt="md">
             <Checkbox
-              label={t('login.form.rememberLogin')}
+              label={t('loginView.form.rememberLogin')}
               color="cyan"
               size="xs"
             />
@@ -64,12 +64,12 @@ export function LoginForm({ loginCredentials }: LoginFormProps): JSX.Element {
               fw="bold"
               onClick={() => setIsPasswordResetFormOpened(true)}
             >
-              {t('login.form.resetPassword')}
+              {t('loginView.form.resetPassword')}
             </Anchor>
           </Group>
 
           <Button type="submit" fullWidth mt="md" color="cyan">
-            {t('login.form.submit')}
+            {t('loginView.form.submit')}
           </Button>
         </form>
       )}

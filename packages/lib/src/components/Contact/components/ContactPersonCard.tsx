@@ -26,7 +26,7 @@ export function ContactPersonCard(): JSX.Element {
         justify={{ sm: 'center' }}
         align={{ base: 'center', md: 'flex-start' }}
       >
-        <Title order={3}>{t('contactPersonCard.title')}</Title>
+        <Title order={3}>{t('contactView.contactPersonCard.title')}</Title>
 
         <Avatar
           size="xl"

@@ -18,7 +18,7 @@ export function ContactForm(): JSX.Element {
     <Card shadow="sm" p="lg" radius="md" withBorder>
       <form>
         <Title order={3} mb="md">
-          {t('contactForm.title')}
+          {t('contactView.contactForm.title')}
         </Title>
 
         <Grid gutter={30}>
@@ -26,7 +26,7 @@ export function ContactForm(): JSX.Element {
             <Container p={0} m={0}>
               <TextInput
                 mb="md"
-                label={t('contactForm.form.email')}
+                label={t('contactView.contactForm.form.email')}
                 withAsterisk
                 size="sm"
                 radius="md"
@@ -34,14 +34,14 @@ export function ContactForm(): JSX.Element {
 
               <TextInput
                 mb="md"
-                label={t('contactForm.form.name')}
+                label={t('contactView.contactForm.form.name')}
                 size="sm"
                 radius="md"
               />
 
               <TextInput
                 mb="md"
-                label={t('contactForm.form.number')}
+                label={t('contactView.contactForm.form.number')}
                 size="sm"
                 radius="md"
               />
@@ -51,15 +51,17 @@ export function ContactForm(): JSX.Element {
           <Grid.Col md={6}>
             <TextInput
               mb="md"
-              label={t('contactForm.form.subject')}
+              label={t('contactView.contactForm.form.subject')}
               size="sm"
               radius="md"
               variant="filled"
             />
 
             <Textarea
-              placeholder={t('contactForm.form.messagePlaceholder') as string}
-              label={t('contactForm.form.message')}
+              placeholder={
+                t('contactView.contactForm.form.messagePlaceholder') as string
+              }
+              label={t('contactView.contactForm.form.message')}
               withAsterisk
               minRows={8}
               maxRows={15}
@@ -71,7 +73,7 @@ export function ContactForm(): JSX.Element {
 
         <Group position="right" mt="md">
           <Button leftIcon={<IconSend size={20} />}>
-            {t('contactForm.form.sendMessage')}
+            {t('contactView.contactForm.form.sendMessage')}
           </Button>
         </Group>
       </form>
