@@ -123,26 +123,26 @@ function App({ children }: AppProps) {
   })
 
   return (
-    <AppShell
-      asideOffsetBreakpoint="sm"
-      navbarOffsetBreakpoint="sm"
-      navbar={<NavBar isOpen={openedNav} links={NAV_LINKS} />}
-      footer={<Footer links={FOOTER_LINKS} />}
-      header={
-        <Header isOpen={openedNav} handleOpenNav={() => handleOpenNav()} />
-      }
+    <SpotlightProvider
+      actions={actions}
+      searchPlaceholder={t('header.spotlight.placeholder') as string}
+      searchIcon={<IconSearch size={18} />}
+      highlightQuery
+      highlightColor={theme.colors.blue[6]}
+      nothingFoundMessage={t('header.spotlight.nothingFound') as string}
     >
-      <SpotlightProvider
-        actions={actions}
-        searchPlaceholder="Search..."
-        searchIcon={<IconSearch size={18} />}
-        highlightQuery
-        highlightColor={theme.colors.blue[6]}
-        nothingFoundMessage="Nothing found..."
-      />
-
-      {children}
-    </AppShell>
+      <AppShell
+        asideOffsetBreakpoint="sm"
+        navbarOffsetBreakpoint="sm"
+        navbar={<NavBar isOpen={openedNav} links={NAV_LINKS} />}
+        footer={<Footer links={FOOTER_LINKS} />}
+        header={
+          <Header isOpen={openedNav} handleOpenNav={() => handleOpenNav()} />
+        }
+      >
+        {children}
+      </AppShell>
+    </SpotlightProvider>
   )
 }
 
