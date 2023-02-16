@@ -100,18 +100,18 @@ export const SEARCH_ITEMS: SearchItems[] = [
   },
 ]
 
-function App({ children }: AppProps) {
-  const [openedNav, setOpenedNav] = useState(false)
-
-  function handleOpenNav(): void {
-    setOpenedNav(o => !o)
-  }
-
+function App({ children }: AppProps): JSX.Element {
   const navigate = useNavigate()
 
   const theme = useMantineTheme()
 
   const { t } = useTranslation()
+
+  const [openedNav, setOpenedNav] = useState(false)
+
+  function handleOpenNav(): void {
+    setOpenedNav(opened => !opened)
+  }
 
   const actions: SpotlightAction[] = SEARCH_ITEMS.map(link => {
     return {
