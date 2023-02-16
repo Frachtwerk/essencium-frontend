@@ -12,7 +12,7 @@ export function SetPasswordForm(): JSX.Element {
       </Title>
 
       <PasswordInput
-        placeholder={t('setPasswordView.form.newPassword') as string}
+        placeholder={String(t('setPasswordView.form.newPassword'))}
         label={t('setPasswordView.form.newPassword')}
         radius="sm"
         withAsterisk
@@ -20,7 +20,7 @@ export function SetPasswordForm(): JSX.Element {
       />
 
       <PasswordInput
-        placeholder={t('setPasswordView.form.confirmPassword') as string}
+        placeholder={String(t('setPasswordView.form.confirmPassword'))}
         label={t('setPasswordView.form.confirmPassword')}
         radius="sm"
         withAsterisk

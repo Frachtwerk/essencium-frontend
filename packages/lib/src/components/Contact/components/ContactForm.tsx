@@ -58,9 +58,9 @@ export function ContactForm(): JSX.Element {
             />
 
             <Textarea
-              placeholder={
-                t('contactView.contactForm.form.messagePlaceholder') as string
-              }
+              placeholder={String(
+                t('contactView.contactForm.form.messagePlaceholder')
+              )}
               label={t('contactView.contactForm.form.message')}
               withAsterisk
               minRows={8}

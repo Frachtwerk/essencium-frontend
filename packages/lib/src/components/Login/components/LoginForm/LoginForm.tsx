@@ -51,7 +51,7 @@ export function LoginForm(): JSX.Element {
             render={({ field }) => (
               <TextInput
                 {...field}
-                placeholder={t('login.form.emailPlaceholder') as string}
+                placeholder={String(t('login.form.emailPlaceholder'))}
                 label={t('login.form.email')}
                 required
                 styles={{
@@ -76,7 +76,7 @@ export function LoginForm(): JSX.Element {
             render={({ field }) => (
               <PasswordInput
                 {...field}
-                placeholder={t('login.form.passwordPlaceholder') as string}
+                placeholder={String(t('login.form.passwordPlaceholder'))}
                 label={t('login.form.password')}
                 required
                 styles={{

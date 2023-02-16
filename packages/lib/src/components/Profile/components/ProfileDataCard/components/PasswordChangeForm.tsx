@@ -9,11 +9,11 @@ export function PasswordChangeForm(): JSX.Element {
       <Flex direction="column" align="flex-start">
         <MediaQuery query="(max-width: 600px)" styles={{ minWidth: '100%' }}>
           <PasswordInput
-            placeholder={
+            placeholder={String(
               t(
                 'profileView.dataCard.tabs.passwordChange.content.currentPassword'
-              ) as string
-            }
+              )
+            )}
             label={t(
               'profileView.dataCard.tabs.passwordChange.content.currentPassword'
             )}
@@ -26,11 +26,9 @@ export function PasswordChangeForm(): JSX.Element {
 
         <MediaQuery query="(max-width: 600px)" styles={{ minWidth: '100%' }}>
           <PasswordInput
-            placeholder={
-              t(
-                'profileView.dataCard.tabs.passwordChange.content.newPassword'
-              ) as string
-            }
+            placeholder={String(
+              t('profileView.dataCard.tabs.passwordChange.content.newPassword')
+            )}
             label={t(
               'profileView.dataCard.tabs.passwordChange.content.newPassword'
             )}
@@ -43,11 +41,9 @@ export function PasswordChangeForm(): JSX.Element {
 
         <MediaQuery query="(max-width: 600px)" styles={{ minWidth: '100%' }}>
           <PasswordInput
-            placeholder={
-              t(
-                'profileView.dataCard.tabs.passwordChange.content.newPassword'
-              ) as string
-            }
+            placeholder={String(
+              t('profileView.dataCard.tabs.passwordChange.content.newPassword')
+            )}
             label={t(
               'profileView.dataCard.tabs.passwordChange.content.newPassword'
             )}
