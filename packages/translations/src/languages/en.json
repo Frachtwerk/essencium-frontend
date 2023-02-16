@@ -10,7 +10,10 @@
   "itWorks": "It works!",
   "header": {
     "title": "Essencium",
-    "search": "Search",
+    "spotlight": {
+      "placeholder": "Search ...",
+      "nothingFound": "Nothing found"
+    },
     "themeToggle": {
       "lightMode": "Light Mode",
       "darkMode": "Dark Mode"
@@ -34,6 +37,7 @@
     "contact": "Contact"
   },
   "profileView": {
+    "title": "Profile",
     "dataCard": {
       "tabs": {
         "personalData": {
