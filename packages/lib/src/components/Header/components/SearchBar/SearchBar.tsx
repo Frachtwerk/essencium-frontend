@@ -31,8 +31,11 @@ export function SearchBar(): JSX.Element {
           <Group>
             <IconSearch size="16" color={theme.colors.gray[4]} />
 
-            <Text color={theme.colors.gray[5]}>{t('header.search')}</Text>
+            <Text color={theme.colors.gray[5]}>
+              {t('header.spotlight.placeholder')}
+            </Text>
           </Group>
+
           <Kbd>⌘ + K</Kbd>
         </Group>
       </UnstyledButton>
