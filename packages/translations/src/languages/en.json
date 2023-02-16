@@ -118,5 +118,12 @@
       "title": "Email sent",
       "description": "We sent an email with a link to reset your password to your account. Please check your inbox and follow the instructions in the email. "
     }
+  },
+  "home": {
+    "action": {
+      "search": "Open Search Bar",
+      "users": "Show All Users",
+      "profile": "Change Profile Data"
+    }
   }
 }
