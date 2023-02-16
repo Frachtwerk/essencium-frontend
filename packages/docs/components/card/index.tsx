@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/require-default-props */
 import cn from 'clsx'
 import Link from 'next/link'
