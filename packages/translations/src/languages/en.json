@@ -71,22 +71,24 @@
       }
     }
   },
-  "contactForm": {
-    "title": "Contact us",
-    "form": {
-      "email": "Your Email",
-      "name": "Your Name",
-      "number": "Your Phone Number",
-      "subject": "Subject",
-      "message": "Message",
-      "messagePlaceholder": "Write your message here",
-      "sendMessage": "Send Message"
+  "contactView": {
+    "contactForm": {
+      "title": "Contact us",
+      "form": {
+        "email": "Your Email",
+        "name": "Your Name",
+        "number": "Your Phone Number",
+        "subject": "Subject",
+        "message": "Message",
+        "messagePlaceholder": "Write your message here",
+        "sendMessage": "Send Message"
+      }
+    },
+    "contactPersonCard": {
+      "title": "Your Contact Person"
     }
   },
-  "contactPersonCard": {
-    "title": "Your Contact Person"
-  },
-  "login": {
+  "loginView": {
     "title": "Login",
     "form": {
       "email": "E-Mail",
@@ -100,8 +102,22 @@
     },
     "forgotPassword": "Forgot Password?",
     "register": "Register",
-    "noAccount": "No Account?"
+    "noAccount": "No Account?",
+    "resetPassword": {
+      "form": {
+        "description": "Forgot your password? Enter your E-Mail and we will send you a link to reset your password.",
+        "label": "Your Email",
+        "placeholder": "Your Email",
+        "submitButton": "Reset Password",
+        "cancelButton": "Cancel"
+      },
+      "successMessage": {
+        "title": "Email sent",
+        "description": "We sent an email with a link to reset your password to your account. Please check your inbox and follow the instructions in the email. "
+      }
+    }
   },
+
   "setPasswordView": {
     "title": "Set new password",
     "form": {
@@ -110,17 +126,12 @@
       "submit": "Save Password"
     }
   },
-  "resetPassword": {
-    "form": {
-      "description": "Forgot your password? Enter your E-Mail and we will send you a link to reset your password.",
-      "label": "Your Email",
-      "placeholder": "Your Email",
-      "submitButton": "Reset Password",
-      "cancelButton": "Cancel"
-    },
-    "successMessage": {
-      "title": "Email sent",
-      "description": "We sent an email with a link to reset your password to your account. Please check your inbox and follow the instructions in the email. "
+
+  "homeView": {
+    "action": {
+      "search": "Open Search Bar",
+      "users": "Show All Users",
+      "profile": "Change Profile Data"
     }
   }
 }

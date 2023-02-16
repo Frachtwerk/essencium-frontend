@@ -9,13 +9,13 @@ export function Login({ form: LoginForm }: LoginProps): JSX.Element {
   return (
     <Container size={450} my="xl">
       <Title align="center" order={2} fw="bold">
-        {t('login.title')}
+        {t('loginView.title')}
       </Title>
 
       <Text size="xs" align="center" mt="md">
-        {t('login.noAccount')}{' '}
+        {t('loginView.noAccount')}{' '}
         <Anchor href="" target="" color="cyan" size="xs" fw="bold">
-          {t('login.register')}
+          {t('loginView.register')}
         </Anchor>
       </Text>
 

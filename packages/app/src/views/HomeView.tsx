@@ -1,5 +1,5 @@
 import { Box, Button, Center, Text } from '@mantine/core'
-import { TestComponent } from 'lib'
+import { Home, TestComponent } from 'lib'
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -10,7 +10,7 @@ interface Languages {
   de: { nativeName: string }
 }
 
-export function HomeView(): JSX.Element {
+export function Demo(): JSX.Element {
   const { t, i18n } = useTranslation()
 
   const languages: Languages = {
@@ -88,4 +88,8 @@ export function HomeView(): JSX.Element {
       </Box>
     </Center>
   )
+}
+
+export function HomeView(): JSX.Element {
+  return <Home />
 }

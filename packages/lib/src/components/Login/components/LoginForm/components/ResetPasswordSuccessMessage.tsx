@@ -6,10 +6,13 @@ export function ResetPasswordSuccessMessage(): JSX.Element {
 
   return (
     <>
-      <Title order={4}> {t('resetPassword.successMessage.title')} </Title>
+      <Title order={4}>
+        {' '}
+        {t('loginView.resetPassword.successMessage.title')}{' '}
+      </Title>
 
       <Text size="xs" mt="sm">
-        {t('resetPassword.successMessage.description')}
+        {t('loginView.resetPassword.successMessage.description')}
       </Text>
     </>
   )
