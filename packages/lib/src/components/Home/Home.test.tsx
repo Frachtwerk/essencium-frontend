@@ -26,8 +26,8 @@ describe('Home', () => {
   })
 
   it('should render the correct actions', () => {
-    expect(screen.getByText('home.action.search')).toBeDefined()
-    expect(screen.getByText('home.action.users')).toBeDefined()
-    expect(screen.findAllByText('home.action.profile')).toBeDefined()
+    expect(screen.getByText('homeView.action.search')).toBeDefined()
+    expect(screen.getByText('homeView.action.users')).toBeDefined()
+    expect(screen.getByText('homeView.action.profile')).toBeDefined()
   })
 })
