@@ -2,6 +2,7 @@ import {
   Anchor,
   Button,
   Checkbox,
+  Code,
   Group,
   Paper,
   PasswordInput,
@@ -33,9 +34,11 @@ export function LoginForm(): JSX.Element {
     },
   })
 
+  // Temporary code to show form data and test the component
+  const [showData, setShowData] = useState<Record<string, string | boolean>>({})
+
   function onSubmit(data: LoginCredentials): void {
-    // eslint-disable-next-line no-alert
-    alert(JSON.stringify(data, null, 2))
+    setShowData(data)
   }
 
   return (
@@ -45,7 +48,6 @@ export function LoginForm(): JSX.Element {
           <Controller
             name="email"
             control={control}
-            rules={{ required: true }}
             render={({ field }) => (
               <TextInput
                 {...field}
@@ -62,9 +64,11 @@ export function LoginForm(): JSX.Element {
             )}
           />
 
-          <Text mt={4} ml={5} fz="xs" color="red">
-            {formState.errors.email?.message}
-          </Text>
+          {formState.errors.email && (
+            <Text mt={4} ml={5} fz="xs" color="red">
+              {formState.errors.email?.message}
+            </Text>
+          )}
 
           <Controller
             name="password"
@@ -86,9 +90,11 @@ export function LoginForm(): JSX.Element {
             )}
           />
 
-          <Text mt={4} ml={5} fz="xs" color="red">
-            {formState.errors.password?.message}
-          </Text>
+          {formState.errors.password && (
+            <Text mt={4} ml={5} fz="xs" color="red">
+              {formState.errors.password?.message}
+            </Text>
+          )}
 
           <Group position="apart" mt="md">
             <Controller
@@ -121,6 +127,12 @@ export function LoginForm(): JSX.Element {
           </Button>
         </form>
       )}
+
+      {Object.keys(showData).length ? (
+        <Code mt="xs" block data-testid="entered-data">
+          {JSON.stringify(showData, null, 2)}
+        </Code>
+      ) : null}
 
       {isPasswordResetFormOpened && !isResetPasswordSent && (
         <ResetPasswordForm
