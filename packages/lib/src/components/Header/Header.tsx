@@ -30,7 +30,7 @@ export function Header({ isOpen, handleOpenNav }: HeaderProps): JSX.Element {
 
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
 
-  function onToggleLanguage() {
+  function onToggleLanguage(): void {
     const selectedLanguage =
       i18n.language === LANGUAGES.EN ? LANGUAGES.DE : LANGUAGES.EN
     i18n.changeLanguage(selectedLanguage)

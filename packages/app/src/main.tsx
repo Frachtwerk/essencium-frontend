@@ -30,7 +30,7 @@ import ReactDOM from 'react-dom/client'
 
 import { router } from './router/init'
 
-function Root() {
+function Root(): JSX.Element {
   const queryClient = new QueryClient()
 
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
@@ -39,8 +39,9 @@ function Root() {
     getInitialValueInEffect: true,
   })
 
-  const toggleColorScheme = (value?: ColorScheme) =>
+  function toggleColorScheme(value?: ColorScheme): void {
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
+  }
 
   useHotkeys([['mod+J', () => toggleColorScheme()]])
 
