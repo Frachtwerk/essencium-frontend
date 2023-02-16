@@ -33,14 +33,26 @@ export function Home(): JSX.Element {
         <Center>
           <IconBrandReact
             size={220}
-            color={theme.colors.gray[1]}
+            color={
+              theme.colorScheme === 'dark'
+                ? theme.colors.gray[5]
+                : theme.colors.gray[1]
+            }
             strokeWidth={1}
           />
         </Center>
 
         <Container w={300}>
           <Group position="apart" mt="lg">
-            <Text color={theme.colors.gray[6]}>{t('home.action.search')}</Text>
+            <Text
+              color={
+                theme.colorScheme === 'dark'
+                  ? theme.colors.gray[5]
+                  : theme.colors.gray[6]
+              }
+            >
+              {t('home.action.search')}
+            </Text>
 
             <ActionIcon
               color={theme.colors.blue[6]}
@@ -53,7 +65,15 @@ export function Home(): JSX.Element {
           </Group>
 
           <Group position="apart" mt="md">
-            <Text color={theme.colors.gray[6]}>{t('home.action.users')}</Text>
+            <Text
+              color={
+                theme.colorScheme === 'dark'
+                  ? theme.colors.gray[5]
+                  : theme.colors.gray[6]
+              }
+            >
+              {t('home.action.users')}
+            </Text>
 
             <RouterLink to="users" aria-label="users">
               <ActionIcon
@@ -67,7 +87,15 @@ export function Home(): JSX.Element {
           </Group>
 
           <Group position="apart" mt="md">
-            <Text color={theme.colors.gray[6]}>{t('home.action.profile')}</Text>
+            <Text
+              color={
+                theme.colorScheme === 'dark'
+                  ? theme.colors.gray[5]
+                  : theme.colors.gray[6]
+              }
+            >
+              {t('home.action.profile')}
+            </Text>
 
             <RouterLink to="profile">
               <ActionIcon
