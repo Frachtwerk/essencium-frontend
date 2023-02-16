@@ -24,6 +24,7 @@ export function useZodForm<Z extends ZodSchema>({
 }: UseZodFormProps<Z>): UseFormReturn<TypeOf<Z>, Z> {
   return useRhfForm({
     ...formProps,
+    mode: 'onBlur',
     resolver: zodResolver(schema),
   })
 }
