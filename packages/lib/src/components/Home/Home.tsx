@@ -45,6 +45,8 @@ export function Home(): JSX.Element {
         <Container w={300}>
           <Group position="apart" mt="lg">
             <Text
+              onClick={() => openSpotlight()}
+              sx={{ cursor: 'pointer' }}
               color={
                 theme.colorScheme === 'dark'
                   ? theme.colors.gray[5]
@@ -65,17 +67,19 @@ export function Home(): JSX.Element {
           </Group>
 
           <Group position="apart" mt="md">
-            <Text
-              color={
-                theme.colorScheme === 'dark'
-                  ? theme.colors.gray[5]
-                  : theme.colors.gray[6]
-              }
-            >
-              {t('homeView.action.users')}
-            </Text>
+            <RouterLink to="users" style={{ textDecoration: 'none' }}>
+              <Text
+                color={
+                  theme.colorScheme === 'dark'
+                    ? theme.colors.gray[5]
+                    : theme.colors.gray[6]
+                }
+              >
+                {t('homeView.action.users')}
+              </Text>
+            </RouterLink>
 
-            <RouterLink to="users" aria-label="users">
+            <RouterLink to="users">
               <ActionIcon
                 color={theme.colors.blue[6]}
                 size="md"
@@ -87,15 +91,17 @@ export function Home(): JSX.Element {
           </Group>
 
           <Group position="apart" mt="md">
-            <Text
-              color={
-                theme.colorScheme === 'dark'
-                  ? theme.colors.gray[5]
-                  : theme.colors.gray[6]
-              }
-            >
-              {t('homeView.action.profile')}
-            </Text>
+            <RouterLink to="profile" style={{ textDecoration: 'none' }}>
+              <Text
+                color={
+                  theme.colorScheme === 'dark'
+                    ? theme.colors.gray[5]
+                    : theme.colors.gray[6]
+                }
+              >
+                {t('homeView.action.profile')}
+              </Text>
+            </RouterLink>
 
             <RouterLink to="profile">
               <ActionIcon
