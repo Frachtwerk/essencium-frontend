@@ -21,7 +21,7 @@ export function Card({
   image?: boolean
   arrow?: boolean
   href: string
-}) {
+}): JSX.Element {
   const animatedArrow = arrow ? (
     <span
       className={cn(
@@ -93,7 +93,7 @@ export function Cards({
   children,
   num,
   ...props
-}: { num?: number } & ComponentProps<'div'>) {
+}: { num?: number } & ComponentProps<'div'>): JSX.Element {
   return (
     <div
       className={cn(styles.cards, 'mt-4 gap-4')}

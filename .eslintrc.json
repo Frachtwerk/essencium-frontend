@@ -32,11 +32,16 @@
   ],
   "rules": {
     "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-no-bind": [
+      "error",
+      { "allowFunctions": true, "allowArrowFunctions": true }
+    ],
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
-    "prettier/prettier": "warn",
+    "prettier/prettier": "error",
     "import/extensions": [
-      1, // Severity should be one of the following: 0 = off, 1 = warn, 2 = error
+      2, // Severity should be one of the following: 0 = off, 1 = warn, 2 = error
       "ignorePackages",
       {
         "": "never",
