@@ -126,10 +126,5 @@
     "tags": [
       "scope:lib"
     ]
-  },
-  "dependenciesMeta": {
-    "translations": {
-      "injected": true
-    }
   }
 }
