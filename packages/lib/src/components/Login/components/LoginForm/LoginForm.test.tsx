@@ -26,6 +26,12 @@ describe('LoginForm', () => {
         }
       },
     }))
+
+    vi.mock('translations', () => ({
+      i18n: {
+        t: (str: unknown) => str,
+      },
+    }))
   })
 
   beforeEach(() => {
@@ -62,9 +68,9 @@ describe('LoginForm', () => {
     expect(emailInput.value).toBe('me@example')
     expect(passwordInput.value).toBe('shortPw')
 
-    expect(await screen.findByText('Invalid email')).toBeDefined()
+    expect(await screen.findByText('validation.email.notValid')).toBeDefined()
     expect(
-      await screen.findByText('String must contain at least 8 character(s)')
+      await screen.findByText('validation.password.minLength')
     ).toBeDefined()
   })
 
