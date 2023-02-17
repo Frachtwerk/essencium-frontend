@@ -1,1 +1,1 @@
-export { initI18n } from './initI18n'
+export { i18n, initI18n } from './initI18n'

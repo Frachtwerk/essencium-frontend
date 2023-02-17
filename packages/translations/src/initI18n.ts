@@ -33,4 +33,4 @@ function initI18n(reacti18n: ThirdPartyModule): void {
     })
 }
 
-export { initI18n }
+export { i18n, initI18n }

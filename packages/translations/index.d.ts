@@ -1,4 +1,4 @@
-import { ThirdPartyModule } from 'i18next'
+import { i18n as i18next, ThirdPartyModule } from 'i18next'
 
 declare module 'translations' {
   type En = JSON
@@ -7,4 +7,5 @@ declare module 'translations' {
   const en: En
   const de: De
   const initI18n: (reacti18n: ThirdPartyModule) => void
+  const i18n: typeof i18next
 }
