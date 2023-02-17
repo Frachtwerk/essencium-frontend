@@ -38,7 +38,13 @@ export function Footer({ links }: FooterLinksProps): JSX.Element {
               to={link.to}
               search={{}}
               params={{}}
-              style={{ textDecoration: 'none', color: theme.colors.blue[8] }}
+              style={{
+                textDecoration: 'none',
+                color:
+                  theme.colorScheme === 'dark'
+                    ? theme.colors.gray[0]
+                    : theme.colors.blue[8],
+              }}
             >
               <Text>{t(link.label)}</Text>
             </RouterLink>
