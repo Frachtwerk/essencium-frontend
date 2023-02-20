@@ -1,29 +1,47 @@
-```
-.gitlab
-├── renovate.json
-.husky
-├── _
-│   ├── husky.sh
-├── commit-msg
-src
-├── components
-│   ├── index.ts
-│   ├── TestComponent.tsx
-├── index.ts
-.commitlintrc.json
-.eslintignore
-.eslintrc.json
-.gitignore
-.gitlab-ci.yml
-.prettierignore
-.prettierrc.json
-.verionrc.json
-CHANGELOG.md
-package.json
-pnpm-lock.yaml
-postcss.config.cjs
-README.md
-rollup.config.js
-tailwind.config.cjs
-tsconfig.json
+import { Callout } from 'nextra-theme-docs'
+
+# Architecture
+
+<Callout type="warning" emoji="⚠️">
+  Some sections are still drafts and marked with a 📝 symbol. Feel free to
+  contribute 🎉.
+</Callout>
+
+Essencium consists of a core library (`lib`), a translations package (`translations`) and a boilerplate (`app`) that consums those packages. Additonally, we have a `docs` package to document the project.
+We chose a monorepo architecture for better developer experience and less complex maintainability.
+
+All components are developed inside the `lib` and imported inside the `app`. That allows us to easily update our `lib` package.
+Translations and i18next are managed in `translations` package in the corresponding language files.
+
+That gives us the following architecture:
+
+```txt
+├── .github
+├── .husky
+├── .vscode
+├── packages
+│   ├── app
+│   │   ├── package.json
+│   │   └── ... 📝
+│   └── docs
+│   │   ├── package.json
+│   │   └── ... 📝
+│   └── lib
+│   │   ├── package.json
+│   │   └── ... 📝
+│   └── translations
+│   │   ├── package.json
+│   │   └── ... 📝
+├── .commitlintrc.json
+├── .eslintrc.json
+├── .gitignore
+├── .npmrc
+├── .prettierrc.json
+├── nx-cloud.env (not in repo)
+├── nx.json
+├── package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── README.md
+└── tsconfig.json
 ```
