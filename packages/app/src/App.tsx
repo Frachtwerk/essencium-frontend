@@ -13,6 +13,7 @@ import {
   IconUsers,
 } from '@tabler/icons'
 import { useNavigate } from '@tanstack/react-router'
+import { Provider } from 'jotai'
 import type { FooterLink, NavLink } from 'lib'
 import { Footer, Header, NavBar } from 'lib'
 import { useState } from 'react'
@@ -123,24 +124,26 @@ function App({ children }: AppProps): JSX.Element {
   })
 
   return (
-    <SpotlightProvider
-      actions={actions}
-      searchPlaceholder={t('header.spotlight.placeholder') as string}
-      searchIcon={<IconSearch size={18} />}
-      highlightQuery
-      highlightColor={theme.colors.blue[6]}
-      nothingFoundMessage={t('header.spotlight.nothingFound') as string}
-    >
-      <AppShell
-        asideOffsetBreakpoint="sm"
-        navbarOffsetBreakpoint="sm"
-        navbar={<NavBar isOpen={openedNav} links={NAV_LINKS} />}
-        footer={<Footer links={FOOTER_LINKS} />}
-        header={<Header isOpen={openedNav} handleOpenNav={handleOpenNav} />}
+    <Provider>
+      <SpotlightProvider
+        actions={actions}
+        searchPlaceholder={t('header.spotlight.placeholder') as string}
+        searchIcon={<IconSearch size={18} />}
+        highlightQuery
+        highlightColor={theme.colors.blue[6]}
+        nothingFoundMessage={t('header.spotlight.nothingFound') as string}
       >
-        {children}
-      </AppShell>
-    </SpotlightProvider>
+        <AppShell
+          asideOffsetBreakpoint="sm"
+          navbarOffsetBreakpoint="sm"
+          navbar={<NavBar isOpen={openedNav} links={NAV_LINKS} />}
+          footer={<Footer links={FOOTER_LINKS} />}
+          header={<Header isOpen={openedNav} handleOpenNav={handleOpenNav} />}
+        >
+          {children}
+        </AppShell>
+      </SpotlightProvider>
+    </Provider>
   )
 }
 
