@@ -20,11 +20,9 @@ export function PersonalDataForm(): JSX.Element {
       >
         <TextInput
           mb="md"
-          placeholder={
-            t(
-              'profileView.dataCard.tabs.personalData.content.firstName'
-            ) as string
-          }
+          placeholder={String(
+            t('profileView.dataCard.tabs.personalData.content.firstName')
+          )}
           label={t('profileView.dataCard.tabs.personalData.content.firstName')}
           size="sm"
           variant="filled"
@@ -35,11 +33,9 @@ export function PersonalDataForm(): JSX.Element {
 
         <TextInput
           mb="md"
-          placeholder={
-            t(
-              'profileView.dataCard.tabs.personalData.content.lastName'
-            ) as string
-          }
+          placeholder={String(
+            t('profileView.dataCard.tabs.personalData.content.lastName')
+          )}
           label={t('profileView.dataCard.tabs.personalData.content.lastName')}
           size="sm"
           variant="filled"
@@ -56,9 +52,9 @@ export function PersonalDataForm(): JSX.Element {
       >
         <TextInput
           mb="md"
-          placeholder={
-            t('profileView.dataCard.tabs.personalData.content.phone') as string
-          }
+          placeholder={String(
+            t('profileView.dataCard.tabs.personalData.content.phone')
+          )}
           label={t('profileView.dataCard.tabs.personalData.content.phone')}
           size="sm"
           variant="filled"
@@ -68,9 +64,9 @@ export function PersonalDataForm(): JSX.Element {
 
         <TextInput
           mb="md"
-          placeholder={
-            t('profileView.dataCard.tabs.personalData.content.mobile') as string
-          }
+          placeholder={String(
+            t('profileView.dataCard.tabs.personalData.content.mobile')
+          )}
           label={t('profileView.dataCard.tabs.personalData.content.mobile')}
           size="sm"
           variant="filled"
@@ -86,9 +82,9 @@ export function PersonalDataForm(): JSX.Element {
       >
         <TextInput
           mb="md"
-          placeholder={
-            t('profileView.dataCard.tabs.personalData.content.email') as string
-          }
+          placeholder={String(
+            t('profileView.dataCard.tabs.personalData.content.email')
+          )}
           label={t('profileView.dataCard.tabs.personalData.content.email')}
           withAsterisk
           size="sm"
@@ -103,11 +99,9 @@ export function PersonalDataForm(): JSX.Element {
           mb="md"
           radius="sm"
           label={t('profileView.dataCard.tabs.personalData.content.language')}
-          placeholder={
-            t(
-              'profileView.dataCard.tabs.personalData.content.language'
-            ) as string
-          }
+          placeholder={String(
+            t('profileView.dataCard.tabs.personalData.content.language')
+          )}
           value={testUser.language}
           data={[
             { value: 'deutsch', label: 'Deutsch' },

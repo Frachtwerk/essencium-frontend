@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "build": "rimraf dist && rollup -c",
-    "clean": "rimraf dist node_modules",
+    "clean": "rimraf dist node_modules .rollup.cache",
     "clean:install": "pnpm clean && pnpm install",
     "format": "prettier --write .",
     "lint": "eslint .",
@@ -42,6 +42,7 @@
     "@fortawesome/fontawesome-svg-core": "6.2.1",
     "@fortawesome/free-solid-svg-icons": "6.2.1",
     "@fortawesome/react-fontawesome": "0.2.0",
+    "@hookform/resolvers": "2.9.11",
     "@mantine/core": "5.10.1",
     "@mantine/dates": "5.10.1",
     "@mantine/hooks": "5.10.1",
@@ -76,6 +77,7 @@
     "prettier": "2.8.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "7.43.1",
     "react-i18next": "12.1.4",
     "rimraf": "4.1.1",
     "rollup": "3.10.1",
@@ -84,16 +86,18 @@
     "standard-version": "9.5.0",
     "tailwindcss": "3.2.4",
     "translations": "workspace:*",
+    "tslib": "2.4.1",
     "typescript": "4.9.4",
-    "vitest": "0.28.1",
     "vite": "4.0.1",
-    "yup": "0.32.11"
+    "vitest": "0.28.1",
+    "zod": "3.20.6"
   },
   "peerDependencies": {
     "@emotion/react": "11.10.5",
     "@fortawesome/fontawesome-svg-core": "6.2.1",
     "@fortawesome/free-solid-svg-icons": "6.2.1",
     "@fortawesome/react-fontawesome": "0.2.0",
+    "@hookform/resolvers": "2.9.11",
     "@mantine/core": "5.10.1",
     "@mantine/dates": "5.10.1",
     "@mantine/hooks": "5.10.1",
@@ -101,21 +105,22 @@
     "@mantine/spotlight": "5.10.1",
     "@tabler/icons": "1.119.0",
     "@tanstack/react-query": "4.22.4",
+    "@tanstack/react-router": "0.0.1-beta.75",
     "i18next": "22.4.9",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "7.43.1",
     "react-i18next": "12.1.4",
     "tailwindcss": "3.2.4",
     "translations": "workspace:*",
-    "yup": "0.32.11",
-    "@tanstack/react-router": "0.0.1-beta.75"
+    "zod": "3.20.6"
   },
   "engines": {
     "node": ">=16",
     "pnpm": "7"
   },
   "volta": {
-    "node": "16.19.0"
+    "node": "16.19.1"
   },
   "nx": {
     "tags": [

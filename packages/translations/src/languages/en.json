@@ -117,7 +117,6 @@
       }
     }
   },
-
   "setPasswordView": {
     "title": "Set new password",
     "form": {
@@ -126,12 +125,19 @@
       "submit": "Save Password"
     }
   },
-
   "homeView": {
     "action": {
       "search": "Open Search Bar",
       "users": "Show All Users",
       "profile": "Change Profile Data"
+    }
+  },
+  "validation": {
+    "email": {
+      "notValid": "E-Mail is not valid"
+    },
+    "password": {
+      "minLength": "Password must be at least 8 characters long"
     }
   }
 }

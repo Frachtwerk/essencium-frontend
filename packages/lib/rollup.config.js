@@ -23,7 +23,7 @@ export default [
       terser(),
     ],
     external: [
-      '@emotion/reactd',
+      '@emotion/react',
       '@fortawesome/fontawesome-svg-core',
       '@fortawesome/free-solid-svg-icons',
       '@fortawesome/react-fontawesome',
@@ -40,8 +40,10 @@ export default [
       'react-i18next',
       'tailwindcss',
       'translations',
-      'yup',
       '@tanstack/react-router',
+      'zod',
+      'react-hook-form',
+      '@hookform/resolvers',
     ],
   },
   {

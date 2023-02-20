@@ -50,9 +50,9 @@ export function ProfileSettingsForm(): JSX.Element {
             maw="60%"
             radius="sm"
             label={t('profileView.dataCard.tabs.settings.content.role')}
-            placeholder={
-              t('profileView.dataCard.tabs.settings.content.role') as string
-            }
+            placeholder={String(
+              t('profileView.dataCard.tabs.settings.content.role')
+            )}
             data={[
               { value: 'user', label: 'Nutzer' },
               { value: 'admin', label: 'Administrator' },
