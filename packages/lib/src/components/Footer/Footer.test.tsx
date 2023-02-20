@@ -1,4 +1,5 @@
 import { render, RenderResult, screen } from '@testing-library/react'
+import { CSSProperties } from 'react'
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { Footer } from './Footer'
@@ -10,21 +11,33 @@ describe('Footer', () => {
   const FOOTER_LINKS: FooterLink[] = [
     {
       label: 'footer.privacy',
-      to: '/',
+      to: 'privacy',
     },
     {
       label: 'footer.imprint',
-      to: '/',
+      to: 'imprint',
     },
     {
       label: 'footer.contact',
-      to: '/contact',
+      to: 'contact',
     },
   ]
 
   beforeAll(() => {
     vi.mock('@tanstack/react-router', () => ({
-      Link: ({ children }: { children: React.ReactNode }) => children,
+      Link: ({
+        children,
+        to,
+        ...props
+      }: {
+        children: React.ReactNode
+        to: string
+        style: CSSProperties
+      }) => (
+        <a {...props} href={to}>
+          {children}
+        </a>
+      ),
     }))
 
     vi.mock('react-i18next', () => ({
@@ -43,9 +56,24 @@ describe('Footer', () => {
   })
 
   it('should contain the correct content', () => {
-    expect(screen.getAllByText('footer.license')).toBeDefined()
-    expect(screen.getAllByText('footer.privacy')).toBeDefined()
-    expect(screen.getAllByText('footer.imprint')).toBeDefined()
-    expect(screen.getAllByText('footer.contact')).toBeDefined()
+    expect(screen.getByText('footer.license').closest('a')).toHaveProperty(
+      'href',
+      'license'
+    )
+
+    expect(screen.getByText('footer.privacy').closest('a')).toHaveProperty(
+      'href',
+      'privacy'
+    )
+
+    expect(screen.getByText('footer.imprint').closest('a')).toHaveProperty(
+      'href',
+      'imprint'
+    )
+
+    expect(screen.getByText('footer.contact').closest('a')).toHaveProperty(
+      'href',
+      'contact'
+    )
   })
 })

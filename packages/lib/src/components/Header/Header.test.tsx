@@ -43,17 +43,21 @@ describe('Header', () => {
     render(<SearchBar />)
     render(<UserMenu />)
 
-    const darkmodeToggle = screen.getByTestId('darkmode-toggle')
+    const darkmodeToggle = screen.getByRole('button', {
+      name: 'darkmode-toggle',
+    })
     assert.ok(darkmodeToggle)
 
-    const languageToggle = screen.getByTestId('language-toggle')
+    const languageToggle = screen.getByRole('button', {
+      name: 'language-toggle',
+    })
     assert.ok(languageToggle)
   })
 
   it('should display the correct language', () => {
     const { i18n } = useTranslation()
 
-    expect(screen.getByTestId('selected-language').textContent).toBe(
+    expect(screen.getByLabelText('selected-language').textContent).toBe(
       i18n.language.toUpperCase()
     )
   })
