@@ -45,6 +45,7 @@ export default [
       'react-hook-form',
       '@hookform/resolvers',
       'axios',
+      'jotai',
     ],
   },
   {
