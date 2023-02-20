@@ -33,6 +33,18 @@ export default defineConfig({
   server: {
     port: 5500,
     hmr: true,
+    proxy: {
+      '/auth': {
+        target: 'http://localhost:8098/',
+        changeOrigin: true,
+        ws: true,
+      },
+      '/v1': {
+        target: 'http://localhost:8098/',
+        changeOrigin: true,
+        ws: true,
+      },
+    },
   },
   build: {
     sourcemap: true,
