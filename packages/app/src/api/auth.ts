@@ -1,5 +1,7 @@
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import axios from 'axios'
+import { useAtom } from 'jotai'
+import { atomWithStorage } from 'jotai/utils'
 
 import {
   LoginCredentials,
@@ -8,60 +10,82 @@ import {
 } from '@/api/types/auth'
 
 const VERSION = 'v1'
+const tokenAtom = atomWithStorage<string | null>('authToken', null)
 
-export function useGetToken(): ReturnType<typeof useQuery> {
+export function useCreateToken(
+  username: string,
+  password: string
+): UseMutationResult<TokenResponse, unknown, void, unknown> {
   const credentials: LoginCredentials = {
-    username: 'admin@frachtwerk.de',
-    password: 'adminAdminAdmin',
+    username,
+    password,
   }
 
-  const response = useQuery<TokenResponse>({
-    queryKey: ['getToken'],
-    queryFn: () => axios.post('/auth/token', credentials).then(res => res.data),
+  const [token, setToken] = useAtom(tokenAtom)
+
+  const mutation = useMutation<TokenResponse>({
+    mutationKey: ['createToken'],
+    mutationFn: () =>
+      axios.post('/auth/token', credentials).then(res => res.data || token),
+    onSuccess(data: TokenResponse) {
+      setToken(data.token)
+    },
   })
 
-  return response
+  return mutation
 }
 
-export function useRenewToken(): ReturnType<typeof useQuery> {
-  const response = useQuery<TokenResponse>({
-    queryKey: ['renewToken'],
-    queryFn: () => axios.post('/auth/renew').then(res => res.data),
+export function useRenewToken(): UseMutationResult<
+  TokenResponse,
+  unknown,
+  void,
+  unknown
+> {
+  const [token, setToken] = useAtom(tokenAtom)
+
+  const mutation = useMutation<TokenResponse>({
+    mutationKey: ['renewToken'],
+    mutationFn: () => axios.post('/auth/token').then(res => res.data || token),
+    onSuccess(data: TokenResponse) {
+      setToken(data.token)
+    },
   })
 
-  return response
+  return mutation
 }
 
 export function useResetPassword(
   username: string
-): ReturnType<typeof useQuery> {
-  const response = useQuery<void>({
-    queryKey: ['resetPassword'],
-    queryFn: () =>
+): UseMutationResult<TokenResponse, unknown, void, unknown> {
+  const mutation = useMutation<TokenResponse>({
+    mutationKey: ['resetPassword'],
+    mutationFn: () =>
       axios
         .post(
           `${VERSION}/reset-credentials`,
-          { data: username },
+          {
+            data: username,
+          },
           { headers: { 'content-type': 'text/plain' } }
         )
         .then(res => res.data),
   })
 
-  return response
+  return mutation
 }
 
 export function useSetPassword(
   request: SetPasswordRequest
-): ReturnType<typeof useQuery> {
-  const response = useQuery<void>({
-    queryKey: ['setPassword'],
-    queryFn: () =>
+): UseMutationResult<TokenResponse, unknown, void, unknown> {
+  const mutation = useMutation<TokenResponse>({
+    mutationKey: ['setPassword'],
+    mutationFn: () =>
       axios
-        .post(`${VERSION}/set-password`, {
+        .post(`${VERSION}/reset-credentials`, {
           data: request,
         })
         .then(res => res.data),
   })
 
-  return response
+  return mutation
 }
