@@ -13,7 +13,7 @@ import {
   IconUsers,
 } from '@tabler/icons'
 import { useNavigate } from '@tanstack/react-router'
-import { Provider } from 'jotai'
+import { createStore, Provider } from 'jotai'
 import type { FooterLink, NavLink } from 'lib'
 import { Footer, Header, NavBar } from 'lib'
 import { useState } from 'react'
@@ -106,6 +106,8 @@ function App({ children }: AppProps): JSX.Element {
 
   const theme = useMantineTheme()
 
+  const store = createStore()
+
   const { t } = useTranslation()
 
   const [openedNav, setOpenedNav] = useState(false)
@@ -124,7 +126,7 @@ function App({ children }: AppProps): JSX.Element {
   })
 
   return (
-    <Provider>
+    <Provider store={store}>
       <SpotlightProvider
         actions={actions}
         searchPlaceholder={t('header.spotlight.placeholder') as string}
