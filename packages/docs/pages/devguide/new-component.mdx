@@ -1,6 +1,11 @@
+import { Callout } from 'nextra-theme-docs'
+
 # Writing a new component
 
-> Some sections are still drafts and marked with a 📝 symbol. Feel free to contribute 🎉.
+<Callout type="warning" emoji="⚠️">
+  Some sections are still drafts and marked with a 📝 symbol. Feel free to
+  contribute 🎉.
+</Callout>
 
 ## Location
 
@@ -27,8 +32,8 @@ function NewComponent(...) { ... }
 ```
 
 <details>
-<summary>Why? 📝</summary>
-...
+  <summary>Why? 📝</summary>
+  ...
 </details>
 
 ---
@@ -45,14 +50,13 @@ import type { NewType } from ...
 
 ---
 
-
 - Check size of imports (i.e. with VSCode plugin [import costs](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost)) and reduce where possible (green is fine, red should be reviewed)
 
 ![Import Cost Valid](/images/import-cost-green.png)
 
 <details>
-<summary>Why? 📝</summary>
-...
+  <summary>Why? 📝</summary>
+  ...
 </details>
 
 ---
@@ -66,7 +70,6 @@ const NewComponent = (...) => { ... }
 // ✅
 function NewComponent(...) { ... }
 ```
-
 
 ---
 
@@ -84,6 +87,7 @@ export function NewComponent(...) { ... }
 <summary>Why?</summary>
 
 Exporting functions, variables and types via the named export syntax has the advantage of automatic bulk-renaming if needed.
+
 </details>
 
 ---
@@ -107,8 +111,8 @@ function NewComponent({ username, age }: NewComponentProps) { ... }
 ```
 
 <details>
-<summary>Why? 📝</summary>
-...
+  <summary>Why? 📝</summary>
+  ...
 </details>
 
 ---
@@ -128,6 +132,7 @@ function NewComponent(...): JSX.Element { ... }
 
 By specifying the concret return type, TypeScript will give you an error if you accidentally return a wrong type.
 Additionally, it increases the consistency of always specifying the return type of functions throughout the codebase and provides a better readability if you can directly recognize what a function returns.
+
 </details>
 
 ---
@@ -135,11 +140,12 @@ Additionally, it increases the consistency of always specifying the return type 
 - Declare types in a separate file on the same level as the component inside a `types.ts` file.
 
 <details>
-<summary>Why? 📝</summary>
-...
+  <summary>Why? 📝</summary>
+  ...
 </details>
 
 ---
+
 - Logic that belongs together should live as close together as possible and they should be separated through a blank line.
 
 ```tsx
@@ -203,14 +209,13 @@ function NewComponent(...): JSX.Element {
 }
 ```
 
-
 ---
 
 - Lazy load components if it makes sense.
 
 <details>
-<summary>Why? 📝</summary>
-...
+  <summary>Why? 📝</summary>
+  ...
 </details>
 
 ---
@@ -226,8 +231,8 @@ function NewComponent(...): JSX.Element {
 ```
 
 <details>
-<summary>Why? 📝</summary>
-...
+  <summary>Why? 📝</summary>
+  ...
 </details>
 
 ---
@@ -260,9 +265,10 @@ function NewComponent(...): JSX.Element {
 ```
 
 <details>
-<summary>Why?</summary>
-By telling TypeScript that a variable or function is of type `any` you disable TypeScript for it and don't get any type-safety anymore.
-Some typing is hard, we all know that, but at least ask for help and don't go the simple and insecure way.
+  <summary>Why?</summary>
+  By telling TypeScript that a variable or function is of type `any` you disable
+  TypeScript for it and don't get any type-safety anymore. Some typing is hard, we
+  all know that, but at least ask for help and don't go the simple and insecure way.
 </details>
 
 ---
@@ -270,8 +276,9 @@ Some typing is hard, we all know that, but at least ask for help and don't go th
 - Treat server requests as sensible.
 
 <details>
-<summary>Why?</summary>
-Double-check if you make unnecessary or too many server requests caused by a suboptimal implementation. It could led to a bad performance and UX.
+  <summary>Why?</summary>
+  Double-check if you make unnecessary or too many server requests caused by a suboptimal
+  implementation. It could led to a bad performance and UX.
 </details>
 
 ---
@@ -279,8 +286,9 @@ Double-check if you make unnecessary or too many server requests caused by a sub
 - Provide feedback for every write, delete, update operation.
 
 <details>
-<summary>Why?</summary>
-A good UX consists of proper user feedback i.e. notifications. That gives the user confidence that his action was successful or has failed.
+  <summary>Why?</summary>A good UX consists of proper user feedback i.e.
+  notifications. That gives the user confidence that his action was successful
+  or has failed.
 </details>
 
 ---
@@ -288,8 +296,9 @@ A good UX consists of proper user feedback i.e. notifications. That gives the us
 - Use proper code formatting via Prettier & linting via ESLint.
 
 <details>
-<summary>Why?</summary>
-Tools like Prettier (semantic) and ESLint (syntax) ensure a consistent codebase and keep readability on a high level.
+  <summary>Why?</summary>
+  Tools like Prettier (semantic) and ESLint (syntax) ensure a consistent codebase
+  and keep readability on a high level.
 </details>
 
 ---
@@ -297,16 +306,16 @@ Tools like Prettier (semantic) and ESLint (syntax) ensure a consistent codebase 
 - Check console (browser and terminal) for any errors or warnings.
 
 <details>
-<summary>Why?</summary>
-Even though your implementation is fine, a warning or even an error can occur. Sometimes they're not reflected in the UI but in the console.
+  <summary>Why?</summary>
+  Even though your implementation is fine, a warning or even an error can occur.
+  Sometimes they're not reflected in the UI but in the console.
 </details>
 
+## Checklist
 
-## Checklist  
+-
 
-  -
-
-- [ ] The files and folder structure is tightly coupled. 
+- [ ] The files and folder structure is tightly coupled.
 
 - [ ] The name of the component is equal to the file name and both are written in PascalCase.
 - [ ] The component is a functional component.
@@ -316,35 +325,32 @@ Even though your implementation is fine, a warning or even an error can occur. S
 - [ ] The component is exported as named export.
 - [ ] All props are typed correctly and destructured.
 - [ ] The return type of the component is specified.
-- [ ] All types are declared in a seperate file inside the component. 
+- [ ] All types are declared in a seperate file inside the component.
 - [ ] `any` is not used in type declaration.
-- [ ] Logic that belonges together is grouped together and separated by a blank line. 
-- [ ] JSX Elements, that have the same indentation are separated by a blank line. 
-- [ ] Lazy loading of imported components is implemented if it makes sense. 
+- [ ] Logic that belonges together is grouped together and separated by a blank line.
+- [ ] JSX Elements, that have the same indentation are separated by a blank line.
+- [ ] Lazy loading of imported components is implemented if it makes sense.
 - [ ] All texts are replaced with a corresponding `i18n` variable.
 - [ ] Server requests are treated as sensible.
 - [ ] Feedback is provided for the user for every write, delete and update operation.
 - [ ] The code is formatted and linted properly via Prettier & ESLint.
-- [ ] The console does not show any errors or warnings. 
+- [ ] The console does not show any errors or warnings.
 
-
-
-
-## Example 
+## Example
 
 ```tsx
 // NewComponent.tsx
 
-import type { User } from './types'  
+import type { User } from './types'
 
 export function NewComponent({name, email}: User): JSX.Element {
   const { t } = useTranslation()
 
   const [user, setUser] = useState<User>({ name: '', email: '' })
 
- 
+
   const [toggleColorTheme, setToggleColorTheme] = useState('light')
- 
+
   function onToggleColorTheme(): void {
     ...
     setToggleColorTheme('dark')
@@ -356,7 +362,7 @@ export function NewComponent({name, email}: User): JSX.Element {
       <div>
         <h2> {t('newComponent.title')} </h2>
       </div>
- 
+
       <div>
         <h3> {name} </h3>
       </div>
