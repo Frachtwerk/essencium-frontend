@@ -1,6 +1,6 @@
 import { Box, Button, Center, Text } from '@mantine/core'
-import { Home, TestComponent } from 'lib'
-import { useMemo, useState } from 'react'
+import { Home } from 'lib'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import useStore from '@/store'
@@ -20,21 +20,6 @@ export function Demo(): JSX.Element {
 
   const increaseCount = useStore(state => state.increaseCount)
   const dinoCount = useStore(state => state.dinos)
-
-  const addUser = useStore(state => state.addUser)
-
-  const users = useStore(state => state.users)
-
-  useMemo(
-    () =>
-      addUser({
-        id: Math.floor(Math.random() * 100),
-        name: 'Daniel Dino',
-        username: 'dinopower',
-        email: 'dino@power.io',
-      }),
-    [addUser]
-  )
 
   const [loadApiUsers, setLoadApiUsers] = useState(false)
 
@@ -79,8 +64,6 @@ export function Demo(): JSX.Element {
 
           <Text className="mt-5 text-center">{dinoCount} Dinos</Text>
         </Box>
-
-        <TestComponent users={users} shouldLoadApiUsers={loadApiUsers} />
 
         <Button onClick={() => setLoadApiUsers(!loadApiUsers)}>
           {loadApiUsers ? t('removeApiUsers') : t('loadApiUsers')}
