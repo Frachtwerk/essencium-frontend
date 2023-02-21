@@ -372,6 +372,7 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+    dev: true
 
   /@babel/generator/7.21.1:
     resolution:
@@ -401,6 +402,7 @@ packages:
       browserslist: 4.21.4
       lru-cache: 5.1.1
       semver: 6.3.0
+    dev: true
     dev: true
 
   /@babel/helper-environment-visitor/7.18.9:
@@ -458,6 +460,7 @@ packages:
       '@babel/types': 7.21.2
     transitivePeerDependencies:
       - supports-color
+    dev: true
     dev: true
 
   /@babel/helper-plugin-utils/7.20.2:
@@ -522,6 +525,7 @@ packages:
       '@babel/types': 7.21.2
     transitivePeerDependencies:
       - supports-color
+    dev: true
     dev: true
 
   /@babel/highlight/7.18.6:
@@ -612,6 +616,7 @@ packages:
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
     dev: true
 
   /@babel/types/7.21.2:
@@ -7153,6 +7158,7 @@ packages:
     engines: { node: '>=6' }
     hasBin: true
     dev: true
+    dev: true
 
   /jsonc-parser/3.2.0:
     resolution:
@@ -7471,6 +7477,7 @@ packages:
       }
     dependencies:
       yallist: 3.1.1
+    dev: true
     dev: true
 
   /lru-cache/6.0.0:
