@@ -1,0 +1,38 @@
+# Package responsibilities
+
+This page should answer the question: _Which implementation belongs into which package of the monorepo?_
+Currently, we have the following packages:
+
+- `app`
+- `docs`
+- `lib`
+- `translations`
+
+The challenge is to maintain separation of concerns for each package. The following sections list the responsibilities of each package.
+
+## `app`
+
+- the main application that consumes the `lib` package
+- React views that import components from `lib`
+- API implementation
+- application state
+- routing
+- error logging
+
+## `docs`
+
+- documentation for the whole Essencium project
+- getting started
+- devguide
+- styleguide
+- changelog
+
+## `lib`
+
+- single React components with their types
+- specific hooks
+
+## `translations`
+
+- translations for every langauge in a `.json` file (i.e. `en.json`)
+- instanciation of i18n
