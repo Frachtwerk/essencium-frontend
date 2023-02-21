@@ -102,11 +102,13 @@ function NewComponent(cmpProps: { username: string; age: number; }) { ... }
 function NewComponent({ username, age }: { username: string; age: number; }) { ... }
 
 // ✅
+// types.ts
 type NewComponentProps = {
   username: string;
   age: number;
 }
 
+// NewComponent.tsx
 function NewComponent({ username, age }: NewComponentProps) { ... }
 ```
 
