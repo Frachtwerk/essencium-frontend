@@ -21,7 +21,10 @@ export function SearchBar(): JSX.Element {
         sx={{
           width: '35%',
           border: '1px solid',
-          borderColor: theme.colors.gray[3],
+          borderColor:
+            theme.colorScheme === 'dark'
+              ? theme.colors.gray[7]
+              : theme.colors.gray[3],
           borderRadius: theme.radius.sm,
           padding: '5px 10px',
         }}
