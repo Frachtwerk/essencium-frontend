@@ -8,6 +8,7 @@ import {
   profileRoute,
   rootRoute,
   setPasswordRoute,
+  userTableRoute,
 } from '@/router/routes'
 
 // This enables type-safety for the router
@@ -19,7 +20,12 @@ declare module '@tanstack/react-router' {
 
 // The hierarchy of all routes
 const routeTree = rootRoute.addChildren([
-  layoutRouteAppShell.addChildren([indexRoute, contactRoute, profileRoute]),
+  layoutRouteAppShell.addChildren([
+    indexRoute,
+    contactRoute,
+    profileRoute,
+    userTableRoute,
+  ]),
   layoutRouteLogin.addChildren([loginRoute, setPasswordRoute]),
 ])
 

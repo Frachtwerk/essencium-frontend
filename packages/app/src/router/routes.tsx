@@ -6,6 +6,7 @@ import { ContactView } from '@/views/ContactView'
 import { HomeView } from '@/views/HomeView'
 import { LoginView } from '@/views/LoginView'
 import { ProfileView } from '@/views/ProfileView'
+import { UserTableView } from '@/views/UserTableView/UserTableView'
 
 export const rootRoute = new RootRoute()
 
@@ -37,4 +38,10 @@ export const profileRoute = new Route({
   getParentRoute: () => layoutRouteAppShell,
   path: 'profile',
   component: ProfileView,
+})
+
+export const userTableRoute = new Route({
+  getParentRoute: () => layoutRouteAppShell,
+  path: 'users',
+  component: UserTableView,
 })
