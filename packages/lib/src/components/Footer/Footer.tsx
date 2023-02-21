@@ -27,18 +27,7 @@ export function Footer({ links }: FooterLinksProps): JSX.Element {
           <Flex gap="xs" align="center" ml="xs">
             <IconCopyright size="16" />
 
-            <RouterLink
-              to="license"
-              style={{
-                textDecoration: 'none',
-                color:
-                  theme.colorScheme === 'dark'
-                    ? theme.colors.gray[4]
-                    : theme.colors.dark[9],
-              }}
-            >
-              <Text> {t('footer.license')} </Text>
-            </RouterLink>
+            <Text>{t('footer.license')}</Text>
           </Flex>
         </MediaQuery>
 
