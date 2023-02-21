@@ -1,11 +1,15 @@
+import { atom, useAtom } from 'jotai'
 import { Login, LoginForm } from 'lib'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import { useCreateToken } from '@/api/auth'
 
+const usernameAtom = atom('')
+const passwordAtom = atom('')
+
 export function LoginView(): JSX.Element {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useAtom(usernameAtom)
+  const [password, setPassword] = useAtom(passwordAtom)
 
   const { mutate } = useCreateToken(username, password)
 
