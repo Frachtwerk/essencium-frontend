@@ -1,4 +1,5 @@
-import { Text } from '@mantine/core'
+/* eslint-disable react/no-unstable-nested-components */
+import { Center, Loader, Text } from '@mantine/core'
 import { ColumnDef } from '@tanstack/react-table'
 import { HttpNotification, User, UserTable } from 'lib'
 import { useMemo } from 'react'
@@ -6,7 +7,14 @@ import { useMemo } from 'react'
 import { useGetUsers } from '@/api'
 
 export function UserTableView(): JSX.Element {
-  const { data: users, isError, isLoading, isFetching, error } = useGetUsers()
+  const {
+    data: users,
+    isError,
+    isLoading,
+    isFetching,
+    error,
+    isInitialLoading,
+  } = useGetUsers()
 
   const columns = useMemo<ColumnDef<User>[]>(
     () => [
@@ -37,15 +45,21 @@ export function UserTableView(): JSX.Element {
   return (
     <>
       <HttpNotification
-        isLoading={isLoading || isFetching}
+        isLoading={isFetching && !isInitialLoading}
         isError={isError}
         error={error}
       />
 
-      <UserTable
-        users={[...(users || []), ...(users || []).reverse()] || []}
-        columns={columns}
-      />
+      {isLoading ? (
+        <Center h="100%">
+          <Loader size="xl" />
+        </Center>
+      ) : (
+        <UserTable
+          users={[...(users || []), ...(users || []).reverse()] || []}
+          columns={columns}
+        />
+      )}
     </>
   )
 }
