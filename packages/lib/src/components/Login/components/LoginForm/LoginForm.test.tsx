@@ -35,7 +35,7 @@ describe('LoginForm', () => {
   })
 
   beforeEach(() => {
-    LoginFormMounted = render(<LoginForm />)
+    LoginFormMounted = render(<LoginForm handleLogin={() => {}} />)
   })
 
   afterEach(() => {
