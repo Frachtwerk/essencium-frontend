@@ -1,8 +1,14 @@
-import { Text, useMantineTheme } from '@mantine/core'
+import { NotificationProps, Text, useMantineTheme } from '@mantine/core'
 import { IconX } from '@tabler/icons'
+import { AxiosError } from 'axios'
 
 import { Notification } from './Notification'
-import { HttpNotificationProps } from './types'
+
+export type HttpNotificationProps = NotificationProps & {
+  isLoading: boolean
+  isError: boolean
+  error: AxiosError | null
+}
 
 export function HttpNotification({
   children,
@@ -28,7 +34,7 @@ export function HttpNotification({
             }`
           : ''
       }
-      icon={isError && <IconX size={18} />}
+      icon={isError && <IconX data-testid="error-icon" size={18} />}
       color={isError ? 'red' : theme.colors.blue[8]}
       loading={isLoading}
     >

@@ -52,13 +52,10 @@ export function UserTableView(): JSX.Element {
 
       {isLoading ? (
         <Center h="100%">
-          <Loader size="xl" />
+          <Loader size="xl" name="loader" />
         </Center>
       ) : (
-        <UserTable
-          users={[...(users || []), ...(users || []).reverse()] || []}
-          columns={columns}
-        />
+        <UserTable users={users || []} columns={columns} />
       )}
     </>
   )
