@@ -1,5 +1,4 @@
 import { render, RenderResult, screen } from '@testing-library/react'
-import { AxiosError } from 'axios'
 import ReactDOM from 'react-dom'
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 
@@ -27,7 +26,7 @@ describe('HttpNotification', () => {
 
   it('returns nothing if no truthy loading or error state', () => {
     mountedHttpNotificaton = render(
-      <HttpNotification isLoading={false} isError={false} error={null} />
+      <HttpNotification isLoading={false} isError={false} />
     )
 
     expect(screen.queryByRole('alert')).toBeNull()
@@ -35,7 +34,12 @@ describe('HttpNotification', () => {
 
   it('returns loading state if loading property is true', () => {
     mountedHttpNotificaton = render(
-      <HttpNotification isLoading isError={false} error={null} />
+      <HttpNotification
+        isLoading
+        isError={false}
+        loadingTitle="Loading..."
+        loadingMessage="Retrieving data from the server"
+      />
     )
 
     expect(screen.queryByRole('alert')).toBeDefined()
@@ -48,7 +52,8 @@ describe('HttpNotification', () => {
       <HttpNotification
         isLoading={false}
         isError
-        error={{ message: 'Unable to fetch data' } as AxiosError}
+        errorTitle="Error"
+        errorMessage="Unable to fetch data"
       />
     )
 

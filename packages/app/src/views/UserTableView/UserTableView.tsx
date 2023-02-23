@@ -47,7 +47,12 @@ export function UserTableView(): JSX.Element {
       <HttpNotification
         isLoading={isFetching && !isInitialLoading}
         isError={isError}
-        error={error}
+        errorTitle={`Error ${
+          error?.response?.status ? `(${error?.response?.status})` : ''
+        }`}
+        errorMessage={error?.message}
+        loadingTitle="Loading..."
+        loadingMessage="Retrieving data from the server"
       />
 
       {isLoading ? (
