@@ -132,7 +132,6 @@ function App({ children }: AppProps): JSX.Element {
       nothingFoundMessage={t('header.spotlight.nothingFound') as string}
     >
       <AppShell
-        fixed
         asideOffsetBreakpoint="sm"
         navbarOffsetBreakpoint="sm"
         navbar={<NavBar isOpen={openedNav} links={NAV_LINKS} />}
