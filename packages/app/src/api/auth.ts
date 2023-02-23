@@ -43,6 +43,7 @@ export function useRenewToken(): UseMutationResult<
   void,
   unknown
 > {
+  const store = useStore()
   const [token, setToken] = useAtom(tokenAtom)
 
   const mutation = useMutation<TokenResponse>({
@@ -50,6 +51,7 @@ export function useRenewToken(): UseMutationResult<
     mutationFn: () => axios.post('/auth/token').then(res => res.data || token),
     onSuccess(data: TokenResponse) {
       setToken(data.token)
+      store.set(tokenAtom, data.token)
     },
   })
 
