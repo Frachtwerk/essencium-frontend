@@ -44,8 +44,6 @@ export default [
       'zod',
       'react-hook-form',
       '@hookform/resolvers',
-      'axios',
-      'jotai',
     ],
   },
   {
