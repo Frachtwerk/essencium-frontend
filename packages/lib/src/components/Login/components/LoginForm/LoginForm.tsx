@@ -18,7 +18,11 @@ import { ResetPasswordForm, ResetPasswordSuccessMessage } from './components'
 import type { LoginCredentials } from './types'
 import { loginFormSchema } from './types'
 
-export function LoginForm(): JSX.Element {
+type LoginFormProps = {
+  handleLogin: (name: string, pw: string) => void
+}
+
+export function LoginForm({ handleLogin }: LoginFormProps): JSX.Element {
   const { t } = useTranslation()
 
   const [isPasswordResetFormOpened, setIsPasswordResetFormOpened] =
@@ -37,8 +41,10 @@ export function LoginForm(): JSX.Element {
   // Temporary code to show form data and test the component
   const [showData, setShowData] = useState<Record<string, string | boolean>>({})
 
-  function onSubmit(data: LoginCredentials): void {
-    setShowData(data)
+  function onSubmit(credentials: LoginCredentials): void {
+    setShowData(credentials)
+
+    handleLogin(credentials.email, credentials.password)
   }
 
   return (
