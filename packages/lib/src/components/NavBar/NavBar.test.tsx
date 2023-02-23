@@ -6,6 +6,7 @@ import {
   IconUsers,
 } from '@tabler/icons'
 import { render, RenderResult, screen } from '@testing-library/react'
+import { CSSProperties } from 'react'
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { NavLink } from './components'
@@ -49,7 +50,19 @@ describe('NavBar', () => {
 
   beforeAll(() => {
     vi.mock('@tanstack/react-router', () => ({
-      Link: ({ children }: { children: React.ReactNode }) => children,
+      Link: ({
+        children,
+        to,
+        ...props
+      }: {
+        children: React.ReactNode
+        to: string
+        style: CSSProperties
+      }) => (
+        <a {...props} href={to}>
+          {children}
+        </a>
+      ),
     }))
 
     vi.mock('react-i18next', () => ({
@@ -68,10 +81,24 @@ describe('NavBar', () => {
   })
 
   it('should contain the correct navigation links', () => {
-    expect(screen.getByText('navigation.home')).toBeDefined()
-    expect(screen.getByText('navigation.users')).toBeDefined()
-    expect(screen.getByText('navigation.roles')).toBeDefined()
-    expect(screen.getByText('navigation.rights')).toBeDefined()
-    expect(screen.getByText('navigation.translations')).toBeDefined()
+    expect(screen.getByText('navigation.home').closest('a')).toHaveProperty(
+      'href',
+      '/home'
+    )
+    expect(screen.getByText('navigation.users').closest('a')).toHaveProperty(
+      'href',
+      '/users'
+    )
+    expect(screen.getByText('navigation.roles').closest('a')).toHaveProperty(
+      'href',
+      '/roles'
+    )
+    expect(screen.getByText('navigation.rights').closest('a')).toHaveProperty(
+      'href',
+      '/rights'
+    )
+    expect(
+      screen.getByText('navigation.translations').closest('a')
+    ).toHaveProperty('href', '/translations')
   })
 })

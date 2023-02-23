@@ -74,7 +74,7 @@ export function Header({ isOpen, handleOpenNav }: HeaderProps): JSX.Element {
             <HoverCard>
               <HoverCard.Target>
                 <ActionIcon
-                  data-testid="darkmode-toggle"
+                  aria-label="darkmode-toggle"
                   onClick={() => toggleColorScheme()}
                   color="dark"
                   sx={{
@@ -102,7 +102,7 @@ export function Header({ isOpen, handleOpenNav }: HeaderProps): JSX.Element {
             <HoverCard>
               <HoverCard.Target>
                 <ActionIcon
-                  data-testid="language-toggle"
+                  aria-label="language-toggle"
                   color="dark"
                   onClick={() => {
                     onToggleLanguage()
@@ -116,7 +116,7 @@ export function Header({ isOpen, handleOpenNav }: HeaderProps): JSX.Element {
                     },
                   }}
                 >
-                  <Text data-testid="selected-language" size="lg">
+                  <Text aria-label="selected-language" size="lg">
                     {i18n.language.toUpperCase()}
                   </Text>
                 </ActionIcon>
