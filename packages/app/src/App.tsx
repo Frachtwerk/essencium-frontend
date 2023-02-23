@@ -134,6 +134,7 @@ function App({ children }: AppProps): JSX.Element {
       <AppShell
         asideOffsetBreakpoint="sm"
         navbarOffsetBreakpoint="sm"
+        padding="md"
         navbar={<NavBar isOpen={openedNav} links={NAV_LINKS} />}
         footer={<Footer links={FOOTER_LINKS} />}
         header={<Header isOpen={openedNav} handleOpenNav={handleOpenNav} />}
