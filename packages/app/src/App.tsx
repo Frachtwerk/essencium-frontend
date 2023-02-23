@@ -13,7 +13,7 @@ import {
   IconUsers,
 } from '@tabler/icons'
 import { useNavigate } from '@tanstack/react-router'
-import { createStore, Provider } from 'jotai'
+import { createStore, Provider as JotaiProvider } from 'jotai'
 import type { FooterLink, NavLink } from 'lib'
 import { Footer, Header, NavBar } from 'lib'
 import { useState } from 'react'
@@ -126,7 +126,7 @@ function App({ children }: AppProps): JSX.Element {
   })
 
   return (
-    <Provider store={store}>
+    <JotaiProvider store={store}>
       <SpotlightProvider
         actions={actions}
         searchPlaceholder={t('header.spotlight.placeholder') as string}
@@ -145,7 +145,7 @@ function App({ children }: AppProps): JSX.Element {
           {children}
         </AppShell>
       </SpotlightProvider>
-    </Provider>
+    </JotaiProvider>
   )
 }
 
