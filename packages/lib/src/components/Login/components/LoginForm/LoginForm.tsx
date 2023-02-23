@@ -41,10 +41,10 @@ export function LoginForm({ handleLogin }: LoginFormProps): JSX.Element {
   // Temporary code to show form data and test the component
   const [showData, setShowData] = useState<Record<string, string | boolean>>({})
 
-  function onSubmit(data: LoginCredentials): void {
-    setShowData(data)
+  function onSubmit(credentials: LoginCredentials): void {
+    setShowData(credentials)
 
-    handleLogin(data.email, data.password)
+    handleLogin(credentials.email, credentials.password)
   }
 
   return (
