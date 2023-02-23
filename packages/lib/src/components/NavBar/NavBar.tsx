@@ -10,7 +10,7 @@ export function NavBar({ isOpen, links }: NavBarProps): JSX.Element {
       p="sm"
       hiddenBreakpoint="sm"
       width={{ sm: 170 }}
-      style={{ position: 'fixed' }}
+      fixed
     >
       <NavLinks links={links} />
     </Navbar>
