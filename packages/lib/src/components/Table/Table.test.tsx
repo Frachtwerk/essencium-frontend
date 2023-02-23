@@ -176,7 +176,7 @@ describe('Table', () => {
   })
 
   it('show the correct page count', () => {
-    expect(screen.getByText('Pages: 2')).toBeDefined()
+    expect(screen.getByText('table.footer.pageCount 2')).toBeDefined()
   })
 
   it('show the correct page size', () => {

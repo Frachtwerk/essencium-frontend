@@ -7,10 +7,13 @@ import {
 } from '@mantine/core'
 import { IconSortAscending2, IconSortDescending2 } from '@tabler/icons'
 import { flexRender } from '@tanstack/react-table'
+import { useTranslation } from 'react-i18next'
 
 import { TableProps } from './types'
 
 export function Table<T>({ tableModel }: TableProps<T>): JSX.Element {
+  const { t } = useTranslation()
+
   return (
     <Flex direction="column" align="end">
       <MantineTable striped highlightOnHover>
@@ -72,12 +75,12 @@ export function Table<T>({ tableModel }: TableProps<T>): JSX.Element {
 
       <Flex align="center">
         <Text size="sm" mr="xl">
-          Pages: {tableModel.getPageCount()}
+          {t('table.footer.pageCount')} {tableModel.getPageCount()}
         </Text>
 
         <Flex align="center" mr="xl">
           <Text size="sm" mr="xs">
-            Size:
+            {t('table.footer.pageSize')}
           </Text>
 
           <Select

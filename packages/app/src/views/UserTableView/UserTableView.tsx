@@ -3,10 +3,13 @@ import { Center, Loader, Text } from '@mantine/core'
 import { ColumnDef } from '@tanstack/react-table'
 import { HttpNotification, User, UserTable } from 'lib'
 import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { useGetUsers } from '@/api'
 
 export function UserTableView(): JSX.Element {
+  const { t } = useTranslation()
+
   const {
     data: users,
     isError,
@@ -51,8 +54,8 @@ export function UserTableView(): JSX.Element {
           error?.response?.status ? `(${error?.response?.status})` : ''
         }`}
         errorMessage={error?.message}
-        loadingTitle="Loading..."
-        loadingMessage="Retrieving data from the server"
+        loadingTitle={t('notifications.loadingAsyncData.title') as string}
+        loadingMessage={t('notifications.loadingAsyncData.message') as string}
       />
 
       {isLoading ? (
