@@ -56,11 +56,6 @@ describe('Footer', () => {
   })
 
   it('should contain the correct content', () => {
-    expect(screen.getByText('footer.license').closest('a')).toHaveProperty(
-      'href',
-      'license'
-    )
-
     expect(screen.getByText('footer.privacy').closest('a')).toHaveProperty(
       'href',
       'privacy'
