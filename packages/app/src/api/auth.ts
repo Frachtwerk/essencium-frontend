@@ -1,5 +1,5 @@
 import { useMutation, UseMutationResult } from '@tanstack/react-query'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { useAtom, useStore } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 
@@ -15,7 +15,7 @@ const tokenAtom = atomWithStorage<string | null>('authToken', null)
 export function useCreateToken(
   username: string,
   password: string
-): UseMutationResult<TokenResponse, unknown, void, unknown> {
+): UseMutationResult<TokenResponse, AxiosError, void, unknown> {
   const store = useStore()
   const [token, setToken] = useAtom(tokenAtom)
 
@@ -24,7 +24,7 @@ export function useCreateToken(
     password,
   }
 
-  const mutation = useMutation<TokenResponse>({
+  const mutation = useMutation<TokenResponse, AxiosError>({
     mutationKey: ['createToken'],
     mutationFn: () =>
       axios.post('/auth/token', credentials).then(res => res.data || token),
@@ -39,14 +39,14 @@ export function useCreateToken(
 
 export function useRenewToken(): UseMutationResult<
   TokenResponse,
-  unknown,
+  AxiosError,
   void,
   unknown
 > {
   const store = useStore()
   const [token, setToken] = useAtom(tokenAtom)
 
-  const mutation = useMutation<TokenResponse>({
+  const mutation = useMutation<TokenResponse, AxiosError>({
     mutationKey: ['renewToken'],
     mutationFn: () => axios.post('/auth/token').then(res => res.data || token),
     onSuccess(data: TokenResponse) {
@@ -60,8 +60,8 @@ export function useRenewToken(): UseMutationResult<
 
 export function useResetPassword(
   username: string
-): UseMutationResult<TokenResponse, unknown, void, unknown> {
-  const mutation = useMutation<TokenResponse>({
+): UseMutationResult<TokenResponse, AxiosError, void, unknown> {
+  const mutation = useMutation<TokenResponse, AxiosError>({
     mutationKey: ['resetPassword'],
     mutationFn: () =>
       axios
@@ -80,8 +80,8 @@ export function useResetPassword(
 
 export function useSetPassword(
   request: SetPasswordRequest
-): UseMutationResult<TokenResponse, unknown, void, unknown> {
-  const mutation = useMutation<TokenResponse>({
+): UseMutationResult<TokenResponse, AxiosError, void, unknown> {
+  const mutation = useMutation<TokenResponse, AxiosError>({
     mutationKey: ['setPassword'],
     mutationFn: () =>
       axios
