@@ -1,5 +1,7 @@
 import { render, RenderResult, screen } from '@testing-library/react'
 import { CSSProperties } from 'react'
+import { initReactI18next } from 'react-i18next'
+import { initI18n } from 'translations'
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { Footer } from './Footer'
@@ -40,13 +42,7 @@ describe('Footer', () => {
       ),
     }))
 
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => {
-        return {
-          t: (str: unknown) => str,
-        }
-      },
-    }))
+    initI18n(initReactI18next)
 
     FooterMounted = render(<Footer links={FOOTER_LINKS} />)
   })
@@ -56,17 +52,17 @@ describe('Footer', () => {
   })
 
   it('should contain the correct content', () => {
-    expect(screen.getByText('footer.privacy').closest('a')).toHaveProperty(
+    expect(screen.getByText('Privacy').closest('a')).toHaveProperty(
       'href',
       'privacy'
     )
 
-    expect(screen.getByText('footer.imprint').closest('a')).toHaveProperty(
+    expect(screen.getByText('Imprint').closest('a')).toHaveProperty(
       'href',
       'imprint'
     )
 
-    expect(screen.getByText('footer.contact').closest('a')).toHaveProperty(
+    expect(screen.getByText('Contact').closest('a')).toHaveProperty(
       'href',
       'contact'
     )
