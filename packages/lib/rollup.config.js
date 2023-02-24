@@ -38,7 +38,6 @@ export default [
       'react',
       'react-dom',
       'react-i18next',
-      'tailwindcss',
       'translations',
       '@tanstack/react-router',
       'zod',
