@@ -34,6 +34,7 @@ export default [
       '@mantine/spotlight',
       '@tabler/icons',
       '@tanstack/react-query',
+      '@tanstack/react-table',
       'i18next',
       'react',
       'react-dom',

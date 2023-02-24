@@ -139,5 +139,17 @@
     "password": {
       "minLength": "Password must be at least 8 characters long"
     }
+  },
+  "notifications": {
+    "loadingAsyncData": {
+      "title": "Loading ...",
+      "message": "Loading data from the server"
+    }
+  },
+  "table": {
+    "footer": {
+      "pageCount": "Pages:",
+      "pageSize": "Size:"
+    }
   }
 }
