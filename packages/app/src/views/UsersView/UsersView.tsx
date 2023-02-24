@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import { Center, Loader, Text } from '@mantine/core'
 import { ColumnDef } from '@tanstack/react-table'
 import { HttpNotification, User, UserTable } from 'lib'
