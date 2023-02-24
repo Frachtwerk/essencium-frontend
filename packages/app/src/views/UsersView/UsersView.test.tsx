@@ -3,7 +3,7 @@ import ReactDOM, { createPortal } from 'react-dom'
 import { beforeAll, beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { useGetUsers } from '@/api'
-import { UserTableView } from '@/views/UserTableView/UserTableView'
+import { UsersView } from '@/views/UsersView/UsersView'
 
 const data = [
   {
@@ -14,7 +14,7 @@ const data = [
   },
 ]
 
-describe('UserTableView', () => {
+describe('UsersView', () => {
   beforeAll(() => {
     vi.mock('@/api', () => {
       return {
@@ -46,7 +46,7 @@ describe('UserTableView', () => {
       isLoading: true,
     }))
 
-    render(<UserTableView />)
+    render(<UsersView />)
 
     expect(screen.getByRole('presentation')).toBeDefined()
     expect(useGetUsers).toHaveBeenCalled()
@@ -63,7 +63,7 @@ describe('UserTableView', () => {
       isLoading: false,
     }))
 
-    render(<UserTableView />)
+    render(<UsersView />)
 
     expect(useGetUsers).toHaveBeenCalled()
     expect(createPortal).not.toHaveBeenCalled()
@@ -81,7 +81,7 @@ describe('UserTableView', () => {
       isLoading: false,
     }))
 
-    render(<UserTableView />)
+    render(<UsersView />)
 
     expect(screen.getByRole('presentation')).toBeDefined()
     expect(useGetUsers).toHaveBeenCalled()
@@ -98,7 +98,7 @@ describe('UserTableView', () => {
       isLoading: false,
     }))
 
-    render(<UserTableView />)
+    render(<UsersView />)
 
     expect(screen.getByRole('presentation')).toBeDefined()
     expect(useGetUsers).toHaveBeenCalled()

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unstable-nested-components */
 import { Center, Loader, Text } from '@mantine/core'
 import { ColumnDef } from '@tanstack/react-table'
 import { HttpNotification, User, UserTable } from 'lib'
@@ -7,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 
 import { useGetUsers } from '@/api'
 
-export function UserTableView(): JSX.Element {
+export function UsersView(): JSX.Element {
   const { t } = useTranslation()
 
   const {
