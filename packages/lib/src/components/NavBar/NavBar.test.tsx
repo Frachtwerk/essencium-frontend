@@ -7,6 +7,8 @@ import {
 } from '@tabler/icons'
 import { render, RenderResult, screen } from '@testing-library/react'
 import { CSSProperties } from 'react'
+import { initReactI18next } from 'react-i18next'
+import { initI18n } from 'translations'
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { NavLink } from './components'
@@ -65,13 +67,7 @@ describe('NavBar', () => {
       ),
     }))
 
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => {
-        return {
-          t: (str: unknown) => str,
-        }
-      },
-    }))
+    initI18n(initReactI18next)
 
     NavBarMounted = render(<NavBar isOpen links={NAV_LINKS} />)
   })
@@ -81,24 +77,25 @@ describe('NavBar', () => {
   })
 
   it('should contain the correct navigation links', () => {
-    expect(screen.getByText('navigation.home').closest('a')).toHaveProperty(
+    expect(screen.getByText('Home').closest('a')).toHaveProperty(
       'href',
       '/home'
     )
-    expect(screen.getByText('navigation.users').closest('a')).toHaveProperty(
+    expect(screen.getByText('Users').closest('a')).toHaveProperty(
       'href',
       '/users'
     )
-    expect(screen.getByText('navigation.roles').closest('a')).toHaveProperty(
+    expect(screen.getByText('Roles').closest('a')).toHaveProperty(
       'href',
       '/roles'
     )
-    expect(screen.getByText('navigation.rights').closest('a')).toHaveProperty(
+    expect(screen.getByText('Rights').closest('a')).toHaveProperty(
       'href',
       '/rights'
     )
-    expect(
-      screen.getByText('navigation.translations').closest('a')
-    ).toHaveProperty('href', '/translations')
+    expect(screen.getByText('Translations').closest('a')).toHaveProperty(
+      'href',
+      '/translations'
+    )
   })
 })

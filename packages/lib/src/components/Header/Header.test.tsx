@@ -1,6 +1,7 @@
 import * as mantine from '@mantine/core'
 import { render, RenderResult, screen } from '@testing-library/react'
-import { useTranslation } from 'react-i18next'
+import { initReactI18next } from 'react-i18next'
+import { i18n, initI18n } from 'translations'
 import { afterAll, assert, beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { SearchBar, UserMenu } from './components'
@@ -10,17 +11,6 @@ describe('Header', () => {
   let HeaderMounted: RenderResult
 
   beforeAll(() => {
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => {
-        return {
-          t: (str: unknown) => str,
-          i18n: {
-            language: 'en',
-          },
-        }
-      },
-    }))
-
     vi.mock('@tanstack/react-router', () => ({
       Link: ({ children }: { children: React.ReactNode }) => children,
     }))
@@ -30,6 +20,8 @@ describe('Header', () => {
       toggleColorScheme: () => {},
     }))
 
+    initI18n(initReactI18next)
+
     HeaderMounted = render(<Header isOpen handleOpenNav={() => {}} />)
   })
 
@@ -38,7 +30,7 @@ describe('Header', () => {
   })
 
   it('should contain the correct header items', () => {
-    expect(screen.getByText('header.title')).toBeDefined()
+    expect(screen.getByText('Essencium')).toBeDefined()
 
     render(<SearchBar />)
     render(<UserMenu />)
@@ -55,8 +47,6 @@ describe('Header', () => {
   })
 
   it('should display the correct language', () => {
-    const { i18n } = useTranslation()
-
     expect(screen.getByLabelText('selected-language').textContent).toBe(
       i18n.language.toUpperCase()
     )
