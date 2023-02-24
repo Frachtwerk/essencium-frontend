@@ -49,7 +49,7 @@
     "pnpm": "7"
   },
   "volta": {
-    "node": "16.19.1"
+    "node": "18.14.2"
   },
   "dependencies": {
     "@nrwl/nx-cloud": "15.1.1"
