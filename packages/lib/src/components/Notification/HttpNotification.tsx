@@ -26,17 +26,18 @@ export function HttpNotification({
 
   if (!isLoading && !isError) return null
 
+  function getTitle(): string {
+    if (isLoading && loadingTitle) return loadingTitle
+
+    if (isError && errorTitle) return errorTitle
+
+    return ''
+  }
+
   return (
     <Notification
       {...props}
-      title={
-        // eslint-disable-next-line no-nested-ternary
-        isLoading && loadingTitle
-          ? loadingTitle
-          : isError && errorTitle
-          ? errorTitle
-          : ''
-      }
+      title={getTitle()}
       icon={isError && <IconX data-testid="error-icon" size={18} />}
       color={isError ? 'red' : theme.colors.blue[8]}
       loading={isLoading}
