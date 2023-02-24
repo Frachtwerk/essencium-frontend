@@ -40,7 +40,7 @@ export const profileRoute = new Route({
   component: ProfileView,
 })
 
-export const userTableRoute = new Route({
+export const usersRoute = new Route({
   getParentRoute: () => layoutRouteAppShell,
   path: 'users',
   component: UserTableView,

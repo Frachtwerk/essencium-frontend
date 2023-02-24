@@ -8,7 +8,7 @@ import {
   profileRoute,
   rootRoute,
   setPasswordRoute,
-  userTableRoute,
+  usersRoute,
 } from '@/router/routes'
 
 // This enables type-safety for the router
@@ -24,7 +24,7 @@ const routeTree = rootRoute.addChildren([
     indexRoute,
     contactRoute,
     profileRoute,
-    userTableRoute,
+    usersRoute,
   ]),
   layoutRouteLogin.addChildren([loginRoute, setPasswordRoute]),
 ])
