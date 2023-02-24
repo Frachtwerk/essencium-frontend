@@ -37,7 +37,7 @@ export function Header({ isOpen, handleOpenNav }: HeaderProps): JSX.Element {
   }
 
   return (
-    <MantineHeader height={{ base: 70 }} p="md">
+    <MantineHeader height={{ base: 70 }} p="md" fixed>
       <Flex
         sx={{
           height: '100%',

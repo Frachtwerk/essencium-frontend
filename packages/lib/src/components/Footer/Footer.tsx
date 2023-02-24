@@ -17,7 +17,7 @@ export function Footer({ links }: FooterLinksProps): JSX.Element {
   const theme = useMantineTheme()
 
   return (
-    <MantineFooter height="sm" p="md">
+    <MantineFooter height="sm" p="md" fixed>
       <Flex
         justify={{ base: 'center', xs: 'space-between' }}
         direction="row"
