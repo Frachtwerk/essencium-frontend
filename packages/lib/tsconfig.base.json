@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "ES6",
+    "declaration": true,
+    "declarationDir": "types",
+    "declarationMap": true,
+    "sourceMap": true,
+    "moduleResolution": "node"
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "rollup.config.js"],
+  "exclude": ["dist", "node_modules", ".rollup.cache"]
+}
