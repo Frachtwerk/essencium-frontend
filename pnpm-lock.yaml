@@ -76,7 +76,7 @@ importers:
       eslint-plugin-react: 7.32.2
       eslint-plugin-react-hooks: 4.6.0
       fast-glob: 3.2.12
-      happy-dom: 8.7.2
+      happy-dom: 8.9.0
       i18next: 22.4.10
       jotai: 2.0.2
       lib: workspace:*
@@ -137,7 +137,7 @@ importers:
       '@typescript-eslint/eslint-plugin': 5.53.0_ny4s7qc6yg74faf3d6xty2ofzy
       '@typescript-eslint/parser': 5.53.0_7kw3g6rralp5ps6mg3uyzz6azm
       '@vitejs/plugin-react': 3.1.0_vite@4.1.4
-      '@vitest/coverage-c8': 0.28.5_happy-dom@8.7.2
+      '@vitest/coverage-c8': 0.28.5_happy-dom@8.9.0
       dotenv: 16.0.3
       eslint: 8.34.0
       eslint-config-airbnb: 19.0.4_hbw3smywoiafix46yjc35xsaqq
@@ -147,14 +147,14 @@ importers:
       eslint-plugin-jsx-a11y: 6.7.1_eslint@8.34.0
       eslint-plugin-react: 7.32.2_eslint@8.34.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.34.0
-      happy-dom: 8.7.2
+      happy-dom: 8.9.0
       prettier: 2.8.4
       rimraf: 4.1.2
       standard-version: 9.5.0
       typescript: 4.9.5
       vite: 4.1.4_@types+node@18.14.1
       vite-plugin-sentry: 1.1.7_vite@4.1.4
-      vitest: 0.28.5_happy-dom@8.7.2
+      vitest: 0.28.5_happy-dom@8.9.0
     dependenciesMeta:
       lib:
         injected: true
@@ -217,7 +217,7 @@ importers:
       eslint-plugin-jsx-a11y: 6.7.1
       eslint-plugin-react: 7.32.2
       eslint-plugin-react-hooks: 4.6.0
-      happy-dom: 8.7.2
+      happy-dom: 8.9.0
       i18next: 22.4.10
       prettier: 2.8.4
       react: 18.2.0
@@ -261,7 +261,7 @@ importers:
       '@typescript-eslint/eslint-plugin': 5.53.0_ny4s7qc6yg74faf3d6xty2ofzy
       '@typescript-eslint/parser': 5.53.0_7kw3g6rralp5ps6mg3uyzz6azm
       '@vitejs/plugin-react': 3.1.0_vite@4.1.4
-      '@vitest/coverage-c8': 0.28.5_happy-dom@8.7.2
+      '@vitest/coverage-c8': 0.28.5_happy-dom@8.9.0
       dayjs: 1.11.7
       eslint: 8.34.0
       eslint-config-airbnb: 19.0.4_hbw3smywoiafix46yjc35xsaqq
@@ -271,7 +271,7 @@ importers:
       eslint-plugin-jsx-a11y: 6.7.1_eslint@8.34.0
       eslint-plugin-react: 7.32.2_eslint@8.34.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.34.0
-      happy-dom: 8.7.2
+      happy-dom: 8.9.0
       i18next: 22.4.10
       prettier: 2.8.4
       react: 18.2.0
@@ -287,7 +287,7 @@ importers:
       tslib: 2.5.0
       typescript: 4.9.5
       vite: 4.1.4
-      vitest: 0.28.5_happy-dom@8.7.2
+      vitest: 0.28.5_happy-dom@8.9.0
       zod: 3.20.6
 
   packages/translations:
@@ -2467,18 +2467,18 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.19.6_@babel+core@7.21.0
       magic-string: 0.27.0
       react-refresh: 0.14.0
-      vite: 4.1.4
+      vite: 4.1.4_@types+node@18.14.1
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@vitest/coverage-c8/0.28.5_happy-dom@8.7.2:
+  /@vitest/coverage-c8/0.28.5_happy-dom@8.9.0:
     resolution: {integrity: sha512-zCNyurjudoG0BAqAgknvlBhkV2V9ZwyYLWOAGtHSDhL/St49MJT+V2p1G0yPaoqBbKOTATVnP5H2p1XL15H75g==}
     dependencies:
       c8: 7.12.0
       picocolors: 1.0.0
       std-env: 3.3.1
-      vitest: 0.28.5_happy-dom@8.7.2
+      vitest: 0.28.5_happy-dom@8.9.0
     transitivePeerDependencies:
       - '@edge-runtime/vm'
       - '@vitest/browser'
@@ -4613,11 +4613,12 @@ packages:
       uglify-js: 3.17.4
     dev: true
 
-  /happy-dom/8.7.2:
-    resolution: {integrity: sha512-lkm1l7SLNtI9svaU3PflbM8zahYahLrUZf0fZTUkQ8W6bo5gtXjC/2utOkcjpv9rhWTkHFUuDVjAvBWg4ClAxA==}
+  /happy-dom/8.9.0:
+    resolution: {integrity: sha512-JZwJuGdR7ko8L61136YzmrLv7LgTh5b8XaEM3P709mLjyQuXJ3zHTDXvUtBBahRjGlcYW0zGjIiEWizoTUGKfA==}
     dependencies:
       css.escape: 1.5.1
       he: 1.2.0
+      iconv-lite: 0.6.3
       node-fetch: 2.6.7
       webidl-conversions: 7.0.0
       whatwg-encoding: 2.0.0
@@ -8338,7 +8339,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.28.5_happy-dom@8.7.2:
+  /vitest/0.28.5_happy-dom@8.9.0:
     resolution: {integrity: sha512-pyCQ+wcAOX7mKMcBNkzDwEHRGqQvHUl0XnoHR+3Pb1hytAHISgSxv9h0gUiSiYtISXUU3rMrKiKzFYDrI6ZIHA==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -8372,7 +8373,7 @@ packages:
       cac: 6.7.14
       chai: 4.3.7
       debug: 4.3.4
-      happy-dom: 8.7.2
+      happy-dom: 8.9.0
       local-pkg: 0.4.2
       pathe: 1.1.0
       picocolors: 1.0.0
