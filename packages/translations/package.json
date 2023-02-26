@@ -41,7 +41,7 @@
     "@rollup/plugin-node-resolve": "15.0.1",
     "@rollup/plugin-terser": "0.4.0",
     "@rollup/plugin-typescript": "11.0.0",
-    "rollup": "3.17.2",
+    "rollup": "3.17.3",
     "rollup-plugin-dts": "5.1.1",
     "rollup-plugin-peer-deps-external": "2.2.4",
     "tslib": "2.5.0",
