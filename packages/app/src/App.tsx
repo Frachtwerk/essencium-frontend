@@ -1,4 +1,4 @@
-import { AppShell, useMantineTheme } from '@mantine/core'
+import { AppShell, Image, useMantineTheme } from '@mantine/core'
 import type { SpotlightAction } from '@mantine/spotlight'
 import { SpotlightProvider } from '@mantine/spotlight'
 import {
@@ -18,6 +18,8 @@ import type { FooterLink, NavLink } from 'lib'
 import { Footer, Header, NavBar } from 'lib'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import logoURL from './img/web/icon-512.png'
 
 type AppProps = {
   children: React.ReactNode
@@ -140,7 +142,20 @@ function App({ children }: AppProps): JSX.Element {
           navbarOffsetBreakpoint="sm"
           navbar={<NavBar isOpen={openedNav} links={NAV_LINKS} />}
           footer={<Footer links={FOOTER_LINKS} />}
-          header={<Header isOpen={openedNav} handleOpenNav={handleOpenNav} />}
+          header={
+            <Header
+              isOpen={openedNav}
+              handleOpenNav={handleOpenNav}
+              logo={
+                <Image
+                  src={logoURL}
+                  alt="Essencium Logo"
+                  width="30px"
+                  height="auto"
+                />
+              }
+            />
+          }
         >
           {children}
         </AppShell>

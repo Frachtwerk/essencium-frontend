@@ -7,11 +7,10 @@ import {
   HoverCard,
   MediaQuery,
   Text,
-  ThemeIcon,
   useMantineColorScheme,
   useMantineTheme,
 } from '@mantine/core'
-import { IconBrandReact, IconMoon, IconSun } from '@tabler/icons'
+import { IconMoon, IconSun } from '@tabler/icons'
 import { useTranslation } from 'react-i18next'
 
 import { SearchBar } from './components/SearchBar'
@@ -23,7 +22,11 @@ const LANGUAGES = {
   EN: 'en',
 }
 
-export function Header({ isOpen, handleOpenNav }: HeaderProps): JSX.Element {
+export function Header({
+  isOpen,
+  handleOpenNav,
+  logo,
+}: HeaderProps): JSX.Element {
   const { t, i18n } = useTranslation()
 
   const theme = useMantineTheme()
@@ -56,12 +59,9 @@ export function Header({ isOpen, handleOpenNav }: HeaderProps): JSX.Element {
         </MediaQuery>
 
         <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-          <Group spacing="sm" noWrap>
-            <ThemeIcon size="lg" variant="filled">
-              <IconBrandReact />
-            </ThemeIcon>
-
-            <Text size={24} mx="xs">
+          <Group spacing="xs" noWrap align="center">
+            <span>{logo}</span>
+            <Text size={24} mr="xs" weight="500">
               {t('header.title')}
             </Text>
           </Group>
