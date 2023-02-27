@@ -93,7 +93,6 @@ importers:
       vite-plugin-sentry: 1.1.7
       vitest: 0.29.1
       zod: 3.20.6
-      zustand: 4.3.4
     dependencies:
       '@emotion/react': 11.10.6_pmekkgnqduwlme35zpnqhenc34
       '@fontsource/fira-code': 4.5.13
@@ -127,7 +126,6 @@ importers:
       react-i18next: 12.2.0_3yopsigl4h4eb2nqrqfsy65uwi
       translations: link:../translations
       zod: 3.20.6
-      zustand: 4.3.4_react@18.2.0
     devDependencies:
       '@babel/core': 7.21.0
       '@testing-library/react': 14.0.0_biqbaboplfbrettd7655fr4n2y
@@ -8607,22 +8605,6 @@ packages:
 
   /zod/3.20.6:
     resolution: {integrity: sha512-oyu0m54SGCtzh6EClBVqDDlAYRz4jrVtKwQ7ZnsEmMI9HnzuZFj8QFwAY1M5uniIYACdGvv0PBWPF2kO0aNofA==}
-
-  /zustand/4.3.4_react@18.2.0:
-    resolution: {integrity: sha512-QSV8MF80I4yM9UCcBhIBr5OcQkiTbZdxDofg5R5vyX49QsEia7sK1iwOhFyH/0hyNVg+h+OzARM76G8MgMno0g==}
-    engines: {node: '>=12.7.0'}
-    peerDependencies:
-      immer: '>=9.0'
-      react: '>=16.8'
-    peerDependenciesMeta:
-      immer:
-        optional: true
-      react:
-        optional: true
-    dependencies:
-      react: 18.2.0
-      use-sync-external-store: 1.2.0_react@18.2.0
-    dev: false
 
   /zwitch/2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
