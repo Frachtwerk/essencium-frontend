@@ -52,7 +52,7 @@ importers:
       '@sentry/tracing': 7.38.0
       '@tabler/icons': 1.119.0
       '@tanstack/react-query': 4.24.10
-      '@tanstack/react-query-devtools': 4.24.10
+      '@tanstack/react-query-devtools': 4.24.12
       '@tanstack/react-router': 0.0.1-beta.83
       '@tanstack/react-router-devtools': 0.0.1-beta.83
       '@tanstack/react-table': 8.7.9
@@ -110,7 +110,7 @@ importers:
       '@sentry/tracing': 7.38.0
       '@tabler/icons': 1.119.0_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-query': 4.24.10_biqbaboplfbrettd7655fr4n2y
-      '@tanstack/react-query-devtools': 4.24.10_636dldj5wfr5vkyyqzs5k363kq
+      '@tanstack/react-query-devtools': 4.24.12_636dldj5wfr5vkyyqzs5k363kq
       '@tanstack/react-router': 0.0.1-beta.83_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-router-devtools': 0.0.1-beta.83_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-table': 8.7.9_biqbaboplfbrettd7655fr4n2y
@@ -2065,8 +2065,8 @@ packages:
   /@tanstack/query-core/4.24.10:
     resolution: {integrity: sha512-2QywqXEAGBIUoTdgn1lAB4/C8QEqwXHj2jrCLeYTk2xVGtLiPEUD8jcMoeB2noclbiW2mMt4+Fq7fZStuz3wAQ==}
 
-  /@tanstack/react-query-devtools/4.24.10_636dldj5wfr5vkyyqzs5k363kq:
-    resolution: {integrity: sha512-1uzJNLdLjRsNt4O5ldv1SYPevWvSdHtKIyVJeUv4hSERPEhrKKfa8WC3dBOX24CdLEYH2ndLZW4ZiC9nzSKCtg==}
+  /@tanstack/react-query-devtools/4.24.12_636dldj5wfr5vkyyqzs5k363kq:
+    resolution: {integrity: sha512-FxSIQk84vn5SpK6xQ2AxL63eis/qQ5foJ1LEjTzaU7cMcfvN4vNZ3mtUCeW/txI8aBpZ5gbVmGLEAtoi8ub4kQ==}
     peerDependencies:
       '@tanstack/react-query': 4.24.10
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
