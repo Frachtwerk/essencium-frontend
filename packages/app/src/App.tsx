@@ -19,6 +19,8 @@ import { Footer, Header, NavBar } from 'lib'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import logoURL from './img/web/icon-512.png'
+
 type AppProps = {
   children: React.ReactNode
 }
@@ -146,7 +148,7 @@ function App({ children }: AppProps): JSX.Element {
               handleOpenNav={handleOpenNav}
               logo={
                 <Image
-                  src="/src/img/web/icon-512.png"
+                  src={logoURL}
                   alt="Essencium Logo"
                   width="30px"
                   height="auto"
