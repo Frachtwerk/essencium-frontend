@@ -53,7 +53,7 @@ export function Header({
             opened={isOpen}
             onClick={handleOpenNav}
             size="sm"
-            color="black"
+            color={theme.colors.gray[5]}
             mr="xl"
           />
         </MediaQuery>
