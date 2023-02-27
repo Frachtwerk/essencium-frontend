@@ -9,6 +9,7 @@ import { Header } from './Header'
 
 describe('Header', () => {
   let HeaderMounted: RenderResult
+  const applicationLogo = <img alt="Application Logo" />
 
   beforeAll(() => {
     vi.mock('@tanstack/react-router', () => ({
@@ -22,7 +23,9 @@ describe('Header', () => {
 
     initI18n(initReactI18next)
 
-    HeaderMounted = render(<Header isOpen handleOpenNav={() => {}} />)
+    HeaderMounted = render(
+      <Header isOpen handleOpenNav={() => {}} logo={applicationLogo} />
+    )
   })
 
   afterAll(() => {
@@ -31,6 +34,7 @@ describe('Header', () => {
 
   it('should contain the correct header items', () => {
     expect(screen.getByText('Essencium')).toBeDefined()
+    expect(screen.getByRole('img')).toBeDefined()
 
     render(<SearchBar />)
     render(<UserMenu />)
