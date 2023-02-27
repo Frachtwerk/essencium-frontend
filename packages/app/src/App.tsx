@@ -1,4 +1,4 @@
-import { AppShell, useMantineTheme } from '@mantine/core'
+import { AppShell, Image, useMantineTheme } from '@mantine/core'
 import type { SpotlightAction } from '@mantine/spotlight'
 import { SpotlightProvider } from '@mantine/spotlight'
 import {
@@ -140,7 +140,20 @@ function App({ children }: AppProps): JSX.Element {
           navbarOffsetBreakpoint="sm"
           navbar={<NavBar isOpen={openedNav} links={NAV_LINKS} />}
           footer={<Footer links={FOOTER_LINKS} />}
-          header={<Header isOpen={openedNav} handleOpenNav={handleOpenNav} />}
+          header={
+            <Header
+              isOpen={openedNav}
+              handleOpenNav={handleOpenNav}
+              logo={
+                <Image
+                  src="/src/img/web/icon-512.png"
+                  alt="Essencium Logo"
+                  width="30px"
+                  height="auto"
+                />
+              }
+            />
+          }
         >
           {children}
         </AppShell>
