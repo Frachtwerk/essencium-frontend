@@ -9,7 +9,8 @@ export function NavBar({ isOpen, links }: NavBarProps): JSX.Element {
       hidden={!isOpen}
       p="sm"
       hiddenBreakpoint="sm"
-      width={{ sm: 170 }}
+      width={{ sm: 180 }}
+      styles={{ root: { maxWidth: 'min-content' } }}
       fixed
     >
       <NavLinks links={links} />
