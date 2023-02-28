@@ -43,7 +43,7 @@ const config: DocsThemeConfig = {
     }
   },
   footer: {
-    text: 'Essencium Frontend Docs',
+    text: 'Essencium Docs',
   },
 }
 
