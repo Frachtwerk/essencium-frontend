@@ -83,7 +83,7 @@ importers:
       prettier: 2.8.4
       react: 18.2.0
       react-dom: 18.2.0
-      react-hook-form: 7.43.2
+      react-hook-form: 7.43.3
       react-i18next: 12.2.0
       rimraf: 4.1.2
       standard-version: 9.5.0
@@ -100,7 +100,7 @@ importers:
       '@fortawesome/fontawesome-svg-core': 6.3.0
       '@fortawesome/free-solid-svg-icons': 6.3.0
       '@fortawesome/react-fontawesome': 0.2.0_d5rbrisxfyemehbvmdbryvgjte
-      '@hookform/resolvers': 2.9.11_react-hook-form@7.43.2
+      '@hookform/resolvers': 2.9.11_react-hook-form@7.43.3
       '@mantine/core': 5.10.5_zrh3qbywp4klzxzvocxisz6a5a
       '@mantine/dates': 5.10.5_wzk5rgclhymglk5h2qow4a376y
       '@mantine/hooks': 5.10.5_react@18.2.0
@@ -119,10 +119,10 @@ importers:
       fast-glob: 3.2.12
       i18next: 22.4.10
       jotai: 2.0.2_react@18.2.0
-      lib: file:packages/lib_k6xgybuxmt7rlrktdrnwpfgo4y
+      lib: file:packages/lib_smhkermfmzadis26ugziyapltu
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-hook-form: 7.43.2_react@18.2.0
+      react-hook-form: 7.43.3_react@18.2.0
       react-i18next: 12.2.0_3yopsigl4h4eb2nqrqfsy65uwi
       translations: link:../translations
       zod: 3.20.6
@@ -220,7 +220,7 @@ importers:
       prettier: 2.8.4
       react: 18.2.0
       react-dom: 18.2.0
-      react-hook-form: 7.43.2
+      react-hook-form: 7.43.3
       react-i18next: 12.2.0
       rimraf: 4.1.2
       rollup: 3.17.3
@@ -239,7 +239,7 @@ importers:
       '@fortawesome/fontawesome-svg-core': 6.3.0
       '@fortawesome/free-solid-svg-icons': 6.3.0
       '@fortawesome/react-fontawesome': 0.2.0_d5rbrisxfyemehbvmdbryvgjte
-      '@hookform/resolvers': 2.9.11_react-hook-form@7.43.2
+      '@hookform/resolvers': 2.9.11_react-hook-form@7.43.3
       '@mantine/core': 5.10.5_zrh3qbywp4klzxzvocxisz6a5a
       '@mantine/dates': 5.10.5_wzk5rgclhymglk5h2qow4a376y
       '@mantine/hooks': 5.10.5_react@18.2.0
@@ -274,7 +274,7 @@ importers:
       prettier: 2.8.4
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-hook-form: 7.43.2_react@18.2.0
+      react-hook-form: 7.43.3_react@18.2.0
       react-i18next: 12.2.0_3yopsigl4h4eb2nqrqfsy65uwi
       rimraf: 4.1.2
       rollup: 3.17.3
@@ -1109,12 +1109,12 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /@hookform/resolvers/2.9.11_react-hook-form@7.43.2:
+  /@hookform/resolvers/2.9.11_react-hook-form@7.43.3:
     resolution: {integrity: sha512-bA3aZ79UgcHj7tFV7RlgThzwSSHZgvfbt2wprldRkYBcMopdMvHyO17Wwp/twcJasNFischFfS7oz8Katz8DdQ==}
     peerDependencies:
       react-hook-form: ^7.0.0
     dependencies:
-      react-hook-form: 7.43.2_react@18.2.0
+      react-hook-form: 7.43.3_react@18.2.0
 
   /@humanwhocodes/config-array/0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
@@ -6982,8 +6982,8 @@ packages:
       react: 18.2.0
       scheduler: 0.23.0
 
-  /react-hook-form/7.43.2_react@18.2.0:
-    resolution: {integrity: sha512-NvD3Oe2Y9hhqo2R4I4iJigDzSLpdMnzUpNMxlnzTbdiT7NT3BW0GxWCzEtwPudZMUPbZhNcSy1EcGAygyhDORg==}
+  /react-hook-form/7.43.3_react@18.2.0:
+    resolution: {integrity: sha512-LV6Fixh+hirrl6dXbM78aB6n//82aKbsNbcofF3wc6nx1UJLu3Jj/gsg1E5C9iISnLX+du8VTUyBUz2aCy+H7w==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
@@ -8672,7 +8672,7 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
-  file:packages/lib_k6xgybuxmt7rlrktdrnwpfgo4y:
+  file:packages/lib_smhkermfmzadis26ugziyapltu:
     resolution: {directory: packages/lib, type: directory}
     id: file:packages/lib
     name: lib
@@ -8696,7 +8696,7 @@ packages:
       i18next: 22.4.10
       react: 18.2.0
       react-dom: 18.2.0
-      react-hook-form: 7.43.2
+      react-hook-form: 7.43.3
       react-i18next: 12.2.0
       translations: workspace:*
       zod: 3.20.6
@@ -8705,7 +8705,7 @@ packages:
       '@fortawesome/fontawesome-svg-core': 6.3.0
       '@fortawesome/free-solid-svg-icons': 6.3.0
       '@fortawesome/react-fontawesome': 0.2.0_d5rbrisxfyemehbvmdbryvgjte
-      '@hookform/resolvers': 2.9.11_react-hook-form@7.43.2
+      '@hookform/resolvers': 2.9.11_react-hook-form@7.43.3
       '@mantine/core': 5.10.5_zrh3qbywp4klzxzvocxisz6a5a
       '@mantine/dates': 5.10.5_wzk5rgclhymglk5h2qow4a376y
       '@mantine/hooks': 5.10.5_react@18.2.0
@@ -8718,7 +8718,7 @@ packages:
       i18next: 22.4.10
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-hook-form: 7.43.2_react@18.2.0
+      react-hook-form: 7.43.3_react@18.2.0
       react-i18next: 12.2.0_3yopsigl4h4eb2nqrqfsy65uwi
       translations: link:packages/translations
       zod: 3.20.6
