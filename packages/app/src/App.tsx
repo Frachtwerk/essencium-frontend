@@ -13,7 +13,6 @@ import {
   IconUsers,
 } from '@tabler/icons'
 import { useNavigate } from '@tanstack/react-router'
-import { createStore, Provider as JotaiProvider } from 'jotai'
 import type { FooterLink, NavLink } from 'lib'
 import { Footer, Header, NavBar } from 'lib'
 import { useState } from 'react'
@@ -108,8 +107,6 @@ function App({ children }: AppProps): JSX.Element {
 
   const theme = useMantineTheme()
 
-  const store = createStore()
-
   const { t } = useTranslation()
 
   const [openedNav, setOpenedNav] = useState(false)
@@ -128,39 +125,37 @@ function App({ children }: AppProps): JSX.Element {
   })
 
   return (
-    <JotaiProvider store={store}>
-      <SpotlightProvider
-        actions={actions}
-        searchPlaceholder={t('header.spotlight.placeholder') as string}
-        searchIcon={<IconSearch size={18} />}
-        highlightQuery
-        highlightColor={theme.colors.blue[6]}
-        nothingFoundMessage={t('header.spotlight.nothingFound') as string}
+    <SpotlightProvider
+      actions={actions}
+      searchPlaceholder={t('header.spotlight.placeholder') as string}
+      searchIcon={<IconSearch size={18} />}
+      highlightQuery
+      highlightColor={theme.colors.blue[6]}
+      nothingFoundMessage={t('header.spotlight.nothingFound') as string}
+    >
+      <AppShell
+        asideOffsetBreakpoint="sm"
+        navbarOffsetBreakpoint="sm"
+        navbar={<NavBar isOpen={openedNav} links={NAV_LINKS} />}
+        footer={<Footer links={FOOTER_LINKS} />}
+        header={
+          <Header
+            isOpen={openedNav}
+            handleOpenNav={handleOpenNav}
+            logo={
+              <Image
+                src={logoURL}
+                alt="Essencium Logo"
+                width="30px"
+                height="auto"
+              />
+            }
+          />
+        }
       >
-        <AppShell
-          asideOffsetBreakpoint="sm"
-          navbarOffsetBreakpoint="sm"
-          navbar={<NavBar isOpen={openedNav} links={NAV_LINKS} />}
-          footer={<Footer links={FOOTER_LINKS} />}
-          header={
-            <Header
-              isOpen={openedNav}
-              handleOpenNav={handleOpenNav}
-              logo={
-                <Image
-                  src={logoURL}
-                  alt="Essencium Logo"
-                  width="30px"
-                  height="auto"
-                />
-              }
-            />
-          }
-        >
-          {children}
-        </AppShell>
-      </SpotlightProvider>
-    </JotaiProvider>
+        {children}
+      </AppShell>
+    </SpotlightProvider>
   )
 }
 

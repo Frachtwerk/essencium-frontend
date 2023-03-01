@@ -22,13 +22,17 @@ import {
   MantineProvider,
 } from '@mantine/core'
 import { useHotkeys, useLocalStorage } from '@mantine/hooks'
+import { NotificationsProvider } from '@mantine/notifications'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { RouterProvider } from '@tanstack/react-router'
+import { Provider as JotaiProvider } from 'jotai'
+import { useAtomsDebugValue } from 'jotai-devtools'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
 import { router } from './router/init'
+import { store } from './store'
 
 function Root(): JSX.Element {
   const queryClient = new QueryClient()
@@ -44,6 +48,11 @@ function Root(): JSX.Element {
   }
 
   useHotkeys([['mod+J', () => toggleColorScheme()]])
+
+  function DebugAtoms(): null {
+    useAtomsDebugValue()
+    return null
+  }
 
   return (
     <ColorSchemeProvider
@@ -105,11 +114,14 @@ function Root(): JSX.Element {
           datesLocale: 'en',
         }}
       >
-        <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
-
-          <RouterProvider router={router} />
-        </QueryClientProvider>
+        <JotaiProvider store={store}>
+          <DebugAtoms />
+          <QueryClientProvider client={queryClient}>
+            <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+            <NotificationsProvider />
+            <RouterProvider router={router} />
+          </QueryClientProvider>
+        </JotaiProvider>
       </MantineProvider>
     </ColorSchemeProvider>
   )
