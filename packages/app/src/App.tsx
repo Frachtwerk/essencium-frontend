@@ -18,6 +18,10 @@ import { Footer, Header, NavBar } from 'lib'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { tokenAtom } from '@/api/auth'
+import { userAtom } from '@/api/me'
+import { store } from '@/store'
+
 import logoURL from './img/web/icon-512.png'
 
 type AppProps = {
@@ -115,6 +119,12 @@ function App({ children }: AppProps): JSX.Element {
     setOpenedNav(opened => !opened)
   }
 
+  function handleLogout(): void {
+    store.set(tokenAtom, null)
+    store.set(userAtom, null)
+    navigate({ to: '/login' })
+  }
+
   const actions: SpotlightAction[] = SEARCH_ITEMS.map(link => {
     return {
       title: t(link.label),
@@ -136,7 +146,13 @@ function App({ children }: AppProps): JSX.Element {
       <AppShell
         asideOffsetBreakpoint="sm"
         navbarOffsetBreakpoint="sm"
-        navbar={<NavBar isOpen={openedNav} links={NAV_LINKS} />}
+        navbar={
+          <NavBar
+            isOpen={openedNav}
+            links={NAV_LINKS}
+            handleLogout={handleLogout}
+          />
+        }
         footer={<Footer links={FOOTER_LINKS} />}
         header={
           <Header

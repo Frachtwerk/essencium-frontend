@@ -28,7 +28,8 @@
     "users": "Users",
     "roles": "Roles",
     "rights": "Rights",
-    "translations": "Translations"
+    "translations": "Translations",
+    "logout": "Logout"
   },
   "footer": {
     "license": "2023 Essencium License",
