@@ -1,16 +1,21 @@
 import {
   ActionIcon,
   Burger,
+  Button,
+  ColorScheme,
   Flex,
   Group,
   Header as MantineHeader,
   HoverCard,
   MediaQuery,
+  Popover,
+  Stack,
   Text,
   useMantineColorScheme,
   useMantineTheme,
 } from '@mantine/core'
-import { IconMoon, IconSun } from '@tabler/icons'
+import { IconMoon, IconSettings, IconSun } from '@tabler/icons'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { SearchBar } from './components/SearchBar'
@@ -32,6 +37,18 @@ export function Header({
   const theme = useMantineTheme()
 
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
+
+  const [openColorSchemeMenu, setOpenColorSchemeMenu] = useState(false)
+
+  const systemColorScheme: ColorScheme = window.matchMedia(
+    '(prefers-color-scheme: light)'
+  ).matches
+    ? 'light'
+    : 'dark'
+
+  function toggleColorSchemeMenu(): void {
+    setOpenColorSchemeMenu(prev => !prev)
+  }
 
   function onToggleLanguage(): void {
     const selectedLanguage =
@@ -71,33 +88,95 @@ export function Header({
 
         <Group noWrap>
           <Group noWrap>
-            <HoverCard>
-              <HoverCard.Target>
-                <ActionIcon
+            <Popover
+              opened={openColorSchemeMenu}
+              width={120}
+              position="bottom"
+              withArrow
+              shadow="sm"
+            >
+              <Popover.Target>
+                <Button
                   aria-label="darkmode-toggle"
-                  onClick={() => toggleColorScheme()}
-                  color="dark"
-                  sx={{
-                    '&:hover': {
-                      backgroundColor:
-                        theme.colorScheme === 'dark'
-                          ? theme.colors.gray[9]
-                          : theme.colors.gray[0],
-                    },
+                  leftIcon={
+                    colorScheme === 'light' ? <IconSun /> : <IconMoon />
+                  }
+                  style={{
+                    backgroundColor: 'transparent',
+                    color:
+                      colorScheme === 'light'
+                        ? theme.colors.gray[9]
+                        : theme.colors.gray[5],
+                    padding: 0,
                   }}
-                >
-                  {colorScheme === 'light' ? <IconMoon /> : <IconSun />}
-                </ActionIcon>
-              </HoverCard.Target>
+                  onClick={() => toggleColorSchemeMenu()}
+                />
+              </Popover.Target>
 
-              <HoverCard.Dropdown>
-                {colorScheme === 'light' ? (
-                  <Text size="sm">{t('header.themeToggle.darkMode')}</Text>
-                ) : (
-                  <Text size="sm">{t('header.themeToggle.lightMode')}</Text>
-                )}
-              </HoverCard.Dropdown>
-            </HoverCard>
+              <Popover.Dropdown>
+                <Stack>
+                  <Group
+                    onClick={() => {
+                      toggleColorScheme('light')
+                      setOpenColorSchemeMenu(false)
+                    }}
+                    sx={{
+                      cursor: 'pointer',
+                      '&:hover': {
+                        backgroundColor:
+                          theme.colorScheme === 'dark'
+                            ? theme.colors.gray[9]
+                            : theme.colors.gray[0],
+                      },
+                    }}
+                  >
+                    <IconSun size={20} />
+
+                    <Text size="sm">{t('header.themeToggle.lightMode')}</Text>
+                  </Group>
+
+                  <Group
+                    onClick={() => {
+                      toggleColorScheme('dark')
+                      setOpenColorSchemeMenu(false)
+                    }}
+                    sx={{
+                      cursor: 'pointer',
+                      '&:hover': {
+                        backgroundColor:
+                          theme.colorScheme === 'dark'
+                            ? theme.colors.gray[9]
+                            : theme.colors.gray[0],
+                      },
+                    }}
+                  >
+                    <IconMoon size={20} />
+
+                    <Text size="sm">{t('header.themeToggle.darkMode')}</Text>
+                  </Group>
+
+                  <Group
+                    onClick={() => {
+                      toggleColorScheme(systemColorScheme)
+                      setOpenColorSchemeMenu(false)
+                    }}
+                    sx={{
+                      cursor: 'pointer',
+                      '&:hover': {
+                        backgroundColor:
+                          theme.colorScheme === 'dark'
+                            ? theme.colors.gray[9]
+                            : theme.colors.gray[0],
+                      },
+                    }}
+                  >
+                    <IconSettings size={20} />
+
+                    <Text size="sm">{t('header.themeToggle.systemMode')}</Text>
+                  </Group>
+                </Stack>
+              </Popover.Dropdown>
+            </Popover>
 
             <HoverCard>
               <HoverCard.Target>
