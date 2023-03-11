@@ -50,7 +50,7 @@ importers:
       '@mantine/spotlight': 5.10.5
       '@sentry/react': 7.40.0
       '@sentry/tracing': 7.40.0
-      '@tabler/icons': 1.119.0
+      '@tabler/icons': 2.10.0
       '@tanstack/react-query': 4.24.10
       '@tanstack/react-query-devtools': 4.24.12
       '@tanstack/react-router': 0.0.1-beta.83
@@ -108,7 +108,7 @@ importers:
       '@mantine/spotlight': 5.10.5_7l7cohgiq6l4ncfy2pvlz3brzy
       '@sentry/react': 7.40.0_react@18.2.0
       '@sentry/tracing': 7.40.0
-      '@tabler/icons': 1.119.0_biqbaboplfbrettd7655fr4n2y
+      '@tabler/icons': 2.10.0
       '@tanstack/react-query': 4.24.10_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-query-devtools': 4.24.12_636dldj5wfr5vkyyqzs5k363kq
       '@tanstack/react-router': 0.0.1-beta.83_biqbaboplfbrettd7655fr4n2y
@@ -119,7 +119,7 @@ importers:
       fast-glob: 3.2.12
       i18next: 22.4.10
       jotai: 2.0.2_react@18.2.0
-      lib: file:packages/lib_y57pefwek6knwtzoub7yjbnmcq
+      lib: file:packages/lib_hdqgpcxz3hisyclkpd5zpkhkoq
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.43.4_react@18.2.0
@@ -195,7 +195,7 @@ importers:
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-terser': 0.4.0
       '@rollup/plugin-typescript': 11.0.0
-      '@tabler/icons': 1.119.0
+      '@tabler/icons': 2.10.0
       '@tanstack/react-query': 4.24.10
       '@tanstack/react-router': 0.0.1-beta.83
       '@tanstack/react-table': 8.7.9
@@ -249,7 +249,7 @@ importers:
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.18.0
       '@rollup/plugin-terser': 0.4.0_rollup@3.18.0
       '@rollup/plugin-typescript': 11.0.0_elyygukqrpnyv7sactoooq5kjq
-      '@tabler/icons': 1.119.0_biqbaboplfbrettd7655fr4n2y
+      '@tabler/icons': 2.10.0
       '@tanstack/react-query': 4.24.10_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-router': 0.0.1-beta.83_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-table': 8.7.9_biqbaboplfbrettd7655fr4n2y
@@ -2042,19 +2042,8 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /@tabler/icons/1.119.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-Fk3Qq4w2SXcTjc/n1cuL5bccPkylrOMo7cYpQIf/yw6zP76LQV9dtLcHQUjFiUnaYuswR645CnURIhlafyAh9g==}
-    peerDependencies:
-      react: ^16.x || 17.x || 18.x
-      react-dom: ^16.x || 17.x || 18.x
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
+  /@tabler/icons/2.10.0:
+    resolution: {integrity: sha512-rj9xrHTSw7bPpylx8g9xhhUgO9NYKX1wGnGrMaFS5CQ9KS+jhwhKFqbZaQKhXNhpvI0cLEEW6GaRXdrC3iBs1A==}
 
   /@tanstack/match-sorter-utils/8.7.2:
     resolution: {integrity: sha512-bptNeoexeDB947fWoCPwUchPSx5FA9gwzU0bkXz0du5pT8Ud2+1ob+xOgHj6EF3VN0kdXtLhwjPyhY7/dJglkg==}
@@ -8641,7 +8630,7 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
-  file:packages/lib_y57pefwek6knwtzoub7yjbnmcq:
+  file:packages/lib_hdqgpcxz3hisyclkpd5zpkhkoq:
     resolution: {directory: packages/lib, type: directory}
     id: file:packages/lib
     name: lib
@@ -8658,7 +8647,7 @@ packages:
       '@mantine/hooks': 5.10.5
       '@mantine/modals': 5.10.5
       '@mantine/spotlight': 5.10.5
-      '@tabler/icons': 1.119.0
+      '@tabler/icons': 2.10.0
       '@tanstack/react-query': 4.24.10
       '@tanstack/react-router': 0.0.1-beta.83
       '@tanstack/react-table': 8.7.9
@@ -8680,7 +8669,7 @@ packages:
       '@mantine/hooks': 5.10.5_react@18.2.0
       '@mantine/modals': 5.10.5_7l7cohgiq6l4ncfy2pvlz3brzy
       '@mantine/spotlight': 5.10.5_7l7cohgiq6l4ncfy2pvlz3brzy
-      '@tabler/icons': 1.119.0_biqbaboplfbrettd7655fr4n2y
+      '@tabler/icons': 2.10.0
       '@tanstack/react-query': 4.24.10_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-router': 0.0.1-beta.83_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-table': 8.7.9_biqbaboplfbrettd7655fr4n2y
