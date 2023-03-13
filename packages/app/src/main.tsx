@@ -27,7 +27,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { RouterProvider } from '@tanstack/react-router'
 import { Provider as JotaiProvider } from 'jotai'
-import { useAtomsDebugValue } from 'jotai-devtools'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
@@ -48,11 +47,6 @@ function Root(): JSX.Element {
   }
 
   useHotkeys([['mod+J', () => toggleColorScheme()]])
-
-  function DebugAtoms(): null {
-    useAtomsDebugValue()
-    return null
-  }
 
   return (
     <ColorSchemeProvider
@@ -115,10 +109,11 @@ function Root(): JSX.Element {
         }}
       >
         <JotaiProvider store={store}>
-          <DebugAtoms />
           <QueryClientProvider client={queryClient}>
             <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+
             <NotificationsProvider />
+
             <RouterProvider router={router} />
           </QueryClientProvider>
         </JotaiProvider>
