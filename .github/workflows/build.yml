@@ -71,7 +71,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: 🔬 Run Vitest
-        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test --parallel=5
+        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:unit --parallel=5
 
   build:
     name: 🔨 Build
