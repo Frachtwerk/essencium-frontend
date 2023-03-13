@@ -191,6 +191,11 @@ importers:
       '@mantine/hooks': 5.10.5
       '@mantine/modals': 5.10.5
       '@mantine/spotlight': 5.10.5
+      '@mantine/core': 5.10.5
+      '@mantine/dates': 5.10.5
+      '@mantine/hooks': 5.10.5
+      '@mantine/modals': 5.10.5
+      '@mantine/spotlight': 5.10.5
       '@rollup/plugin-commonjs': 24.0.1
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-terser': 0.4.0
@@ -1519,10 +1524,14 @@ packages:
       }
     peerDependencies:
       '@mantine/hooks': 5.10.5
+      '@mantine/hooks': 5.10.5
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
       '@floating-ui/react': 0.19.2_zula6vjvt3wdocc4mwcxqa6nzi
+      '@mantine/hooks': 5.10.5_react@18.2.0
+      '@mantine/styles': 5.10.5_keyspdss4kub3atek752gc6fle
+      '@mantine/utils': 5.10.5_react@18.2.0
       '@mantine/hooks': 5.10.5_react@18.2.0
       '@mantine/styles': 5.10.5_keyspdss4kub3atek752gc6fle
       '@mantine/utils': 5.10.5_react@18.2.0
@@ -1542,9 +1551,14 @@ packages:
     peerDependencies:
       '@mantine/core': 5.10.5
       '@mantine/hooks': 5.10.5
+      '@mantine/core': 5.10.5
+      '@mantine/hooks': 5.10.5
       dayjs: '>=1.0.0'
       react: '>=16.8.0'
     dependencies:
+      '@mantine/core': 5.10.5_zrh3qbywp4klzxzvocxisz6a5a
+      '@mantine/hooks': 5.10.5_react@18.2.0
+      '@mantine/utils': 5.10.5_react@18.2.0
       '@mantine/core': 5.10.5_zrh3qbywp4klzxzvocxisz6a5a
       '@mantine/hooks': 5.10.5_react@18.2.0
       '@mantine/utils': 5.10.5_react@18.2.0
@@ -1569,9 +1583,14 @@ packages:
     peerDependencies:
       '@mantine/core': 5.10.5
       '@mantine/hooks': 5.10.5
+      '@mantine/core': 5.10.5
+      '@mantine/hooks': 5.10.5
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
+      '@mantine/core': 5.10.5_zrh3qbywp4klzxzvocxisz6a5a
+      '@mantine/hooks': 5.10.5_react@18.2.0
+      '@mantine/utils': 5.10.5_react@18.2.0
       '@mantine/core': 5.10.5_zrh3qbywp4klzxzvocxisz6a5a
       '@mantine/hooks': 5.10.5_react@18.2.0
       '@mantine/utils': 5.10.5_react@18.2.0
@@ -1589,6 +1608,8 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
+      '@mantine/core': 5.10.5_zrh3qbywp4klzxzvocxisz6a5a
+      '@mantine/hooks': 5.10.5_react@18.2.0
       '@mantine/core': 5.10.5_zrh3qbywp4klzxzvocxisz6a5a
       '@mantine/hooks': 5.10.5_react@18.2.0
       '@mantine/utils': 5.10.5_react@18.2.0
@@ -11952,6 +11973,11 @@ packages:
       '@fortawesome/free-solid-svg-icons': 6.3.0
       '@fortawesome/react-fontawesome': 0.2.0
       '@hookform/resolvers': 2.9.11
+      '@mantine/core': 5.10.5
+      '@mantine/dates': 5.10.5
+      '@mantine/hooks': 5.10.5
+      '@mantine/modals': 5.10.5
+      '@mantine/spotlight': 5.10.5
       '@mantine/core': 5.10.5
       '@mantine/dates': 5.10.5
       '@mantine/hooks': 5.10.5
