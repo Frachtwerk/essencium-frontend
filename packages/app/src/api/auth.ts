@@ -1,11 +1,10 @@
 import { showNotification } from '@mantine/notifications'
 import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { useAtom, useSetAtom, useStore } from 'jotai'
+import { useAtom, useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 
-// eslint-disable-next-line import/no-cycle
-import { api } from './api'
+import { api } from '@/api'
 
 type LoginCredentials = {
   username: string
@@ -23,15 +22,14 @@ type SetPasswordRequest = {
 
 const VERSION = 'v1'
 
-export const tokenAtom = atomWithStorage<string | null>('authToken', null)
+export const authTokenAtom = atomWithStorage<string | null>('authToken', null)
 
 export function useCreateToken(): UseMutationResult<
   TokenResponse,
   AxiosError,
   LoginCredentials
 > {
-  const store = useStore()
-  const setToken = useSetAtom(tokenAtom)
+  const setToken = useSetAtom(authTokenAtom)
 
   const mutation = useMutation<TokenResponse, AxiosError, LoginCredentials>({
     mutationKey: ['useCreateToken'],
@@ -39,11 +37,10 @@ export function useCreateToken(): UseMutationResult<
       api
         .post<TokenResponse, LoginCredentials>('/auth/token', loginCredentials)
         .then(res => res.data),
-    onSuccess(data: TokenResponse) {
+    onSuccess: (data: TokenResponse) => {
       setToken(data.token)
-      store.set(tokenAtom, data.token)
     },
-    onError(data: AxiosError) {
+    onError: (data: AxiosError) => {
       showNotification({
         autoClose: 4000,
         title: 'We are sorry! Your login was not successful.',
@@ -76,8 +73,7 @@ export function useRenewToken(): UseMutationResult<
   void,
   unknown
 > {
-  const store = useStore()
-  const [token, setToken] = useAtom(tokenAtom)
+  const [token, setToken] = useAtom(authTokenAtom)
 
   const mutation = useMutation<TokenResponse, AxiosError>({
     mutationKey: ['useRenewToken'],
@@ -85,9 +81,8 @@ export function useRenewToken(): UseMutationResult<
       api
         .post<TokenResponse, null>('/auth/token', null)
         .then(res => res.data || token),
-    onSuccess(data: TokenResponse) {
+    onSuccess: (data: TokenResponse) => {
       setToken(data.token)
-      store.set(tokenAtom, data.token)
     },
   })
 
