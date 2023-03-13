@@ -21,6 +21,8 @@ import { useTranslation } from 'react-i18next'
 
 import { authTokenAtom } from '@/api/auth'
 
+import logoURL from './img/web/icon-512.png'
+
 type AppProps = {
   children: React.ReactNode
 }
