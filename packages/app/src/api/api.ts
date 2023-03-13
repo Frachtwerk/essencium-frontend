@@ -1,17 +1,14 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 
-import { store } from '@/store'
-
-// eslint-disable-next-line import/no-cycle
-import { tokenAtom } from './auth'
-
 export const axiosInstance: AxiosInstance = axios.create({
   baseURL: '/',
 })
 
 axiosInstance.interceptors.request.use(request => {
-  if (store.get(tokenAtom)) {
-    request.headers.Authorization = `Bearer ${store.get(tokenAtom)}`
+  const authToken = localStorage.getItem('authToken')
+
+  if (authToken && authToken !== 'null') {
+    request.headers.Authorization = `Bearer ${authToken}`
   }
 
   return request
