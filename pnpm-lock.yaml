@@ -15,7 +15,7 @@ importers:
       husky: 8.0.3
       nx: 15.8.6
       prettier: 2.8.4
-      rimraf: 4.3.0
+      rimraf: 4.4.0
       typescript: 4.9.5
     dependencies:
       '@nrwl/nx-cloud': 15.1.1
@@ -30,7 +30,7 @@ importers:
       husky: 8.0.3
       nx: 15.8.6
       prettier: 2.8.4
-      rimraf: 4.3.0
+      rimraf: 4.4.0
       typescript: 4.9.5
 
   packages/app:
@@ -85,7 +85,7 @@ importers:
       react-dom: 18.2.0
       react-hook-form: 7.43.5
       react-i18next: 12.2.0
-      rimraf: 4.3.0
+      rimraf: 4.4.0
       standard-version: 9.5.0
       translations: workspace:*
       typescript: 4.9.5
@@ -147,7 +147,7 @@ importers:
       eslint-plugin-react-hooks: 4.6.0_eslint@8.35.0
       happy-dom: 8.9.0
       prettier: 2.8.4
-      rimraf: 4.3.0
+      rimraf: 4.4.0
       standard-version: 9.5.0
       typescript: 4.9.5
       vite: 4.1.4_@types+node@18.14.1
@@ -222,7 +222,7 @@ importers:
       react-dom: 18.2.0
       react-hook-form: 7.43.5
       react-i18next: 12.2.0
-      rimraf: 4.3.0
+      rimraf: 4.4.0
       rollup: 3.18.0
       rollup-plugin-dts: 5.2.0
       rollup-plugin-peer-deps-external: 2.2.4
@@ -276,7 +276,7 @@ importers:
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.43.5_react@18.2.0
       react-i18next: 12.2.0_nuvg7z3l7c7q3mgp6kac62miay
-      rimraf: 4.3.0
+      rimraf: 4.4.0
       rollup: 3.18.0
       rollup-plugin-dts: 5.2.0_fn2onl6nbsljlgjr3jlzr6w7we
       rollup-plugin-peer-deps-external: 2.2.4_rollup@3.18.0
@@ -7268,8 +7268,8 @@ packages:
       glob: 7.2.3
     dev: true
 
-  /rimraf/4.3.0:
-    resolution: {integrity: sha512-5qVDXPbByA1qSJEWMv1qAwKsoS22vVpsL2QyxCKBw4gf6XiFo1K3uRLY6uSOOBFDwnqAZtnbILqWKKlzh8bkGg==}
+  /rimraf/4.4.0:
+    resolution: {integrity: sha512-X36S+qpCUR0HjXlkDe4NAOhS//aHH0Z+h8Ckf2auGJk3PTnx5rLmrHkwNdbVQuCSUhOyFrlRvFEllZOYE+yZGQ==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
