@@ -12,9 +12,7 @@ export function LoginView(): JSX.Element {
     mutate(
       { username, password },
       {
-        onSuccess: () => {
-          navigate({ to: '/' })
-        },
+        onSuccess: () => navigate({ to: '/' }),
       }
     )
   }
