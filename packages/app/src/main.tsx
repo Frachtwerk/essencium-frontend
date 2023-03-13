@@ -31,7 +31,6 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 
 import { router } from './router/init'
-import { store } from './store'
 
 function Root(): JSX.Element {
   const queryClient = new QueryClient()
@@ -108,15 +107,13 @@ function Root(): JSX.Element {
           datesLocale: 'en',
         }}
       >
-        <JotaiProvider store={store}>
-          <QueryClientProvider client={queryClient}>
-            <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
 
-            <NotificationsProvider />
+          <NotificationsProvider />
 
-            <RouterProvider router={router} />
-          </QueryClientProvider>
-        </JotaiProvider>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
       </MantineProvider>
     </ColorSchemeProvider>
   )
