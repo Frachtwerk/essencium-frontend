@@ -18,12 +18,6 @@ import { Footer, Header, NavBar } from 'lib'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { tokenAtom } from '@/api/auth'
-import { userAtom } from '@/api/me'
-import { store } from '@/store'
-
-import logoURL from './img/web/icon-512.png'
-
 type AppProps = {
   children: React.ReactNode
 }
@@ -120,8 +114,6 @@ function App({ children }: AppProps): JSX.Element {
   }
 
   function handleLogout(): void {
-    store.set(tokenAtom, null)
-    store.set(userAtom, null)
     navigate({ to: '/login' })
   }
 
