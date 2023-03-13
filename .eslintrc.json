@@ -20,7 +20,8 @@
     "project": [
       "./tsconfig.json",
       "./packages/*/.eslintrc.json",
-      "./packages/*/vite.config.ts"
+      "./packages/*/vite.config.ts",
+      "./packages/*/playwright.config.ts"
     ]
   },
   "plugins": [

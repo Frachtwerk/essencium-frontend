@@ -1,4 +1,5 @@
 .prettierignore
+playwright.config.ts
 vite.config.ts
 i18n.js
 dist/
