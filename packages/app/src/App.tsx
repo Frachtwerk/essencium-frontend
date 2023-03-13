@@ -13,10 +13,13 @@ import {
   IconUsers,
 } from '@tabler/icons'
 import { useNavigate } from '@tanstack/react-router'
+import { useSetAtom } from 'jotai'
 import type { FooterLink, NavLink } from 'lib'
 import { Footer, Header, NavBar } from 'lib'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { authTokenAtom } from '@/api/auth'
 
 type AppProps = {
   children: React.ReactNode
@@ -113,7 +116,10 @@ function App({ children }: AppProps): JSX.Element {
     setOpenedNav(opened => !opened)
   }
 
+  const setAuthToken = useSetAtom(authTokenAtom)
+
   function handleLogout(): void {
+    setAuthToken(null)
     navigate({ to: '/login' })
   }
 
