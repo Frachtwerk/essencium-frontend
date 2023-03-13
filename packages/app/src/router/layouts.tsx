@@ -18,9 +18,16 @@ export const layoutRouteAppShell = new Route({
       )}
     </App>
   ),
+  beforeLoad: ({ router }) => {
+    const token: string | null = localStorage.getItem('authToken')
+
+    if (!token || token === 'null') {
+      router.navigate({ to: `/login` })
+    }
+  },
 })
 
-// This layout route is covered with the Login component for all routes where a user is not logged in.
+// This layout route is covered with the login component for all routes where a user is not logged in.
 export const layoutRouteLogin = new Route({
   getParentRoute: () => rootRoute,
   id: 'login',
@@ -33,4 +40,11 @@ export const layoutRouteLogin = new Route({
       )}
     </Center>
   ),
+  beforeLoad: ({ router }) => {
+    const token: string | null = localStorage.getItem('authToken')
+
+    if (token && token !== 'null') {
+      router.navigate({ to: `/` })
+    }
+  },
 })
