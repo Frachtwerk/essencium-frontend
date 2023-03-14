@@ -15,8 +15,9 @@
       "nothingFound": "Nothing found"
     },
     "themeToggle": {
-      "lightMode": "Light Mode",
-      "darkMode": "Dark Mode"
+      "lightMode": "Light",
+      "darkMode": "Dark",
+      "systemMode": "System"
     },
     "languageToggle": {
       "german": "Switch to german",

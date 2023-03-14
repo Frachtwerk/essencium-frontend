@@ -34,15 +34,26 @@ import { router } from './router/init'
 function Root(): JSX.Element {
   const queryClient = new QueryClient()
 
+  const systemColorScheme = window.matchMedia('(prefers-color-scheme: light)')
+    .matches
+    ? 'light'
+    : 'dark'
+
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: 'mantine-color-scheme',
-    defaultValue: 'light',
+    defaultValue: systemColorScheme,
     getInitialValueInEffect: true,
   })
 
   function toggleColorScheme(value?: ColorScheme): void {
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
   }
+
+  window
+    .matchMedia('(prefers-color-scheme: light)')
+    .addEventListener('change', event => {
+      setColorScheme(event.matches ? 'light' : 'dark')
+    })
 
   useHotkeys([['mod+J', () => toggleColorScheme()]])
 
