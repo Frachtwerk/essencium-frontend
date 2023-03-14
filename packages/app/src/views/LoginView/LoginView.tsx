@@ -1,26 +1,21 @@
-import { atom, useAtom } from 'jotai'
+import { useNavigate } from '@tanstack/react-router'
 import { Login, LoginForm } from 'lib'
-import { useEffect } from 'react'
 
 import { useCreateToken } from '@/api/auth'
 
-const usernameAtom = atom('')
-const passwordAtom = atom('')
-
 export function LoginView(): JSX.Element {
-  const [username, setUsername] = useAtom(usernameAtom)
-  const [password, setPassword] = useAtom(passwordAtom)
+  const navigate = useNavigate()
 
-  const { mutate } = useCreateToken(username, password)
+  const { mutate } = useCreateToken()
 
-  function handleLogin(name: string, pw: string): void {
-    setUsername(() => name)
-    setPassword(() => pw)
+  function handleLogin(username: string, password: string): void {
+    mutate(
+      { username, password },
+      {
+        onSuccess: () => navigate({ to: '/' }),
+      }
+    )
   }
-
-  useEffect(() => {
-    if (username && password) mutate()
-  }, [username, password, mutate])
 
   return <Login form={<LoginForm handleLogin={handleLogin} />} />
 }

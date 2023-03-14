@@ -47,6 +47,7 @@ importers:
       '@mantine/dates': 5.10.5
       '@mantine/hooks': 5.10.5
       '@mantine/modals': 5.10.5
+      '@mantine/notifications': 5.10.5
       '@mantine/spotlight': 5.10.5
       '@sentry/react': 7.40.0
       '@sentry/tracing': 7.40.0
@@ -78,7 +79,7 @@ importers:
       fast-glob: 3.2.12
       happy-dom: 8.9.0
       i18next: 22.4.11
-      jotai: 2.0.2
+      jotai: 2.0.3
       lib: workspace:*
       prettier: 2.8.4
       react: 18.2.0
@@ -105,6 +106,7 @@ importers:
       '@mantine/dates': 5.10.5_wzk5rgclhymglk5h2qow4a376y
       '@mantine/hooks': 5.10.5_react@18.2.0
       '@mantine/modals': 5.10.5_7l7cohgiq6l4ncfy2pvlz3brzy
+      '@mantine/notifications': 5.10.5_7l7cohgiq6l4ncfy2pvlz3brzy
       '@mantine/spotlight': 5.10.5_7l7cohgiq6l4ncfy2pvlz3brzy
       '@sentry/react': 7.40.0_react@18.2.0
       '@sentry/tracing': 7.40.0
@@ -118,7 +120,7 @@ importers:
       dayjs: 1.11.7
       fast-glob: 3.2.12
       i18next: 22.4.11
-      jotai: 2.0.2_react@18.2.0
+      jotai: 2.0.3_react@18.2.0
       lib: file:packages/lib_ld477uqn27ghnfbwirwc5wxtuq
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -1251,6 +1253,22 @@ packages:
       '@mantine/utils': 5.10.5_react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+
+  /@mantine/notifications/5.10.5_7l7cohgiq6l4ncfy2pvlz3brzy:
+    resolution: {integrity: sha512-IzTAXA7Zb9DcI94Mv5O2OinhLmI7fvs/VutDw9uCpp6OHtLuF/XN1d262jrsGhMZT0c4nuUsotSLFZF3GWZwXg==}
+    peerDependencies:
+      '@mantine/core': 5.10.5
+      '@mantine/hooks': 5.10.5
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      '@mantine/core': 5.10.5_zrh3qbywp4klzxzvocxisz6a5a
+      '@mantine/hooks': 5.10.5_react@18.2.0
+      '@mantine/utils': 5.10.5_react@18.2.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-transition-group: 4.4.2_biqbaboplfbrettd7655fr4n2y
+    dev: false
 
   /@mantine/spotlight/5.10.5_7l7cohgiq6l4ncfy2pvlz3brzy:
     resolution: {integrity: sha512-OQkuHxswrapRPcKDVSjE3li9oYYMq1Nwg2zlZzHlpzP7oW1qUhbDIVRc1dOzuT+IO7ifY/zeSuYknli7T29pDA==}
@@ -2471,7 +2489,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.19.6_@babel+core@7.21.0
       magic-string: 0.27.0
       react-refresh: 0.14.0
-      vite: 4.1.4_@types+node@18.14.1
+      vite: 4.1.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3556,6 +3574,13 @@ packages:
     resolution: {integrity: sha512-8o+oVqLQZoruQPYy3uAAQtc6YbtSiRq5aPJBhJ82YTJRHvI6ofhYAkC81WmjFTnfUbqg6T3aCglIpU9p/5e7Cw==}
     dev: true
 
+  /dom-helpers/5.2.1:
+    resolution: {integrity: sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==}
+    dependencies:
+      '@babel/runtime': 7.20.7
+      csstype: 3.1.1
+    dev: false
+
   /dot-prop/5.3.0:
     resolution: {integrity: sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==}
     engines: {node: '>=8'}
@@ -4547,7 +4572,7 @@ packages:
     dependencies:
       fs.realpath: 1.0.0
       minimatch: 7.4.2
-      minipass: 4.2.4
+      minipass: 4.2.5
       path-scurry: 1.6.1
     dev: true
 
@@ -5205,8 +5230,8 @@ packages:
       minimatch: 3.1.2
     dev: true
 
-  /jotai/2.0.2_react@18.2.0:
-    resolution: {integrity: sha512-0yOked08Swa84LUbBjtj7ZLZrE05n3u50rHeZ+bsT86thUjcy0kFgQz9GmEWhYbQDFoT1G8Ww6edSj/MBJHO4A==}
+  /jotai/2.0.3_react@18.2.0:
+    resolution: {integrity: sha512-MMjhSPAL3RoeZD9WbObufRT2quThEAEknHHridf2ma8Ml7ZVQmUiHk0ssdbR3F0h3kcwhYqSGJ59OjhPge7RRg==}
     engines: {node: '>=12.20.0'}
     peerDependencies:
       react: '>=17.0.0'
@@ -5491,8 +5516,8 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /lru-cache/7.18.1:
-    resolution: {integrity: sha512-8/HcIENyQnfUTCDizRu9rrDyG6XG/21M4X7/YEGZeD76ZJilFPAUVb/2zysFf7VVO1LEjCDFyHp8pMMvozIrvg==}
+  /lru-cache/7.18.3:
+    resolution: {integrity: sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==}
     engines: {node: '>=12'}
     dev: true
 
@@ -6183,8 +6208,8 @@ packages:
       yallist: 4.0.0
     dev: false
 
-  /minipass/4.2.4:
-    resolution: {integrity: sha512-lwycX3cBMTvcejsHITUgYj6Gy6A7Nh4Q6h9NP4sTHY1ccJlC7yKzDmiShEHsJ16Jf1nKGDEaiHxiltsJEvk0nQ==}
+  /minipass/4.2.5:
+    resolution: {integrity: sha512-+yQl7SX3bIT83Lhb4BVorMAHVuqsskxRdlmO9kTpyukp8vsm2Sn/fUOV9xlnG8/a5JsypJzap21lz/y3FBMJ8Q==}
     engines: {node: '>=8'}
     dev: true
 
@@ -6784,8 +6809,8 @@ packages:
     resolution: {integrity: sha512-OW+5s+7cw6253Q4E+8qQ/u1fVvcJQCJo/VFD8pje+dbJCF1n5ZRMV2AEHbGp+5Q7jxQIYJxkHopnj6nzdGeZLA==}
     engines: {node: '>=14'}
     dependencies:
-      lru-cache: 7.18.1
-      minipass: 4.2.4
+      lru-cache: 7.18.3
+      minipass: 4.2.5
     dev: true
 
   /path-type/3.0.0:
@@ -7019,6 +7044,20 @@ packages:
       use-latest: 1.2.1_pmekkgnqduwlme35zpnqhenc34
     transitivePeerDependencies:
       - '@types/react'
+
+  /react-transition-group/4.4.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-/RNYfRAMlZwDSr6z4zNKV6xu53/e2BuaBbGhbyYIXTrmgu/bGHzmqOs7mJSJBHy9Ud+ApHx3QjrkKSp1pxvlFg==}
+    peerDependencies:
+      react: '>=16.6.0'
+      react-dom: '>=16.6.0'
+    dependencies:
+      '@babel/runtime': 7.20.7
+      dom-helpers: 5.2.1
+      loose-envify: 1.4.0
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /react/18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
@@ -7271,6 +7310,7 @@ packages:
   /rimraf/4.4.0:
     resolution: {integrity: sha512-X36S+qpCUR0HjXlkDe4NAOhS//aHH0Z+h8Ckf2auGJk3PTnx5rLmrHkwNdbVQuCSUhOyFrlRvFEllZOYE+yZGQ==}
     engines: {node: '>=14'}
+    deprecated: Please upgrade to 4.3.1 or higher to fix a potentially damaging issue regarding symbolic link following. See https://github.com/isaacs/rimraf/issues/259 for details.
     hasBin: true
     dependencies:
       glob: 9.2.1
