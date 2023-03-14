@@ -1,6 +1,6 @@
 import type { Dispatch, SetStateAction } from 'react'
 
 export type ResetPasswordProps = {
-  setOpen: Dispatch<SetStateAction<boolean>>
-  setSent: Dispatch<SetStateAction<boolean>>
+  setIsPasswordResetFormOpened: Dispatch<SetStateAction<boolean>>
+  setIsResetPasswordSent: Dispatch<SetStateAction<boolean>>
 }

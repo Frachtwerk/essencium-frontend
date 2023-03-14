@@ -4,13 +4,13 @@ import { useTranslation } from 'react-i18next'
 import type { ResetPasswordProps } from './types'
 
 export function ResetPasswordForm({
-  setOpen,
-  setSent,
+  setIsPasswordResetFormOpened,
+  setIsResetPasswordSent,
 }: ResetPasswordProps): JSX.Element {
   const { t } = useTranslation()
 
   return (
-    <Container w={358} h={224} p={0} m={0}>
+    <Container p={0} m={0}>
       <form>
         <Text size="sm" fw="bold" my="md">
           {t('loginView.resetPassword.form.description')}
@@ -25,7 +25,14 @@ export function ResetPasswordForm({
         />
 
         <Group>
-          <Button mt="md" color="cyan" onClick={() => setSent(true)}>
+          <Button
+            mt="md"
+            color="cyan"
+            onClick={() => {
+              setIsResetPasswordSent(true)
+              setIsPasswordResetFormOpened(false)
+            }}
+          >
             {t('loginView.resetPassword.form.submitButton')}
           </Button>
 
@@ -33,7 +40,9 @@ export function ResetPasswordForm({
             mt="md"
             variant="light"
             color="cyan"
-            onClick={() => setOpen(false)}
+            onClick={() => {
+              setIsPasswordResetFormOpened(false)
+            }}
           >
             {t('loginView.resetPassword.form.cancelButton')}
           </Button>
