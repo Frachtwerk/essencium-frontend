@@ -64,3 +64,8 @@ jspm_packages/
 .DS_*
 **/*.backup.*
 **/*.back.*
+
+### Testing
+/test-results/
+/playwright-report/
+/playwright/.cache/

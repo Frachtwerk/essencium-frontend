@@ -5,6 +5,7 @@ import path from 'path'
 import { defineConfig } from 'vite'
 import type { ViteSentryPluginOptions } from 'vite-plugin-sentry'
 import viteSentry from 'vite-plugin-sentry'
+import { configDefaults } from 'vitest/config'
 
 import packageJson from './package.json'
 
@@ -69,5 +70,6 @@ export default defineConfig({
   },
   test: {
     environment: 'happy-dom',
+    exclude: [...configDefaults.exclude, './e2e/**/*'],
   },
 })

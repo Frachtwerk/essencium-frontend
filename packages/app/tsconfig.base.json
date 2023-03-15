@@ -10,7 +10,12 @@
     "resolveJsonModule": true,
     "module": "ESNext"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "e2e/**/*.ts",
+    "playwright.config.ts"
+  ],
   "references": [
     {
       "path": "./tsconfig.node.json"
