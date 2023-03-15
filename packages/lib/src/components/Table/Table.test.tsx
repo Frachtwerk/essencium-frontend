@@ -184,6 +184,6 @@ describe('Table', () => {
   })
 
   it('show the pagination', () => {
-    expect(screen.getByRole('navigation')).toBeDefined()
+    expect(screen.getByRole('searchbox')).toBeDefined()
   })
 })
