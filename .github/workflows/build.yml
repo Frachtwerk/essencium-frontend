@@ -103,7 +103,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - run: npx playwright install
-
+      
       - name: 🔬 Run Playwright
         run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:e2e --parallel=5
 
