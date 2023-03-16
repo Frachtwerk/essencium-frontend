@@ -1,4 +1,4 @@
-name: 🚀 Build
+name: Build
 on:
   push:
     branches:
@@ -10,7 +10,7 @@ env:
 
 jobs:
   lint:
-    name: 🧹 ESLint
+    name: 🧹 Linting
     runs-on: ubuntu-latest
     steps:
       - name: 🧹 Cancel Previous Runs
@@ -41,8 +41,8 @@ jobs:
       - name: 🧹 Lint
         run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=lint --parallel=5
 
-  vitest:
-    name: 🔬 Vitest
+  unit-tests:
+    name: 🔬 Unit Tests
     runs-on: ubuntu-latest
     steps:
       - name: 🔬 Cancel Previous Runs
@@ -72,6 +72,38 @@ jobs:
 
       - name: 🔬 Run Vitest
         run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:unit --parallel=5
+
+  e2e-tests:
+    name: 🔬 E2E Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔬 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.11.0
+
+      - name: 🔬 Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: 🔬 Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: 🔬 Install pnpm & deps
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7.18.1
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+      - uses: nrwl/nx-set-shas@v3
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: 🔬 Run Playwright
+        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:e2e --parallel=5
 
   build:
     name: 🔨 Build
