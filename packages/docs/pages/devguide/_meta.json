@@ -2,6 +2,7 @@
   "setup": "Environment setup",
   "codestyle": "Code style and linting",
   "packageResponsibilities": "Package responsibilities",
+  "dependencies": "Dependencies",
   "new-component": "New Component",
   "new-view": "New View",
   "pull-requests": "Pull Requests",

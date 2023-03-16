@@ -1,0 +1,19 @@
+# Managing Dependencies
+
+For maintaing the Essencium project it is important to understand how to manage dependencies and their updates. This will help ensure that the project remains stable & secure. Here are some specific things to keep in mind when managing dependencies in Essencium:
+
+## Installing Dependencies
+
+When installing dependencies in Essencium, make sure to place them in the appropriate location based on the specific package structure of the project. See [package responsibilities](/devguide/packageResponsibilities).
+
+It is important to note that some dependencies may need to be set under `peerDependencies` in the `lib` package, whenever they are required for components within `lib` to work. This ensures that the consuming project can provide the required dependencies at runtime.
+
+It is also important to use fixed version numbers for dependencies to ensure consistency across packages and avoid compatibility issues.
+
+## Updating Dependencies
+
+Essencium uses Renovatebot to automate the process of updating dependencies. A pull request for each dependency update will be created automatically.
+
+Dependencies should be updated regularly to keep Essencium up-to-date with the latest security patches, bug fixes, and performance improvements.
+
+Be careful to evaluate the impact of each update before merging it into the project as it may introduce breaking changes. For this, the changelog of the dependency should be checked.
