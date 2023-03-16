@@ -22,7 +22,7 @@ import {
   MantineProvider,
 } from '@mantine/core'
 import { useHotkeys, useLocalStorage } from '@mantine/hooks'
-import { NotificationsProvider } from '@mantine/notifications'
+import { Notifications } from '@mantine/notifications'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { RouterProvider } from '@tanstack/react-router'
@@ -113,14 +113,12 @@ function Root(): JSX.Element {
           },
           loader: 'dots',
           transitionTimingFunction: 'ease-in-out',
-          dateFormat: 'YYYY-MM-DD',
-          datesLocale: 'en',
         }}
       >
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
 
-          <NotificationsProvider />
+          <Notifications />
 
           <RouterProvider router={router} />
         </QueryClientProvider>

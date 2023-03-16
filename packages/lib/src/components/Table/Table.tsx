@@ -94,7 +94,7 @@ export function Table<T>({ tableModel }: TableProps<T>): JSX.Element {
         </Flex>
 
         <Pagination
-          page={tableModel.getState().pagination.pageIndex + 1}
+          value={tableModel.getState().pagination.pageIndex + 1}
           onChange={page => tableModel.setPageIndex(page - 1)}
           total={tableModel.getPageCount()}
         />
