@@ -1,7 +1,10 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 
 export const axiosInstance: AxiosInstance = axios.create({
-  baseURL: '/',
+  baseURL:
+    process.env.NODE_ENV === 'development'
+      ? '/'
+      : 'https://backend.staging.essencium.dev/',
 })
 
 axiosInstance.interceptors.request.use(request => {
