@@ -36,12 +36,12 @@ export default defineConfig({
     hmr: true,
     proxy: {
       '/auth': {
-        target: 'http://localhost:8098/',
+        target: 'https://backend.staging.essencium.dev/',
         changeOrigin: true,
         ws: true,
       },
       '/v1': {
-        target: 'http://localhost:8098/',
+        target: 'https://backend.staging.essencium.dev/',
         changeOrigin: true,
         ws: true,
       },
