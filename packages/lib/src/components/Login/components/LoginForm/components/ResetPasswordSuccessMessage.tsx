@@ -1,5 +1,5 @@
 import { Center, Stack, Text, Title } from '@mantine/core'
-import { IconMailForward } from '@tabler/icons'
+import { IconMailForward } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
 
 export function ResetPasswordSuccessMessage(): JSX.Element {

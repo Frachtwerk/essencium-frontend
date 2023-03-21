@@ -11,7 +11,7 @@ import {
   IconShieldLock,
   IconUserCheck,
   IconUsers,
-} from '@tabler/icons'
+} from '@tabler/icons-react'
 import { useNavigate } from '@tanstack/react-router'
 import { useSetAtom } from 'jotai'
 import type { FooterLink, NavLink } from 'lib'

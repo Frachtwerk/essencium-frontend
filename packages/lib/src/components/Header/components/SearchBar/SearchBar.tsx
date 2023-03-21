@@ -7,7 +7,7 @@ import {
   useMantineTheme,
 } from '@mantine/core'
 import { openSpotlight } from '@mantine/spotlight'
-import { IconSearch } from '@tabler/icons'
+import { IconSearch } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
 
 export function SearchBar(): JSX.Element {

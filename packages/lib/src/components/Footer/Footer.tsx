@@ -5,7 +5,7 @@ import {
   Text,
   useMantineTheme,
 } from '@mantine/core'
-import { IconCopyright } from '@tabler/icons'
+import { IconCopyright } from '@tabler/icons-react'
 import { Link as RouterLink } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 

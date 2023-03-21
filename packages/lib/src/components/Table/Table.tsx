@@ -5,7 +5,7 @@ import {
   Table as MantineTable,
   Text,
 } from '@mantine/core'
-import { IconSortAscending2, IconSortDescending2 } from '@tabler/icons'
+import { IconSortAscending2, IconSortDescending2 } from '@tabler/icons-react'
 import { flexRender } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
 

@@ -1,5 +1,5 @@
 import { Navbar, NavLink, Stack, useMantineTheme } from '@mantine/core'
-import { IconLogout } from '@tabler/icons'
+import { IconLogout } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
 
 import { NavLinks } from './components/NavLinks'

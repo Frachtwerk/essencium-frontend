@@ -13,7 +13,7 @@ import {
   useMantineColorScheme,
   useMantineTheme,
 } from '@mantine/core'
-import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons'
+import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 

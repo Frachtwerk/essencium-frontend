@@ -14,7 +14,7 @@ import {
   IconLocation,
   IconMail,
   IconPhoneCall,
-} from '@tabler/icons'
+} from '@tabler/icons-react'
 import { t } from 'i18next'
 
 export function ContactPersonCard(): JSX.Element {
