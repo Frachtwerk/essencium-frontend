@@ -30,6 +30,7 @@ export function Header({
   isOpen,
   handleOpenNav,
   logo,
+  user,
 }: HeaderProps): JSX.Element {
   const { t, i18n } = useTranslation()
 
@@ -210,7 +211,7 @@ export function Header({
               </HoverCard.Dropdown>
             </HoverCard>
           </Group>
-          <UserMenu />
+          <UserMenu user={user} />
         </Group>
       </Flex>
     </MantineHeader>
