@@ -19,7 +19,7 @@ export function NavBar({
       hidden={!isOpen}
       p="sm"
       hiddenBreakpoint="sm"
-      width={{ sm: 180 }}
+      width={{ sm: '11.25rem' }}
       styles={{ root: { maxWidth: 'min-content' } }}
       fixed
     >
