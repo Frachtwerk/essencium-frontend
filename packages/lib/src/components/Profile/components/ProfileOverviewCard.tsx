@@ -1,15 +1,10 @@
 import { Avatar, Badge, Card, Flex, Text, Title } from '@mantine/core'
 
-export function ProfileOverviewCard(): JSX.Element {
-  const testUser = {
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'john@doe.de',
-    role: 'user',
-    language: 'deutsch',
-    status: 'active',
-  }
+import { ProfileOverviewCardProps } from '../types'
 
+export function ProfileOverviewCard({
+  user,
+}: ProfileOverviewCardProps): JSX.Element {
   return (
     <Card shadow="sm" p="lg" radius="sm" withBorder>
       <Flex gap="md" justify="center" align="center" direction="column">
@@ -20,14 +15,11 @@ export function ProfileOverviewCard(): JSX.Element {
           alt="no image here"
           color="indigo"
         />
-
         <Title order={2}>
-          {testUser.firstName} {testUser.lastName}
+          {user.firstName} {user.lastName}
         </Title>
-
-        <Text> {testUser.role} </Text>
-
-        <Badge size="lg"> {testUser.status} </Badge>
+        <Text> {user.role.name} </Text>
+        <Badge size="lg"> {user.enabled ? 'active' : 'inactive'} </Badge>
       </Flex>
     </Card>
   )

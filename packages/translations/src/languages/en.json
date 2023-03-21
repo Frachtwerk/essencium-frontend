@@ -139,7 +139,14 @@
       "notValid": "E-Mail is not valid"
     },
     "password": {
-      "minLength": "Password must be at least 8 characters long"
+      "minLength": "Password must be at least 8 characters long",
+      "confirmError": "The passwords you entered did not match."
+    },
+    "firstName": {
+      "minLength": "First Name must be at least 2 characters long"
+    },
+    "lastName": {
+      "minLength": "Last Name must be at least 2 characters long"
     }
   },
   "notifications": {
