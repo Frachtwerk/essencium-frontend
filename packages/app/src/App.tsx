@@ -21,6 +21,7 @@ import { useTranslation } from 'react-i18next'
 
 import { authTokenAtom } from '@/api/auth'
 
+import { useGetUser } from './api/me'
 import logoURL from './img/web/icon-512.png'
 
 type AppProps = {
@@ -134,6 +135,18 @@ function App({ children }: AppProps): JSX.Element {
     }
   })
 
+  useGetUser()
+
+  function getSavedUser(): any {
+    const savedUser = localStorage.getItem('user')
+    if (savedUser != null) {
+      return JSON.parse(savedUser)
+    }
+    return {}
+  }
+
+  const user = getSavedUser()
+
   return (
     <SpotlightProvider
       actions={actions}
@@ -158,6 +171,11 @@ function App({ children }: AppProps): JSX.Element {
           <Header
             isOpen={openedNav}
             handleOpenNav={handleOpenNav}
+            user={{
+              lastName: user.lastName,
+              firstName: user.firstName,
+              email: user.email,
+            }}
             logo={
               <Image
                 src={logoURL}

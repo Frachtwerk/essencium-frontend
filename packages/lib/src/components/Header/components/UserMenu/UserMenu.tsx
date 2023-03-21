@@ -8,7 +8,15 @@ import {
 import { IconChevronRight, IconUserCircle } from '@tabler/icons'
 import { Link as RouterLink } from '@tanstack/react-router'
 
-export function UserMenu(): JSX.Element {
+type UserMenuProps = {
+  user: {
+    email: string
+    firstName: string
+    lastName: string
+  }
+}
+
+export function UserMenu({ user }: UserMenuProps): JSX.Element {
   const theme = useMantineTheme()
 
   return (
@@ -42,11 +50,11 @@ export function UserMenu(): JSX.Element {
 
             <Box sx={{ flex: 1 }}>
               <Text size="sm" weight="500">
-                Admin User
+                {user.firstName} {user.lastName}
               </Text>
 
               <Text color="dimmed" size="xs">
-                admin@mail.com
+                {user.email}
               </Text>
             </Box>
 
