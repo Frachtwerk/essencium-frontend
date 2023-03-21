@@ -8,7 +8,7 @@ axiosInstance.interceptors.request.use(request => {
   const authToken = localStorage.getItem('authToken')
 
   if (authToken && authToken !== 'null') {
-    request.headers.Authorization = `Bearer ${authToken}`
+    request.headers.Authorization = `Bearer ${authToken.slice(1, -1)}`
   }
 
   return request
