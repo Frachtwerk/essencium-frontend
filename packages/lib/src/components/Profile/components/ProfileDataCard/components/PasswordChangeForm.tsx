@@ -111,11 +111,11 @@ export function PasswordChangeForm({
                   {...field}
                   placeholder={String(
                     t(
-                      'profileView.dataCard.tabs.passwordChange.content.newPassword'
+                      'profileView.dataCard.tabs.passwordChange.content.confirmNewPassword'
                     )
                   )}
                   label={t(
-                    'profileView.dataCard.tabs.passwordChange.content.newPassword'
+                    'profileView.dataCard.tabs.passwordChange.content.confirmNewPassword'
                   )}
                   radius="sm"
                   withAsterisk

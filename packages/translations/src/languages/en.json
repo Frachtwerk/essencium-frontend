@@ -52,6 +52,7 @@
           "content": {
             "currentPassword": "Current Password",
             "newPassword": "New Password",
+            "confirmNewPassword": "Confirm New Password",
             "savePassword": "Save Password"
           }
         },
@@ -64,7 +65,8 @@
           }
         }
       }
-    }
+    },
+    "userNotFound": "User not found"
   },
   "contactView": {
     "contactForm": {
