@@ -33,6 +33,11 @@ export function PasswordChangeForm({
 }: PasswordChangeFormProps): JSX.Element {
   const { handleSubmit, control, formState } = useZodForm({
     schema: passwordChangeSchema,
+    defaultValues: {
+      verification: '',
+      password: '',
+      confirmPassword: '',
+    },
   })
 
   function onSubmit(data: ChangePassword): void {
