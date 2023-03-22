@@ -20,7 +20,7 @@ export function ProfileOverviewCard({
           {user.firstName} {user.lastName}
         </Title>
 
-        <Text> {user.role.name} </Text>
+        <Text>{user.role.name}</Text>
 
         <Badge size="lg"> {user.enabled ? 'active' : 'inactive'} </Badge>
       </Flex>

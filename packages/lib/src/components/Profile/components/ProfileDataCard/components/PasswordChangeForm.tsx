@@ -98,6 +98,7 @@ export function PasswordChangeForm({
                 />
               )}
             />
+
             {formState.errors.password && (
               <Text fz="xs" color="red">
                 {formState.errors.password?.message}
@@ -127,6 +128,7 @@ export function PasswordChangeForm({
                 />
               )}
             />
+
             {formState.errors.confirmPassword && (
               <Text fz="xs" color="red">
                 {formState.errors.confirmPassword?.message}

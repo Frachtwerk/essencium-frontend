@@ -55,6 +55,7 @@ export function ProfileView(): JSX.Element {
       />
     )
   }
+  
   if (isLoadingUser) {
     return (
       <Center h="100%">
@@ -62,6 +63,7 @@ export function ProfileView(): JSX.Element {
       </Center>
     )
   }
+  
   return (
     <Center w="100%" h="100%">
       {t('profileView.userNotFound')}

@@ -96,6 +96,7 @@ export function PersonalDataForm({
               />
             )}
           />
+
           {formState.errors.lastName && (
             <Text mt={4} ml={5} fz="xs" color="red">
               {formState.errors.lastName?.message}

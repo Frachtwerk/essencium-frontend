@@ -9,11 +9,13 @@ type UserRolesResponse = {
   content: UserRole[]
 }
 
-export function useGetRoles(): UseQueryResult<UserRolesResponse, unknown> {
-  const query = useQuery({
+export function useGetRoles(): UseQueryResult<UserRolesResponse, AxiosError> {
+  const query = useQuery<UserRolesResponse, AxiosError>({
     queryKey: ['getRoles'],
     queryFn: () =>
-      api.get<UserRolesResponse>(`${VERSION}/roles`).then(res => res.data),
+      api
+        .get<UserRolesResponse>(`${VERSION}/roles`)
+        .then(response => response.data),
   })
 
   return query
