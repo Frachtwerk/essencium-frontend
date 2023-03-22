@@ -5,7 +5,7 @@ import { UserDummy } from 'lib'
 import { api } from './api'
 
 export const useGetUsers = (): UseQueryResult<UserDummy[], AxiosError> =>
-  useQuery(['users'], () =>
+  useQuery<UserDummy[], AxiosError>(['users'], () =>
     api
       .get<UserDummy[]>('/users', {
         baseURL: 'https://jsonplaceholder.typicode.com',
