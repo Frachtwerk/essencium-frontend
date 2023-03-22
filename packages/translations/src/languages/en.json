@@ -33,6 +33,10 @@
   },
   "profileView": {
     "title": "Profile",
+    "overviewCard": {
+      "active": "active",
+      "inactive": "inactive"
+    },
     "dataCard": {
       "tabs": {
         "personalData": {
