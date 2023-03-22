@@ -6,7 +6,7 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { useAtom, useStore } from 'jotai'
+import { useAtom, useSetAtom, useStore } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 import type { ChangePassword, Password, UpdatedUserData, User } from 'lib'
 
