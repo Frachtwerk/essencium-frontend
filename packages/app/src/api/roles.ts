@@ -1,4 +1,5 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
 import type { UserRole } from 'lib'
 
 import { api } from './api'
