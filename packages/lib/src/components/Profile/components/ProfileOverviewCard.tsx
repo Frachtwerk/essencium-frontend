@@ -1,14 +1,12 @@
 import { Avatar, Badge, Card, Flex, Text, Title } from '@mantine/core'
+import { useTranslation } from 'react-i18next'
 
-export function ProfileOverviewCard(): JSX.Element {
-  const testUser = {
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'john@doe.de',
-    role: 'user',
-    language: 'deutsch',
-    status: 'active',
-  }
+import { ProfileOverviewCardProps } from '../types'
+
+export function ProfileOverviewCard({
+  user,
+}: ProfileOverviewCardProps): JSX.Element {
+  const { t } = useTranslation()
 
   return (
     <Card shadow="sm" p="lg" radius="sm" withBorder>
@@ -22,12 +20,16 @@ export function ProfileOverviewCard(): JSX.Element {
         />
 
         <Title order={2}>
-          {testUser.firstName} {testUser.lastName}
+          {user.firstName} {user.lastName}
         </Title>
 
-        <Text> {testUser.role} </Text>
+        <Text>{user.role.name}</Text>
 
-        <Badge size="lg"> {testUser.status} </Badge>
+        <Badge size="lg">
+          {user.enabled
+            ? t('profileView.overviewCard.active')
+            : t('profileView.overviewCard.inactive')}
+        </Badge>
       </Flex>
     </Card>
   )

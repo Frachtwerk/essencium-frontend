@@ -21,6 +21,7 @@ import { useTranslation } from 'react-i18next'
 
 import { authTokenAtom } from '@/api/auth'
 
+import { useGetUser } from './api/me'
 import logoURL from './img/web/icon-512.png'
 
 type AppProps = {
@@ -118,6 +119,8 @@ function App({ children }: AppProps): JSX.Element {
     setOpenedNav(opened => !opened)
   }
 
+  const { data: user } = useGetUser()
+
   const setAuthToken = useSetAtom(authTokenAtom)
 
   function handleLogout(): void {
@@ -158,6 +161,15 @@ function App({ children }: AppProps): JSX.Element {
           <Header
             isOpen={openedNav}
             handleOpenNav={handleOpenNav}
+            user={
+              user
+                ? {
+                    lastName: user?.lastName,
+                    firstName: user?.firstName,
+                    email: user?.email,
+                  }
+                : null
+            }
             logo={
               <Image
                 src={logoURL}
