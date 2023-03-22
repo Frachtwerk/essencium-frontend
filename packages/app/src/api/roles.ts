@@ -7,7 +7,7 @@ import { api } from './api'
 const VERSION = 'v1'
 
 // needs abstraction in API layer
-type UserRoleResponse = {
+export type UserRoleResponse = {
   content: UserRole[]
   empty: boolean
   first: boolean
