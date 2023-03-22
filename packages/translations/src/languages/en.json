@@ -135,7 +135,10 @@
     }
   },
   "rightsView": {
-    "title": "User Rights",
+    "title": "Rights",
+    "action": {
+      "refresh": "Refresh data"
+    },
     "table": {
       "name": "Name",
       "description": "Description",

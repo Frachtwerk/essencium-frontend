@@ -30,7 +30,10 @@
     "contact": "Kontakt"
   },
   "rightsView": {
-    "title": "Nutzerrechte",
+    "title": "Rechte",
+    "action": {
+      "refresh": "Daten aktualisieren"
+    },
     "table": {
       "name": "Name",
       "description": "Beschreibung",
