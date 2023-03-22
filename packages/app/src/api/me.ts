@@ -83,7 +83,7 @@ export function useUpdatePassword(): UseMutationResult<
           `${VERSION}/users/me/password`,
           passwordData
         )
-        .then(res => res.data),
+        .then(response => response.data),
     onSuccess: () => {
       showNotification({
         autoClose: 2500,
