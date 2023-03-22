@@ -39,18 +39,18 @@ export function RightsView(): JSX.Element {
     () => [
       {
         accessorKey: 'name',
-        header: () => <Text>Name</Text>,
+        header: () => <Text>{t('rightsView.table.name')}</Text>,
         cell: info => info.getValue(),
       },
       // For displaying the description of a right
       // {
       //   accessorKey: 'description',
-      //   header: () => <Text>Description</Text>,
+      //   header: () => <Text>{t('rightsView.table.description')}</Text>,
       //   cell: info => info.getValue(),
       // },
       {
         accessorKey: 'indicatorUser',
-        header: () => <Text>User</Text>,
+        header: () => <Text>{t('rightsView.table.userRole')}</Text>,
         cell: info => {
           const rightName = info.row.original.name
           return userHasRight(rightName, roles?.data?.content) ? (
@@ -60,7 +60,7 @@ export function RightsView(): JSX.Element {
       },
       {
         accessorKey: 'indicatorAdmin',
-        header: () => <Text>Admin</Text>,
+        header: () => <Text>{t('rightsView.table.adminRole')}</Text>,
         cell: info => {
           const rightName = info.row.original.name
           return adminHasRight(rightName, roles?.data?.content) ? (
@@ -69,7 +69,7 @@ export function RightsView(): JSX.Element {
         },
       },
     ],
-    [roles]
+    [roles, t]
   )
 
   return (

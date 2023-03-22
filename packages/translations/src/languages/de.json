@@ -29,6 +29,15 @@
     "imprint": "Impressum",
     "contact": "Kontakt"
   },
+  "rightsView": {
+    "title": "Nutzerrechte",
+    "table": {
+      "name": "Name",
+      "description": "Beschreibung",
+      "userRole": "Nutzer",
+      "adminRole": "Administrator"
+    }
+  },
   "validation": {
     "email": {
       "notValid": "E-Mail ist ungültig"
