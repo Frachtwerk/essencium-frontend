@@ -2,6 +2,8 @@ import { useNavigate } from '@tanstack/react-router'
 import { Login, LoginForm } from 'lib'
 
 import { useCreateToken } from '@/api/auth'
+import { showNotification } from '@mantine/notifications'
+import { AxiosError } from 'axios'
 
 export function LoginView(): JSX.Element {
   const navigate = useNavigate()
@@ -13,6 +15,15 @@ export function LoginView(): JSX.Element {
       { username, password },
       {
         onSuccess: () => navigate({ to: '/' }),
+        onError: (data: AxiosError) => {
+          showNotification({
+            autoClose: 4000,
+            title: 'We are sorry! Your login was not successful.',
+            message: data.message,
+            color: 'red',
+            style: { position: 'fixed', top: '20px', right: '10px' },
+          })
+        },
       }
     )
   }
