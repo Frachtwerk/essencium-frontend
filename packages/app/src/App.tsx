@@ -119,6 +119,8 @@ function App({ children }: AppProps): JSX.Element {
     setOpenedNav(opened => !opened)
   }
 
+  const { data: user } = useGetUser()
+
   const setAuthToken = useSetAtom(authTokenAtom)
 
   function handleLogout(): void {
@@ -134,18 +136,6 @@ function App({ children }: AppProps): JSX.Element {
       icon: link.icon,
     }
   })
-
-  useGetUser()
-
-  function getSavedUser(): any {
-    const savedUser = localStorage.getItem('user')
-    if (savedUser != null) {
-      return JSON.parse(savedUser)
-    }
-    return {}
-  }
-
-  const user = getSavedUser()
 
   return (
     <SpotlightProvider
@@ -171,11 +161,15 @@ function App({ children }: AppProps): JSX.Element {
           <Header
             isOpen={openedNav}
             handleOpenNav={handleOpenNav}
-            user={{
-              lastName: user.lastName,
-              firstName: user.firstName,
-              email: user.email,
-            }}
+            user={
+              user
+                ? {
+                    lastName: user?.lastName,
+                    firstName: user?.firstName,
+                    email: user?.email,
+                  }
+                : null
+            }
             logo={
               <Image
                 src={logoURL}
