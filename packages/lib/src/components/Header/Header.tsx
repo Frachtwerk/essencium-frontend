@@ -56,7 +56,7 @@ export function Header({
   }
 
   return (
-    <MantineHeader height={{ base: '4.375rem' }} p="md" fixed>
+    <MantineHeader height={{ base: 70 }} p="md" fixed>
       <Flex
         sx={{
           height: '100%',
