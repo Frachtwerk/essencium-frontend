@@ -15,10 +15,13 @@ export function ProfileOverviewCard({
           alt="no image here"
           color="indigo"
         />
+
         <Title order={2}>
           {user.firstName} {user.lastName}
         </Title>
+
         <Text> {user.role.name} </Text>
+
         <Badge size="lg"> {user.enabled ? 'active' : 'inactive'} </Badge>
       </Flex>
     </Card>
