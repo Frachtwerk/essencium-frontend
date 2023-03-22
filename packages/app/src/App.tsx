@@ -13,16 +13,14 @@ import {
   IconUsers,
 } from '@tabler/icons'
 import { useNavigate } from '@tanstack/react-router'
-import { useSetAtom } from 'jotai'
 import type { FooterLink, NavLink } from 'lib'
 import { Footer, Header, NavBar } from 'lib'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { authTokenAtom } from '@/api/auth'
-
 import { useGetUser } from './api/me'
 import logoURL from './img/web/icon-512.png'
+import { logout } from './utils/logout'
 
 type AppProps = {
   children: React.ReactNode
@@ -121,13 +119,6 @@ function App({ children }: AppProps): JSX.Element {
 
   const { data: user } = useGetUser()
 
-  const setAuthToken = useSetAtom(authTokenAtom)
-
-  function handleLogout(): void {
-    setAuthToken(null)
-    navigate({ to: '/login' })
-  }
-
   const actions: SpotlightAction[] = SEARCH_ITEMS.map(link => {
     return {
       title: t(link.label),
@@ -150,11 +141,7 @@ function App({ children }: AppProps): JSX.Element {
         asideOffsetBreakpoint="sm"
         navbarOffsetBreakpoint="sm"
         navbar={
-          <NavBar
-            isOpen={openedNav}
-            links={NAV_LINKS}
-            handleLogout={handleLogout}
-          />
+          <NavBar isOpen={openedNav} links={NAV_LINKS} handleLogout={logout} />
         }
         footer={<Footer links={FOOTER_LINKS} />}
         header={

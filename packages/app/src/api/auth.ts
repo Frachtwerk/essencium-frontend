@@ -1,4 +1,3 @@
-import { showNotification } from '@mantine/notifications'
 import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useAtom, useSetAtom } from 'jotai'
@@ -36,18 +35,9 @@ export function useCreateToken(): UseMutationResult<
     mutationFn: (loginCredentials: LoginCredentials) =>
       api
         .post<TokenResponse, LoginCredentials>('/auth/token', loginCredentials)
-        .then(res => res.data),
+        .then(response => response.data),
     onSuccess: (data: TokenResponse) => {
       setToken(data.token)
-    },
-    onError: (data: AxiosError) => {
-      showNotification({
-        autoClose: 4000,
-        title: 'We are sorry! Your login was not successful.',
-        message: data.message,
-        color: 'red',
-        style: { position: 'fixed', top: '20px', right: '10px' },
-      })
     },
   })
 

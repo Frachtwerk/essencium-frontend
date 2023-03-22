@@ -1,4 +1,12 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+import axios, {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios'
+
+import { logout } from '@/utils/logout'
 
 export const axiosInstance: AxiosInstance = axios.create({
   baseURL:
@@ -7,15 +15,31 @@ export const axiosInstance: AxiosInstance = axios.create({
       : 'https://backend.staging.essencium.dev/',
 })
 
-axiosInstance.interceptors.request.use(request => {
-  const authToken = localStorage.getItem('authToken')
+axiosInstance.interceptors.request.use(
+  (request: InternalAxiosRequestConfig<AxiosRequestConfig>) => {
+    const authToken = localStorage.getItem('authToken')
 
-  if (authToken && authToken !== 'null') {
-    request.headers.Authorization = `Bearer ${authToken.slice(1, -1)}`
+    if (authToken && authToken !== 'null') {
+      request.headers.Authorization = `Bearer ${authToken.replaceAll('"', '')}`
+    }
+
+    return request
+  },
+  (error: AxiosError) => {
+    throw error
   }
+)
 
-  return request
-})
+axiosInstance.interceptors.response.use(
+  response => response,
+  (error: AxiosError) => {
+    if (error?.response?.status === 401) {
+      logout()
+    }
+
+    throw error
+  }
+)
 
 type CreateApi = {
   get: <TResponse>(
