@@ -19,7 +19,7 @@ export function Table<T>({ tableModel }: TableProps<T>): JSX.Element {
       <MantineTable striped highlightOnHover>
         <thead>
           {tableModel.getHeaderGroups().map(headerGroup => (
-            <tr key={headerGroup.id}>
+            <tr key={headerGroup.id} data-testid="header-row">
               {headerGroup.headers.map(header => (
                 <th key={header.id}>
                   <Flex
