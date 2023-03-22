@@ -69,7 +69,9 @@ describe('NavBar', () => {
 
     initI18n(initReactI18next)
 
-    NavBarMounted = render(<NavBar isOpen links={NAV_LINKS} />)
+    NavBarMounted = render(
+      <NavBar isOpen links={NAV_LINKS} handleLogout={() => {}} />
+    )
   })
 
   afterAll(() => {
