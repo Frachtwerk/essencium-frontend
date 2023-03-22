@@ -1,13 +1,13 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { User } from 'lib'
+import { UserDummy } from 'lib'
 
 import { api } from './api'
 
-export const useGetUsers = (): UseQueryResult<User[], AxiosError> =>
+export const useGetUsers = (): UseQueryResult<UserDummy[], AxiosError> =>
   useQuery(['users'], () =>
     api
-      .get<User[]>('/users', {
+      .get<UserDummy[]>('/users', {
         baseURL: 'https://jsonplaceholder.typicode.com',
       })
       .then(response => response.data)

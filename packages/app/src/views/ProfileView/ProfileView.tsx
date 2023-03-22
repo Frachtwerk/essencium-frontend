@@ -1,9 +1,9 @@
+import { Center, Loader } from '@mantine/core'
 import { Profile, UpdatedUserData } from 'lib'
+import { useTranslation } from 'react-i18next'
 
 import { useGetUser, useUpdatePassword, useUpdateUser } from '@/api/me'
 import { useGetRoles } from '@/api/roles'
-import { Center, Loader } from '@mantine/core'
-import { useTranslation } from 'react-i18next'
 
 export function ProfileView(): JSX.Element {
   const { data: user, isLoading: isLoadingUser } = useGetUser()
@@ -54,17 +54,17 @@ export function ProfileView(): JSX.Element {
         handlePasswordUpdate={handlePasswordUpdate}
       />
     )
-  } else if (isLoadingUser) {
+  }
+  if (isLoadingUser) {
     return (
       <Center h="100%">
         <Loader size="xl" name="loader" />
       </Center>
     )
-  } else {
-    return (
-      <Center w="100%" h="100%">
-        {t('profileView.userNotFound')}
-      </Center>
-    )
   }
+  return (
+    <Center w="100%" h="100%">
+      {t('profileView.userNotFound')}
+    </Center>
+  )
 }
