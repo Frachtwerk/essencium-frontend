@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unstable-nested-components */
-import { Center, Loader, Text } from '@mantine/core'
+import { Button, Center, Flex, Loader, Text, Title } from '@mantine/core'
 import { IconCircleCheckFilled } from '@tabler/icons-react'
 import { ColumnDef } from '@tanstack/react-table'
 import { HttpNotification, Rights, UserRight } from 'lib'
@@ -86,6 +86,20 @@ export function RightsView(): JSX.Element {
         loadingTitle={t('notifications.loadingAsyncData.title') as string}
         loadingMessage={t('notifications.loadingAsyncData.message') as string}
       />
+
+      <Flex py="md" justify="space-between" align="center">
+        <Title variant="u">{t('rightsView.title')}</Title>
+
+        <Button
+          variant="light"
+          onClick={() => {
+            rights.refetch()
+            roles.refetch()
+          }}
+        >
+          {t('rightsView.action.refresh')}
+        </Button>
+      </Flex>
 
       {rights.isLoading ? (
         <Center h="100%">
