@@ -6,8 +6,10 @@ import { useGetUser, useUpdatePassword, useUpdateUser } from '@/api/me'
 import { useGetRoles } from '@/api/roles'
 
 export function ProfileView(): JSX.Element {
-  const { data: user, isLoading: isLoadingUser } = useGetUser()
   const { t } = useTranslation()
+
+  const { data: user, isLoading: isLoadingUser } = useGetUser()
+
   const { mutate: updateUser } = useUpdateUser()
 
   const { mutate: updatePassword } = useUpdatePassword()
@@ -55,7 +57,7 @@ export function ProfileView(): JSX.Element {
       />
     )
   }
-  
+
   if (isLoadingUser) {
     return (
       <Center h="100%">
@@ -63,7 +65,7 @@ export function ProfileView(): JSX.Element {
       </Center>
     )
   }
-  
+
   return (
     <Center w="100%" h="100%">
       {t('profileView.userNotFound')}
