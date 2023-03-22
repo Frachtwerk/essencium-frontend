@@ -1,6 +1,9 @@
 /* eslint-disable react/no-unstable-nested-components */
 import { Button, Center, Flex, Loader, Text, Title } from '@mantine/core'
-import { IconCircleCheckFilled } from '@tabler/icons-react'
+import {
+  IconCircleCheckFilled,
+  IconShieldCheckFilled,
+} from '@tabler/icons-react'
 import { ColumnDef } from '@tanstack/react-table'
 import { HttpNotification, Rights, UserRight } from 'lib'
 import { useMemo } from 'react'
@@ -88,7 +91,12 @@ export function RightsView(): JSX.Element {
       />
 
       <Flex py="md" justify="space-between" align="center">
-        <Title variant="u">{t('rightsView.title')}</Title>
+        <Title variant="u">
+          <Flex align="center" gap={10}>
+            <IconShieldCheckFilled size="42" />
+            <Text> {t('rightsView.title')}</Text>
+          </Flex>
+        </Title>
 
         <Button
           variant="light"
