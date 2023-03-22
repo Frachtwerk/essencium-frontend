@@ -38,7 +38,7 @@ export function useUpdateUser(): UseMutationResult<
   AxiosError,
   UpdatedUserData
 > {
-  const [, setUser] = useAtom(userAtom)
+  const setUser = useSetAtom(userAtom)
 
   const mutation = useMutation<User, AxiosError, UpdatedUserData>({
     mutationKey: ['useUpdateToken'],
