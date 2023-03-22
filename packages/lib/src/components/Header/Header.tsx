@@ -211,7 +211,8 @@ export function Header({
               </HoverCard.Dropdown>
             </HoverCard>
           </Group>
-          <UserMenu user={user} />
+
+          {user && <UserMenu user={user} />}
         </Group>
       </Flex>
     </MantineHeader>

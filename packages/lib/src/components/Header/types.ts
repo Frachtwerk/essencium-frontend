@@ -6,5 +6,5 @@ export type HeaderProps = {
     email: string
     firstName: string
     lastName: string
-  }
+  } | null
 }
