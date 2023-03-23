@@ -19,9 +19,11 @@ export const layoutRouteAppShell = new Route({
     </App>
   ),
   beforeLoad: ({ router }) => {
-    const token: string | null = localStorage.getItem('authToken')
+    const token: string = JSON.parse(
+      localStorage.getItem('authToken') as string
+    )
 
-    if (!token || token === 'null') {
+    if (!token) {
       router.navigate({ to: `/login` })
     }
   },
@@ -41,9 +43,11 @@ export const layoutRouteLogin = new Route({
     </Center>
   ),
   beforeLoad: ({ router }) => {
-    const token: string | null = localStorage.getItem('authToken')
+    const token: string = JSON.parse(
+      localStorage.getItem('authToken') as string
+    )
 
-    if (token && token !== 'null') {
+    if (token) {
       router.navigate({ to: `/` })
     }
   },

@@ -17,10 +17,10 @@ export const axiosInstance: AxiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (request: InternalAxiosRequestConfig<AxiosRequestConfig>) => {
-    const authToken = localStorage.getItem('authToken')
+    const authToken = JSON.parse(localStorage.getItem('authToken') as string)
 
-    if (authToken && authToken !== 'null') {
-      request.headers.Authorization = `Bearer ${authToken.replaceAll('"', '')}`
+    if (authToken) {
+      request.headers.Authorization = `Bearer ${authToken}`
     }
 
     return request
