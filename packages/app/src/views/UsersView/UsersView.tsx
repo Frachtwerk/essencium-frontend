@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unstable-nested-components */
 import { Center, Loader, Text } from '@mantine/core'
 import { ColumnDef } from '@tanstack/react-table'
-import { HttpNotification, User, UserTable } from 'lib'
+import { HttpNotification, UserDummy, UserTable } from 'lib'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -19,7 +19,7 @@ export function UsersView(): JSX.Element {
     isInitialLoading,
   } = useGetUsers()
 
-  const columns = useMemo<ColumnDef<User>[]>(
+  const columns = useMemo<ColumnDef<UserDummy>[]>(
     () => [
       {
         accessorKey: 'id',

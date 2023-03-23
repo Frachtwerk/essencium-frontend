@@ -1,48 +1,108 @@
-import { Button, Flex, Select, TextInput } from '@mantine/core'
-import { useTranslation } from 'react-i18next'
+import { Button, Flex, Select, Stack, Text, TextInput } from '@mantine/core'
+import { Controller } from 'react-hook-form'
+import { i18n } from 'translations'
+import { z } from 'zod'
 
-export function PersonalDataForm(): JSX.Element {
-  const { t } = useTranslation()
-  const testUser = {
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'john@doe.de',
-    role: 'user',
-    language: 'deutsch',
+import { useZodForm } from '../../../../../hooks'
+import { PersonalDataFormProps, UpdatedUserData } from '../../../types'
+
+const { t } = i18n
+
+export const profileDataSchema = z.object({
+  firstName: z
+    .string()
+    .min(2)
+    .max(16, String(t('validation.firstName.minLength'))),
+  lastName: z
+    .string()
+    .min(2)
+    .max(16, String(t('validation.lastName.minLength'))),
+  phone: z.string().min(10).max(15).optional(),
+  mobile: z.string().min(10).max(15).optional(),
+  email: z.string().email(String(t('validation.email.notValid'))),
+  locale: z.string().min(2).max(16),
+})
+
+export function PersonalDataForm({
+  user,
+  handleUpdate,
+}: PersonalDataFormProps): JSX.Element {
+  const { handleSubmit, control, formState } = useZodForm({
+    schema: profileDataSchema,
+    defaultValues: {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      phone: user.phone != null ? user.phone : undefined,
+      mobile: user.mobile != null ? user.mobile : undefined,
+      email: user.email,
+      locale: user.locale,
+    },
+  })
+
+  function onSubmit(data: UpdatedUserData): void {
+    handleUpdate(data)
   }
 
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Flex
         direction={{ base: 'column', sm: 'row' }}
         gap={{ base: 'sm', sm: 'lg' }}
         justify={{ sm: 'space-between' }}
       >
-        <TextInput
-          mb="md"
-          placeholder={String(
-            t('profileView.dataCard.tabs.personalData.content.firstName')
-          )}
-          label={t('profileView.dataCard.tabs.personalData.content.firstName')}
-          size="sm"
-          variant="filled"
-          miw="45%"
-          radius="sm"
-          value={testUser.firstName}
-        />
+        <Stack miw="45%" mb="md">
+          <Controller
+            name="firstName"
+            control={control}
+            render={({ field }) => (
+              <TextInput
+                {...field}
+                placeholder={String(
+                  t('profileView.dataCard.tabs.personalData.content.firstName')
+                )}
+                label={t(
+                  'profileView.dataCard.tabs.personalData.content.firstName'
+                )}
+                size="sm"
+                variant="filled"
+                radius="sm"
+              />
+            )}
+          />
 
-        <TextInput
-          mb="md"
-          placeholder={String(
-            t('profileView.dataCard.tabs.personalData.content.lastName')
+          {formState.errors.firstName && (
+            <Text fz="xs" color="red">
+              {formState.errors.firstName?.message}
+            </Text>
           )}
-          label={t('profileView.dataCard.tabs.personalData.content.lastName')}
-          size="sm"
-          variant="filled"
-          miw="45%"
-          radius="sm"
-          value={testUser.lastName}
-        />
+        </Stack>
+
+        <Stack mb="md" miw="45%">
+          <Controller
+            name="lastName"
+            control={control}
+            render={({ field }) => (
+              <TextInput
+                {...field}
+                placeholder={String(
+                  t('profileView.dataCard.tabs.personalData.content.lastName')
+                )}
+                label={t(
+                  'profileView.dataCard.tabs.personalData.content.lastName'
+                )}
+                size="sm"
+                variant="filled"
+                radius="sm"
+              />
+            )}
+          />
+
+          {formState.errors.lastName && (
+            <Text mt={4} ml={5} fz="xs" color="red">
+              {formState.errors.lastName?.message}
+            </Text>
+          )}
+        </Stack>
       </Flex>
 
       <Flex
@@ -50,29 +110,59 @@ export function PersonalDataForm(): JSX.Element {
         gap={{ base: 'sm', sm: 'lg' }}
         justify={{ sm: 'space-between' }}
       >
-        <TextInput
-          mb="md"
-          placeholder={String(
-            t('profileView.dataCard.tabs.personalData.content.phone')
-          )}
-          label={t('profileView.dataCard.tabs.personalData.content.phone')}
-          size="sm"
-          variant="filled"
-          miw="45%"
-          radius="sm"
-        />
+        <Stack mb="md" miw="45%">
+          <Controller
+            name="phone"
+            control={control}
+            render={({ field }) => (
+              <TextInput
+                {...field}
+                placeholder={String(
+                  t('profileView.dataCard.tabs.personalData.content.phone')
+                )}
+                label={t(
+                  'profileView.dataCard.tabs.personalData.content.phone'
+                )}
+                size="sm"
+                variant="filled"
+                radius="sm"
+              />
+            )}
+          />
 
-        <TextInput
-          mb="md"
-          placeholder={String(
-            t('profileView.dataCard.tabs.personalData.content.mobile')
+          {formState.errors.phone && (
+            <Text mt={4} ml={5} fz="xs" color="red">
+              {formState.errors.phone?.message}
+            </Text>
           )}
-          label={t('profileView.dataCard.tabs.personalData.content.mobile')}
-          size="sm"
-          variant="filled"
-          miw="45%"
-          radius="sm"
-        />
+        </Stack>
+
+        <Stack mb="md" miw="45%">
+          <Controller
+            name="mobile"
+            control={control}
+            render={({ field }) => (
+              <TextInput
+                {...field}
+                placeholder={String(
+                  t('profileView.dataCard.tabs.personalData.content.mobile')
+                )}
+                label={t(
+                  'profileView.dataCard.tabs.personalData.content.mobile'
+                )}
+                size="sm"
+                variant="filled"
+                radius="sm"
+              />
+            )}
+          />
+
+          {formState.errors.mobile && (
+            <Text mt={4} ml={5} fz="xs" color="red">
+              {formState.errors.mobile?.message}
+            </Text>
+          )}
+        </Stack>
       </Flex>
 
       <Flex
@@ -80,37 +170,65 @@ export function PersonalDataForm(): JSX.Element {
         gap={{ base: 'sm', sm: 'lg' }}
         justify={{ sm: 'space-between' }}
       >
-        <TextInput
-          mb="md"
-          placeholder={String(
-            t('profileView.dataCard.tabs.personalData.content.email')
-          )}
-          label={t('profileView.dataCard.tabs.personalData.content.email')}
-          withAsterisk
-          size="sm"
-          variant="filled"
-          radius="sm"
-          miw="45%"
-          value={testUser.email}
-        />
+        <Stack mb="md" miw="45%">
+          <Controller
+            name="email"
+            control={control}
+            render={({ field }) => (
+              <TextInput
+                {...field}
+                placeholder={String(
+                  t('profileView.dataCard.tabs.personalData.content.email')
+                )}
+                label={t(
+                  'profileView.dataCard.tabs.personalData.content.email'
+                )}
+                withAsterisk
+                size="sm"
+                variant="filled"
+                radius="sm"
+              />
+            )}
+          />
 
-        <Select
-          miw="45%"
-          mb="md"
-          radius="sm"
-          label={t('profileView.dataCard.tabs.personalData.content.language')}
-          placeholder={String(
-            t('profileView.dataCard.tabs.personalData.content.language')
+          {formState.errors.email && (
+            <Text mt={4} ml={5} fz="xs" color="red">
+              {formState.errors.email?.message}
+            </Text>
           )}
-          value={testUser.language}
-          data={[
-            { value: 'deutsch', label: 'Deutsch' },
-            { value: 'english', label: 'English' },
-          ]}
-        />
+        </Stack>
+
+        <Stack mb="md" miw="45%">
+          <Controller
+            name="locale"
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...field}
+                radius="sm"
+                label={t(
+                  'profileView.dataCard.tabs.personalData.content.language'
+                )}
+                placeholder={String(
+                  t('profileView.dataCard.tabs.personalData.content.language')
+                )}
+                data={[
+                  { value: 'de', label: 'Deutsch' },
+                  { value: 'en', label: 'English' },
+                ]}
+              />
+            )}
+          />
+
+          {formState.errors.locale && (
+            <Text mt={4} ml={5} fz="xs" color="red">
+              {formState.errors.locale?.message}
+            </Text>
+          )}
+        </Stack>
       </Flex>
 
-      <Button mt="md" variant="light">
+      <Button type="submit" mt="md" variant="light">
         {t('profileView.dataCard.tabs.personalData.content.saveChanges')}
       </Button>
     </form>

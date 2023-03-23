@@ -8,9 +8,9 @@ export const userSchema = z.object({
   email: z.string().email(),
 })
 
-export type User = z.infer<typeof userSchema>
+export type UserDummy = z.infer<typeof userSchema>
 
 export type UserTableProps = {
-  users: User[]
-  columns: ColumnDef<User>[]
+  users: UserDummy[]
+  columns: ColumnDef<UserDummy>[]
 }
