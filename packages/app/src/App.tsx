@@ -18,6 +18,7 @@ import { Footer, Header, NavBar } from 'lib'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { version } from '../package.json'
 import { useGetUser } from './api/me'
 import logoURL from './img/web/icon-512.png'
 import { logout } from './utils/logout'
@@ -148,6 +149,7 @@ function App({ children }: AppProps): JSX.Element {
           <Header
             isOpen={openedNav}
             handleOpenNav={handleOpenNav}
+            version={version}
             user={
               user
                 ? {
