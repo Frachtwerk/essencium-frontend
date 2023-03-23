@@ -25,7 +25,7 @@ export function NavBar({
     >
       <Stack
         style={{
-          height: '90%',
+          height: '100%',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
@@ -35,7 +35,7 @@ export function NavBar({
           <NavLinks links={links} />
         </Navbar.Section>
 
-        <Navbar.Section mt="xl" mb="md">
+        <Navbar.Section mt="auto">
           <NavLink
             icon={<IconLogout />}
             label={t('navigation.logout')}
