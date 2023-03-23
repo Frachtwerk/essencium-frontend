@@ -104,6 +104,8 @@ jobs:
 
       - name: Install Playwright browsers
       - run: npx playwright install-deps
+
+      - name: Install Playwright
       - run: npx playwright install
 
       - name: 🔬 Run Playwright
