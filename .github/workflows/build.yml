@@ -102,11 +102,11 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - name: Install playwright browsers
-        run: pnpm playwright install
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
 
       - name: 🔬 Run Playwright
-        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:e2e --parallel=5
+        run: npx playwright test
 
   build:
     name: 🔨 Build
