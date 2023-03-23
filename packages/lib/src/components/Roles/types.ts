@@ -8,5 +8,3 @@ export const userRoleSchema = z.object({
   description: z.string().optional(),
   rights: userRightSchema.array(),
 })
-
-export type UserRole = z.infer<typeof userRoleSchema>
