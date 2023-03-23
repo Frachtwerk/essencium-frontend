@@ -91,9 +91,9 @@ export function RightsView(): JSX.Element {
       />
 
       <Flex py="md" justify="space-between" align="center">
-        <Title variant="u">
+        <Title size="h2">
           <Flex align="center" gap={10}>
-            <IconShieldCheckFilled size="42" />
+            <IconShieldCheckFilled size="32" />
             <Text> {t('rightsView.title')}</Text>
           </Flex>
         </Title>
