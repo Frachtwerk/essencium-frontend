@@ -6,9 +6,12 @@ import { api, PaginatedResponse } from './api'
 
 const VERSION = 'v1'
 
-export type UserRightResponse = PaginatedResponse<UserRight>
+export type UserRightsResponse = PaginatedResponse<UserRight>
 
-export const useGetRights = (): UseQueryResult<UserRightResponse, AxiosError> =>
+export const useGetRights = (): UseQueryResult<
+  UserRightsResponse,
+  AxiosError
+> =>
   useQuery(['rights'], () =>
     api.get<UserRight[]>(`${VERSION}/rights`).then(response => response.data)
   )
