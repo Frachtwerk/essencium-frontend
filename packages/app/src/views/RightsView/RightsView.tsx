@@ -10,7 +10,7 @@ import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useGetRights } from '@/api/rights'
-import { useGetRoles, UserRoleResponse } from '@/api/roles'
+import { useGetRoles, UserRolesResponse } from '@/api/roles'
 
 export function RightsView(): JSX.Element {
   const { t } = useTranslation()
@@ -20,7 +20,7 @@ export function RightsView(): JSX.Element {
 
   function userHasRight(
     rightName: string,
-    inputRoles?: UserRoleResponse['content']
+    inputRoles?: UserRolesResponse['content']
   ): boolean {
     const userRole = inputRoles?.find(role => role.name === 'USER') || {
       rights: [],
@@ -30,7 +30,7 @@ export function RightsView(): JSX.Element {
 
   function adminHasRight(
     rightName: string,
-    inputRoles?: UserRoleResponse['content']
+    inputRoles?: UserRolesResponse['content']
   ): boolean {
     const adminRole = inputRoles?.find(role => role.name === 'ADMIN') || {
       rights: [],
