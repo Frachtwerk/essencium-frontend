@@ -57,11 +57,6 @@ describe('Rights', () => {
       header: () => 'rightsView.table.name',
       cell: (info: CellContextType) => info.getValue(),
     },
-    // {
-    //   accessorKey: 'description',
-    //   header: () => 'rightsView.table.description',
-    //   cell: (info: CellContextType) => info.getValue(),
-    // },
     {
       accessorKey: 'userIndicator',
       header: () => 'rightsView.table.userRole',

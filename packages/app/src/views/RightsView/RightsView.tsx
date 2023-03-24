@@ -46,12 +46,6 @@ export function RightsView(): JSX.Element {
         header: () => <Text>{t('rightsView.table.name')}</Text>,
         cell: info => info.getValue(),
       },
-      // For displaying the description of a right
-      // {
-      //   accessorKey: 'description',
-      //   header: () => <Text>{t('rightsView.table.description')}</Text>,
-      //   cell: info => info.getValue(),
-      // },
       {
         accessorKey: 'indicatorUser',
         header: () => <Text>{t('rightsView.table.userRole')}</Text>,
