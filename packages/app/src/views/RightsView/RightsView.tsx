@@ -6,7 +6,7 @@ import {
 } from '@tabler/icons-react'
 import { ColumnDef } from '@tanstack/react-table'
 import { HttpNotification, Rights, UserRight } from 'lib'
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useGetRights } from '@/api/rights'
@@ -27,25 +27,17 @@ export function RightsView(): JSX.Element {
 
   const { data: roles, refetch: refetchRoles } = useGetRoles()
 
-  function userHasRight(
-    rightName: string,
-    inputRoles?: UserRolesResponse['content']
-  ): boolean {
-    const userRole = inputRoles?.find(role => role.name === 'USER') || {
-      rights: [],
-    }
-    return userRole.rights.some(right => right.name === rightName)
-  }
+  const hasRight = useCallback(
+    (rightName: string, roleName: string) => {
+      const matchedRole = roles?.content?.find(role => role.name === roleName)
 
-  function adminHasRight(
-    rightName: string,
-    inputRoles?: UserRolesResponse['content']
-  ): boolean {
-    const adminRole = inputRoles?.find(role => role.name === 'ADMIN') || {
-      rights: [],
-    }
-    return adminRole.rights.some(right => right.name === rightName)
-  }
+      if (!matchedRole)
+        throw Error(`Role ${roleName} does not exist in ${roles?.content}`)
+
+      return matchedRole.rights.some(right => right.name === rightName)
+    },
+    [roles?.content]
+  )
 
   const columns = useMemo<ColumnDef<UserRight>[]>(
     () => [
@@ -65,9 +57,7 @@ export function RightsView(): JSX.Element {
         header: () => <Text>{t('rightsView.table.userRole')}</Text>,
         cell: info => {
           const rightName = info.row.original.name
-          return userHasRight(rightName, roles?.content) ? (
-            <IconCircleCheckFilled />
-          ) : null
+          return hasRight(rightName, 'USER') ? <IconCircleCheckFilled /> : null
         },
       },
       {
@@ -75,13 +65,11 @@ export function RightsView(): JSX.Element {
         header: () => <Text>{t('rightsView.table.adminRole')}</Text>,
         cell: info => {
           const rightName = info.row.original.name
-          return adminHasRight(rightName, roles?.content) ? (
-            <IconCircleCheckFilled />
-          ) : null
+          return hasRight(rightName, 'ADMIN') ? <IconCircleCheckFilled /> : null
         },
       },
     ],
-    [roles, t]
+    [t, hasRight]
   )
 
   return (
