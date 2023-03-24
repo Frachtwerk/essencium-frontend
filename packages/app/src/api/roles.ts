@@ -6,14 +6,14 @@ import { api, PaginatedResponse } from './api'
 
 const VERSION = 'v1'
 
-export type UserRoleResponse = PaginatedResponse<UserRole>
+export type UserRolesResponse = PaginatedResponse<UserRole>
 
-export function useGetRoles(): UseQueryResult<UserRoleResponse, AxiosError> {
-  const query = useQuery<UserRoleResponse, AxiosError>({
+export function useGetRoles(): UseQueryResult<UserRolesResponse, AxiosError> {
+  const query = useQuery<UserRolesResponse, AxiosError>({
     queryKey: ['getRoles'],
     queryFn: () =>
       api
-        .get<UserRoleResponse>(`${VERSION}/roles`)
+        .get<UserRolesResponse>(`${VERSION}/roles`)
         .then(response => response.data),
   })
 
