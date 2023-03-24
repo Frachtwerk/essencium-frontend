@@ -2,6 +2,7 @@ import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useAtom, useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
+import { User } from 'lib'
 
 import { api } from '@/api'
 
@@ -44,18 +45,19 @@ export function useCreateToken(): UseMutationResult<
   return mutation
 }
 
-/* export function useInvalidateToken(
-  userId: number | undefined,
-  enabled = true
-): UseMutationResult<void, AxiosError, null, unknown> {
-  const mutation = useMutation<void, AxiosError>({
+export function useInvalidateToken(
+  userId: User['id']
+): UseMutationResult<null, AxiosError, null, unknown> {
+  const mutation = useMutation<null, AxiosError, null>({
     mutationKey: ['useInvalidateToken'],
     mutationFn: () =>
-      api.post<void, null>(`/${VERSION}/users/${userId}/terminate`, null),
-    enabled,
+      api
+        .post<null, null>(`/${VERSION}/users/${userId}/terminate`, null)
+        .then(response => response.data),
   })
+
   return mutation
-} */
+}
 
 export function useRenewToken(): UseMutationResult<
   TokenResponse,
