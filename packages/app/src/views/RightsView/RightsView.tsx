@@ -10,7 +10,7 @@ import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useGetRights } from '@/api/rights'
-import { useGetRoles, UserRolesResponse } from '@/api/roles'
+import { useGetRoles } from '@/api/roles'
 
 export function RightsView(): JSX.Element {
   const { t } = useTranslation()
@@ -66,6 +66,11 @@ export function RightsView(): JSX.Element {
     [t, hasRight]
   )
 
+  function handleRefetch(): void {
+    refetchRights()
+    refetchRoles()
+  }
+
   return (
     <>
       <HttpNotification
@@ -92,8 +97,7 @@ export function RightsView(): JSX.Element {
         <Button
           variant="light"
           onClick={() => {
-            refetchRights()
-            refetchRoles()
+            handleRefetch()
           }}
         >
           {t('rightsView.action.refresh')}
