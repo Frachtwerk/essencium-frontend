@@ -29,10 +29,14 @@ export function RightsView(): JSX.Element {
 
   const hasRight = useCallback(
     (rightName: string, roleName: string) => {
-      const matchedRole = roles?.content?.find(role => role.name === roleName)
+      if (!roles?.content) {
+        return false
+      }
+
+      const matchedRole = roles.content.find(role => role.name === roleName)
 
       if (!matchedRole)
-        throw Error(`Role ${roleName} does not exist in ${roles?.content}`)
+        throw Error(`Role ${roleName} does not exist in ${roles.content}`)
 
       return matchedRole.rights.some(right => right.name === rightName)
     },
