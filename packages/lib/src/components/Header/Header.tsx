@@ -3,6 +3,7 @@ import {
   Box,
   Burger,
   Button,
+  Code,
   ColorScheme,
   Flex,
   Group,
@@ -78,18 +79,22 @@ export function Header({
         </MediaQuery>
 
         <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-          <Group spacing="xs" noWrap align="baseline">
-            <Box sx={{ alignSelf: 'center' }}>{logo}</Box>
+          <Group spacing="xs" noWrap align="center">
+            <Box>{logo}</Box>
 
-            <Text size={24} mr="10" weight="500">
+            <Text size={21} mr="10" weight="500">
               {t('header.title')}
             </Text>
 
-            {version && (
-              <Text size={10} weight="500">
-                {version}
-              </Text>
-            )}
+            {version ? (
+              <>
+                <Code>{version}</Code>
+
+                {process.env.NODE_ENV === 'development' ? (
+                  <Code>{process.env.NODE_ENV}</Code>
+                ) : null}
+              </>
+            ) : null}
           </Group>
         </MediaQuery>
 
