@@ -1,7 +1,9 @@
 import {
   ActionIcon,
+  Box,
   Burger,
   Button,
+  Code,
   ColorScheme,
   Flex,
   Group,
@@ -30,6 +32,7 @@ export function Header({
   isOpen,
   handleOpenNav,
   logo,
+  version,
   user,
 }: HeaderProps): JSX.Element {
   const { t, i18n } = useTranslation()
@@ -77,10 +80,21 @@ export function Header({
 
         <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
           <Group spacing="xs" noWrap align="center">
-            <span>{logo}</span>
-            <Text size={24} mr="xs" weight="500">
+            <Box>{logo}</Box>
+
+            <Text size={21} mr="10" weight="500">
               {t('header.title')}
             </Text>
+
+            {version ? (
+              <>
+                <Code>{version}</Code>
+
+                {process.env.NODE_ENV === 'development' ? (
+                  <Code>{process.env.NODE_ENV}</Code>
+                ) : null}
+              </>
+            ) : null}
           </Group>
         </MediaQuery>
 
