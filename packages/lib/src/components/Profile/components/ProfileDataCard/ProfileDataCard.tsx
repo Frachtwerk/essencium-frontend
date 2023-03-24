@@ -1,5 +1,5 @@
 import { Card, Tabs } from '@mantine/core'
-import { IconLock, IconSettings, IconUser } from '@tabler/icons'
+import { IconLock, IconSettings, IconUser } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
 
 import { UserProps } from '../../types'

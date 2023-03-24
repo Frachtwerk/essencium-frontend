@@ -11,7 +11,7 @@ import {
   IconShieldLock,
   IconUserCheck,
   IconUsers,
-} from '@tabler/icons'
+} from '@tabler/icons-react'
 import { useNavigate } from '@tanstack/react-router'
 import type { FooterLink, NavLink } from 'lib'
 import { Footer, Header, NavBar } from 'lib'
@@ -42,35 +42,35 @@ export const NAV_LINKS: NavLink[] = [
     color: 'blue',
     label: 'navigation.home',
     to: '/',
-    description: 'Lorem Ipsum',
+    description: 'Homepage',
   },
   {
     icon: <IconUsers size={20} />,
     color: 'blue',
     label: 'navigation.users',
     to: '/users',
-    description: 'Lorem Ipsum',
+    description: 'Users',
   },
   {
     icon: <IconUserCheck size={20} />,
     color: 'blue',
     label: 'navigation.roles',
     to: '/roles',
-    description: 'Lorem Ipsum',
+    description: 'User Roles',
   },
   {
     icon: <IconShieldCheck size={20} />,
     color: 'blue',
     label: 'navigation.rights',
     to: '/rights',
-    description: 'Lorem Ipsum',
+    description: 'User Rights',
   },
   {
     icon: <IconLanguage size={20} />,
     color: 'blue',
     label: 'navigation.translations',
     to: '/translations',
-    description: 'Lorem Ipsum',
+    description: 'Translations',
   },
 ]
 
@@ -79,19 +79,19 @@ export const FOOTER_LINKS: FooterLink[] = [
     icon: <IconShieldLock size={20} />,
     label: 'footer.privacy',
     to: '/',
-    description: 'Lorem Ipsum',
+    description: 'Privacy',
   },
   {
     icon: <IconSectionSign size={20} />,
     label: 'footer.imprint',
     to: '/',
-    description: 'Lorem Ipsum',
+    description: 'Imprint',
   },
   {
     icon: <IconMessage size={20} />,
     label: 'footer.contact',
     to: '/contact',
-    description: 'Lorem Ipsum',
+    description: 'Contact',
   },
 ]
 
@@ -102,7 +102,7 @@ export const SEARCH_ITEMS: SearchItems[] = [
     icon: <IconUsers size={20} />,
     label: 'profileView.title',
     to: '/profile',
-    description: 'Lorem Ipsum',
+    description: 'User Profile',
   },
 ]
 

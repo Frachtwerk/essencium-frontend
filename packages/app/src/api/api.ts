@@ -8,6 +8,35 @@ import axios, {
 
 import { logout } from '@/utils/logout'
 
+export type PaginatedResponse<T> = {
+  content: T[]
+  empty: boolean
+  first: boolean
+  last: boolean
+  number: number
+  numberOfElements: number
+  pageable: {
+    offset: number
+    pageNumber: number
+    pageSize: number
+    paged: boolean
+    sort: {
+      empty: boolean
+      sorted: boolean
+      unsorted: boolean
+    }
+    unpaged: boolean
+  }
+  size: number
+  sort: {
+    empty: boolean
+    sorted: boolean
+    unsorted: boolean
+  }
+  totalElements: number
+  totalPages: number
+}
+
 export const axiosInstance: AxiosInstance = axios.create({
   baseURL:
     process.env.NODE_ENV === 'development'

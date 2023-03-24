@@ -4,7 +4,7 @@ import {
   IconShieldCheck,
   IconUserCheck,
   IconUsers,
-} from '@tabler/icons'
+} from '@tabler/icons-react'
 import { render, RenderResult, screen } from '@testing-library/react'
 import { CSSProperties } from 'react'
 import { initReactI18next } from 'react-i18next'
@@ -69,7 +69,9 @@ describe('NavBar', () => {
 
     initI18n(initReactI18next)
 
-    NavBarMounted = render(<NavBar isOpen links={NAV_LINKS} />)
+    NavBarMounted = render(
+      <NavBar isOpen links={NAV_LINKS} handleLogout={() => {}} />
+    )
   })
 
   afterAll(() => {

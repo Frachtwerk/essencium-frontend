@@ -2,13 +2,11 @@ import { useQuery, UseQueryResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import type { UserRole } from 'lib'
 
-import { api } from './api'
+import { api, PaginatedResponse } from './api'
 
 const VERSION = 'v1'
 
-type UserRolesResponse = {
-  content: UserRole[]
-}
+export type UserRolesResponse = PaginatedResponse<UserRole>
 
 export function useGetRoles(): UseQueryResult<UserRolesResponse, AxiosError> {
   const query = useQuery<UserRolesResponse, AxiosError>({

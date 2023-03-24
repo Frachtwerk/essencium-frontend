@@ -7,7 +7,7 @@ import {
   Text,
   useMantineTheme,
 } from '@mantine/core'
-import { IconCheck, IconX } from '@tabler/icons'
+import { IconCheck, IconX } from '@tabler/icons-react'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { z } from 'zod'

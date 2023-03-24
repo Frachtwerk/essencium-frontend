@@ -5,7 +5,7 @@ import {
   UnstyledButton,
   useMantineTheme,
 } from '@mantine/core'
-import { IconChevronRight, IconUserCircle } from '@tabler/icons'
+import { IconChevronRight, IconUserCircle } from '@tabler/icons-react'
 import { Link as RouterLink } from '@tanstack/react-router'
 
 type UserMenuProps = {

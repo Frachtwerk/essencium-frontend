@@ -10,6 +10,11 @@ import { Header } from './Header'
 describe('Header', () => {
   let HeaderMounted: RenderResult
   const applicationLogo = <img alt="Application Logo" />
+  const mockUser = {
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'johndoe@email.com',
+  }
 
   beforeAll(() => {
     vi.mock('@tanstack/react-router', () => ({
@@ -24,7 +29,12 @@ describe('Header', () => {
     initI18n(initReactI18next)
 
     HeaderMounted = render(
-      <Header isOpen handleOpenNav={() => {}} logo={applicationLogo} />
+      <Header
+        isOpen
+        handleOpenNav={() => {}}
+        logo={applicationLogo}
+        user={mockUser}
+      />
     )
   })
 
@@ -37,7 +47,7 @@ describe('Header', () => {
     expect(screen.getByRole('img')).toBeDefined()
 
     render(<SearchBar />)
-    render(<UserMenu />)
+    render(<UserMenu user={mockUser} />)
 
     const darkmodeToggle = screen.getByRole('button', {
       name: 'darkmode-toggle',

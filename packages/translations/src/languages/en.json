@@ -133,6 +133,18 @@
       "profile": "Change Profile Data"
     }
   },
+  "rightsView": {
+    "title": "Rights",
+    "action": {
+      "refresh": "Refresh data"
+    },
+    "table": {
+      "name": "Name",
+      "description": "Description",
+      "userRole": "User",
+      "adminRole": "Admin"
+    }
+  },
   "validation": {
     "email": {
       "notValid": "E-Mail is not valid"

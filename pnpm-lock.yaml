@@ -52,7 +52,7 @@ importers:
       '@playwright/test': 1.32.0
       '@sentry/react': 7.40.0
       '@sentry/tracing': 7.40.0
-      '@tabler/icons': 1.119.0
+      '@tabler/icons-react': 2.11.0
       '@tanstack/react-query': 4.24.10
       '@tanstack/react-query-devtools': 4.24.12
       '@tanstack/react-router': 0.0.1-beta.83
@@ -112,7 +112,7 @@ importers:
       '@playwright/test': 1.32.0
       '@sentry/react': 7.40.0_react@18.2.0
       '@sentry/tracing': 7.40.0
-      '@tabler/icons': 1.119.0_biqbaboplfbrettd7655fr4n2y
+      '@tabler/icons-react': 2.11.0_react@18.2.0
       '@tanstack/react-query': 4.24.10_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-query-devtools': 4.24.12_636dldj5wfr5vkyyqzs5k363kq
       '@tanstack/react-router': 0.0.1-beta.83_biqbaboplfbrettd7655fr4n2y
@@ -123,7 +123,7 @@ importers:
       fast-glob: 3.2.12
       i18next: 22.4.11
       jotai: 2.0.3_react@18.2.0
-      lib: file:packages/lib_rm27uvmp3cra525spauexyb3di
+      lib: file:packages/lib_c7jm266feb4bgkkzi7h443oadq
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.43.5_react@18.2.0
@@ -199,7 +199,7 @@ importers:
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-terser': 0.4.0
       '@rollup/plugin-typescript': 11.0.0
-      '@tabler/icons': 1.119.0
+      '@tabler/icons-react': 2.11.0
       '@tanstack/react-query': 4.24.10
       '@tanstack/react-router': 0.0.1-beta.83
       '@tanstack/react-table': 8.7.9
@@ -253,7 +253,7 @@ importers:
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.18.0
       '@rollup/plugin-terser': 0.4.0_rollup@3.18.0
       '@rollup/plugin-typescript': 11.0.0_elyygukqrpnyv7sactoooq5kjq
-      '@tabler/icons': 1.119.0_biqbaboplfbrettd7655fr4n2y
+      '@tabler/icons-react': 2.11.0_react@18.2.0
       '@tanstack/react-query': 4.24.10_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-router': 0.0.1-beta.83_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-table': 8.7.9_biqbaboplfbrettd7655fr4n2y
@@ -2080,19 +2080,17 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /@tabler/icons/1.119.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-Fk3Qq4w2SXcTjc/n1cuL5bccPkylrOMo7cYpQIf/yw6zP76LQV9dtLcHQUjFiUnaYuswR645CnURIhlafyAh9g==}
+  /@tabler/icons-react/2.11.0_react@18.2.0:
+    resolution: {integrity: sha512-Mbie8IFLrtI0sGm802Bmierle0ixIi7FVczShoLjPZwRM0da1HcD588TF7oMuQ09zd241BY+L7M/f0Q6lquBng==}
     peerDependencies:
-      react: ^16.x || 17.x || 18.x
-      react-dom: ^16.x || 17.x || 18.x
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
+      '@tabler/icons': 2.11.0
+      prop-types: 15.8.1
       react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
+
+  /@tabler/icons/2.11.0:
+    resolution: {integrity: sha512-KPESQnvHoSpbAdgzDdrSmeZ9AE8fSU12fU3Cag79uXJCUkC8f741fcvPJPsFMDe0S96VSq3mMYF8JnA7a570uQ==}
 
   /@tanstack/match-sorter-utils/8.7.6:
     resolution: {integrity: sha512-2AMpRiA6QivHOUiBpQAVxjiHAA68Ei23ZUMNaRJrN6omWiSFLoYrxGcT6BXtuzp0Jw4h6HZCmGGIM/gbwebO2A==}
@@ -8818,7 +8816,7 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
-  file:packages/lib_rm27uvmp3cra525spauexyb3di:
+  file:packages/lib_c7jm266feb4bgkkzi7h443oadq:
     resolution: {directory: packages/lib, type: directory}
     id: file:packages/lib
     name: lib
@@ -8835,7 +8833,7 @@ packages:
       '@mantine/hooks': 6.0.2
       '@mantine/modals': 6.0.2
       '@mantine/spotlight': 6.0.2
-      '@tabler/icons': 1.119.0
+      '@tabler/icons-react': 2.11.0
       '@tanstack/react-query': 4.24.10
       '@tanstack/react-router': 0.0.1-beta.83
       '@tanstack/react-table': 8.7.9
@@ -8857,7 +8855,7 @@ packages:
       '@mantine/hooks': 6.0.2_react@18.2.0
       '@mantine/modals': 6.0.2_reujnkpez4ozmj6vonlofpozxe
       '@mantine/spotlight': 6.0.2_reujnkpez4ozmj6vonlofpozxe
-      '@tabler/icons': 1.119.0_biqbaboplfbrettd7655fr4n2y
+      '@tabler/icons-react': 2.11.0_react@18.2.0
       '@tanstack/react-query': 4.24.10_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-router': 0.0.1-beta.83_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-table': 8.7.9_biqbaboplfbrettd7655fr4n2y

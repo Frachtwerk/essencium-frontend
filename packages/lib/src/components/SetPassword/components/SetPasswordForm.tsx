@@ -1,5 +1,5 @@
 import { Button, Card, PasswordInput, Title } from '@mantine/core'
-import { IconCheck } from '@tabler/icons'
+import { IconCheck } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
 
 export function SetPasswordForm(): JSX.Element {
