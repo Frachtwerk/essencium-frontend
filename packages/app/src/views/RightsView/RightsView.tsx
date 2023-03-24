@@ -15,8 +15,17 @@ import { useGetRoles, UserRolesResponse } from '@/api/roles'
 export function RightsView(): JSX.Element {
   const { t } = useTranslation()
 
-  const rights = useGetRights()
-  const roles = useGetRoles()
+  const {
+    data: rights,
+    isLoading: isLoadingRights,
+    isFetching: isFetchingRights,
+    isInitialLoading: isInitialLoadingRights,
+    isError: isErrorRights,
+    error: errorRights,
+    refetch: refetchRights,
+  } = useGetRights()
+
+  const { data: roles, refetch: refetchRoles } = useGetRoles()
 
   function userHasRight(
     rightName: string,
@@ -56,7 +65,7 @@ export function RightsView(): JSX.Element {
         header: () => <Text>{t('rightsView.table.userRole')}</Text>,
         cell: info => {
           const rightName = info.row.original.name
-          return userHasRight(rightName, roles?.data?.content) ? (
+          return userHasRight(rightName, roles?.content) ? (
             <IconCircleCheckFilled />
           ) : null
         },
@@ -66,7 +75,7 @@ export function RightsView(): JSX.Element {
         header: () => <Text>{t('rightsView.table.adminRole')}</Text>,
         cell: info => {
           const rightName = info.row.original.name
-          return adminHasRight(rightName, roles?.data?.content) ? (
+          return adminHasRight(rightName, roles?.content) ? (
             <IconCircleCheckFilled />
           ) : null
         },
@@ -78,14 +87,14 @@ export function RightsView(): JSX.Element {
   return (
     <>
       <HttpNotification
-        isLoading={rights.isFetching && !rights.isInitialLoading}
-        isError={rights.isError}
+        isLoading={isFetchingRights && !isInitialLoadingRights}
+        isError={isErrorRights}
         errorTitle={`Error ${
-          rights.error?.response?.status
-            ? `(${rights.error?.response?.status})`
+          errorRights?.response?.status
+            ? `(${errorRights?.response?.status})`
             : ''
         }`}
-        errorMessage={rights.error?.message}
+        errorMessage={errorRights?.message}
         loadingTitle={t('notifications.loadingAsyncData.title') as string}
         loadingMessage={t('notifications.loadingAsyncData.message') as string}
       />
@@ -101,20 +110,20 @@ export function RightsView(): JSX.Element {
         <Button
           variant="light"
           onClick={() => {
-            rights.refetch()
-            roles.refetch()
+            refetchRights()
+            refetchRoles()
           }}
         >
           {t('rightsView.action.refresh')}
         </Button>
       </Flex>
 
-      {rights.isLoading ? (
+      {isLoadingRights ? (
         <Center h="100%">
           <Loader size="xl" name="loader" />
         </Center>
       ) : (
-        <Rights rights={rights?.data?.content || []} columns={columns} />
+        <Rights rights={rights?.content || []} columns={columns} />
       )}
     </>
   )
