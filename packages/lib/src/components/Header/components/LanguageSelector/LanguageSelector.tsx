@@ -10,12 +10,12 @@ import { IconLanguage, IconWorld } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
 
 type LanguageSelectorProps = {
-  openLanguageSelector: boolean
+  isOpenLanguageSelector: boolean
   toggleLanguageSelector: () => void
 }
 
 export function LanguageSelector({
-  openLanguageSelector,
+  isOpenLanguageSelector,
   toggleLanguageSelector,
 }: LanguageSelectorProps): JSX.Element {
   const { t, i18n } = useTranslation()
@@ -27,7 +27,7 @@ export function LanguageSelector({
 
   return (
     <Popover
-      opened={openLanguageSelector}
+      opened={isOpenLanguageSelector}
       width={130}
       position="bottom"
       withArrow
