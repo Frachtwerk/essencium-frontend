@@ -15,7 +15,12 @@ export function LanguageSelector(): JSX.Element {
   const { colorScheme } = useMantineColorScheme()
   const theme = useMantineTheme()
 
-  const LANGUAGES = i18n.languages
+  const LANGUAGES = Object.keys(i18n.services.resourceStore.data)
+
+  function setLanguage(key: string): void {
+    const selectedLanguage = LANGUAGES.find(language => language === key)
+    i18n.changeLanguage(selectedLanguage)
+  }
 
   return (
     <Popover width={130} position="bottom" withArrow shadow="sm">
@@ -38,7 +43,7 @@ export function LanguageSelector(): JSX.Element {
         {LANGUAGES.map(language => (
           <Group
             key={language}
-            onClick={() => {}}
+            onClick={() => setLanguage(language)}
             sx={{
               padding: '0.7rem 0 0.5rem 1rem',
               cursor: 'pointer',
