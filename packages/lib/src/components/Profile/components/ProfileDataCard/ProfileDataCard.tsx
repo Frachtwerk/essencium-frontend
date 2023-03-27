@@ -1,5 +1,6 @@
 import { Card, Tabs } from '@mantine/core'
 import { IconLock, IconSettings, IconUser } from '@tabler/icons-react'
+import { useMatch } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 
 import { UserProps } from '../../types'
@@ -16,6 +17,8 @@ export function ProfileDataCard({
   handlePasswordUpdate,
 }: UserProps): JSX.Element {
   const { t } = useTranslation()
+  const { route } = useMatch()
+  const { path } = route
 
   return (
     <Card shadow="sm" p="lg" radius="sm" withBorder>
@@ -28,10 +31,11 @@ export function ProfileDataCard({
           <Tabs.Tab value="passwordChange" icon={<IconLock size={14} />}>
             {t('profileView.dataCard.tabs.passwordChange.title')}
           </Tabs.Tab>
-
-          <Tabs.Tab value="settings" icon={<IconSettings size={14} />}>
-            {t('profileView.dataCard.tabs.settings.title')}
-          </Tabs.Tab>
+          {path !== 'profile' ? (
+            <Tabs.Tab value="settings" icon={<IconSettings size={14} />}>
+              {t('profileView.dataCard.tabs.settings.title')}
+            </Tabs.Tab>
+          ) : null}
         </Tabs.List>
 
         <Tabs.Panel value="personalDataForm" pt="lg">
@@ -53,18 +57,20 @@ export function ProfileDataCard({
           <PasswordChangeForm handlePasswordUpdate={handlePasswordUpdate} />
         </Tabs.Panel>
 
-        <Tabs.Panel value="settings" pt="lg">
-          <ProfileSettingsForm
-            user={{
-              firstName: user.firstName,
-              lastName: user.lastName,
-              enabled: user.enabled,
-              role: { id: user.role.id },
-            }}
-            handleUpdate={handleUpdate}
-            roles={roles}
-          />
-        </Tabs.Panel>
+        {path !== 'profile' ? (
+          <Tabs.Panel value="settings" pt="lg">
+            <ProfileSettingsForm
+              user={{
+                firstName: user.firstName,
+                lastName: user.lastName,
+                enabled: user.enabled,
+                role: { id: user.role.id },
+              }}
+              handleUpdate={handleUpdate}
+              roles={roles}
+            />
+          </Tabs.Panel>
+        ) : null}
       </Tabs>
     </Card>
   )
