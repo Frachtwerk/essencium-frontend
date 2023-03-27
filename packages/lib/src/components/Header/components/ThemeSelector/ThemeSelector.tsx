@@ -41,7 +41,25 @@ export function ThemeSelector({
       <Popover.Target>
         <Button
           aria-label="darkmode-toggle"
-          leftIcon={colorScheme === 'light' ? <IconSun /> : <IconMoon />}
+          leftIcon={
+            colorScheme === 'light' ? (
+              <IconSun
+                color={
+                  colorScheme === 'light' && colorScheme !== systemColorScheme
+                    ? theme.colors.blue[6]
+                    : theme.colors.gray[9]
+                }
+              />
+            ) : (
+              <IconMoon
+                color={
+                  colorScheme === 'dark' && colorScheme !== systemColorScheme
+                    ? theme.colors.blue[6]
+                    : theme.colors.gray[5]
+                }
+              />
+            )
+          }
           style={{
             backgroundColor: 'transparent',
             color:
