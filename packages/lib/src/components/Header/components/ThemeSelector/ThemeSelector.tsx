@@ -10,7 +10,7 @@ import {
 import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
 
-export function ThemeSelector({}): JSX.Element {
+export function ThemeSelector(): JSX.Element {
   const { t } = useTranslation()
 
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
@@ -61,7 +61,6 @@ export function ThemeSelector({}): JSX.Element {
         <Group
           onClick={() => {
             toggleColorScheme('light')
-            toggleThemeSelector()
           }}
           sx={{
             padding: '0.7rem 0 0.5rem 1rem',
