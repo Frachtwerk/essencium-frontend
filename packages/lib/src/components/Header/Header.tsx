@@ -1,5 +1,4 @@
 import {
-  ActionIcon,
   Box,
   Burger,
   Button,
@@ -8,7 +7,6 @@ import {
   Flex,
   Group,
   Header as MantineHeader,
-  HoverCard,
   MediaQuery,
   Popover,
   Text,
@@ -19,14 +17,10 @@ import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { LanguageDropdown } from './components/LanguageDropdown'
 import { SearchBar } from './components/SearchBar'
 import { UserMenu } from './components/UserMenu'
 import type { HeaderProps } from './types'
-
-const LANGUAGES = {
-  DE: 'de',
-  EN: 'en',
-}
 
 export function Header({
   isOpen,
@@ -35,13 +29,14 @@ export function Header({
   version,
   user,
 }: HeaderProps): JSX.Element {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
   const theme = useMantineTheme()
 
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
 
   const [openColorSchemeMenu, setOpenColorSchemeMenu] = useState(false)
+  const [openLanguageDropdown, setLanguageDropdown] = useState(false)
 
   const systemColorScheme: ColorScheme = window.matchMedia(
     '(prefers-color-scheme: light)'
@@ -53,10 +48,8 @@ export function Header({
     setOpenColorSchemeMenu(prev => !prev)
   }
 
-  function onToggleLanguage(): void {
-    const selectedLanguage =
-      i18n.language === LANGUAGES.EN ? LANGUAGES.DE : LANGUAGES.EN
-    i18n.changeLanguage(selectedLanguage)
+  function toggleLanguageDropdown(): void {
+    setLanguageDropdown(prev => !prev)
   }
 
   return (
@@ -193,37 +186,10 @@ export function Header({
               </Popover.Dropdown>
             </Popover>
 
-            <HoverCard>
-              <HoverCard.Target>
-                <ActionIcon
-                  aria-label="language-toggle"
-                  color="dark"
-                  onClick={() => {
-                    onToggleLanguage()
-                  }}
-                  sx={{
-                    '&:hover': {
-                      backgroundColor:
-                        theme.colorScheme === 'dark'
-                          ? theme.colors.gray[9]
-                          : theme.colors.gray[0],
-                    },
-                  }}
-                >
-                  <Text aria-label="selected-language" size="lg">
-                    {i18n.language.toUpperCase()}
-                  </Text>
-                </ActionIcon>
-              </HoverCard.Target>
-
-              <HoverCard.Dropdown>
-                {i18n.language === LANGUAGES.EN ? (
-                  <Text size="sm">{t('header.languageToggle.german')}</Text>
-                ) : (
-                  <Text size="sm">{t('header.languageToggle.english')}</Text>
-                )}
-              </HoverCard.Dropdown>
-            </HoverCard>
+            <LanguageDropdown
+              openLanguageDropdown={openLanguageDropdown}
+              toggleLanguageDropdown={toggleLanguageDropdown}
+            />
           </Group>
 
           {user && <UserMenu user={user} />}
