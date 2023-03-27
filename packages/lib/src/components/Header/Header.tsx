@@ -29,17 +29,6 @@ export function Header({
 
   const theme = useMantineTheme()
 
-  const [isOpenThemeSelector, setOpenThemeSelector] = useState(false)
-  const [isOpenLanguageSelector, setOpenLanguageSelector] = useState(false)
-
-  function toggleThemeSelector(): void {
-    setOpenThemeSelector(prev => !prev)
-  }
-
-  function toggleLanguageSelector(): void {
-    setOpenLanguageSelector(prev => !prev)
-  }
-
   return (
     <MantineHeader height={{ base: 70 }} p="md" fixed>
       <Flex
@@ -83,15 +72,9 @@ export function Header({
 
         <Group noWrap>
           <Group noWrap>
-            <ThemeSelector
-              isOpenThemeSelector={isOpenThemeSelector}
-              toggleThemeSelector={toggleThemeSelector}
-            />
+            <ThemeSelector />
 
-            <LanguageSelector
-              isOpenLanguageSelector={isOpenLanguageSelector}
-              toggleLanguageSelector={toggleLanguageSelector}
-            />
+            <LanguageSelector />
           </Group>
 
           {user && <UserMenu user={user} />}

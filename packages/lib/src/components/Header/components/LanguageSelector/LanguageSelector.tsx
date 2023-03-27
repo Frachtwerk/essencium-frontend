@@ -9,15 +9,7 @@ import {
 import { IconLanguage, IconWorld } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
 
-type LanguageSelectorProps = {
-  isOpenLanguageSelector: boolean
-  toggleLanguageSelector: () => void
-}
-
-export function LanguageSelector({
-  isOpenLanguageSelector,
-  toggleLanguageSelector,
-}: LanguageSelectorProps): JSX.Element {
+export function LanguageSelector(): JSX.Element {
   const { t, i18n } = useTranslation()
 
   const { colorScheme } = useMantineColorScheme()
@@ -26,13 +18,7 @@ export function LanguageSelector({
   const LANGUAGES = i18n.languages
 
   return (
-    <Popover
-      opened={isOpenLanguageSelector}
-      width={130}
-      position="bottom"
-      withArrow
-      shadow="sm"
-    >
+    <Popover width={130} position="bottom" withArrow shadow="sm">
       <Popover.Target>
         <Button
           aria-label="language-selector"
@@ -45,7 +31,6 @@ export function LanguageSelector({
                 : theme.colors.gray[5],
             padding: 0,
           }}
-          onClick={() => toggleLanguageSelector()}
         />
       </Popover.Target>
 

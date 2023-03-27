@@ -10,15 +10,7 @@ import {
 import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
 
-type ThemeSelectorProps = {
-  isOpenThemeSelector: boolean
-  toggleThemeSelector: () => void
-}
-
-export function ThemeSelector({
-  isOpenThemeSelector,
-  toggleThemeSelector,
-}: ThemeSelectorProps): JSX.Element {
+export function ThemeSelector({}): JSX.Element {
   const { t } = useTranslation()
 
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
@@ -31,13 +23,7 @@ export function ThemeSelector({
     : 'dark'
 
   return (
-    <Popover
-      opened={isOpenThemeSelector}
-      width={130}
-      position="bottom"
-      withArrow
-      shadow="sm"
-    >
+    <Popover width={130} position="bottom" withArrow shadow="sm">
       <Popover.Target>
         <Button
           aria-label="darkmode-toggle"
@@ -68,7 +54,6 @@ export function ThemeSelector({
                 : theme.colors.gray[5],
             padding: 0,
           }}
-          onClick={() => toggleThemeSelector()}
         />
       </Popover.Target>
 
@@ -97,7 +82,6 @@ export function ThemeSelector({
         <Group
           onClick={() => {
             toggleColorScheme('dark')
-            toggleThemeSelector()
           }}
           sx={{
             padding: '0.7rem 0 0.5rem 1rem',
@@ -118,7 +102,6 @@ export function ThemeSelector({
         <Group
           onClick={() => {
             toggleColorScheme(systemColorScheme)
-            toggleThemeSelector()
           }}
           sx={{
             padding: '0.7rem 0 0.7rem 1rem',
