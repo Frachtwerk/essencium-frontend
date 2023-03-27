@@ -9,7 +9,6 @@ import {
   Text,
   useMantineTheme,
 } from '@mantine/core'
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { LanguageSelector } from './components/LanguageSelector'
