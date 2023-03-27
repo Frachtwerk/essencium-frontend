@@ -12,9 +12,11 @@
       "darkMode": "Dark",
       "systemMode": "System"
     },
-    "languageToggle": {
-      "german": "Switch to german",
-      "english": "Switch to english"
+    "languageDropdown": {
+      "language": {
+        "de": "German",
+        "en": "English"
+      }
     }
   },
   "navigation": {

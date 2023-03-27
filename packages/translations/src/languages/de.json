@@ -4,9 +4,11 @@
   "header": {
     "title": "Essencium",
     "search": "Suche",
-    "languageToggle": {
-      "german": "Auf Deutsch anzeigen",
-      "english": "Auf Englisch anzeigen"
+    "languageDropdown": {
+      "language": {
+        "de": "Deutsch",
+        "en": "Englisch"
+      }
     }
   },
   "navigation": {
