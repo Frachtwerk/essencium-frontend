@@ -9,15 +9,15 @@ import {
 import { IconLanguage, IconWorld } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
 
-type LanguageDropdownProps = {
-  openLanguageDropdown: boolean
-  toggleLanguageDropdown: () => void
+type LanguageSelectorProps = {
+  openLanguageSelector: boolean
+  toggleLanguageSelector: () => void
 }
 
-export function LanguageDropdown({
-  openLanguageDropdown,
-  toggleLanguageDropdown,
-}: LanguageDropdownProps): JSX.Element {
+export function LanguageSelector({
+  openLanguageSelector,
+  toggleLanguageSelector,
+}: LanguageSelectorProps): JSX.Element {
   const { t, i18n } = useTranslation()
 
   const { colorScheme } = useMantineColorScheme()
@@ -27,7 +27,7 @@ export function LanguageDropdown({
 
   return (
     <Popover
-      opened={openLanguageDropdown}
+      opened={openLanguageSelector}
       width={130}
       position="bottom"
       withArrow
@@ -35,7 +35,7 @@ export function LanguageDropdown({
     >
       <Popover.Target>
         <Button
-          aria-label="language-dropdown"
+          aria-label="language-selector"
           leftIcon={<IconLanguage />}
           style={{
             backgroundColor: 'transparent',
@@ -45,7 +45,7 @@ export function LanguageDropdown({
                 : theme.colors.gray[5],
             padding: 0,
           }}
-          onClick={() => toggleLanguageDropdown()}
+          onClick={() => toggleLanguageSelector()}
         />
       </Popover.Target>
 

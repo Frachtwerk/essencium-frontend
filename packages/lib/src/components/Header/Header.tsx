@@ -17,7 +17,7 @@ import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { LanguageDropdown } from './components/LanguageDropdown'
+import { LanguageSelector } from './components/LanguageSelector'
 import { SearchBar } from './components/SearchBar'
 import { UserMenu } from './components/UserMenu'
 import type { HeaderProps } from './types'
@@ -36,7 +36,7 @@ export function Header({
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
 
   const [openColorSchemeMenu, setOpenColorSchemeMenu] = useState(false)
-  const [openLanguageDropdown, setLanguageDropdown] = useState(false)
+  const [openLanguageSelector, setLanguageSelector] = useState(false)
 
   const systemColorScheme: ColorScheme = window.matchMedia(
     '(prefers-color-scheme: light)'
@@ -48,8 +48,8 @@ export function Header({
     setOpenColorSchemeMenu(prev => !prev)
   }
 
-  function toggleLanguageDropdown(): void {
-    setLanguageDropdown(prev => !prev)
+  function toggleLanguageSelector(): void {
+    setLanguageSelector(prev => !prev)
   }
 
   return (
@@ -186,9 +186,9 @@ export function Header({
               </Popover.Dropdown>
             </Popover>
 
-            <LanguageDropdown
-              openLanguageDropdown={openLanguageDropdown}
-              toggleLanguageDropdown={toggleLanguageDropdown}
+            <LanguageSelector
+              openLanguageSelector={openLanguageSelector}
+              toggleLanguageSelector={toggleLanguageSelector}
             />
           </Group>
 
