@@ -10,12 +10,20 @@ import {
   useMantineTheme,
 } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
+import { UserOutput } from 'types'
 
 import { LanguageSelector } from './components/LanguageSelector'
 import { SearchBar } from './components/SearchBar'
 import { ThemeSelector } from './components/ThemeSelector'
 import { UserMenu } from './components/UserMenu'
-import type { HeaderProps } from './types'
+
+type Props = {
+  isOpen: boolean
+  handleOpenNav: () => void
+  logo: JSX.Element
+  version?: string
+  user: UserOutput | undefined
+}
 
 export function Header({
   isOpen,
@@ -23,7 +31,7 @@ export function Header({
   logo,
   version,
   user,
-}: HeaderProps): JSX.Element {
+}: Props): JSX.Element {
   const { t } = useTranslation()
 
   const theme = useMantineTheme()
@@ -76,7 +84,7 @@ export function Header({
             <LanguageSelector />
           </Group>
 
-          {user && <UserMenu user={user} />}
+          {user ? <UserMenu user={user} /> : null}
         </Group>
       </Flex>
     </MantineHeader>

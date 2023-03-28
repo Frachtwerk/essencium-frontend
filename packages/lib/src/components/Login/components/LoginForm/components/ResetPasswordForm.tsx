@@ -1,12 +1,16 @@
 import { Button, Container, Group, Text, TextInput } from '@mantine/core'
+import { Dispatch, SetStateAction } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import type { ResetPasswordProps } from './types'
+type Props = {
+  setIsPasswordResetFormOpened: Dispatch<SetStateAction<boolean>>
+  setIsResetPasswordSent: Dispatch<SetStateAction<boolean>>
+}
 
 export function ResetPasswordForm({
   setIsPasswordResetFormOpened,
   setIsResetPasswordSent,
-}: ResetPasswordProps): JSX.Element {
+}: Props): JSX.Element {
   const { t } = useTranslation()
 
   return (

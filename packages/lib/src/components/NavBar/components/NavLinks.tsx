@@ -1,10 +1,17 @@
-import { NavLink, Stack, useMantineTheme } from '@mantine/core'
+import {
+  NavLink as MantineNavLink,
+  Stack,
+  useMantineTheme,
+} from '@mantine/core'
 import { Link as RouterLink } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
+import { NavLink } from 'types'
 
-import { NavLinksProps } from './types'
+type Props = {
+  links: NavLink[]
+}
 
-export function NavLinks({ links }: NavLinksProps): JSX.Element {
+export function NavLinks({ links }: Props): JSX.Element {
   const { t } = useTranslation()
 
   const theme = useMantineTheme()
@@ -19,7 +26,7 @@ export function NavLinks({ links }: NavLinksProps): JSX.Element {
           params={{}}
           style={{ textDecoration: 'none' }}
         >
-          <NavLink
+          <MantineNavLink
             icon={link.icon}
             label={t(link.label)}
             active={link.to === window.location.pathname}

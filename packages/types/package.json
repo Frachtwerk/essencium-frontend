@@ -1,0 +1,64 @@
+{
+  "name": "types",
+  "author": "Frachtwerk GmbH",
+  "license": "MIT",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=16",
+    "pnpm": "7"
+  },
+  "type": "module",
+  "description": "This is the shared types library.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Frachtwerk/essencium-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Frachtwerk/essencium-frontend/issues"
+  },
+  "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/master/README.md",
+  "keywords": [
+    "starter",
+    "boilerplate",
+    "frontend",
+    "types"
+  ],
+  "scripts": {
+    "build": "rimraf dist && rollup -c",
+    "clean": "rimraf dist node_modules",
+    "clean:install": "pnpm clean && pnpm install",
+    "format": "prettier --write .",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "24.0.1",
+    "@rollup/plugin-node-resolve": "15.0.1",
+    "@rollup/plugin-terser": "0.4.0",
+    "@rollup/plugin-typescript": "11.0.0",
+    "@types/react": "18.0.28",
+    "rollup": "3.18.0",
+    "rollup-plugin-dts": "5.1.1",
+    "rollup-plugin-peer-deps-external": "2.2.4",
+    "translations": "workspace:*",
+    "tslib": "2.5.0",
+    "typescript": "4.9.5",
+    "zod": "3.20.6"
+  },
+  "peerDependencies": {
+    "translations": "workspace:*",
+    "zod": "3.20.6"
+  },
+  "nx": {
+    "tags": [
+      "scope:types"
+    ]
+  },
+  "volta": {
+    "node": "16.19.1"
+  }
+}

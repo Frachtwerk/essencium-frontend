@@ -1,12 +1,6 @@
 import { z } from 'zod'
 
-export const userRightSchema = z.object({
-  id: z.number(),
-  name: z.string(),
-  description: z.string().optional(),
-})
-
-export type UserRight = z.infer<typeof userRightSchema>
+import { basePropertiesSchema } from './base'
 
 export enum RIGHTS {
   API_DEVELOPER = 'API_DEVELOPER',
@@ -29,3 +23,12 @@ export enum RIGHTS {
   USER_UPDATE = 'USER_UPDATE',
   USER_DELETE = 'USER_DELETE',
 }
+
+export const rightOutputSchema = basePropertiesSchema.pick({ id: true }).merge(
+  z.object({
+    name: z.string(),
+    description: z.string(),
+  })
+)
+
+export type RightOutput = z.infer<typeof rightOutputSchema>

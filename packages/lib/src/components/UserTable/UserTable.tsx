@@ -1,4 +1,5 @@
 import {
+  ColumnDef,
   getCoreRowModel,
   getPaginationRowModel,
   getSortedRowModel,
@@ -8,9 +9,13 @@ import {
 import { useState } from 'react'
 
 import { Table } from '../Table'
-import { UserTableProps } from './types'
 
-export function UserTable({ users, columns }: UserTableProps): JSX.Element {
+type Props<T> = {
+  users: T[]
+  columns: ColumnDef<T>[]
+}
+
+export function UserTable<T>({ users, columns }: Props<T>): JSX.Element {
   const [sorting, setSorting] = useState<SortingState>([])
 
   const table = useReactTable({

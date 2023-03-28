@@ -4,7 +4,3 @@ export type FooterLink = {
   to: string
   description?: string
 }
-
-export type FooterLinksProps = {
-  links: FooterLink[]
-}

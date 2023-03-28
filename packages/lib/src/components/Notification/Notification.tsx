@@ -1,13 +1,10 @@
 import {
   Notification as MantineNotification,
-  NotificationProps,
+  NotificationProps as Props,
 } from '@mantine/core'
 import { createPortal } from 'react-dom'
 
-export function Notification({
-  children,
-  ...props
-}: NotificationProps): JSX.Element {
+export function Notification({ children, ...props }: Props): JSX.Element {
   return createPortal(
     <MantineNotification
       w={500}

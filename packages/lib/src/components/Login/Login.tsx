@@ -1,9 +1,11 @@
 import { Anchor, Container, Text, Title } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
-import type { LoginProps } from './types'
+type Props = {
+  form: JSX.Element
+}
 
-export function Login({ form: LoginForm }: LoginProps): JSX.Element {
+export function Login({ form: LoginForm }: Props): JSX.Element {
   const { t } = useTranslation()
 
   return (

@@ -66,6 +66,10 @@ export default defineConfig({
         find: 'translations',
         replacement: path.resolve(__dirname, '../translations/src/index.ts'),
       },
+      {
+        find: 'types',
+        replacement: path.resolve(__dirname, '../types/src/index.ts'),
+      },
     ],
   },
   test: {

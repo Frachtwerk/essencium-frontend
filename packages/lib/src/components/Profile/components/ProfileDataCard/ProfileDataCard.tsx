@@ -2,20 +2,30 @@ import { Card, Tabs } from '@mantine/core'
 import { IconLock, IconSettings, IconUser } from '@tabler/icons-react'
 import { useMatch } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
+import { PasswordChange, RoleOutput, UserInput, UserOutput } from 'types'
 
-import { UserProps } from '../../types'
 import {
   PasswordChangeForm,
   PersonalDataForm,
   ProfileSettingsForm,
 } from './components'
 
+type Props = {
+  user: UserOutput
+  roles: RoleOutput[]
+  handleUpdate: (data: UserInput) => void
+  handlePasswordUpdate: (
+    oldPassword: PasswordChange['password'],
+    newPassword: PasswordChange['password']
+  ) => void
+}
+
 export function ProfileDataCard({
   user,
   roles,
   handleUpdate,
   handlePasswordUpdate,
-}: UserProps): JSX.Element {
+}: Props): JSX.Element {
   const { t } = useTranslation()
   const { route } = useMatch()
   const { path } = route
@@ -39,18 +49,7 @@ export function ProfileDataCard({
         </Tabs.List>
 
         <Tabs.Panel value="personalDataForm" pt="lg">
-          <PersonalDataForm
-            user={{
-              firstName: user.firstName,
-              lastName: user.lastName,
-              phone: user.phone,
-              mobile: user.mobile,
-              email: user.email,
-              locale: user.locale,
-              enabled: user.enabled,
-            }}
-            handleUpdate={handleUpdate}
-          />
+          <PersonalDataForm user={user} handleUpdate={handleUpdate} />
         </Tabs.Panel>
 
         <Tabs.Panel value="passwordChange" pt="lg">
@@ -60,12 +59,7 @@ export function ProfileDataCard({
         {path !== 'profile' ? (
           <Tabs.Panel value="settings" pt="lg">
             <ProfileSettingsForm
-              user={{
-                firstName: user.firstName,
-                lastName: user.lastName,
-                enabled: user.enabled,
-                role: { id: user.role.id },
-              }}
+              user={user}
               handleUpdate={handleUpdate}
               roles={roles}
             />

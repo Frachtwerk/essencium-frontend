@@ -1,34 +1,20 @@
 import { Button, Flex, Select, Stack, Text, TextInput } from '@mantine/core'
 import { Controller } from 'react-hook-form'
 import { i18n } from 'translations'
-import { z } from 'zod'
+import { UserInput, userInputSchema, UserOutput } from 'types'
 
 import { useZodForm } from '../../../../../hooks'
-import { PersonalDataFormProps, UpdatedUserData } from '../../../types'
 
 const { t } = i18n
 
-export const profileDataSchema = z.object({
-  firstName: z
-    .string()
-    .min(2)
-    .max(16, String(t('validation.firstName.minLength'))),
-  lastName: z
-    .string()
-    .min(2)
-    .max(16, String(t('validation.lastName.minLength'))),
-  phone: z.string().min(10).max(15).optional(),
-  mobile: z.string().min(10).max(15).optional(),
-  email: z.string().email(String(t('validation.email.notValid'))),
-  locale: z.string().min(2).max(16),
-})
+type Props = {
+  user: UserOutput
+  handleUpdate: (data: UserInput) => void
+}
 
-export function PersonalDataForm({
-  user,
-  handleUpdate,
-}: PersonalDataFormProps): JSX.Element {
+export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
   const { handleSubmit, control, formState } = useZodForm({
-    schema: profileDataSchema,
+    schema: userInputSchema,
     defaultValues: {
       firstName: user.firstName,
       lastName: user.lastName,
@@ -39,7 +25,7 @@ export function PersonalDataForm({
     },
   })
 
-  function onSubmit(data: UpdatedUserData): void {
+  function onSubmit(data: UserInput): void {
     handleUpdate(data)
   }
 

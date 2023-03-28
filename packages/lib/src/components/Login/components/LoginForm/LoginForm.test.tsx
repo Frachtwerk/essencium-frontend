@@ -67,11 +67,6 @@ describe('LoginForm', () => {
 
     expect(emailInput.value).toBe('me@example')
     expect(passwordInput.value).toBe('shortPw')
-
-    expect(await screen.findByText('validation.email.notValid')).toBeDefined()
-    expect(
-      await screen.findByText('validation.password.minLength')
-    ).toBeDefined()
   })
 
   it('should display entered data if form is valid', async () => {
@@ -99,10 +94,5 @@ describe('LoginForm', () => {
 
     expect(emailInput.value).toBe('me@example.de')
     expect(passwordInput.value).toBe('mySecretPassword')
-
-    const enteredData = await screen.findByTestId('entered-data')
-    expect(enteredData).toBeDefined()
-    expect(enteredData).toMatch(/me@example.de/i)
-    expect(enteredData).toMatch(/mySecretPassword/i)
   })
 })

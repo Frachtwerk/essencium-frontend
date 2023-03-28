@@ -6,12 +6,14 @@ import {
   Text,
 } from '@mantine/core'
 import { IconSortAscending2, IconSortDescending2 } from '@tabler/icons-react'
-import { flexRender } from '@tanstack/react-table'
+import { flexRender, Table as TanstackTable } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
 
-import { TableProps } from './types'
+type Props<T> = {
+  tableModel: TanstackTable<T>
+}
 
-export function Table<T>({ tableModel }: TableProps<T>): JSX.Element {
+export function Table<T>({ tableModel }: Props<T>): JSX.Element {
   const { t } = useTranslation()
 
   return (

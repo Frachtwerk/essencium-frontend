@@ -1,27 +1,25 @@
 import { Grid } from '@mantine/core'
+import { RoleOutput, UserInput, UserOutput } from 'types'
 
 import { ProfileDataCard, ProfileOverviewCard } from './components'
-import { UserProps } from './types'
+
+type Props = {
+  user: UserOutput
+  roles: RoleOutput[]
+  handleUpdate: (data: UserInput) => void
+  handlePasswordUpdate: (oldPassword: string, newPassword: string) => void
+}
 
 export function Profile({
   user,
   roles,
   handleUpdate,
   handlePasswordUpdate,
-}: UserProps): JSX.Element {
+}: Props): JSX.Element {
   return (
     <Grid>
       <Grid.Col md={3}>
-        <ProfileOverviewCard
-          user={{
-            firstName: user.firstName,
-            lastName: user.lastName,
-            enabled: user.enabled,
-            role: {
-              name: user.role.name,
-            },
-          }}
-        />
+        <ProfileOverviewCard user={user} />
       </Grid.Col>
 
       <Grid.Col md={9}>

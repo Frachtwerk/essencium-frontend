@@ -13,10 +13,10 @@ import {
   IconUsers,
 } from '@tabler/icons-react'
 import { useNavigate } from '@tanstack/react-router'
-import type { FooterLink, NavLink } from 'lib'
 import { Footer, Header, NavBar } from 'lib'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { FooterLink, NavLink } from 'types'
 
 import { version } from '../package.json'
 import { useInvalidateToken } from './api/auth'
@@ -163,15 +163,7 @@ function App({ children }: AppProps): JSX.Element {
             isOpen={openedNav}
             handleOpenNav={handleOpenNav}
             version={version}
-            user={
-              user
-                ? {
-                    lastName: user?.lastName,
-                    firstName: user?.firstName,
-                    email: user?.email,
-                  }
-                : null
-            }
+            user={user}
             logo={
               <Image
                 src={logoURL}

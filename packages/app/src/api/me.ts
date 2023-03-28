@@ -8,23 +8,26 @@ import {
 import { AxiosError } from 'axios'
 import { useAtom, useSetAtom, useStore } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
-import type { ChangePassword, Password, UpdatedUserData, User } from 'lib'
+import { PasswordChange, UserInput, UserOutput } from 'types'
 
 import { api } from './api'
 
 const VERSION = 'v1'
 
-export const userAtom = atomWithStorage<User | null>('user', null)
+export const userAtom = atomWithStorage<UserOutput | null>('user', null)
 
-export function useGetUser(): UseQueryResult<User, unknown> {
+export function useGetUser(): UseQueryResult<UserOutput, unknown> {
   const store = useStore()
 
   const [, setUser] = useAtom(userAtom)
 
   const query = useQuery({
     queryKey: ['getUser'],
-    queryFn: () => api.get(`${VERSION}/users/me`).then(res => res.data),
-    onSuccess(data: User) {
+    queryFn: () =>
+      api
+        .get<UserOutput>(`${VERSION}/users/me`)
+        .then(response => response.data),
+    onSuccess(data: UserOutput) {
       setUser(data)
       store.set(userAtom, data)
     },
@@ -34,19 +37,19 @@ export function useGetUser(): UseQueryResult<User, unknown> {
 }
 
 export function useUpdateUser(): UseMutationResult<
-  User,
+  UserOutput,
   AxiosError,
-  UpdatedUserData
+  UserInput
 > {
   const setUser = useSetAtom(userAtom)
 
-  const mutation = useMutation<User, AxiosError, UpdatedUserData>({
+  const mutation = useMutation<UserOutput, AxiosError, UserInput>({
     mutationKey: ['useUpdateToken'],
-    mutationFn: (userData: UpdatedUserData) =>
+    mutationFn: (userData: UserInput) =>
       api
-        .put<User, UpdatedUserData>(`${VERSION}/users/me`, userData)
+        .put<UserOutput, UserInput>(`${VERSION}/users/me`, userData)
         .then(res => res.data),
-    onSuccess: (updatedUser: User) => {
+    onSuccess: (updatedUser: UserOutput) => {
       setUser(updatedUser)
       showNotification({
         autoClose: 2500,
@@ -71,15 +74,19 @@ export function useUpdateUser(): UseMutationResult<
 }
 
 export function useUpdatePassword(): UseMutationResult<
-  Password,
+  UserOutput,
   AxiosError,
-  ChangePassword
+  Omit<PasswordChange, 'confirmPassword'>
 > {
-  const mutation = useMutation<Password, AxiosError, ChangePassword>({
+  const mutation = useMutation<
+    UserOutput,
+    AxiosError,
+    Omit<PasswordChange, 'confirmPassword'>
+  >({
     mutationKey: ['useChangePassword'],
-    mutationFn: (passwordData: ChangePassword) =>
+    mutationFn: (passwordData: Omit<PasswordChange, 'confirmPassword'>) =>
       api
-        .put<Password, ChangePassword>(
+        .put<UserOutput, Omit<PasswordChange, 'confirmPassword'>>(
           `${VERSION}/users/me/password`,
           passwordData
         )

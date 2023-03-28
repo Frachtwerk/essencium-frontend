@@ -1,6 +1,7 @@
 import { Center, Loader } from '@mantine/core'
-import { Profile, UpdatedUserData } from 'lib'
+import { Profile } from 'lib'
 import { useTranslation } from 'react-i18next'
+import { PasswordChange, UserInput } from 'types'
 
 import { useGetUser, useUpdatePassword, useUpdateUser } from '@/api/me'
 import { useGetRoles } from '@/api/roles'
@@ -18,11 +19,14 @@ export function ProfileView(): JSX.Element {
 
   const roles = rolesRequest?.content || []
 
-  function handleUpdate(data: UpdatedUserData): void {
+  function handleUpdate(data: UserInput): void {
     updateUser(data)
   }
 
-  function handlePasswordUpdate(password: string, verification: string): void {
+  function handlePasswordUpdate(
+    password: PasswordChange['password'],
+    verification: PasswordChange['password']
+  ): void {
     updatePassword(
       { password, verification },
       {
@@ -37,20 +41,7 @@ export function ProfileView(): JSX.Element {
   if (user) {
     return (
       <Profile
-        user={{
-          lastName: user.lastName,
-          firstName: user.firstName,
-          id: user.id,
-          email: user.email,
-          phone: user.phone,
-          mobile: user.mobile,
-          locale: user.locale,
-          role: {
-            id: user.role.id,
-            name: user.role.name,
-          },
-          enabled: user.enabled,
-        }}
+        user={user}
         roles={roles}
         handleUpdate={handleUpdate}
         handlePasswordUpdate={handlePasswordUpdate}

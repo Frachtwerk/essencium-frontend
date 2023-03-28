@@ -2,7 +2,6 @@ import {
   Anchor,
   Button,
   Checkbox,
-  Code,
   Group,
   Paper,
   PasswordInput,
@@ -13,17 +12,16 @@ import {
 import { useState } from 'react'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { LoginForm as TLoginForm, loginFormSchema } from 'types'
 
 import { useZodForm } from '../../../../hooks'
 import { ResetPasswordForm, ResetPasswordSuccessMessage } from './components'
-import type { LoginCredentials } from './types'
-import { loginFormSchema } from './types'
 
-type LoginFormProps = {
+type Props = {
   handleLogin: (name: string, pw: string) => void
 }
 
-export function LoginForm({ handleLogin }: LoginFormProps): JSX.Element {
+export function LoginForm({ handleLogin }: Props): JSX.Element {
   const { t } = useTranslation()
 
   const [isPasswordResetFormOpened, setIsPasswordResetFormOpened] =
@@ -39,12 +37,7 @@ export function LoginForm({ handleLogin }: LoginFormProps): JSX.Element {
     },
   })
 
-  // Temporary code to show form data and test the component
-  const [showData, setShowData] = useState<Record<string, string | boolean>>({})
-
-  function onSubmit(credentials: LoginCredentials): void {
-    setShowData(credentials)
-
+  function onSubmit(credentials: TLoginForm): void {
     handleLogin(credentials.email, credentials.password)
   }
 
@@ -146,12 +139,6 @@ export function LoginForm({ handleLogin }: LoginFormProps): JSX.Element {
           </div>
         )}
       </Transition>
-
-      {Object.keys(showData).length ? (
-        <Code mt="xs" block data-testid="entered-data">
-          {JSON.stringify(showData, null, 2)}
-        </Code>
-      ) : null}
 
       <Transition
         mounted={isPasswordResetFormOpened}

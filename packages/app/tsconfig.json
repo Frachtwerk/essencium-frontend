@@ -4,7 +4,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "lib": ["../lib/src"],
-      "translations": ["../translations/src"]
+      "translations": ["../translations/src"],
+      "types": ["../types/src"]
     }
   }
 }

@@ -18,6 +18,10 @@
     {
       "name": "docs",
       "path": "../packages/docs"
+    },
+    {
+      "name": "types",
+      "path": "../packages/types"
     }
   ],
   "settings": {

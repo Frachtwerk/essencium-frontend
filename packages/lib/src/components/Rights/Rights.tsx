@@ -9,14 +9,13 @@ import {
 import { useState } from 'react'
 
 import { Table } from '../Table'
-import { UserRight } from './types'
 
-type RightsProps = {
-  rights: UserRight[]
-  columns: ColumnDef<UserRight>[]
+type Props<T> = {
+  rights: T[]
+  columns: ColumnDef<T>[]
 }
 
-export function Rights({ rights, columns }: RightsProps): JSX.Element {
+export function Rights<T>({ rights, columns }: Props<T>): JSX.Element {
   const [sorting, setSorting] = useState<SortingState>([])
 
   const table = useReactTable({
