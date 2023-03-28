@@ -8,6 +8,7 @@ import {
   useMantineTheme,
 } from '@mantine/core'
 import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons-react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 export function ThemeSelector(): JSX.Element {
@@ -15,6 +16,9 @@ export function ThemeSelector(): JSX.Element {
 
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
   const theme = useMantineTheme()
+
+  const [hasSelectedLight, setSelectedLight] = useState(false)
+  const [hasSelectedDark, setSelectedDark] = useState(false)
 
   const systemColorScheme: ColorScheme = window.matchMedia(
     '(prefers-color-scheme: light)'
@@ -26,12 +30,12 @@ export function ThemeSelector(): JSX.Element {
     <Popover width={130} position="bottom" withArrow shadow="sm">
       <Popover.Target>
         <Button
-          aria-label="darkmode-toggle"
+          aria-label="theme-selector"
           leftIcon={
             colorScheme === 'light' ? (
               <IconSun
                 color={
-                  colorScheme === 'light' && colorScheme !== systemColorScheme
+                  colorScheme === 'light' && hasSelectedLight
                     ? theme.colors.blue[6]
                     : theme.colors.gray[9]
                 }
@@ -39,7 +43,7 @@ export function ThemeSelector(): JSX.Element {
             ) : (
               <IconMoon
                 color={
-                  colorScheme === 'dark' && colorScheme !== systemColorScheme
+                  colorScheme === 'dark' && hasSelectedDark
                     ? theme.colors.blue[6]
                     : theme.colors.gray[5]
                 }
@@ -61,6 +65,7 @@ export function ThemeSelector(): JSX.Element {
         <Group
           onClick={() => {
             toggleColorScheme('light')
+            setSelectedLight(true)
           }}
           sx={{
             padding: '0.7rem 0 0.5rem 1rem',
@@ -81,6 +86,7 @@ export function ThemeSelector(): JSX.Element {
         <Group
           onClick={() => {
             toggleColorScheme('dark')
+            setSelectedDark(true)
           }}
           sx={{
             padding: '0.7rem 0 0.5rem 1rem',
@@ -101,6 +107,8 @@ export function ThemeSelector(): JSX.Element {
         <Group
           onClick={() => {
             toggleColorScheme(systemColorScheme)
+            setSelectedLight(false)
+            setSelectedDark(false)
           }}
           sx={{
             padding: '0.7rem 0 0.7rem 1rem',
