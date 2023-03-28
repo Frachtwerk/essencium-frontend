@@ -57,7 +57,7 @@ export function LanguageSelector(): JSX.Element {
           >
             <IconWorld size={20} />
 
-            <Text size="sm">
+            <Text size="sm" aria-label="selected-language">
               {t(`header.languageDropdown.language.${language}`)}
             </Text>
           </Group>
