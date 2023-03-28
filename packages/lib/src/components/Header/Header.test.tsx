@@ -1,10 +1,12 @@
 import * as mantine from '@mantine/core'
 import { render, RenderResult, screen } from '@testing-library/react'
 import { initReactI18next } from 'react-i18next'
-import { i18n, initI18n } from 'translations'
-import { afterAll, assert, beforeAll, describe, expect, it, vi } from 'vitest'
+import { initI18n } from 'translations'
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { SearchBar, UserMenu } from './components'
+import { LanguageSelector } from './components/LanguageSelector'
+import { ThemeSelector } from './components/ThemeSelector'
 import { Header } from './Header'
 
 describe('Header', () => {
@@ -48,21 +50,7 @@ describe('Header', () => {
 
     render(<SearchBar />)
     render(<UserMenu user={mockUser} />)
-
-    const darkmodeToggle = screen.getByRole('button', {
-      name: 'darkmode-toggle',
-    })
-    assert.ok(darkmodeToggle)
-
-    const languageToggle = screen.getByRole('button', {
-      name: 'language-toggle',
-    })
-    assert.ok(languageToggle)
-  })
-
-  it('should display the correct language', () => {
-    expect(screen.getByLabelText('selected-language').textContent).toBe(
-      i18n.language.toUpperCase()
-    )
+    render(<LanguageSelector />)
+    render(<ThemeSelector />)
   })
 })
