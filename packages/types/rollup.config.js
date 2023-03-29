@@ -1,5 +1,4 @@
 import commonjs from '@rollup/plugin-commonjs'
-import json from '@rollup/plugin-json'
 import resolve from '@rollup/plugin-node-resolve'
 import terser from '@rollup/plugin-terser'
 import typescript from '@rollup/plugin-typescript'
@@ -21,10 +20,9 @@ export default [
       resolve(),
       commonjs(),
       typescript({ tsconfig: './tsconfig.json' }),
-      json(),
       terser(),
     ],
-    external: ['i18next', 'i18next-browser-languagedetector'],
+    external: ['zod', 'translations'],
   },
   {
     input: 'dist/types/index.d.ts',

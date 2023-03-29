@@ -8,29 +8,22 @@ import {
 } from '@mantine/core'
 import { Controller } from 'react-hook-form'
 import { i18n } from 'translations'
-import { z } from 'zod'
+import { PasswordChange, passwordChangeSchema } from 'types'
 
 import { useZodForm } from '../../../../../hooks'
-import { ChangePassword, PasswordChangeFormProps } from '../../../types'
 
 const { t } = i18n
 
-export const passwordChangeSchema = z
-  .object({
-    verification: z.string().min(8, String(t('validation.password.minLength'))),
-    password: z.string().min(8, String(t('validation.password.minLength'))),
-    confirmPassword: z
-      .string()
-      .min(8, String(t('validation.password.minLength'))),
-  })
-  .refine(data => data.password === data.confirmPassword, {
-    message: String(t('validation.password.confirmError')),
-    path: ['confirmPassword'],
-  })
+type Props = {
+  handlePasswordUpdate: (
+    oldPassword: PasswordChange['password'],
+    newPassword: PasswordChange['password']
+  ) => void
+}
 
 export function PasswordChangeForm({
   handlePasswordUpdate,
-}: PasswordChangeFormProps): JSX.Element {
+}: Props): JSX.Element {
   const { handleSubmit, control, formState } = useZodForm({
     schema: passwordChangeSchema,
     defaultValues: {
@@ -40,7 +33,7 @@ export function PasswordChangeForm({
     },
   })
 
-  function onSubmit(data: ChangePassword): void {
+  function onSubmit(data: PasswordChange): void {
     handlePasswordUpdate(data.password, data.verification)
   }
 

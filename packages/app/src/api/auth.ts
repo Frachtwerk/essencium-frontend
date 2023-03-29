@@ -2,7 +2,7 @@ import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useAtom, useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
-import { User } from 'lib'
+import { UserOutput } from 'types'
 
 import { api } from '@/api'
 
@@ -46,7 +46,7 @@ export function useCreateToken(): UseMutationResult<
 }
 
 export function useInvalidateToken(
-  userId: User['id']
+  userId: UserOutput['id']
 ): UseMutationResult<null, AxiosError, null, unknown> {
   const mutation = useMutation<null, AxiosError, null>({
     mutationKey: ['useInvalidateToken'],

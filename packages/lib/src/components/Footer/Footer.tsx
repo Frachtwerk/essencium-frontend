@@ -8,10 +8,13 @@ import {
 import { IconCopyright } from '@tabler/icons-react'
 import { Link as RouterLink } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
+import { FooterLink } from 'types'
 
-import type { FooterLinksProps } from './types'
+type Props = {
+  links: FooterLink[]
+}
 
-export function Footer({ links }: FooterLinksProps): JSX.Element {
+export function Footer({ links }: Props): JSX.Element {
   const { t } = useTranslation()
 
   const theme = useMantineTheme()

@@ -7,16 +7,13 @@ import {
 } from '@mantine/core'
 import { IconChevronRight, IconUserCircle } from '@tabler/icons-react'
 import { Link as RouterLink } from '@tanstack/react-router'
+import { UserOutput } from 'types'
 
-type UserMenuProps = {
-  user: {
-    email: string
-    firstName: string
-    lastName: string
-  }
+type Props = {
+  user: UserOutput
 }
 
-export function UserMenu({ user }: UserMenuProps): JSX.Element {
+export function UserMenu({ user }: Props): JSX.Element {
   const theme = useMantineTheme()
 
   return (

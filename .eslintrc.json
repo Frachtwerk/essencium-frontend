@@ -75,15 +75,24 @@
             "onlyDependOnLibsWithTags": [
               "scope:app",
               "scope:lib",
-              "scope:translations"
+              "scope:translations",
+              "scope:types"
             ]
           },
           {
             "sourceTag": "scope:lib",
-            "onlyDependOnLibsWithTags": ["scope:lib", "scope:translations"]
+            "onlyDependOnLibsWithTags": [
+              "scope:lib",
+              "scope:translations",
+              "scope:types"
+            ]
           },
           {
             "sourceTag": "scope:translations",
+            "onlyDependOnLibsWithTags": ["scope:translations"]
+          },
+          {
+            "sourceTag": "scope:types",
             "onlyDependOnLibsWithTags": ["scope:translations"]
           }
         ]

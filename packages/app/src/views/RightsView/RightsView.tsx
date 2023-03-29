@@ -5,9 +5,10 @@ import {
   IconShieldCheckFilled,
 } from '@tabler/icons-react'
 import { ColumnDef } from '@tanstack/react-table'
-import { HttpNotification, Rights, UserRight } from 'lib'
+import { HttpNotification, Rights } from 'lib'
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { RightOutput } from 'types'
 
 import { useGetRights } from '@/api/rights'
 import { useGetRoles } from '@/api/roles'
@@ -43,7 +44,7 @@ export function RightsView(): JSX.Element {
     [roles?.content]
   )
 
-  const columns = useMemo<ColumnDef<UserRight>[]>(
+  const columns = useMemo<ColumnDef<RightOutput>[]>(
     () => [
       {
         accessorKey: 'name',

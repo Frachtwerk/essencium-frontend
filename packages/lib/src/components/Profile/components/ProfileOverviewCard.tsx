@@ -1,11 +1,12 @@
 import { Avatar, Badge, Card, Flex, Text, Title } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
+import { UserOutput } from 'types'
 
-import { ProfileOverviewCardProps } from '../types'
+type Props = {
+  user: UserOutput
+}
 
-export function ProfileOverviewCard({
-  user,
-}: ProfileOverviewCardProps): JSX.Element {
+export function ProfileOverviewCard({ user }: Props): JSX.Element {
   const { t } = useTranslation()
 
   return (

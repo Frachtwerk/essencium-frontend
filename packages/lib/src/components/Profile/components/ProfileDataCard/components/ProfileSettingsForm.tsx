@@ -10,42 +10,35 @@ import {
 import { IconCheck, IconX } from '@tabler/icons-react'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { z } from 'zod'
+import { RoleOutput, UserInput, userInputSchema, UserOutput } from 'types'
 
 import { useZodForm } from '../../../../../hooks'
-import { ProfileSettingFormProps, UpdatedUserData } from '../../../types'
 
-export const profileSettingsSchema = z.object({
-  enabled: z.boolean(),
-  role: z.number(),
-})
+type Props = {
+  user: UserOutput
+  roles: RoleOutput[]
+  handleUpdate: (data: UserInput) => void
+}
 
 export function ProfileSettingsForm({
   user,
   roles,
   handleUpdate,
-}: ProfileSettingFormProps): JSX.Element {
+}: Props): JSX.Element {
   const { t } = useTranslation()
 
   const theme = useMantineTheme()
 
   const { handleSubmit, control, formState, setValue } = useZodForm({
-    schema: profileSettingsSchema,
+    schema: userInputSchema,
     defaultValues: {
       enabled: user.enabled,
       role: user.role.id,
     },
   })
 
-  function onSubmit(data: UpdatedUserData): void {
-    const submitData = {
-      firstName: user.firstName,
-      lastName: user.lastName,
-      enabled: data.enabled,
-      role: data.role,
-    }
-
-    handleUpdate(submitData)
+  function onSubmit(data: UserInput): void {
+    handleUpdate(data)
   }
 
   return (

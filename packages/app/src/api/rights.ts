@@ -1,17 +1,14 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { UserRight } from 'lib'
+import { RightOutput } from 'types'
 
 import { api, PaginatedResponse } from './api'
 
 const VERSION = 'v1'
 
-export type UserRightsResponse = PaginatedResponse<UserRight>
+export type RightsResponse = PaginatedResponse<RightOutput>
 
-export const useGetRights = (): UseQueryResult<
-  UserRightsResponse,
-  AxiosError
-> =>
+export const useGetRights = (): UseQueryResult<RightsResponse, AxiosError> =>
   useQuery(['rights'], () =>
-    api.get<UserRight[]>(`${VERSION}/rights`).then(response => response.data)
+    api.get<RightOutput[]>(`${VERSION}/rights`).then(response => response.data)
   )

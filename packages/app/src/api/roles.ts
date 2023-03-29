@@ -1,19 +1,19 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import type { UserRole } from 'lib'
+import { RoleOutput } from 'types'
 
 import { api, PaginatedResponse } from './api'
 
 const VERSION = 'v1'
 
-export type UserRolesResponse = PaginatedResponse<UserRole>
+export type RolesResponse = PaginatedResponse<RoleOutput>
 
-export function useGetRoles(): UseQueryResult<UserRolesResponse, AxiosError> {
-  const query = useQuery<UserRolesResponse, AxiosError>({
+export function useGetRoles(): UseQueryResult<RolesResponse, AxiosError> {
+  const query = useQuery<RolesResponse, AxiosError>({
     queryKey: ['getRoles'],
     queryFn: () =>
       api
-        .get<UserRolesResponse>(`${VERSION}/roles`)
+        .get<RolesResponse>(`${VERSION}/roles`)
         .then(response => response.data),
   })
 

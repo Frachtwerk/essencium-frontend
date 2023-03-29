@@ -5,7 +5,3 @@ export type NavLink = {
   to: string
   description?: string
 }
-
-export type NavLinksProps = {
-  links: NavLink[]
-}

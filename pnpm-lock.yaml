@@ -90,6 +90,7 @@ importers:
       rimraf: 4.4.0
       standard-version: 9.5.0
       translations: workspace:*
+      types: workspace:*
       typescript: 4.9.5
       vite: 4.1.4
       vite-plugin-sentry: 1.1.7
@@ -123,12 +124,13 @@ importers:
       fast-glob: 3.2.12
       i18next: 22.4.11
       jotai: 2.0.3_react@18.2.0
-      lib: file:packages/lib_c7jm266feb4bgkkzi7h443oadq
+      lib: file:packages/lib_ife7h6exfgipmhxhneijpviryi
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.43.5_react@18.2.0
       react-i18next: 12.2.0_nuvg7z3l7c7q3mgp6kac62miay
       translations: link:../translations
+      types: link:../types
       zod: 3.20.6
     devDependencies:
       '@babel/core': 7.21.0
@@ -233,6 +235,7 @@ importers:
       standard-version: 9.5.0
       translations: workspace:*
       tslib: 2.5.0
+      types: workspace:*
       typescript: 4.9.5
       vite: 4.1.4
       vitest: 0.29.2
@@ -287,6 +290,7 @@ importers:
       standard-version: 9.5.0
       translations: link:../translations
       tslib: 2.5.0
+      types: link:../types
       typescript: 4.9.5
       vite: 4.1.4
       vitest: 0.29.2_happy-dom@8.9.0
@@ -323,6 +327,34 @@ importers:
       rollup-plugin-peer-deps-external: 2.2.4_rollup@3.18.0
       tslib: 2.5.0
       typescript: 4.9.5
+
+  packages/types:
+    specifiers:
+      '@rollup/plugin-commonjs': 24.0.1
+      '@rollup/plugin-node-resolve': 15.0.1
+      '@rollup/plugin-terser': 0.4.0
+      '@rollup/plugin-typescript': 11.0.0
+      '@types/react': 18.0.28
+      rollup: 3.18.0
+      rollup-plugin-dts: 5.1.1
+      rollup-plugin-peer-deps-external: 2.2.4
+      translations: workspace:*
+      tslib: 2.5.0
+      typescript: 4.9.5
+      zod: 3.20.6
+    devDependencies:
+      '@rollup/plugin-commonjs': 24.0.1_rollup@3.18.0
+      '@rollup/plugin-node-resolve': 15.0.1_rollup@3.18.0
+      '@rollup/plugin-terser': 0.4.0_rollup@3.18.0
+      '@rollup/plugin-typescript': 11.0.0_elyygukqrpnyv7sactoooq5kjq
+      '@types/react': 18.0.28
+      rollup: 3.18.0
+      rollup-plugin-dts: 5.1.1_fn2onl6nbsljlgjr3jlzr6w7we
+      rollup-plugin-peer-deps-external: 2.2.4_rollup@3.18.0
+      translations: link:../translations
+      tslib: 2.5.0
+      typescript: 4.9.5
+      zod: 3.20.6
 
 packages:
 
@@ -8816,7 +8848,7 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
-  file:packages/lib_c7jm266feb4bgkkzi7h443oadq:
+  file:packages/lib_ife7h6exfgipmhxhneijpviryi:
     resolution: {directory: packages/lib, type: directory}
     id: file:packages/lib
     name: lib
@@ -8843,6 +8875,7 @@ packages:
       react-hook-form: 7.43.5
       react-i18next: 12.2.0
       translations: workspace:*
+      types: workspace:*
       zod: 3.20.6
     dependencies:
       '@emotion/react': 11.10.6_pmekkgnqduwlme35zpnqhenc34
@@ -8865,5 +8898,6 @@ packages:
       react-hook-form: 7.43.5_react@18.2.0
       react-i18next: 12.2.0_nuvg7z3l7c7q3mgp6kac62miay
       translations: link:packages/translations
+      types: link:packages/types
       zod: 3.20.6
     dev: false

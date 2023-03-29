@@ -3,7 +3,7 @@ import { IconX } from '@tabler/icons-react'
 
 import { Notification } from './Notification'
 
-export type HttpNotificationProps = NotificationProps & {
+type Props = NotificationProps & {
   isLoading: boolean
   isError: boolean
   errorTitle?: string
@@ -21,7 +21,7 @@ export function HttpNotification({
   loadingTitle,
   loadingMessage,
   ...props
-}: HttpNotificationProps): JSX.Element | null {
+}: Props): JSX.Element | null {
   const theme = useMantineTheme()
 
   if (!isLoading && !isError) return null

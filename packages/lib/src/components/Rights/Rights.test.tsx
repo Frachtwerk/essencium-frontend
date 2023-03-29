@@ -1,5 +1,6 @@
 import { CellContext } from '@tanstack/react-table'
 import { render, RenderResult, screen, within } from '@testing-library/react'
+import { RightOutput, RIGHTS } from 'types'
 import {
   afterEach,
   beforeAll,
@@ -11,21 +12,13 @@ import {
 } from 'vitest'
 
 import { Rights } from './Rights'
-import { RIGHTS, UserRight } from './types'
 
 describe('Rights', () => {
   let RightsMounted: RenderResult
 
-  const rights: UserRight[] = []
+  const rights: RightOutput[] = []
 
-  type CellContextType = CellContext<
-    {
-      description?: string | undefined
-      id: number
-      name: string
-    },
-    unknown
-  >
+  type CellContextType = CellContext<RightOutput, unknown>
 
   beforeAll(() => {
     vi.mock('react-i18next', () => ({

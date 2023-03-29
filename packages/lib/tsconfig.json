@@ -2,7 +2,8 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "paths": {
-      "translations": ["../translations/src"]
+      "translations": ["../translations/src"],
+      "types": ["../types/src"]
     }
   }
 }
