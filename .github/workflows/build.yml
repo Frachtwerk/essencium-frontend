@@ -164,3 +164,40 @@ jobs:
       #     path: |
       #       packages/lib/dist
       #     retention-days: 2
+
+  release:
+    name: Create new version
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔬 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.11.0
+
+      - name: 🔬 Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: 🔬 Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: 🔬 Install pnpm & deps
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7.18.1
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: release version
+        uses: changesets/action@v1
+        with:
+          version: pnpm versioning
+          commit: 'chore: update versions'
+          title: 'chore: update versions'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
