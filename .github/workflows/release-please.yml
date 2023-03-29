@@ -17,7 +17,7 @@ jobs:
       - uses: google-github-actions/release-please-action@v3
         with:
           release-type: node
-          monorepo: true
+          monorepo-tags: true
           package-name: essencium-frontend
           bump-minor-pre-major: true
           bump-patch-for-minor-pre-major: true
