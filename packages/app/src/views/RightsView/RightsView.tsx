@@ -1,17 +1,22 @@
 /* eslint-disable react/no-unstable-nested-components */
-import { Button, Center, Flex, Loader, Text, Title } from '@mantine/core'
 import {
-  IconCircleCheckFilled,
-  IconShieldCheckFilled,
-} from '@tabler/icons-react'
+  Button,
+  Center,
+  Checkbox,
+  Flex,
+  Loader,
+  Text,
+  Title,
+} from '@mantine/core'
+import { IconShieldCheckFilled } from '@tabler/icons-react'
 import { ColumnDef } from '@tanstack/react-table'
 import { HttpNotification, Rights } from 'lib'
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { RightOutput } from 'types'
+import { RightOutput, RoleInput, RoleOutput } from 'types'
 
 import { useGetRights } from '@/api/rights'
-import { useGetRoles } from '@/api/roles'
+import { useGetRoles, useUpdateRole } from '@/api/roles'
 
 export function RightsView(): JSX.Element {
   const { t } = useTranslation()
@@ -27,6 +32,8 @@ export function RightsView(): JSX.Element {
   } = useGetRights()
 
   const { data: roles, refetch: refetchRoles } = useGetRoles()
+
+  const { mutate: updateRole } = useUpdateRole()
 
   const hasRight = useCallback(
     (rightName: string, roleName: string) => {
@@ -44,6 +51,24 @@ export function RightsView(): JSX.Element {
     [roles?.content]
   )
 
+  function toggleRight(
+    userRole: RoleOutput,
+    userRightName: RightOutput['name'],
+    userRightID: number
+  ): number[] {
+    const right = userRole.rights.find(right => right.name === userRightName)
+
+    if (right) {
+      return userRole.rights
+        .filter(right => right.name !== userRightName)
+        .map(right => right.id)
+    } else {
+      return [...userRole.rights, { name: userRightName, id: userRightID }].map(
+        right => right.id
+      )
+    }
+  }
+
   const columns = useMemo<ColumnDef<RightOutput>[]>(
     () => [
       {
@@ -56,7 +81,22 @@ export function RightsView(): JSX.Element {
         header: () => <Text>{t('rightsView.table.userRole')}</Text>,
         cell: info => {
           const rightName = info.row.original.name
-          return hasRight(rightName, 'USER') ? <IconCircleCheckFilled /> : null
+          const rightID = info.row.original.id
+          const role = roles?.content.find(role => role.name === 'USER')
+
+          const updatedRole = role
+            ? {
+                ...role,
+                rights: toggleRight(role, rightName, rightID),
+              }
+            : null
+
+          return (
+            <Checkbox
+              onChange={() => updateRole(updatedRole as RoleInput)}
+              checked={hasRight(rightName, 'USER')}
+            />
+          )
         },
       },
       {
@@ -64,7 +104,22 @@ export function RightsView(): JSX.Element {
         header: () => <Text>{t('rightsView.table.adminRole')}</Text>,
         cell: info => {
           const rightName = info.row.original.name
-          return hasRight(rightName, 'ADMIN') ? <IconCircleCheckFilled /> : null
+          const rightID = info.row.original.id
+          const role = roles?.content.find(role => role.name === 'ADMIN')
+
+          const updatedRole = role
+            ? {
+                ...role,
+                rights: toggleRight(role, rightName, rightID),
+              }
+            : null
+
+          return (
+            <Checkbox
+              onChange={() => updateRole(updatedRole as RoleInput)}
+              checked={hasRight(rightName, 'ADMIN')}
+            />
+          )
         },
       },
     ],
