@@ -4,7 +4,7 @@ importers:
 
   .:
     specifiers:
-      '@changesets/cli': ^2.26.1
+      '@changesets/cli': 2.26.1
       '@commitlint/cli': 17.4.4
       '@commitlint/config-conventional': 17.4.4
       '@nrwl/eslint-plugin-nx': 15.8.6
@@ -9412,7 +9412,7 @@ packages:
     resolution: {directory: packages/lib, type: directory}
     id: file:packages/lib
     name: lib
-    version: 0.1.0
+    version: 0.0.1
     engines: {node: '>=16', pnpm: '7'}
     peerDependencies:
       '@emotion/react': 11.10.6
