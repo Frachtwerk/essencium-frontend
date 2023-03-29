@@ -36,6 +36,8 @@ type SearchItems = {
   description?: string
 }
 
+// minor feature
+
 export const NAV_LINKS: NavLink[] = [
   {
     icon: <IconHome2 size={20} />,
