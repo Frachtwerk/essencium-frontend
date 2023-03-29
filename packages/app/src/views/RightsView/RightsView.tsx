@@ -56,17 +56,16 @@ export function RightsView(): JSX.Element {
     userRightName: RightOutput['name'],
     userRightID: number
   ): number[] {
-    const right = userRole.rights.find(right => right.name === userRightName)
+    const right = userRole.rights.find(r => r.name === userRightName)
 
     if (right) {
       return userRole.rights
-        .filter(right => right.name !== userRightName)
-        .map(right => right.id)
-    } else {
-      return [...userRole.rights, { name: userRightName, id: userRightID }].map(
-        right => right.id
-      )
+        .filter(r => r.name !== userRightName)
+        .map(r => r.id)
     }
+    return [...userRole.rights, { name: userRightName, id: userRightID }].map(
+      r => r.id
+    )
   }
 
   const columns = useMemo<ColumnDef<RightOutput>[]>(
@@ -82,7 +81,7 @@ export function RightsView(): JSX.Element {
         cell: info => {
           const rightName = info.row.original.name
           const rightID = info.row.original.id
-          const role = roles?.content.find(role => role.name === 'USER')
+          const role = roles?.content.find(r => r.name === 'USER')
 
           const updatedRole = role
             ? {
@@ -105,7 +104,7 @@ export function RightsView(): JSX.Element {
         cell: info => {
           const rightName = info.row.original.name
           const rightID = info.row.original.id
-          const role = roles?.content.find(role => role.name === 'ADMIN')
+          const role = roles?.content.find(r => r.name === 'ADMIN')
 
           const updatedRole = role
             ? {
@@ -123,7 +122,7 @@ export function RightsView(): JSX.Element {
         },
       },
     ],
-    [t, hasRight]
+    [t, hasRight, roles?.content, updateRole]
   )
 
   function handleRefetch(): void {
