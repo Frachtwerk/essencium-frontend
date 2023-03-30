@@ -13,7 +13,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import { HttpNotification, Rights } from 'lib'
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { RightOutput, RoleInput, RoleOutput } from 'types'
+import { RightOutput, RoleOutput } from 'types'
 
 import { useGetRights } from '@/api/rights'
 import { useGetRoles, useUpdateRole } from '@/api/roles'
