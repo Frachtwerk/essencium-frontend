@@ -143,8 +143,8 @@
     "table": {
       "name": "Name",
       "description": "Beschreibung",
-      "userRole": "Benutzer",
-      "adminRole": "Administrator"
+      "USER": "Benutzer",
+      "ADMIN": "Administrator"
     }
   },
   "validation": {
