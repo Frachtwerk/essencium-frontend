@@ -51,19 +51,15 @@ export function RightsView(): JSX.Element {
     [roles?.content]
   )
 
-  function toggleRight(
-    userRole: RoleOutput,
-    userRightName: RightOutput['name'],
-    userRightID: number
-  ): number[] {
-    const right = userRole.rights.find(r => r.name === userRightName)
+  function toggleRight(userRole: RoleOutput, userRight: RightOutput): number[] {
+    const right = userRole.rights.find(r => r.name === userRight.name)
 
     if (right) {
       return userRole.rights
-        .filter(r => r.name !== userRightName)
+        .filter(r => r.name !== userRight.name)
         .map(r => r.id)
     }
-    return [...userRole.rights, { name: userRightName, id: userRightID }].map(
+    return [...userRole.rights, { name: userRight.name, id: userRight.id }].map(
       r => r.id
     )
   }
@@ -79,21 +75,20 @@ export function RightsView(): JSX.Element {
         accessorKey: 'indicatorUser',
         header: () => <Text>{t('rightsView.table.userRole')}</Text>,
         cell: info => {
-          const rightName = info.row.original.name
-          const rightID = info.row.original.id
+          const right = info.row.original
           const role = roles?.content.find(r => r.name === 'USER')
 
           const updatedRole = role
             ? {
                 ...role,
-                rights: toggleRight(role, rightName, rightID),
+                rights: toggleRight(role, right),
               }
             : null
 
           return (
             <Checkbox
               onChange={() => updateRole(updatedRole as RoleInput)}
-              checked={hasRight(rightName, 'USER')}
+              checked={hasRight(right.name, 'USER')}
             />
           )
         },
@@ -102,21 +97,20 @@ export function RightsView(): JSX.Element {
         accessorKey: 'indicatorAdmin',
         header: () => <Text>{t('rightsView.table.adminRole')}</Text>,
         cell: info => {
-          const rightName = info.row.original.name
-          const rightID = info.row.original.id
+          const right = info.row.original
           const role = roles?.content.find(r => r.name === 'ADMIN')
 
           const updatedRole = role
             ? {
                 ...role,
-                rights: toggleRight(role, rightName, rightID),
+                rights: toggleRight(role, right),
               }
             : null
 
           return (
             <Checkbox
               onChange={() => updateRole(updatedRole as RoleInput)}
-              checked={hasRight(rightName, 'ADMIN')}
+              checked={hasRight(right.name, 'ADMIN')}
             />
           )
         },
