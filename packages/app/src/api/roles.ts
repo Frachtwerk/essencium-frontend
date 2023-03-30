@@ -6,6 +6,7 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
+import { useTranslation } from 'react-i18next'
 import { RoleInput, RoleOutput } from 'types'
 
 import { api, PaginatedResponse } from './api'
@@ -31,6 +32,8 @@ export function useUpdateRole(): UseMutationResult<
   AxiosError,
   RoleInput
 > {
+  const { t } = useTranslation()
+
   const mutation = useMutation<RoleOutput, AxiosError, RoleInput>({
     mutationKey: ['useUpdateRole'],
     mutationFn: (roleData: RoleInput) =>
@@ -40,8 +43,8 @@ export function useUpdateRole(): UseMutationResult<
     onSuccess: () => {
       showNotification({
         autoClose: 2500,
-        title: 'Successful Update',
-        message: 'User rights have been updated',
+        title: t('notifications.updatedDataSucess.title'),
+        message: t('notifications.updatedDataSucess.message'),
         color: 'green',
         style: { position: 'fixed', top: '20px', right: '10px' },
       })
@@ -49,7 +52,7 @@ export function useUpdateRole(): UseMutationResult<
     onError: (data: AxiosError) => {
       showNotification({
         autoClose: 4000,
-        title: 'We are sorry! Updating user rights was not successful.',
+        title: t('notifications.updatedDataError.title'),
         message: data.message,
         color: 'red',
         style: { position: 'fixed', top: '20px', right: '10px' },

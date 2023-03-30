@@ -166,6 +166,14 @@
     "loadingAsyncData": {
       "title": "Laden ...",
       "message": "Daten vom Server laden"
+    },
+    "updatedDataSuccess": {
+      "title": "Erfolg",
+      "message": "Daten erfolgreich aktualisiert"
+    },
+    "updatedDataError": {
+      "title": "Fehler",
+      "message": "Daten konnten nicht aktualisiert werden"
     }
   },
   "table": {
