@@ -85,12 +85,12 @@ export function RightsView(): JSX.Element {
               }
             : null
 
-          return (
+          return updatedRole ? (
             <Checkbox
-              onChange={() => updateRole(updatedRole as RoleInput)}
+              onChange={() => updateRole(updatedRole)}
               checked={hasRight(right.name, 'USER')}
             />
-          )
+          ) : null
         },
       },
       {
@@ -107,12 +107,12 @@ export function RightsView(): JSX.Element {
               }
             : null
 
-          return (
+          return updatedRole ? (
             <Checkbox
-              onChange={() => updateRole(updatedRole as RoleInput)}
+              onChange={() => updateRole(updatedRole)}
               checked={hasRight(right.name, 'ADMIN')}
             />
-          )
+          ) : null
         },
       },
     ],
