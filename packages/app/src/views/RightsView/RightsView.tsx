@@ -64,47 +64,43 @@ export function RightsView(): JSX.Element {
     )
   }
 
-  const columns = useMemo<ColumnDef<RightOutput>[]>(
-    () => [
+  const columns = useMemo<ColumnDef<RightOutput>[]>(() => {
+    const roleColumns: ColumnDef<RightOutput>[] = (roles?.content || []).map(
+      role => ({
+        accessorKey: `${role.name}`,
+        header: () => <Text>{t(`rightsView.table.${role.name}`)}</Text>,
+        cell: info => {
+          const right = info.row.original
+
+          const updatedRole = {
+            ...role,
+            rights: toggleRight(role, right),
+          }
+
+          if (role.name === 'ADMIN') {
+            return (
+              <Checkbox disabled checked={hasRight(right.name, role.name)} />
+            )
+          }
+          return (
+            <Checkbox
+              onChange={() => updateRole(updatedRole)}
+              checked={hasRight(right.name, role.name)}
+            />
+          )
+        },
+      })
+    )
+
+    return [
       {
         accessorKey: 'name',
         header: () => <Text>{t('rightsView.table.name')}</Text>,
         cell: info => info.getValue(),
       },
-      {
-        accessorKey: 'userRole',
-        header: () => <Text>{t('rightsView.table.userRole')}</Text>,
-        cell: info => {
-          const right = info.row.original
-          const role = roles?.content.find(r => r.name === 'USER')
-
-          const updatedRole = role
-            ? {
-                ...role,
-                rights: toggleRight(role, right),
-              }
-            : null
-
-          return updatedRole ? (
-            <Checkbox
-              onChange={() => updateRole(updatedRole)}
-              checked={hasRight(right.name, 'USER')}
-            />
-          ) : null
-        },
-      },
-      {
-        accessorKey: 'adminRole',
-        header: () => <Text>{t('rightsView.table.adminRole')}</Text>,
-        cell: info => {
-          const right = info.row.original
-
-          return <Checkbox disabled checked={hasRight(right.name, 'ADMIN')} />
-        },
-      },
-    ],
-    [t, hasRight, roles?.content, updateRole]
-  )
+      ...roleColumns,
+    ]
+  }, [t, hasRight, updateRole, roles?.content])
 
   function handleRefetch(): void {
     refetchRights()
