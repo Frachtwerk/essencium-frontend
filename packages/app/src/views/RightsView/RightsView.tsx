@@ -72,7 +72,7 @@ export function RightsView(): JSX.Element {
         cell: info => info.getValue(),
       },
       {
-        accessorKey: 'indicatorUser',
+        accessorKey: 'userRole',
         header: () => <Text>{t('rightsView.table.userRole')}</Text>,
         cell: info => {
           const right = info.row.original
@@ -94,7 +94,7 @@ export function RightsView(): JSX.Element {
         },
       },
       {
-        accessorKey: 'indicatorAdmin',
+        accessorKey: 'adminRole',
         header: () => <Text>{t('rightsView.table.adminRole')}</Text>,
         cell: info => {
           const right = info.row.original
