@@ -98,21 +98,8 @@ export function RightsView(): JSX.Element {
         header: () => <Text>{t('rightsView.table.adminRole')}</Text>,
         cell: info => {
           const right = info.row.original
-          const role = roles?.content.find(r => r.name === 'ADMIN')
 
-          const updatedRole = role
-            ? {
-                ...role,
-                rights: toggleRight(role, right),
-              }
-            : null
-
-          return updatedRole ? (
-            <Checkbox
-              onChange={() => updateRole(updatedRole)}
-              checked={hasRight(right.name, 'ADMIN')}
-            />
-          ) : null
+          return <Checkbox disabled checked={hasRight(right.name, 'ADMIN')} />
         },
       },
     ],
