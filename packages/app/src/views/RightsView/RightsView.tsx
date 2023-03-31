@@ -8,6 +8,7 @@ import {
   Text,
   Title,
 } from '@mantine/core'
+import { showNotification } from '@mantine/notifications'
 import { IconShieldCheckFilled } from '@tabler/icons-react'
 import { ColumnDef } from '@tanstack/react-table'
 import { HttpNotification, Rights } from 'lib'
@@ -40,6 +41,13 @@ export function RightsView(): JSX.Element {
 
   const { mutate: updateRole } = useUpdateRole({
     onSuccess: () => {
+      showNotification({
+        autoClose: 2500,
+        title: t('notifications.updatedDataSuccess.title'),
+        message: t('notifications.updatedDataSuccess.message'),
+        color: 'green',
+        style: { position: 'fixed', top: '20px', right: '10px' },
+      })
       handleRefetch()
     },
   })
