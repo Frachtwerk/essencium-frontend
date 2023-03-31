@@ -33,7 +33,16 @@ export function RightsView(): JSX.Element {
 
   const { data: roles, refetch: refetchRoles } = useGetRoles()
 
-  const { mutate: updateRole } = useUpdateRole()
+  const handleRefetch = useCallback((): void => {
+    refetchRights()
+    refetchRoles()
+  }, [refetchRights, refetchRoles])
+
+  const { mutate: updateRole } = useUpdateRole({
+    onSuccess: () => {
+      handleRefetch()
+    },
+  })
 
   const hasRight = useCallback(
     (rightName: string, roleName: string) => {
@@ -101,11 +110,6 @@ export function RightsView(): JSX.Element {
       ...roleColumns,
     ]
   }, [t, hasRight, updateRole, roles?.content])
-
-  function handleRefetch(): void {
-    refetchRights()
-    refetchRoles()
-  }
 
   return (
     <>
