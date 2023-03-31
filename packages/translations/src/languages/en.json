@@ -144,7 +144,8 @@
       "name": "Name",
       "description": "Description",
       "USER": "User",
-      "ADMIN": "Admin"
+      "ADMIN": "Admin",
+      "HR": "Human Resources"
     }
   },
   "validation": {
