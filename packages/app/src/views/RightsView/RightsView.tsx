@@ -48,6 +48,7 @@ export function RightsView(): JSX.Element {
         color: 'green',
         style: { position: 'fixed', top: '20px', right: '10px' },
       })
+
       handleRefetch()
     },
   })
@@ -99,6 +100,7 @@ export function RightsView(): JSX.Element {
               <Checkbox disabled checked={hasRight(right.name, role.name)} />
             )
           }
+
           return (
             <Checkbox
               onChange={() => updateRole(updatedRole)}
