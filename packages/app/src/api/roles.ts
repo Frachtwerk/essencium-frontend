@@ -1,6 +1,7 @@
 import { showNotification } from '@mantine/notifications'
 import {
   useMutation,
+  UseMutationOptions,
   UseMutationResult,
   useQuery,
   UseQueryResult,
@@ -27,11 +28,9 @@ export function useGetRoles(): UseQueryResult<RolesResponse, AxiosError> {
   return query
 }
 
-export function useUpdateRole(): UseMutationResult<
-  RoleOutput,
-  AxiosError,
-  RoleInput
-> {
+export function useUpdateRole(
+  config?: UseMutationOptions<RoleOutput, AxiosError, RoleInput>
+): UseMutationResult<RoleOutput, AxiosError, RoleInput> {
   const { t } = useTranslation()
 
   const mutation = useMutation<RoleOutput, AxiosError, RoleInput>({
@@ -58,6 +57,7 @@ export function useUpdateRole(): UseMutationResult<
         style: { position: 'fixed', top: '20px', right: '10px' },
       })
     },
+    ...config,
   })
 
   return mutation
