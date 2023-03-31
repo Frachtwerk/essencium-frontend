@@ -43,8 +43,8 @@ export function useUpdateRole(): UseMutationResult<
     onSuccess: () => {
       showNotification({
         autoClose: 2500,
-        title: t('notifications.updatedDataSucess.title'),
-        message: t('notifications.updatedDataSucess.message'),
+        title: t('notifications.updatedDataSuccess.title'),
+        message: t('notifications.updatedDataSuccess.message'),
         color: 'green',
         style: { position: 'fixed', top: '20px', right: '10px' },
       })
