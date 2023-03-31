@@ -69,15 +69,16 @@ export function RightsView(): JSX.Element {
     [roles?.content]
   )
 
-  function toggleRight(userRole: RoleOutput, userRight: RightOutput): number[] {
-    const right = userRole.rights.find(r => r.name === userRight.name)
+  function toggleRight(
+    role: RoleOutput,
+    userRight: RightOutput
+  ): RightOutput['id'][] {
+    const right = role.rights.find(r => r.name === userRight.name)
 
     if (right) {
-      return userRole.rights
-        .filter(r => r.name !== userRight.name)
-        .map(r => r.id)
+      return role.rights.filter(r => r.name !== userRight.name).map(r => r.id)
     }
-    return [...userRole.rights, { name: userRight.name, id: userRight.id }].map(
+    return [...role.rights, { name: userRight.name, id: userRight.id }].map(
       r => r.id
     )
   }
