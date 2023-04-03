@@ -4,12 +4,12 @@ import { ContactForm, ContactPersonCard } from './components'
 
 export function Contact(): JSX.Element {
   return (
-    <Grid>
-      <Grid.Col md={4}>
+    <Grid role="grid">
+      <Grid.Col md={4} role="gridcell">
         <ContactPersonCard />
       </Grid.Col>
 
-      <Grid.Col md={8}>
+      <Grid.Col md={8} role="gridcell">
         <ContactForm />
       </Grid.Col>
     </Grid>

@@ -16,7 +16,7 @@ export function ContactForm(): JSX.Element {
 
   return (
     <Card shadow="sm" p="lg" radius="md" withBorder>
-      <form>
+      <form data-testid="form">
         <Title order={3} mb="md">
           {t('contactView.contactForm.title')}
         </Title>
