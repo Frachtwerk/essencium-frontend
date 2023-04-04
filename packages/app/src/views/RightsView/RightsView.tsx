@@ -1,17 +1,22 @@
 /* eslint-disable react/no-unstable-nested-components */
-import { Button, Center, Flex, Loader, Text, Title } from '@mantine/core'
 import {
-  IconCircleCheckFilled,
-  IconShieldCheckFilled,
-} from '@tabler/icons-react'
+  Button,
+  Center,
+  Checkbox,
+  Flex,
+  Loader,
+  Text,
+  Title,
+} from '@mantine/core'
+import { IconShieldCheckFilled } from '@tabler/icons-react'
 import { ColumnDef } from '@tanstack/react-table'
 import { HttpNotification, Rights } from 'lib'
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { RightOutput } from 'types'
+import { RightOutput, RoleOutput } from 'types'
 
 import { useGetRights } from '@/api/rights'
-import { useGetRoles } from '@/api/roles'
+import { useGetRoles, useUpdateRole, UseUpdateRoleData } from '@/api/roles'
 
 export function RightsView(): JSX.Element {
   const { t } = useTranslation()
@@ -27,6 +32,22 @@ export function RightsView(): JSX.Element {
   } = useGetRights()
 
   const { data: roles, refetch: refetchRoles } = useGetRoles()
+
+  const handleRefetch = useCallback((): void => {
+    refetchRights()
+    refetchRoles()
+  }, [refetchRights, refetchRoles])
+
+  const { mutate: updateRole } = useUpdateRole()
+
+  const handleUpdateRole = useCallback(
+    (data: UseUpdateRoleData): void => {
+      updateRole(data, {
+        onSuccess: handleRefetch,
+      })
+    },
+    [handleRefetch, updateRole]
+  )
 
   const hasRight = useCallback(
     (rightName: string, roleName: string) => {
@@ -44,37 +65,66 @@ export function RightsView(): JSX.Element {
     [roles?.content]
   )
 
-  const columns = useMemo<ColumnDef<RightOutput>[]>(
-    () => [
+  // returns rights array for role after activating/deactivating a right
+  function getUpdatedRights(
+    role: RoleOutput,
+    userRight: RightOutput
+  ): RightOutput['id'][] {
+    const rightToUpdate = role.rights.find(
+      right => right.name === userRight.name
+    )
+
+    if (rightToUpdate) {
+      return role.rights
+        .filter(right => right.name !== userRight.name)
+        .map(right => right.id)
+    }
+
+    return [...role.rights, { name: userRight.name, id: userRight.id }].map(
+      right => right.id
+    )
+  }
+
+  const columns = useMemo<ColumnDef<RightOutput>[]>(() => {
+    const roleColumns: ColumnDef<RightOutput>[] = (roles?.content || []).map(
+      role => ({
+        accessorKey: `${role.name}`,
+        header: () => <Text>{t(`rightsView.table.${role.name}`)}</Text>,
+        cell: info => {
+          const right = info.row.original
+
+          const updatedRole = {
+            ...role,
+            rights: getUpdatedRights(role, right),
+          }
+
+          if (role.name === 'ADMIN') {
+            return (
+              <Checkbox disabled checked={hasRight(right.name, role.name)} />
+            )
+          }
+
+          return (
+            <Checkbox
+              onChange={() =>
+                handleUpdateRole({ roleId: updatedRole.id, role: updatedRole })
+              }
+              checked={hasRight(right.name, role.name)}
+            />
+          )
+        },
+      })
+    )
+
+    return [
       {
         accessorKey: 'name',
         header: () => <Text>{t('rightsView.table.name')}</Text>,
         cell: info => info.getValue(),
       },
-      {
-        accessorKey: 'indicatorUser',
-        header: () => <Text>{t('rightsView.table.userRole')}</Text>,
-        cell: info => {
-          const rightName = info.row.original.name
-          return hasRight(rightName, 'USER') ? <IconCircleCheckFilled /> : null
-        },
-      },
-      {
-        accessorKey: 'indicatorAdmin',
-        header: () => <Text>{t('rightsView.table.adminRole')}</Text>,
-        cell: info => {
-          const rightName = info.row.original.name
-          return hasRight(rightName, 'ADMIN') ? <IconCircleCheckFilled /> : null
-        },
-      },
-    ],
-    [t, hasRight]
-  )
-
-  function handleRefetch(): void {
-    refetchRights()
-    refetchRoles()
-  }
+      ...roleColumns,
+    ]
+  }, [t, hasRight, handleUpdateRole, roles?.content])
 
   return (
     <>

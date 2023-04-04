@@ -143,8 +143,9 @@
     "table": {
       "name": "Name",
       "description": "Description",
-      "userRole": "User",
-      "adminRole": "Admin"
+      "USER": "User",
+      "ADMIN": "Admin",
+      "HR": "Human Resources"
     }
   },
   "validation": {
@@ -166,6 +167,18 @@
     "loadingAsyncData": {
       "title": "Loading ...",
       "message": "Loading data from the server"
+    },
+    "updatingAsyncData": {
+      "title": "Updating ...",
+      "message": "Updating data on the server"
+    },
+    "updatedDataSuccess": {
+      "title": "Success",
+      "message": "Updated data successfully"
+    },
+    "updatedDataError": {
+      "title": "Error",
+      "message": "Could not update data"
     }
   },
   "table": {

@@ -118,7 +118,7 @@ function Root(): JSX.Element {
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
 
-          <Notifications />
+          <Notifications limit={3} />
 
           <RouterProvider router={router} />
         </QueryClientProvider>

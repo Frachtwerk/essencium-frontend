@@ -7,5 +7,6 @@
   "new-view": "New View",
   "pull-requests": "Pull Requests",
   "commits": "Commits",
-  "releases": "Releases"
+  "releases": "Releases",
+  "types": "Types"
 }
