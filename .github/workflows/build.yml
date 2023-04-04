@@ -170,4 +170,4 @@ jobs:
       - name: Release version
         uses: changesets/action@v1
         with:
-          version: pnpm versioning
+          version: pnpm release:apply
