@@ -7,6 +7,7 @@ import { HomeView } from '@/views/HomeView'
 import { LoginView } from '@/views/LoginView'
 import { ProfileView } from '@/views/ProfileView'
 import { RightsView } from '@/views/RightsView'
+import { RolesView } from '@/views/RolesView'
 import { UsersView } from '@/views/UsersView/UsersView'
 
 export const rootRoute = new RootRoute()
@@ -51,4 +52,10 @@ export const rightsRoute = new Route({
   getParentRoute: () => layoutRouteAppShell,
   path: 'rights',
   component: RightsView,
+})
+
+export const rolesRoute = new Route({
+  getParentRoute: () => layoutRouteAppShell,
+  path: 'roles',
+  component: RolesView,
 })
