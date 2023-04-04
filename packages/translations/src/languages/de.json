@@ -148,6 +148,17 @@
       "HR": "Human Resources"
     }
   },
+  "rolesView": {
+    "title": "Rollen",
+    "action": {
+      "refresh": "Daten aktualisieren"
+    },
+    "table": {
+      "name": "Name",
+      "description": "Beschreibung",
+      "rights": "Rechte"
+    }
+  },
   "validation": {
     "email": {
       "notValid": "E-Mail ist nicht gültig"
