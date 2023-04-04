@@ -151,7 +151,8 @@
   "rolesView": {
     "title": "Rollen",
     "action": {
-      "refresh": "Daten aktualisieren"
+      "refresh": "Daten aktualisieren",
+      "add": "Rolle hinzufügen"
     },
     "table": {
       "name": "Name",

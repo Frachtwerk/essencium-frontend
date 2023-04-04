@@ -151,7 +151,8 @@
   "rolesView": {
     "title": "Roles",
     "action": {
-      "refresh": "Refresh data"
+      "refresh": "Refresh data",
+      "add": "Add Role"
     },
     "table": {
       "name": "Name",

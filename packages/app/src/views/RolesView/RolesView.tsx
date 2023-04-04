@@ -82,14 +82,18 @@ export function RolesView(): JSX.Element {
           </Flex>
         </Title>
 
-        <Button
-          variant="light"
-          onClick={() => {
-            handleRefetch()
-          }}
-        >
-          {t('rolesView.action.refresh')}
-        </Button>
+        <Flex align="center" gap="xs">
+          <Button
+            variant="light"
+            onClick={() => {
+              handleRefetch()
+            }}
+          >
+            {t('rolesView.action.refresh')}
+          </Button>
+
+          <Button onClick={() => {}}>{t('rolesView.action.add')}</Button>
+        </Flex>
       </Flex>
 
       {isLoadingRoles ? (
