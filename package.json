@@ -32,7 +32,7 @@
     "test:watch": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx run-many --target=test:watch --parallel=5",
     "test:unit": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=test:unit --parallel=5",
     "test:e2e": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=test:e2e --parallel=5",
-    "sync-versions": "ts-node sync-versions.ts"
+    "sync-versions": "ts-node ./scripts/sync-versions.ts"
   },
   "dependencies": {
     "@nrwl/nx-cloud": "15.1.1"
