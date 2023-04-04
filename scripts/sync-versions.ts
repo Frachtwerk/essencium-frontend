@@ -1,14 +1,14 @@
 /* eslint-disable no-console */
 import fs from 'fs-extra'
 import path from 'path'
-import readline from 'readline'
+// import readline from 'readline'
 
 const CHARSET = 'utf-8'
 
-const rootDir = path.resolve(__dirname)
-const packagesDir = path.resolve(__dirname, 'packages')
+const rootDir = path.resolve(__dirname, '../')
+const packagesDir = path.resolve(__dirname, '../packages')
 
-const rootPackageJsonPath = path.resolve(__dirname, 'package.json')
+const rootPackageJsonPath = path.resolve(__dirname, '../package.json')
 const rootPackageJson = JSON.parse(
   fs.readFileSync(rootPackageJsonPath, CHARSET)
 )
