@@ -168,6 +168,10 @@
       "title": "Laden ...",
       "message": "Daten vom Server laden"
     },
+    "updatingAsyncData": {
+      "title": "Aktualisieren ...",
+      "message": "Daten werden aktualisiert"
+    },
     "updatedDataSuccess": {
       "title": "Erfolg",
       "message": "Daten erfolgreich aktualisiert"

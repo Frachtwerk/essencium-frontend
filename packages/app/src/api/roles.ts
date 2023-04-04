@@ -63,6 +63,15 @@ export function useUpdateRole(): UseMutationResult<
         style: { position: 'fixed', top: '20px', right: '10px' },
       })
     },
+    onMutate: () => {
+      showNotification({
+        autoClose: 2500,
+        title: t('notifications.updatingAsyncData.title'),
+        message: t('notifications.updatingAsyncData.message'),
+        color: 'orange',
+        style: { position: 'fixed', top: '20px', right: '10px' },
+      })
+    },
   })
 
   return mutation
