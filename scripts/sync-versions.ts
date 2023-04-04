@@ -41,25 +41,26 @@ async function updatePackagesInDir(
   await Promise.all(packageDirs.map(dir => updatePackageVersion(dir, version)))
 }
 
-function promptForVersion(): Promise<string> {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  })
+// function promptForVersion(): Promise<string> {
+//   const rl = readline.createInterface({
+//     input: process.stdin,
+//     output: process.stdout,
+//   })
 
-  return new Promise(resolve => {
-    rl.question(
-      `Please enter the new version (current version: ${rootPackageJson.version}): `,
-      version => {
-        rl.close()
-        resolve(version)
-      }
-    )
-  })
-}
+//   return new Promise(resolve => {
+//     rl.question(
+//       `Please enter the new version (current version: ${rootPackageJson.version}): `,
+//       version => {
+//         rl.close()
+//         resolve(version)
+//       }
+//     )
+//   })
+// }
 
 ;(async () => {
-  const newVersion = await promptForVersion()
+  // const newVersion = await promptForVersion()
+  const newVersion = rootPackageJson.version
   await updatePackagesInDir(packagesDir, newVersion)
   await updatePackageVersion(rootDir, newVersion)
 
