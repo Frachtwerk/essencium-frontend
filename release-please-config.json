@@ -2,11 +2,11 @@
   "release-type": "node",
   "packages": {
     ".": {},
-    "./packages/app": {},
-    "./packages/docs": {},
-    "./packages/lib": {},
-    "./packages/translations": {},
-    "./packages/types": {}
+    "packages/app": {},
+    "packages/docs": {},
+    "packages/lib": {},
+    "packages/translations": {},
+    "packages/types": {}
   },
   "bump-minor-pre-major": true,
   "bump-patch-for-minor-pre-major": true,
