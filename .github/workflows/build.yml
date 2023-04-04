@@ -142,50 +142,31 @@ jobs:
           path: packages/app/dist
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('pnpm-lock.yaml') }}
 
-      # - name: Archive app build artifacts
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: dist_app
-      #     path: |
-      #       packages/app/dist
-      #     retention-days: 2
-
-      # - name: Archive lib build artifacts
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: dist_lib
-      #     path: |
-      #       packages/lib/dist
-      #     retention-days: 2
-
   release:
     name: Create new version
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
         with:
+          # fetch all commits in history (default is only 1 commit)
           fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache: 'pnpm'
 
       - name: Install pnpm & dependencies
         uses: pnpm/action-setup@v2
         with:
-          version: 7.18.1
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'pnpm'
+          version: 7
+          run_install: |
+            - args: [--frozen-lockfile]
 
-      - run: pnpm install --frozen-lockfile
-
-      - name: release version
+      - name: Release version
         uses: changesets/action@v1
         with:
           version: pnpm versioning
-          commit: 'chore: update versions'
-          title: 'chore: update versions'
