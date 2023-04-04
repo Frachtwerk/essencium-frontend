@@ -39,13 +39,13 @@ jobs:
         with:
           release-type: node
           package-name: essencium-frontend
-          bump-minor-pre-major: true
+          bump-patch-for-minor-pre-major: true
           extra-files: |
             [
               {
                 "type": "json",
                 "path": "${{ github.workspace }}/packages/app/package.json",
-                "jsonpath": "@.version"
+                "jsonpath": "$.version"
               }
             ]
           # DEBUGGING to not hit rate limits
