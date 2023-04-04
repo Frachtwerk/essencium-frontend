@@ -7,6 +7,7 @@ on:
 
 env:
   NX_CLOUD_ACCESS_TOKEN: ${{secrets.NX_CLOUD_ACCESS_TOKEN}}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   lint:
@@ -194,5 +195,3 @@ jobs:
           version: pnpm versioning
           commit: 'chore: update versions'
           title: 'chore: update versions'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
