@@ -8,7 +8,6 @@ import {
   Text,
   Title,
 } from '@mantine/core'
-import { showNotification } from '@mantine/notifications'
 import { IconShieldCheckFilled } from '@tabler/icons-react'
 import { ColumnDef } from '@tanstack/react-table'
 import { HttpNotification, Rights } from 'lib'
@@ -17,7 +16,7 @@ import { useTranslation } from 'react-i18next'
 import { RightOutput, RoleOutput } from 'types'
 
 import { useGetRights } from '@/api/rights'
-import { useGetRoles, useUpdateRole } from '@/api/roles'
+import { useGetRoles, useUpdateRole, UseUpdateRoleData } from '@/api/roles'
 
 export function RightsView(): JSX.Element {
   const { t } = useTranslation()
@@ -39,19 +38,16 @@ export function RightsView(): JSX.Element {
     refetchRoles()
   }, [refetchRights, refetchRoles])
 
-  const { mutate: updateRole } = useUpdateRole({
-    onSuccess: () => {
-      showNotification({
-        autoClose: 2500,
-        title: t('notifications.updatedDataSuccess.title'),
-        message: t('notifications.updatedDataSuccess.message'),
-        color: 'green',
-        style: { position: 'fixed', top: '20px', right: '10px' },
-      })
+  const { mutate: updateRole } = useUpdateRole()
 
-      handleRefetch()
+  const handleUpdateRole = useCallback(
+    (data: UseUpdateRoleData): void => {
+      updateRole(data, {
+        onSuccess: handleRefetch,
+      })
     },
-  })
+    [handleRefetch, updateRole]
+  )
 
   const hasRight = useCallback(
     (rightName: string, roleName: string) => {
@@ -104,7 +100,9 @@ export function RightsView(): JSX.Element {
 
           return (
             <Checkbox
-              onChange={() => updateRole(updatedRole)}
+              onChange={() =>
+                handleUpdateRole({ roleId: updatedRole.id, role: updatedRole })
+              }
               checked={hasRight(right.name, role.name)}
             />
           )
@@ -120,7 +118,7 @@ export function RightsView(): JSX.Element {
       },
       ...roleColumns,
     ]
-  }, [t, hasRight, updateRole, roles?.content])
+  }, [t, hasRight, handleUpdateRole, roles?.content])
 
   return (
     <>

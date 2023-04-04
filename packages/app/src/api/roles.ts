@@ -1,7 +1,6 @@
 import { showNotification } from '@mantine/notifications'
 import {
   useMutation,
-  UseMutationOptions,
   UseMutationResult,
   useQuery,
   UseQueryResult,
@@ -28,17 +27,24 @@ export function useGetRoles(): UseQueryResult<RolesResponse, AxiosError> {
   return query
 }
 
-export function useUpdateRole(
-  config?: UseMutationOptions<RoleOutput, AxiosError, RoleInput>
-): UseMutationResult<RoleOutput, AxiosError, RoleInput> {
+export type UseUpdateRoleData = {
+  roleId: RoleOutput['id']
+  role: RoleInput
+}
+
+export function useUpdateRole(): UseMutationResult<
+  RoleOutput,
+  AxiosError,
+  UseUpdateRoleData
+> {
   const { t } = useTranslation()
 
-  const mutation = useMutation<RoleOutput, AxiosError, RoleInput>({
+  const mutation = useMutation<RoleOutput, AxiosError, UseUpdateRoleData>({
     mutationKey: ['useUpdateRole'],
-    mutationFn: (roleData: RoleInput) =>
+    mutationFn: ({ roleId, role }: UseUpdateRoleData) =>
       api
-        .put<RoleOutput, RoleInput>(`${VERSION}/roles/${roleData.id}`, roleData)
-        .then(res => res.data),
+        .put<RoleOutput, RoleInput>(`${VERSION}/roles/${roleId}`, role)
+        .then(response => response.data),
     onSuccess: () => {
       showNotification({
         autoClose: 2500,
@@ -57,7 +63,6 @@ export function useUpdateRole(
         style: { position: 'fixed', top: '20px', right: '10px' },
       })
     },
-    ...config,
   })
 
   return mutation
