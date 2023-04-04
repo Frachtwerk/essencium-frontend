@@ -65,17 +65,23 @@ export function RightsView(): JSX.Element {
     [roles?.content]
   )
 
-  function toggleRight(
+  // returns rights array for role after activating/deactivating a right
+  function getUpdatedRights(
     role: RoleOutput,
     userRight: RightOutput
   ): RightOutput['id'][] {
-    const right = role.rights.find(r => r.name === userRight.name)
+    const rightToUpdate = role.rights.find(
+      right => right.name === userRight.name
+    )
 
-    if (right) {
-      return role.rights.filter(r => r.name !== userRight.name).map(r => r.id)
+    if (rightToUpdate) {
+      return role.rights
+        .filter(right => right.name !== userRight.name)
+        .map(right => right.id)
     }
+
     return [...role.rights, { name: userRight.name, id: userRight.id }].map(
-      r => r.id
+      right => right.id
     )
   }
 
@@ -89,7 +95,7 @@ export function RightsView(): JSX.Element {
 
           const updatedRole = {
             ...role,
-            rights: toggleRight(role, right),
+            rights: getUpdatedRights(role, right),
           }
 
           if (role.name === 'ADMIN') {
