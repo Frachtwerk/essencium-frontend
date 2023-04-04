@@ -68,7 +68,7 @@ export function useUpdateRole(): UseMutationResult<
         autoClose: 2500,
         title: t('notifications.updatingAsyncData.title'),
         message: t('notifications.updatingAsyncData.message'),
-        color: 'orange',
+        color: 'yellow',
         style: { position: 'fixed', top: '20px', right: '10px' },
       })
     },
