@@ -10,6 +10,7 @@
     "allowJs": false,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   }
 }
