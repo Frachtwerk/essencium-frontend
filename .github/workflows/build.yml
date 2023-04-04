@@ -9,14 +9,16 @@ env:
   NX_CLOUD_ACCESS_TOKEN: ${{secrets.NX_CLOUD_ACCESS_TOKEN}}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/head/main' }}
+
 jobs:
   lint:
     name: Linting
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: styfle/cancel-workflow-action@0.11.0
-
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -46,8 +48,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: styfle/cancel-workflow-action@0.11.0
-
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -77,8 +77,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: styfle/cancel-workflow-action@0.11.0
-
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -110,8 +108,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: styfle/cancel-workflow-action@0.11.0
-
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -167,8 +163,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: styfle/cancel-workflow-action@0.11.0
-
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
