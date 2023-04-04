@@ -10,23 +10,22 @@ env:
 
 jobs:
   lint:
-    name: 🧹 Linting
+    name: Linting
     runs-on: ubuntu-latest
     steps:
-      - name: 🧹 Cancel Previous Runs
+      - name: Checkout repo
         uses: styfle/cancel-workflow-action@0.11.0
 
-      - name: 🧹 Checkout repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: 🧹 Setup node
+      - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - name: 🧹 Install pnpm & deps
+      - name: Install pnpm & deps
         uses: pnpm/action-setup@v2
         with:
           version: 7.18.1
@@ -38,27 +37,26 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - name: 🧹 Lint
+      - name: Lint
         run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=lint --parallel=5
 
   unit-tests:
-    name: 🔬 Unit Tests
+    name: Unit Tests
     runs-on: ubuntu-latest
     steps:
-      - name: 🔬 Cancel Previous Runs
+      - name: Checkout repo
         uses: styfle/cancel-workflow-action@0.11.0
 
-      - name: 🔬 Checkout repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: 🔬 Setup node
+      - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - name: 🔬 Install pnpm & deps
+      - name: Install pnpm & deps
         uses: pnpm/action-setup@v2
         with:
           version: 7.18.1
@@ -70,27 +68,26 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - name: 🔬 Run Vitest
+      - name: Run Vitest
         run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:unit --parallel=5
 
   e2e-tests:
-    name: 🔬 E2E Tests
+    name: E2E Tests
     runs-on: ubuntu-latest
     steps:
-      - name: 🔬 Cancel Previous Runs
+      - name: Checkout repo
         uses: styfle/cancel-workflow-action@0.11.0
 
-      - name: 🔬 Checkout repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: 🔬 Setup node
+      - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - name: 🔬 Install pnpm & deps
+      - name: Install pnpm & deps
         uses: pnpm/action-setup@v2
         with:
           version: 7.18.1
@@ -104,27 +101,26 @@ jobs:
 
       - run: npx playwright install-deps && npx playwright install
 
-      - name: 🔬 Run Playwright
+      - name: Run Playwright
         run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:e2e --parallel=5
 
   build:
-    name: 🔨 Build
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: 🔨 Cancel Previous Runs
+      - name: Checkout repo
         uses: styfle/cancel-workflow-action@0.11.0
 
-      - name: 🔨 Checkout repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: 🔨 Setup node
+      - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - name: 🔨 Install pnpm & deps
+      - name: Install pnpm & deps
         uses: pnpm/action-setup@v2
         with:
           version: 7.18.1
@@ -136,11 +132,11 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - name: 🔨 Build
+      - name: Build
         if: steps.cache-dist.outputs.cache-hit != 'true'
         run: NX_BRANCH=$GITHUB_HEAD_REF npx nx build app
 
-      - name: 🔨 Cache dist
+      - name: Cache dist
         id: cache-dist
         uses: actions/cache@v3
         env:
@@ -169,20 +165,19 @@ jobs:
     name: Create new version
     runs-on: ubuntu-latest
     steps:
-      - name: 🔬 Cancel Previous Runs
+      - name: Checkout repo
         uses: styfle/cancel-workflow-action@0.11.0
 
-      - name: 🔬 Checkout repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: 🔬 Setup node
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - name: 🔬 Install pnpm & deps
+      - name: Install pnpm & dependencies
         uses: pnpm/action-setup@v2
         with:
           version: 7.18.1
