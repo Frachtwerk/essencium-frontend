@@ -23,7 +23,6 @@ export type RoleOutput = z.infer<typeof roleOutputSchema>
 export const roleInputSchema = sharedPropertiesSchema
   .merge(
     z.object({
-      id: z.number(),
       rights: z.array(z.number()), // use type with square brackets?
     })
   )
