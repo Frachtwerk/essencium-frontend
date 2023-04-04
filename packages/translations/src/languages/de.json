@@ -135,6 +135,25 @@
       "profile": "Profildaten ändern"
     }
   },
+  "usersView": {
+    "title": "Nutzer",
+    "action": {
+      "refresh": "Daten aktualisieren",
+      "add": "Benutzer hinzufügen"
+    },
+    "table": {
+      "id": "ID",
+      "active": "Aktiv",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "description": "Beschreibung",
+      "phone": "Telefon",
+      "email": "E-Mail",
+      "locale": "Sprache",
+      "role": "Rolle",
+      "actions": "Aktionen"
+    }
+  },
   "rightsView": {
     "title": "Rechte",
     "action": {
