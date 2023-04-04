@@ -39,6 +39,18 @@ jobs:
         with:
           release-type: node
           package-name: essencium-frontend
+          bump-minor-pre-major: true
+          extra-files: |
+            [
+              {
+                "type": "json",
+                "path": "../../packages/app/package.json",
+                "jsonpath": "version"
+              }
+            ]
+          # DEBUGGING to not hit rate limits
+          release-search-depth: 10
+          commit-search-depth: 10
 
-      - name: Sync versions
-        run: pnpm sync-versions
+      # - name: Sync versions
+      #   run: pnpm sync-versions
