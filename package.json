@@ -1,6 +1,6 @@
 {
   "name": "@frachtwerk/essencium-frontend",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "This is a React-based starter monorepo consisting of a component library, docs and a boilerplate.",
   "keywords": [
