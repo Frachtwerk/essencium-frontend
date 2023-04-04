@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 import { Badge, Button, Center, Flex, Loader, Text, Title } from '@mantine/core'
-import { IconShieldCheckFilled } from '@tabler/icons-react'
+import { IconUserCheck } from '@tabler/icons-react'
 import { ColumnDef } from '@tanstack/react-table'
 import { HttpNotification, Roles } from 'lib'
 import { useCallback, useMemo } from 'react'
@@ -77,7 +77,7 @@ export function RolesView(): JSX.Element {
       <Flex py="md" justify="space-between" align="center">
         <Title size="h2">
           <Flex align="center" gap={10}>
-            <IconShieldCheckFilled size="32" />
+            <IconUserCheck size="32" />
             <Text> {t('rolesView.title')}</Text>
           </Flex>
         </Title>
