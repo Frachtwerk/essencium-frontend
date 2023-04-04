@@ -45,7 +45,7 @@ jobs:
               {
                 "type": "json",
                 "path": "${{ github.workspace }}/packages/app/package.json",
-                "jsonpath": "version"
+                "jsonpath": "$.version"
               }
             ]
           # DEBUGGING to not hit rate limits
