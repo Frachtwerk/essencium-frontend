@@ -1,8 +1,8 @@
 {
-  ".": "0.2.0",
-  "./packages/app": "0.2.0",
-  "./packages/docs": "0.2.0",
-  "./packages/lib": "0.2.0",
-  "./packages/translations": "0.2.0",
-  "./packages/types": "0.2.0"
+  "./package.json": "0.2.0",
+  "./packages/app/package.json": "0.2.0",
+  "./packages/docs/package.json": "0.2.0",
+  "./packages/lib/package.json": "0.2.0",
+  "./packages/translations/package.json": "0.2.0",
+  "./packages/types/package.json": "0.2.0"
 }
