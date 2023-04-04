@@ -1,0 +1,15 @@
+{
+  "release-type": "node",
+  "packages": {
+    ".": {},
+    "app": {},
+    "docs": {},
+    "lib": {},
+    "translations": {},
+    "types": {}
+  },
+  "bump-minor-pre-major": true,
+  "bump-patch-for-minor-pre-major": true,
+  "release-search-depth": 400,
+  "commit-search-depth": 500
+}
