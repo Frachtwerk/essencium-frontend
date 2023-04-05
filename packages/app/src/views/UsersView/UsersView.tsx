@@ -77,7 +77,7 @@ export function UsersView(): JSX.Element {
       {
         accessorKey: 'locale',
         header: () => <Text>{t('usersView.table.locale')}</Text>,
-        cell: info => info.getValue(),
+        cell: info => t(`${info.getValue()}`),
       },
       {
         accessorKey: 'role',
