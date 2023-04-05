@@ -19,6 +19,9 @@
       }
     }
   },
+  "actions": {
+    "refresh": "Refresh data"
+  },
   "navigation": {
     "home": "Home",
     "users": "Users",
@@ -137,15 +140,23 @@
   },
   "rightsView": {
     "title": "Rights",
-    "action": {
-      "refresh": "Refresh data"
-    },
     "table": {
       "name": "Name",
       "description": "Description",
       "USER": "User",
       "ADMIN": "Admin",
       "HR": "Human Resources"
+    }
+  },
+  "rolesView": {
+    "title": "Roles",
+    "action": {
+      "add": "Add Role"
+    },
+    "table": {
+      "name": "Name",
+      "description": "Description",
+      "rights": "Rights"
     }
   },
   "validation": {

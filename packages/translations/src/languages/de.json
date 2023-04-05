@@ -19,6 +19,9 @@
       }
     }
   },
+  "actions": {
+    "refresh": "Daten aktualisieren"
+  },
   "navigation": {
     "home": "Startseite",
     "users": "Benutzer",
@@ -137,15 +140,23 @@
   },
   "rightsView": {
     "title": "Rechte",
-    "action": {
-      "refresh": "Daten aktualisieren"
-    },
     "table": {
       "name": "Name",
       "description": "Beschreibung",
       "USER": "Benutzer",
       "ADMIN": "Administrator",
       "HR": "Human Resources"
+    }
+  },
+  "rolesView": {
+    "title": "Rollen",
+    "action": {
+      "add": "Rolle hinzufügen"
+    },
+    "table": {
+      "name": "Name",
+      "description": "Beschreibung",
+      "rights": "Rechte"
     }
   },
   "validation": {

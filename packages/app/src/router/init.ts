@@ -7,6 +7,7 @@ import {
   loginRoute,
   profileRoute,
   rightsRoute,
+  rolesRoute,
   rootRoute,
   setPasswordRoute,
   usersRoute,
@@ -27,6 +28,7 @@ const routeTree = rootRoute.addChildren([
     profileRoute,
     usersRoute,
     rightsRoute,
+    rolesRoute,
   ]),
   layoutRouteLogin.addChildren([loginRoute, setPasswordRoute]),
 ])
