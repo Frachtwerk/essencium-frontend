@@ -138,6 +138,25 @@
       "profile": "Change Profile Data"
     }
   },
+  "usersView": {
+    "title": "Users",
+    "action": {
+      "refresh": "Refresh data",
+      "add": "Add User"
+    },
+    "table": {
+      "id": "ID",
+      "active": "Active",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "description": "Description",
+      "phone": "Phone",
+      "email": "E-Mail",
+      "locale": "Language",
+      "role": "Role",
+      "actions": "Actions"
+    }
+  },
   "rightsView": {
     "title": "Rights",
     "table": {

@@ -2,13 +2,20 @@ import { useQuery, UseQueryResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { UserOutput } from 'types'
 
-import { api } from './api'
+import { api, PaginatedResponse } from './api'
 
-export const useGetUsers = (): UseQueryResult<UserOutput[], AxiosError> =>
-  useQuery<UserOutput[], AxiosError>(['users'], () =>
-    api
-      .get<UserOutput[]>('/users', {
-        baseURL: 'https://jsonplaceholder.typicode.com',
-      })
-      .then(response => response.data)
-  )
+const VERSION = 'v1'
+
+export type UsersResponse = PaginatedResponse<UserOutput>
+
+export function useGetUsers(): UseQueryResult<UsersResponse, AxiosError> {
+  const query = useQuery<UsersResponse, AxiosError>({
+    queryKey: ['getUsers'],
+    queryFn: () =>
+      api
+        .get<UsersResponse>(`${VERSION}/users`)
+        .then(response => response.data),
+  })
+
+  return query
+}

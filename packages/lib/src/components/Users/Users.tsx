@@ -15,7 +15,7 @@ type Props<T> = {
   columns: ColumnDef<T>[]
 }
 
-export function UserTable<T>({ users, columns }: Props<T>): JSX.Element {
+export function Users<T>({ users, columns }: Props<T>): JSX.Element {
   const [sorting, setSorting] = useState<SortingState>([])
 
   const table = useReactTable({

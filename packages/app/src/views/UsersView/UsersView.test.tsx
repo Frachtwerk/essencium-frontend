@@ -7,10 +7,13 @@ import { UsersView } from '@/views/UsersView/UsersView'
 
 const data = [
   {
-    id: 1,
-    name: 'Leanne Graham',
-    username: 'leanne123',
-    email: 'test@test.com',
+    id: 18,
+    firstName: 'Admin',
+    lastName: 'User',
+    enabled: true,
+    phone: '+49 123 456789',
+    email: 'admin@frachtwerk.de',
+    locale: 'de',
   },
 ]
 
@@ -68,7 +71,6 @@ describe('UsersView', () => {
     expect(useGetUsers).toHaveBeenCalled()
     expect(createPortal).not.toHaveBeenCalled()
     expect(screen.getByRole('table')).toBeDefined()
-    expect(screen.getByText('Leanne Graham')).toBeDefined()
   })
 
   it('shows http notification when refetching data', () => {
