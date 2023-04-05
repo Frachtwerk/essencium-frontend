@@ -62,7 +62,7 @@ describe('Roles', () => {
     RolesMounted.unmount()
   })
 
-  it('should render the rights table with all defined rights', () => {
+  it('should render the roles table with all defined roles', () => {
     roles.forEach(role => {
       expect(screen.queryByText(role.name)).toBeDefined()
     })
