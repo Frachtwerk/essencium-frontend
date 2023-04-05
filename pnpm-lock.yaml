@@ -8,14 +8,18 @@ importers:
       '@commitlint/config-conventional': 17.4.4
       '@nrwl/eslint-plugin-nx': 15.8.6
       '@nrwl/nx-cloud': 15.1.1
+      '@types/fs-extra': 11.0.1
+      '@types/node': 18.14.1
       '@typescript-eslint/parser': 5.54.0
       eslint: 8.35.0
       eslint-plugin-prettier: 4.2.1
       eslint-plugin-simple-import-sort: 10.0.0
+      fs-extra: 11.1.1
       husky: 8.0.3
       nx: 15.8.6
       prettier: 2.8.4
       rimraf: 4.4.0
+      ts-node: 10.9.1
       typescript: 4.9.5
     dependencies:
       '@nrwl/nx-cloud': 15.1.1
@@ -23,14 +27,18 @@ importers:
       '@commitlint/cli': 17.4.4
       '@commitlint/config-conventional': 17.4.4
       '@nrwl/eslint-plugin-nx': 15.8.6_ogomhmmgzdmlkcitxzv7jc66ua
+      '@types/fs-extra': 11.0.1
+      '@types/node': 18.14.1
       '@typescript-eslint/parser': 5.54.0_ycpbpc6yetojsgtrx3mwntkhsu
       eslint: 8.35.0
       eslint-plugin-prettier: 4.2.1_rlq4czn2p5niyau36qwtjimf2y
       eslint-plugin-simple-import-sort: 10.0.0_eslint@8.35.0
+      fs-extra: 11.1.1
       husky: 8.0.3
       nx: 15.8.6
       prettier: 2.8.4
       rimraf: 4.4.0
+      ts-node: 10.9.1_uayvamxqnl5yeiojjysxwopmsy
       typescript: 4.9.5
 
   packages/app:
@@ -711,7 +719,7 @@ packages:
     dependencies:
       '@commitlint/top-level': 17.4.0
       '@commitlint/types': 17.4.4
-      fs-extra: 11.1.0
+      fs-extra: 11.1.1
       git-raw-commits: 2.0.11
       minimist: 1.2.8
     dev: true
@@ -2312,6 +2320,13 @@ packages:
   /@types/estree/1.0.0:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
 
+  /@types/fs-extra/11.0.1:
+    resolution: {integrity: sha512-MxObHvNl4A69ofaTRU8DFqvgzzv8s9yRtaPPm5gud9HDNvpB3GPQFvNuTWAI59B9huVGV5jXYJwbCsmBsOGYWA==}
+    dependencies:
+      '@types/jsonfile': 6.1.1
+      '@types/node': 18.14.1
+    dev: true
+
   /@types/hast/2.3.4:
     resolution: {integrity: sha512-wLEm0QvaoawEDoTRwzTXp4b4jpwiJDvR5KMnFnVodm3scufTlBOWRD6N1OBf9TZMhjlNsSfcO5V+7AF4+Vy+9g==}
     dependencies:
@@ -2332,6 +2347,12 @@ packages:
 
   /@types/json5/0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
+    dev: true
+
+  /@types/jsonfile/6.1.1:
+    resolution: {integrity: sha512-GSgiRCVeapDN+3pqA35IkQwasaCh/0YFH5dEF6S88iDvEn901DjOeH3/QPY+XYP1DFzDZPvIvfeEgk+7br5png==}
+    dependencies:
+      '@types/node': 18.14.1
     dev: true
 
   /@types/katex/0.11.1:
@@ -4465,8 +4486,8 @@ packages:
       universalify: 2.0.0
     dev: false
 
-  /fs-extra/11.1.0:
-    resolution: {integrity: sha512-0rcTq621PD5jM/e0a3EJoGC/1TC5ZBCERW82LQuwfGnCa1V8w7dpYH1yNu+SLb6E5dkeCBzKEyLGlFrnr+dUyw==}
+  /fs-extra/11.1.1:
+    resolution: {integrity: sha512-MGIE4HOvQCeUCzmlHs0vXpih4ysz4wg9qiSAu6cd42lVwPbTM1TjV7RusoyQqMmk/95gdQZX72u+YW+c3eEpFQ==}
     engines: {node: '>=14.14'}
     dependencies:
       graceful-fs: 4.2.10
@@ -6608,7 +6629,7 @@ packages:
       fast-glob: 3.2.7
       figures: 3.2.0
       flat: 5.0.2
-      fs-extra: 11.1.0
+      fs-extra: 11.1.1
       glob: 7.1.4
       ignore: 5.2.4
       js-yaml: 4.1.0
