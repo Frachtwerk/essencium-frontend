@@ -10,14 +10,13 @@ env:
 
 jobs:
   release:
-    name: release-please
+    name: release
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
         with:
-          # fetch all commits in history (default is only 1 commit)
           fetch-depth: 0
 
       - name: Install pnpm
@@ -34,7 +33,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run release-please
-        uses: google-github-actions/release-please-action@v3
+      - name: Sync version
+        run: pnpm sync-versions
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          command: manifest
+          commit_messages: 'chore: bump version'
