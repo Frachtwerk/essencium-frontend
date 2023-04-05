@@ -7,15 +7,16 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { useState } from 'react'
+import { RoleOutput } from 'types'
 
 import { Table } from '../Table'
 
-type Props<T> = {
-  roles: T[]
-  columns: ColumnDef<T>[]
+type Props = {
+  roles: RoleOutput[]
+  columns: ColumnDef<RoleOutput>[]
 }
 
-export function Roles<T>({ roles, columns }: Props<T>): JSX.Element {
+export function Roles({ roles, columns }: Props): JSX.Element {
   const [sorting, setSorting] = useState<SortingState>([])
 
   const table = useReactTable({
