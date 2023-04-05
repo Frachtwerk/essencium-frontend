@@ -19,6 +19,9 @@
       }
     }
   },
+  "actions": {
+    "refresh": "Refresh data"
+  },
   "navigation": {
     "home": "Home",
     "users": "Users",
@@ -137,9 +140,6 @@
   },
   "rightsView": {
     "title": "Rights",
-    "action": {
-      "refresh": "Refresh data"
-    },
     "table": {
       "name": "Name",
       "description": "Description",
@@ -151,7 +151,6 @@
   "rolesView": {
     "title": "Roles",
     "action": {
-      "refresh": "Refresh data",
       "add": "Add Role"
     },
     "table": {

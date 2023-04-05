@@ -19,6 +19,9 @@
       }
     }
   },
+  "actions": {
+    "refresh": "Daten aktualisieren"
+  },
   "navigation": {
     "home": "Startseite",
     "users": "Benutzer",
@@ -137,9 +140,6 @@
   },
   "rightsView": {
     "title": "Rechte",
-    "action": {
-      "refresh": "Daten aktualisieren"
-    },
     "table": {
       "name": "Name",
       "description": "Beschreibung",
@@ -151,7 +151,6 @@
   "rolesView": {
     "title": "Rollen",
     "action": {
-      "refresh": "Daten aktualisieren",
       "add": "Rolle hinzufügen"
     },
     "table": {

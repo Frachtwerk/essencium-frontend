@@ -155,7 +155,7 @@ export function RightsView(): JSX.Element {
             handleRefetch()
           }}
         >
-          {t('rightsView.action.refresh')}
+          {t('actions.refresh')}
         </Button>
       </Flex>
 

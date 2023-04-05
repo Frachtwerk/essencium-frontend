@@ -89,7 +89,7 @@ export function RolesView(): JSX.Element {
               handleRefetch()
             }}
           >
-            {t('rolesView.action.refresh')}
+            {t('actions.refresh')}
           </Button>
 
           <Button onClick={() => {}}>{t('rolesView.action.add')}</Button>
