@@ -40,7 +40,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: Lint
-        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=lint --parallel=5
+        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=lint --parallel=10
 
   unit-tests:
     name: Unit Tests
@@ -69,7 +69,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: Run Vitest
-        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:unit --parallel=5
+        uses: nrwl/nx-set-shas@v3
+        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:unit --parallel=10
 
   e2e-tests:
     name: E2E Tests
@@ -100,7 +101,7 @@ jobs:
       - run: npx playwright install-deps && npx playwright install
 
       - name: Run Playwright
-        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:e2e --parallel=5
+        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:e2e --parallel=10
 
   build:
     name: Build

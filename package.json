@@ -25,13 +25,13 @@
     "clean": "nx run-many --target=clean && rimraf dist node_modules",
     "clean:install": "pnpm i -w && pnpm clean && pnpm install",
     "dev": "nx dev app",
-    "lint": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=lint --parallel=5",
-    "format": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=format --parallel=5",
+    "lint": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=lint --parallel=10",
+    "format": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=format --parallel=10",
     "setup-env": "pnpm install && husky install",
     "test": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=test",
-    "test:watch": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx run-many --target=test:watch --parallel=5",
-    "test:unit": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=test:unit --parallel=5",
-    "test:e2e": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=test:e2e --parallel=5",
+    "test:watch": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx run-many --target=test:watch --parallel=10",
+    "test:unit": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=test:unit --parallel=10",
+    "test:e2e": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=test:e2e --parallel=10",
     "sync-versions": "ts-node ./scripts/sync-versions.ts"
   },
   "dependencies": {
