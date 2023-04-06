@@ -8,6 +8,7 @@ import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RightOutput, RoleOutput } from 'types'
 
+import { useGetRights } from '@/api/rights'
 import { useCreateRole, useGetRoles } from '@/api/roles'
 
 export function RolesView(): JSX.Element {
@@ -23,6 +24,8 @@ export function RolesView(): JSX.Element {
     error: errorRoles,
     refetch: refetchRoles,
   } = useGetRoles()
+
+  const { data: rights } = useGetRights()
 
   const { mutate: createRole } = useCreateRole()
 
@@ -108,6 +111,7 @@ export function RolesView(): JSX.Element {
         closeOnClickOutside={false}
         closeOnEscape
         size="xl"
+        rights={rights?.content || []}
         handleCreateRole={createRole}
       />
 
