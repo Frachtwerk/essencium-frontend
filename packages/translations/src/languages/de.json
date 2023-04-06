@@ -157,6 +157,16 @@
       "name": "Name",
       "description": "Beschreibung",
       "rights": "Rechte"
+    },
+    "modal": {
+      "title": "Rolle hinzufügen",
+      "name": "Name",
+      "description": "Beschreibung",
+      "protected": "Geschützt",
+      "editable ": "Editierbar",
+      "rights": "Rechte",
+      "cancel": "Abbrechen",
+      "submit": "Speichern"
     }
   },
   "validation": {
@@ -179,9 +189,17 @@
       "title": "Laden ...",
       "message": "Daten vom Server laden"
     },
-    "updatingAsyncData": {
-      "title": "Aktualisieren ...",
-      "message": "Daten werden aktualisiert"
+    "createdDataSuccess": {
+      "title": "Erfolg",
+      "message": "Daten erfolgreich erstellt"
+    },
+    "createdDataError": {
+      "title": "Fehler",
+      "message": "Daten konnten nicht erstellt werden"
+    },
+    "creatingAsyncData": {
+      "title": "Erstellen ...",
+      "message": "Daten werden erstellt"
     },
     "updatedDataSuccess": {
       "title": "Erfolg",
@@ -190,6 +208,22 @@
     "updatedDataError": {
       "title": "Fehler",
       "message": "Daten konnten nicht aktualisiert werden"
+    },
+    "updatingAsyncData": {
+      "title": "Aktualisieren ...",
+      "message": "Daten werden aktualisiert"
+    },
+    "deletedDataSuccess": {
+      "title": "Erfolg",
+      "message": "Daten erfolgreich gelöscht"
+    },
+    "deletedDataError": {
+      "title": "Fehler",
+      "message": "Daten konnten nicht gelöscht werden"
+    },
+    "deletingAsyncData": {
+      "title": "Löschen ...",
+      "message": "Daten werden gelöscht"
     }
   },
   "table": {

@@ -157,6 +157,16 @@
       "name": "Name",
       "description": "Description",
       "rights": "Rights"
+    },
+    "modal": {
+      "title": "Add Role",
+      "name": "Name",
+      "description": "Description",
+      "protected": "Protected",
+      "editable ": "Editable",
+      "rights": "Rights",
+      "cancel": "Cancel",
+      "submit": "Add Role"
     }
   },
   "validation": {
@@ -179,9 +189,17 @@
       "title": "Loading ...",
       "message": "Loading data from the server"
     },
-    "updatingAsyncData": {
-      "title": "Updating ...",
-      "message": "Updating data on the server"
+    "createdDataSuccess": {
+      "title": "Success",
+      "message": "Created data successfully"
+    },
+    "createdDataError": {
+      "title": "Error",
+      "message": "Could not create data"
+    },
+    "creatingAsyncData": {
+      "title": "Creating ...",
+      "message": "Creating data on the server"
     },
     "updatedDataSuccess": {
       "title": "Success",
@@ -190,6 +208,22 @@
     "updatedDataError": {
       "title": "Error",
       "message": "Could not update data"
+    },
+    "updatingAsyncData": {
+      "title": "Updating ...",
+      "message": "Updating data on the server"
+    },
+    "deletedDataSuccess": {
+      "title": "Success",
+      "message": "Deleted data successfully"
+    },
+    "deletedDataError": {
+      "title": "Error",
+      "message": "Could not delete data"
+    },
+    "deletingAsyncData": {
+      "title": "Deleting ...",
+      "message": "Deleting data on the server"
     }
   },
   "table": {
