@@ -22,25 +22,25 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup node
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 16
-
-      - name: Install pnpm & deps
-        uses: pnpm/action-setup@v2
-        with:
-          version: 7.18.1
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
           cache: 'pnpm'
-      - uses: nrwl/nx-set-shas@v3
 
-      - run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-      - name: Lint
-        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=lint --parallel=5
+      - name: Set base and head SHAs for nx
+        uses: nrwl/nx-set-shas@v3
+
+      - name: Run linting
+        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=lint --parallel=10
 
   unit-tests:
     name: Unit Tests
@@ -51,25 +51,25 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup node
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 16
-
-      - name: Install pnpm & deps
-        uses: pnpm/action-setup@v2
-        with:
-          version: 7.18.1
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
           cache: 'pnpm'
-      - uses: nrwl/nx-set-shas@v3
 
-      - run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-      - name: Run Vitest
-        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:unit --parallel=5
+      - name: Set base and head SHAs for nx
+        uses: nrwl/nx-set-shas@v3
+
+      - name: Run unit tests
+        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:unit --parallel=10
 
   e2e-tests:
     name: E2E Tests
@@ -80,27 +80,28 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup node
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 16
-
-      - name: Install pnpm & deps
-        uses: pnpm/action-setup@v2
-        with:
-          version: 7.18.1
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
           cache: 'pnpm'
-      - uses: nrwl/nx-set-shas@v3
 
-      - run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-      - run: npx playwright install-deps && npx playwright install
+      - name: Set base and head SHAs for nx
+        uses: nrwl/nx-set-shas@v3
 
-      - name: Run Playwright
-        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:e2e --parallel=5
+      - name: Install Playwright & its dependencies
+        run: npx playwright install-deps && npx playwright install
+
+      - name: Run E2E tests
+        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:e2e --parallel=10
 
   build:
     name: Build
@@ -111,28 +112,28 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup node
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 16
-
-      - name: Install pnpm & deps
-        uses: pnpm/action-setup@v2
-        with:
-          version: 7.18.1
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
           cache: 'pnpm'
-      - uses: nrwl/nx-set-shas@v3
 
-      - run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Set base and head SHAs for nx
+        uses: nrwl/nx-set-shas@v3
 
       - name: Build
         if: steps.cache-dist.outputs.cache-hit != 'true'
         run: NX_BRANCH=$GITHUB_HEAD_REF npx nx build app
 
-      - name: Cache dist
+      - name: Cache dist folder for 'app' package
         id: cache-dist
         uses: actions/cache@v3
         env:
