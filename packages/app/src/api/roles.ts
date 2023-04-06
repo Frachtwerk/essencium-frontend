@@ -15,6 +15,51 @@ const VERSION = 'v1'
 
 export type RolesResponse = PaginatedResponse<RoleOutput>
 
+export function useCreateRole(): UseMutationResult<
+  RoleOutput,
+  AxiosError,
+  RoleInput
+> {
+  const { t } = useTranslation()
+
+  const mutation = useMutation<RoleOutput, AxiosError, RoleInput>({
+    mutationKey: ['useCreateRole'],
+    mutationFn: (role: RoleInput) =>
+      api
+        .post<RoleOutput, RoleInput>(`${VERSION}/roles`, role)
+        .then(response => response.data),
+    onSuccess: () => {
+      showNotification({
+        autoClose: 2500,
+        title: t('notifications.createdDataSuccess.title'),
+        message: t('notifications.createdDataSuccess.message'),
+        color: 'green',
+        style: { position: 'fixed', top: '20px', right: '10px' },
+      })
+    },
+    onError: (data: AxiosError) => {
+      showNotification({
+        autoClose: 4000,
+        title: t('notifications.createdDataError.title'),
+        message: data.message,
+        color: 'red',
+        style: { position: 'fixed', top: '20px', right: '10px' },
+      })
+    },
+    onMutate: () => {
+      showNotification({
+        autoClose: 2500,
+        title: t('notifications.creatingAsyncData.title'),
+        message: t('notifications.creatingAsyncData.message'),
+        color: 'yellow',
+        style: { position: 'fixed', top: '20px', right: '10px' },
+      })
+    },
+  })
+
+  return mutation
+}
+
 export function useGetRoles(): UseQueryResult<RolesResponse, AxiosError> {
   const query = useQuery<RolesResponse, AxiosError>({
     queryKey: ['getRoles'],
