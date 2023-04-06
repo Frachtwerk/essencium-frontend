@@ -100,7 +100,7 @@ jobs:
       - name: Install Playwright & its dependencies
         run: npx playwright install-deps && npx playwright install
 
-      - name: Run Playwright
+      - name: Run E2E tests
         run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:e2e --parallel=10
 
   build:
@@ -133,7 +133,7 @@ jobs:
         if: steps.cache-dist.outputs.cache-hit != 'true'
         run: NX_BRANCH=$GITHUB_HEAD_REF npx nx build app
 
-      - name: Cache 'app' dist folder
+      - name: Cache dist folder for 'app' package
         id: cache-dist
         uses: actions/cache@v3
         env:
