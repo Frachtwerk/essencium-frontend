@@ -1,16 +1,20 @@
 /* eslint-disable react/no-unstable-nested-components */
 import { Badge, Button, Center, Flex, Loader, Text, Title } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 import { IconUserCheck } from '@tabler/icons-react'
 import { ColumnDef } from '@tanstack/react-table'
-import { HttpNotification, Roles } from 'lib'
+import { AddRole, HttpNotification, Roles } from 'lib'
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RightOutput, RoleOutput } from 'types'
 
-import { useGetRoles } from '@/api/roles'
+import { useGetRights } from '@/api/rights'
+import { useCreateRole, useGetRoles } from '@/api/roles'
 
 export function RolesView(): JSX.Element {
   const { t } = useTranslation()
+
+  const [modalOpened, modalHandlers] = useDisclosure(false)
 
   const {
     data: roles,
@@ -21,6 +25,10 @@ export function RolesView(): JSX.Element {
     error: errorRoles,
     refetch: refetchRoles,
   } = useGetRoles()
+
+  const { data: rights } = useGetRights()
+
+  const { mutate: createRole } = useCreateRole()
 
   const handleRefetch = useCallback((): void => {
     refetchRoles()
@@ -92,9 +100,21 @@ export function RolesView(): JSX.Element {
             {t('actions.refresh')}
           </Button>
 
-          <Button onClick={() => {}}>{t('rolesView.action.add')}</Button>
+          <Button onClick={() => modalHandlers.open()}>
+            {t('rolesView.action.add')}
+          </Button>
         </Flex>
       </Flex>
+
+      <AddRole
+        opened={modalOpened}
+        onClose={() => modalHandlers.close()}
+        closeOnClickOutside={false}
+        closeOnEscape
+        size="xl"
+        rights={rights?.content || []}
+        handleCreateRole={createRole}
+      />
 
       {isLoadingRoles ? (
         <Center h="100%">
