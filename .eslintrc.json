@@ -61,7 +61,8 @@
           "**/*.test.tsx",
           "**/*.config.js",
           "**/*.config.ts",
-          "./scripts/sync-versions.ts"
+          "./scripts/sync-versions.ts",
+          "./scripts/seed-db.ts"
         ]
       }
     ],
