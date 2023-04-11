@@ -113,7 +113,7 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit != 'true'
 
       - name: Run E2E tests
-        run: pnpx playwright@${{ env.PLAYWRIGHT_VERSION }} test
+        run: pnpm test:e2e
 
       - name: Upload E2E test results
         uses: actions/upload-artifact@v2
