@@ -163,7 +163,7 @@
       "name": "Name",
       "description": "Beschreibung",
       "protected": "Geschützt",
-      "editable ": "Editierbar",
+      "editable": "Editierbar",
       "rights": "Rechte",
       "cancel": "Abbrechen",
       "submit": "Speichern"

@@ -163,7 +163,7 @@
       "name": "Name",
       "description": "Description",
       "protected": "Protected",
-      "editable ": "Editable",
+      "editable": "Editable",
       "rights": "Rights",
       "cancel": "Cancel",
       "submit": "Add Role"
