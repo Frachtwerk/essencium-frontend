@@ -105,11 +105,11 @@ jobs:
           key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
 
       - name: Install Playwright
-        run: pnpx playwright install --with-deps
+        run: pnpx playwright@${{ env.PLAYWRIGHT_VERSION }} install --with-deps
         if: steps.playwright-cache.outputs.cache-hit != 'true'
 
       - name: Install Playwright dependencies
-        run: pnpx playwright install-deps
+        run: pnpx playwright@${{ env.PLAYWRIGHT_VERSION }} install-deps
         if: steps.playwright-cache.outputs.cache-hit != 'true'
 
       - name: Run E2E tests
