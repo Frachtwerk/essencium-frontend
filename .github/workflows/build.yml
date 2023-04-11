@@ -114,6 +114,15 @@ jobs:
       - name: Run E2E tests
         run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:e2e --parallel=10
 
+      - name: Upload E2E test results
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: e2e-test-results
+          path: |
+            packages/app/test-results
+            packages/app/playwright-report
+
   build:
     name: Build
     runs-on: ubuntu-latest
