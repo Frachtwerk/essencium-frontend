@@ -94,9 +94,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Set base and head SHAs for nx
-        uses: nrwl/nx-set-shas@v3
-
       - name: Get installed Playwright version
         run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./packages/app/package.json').dependencies['@playwright/test'])")" >> $GITHUB_ENV
 
@@ -112,7 +109,7 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit != 'true'
 
       - name: Run E2E tests
-        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:e2e --parallel=10
+        run: pnpm test:e2e
 
       - name: Upload E2E test results
         uses: actions/upload-artifact@v2
