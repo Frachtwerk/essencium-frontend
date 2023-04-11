@@ -40,7 +40,7 @@ function AddRole({
 }: AddRoleProps): JSX.Element {
   const [selectedRights, setSelectedRights] = useState<RightOutput[]>([])
 
-  const { handleSubmit, control, formState } = useZodForm({
+  const { handleSubmit, control, formState, reset } = useZodForm({
     schema: roleInputSchema,
     defaultValues: {
       name: '',
@@ -69,7 +69,10 @@ function AddRole({
   return (
     <Modal
       opened={opened}
-      onClose={onClose}
+      onClose={() => {
+        reset()
+        onClose()
+      }}
       closeOnClickOutside={closeOnClickOutside}
       closeOnEscape={closeOnEscape}
       size={size}
@@ -198,7 +201,15 @@ function AddRole({
             {t('rolesView.modal.submit')}
           </Button>
 
-          <Button variant="subtle" fullWidth mt="md" onClick={onClose}>
+          <Button
+            variant="subtle"
+            fullWidth
+            mt="md"
+            onClick={() => {
+              reset()
+              onClose()
+            }}
+          >
             {t('rolesView.modal.cancel')}
           </Button>
         </Flex>
