@@ -97,8 +97,19 @@ jobs:
       - name: Set base and head SHAs for nx
         uses: nrwl/nx-set-shas@v3
 
+      - name: Get installed Playwright version
+        run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./packages/app/package.json').dependencies['@playwright/test'])")" >> $GITHUB_ENV
+
+      - name: Cache Playwright
+        uses: actions/cache@v3
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+
       - name: Install Playwright & its dependencies
-        run: npx playwright install-deps && npx playwright install
+        run: npx playwright install --with-deps && npx playwright install-deps
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
 
       - name: Run E2E tests
         run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:e2e --parallel=10
