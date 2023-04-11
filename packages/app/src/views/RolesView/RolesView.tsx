@@ -13,6 +13,7 @@ import { useCreateRole, useGetRoles } from '@/api/roles'
 
 export function RolesView(): JSX.Element {
   const { t } = useTranslation()
+
   const [modalOpened, modalHandlers] = useDisclosure(false)
 
   const {
