@@ -40,7 +40,7 @@ jobs:
         uses: nrwl/nx-set-shas@v3
 
       - name: Run linting
-        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=lint --parallel=10
+        run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx affected --target=lint --parallel=10
 
   unit-tests:
     name: Unit Tests
@@ -69,7 +69,7 @@ jobs:
         uses: nrwl/nx-set-shas@v3
 
       - name: Run unit tests
-        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:unit --parallel=10
+        run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx affected --target=test:unit --parallel=10
 
   e2e-tests:
     name: E2E Tests
@@ -105,11 +105,11 @@ jobs:
           key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
 
       - name: Install Playwright
-        run: npx playwright install --with-deps
+        run: pnpx playwright install --with-deps
         if: steps.playwright-cache.outputs.cache-hit != 'true'
 
       - name: Install Playwright dependencies
-        run: npx playwright install-deps
+        run: pnpx playwright install-deps
         if: steps.playwright-cache.outputs.cache-hit != 'true'
 
       - name: Run E2E tests
@@ -152,7 +152,7 @@ jobs:
 
       - name: Build
         if: steps.cache-dist.outputs.cache-hit != 'true'
-        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx build app
+        run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx build app
 
       - name: Cache dist folder for 'app' package
         id: cache-dist
