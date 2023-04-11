@@ -19,7 +19,7 @@ import { RightOutput, RoleInput, roleInputSchema } from 'types'
 
 import { useZodForm } from '../../../hooks'
 
-type AddRoleProps = {
+type Props = {
   opened: boolean
   onClose: () => void
   closeOnClickOutside?: boolean
@@ -37,7 +37,7 @@ function AddRole({
   size,
   rights,
   handleCreateRole,
-}: AddRoleProps): JSX.Element {
+}: Props): JSX.Element {
   const [selectedRights, setSelectedRights] = useState<RightOutput[]>([])
 
   const { handleSubmit, control, formState, reset } = useZodForm({
