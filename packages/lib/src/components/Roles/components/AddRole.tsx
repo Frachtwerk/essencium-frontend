@@ -8,6 +8,7 @@ import {
   MantineSize,
   Modal,
   Space,
+  Text,
   TextInput,
 } from '@mantine/core'
 import { IconShieldCheck } from '@tabler/icons-react'
@@ -39,7 +40,7 @@ function AddRole({
 }: AddRoleProps): JSX.Element {
   const [selectedRights, setSelectedRights] = useState<RightOutput[]>([])
 
-  const { handleSubmit, control } = useZodForm({
+  const { handleSubmit, control, formState } = useZodForm({
     schema: roleInputSchema,
     defaultValues: {
       name: '',
@@ -96,6 +97,12 @@ function AddRole({
             )}
           />
 
+          {formState.errors.name && (
+            <Text mt={4} ml={5} fz="xs" color="red">
+              {formState.errors.name?.message}
+            </Text>
+          )}
+
           <Controller
             name="description"
             control={control}
@@ -114,6 +121,12 @@ function AddRole({
               />
             )}
           />
+
+          {formState.errors.description && (
+            <Text mt={4} ml={5} fz="xs" color="red">
+              {formState.errors.description?.message}
+            </Text>
+          )}
 
           <Divider
             my="xs"
