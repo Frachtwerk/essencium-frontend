@@ -7,13 +7,13 @@ import { roleOutputSchema } from './role'
 const { t } = i18n
 
 const sharedPropertiesSchema = z.object({
-  email: z.string(),
+  email: z.string().email(String(t('validation.email.notValid'))),
   enabled: z.boolean(),
-  firstName: z.string(),
-  lastName: z.string(),
+  firstName: z.string().min(2, String(t('validation.firstName.minLength'))),
+  lastName: z.string().min(2, String(t('validation.lastName.minLength'))),
   locale: z.string(),
-  mobile: z.string(),
-  phone: z.string(),
+  mobile: z.string().optional(),
+  phone: z.string().optional(),
   source: z.string(),
 })
 
@@ -34,6 +34,16 @@ export const userInputSchema = sharedPropertiesSchema.merge(
 )
 
 export type UserInput = z.infer<typeof userInputSchema>
+
+export const newUserInputSchema = userInputSchema
+  .merge(
+    z.object({
+      password: z.string(),
+    })
+  )
+  .omit({ source: true })
+
+export type NewUserInput = z.infer<typeof newUserInputSchema>
 
 export const passwordChangeSchema = z
   .object({
