@@ -15,7 +15,7 @@ export function ProfileView(): JSX.Element {
 
   const { mutate: updatePassword } = useUpdatePassword()
 
-  const { data: rolesRequest } = useGetRoles()
+  const { data: rolesRequest } = useGetRoles(0, 9999)
 
   const roles = rolesRequest?.content || []
 
