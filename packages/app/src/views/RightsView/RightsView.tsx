@@ -150,7 +150,7 @@ export function RightsView(): JSX.Element {
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    pageCount: roles?.totalPages,
+    pageCount: rights?.totalPages,
   })
 
   return (
