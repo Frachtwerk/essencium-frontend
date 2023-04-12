@@ -1,15 +1,5 @@
 /* eslint-disable react/no-unstable-nested-components */
-import {
-  Badge,
-  Button,
-  Center,
-  Flex,
-  Loader,
-  Pagination,
-  Select,
-  Text,
-  Title,
-} from '@mantine/core'
+import { Badge, Button, Center, Flex, Loader, Text, Title } from '@mantine/core'
 import { IconUserCheck } from '@tabler/icons-react'
 import {
   ColumnDef,
@@ -19,7 +9,7 @@ import {
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
-import { HttpNotification, Table } from 'lib'
+import { HttpNotification, Table, TablePagination } from 'lib'
 import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RightOutput, RoleOutput } from 'types'
@@ -138,38 +128,14 @@ export function RolesView(): JSX.Element {
         <>
           <Table tableModel={table} />
 
-          <Flex align="center">
-            <Text size="sm" mr="xl">
-              {t('table.footer.pageCount')} {table.getPageCount()}
-            </Text>
-
-            <Flex align="center" mr="xl">
-              <Text size="sm" mr="xs">
-                {t('table.footer.pageSize')}
-              </Text>
-
-              <Select
-                defaultValue={String(pageSize)}
-                data={['10', '20', '30', '40', '50', '100']}
-                w={70}
-                onChange={e => {
-                  table.setPageSize(Number(e))
-                  setPageSize(Number(e))
-                  setActivePage(1)
-                  handleRefetch()
-                }}
-              />
-            </Flex>
-
-            <Pagination
-              total={table.getPageCount()}
-              value={activePage}
-              onChange={e => {
-                setActivePage(e)
-                handleRefetch()
-              }}
-            />
-          </Flex>
+          <TablePagination
+            table={table}
+            activePage={activePage}
+            pageSize={pageSize}
+            setActivePage={setActivePage}
+            setPageSize={setPageSize}
+            handleRefetch={handleRefetch}
+          />
         </>
       )}
     </>
