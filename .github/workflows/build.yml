@@ -40,7 +40,7 @@ jobs:
         uses: nrwl/nx-set-shas@v3
 
       - name: Run linting
-        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=lint --parallel=10
+        run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx affected --target=lint --parallel=10
 
   unit-tests:
     name: Unit Tests
@@ -69,7 +69,7 @@ jobs:
         uses: nrwl/nx-set-shas@v3
 
       - name: Run unit tests
-        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:unit --parallel=10
+        run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx affected --target=test:unit --parallel=10
 
   e2e-tests:
     name: E2E Tests
@@ -94,14 +94,30 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Set base and head SHAs for nx
-        uses: nrwl/nx-set-shas@v3
+      - name: Get installed Playwright version
+        run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./packages/app/package.json').dependencies['@playwright/test'])")" >> $GITHUB_ENV
 
-      - name: Install Playwright & its dependencies
-        run: npx playwright install-deps && npx playwright install
+      - name: Cache Playwright
+        uses: actions/cache@v3
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+
+      - name: Install Playwright
+        run: pnpx playwright install --with-deps
 
       - name: Run E2E tests
-        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx affected --target=test:e2e --parallel=10
+        run: pnpm test:e2e
+
+      - name: Upload E2E test results
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: e2e-test-results
+          path: |
+            packages/app/test-results
+            packages/app/playwright-report
 
   build:
     name: Build
@@ -131,7 +147,7 @@ jobs:
 
       - name: Build
         if: steps.cache-dist.outputs.cache-hit != 'true'
-        run: NX_BRANCH=$GITHUB_HEAD_REF npx nx build app
+        run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx build app
 
       - name: Cache dist folder for 'app' package
         id: cache-dist
