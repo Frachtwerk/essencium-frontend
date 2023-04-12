@@ -11,9 +11,9 @@ export function Table<T>({ tableModel }: Props<T>): JSX.Element {
     <Flex direction="column" align="end">
       <div style={{ overflowX: 'auto', width: '100%' }}>
         <MantineTable striped highlightOnHover>
-          <thead>
+          <thead aria-label="header-row">
             {tableModel.getHeaderGroups().map(headerGroup => (
-              <tr key={headerGroup.id} data-testid="header-row">
+              <tr key={headerGroup.id}>
                 {headerGroup.headers.map(header => (
                   <th key={header.id}>
                     <Flex
@@ -39,7 +39,7 @@ export function Table<T>({ tableModel }: Props<T>): JSX.Element {
             ))}
           </thead>
 
-          <tbody>
+          <tbody aria-label="table-body">
             {tableModel.getRowModel().rows.map(row => (
               <tr key={row.id}>
                 {row.getVisibleCells().map(cell => (
@@ -51,7 +51,7 @@ export function Table<T>({ tableModel }: Props<T>): JSX.Element {
             ))}
           </tbody>
 
-          <tfoot>
+          <tfoot aria-label="footer-row">
             {tableModel.getFooterGroups().map(footerGroup => (
               <tr key={footerGroup.id}>
                 {footerGroup.headers.map(header => (

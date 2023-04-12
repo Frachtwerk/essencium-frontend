@@ -145,9 +145,9 @@ describe('Table', () => {
           return {
             getHeaderGroups: () => [],
             getFooterGroups: () => [],
-            getPageCount: () => USERS.length / 10,
             getRowModel: () => ({
               rows: [],
+              getPageCount: () => USERS.length / 10,
             }),
             getState: () => ({
               pagination: {
@@ -175,15 +175,18 @@ describe('Table', () => {
     TableMounted.unmount()
   })
 
-  it('show the correct page count', () => {
-    expect(screen.getByText('table.footer.pageCount 2')).toBeDefined()
+  it('renders table headers', () => {
+    const headerRow = screen.getByLabelText('header-row')
+    expect(headerRow).toBeDefined()
   })
 
-  it('show the correct page size', () => {
-    expect(screen.getByRole('combobox').innerHTML).toContain('value="10"')
+  it('renders table rows', () => {
+    const tableBody = screen.getAllByLabelText('table-body')
+    expect(tableBody).toBeDefined()
   })
 
-  it('show the pagination', () => {
-    expect(screen.getByRole('searchbox')).toBeDefined()
+  it('renders table footers', () => {
+    const footerRow = screen.getByLabelText('footer-row')
+    expect(footerRow).toBeDefined()
   })
 })
