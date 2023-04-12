@@ -18,6 +18,7 @@ import {
   IconX,
 } from '@tabler/icons-react'
 import {
+import { useCallback, useMemo, useState } from 'react'
   ColumnDef,
   getCoreRowModel,
   getPaginationRowModel,
@@ -26,7 +27,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { HttpNotification, Table, TablePagination } from 'lib'
-import { useCallback, useMemo, useState } from 'react'
+import { Link as Routerlink } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import { RoleOutput, UserOutput } from 'types'
 
@@ -170,7 +171,14 @@ export function UsersView(): JSX.Element {
             {t('usersView.action.refresh')}
           </Button>
 
-          <Button onClick={() => {}}>{t('usersView.action.add')}</Button>
+          <Button>
+            <Routerlink
+              style={{ textDecoration: 'none', color: 'white' }}
+              to="add"
+            >
+              {t('usersView.action.add')}
+            </Routerlink>
+          </Button>
         </Flex>
       </Flex>
 
