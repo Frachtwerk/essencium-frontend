@@ -33,6 +33,12 @@ describe('UsersView', () => {
         createPortal: vi.fn().mockImplementation(() => null),
       }
     })
+
+    vi.mock('@tanstack/react-router', () => {
+      return {
+        Link: ({ children }: { children: React.ReactNode }) => children,
+      }
+    })
   })
 
   beforeEach(() => {
