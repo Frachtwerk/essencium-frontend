@@ -1,3 +1,4 @@
+export * from './AddRole'
 export * from './Contact'
 export * from './Footer'
 export * from './Header'

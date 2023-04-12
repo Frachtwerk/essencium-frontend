@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 import { Badge, Button, Center, Flex, Loader, Text, Title } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 import { IconUserCheck } from '@tabler/icons-react'
 import {
   ColumnDef,
@@ -9,15 +10,18 @@ import {
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
-import { HttpNotification, Table, TablePagination } from 'lib'
+import { AddRole, HttpNotification, Table, TablePagination } from 'lib'
 import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RightOutput, RoleOutput } from 'types'
 
-import { useGetRoles } from '@/api/roles'
+import { useGetRights } from '@/api/rights'
+import { useCreateRole, useGetRoles } from '@/api/roles'
 
 export function RolesView(): JSX.Element {
   const { t } = useTranslation()
+
+  const [modalOpened, modalHandlers] = useDisclosure(false)
 
   const [activePage, setActivePage] = useState(1)
   const [pageSize, setPageSize] = useState(20)
@@ -32,6 +36,10 @@ export function RolesView(): JSX.Element {
     error: errorRoles,
     refetch: refetchRoles,
   } = useGetRoles(activePage - 1, pageSize)
+
+  const { data: rights } = useGetRights(0, 9999)
+
+  const { mutate: createRole } = useCreateRole()
 
   const handleRefetch = useCallback((): void => {
     refetchRoles()
@@ -116,9 +124,21 @@ export function RolesView(): JSX.Element {
             {t('actions.refresh')}
           </Button>
 
-          <Button onClick={() => {}}>{t('rolesView.action.add')}</Button>
+          <Button onClick={() => modalHandlers.open()}>
+            {t('rolesView.action.add')}
+          </Button>
         </Flex>
       </Flex>
+
+      <AddRole
+        opened={modalOpened}
+        onClose={() => modalHandlers.close()}
+        closeOnClickOutside={false}
+        closeOnEscape
+        size="xl"
+        rights={rights?.content || []}
+        handleCreateRole={createRole}
+      />
 
       {isLoadingRoles ? (
         <Center h="100%">
