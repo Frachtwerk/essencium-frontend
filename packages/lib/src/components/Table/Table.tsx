@@ -1,21 +1,12 @@
-import {
-  Flex,
-  Pagination,
-  Select,
-  Table as MantineTable,
-  Text,
-} from '@mantine/core'
+import { Flex, Table as MantineTable } from '@mantine/core'
 import { IconSortAscending2, IconSortDescending2 } from '@tabler/icons-react'
 import { flexRender, Table as TanstackTable } from '@tanstack/react-table'
-import { useTranslation } from 'react-i18next'
 
 type Props<T> = {
   tableModel: TanstackTable<T>
 }
 
 export function Table<T>({ tableModel }: Props<T>): JSX.Element {
-  const { t } = useTranslation()
-
   return (
     <Flex direction="column" align="end">
       <MantineTable striped highlightOnHover>
@@ -74,33 +65,6 @@ export function Table<T>({ tableModel }: Props<T>): JSX.Element {
           ))}
         </tfoot>
       </MantineTable>
-
-      <Flex align="center">
-        <Text size="sm" mr="xl">
-          {t('table.footer.pageCount')} {tableModel.getPageCount()}
-        </Text>
-
-        <Flex align="center" mr="xl">
-          <Text size="sm" mr="xs">
-            {t('table.footer.pageSize')}
-          </Text>
-
-          <Select
-            value={String(tableModel.getState().pagination.pageSize)}
-            data={['10', '20', '30', '40', '50', '100']}
-            w={70}
-            onChange={e => {
-              tableModel.setPageSize(Number(e))
-            }}
-          />
-        </Flex>
-
-        <Pagination
-          value={tableModel.getState().pagination.pageIndex + 1}
-          onChange={page => tableModel.setPageIndex(page - 1)}
-          total={tableModel.getPageCount()}
-        />
-      </Flex>
     </Flex>
   )
 }
