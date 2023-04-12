@@ -15,12 +15,15 @@ const VERSION = 'v1'
 
 export type RolesResponse = PaginatedResponse<RoleOutput>
 
-export function useGetRoles(): UseQueryResult<RolesResponse, AxiosError> {
+export function useGetRoles(
+  page: number,
+  size: number
+): UseQueryResult<RolesResponse, AxiosError> {
   const query = useQuery<RolesResponse, AxiosError>({
-    queryKey: ['getRoles'],
+    queryKey: ['getRoles', { page, size }],
     queryFn: () =>
       api
-        .get<RolesResponse>(`${VERSION}/roles`)
+        .get<RolesResponse>(`${VERSION}/roles?page=${page}&size=${size}`)
         .then(response => response.data),
   })
 
