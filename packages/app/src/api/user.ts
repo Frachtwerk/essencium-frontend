@@ -43,13 +43,13 @@ export function useGetUsers({
 export function useAddUser(): UseMutationResult<
   UserInput,
   AxiosError,
-  NewUserInput
+  UserInput
 > {
-  const mutation = useMutation<UserInput, AxiosError, NewUserInput>({
+  const mutation = useMutation<UserInput, AxiosError, UserInput>({
     mutationKey: ['useAddUser'],
-    mutationFn: (newUser: NewUserInput) =>
+    mutationFn: (newUser: UserInput) =>
       api
-        .post<UserInput, NewUserInput>(`${VERSION}/users`, newUser)
+        .post<UserInput, UserInput>(`${VERSION}/users`, newUser)
         .then(res => res.data),
     onSuccess: (newUser: UserInput) => {
       showNotification({
@@ -63,7 +63,7 @@ export function useAddUser(): UseMutationResult<
     onError: (data: AxiosError) => {
       showNotification({
         autoClose: 4000,
-        title: 'We are sorry! Adding a new user not successful.',
+        title: 'We are sorry! Adding a new user was not successful.',
         message: data.message,
         color: 'red',
         style: { position: 'fixed', top: '20px', right: '10px' },

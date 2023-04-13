@@ -27,23 +27,16 @@ export const userOutputSchema = basePropertiesSchema
 
 export type UserOutput = z.infer<typeof userOutputSchema>
 
-export const userInputSchema = sharedPropertiesSchema.merge(
-  z.object({
-    role: z.number(),
-  })
-)
-
-export type UserInput = z.infer<typeof userInputSchema>
-
-export const newUserInputSchema = userInputSchema
+export const userInputSchema = sharedPropertiesSchema
   .merge(
     z.object({
-      password: z.string(),
+      password: z.string().optional(),
+      role: z.number(),
     })
   )
   .omit({ source: true })
 
-export type NewUserInput = z.infer<typeof newUserInputSchema>
+export type UserInput = z.infer<typeof userInputSchema>
 
 export const passwordChangeSchema = z
   .object({
