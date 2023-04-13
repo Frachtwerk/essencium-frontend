@@ -21,10 +21,6 @@ export function TablePagination<T>({
 }: Props<T>): JSX.Element {
   return (
     <Flex align="center">
-      <Text size="sm" mr="xl">
-        {t('table.footer.pageCount')} {table.getPageCount()}
-      </Text>
-
       <Flex align="center" mr="xl">
         <Text size="sm" mr="xs">
           {t('table.footer.pageSize')}
