@@ -14,17 +14,18 @@ export type GetUsersParams = {
   size: UsersResponse['size']
 }
 
-export function useGetUsers(
-  params: GetUsersParams
-): UseQueryResult<UsersResponse, AxiosError> {
+export function useGetUsers({
+  page,
+  size,
+}: GetUsersParams): UseQueryResult<UsersResponse, AxiosError> {
   const query = useQuery<UsersResponse, AxiosError>({
-    queryKey: ['getUsers', { page: params.page, size: params.size }],
+    queryKey: ['getUsers', { page, size }],
     queryFn: () =>
       api
         .get<UsersResponse>(`${VERSION}/users`, {
           params: {
-            page: params.page,
-            size: params.size,
+            page,
+            size,
           },
         })
         .then(response => response.data),

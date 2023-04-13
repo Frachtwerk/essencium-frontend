@@ -14,15 +14,16 @@ export type GetRightsParams = {
   size: RightsResponse['size']
 }
 
-export const useGetRights = (
-  params: GetRightsParams
-): UseQueryResult<RightsResponse, AxiosError> =>
-  useQuery(['rights', { page: params.page, size: params.size }], () =>
+export const useGetRights = ({
+  page,
+  size,
+}: GetRightsParams): UseQueryResult<RightsResponse, AxiosError> =>
+  useQuery(['rights', { page, size }], () =>
     api
       .get<RightOutput[]>(`${VERSION}/rights`, {
         params: {
-          page: params.page,
-          size: params.size,
+          page,
+          size,
         },
       })
       .then(response => response.data)

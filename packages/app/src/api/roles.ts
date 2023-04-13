@@ -66,17 +66,18 @@ export function useCreateRole(): UseMutationResult<
   return mutation
 }
 
-export function useGetRoles(
-  params: GetRolesParams
-): UseQueryResult<RolesResponse, AxiosError> {
+export function useGetRoles({
+  page,
+  size,
+}: GetRolesParams): UseQueryResult<RolesResponse, AxiosError> {
   const query = useQuery<RolesResponse, AxiosError>({
-    queryKey: ['getRoles', { page: params.page, size: params.size }],
+    queryKey: ['getRoles', { page, size }],
     queryFn: () =>
       api
         .get<RolesResponse>(`${VERSION}/roles`, {
           params: {
-            page: params.page,
-            size: params.size,
+            page,
+            size,
           },
         })
         .then(response => response.data),
