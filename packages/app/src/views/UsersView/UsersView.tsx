@@ -47,7 +47,7 @@ export function UsersView(): JSX.Element {
     error,
     isInitialLoading,
     refetch: refetchUsers,
-  } = useGetUsers(activePage - 1, pageSize)
+  } = useGetUsers({ page: activePage - 1, size: pageSize })
 
   const handleRefetch = useCallback((): void => {
     refetchUsers()

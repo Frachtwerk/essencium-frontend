@@ -35,9 +35,9 @@ export function RolesView(): JSX.Element {
     isError: isErrorRoles,
     error: errorRoles,
     refetch: refetchRoles,
-  } = useGetRoles(activePage - 1, pageSize)
+  } = useGetRoles({ page: activePage - 1, size: pageSize })
 
-  const { data: rights } = useGetRights(0, 9999)
+  const { data: rights } = useGetRights({ page: 0, size: 9999 })
 
   const { mutate: createRole } = useCreateRole()
 

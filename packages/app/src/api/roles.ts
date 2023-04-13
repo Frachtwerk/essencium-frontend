@@ -15,6 +15,11 @@ const VERSION = 'v1'
 
 export type RolesResponse = PaginatedResponse<RoleOutput>
 
+export type GetRolesParams = {
+  page: RolesResponse['number']
+  size: RolesResponse['size']
+}
+
 export function useCreateRole(): UseMutationResult<
   RoleOutput,
   AxiosError,
@@ -61,17 +66,16 @@ export function useCreateRole(): UseMutationResult<
 }
 
 export function useGetRoles(
-  page: RolesResponse['number'],
-  size: RolesResponse['size']
+  params: GetRolesParams
 ): UseQueryResult<RolesResponse, AxiosError> {
   const query = useQuery<RolesResponse, AxiosError>({
-    queryKey: ['getRoles', { page, size }],
+    queryKey: ['getRoles', { page: params.page, size: params.size }],
     queryFn: () =>
       api
         .get<RolesResponse>(`${VERSION}/roles`, {
           params: {
-            page,
-            size,
+            page: params.page,
+            size: params.size,
           },
         })
         .then(response => response.data),

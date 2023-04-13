@@ -8,16 +8,20 @@ const VERSION = 'v1'
 
 export type RightsResponse = PaginatedResponse<RightOutput>
 
-export const useGetRights = (
-  page: RightsResponse['number'],
+export type GetRightsParams = {
+  page: RightsResponse['number']
   size: RightsResponse['size']
+}
+
+export const useGetRights = (
+  params: GetRightsParams
 ): UseQueryResult<RightsResponse, AxiosError> =>
-  useQuery(['rights', { page, size }], () =>
+  useQuery(['rights', { page: params.page, size: params.size }], () =>
     api
       .get<RightOutput[]>(`${VERSION}/rights`, {
         params: {
-          page,
-          size,
+          page: params.page,
+          size: params.size,
         },
       })
       .then(response => response.data)

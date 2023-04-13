@@ -40,12 +40,12 @@ export function RightsView(): JSX.Element {
     isError: isErrorRights,
     error: errorRights,
     refetch: refetchRights,
-  } = useGetRights(activePage - 1, pageSize)
+  } = useGetRights({ page: activePage - 1, size: pageSize })
 
-  const { data: roles, refetch: refetchRoles } = useGetRoles(
-    activePage - 1,
-    9999
-  )
+  const { data: roles, refetch: refetchRoles } = useGetRoles({
+    page: activePage - 1,
+    size: 9999,
+  })
 
   const handleRefetch = useCallback((): void => {
     refetchRights()
