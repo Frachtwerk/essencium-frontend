@@ -17,6 +17,7 @@ import {
   IconUsers,
   IconX,
 } from '@tabler/icons-react'
+import { Link as Routerlink } from '@tanstack/react-router'
 import {
   ColumnDef,
   getCoreRowModel,
@@ -170,7 +171,14 @@ export function UsersView(): JSX.Element {
             {t('usersView.action.refresh')}
           </Button>
 
-          <Button onClick={() => {}}>{t('usersView.action.add')}</Button>
+          <Button>
+            <Routerlink
+              style={{ textDecoration: 'none', color: 'white' }}
+              to="add"
+            >
+              {t('usersView.action.add')}
+            </Routerlink>
+          </Button>
         </Flex>
       </Flex>
 

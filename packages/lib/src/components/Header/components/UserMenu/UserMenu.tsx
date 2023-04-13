@@ -18,12 +18,7 @@ export function UserMenu({ user }: Props): JSX.Element {
 
   return (
     <Box>
-      <RouterLink
-        to="/profile"
-        search={{}}
-        params={{}}
-        style={{ textDecoration: 'none' }}
-      >
+      <RouterLink to="/profile" style={{ textDecoration: 'none' }}>
         <UnstyledButton
           sx={{
             display: 'block',

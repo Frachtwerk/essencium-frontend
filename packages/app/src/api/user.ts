@@ -1,6 +1,12 @@
-import { useQuery, UseQueryResult } from '@tanstack/react-query'
+import { showNotification } from '@mantine/notifications'
+import {
+  useMutation,
+  UseMutationResult,
+  useQuery,
+  UseQueryResult,
+} from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { UserOutput } from 'types'
+import { UserInput, UserOutput } from 'types'
 import { PaginatedResponse } from 'types/src/base'
 
 import { api } from './api'
@@ -32,4 +38,38 @@ export function useGetUsers({
   })
 
   return query
+}
+
+export function useAddUser(): UseMutationResult<
+  UserInput,
+  AxiosError,
+  UserInput
+> {
+  const mutation = useMutation<UserInput, AxiosError, UserInput>({
+    mutationKey: ['useAddUser'],
+    mutationFn: (newUser: UserInput) =>
+      api
+        .post<UserInput, UserInput>(`${VERSION}/users`, newUser)
+        .then(res => res.data),
+    onSuccess: (newUser: UserInput) => {
+      showNotification({
+        autoClose: 4000,
+        title: `Successfully added ${newUser.firstName} ${newUser.lastName}`,
+        message: 'You added a new user',
+        color: 'green',
+        style: { position: 'fixed', top: '20px', right: '10px' },
+      })
+    },
+    onError: (data: AxiosError) => {
+      showNotification({
+        autoClose: 4000,
+        title: 'We are sorry! Adding a new user was not successful.',
+        message: data.message,
+        color: 'red',
+        style: { position: 'fixed', top: '20px', right: '10px' },
+      })
+    },
+  })
+
+  return mutation
 }

@@ -157,6 +157,23 @@
       "actions": "Actions"
     }
   },
+  "addUserView": {
+    "title": "Add a new user",
+    "form": {
+      "userDataHeading": "User Data",
+      "userSettingsHeading": "User Settings",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "phone": "Phone Number",
+      "mobile": "Mobile Number",
+      "email": "Email",
+      "password": "Password",
+      "status": "Status",
+      "language": "Language",
+      "role": "Role",
+      "save": "Save User"
+    }
+  },
   "rightsView": {
     "title": "Rights",
     "table": {
@@ -224,6 +241,9 @@
     },
     "lastName": {
       "minLength": "Last Name must be at least 2 characters long"
+    },
+    "role": {
+      "isRequired": "Please select a role for this user."
     }
   },
   "notifications": {

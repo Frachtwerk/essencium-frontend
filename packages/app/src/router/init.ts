@@ -2,6 +2,7 @@ import { ReactRouter } from '@tanstack/react-router'
 
 import { layoutRouteAppShell, layoutRouteLogin } from '@/router/layouts'
 import {
+  addUserRoute,
   contactRoute,
   indexRoute,
   loginRoute,
@@ -10,6 +11,7 @@ import {
   rolesRoute,
   rootRoute,
   setPasswordRoute,
+  userIndexRoute,
   usersRoute,
 } from '@/router/routes'
 
@@ -26,7 +28,7 @@ const routeTree = rootRoute.addChildren([
     indexRoute,
     contactRoute,
     profileRoute,
-    usersRoute,
+    usersRoute.addChildren([addUserRoute, userIndexRoute]),
     rightsRoute,
     rolesRoute,
   ]),
