@@ -22,7 +22,7 @@ type Props = {
   handleAddUser: (data: UserInput) => void
 }
 
-export function AddUserForm({ roles, handleAddUser }: Props): JSX.Element {
+export function AddUser({ roles, handleAddUser }: Props): JSX.Element {
   const { handleSubmit, control, formState, setValue, reset } = useZodForm({
     schema: userInputSchema,
     defaultValues: {

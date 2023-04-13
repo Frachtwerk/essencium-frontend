@@ -6,7 +6,7 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { NewUserInput, UserInput, UserOutput } from 'types'
+import { UserInput, UserOutput } from 'types'
 import { PaginatedResponse } from 'types/src/base'
 
 import { api } from './api'
