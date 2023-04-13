@@ -9,9 +9,16 @@ import {
   Title,
 } from '@mantine/core'
 import { IconShieldCheckFilled } from '@tabler/icons-react'
-import { ColumnDef } from '@tanstack/react-table'
-import { HttpNotification, Rights } from 'lib'
-import { useCallback, useMemo } from 'react'
+import {
+  ColumnDef,
+  getCoreRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  SortingState,
+  useReactTable,
+} from '@tanstack/react-table'
+import { HttpNotification, Table, TablePagination } from 'lib'
+import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RightOutput, RoleOutput } from 'types'
 
@@ -21,6 +28,10 @@ import { useGetRoles, useUpdateRole, UseUpdateRoleData } from '@/api/roles'
 export function RightsView(): JSX.Element {
   const { t } = useTranslation()
 
+  const [activePage, setActivePage] = useState(1)
+  const [pageSize, setPageSize] = useState(20)
+  const [sorting, setSorting] = useState<SortingState>([])
+
   const {
     data: rights,
     isLoading: isLoadingRights,
@@ -29,9 +40,12 @@ export function RightsView(): JSX.Element {
     isError: isErrorRights,
     error: errorRights,
     refetch: refetchRights,
-  } = useGetRights()
+  } = useGetRights({ page: activePage - 1, size: pageSize })
 
-  const { data: roles, refetch: refetchRoles } = useGetRoles()
+  const { data: roles, refetch: refetchRoles } = useGetRoles({
+    page: activePage - 1,
+    size: 9999,
+  })
 
   const handleRefetch = useCallback((): void => {
     refetchRights()
@@ -126,6 +140,19 @@ export function RightsView(): JSX.Element {
     ]
   }, [t, hasRight, handleUpdateRole, roles?.content])
 
+  const table = useReactTable({
+    data: rights?.content || [],
+    columns,
+    state: {
+      sorting,
+    },
+    onSortingChange: setSorting,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    pageCount: rights?.totalPages,
+  })
+
   return (
     <>
       <HttpNotification
@@ -164,7 +191,18 @@ export function RightsView(): JSX.Element {
           <Loader size="xl" name="loader" />
         </Center>
       ) : (
-        <Rights rights={rights?.content || []} columns={columns} />
+        <>
+          <Table tableModel={table} />
+
+          <TablePagination
+            table={table}
+            activePage={activePage}
+            pageSize={pageSize}
+            setActivePage={setActivePage}
+            setPageSize={setPageSize}
+            handleRefetch={handleRefetch}
+          />
+        </>
       )}
     </>
   )

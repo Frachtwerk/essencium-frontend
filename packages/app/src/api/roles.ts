@@ -8,12 +8,18 @@ import {
 import { AxiosError } from 'axios'
 import { useTranslation } from 'react-i18next'
 import { RoleInput, RoleOutput } from 'types'
+import { PaginatedResponse } from 'types/src/base'
 
-import { api, PaginatedResponse } from './api'
+import { api } from './api'
 
 const VERSION = 'v1'
 
 export type RolesResponse = PaginatedResponse<RoleOutput>
+
+export type GetRolesParams = {
+  page: RolesResponse['number']
+  size: RolesResponse['size']
+}
 
 export function useCreateRole(): UseMutationResult<
   RoleOutput,
@@ -60,12 +66,20 @@ export function useCreateRole(): UseMutationResult<
   return mutation
 }
 
-export function useGetRoles(): UseQueryResult<RolesResponse, AxiosError> {
+export function useGetRoles({
+  page,
+  size,
+}: GetRolesParams): UseQueryResult<RolesResponse, AxiosError> {
   const query = useQuery<RolesResponse, AxiosError>({
-    queryKey: ['getRoles'],
+    queryKey: ['getRoles', { page, size }],
     queryFn: () =>
       api
-        .get<RolesResponse>(`${VERSION}/roles`)
+        .get<RolesResponse>(`${VERSION}/roles`, {
+          params: {
+            page,
+            size,
+          },
+        })
         .then(response => response.data),
   })
 

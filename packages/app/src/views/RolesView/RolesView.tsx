@@ -2,9 +2,16 @@
 import { Badge, Button, Center, Flex, Loader, Text, Title } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { IconUserCheck } from '@tabler/icons-react'
-import { ColumnDef } from '@tanstack/react-table'
-import { AddRole, HttpNotification, Roles } from 'lib'
-import { useCallback, useMemo } from 'react'
+import {
+  ColumnDef,
+  getCoreRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  SortingState,
+  useReactTable,
+} from '@tanstack/react-table'
+import { AddRole, HttpNotification, Table, TablePagination } from 'lib'
+import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RightOutput, RoleOutput } from 'types'
 
@@ -16,6 +23,10 @@ export function RolesView(): JSX.Element {
 
   const [modalOpened, modalHandlers] = useDisclosure(false)
 
+  const [activePage, setActivePage] = useState(1)
+  const [pageSize, setPageSize] = useState(20)
+  const [sorting, setSorting] = useState<SortingState>([])
+
   const {
     data: roles,
     isLoading: isLoadingRoles,
@@ -24,9 +35,9 @@ export function RolesView(): JSX.Element {
     isError: isErrorRoles,
     error: errorRoles,
     refetch: refetchRoles,
-  } = useGetRoles()
+  } = useGetRoles({ page: activePage - 1, size: pageSize })
 
-  const { data: rights } = useGetRights()
+  const { data: rights } = useGetRights({ page: 0, size: 9999 })
 
   const { mutate: createRole } = useCreateRole()
 
@@ -66,6 +77,19 @@ export function RolesView(): JSX.Element {
       },
     ]
   }, [t])
+
+  const table = useReactTable({
+    data: roles?.content || [],
+    columns,
+    state: {
+      sorting,
+    },
+    onSortingChange: setSorting,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    pageCount: roles?.totalPages,
+  })
 
   return (
     <>
@@ -121,7 +145,18 @@ export function RolesView(): JSX.Element {
           <Loader size="xl" name="loader" />
         </Center>
       ) : (
-        <Roles roles={roles?.content || []} columns={columns} />
+        <>
+          <Table tableModel={table} />
+
+          <TablePagination
+            table={table}
+            activePage={activePage}
+            pageSize={pageSize}
+            setActivePage={setActivePage}
+            setPageSize={setPageSize}
+            handleRefetch={handleRefetch}
+          />
+        </>
       )}
     </>
   )

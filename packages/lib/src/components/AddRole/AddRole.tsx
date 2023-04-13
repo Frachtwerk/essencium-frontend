@@ -17,7 +17,7 @@ import { useState } from 'react'
 import { Controller } from 'react-hook-form'
 import { RightOutput, RoleInput, roleInputSchema } from 'types'
 
-import { useZodForm } from '../../../hooks'
+import { useZodForm } from '../../hooks'
 
 type Props = {
   opened: boolean

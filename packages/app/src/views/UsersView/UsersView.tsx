@@ -17,9 +17,16 @@ import {
   IconUsers,
   IconX,
 } from '@tabler/icons-react'
-import { ColumnDef } from '@tanstack/react-table'
-import { HttpNotification, Users } from 'lib'
-import { useCallback, useMemo } from 'react'
+import {
+  ColumnDef,
+  getCoreRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  SortingState,
+  useReactTable,
+} from '@tanstack/react-table'
+import { HttpNotification, Table, TablePagination } from 'lib'
+import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RoleOutput, UserOutput } from 'types'
 
@@ -27,6 +34,10 @@ import { useGetUsers } from '@/api'
 
 export function UsersView(): JSX.Element {
   const { t } = useTranslation()
+
+  const [activePage, setActivePage] = useState(1)
+  const [pageSize, setPageSize] = useState(20)
+  const [sorting, setSorting] = useState<SortingState>([])
 
   const {
     data: users,
@@ -36,7 +47,7 @@ export function UsersView(): JSX.Element {
     error,
     isInitialLoading,
     refetch: refetchUsers,
-  } = useGetUsers()
+  } = useGetUsers({ page: activePage - 1, size: pageSize })
 
   const handleRefetch = useCallback((): void => {
     refetchUsers()
@@ -115,6 +126,19 @@ export function UsersView(): JSX.Element {
     [t]
   )
 
+  const table = useReactTable({
+    data: users?.content || [],
+    columns,
+    state: {
+      sorting,
+    },
+    onSortingChange: setSorting,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    pageCount: users?.totalPages,
+  })
+
   return (
     <>
       <HttpNotification
@@ -155,7 +179,18 @@ export function UsersView(): JSX.Element {
           <Loader size="xl" name="loader" />
         </Center>
       ) : (
-        <Users users={users?.content || []} columns={columns} />
+        <>
+          <Table tableModel={table} />
+
+          <TablePagination
+            table={table}
+            activePage={activePage}
+            pageSize={pageSize}
+            setActivePage={setActivePage}
+            setPageSize={setPageSize}
+            handleRefetch={handleRefetch}
+          />
+        </>
       )}
     </>
   )
