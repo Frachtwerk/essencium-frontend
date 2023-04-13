@@ -11,7 +11,7 @@ import {
 } from '@mantine/core'
 import { Controller } from 'react-hook-form'
 import { i18n } from 'translations'
-import { NewUserInput, newUserInputSchema, RoleOutput } from 'types'
+import { RoleOutput, UserInput, userInputSchema } from 'types'
 
 import { useZodForm } from '../../hooks'
 
@@ -19,12 +19,12 @@ const { t } = i18n
 
 type Props = {
   roles: RoleOutput[]
-  handleAddUser: (data: NewUserInput) => void
+  handleAddUser: (data: UserInput) => void
 }
 
 export function AddUserForm({ roles, handleAddUser }: Props): JSX.Element {
   const { handleSubmit, control, formState, setValue, reset } = useZodForm({
-    schema: newUserInputSchema,
+    schema: userInputSchema,
     defaultValues: {
       firstName: '',
       lastName: '',
@@ -38,7 +38,7 @@ export function AddUserForm({ roles, handleAddUser }: Props): JSX.Element {
     },
   })
 
-  function onSubmit(data: NewUserInput): void {
+  function onSubmit(data: UserInput): void {
     handleAddUser(data)
     reset()
   }
@@ -54,7 +54,7 @@ export function AddUserForm({ roles, handleAddUser }: Props): JSX.Element {
         gap={{ base: 'sm', sm: 'lg' }}
         justify={{ sm: 'space-between' }}
       >
-        <Stack miw="45%" mb="md">
+        <Stack miw="45%" mb="md" spacing="xs">
           <Controller
             name="firstName"
             control={control}
@@ -78,7 +78,7 @@ export function AddUserForm({ roles, handleAddUser }: Props): JSX.Element {
           )}
         </Stack>
 
-        <Stack mb="md" miw="45%">
+        <Stack miw="45%" mb="md" spacing="xs">
           <Controller
             name="lastName"
             control={control}
@@ -108,7 +108,7 @@ export function AddUserForm({ roles, handleAddUser }: Props): JSX.Element {
         gap={{ base: 'sm', sm: 'lg' }}
         justify={{ sm: 'space-between' }}
       >
-        <Stack mb="md" miw="45%">
+        <Stack miw="45%" mb="md" spacing="xs">
           <Controller
             name="email"
             control={control}
@@ -132,7 +132,7 @@ export function AddUserForm({ roles, handleAddUser }: Props): JSX.Element {
           )}
         </Stack>
 
-        <Stack mb="md" miw="45%">
+        <Stack miw="45%" mb="md" spacing="xs">
           <Controller
             name="password"
             control={control}
@@ -149,7 +149,7 @@ export function AddUserForm({ roles, handleAddUser }: Props): JSX.Element {
           />
 
           {formState.errors.password && (
-            <Text mt={4} ml={5} fz="xs" color="red">
+            <Text fz="xs" color="red">
               {formState.errors.password?.message}
             </Text>
           )}
@@ -161,7 +161,7 @@ export function AddUserForm({ roles, handleAddUser }: Props): JSX.Element {
         gap={{ base: 'sm', sm: 'lg' }}
         justify={{ sm: 'space-between' }}
       >
-        <Stack mb="md" miw="45%">
+        <Stack mb="md" miw="45%" spacing="xs">
           <Controller
             name="phone"
             control={control}
@@ -178,13 +178,13 @@ export function AddUserForm({ roles, handleAddUser }: Props): JSX.Element {
           />
 
           {formState.errors.phone && (
-            <Text mt={4} ml={5} fz="xs" color="red">
+            <Text fz="xs" color="red">
               {formState.errors.phone?.message}
             </Text>
           )}
         </Stack>
 
-        <Stack mb="md" miw="45%">
+        <Stack miw="45%" mb="md" spacing="xs">
           <Controller
             name="mobile"
             control={control}
@@ -201,7 +201,7 @@ export function AddUserForm({ roles, handleAddUser }: Props): JSX.Element {
           />
 
           {formState.errors.mobile && (
-            <Text mt={4} ml={5} fz="xs" color="red">
+            <Text fz="xs" color="red">
               {formState.errors.mobile?.message}
             </Text>
           )}
@@ -234,7 +234,7 @@ export function AddUserForm({ roles, handleAddUser }: Props): JSX.Element {
         justify={{ sm: 'space-between' }}
         mt="lg"
       >
-        <Stack mb="md" miw="45%">
+        <Stack miw="45%" mb="md" spacing="xs">
           <Controller
             name="locale"
             control={control}
@@ -254,13 +254,13 @@ export function AddUserForm({ roles, handleAddUser }: Props): JSX.Element {
           />
 
           {formState.errors.locale && (
-            <Text mt={4} ml={5} fz="xs" color="red">
+            <Text fz="xs" color="red">
               {formState.errors.locale?.message}
             </Text>
           )}
         </Stack>
 
-        <Stack mb="md" miw="45%">
+        <Stack miw="45%" mb="md" spacing="xs">
           <Controller
             name="role"
             control={control}
@@ -269,7 +269,6 @@ export function AddUserForm({ roles, handleAddUser }: Props): JSX.Element {
                 {...field}
                 value={String(field.value)}
                 onChange={newVal => setValue(field.name, Number(newVal))}
-                mb="md"
                 radius="sm"
                 label={t('addUserView.form.role')}
                 placeholder={String(t('addUserView.form.role'))}
@@ -283,7 +282,7 @@ export function AddUserForm({ roles, handleAddUser }: Props): JSX.Element {
           />
 
           {formState.errors.role && (
-            <Text mt={4} ml={5} fz="xs" color="red">
+            <Text fz="xs" color="red">
               {formState.errors.role?.message}
             </Text>
           )}
