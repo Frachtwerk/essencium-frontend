@@ -9,8 +9,8 @@ const VERSION = 'v1'
 export type RightsResponse = PaginatedResponse<RightOutput>
 
 export const useGetRights = (
-  page: number,
-  size: number
+  page: RightsResponse['number'],
+  size: RightsResponse['size']
 ): UseQueryResult<RightsResponse, AxiosError> =>
   useQuery(['rights', { page, size }], () =>
     api
