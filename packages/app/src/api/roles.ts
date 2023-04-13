@@ -61,14 +61,19 @@ export function useCreateRole(): UseMutationResult<
 }
 
 export function useGetRoles(
-  page: number,
-  size: number
+  page: RolesResponse['number'],
+  size: RolesResponse['size']
 ): UseQueryResult<RolesResponse, AxiosError> {
   const query = useQuery<RolesResponse, AxiosError>({
     queryKey: ['getRoles', { page, size }],
     queryFn: () =>
       api
-        .get<RolesResponse>(`${VERSION}/roles?page=${page}&size=${size}`)
+        .get<RolesResponse>(`${VERSION}/roles`, {
+          params: {
+            page,
+            size,
+          },
+        })
         .then(response => response.data),
   })
 
