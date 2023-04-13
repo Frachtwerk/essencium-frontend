@@ -1,27 +1,33 @@
 import { Card, Flex, Text, Title } from '@mantine/core'
 import { IconUserPlus } from '@tabler/icons-react'
+import { useNavigate } from '@tanstack/react-router'
 import { AddUserForm } from 'lib'
 import { useTranslation } from 'react-i18next'
-import { NewUserInput } from 'types'
+import { UserInput } from 'types'
 
 import { useAddUser } from '@/api'
 import { useGetRoles } from '@/api/roles'
 
 export function AddUserView(): JSX.Element {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const { mutate: addUser } = useAddUser()
 
   const { data: rolesRequest } = useGetRoles()
 
   const roles = rolesRequest?.content || []
 
-  function handleAddUser(data: NewUserInput): void {
-    addUser(data)
+  function handleAddUser(data: UserInput): void {
+    addUser(data, {
+      onSuccess: () => {
+        navigate({ to: '../' })
+      },
+    })
   }
 
   return (
     <>
-      <Title order={2} mb="lg">
+      <Title py="md" order={2}>
         <Flex>
           <IconUserPlus size="32" />
 
