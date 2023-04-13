@@ -14,6 +14,11 @@ export const useGetRights = (
 ): UseQueryResult<RightsResponse, AxiosError> =>
   useQuery(['rights', { page, size }], () =>
     api
-      .get<RightOutput[]>(`${VERSION}/rights?page=${page}&size=${size}`)
+      .get<RightOutput[]>(`${VERSION}/rights`, {
+        params: {
+          page,
+          size,
+        },
+      })
       .then(response => response.data)
   )
