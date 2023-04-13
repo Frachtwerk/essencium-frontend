@@ -8,8 +8,9 @@ import {
 import { AxiosError } from 'axios'
 import { useTranslation } from 'react-i18next'
 import { RoleInput, RoleOutput } from 'types'
+import { PaginatedResponse } from 'types/src/base'
 
-import { api, PaginatedResponse } from './api'
+import { api } from './api'
 
 const VERSION = 'v1'
 

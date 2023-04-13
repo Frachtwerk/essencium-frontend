@@ -1,13 +1,14 @@
 import { Flex, Pagination, Select, Text } from '@mantine/core'
 import { Table as TanstackTable } from '@tanstack/react-table'
 import { t } from 'i18next'
+import { PaginatedResponse } from 'types/src/base'
 
 type Props<T> = {
   table: TanstackTable<T>
-  pageSize: number
-  activePage: number
-  setPageSize: (pageSize: number) => void
-  setActivePage: (activePage: number) => void
+  pageSize: PaginatedResponse<T>['size']
+  activePage: PaginatedResponse<T>['number']
+  setPageSize: (pageSize: PaginatedResponse<T>['size']) => void
+  setActivePage: (activePage: PaginatedResponse<T>['number']) => void
   handleRefetch: () => void
 }
 
