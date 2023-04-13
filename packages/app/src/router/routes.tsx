@@ -48,6 +48,18 @@ export const usersRoute = new Route({
   path: 'users',
 })
 
+export const userIndexRoute = new Route({
+  getParentRoute: () => usersRoute,
+  path: '/',
+  component: UsersView,
+})
+
+export const addUserRoute = new Route({
+  getParentRoute: () => usersRoute,
+  path: 'add',
+  component: AddUserView,
+})
+
 export const rightsRoute = new Route({
   getParentRoute: () => layoutRouteAppShell,
   path: 'rights',
@@ -58,16 +70,4 @@ export const rolesRoute = new Route({
   getParentRoute: () => layoutRouteAppShell,
   path: 'roles',
   component: RolesView,
-})
-
-export const addUserRoute = new Route({
-  getParentRoute: () => usersRoute,
-  path: 'add',
-  component: AddUserView,
-})
-
-export const userIndexRoute = new Route({
-  getParentRoute: () => usersRoute,
-  path: '/',
-  component: UsersView,
 })
