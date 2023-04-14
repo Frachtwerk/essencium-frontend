@@ -23,21 +23,49 @@
     "refresh": "Daten aktualisieren"
   },
   "navigation": {
-    "home": "Startseite",
-    "users": "Benutzer",
-    "roles": "Rollen",
-    "rights": "Rechte",
-    "translations": "Übersetzungen",
-    "logout": "Abmelden"
+    "home": {
+      "label": "Home",
+      "description": "Startseite"
+    },
+    "users": {
+      "label": "Benutzer",
+      "description": "Benutzerverwaltung"
+    },
+    "roles": {
+      "label": "Rollen",
+      "description": "Rollenverwaltung"
+    },
+    "rights": {
+      "label": "Rechte",
+      "description": "Rechteverwaltung"
+    },
+    "translations": {
+      "label": "Übersetzungen",
+      "description": "Übersetzungen Übersicht"
+    },
+    "logout": {
+      "label": "Logout",
+      "description": "Benutzer ausloggen"
+    }
   },
   "footer": {
-    "license": "2023 Essencium Lizenz",
-    "privacy": "Datenschutz",
-    "imprint": "Impressum",
-    "contact": "Kontakt"
+    "license": "2023 Essencium License",
+    "privacy": {
+      "label": "Datenschutz",
+      "description": "Datenschutzerklärung"
+    },
+    "imprint": {
+      "label": "Impressum",
+      "description": "Rechtliche Informationen"
+    },
+    "contact": {
+      "label": "Kontakt",
+      "description": "Kontaktformular"
+    }
   },
   "profileView": {
     "title": "Profil",
+    "description": "Benutzerprofil",
     "overviewCard": {
       "active": "aktiv",
       "inactive": "inaktiv"

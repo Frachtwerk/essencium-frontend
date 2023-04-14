@@ -23,21 +23,49 @@
     "refresh": "Refresh data"
   },
   "navigation": {
-    "home": "Home",
-    "users": "Users",
-    "roles": "Roles",
-    "rights": "Rights",
-    "translations": "Translations",
-    "logout": "Logout"
+    "home": {
+      "label": "Home",
+      "description": "Homepage"
+    },
+    "users": {
+      "label": "Users",
+      "description": "User Management"
+    },
+    "roles": {
+      "label": "Roles",
+      "description": "Role Management"
+    },
+    "rights": {
+      "label": "Rights",
+      "description": "Right Management"
+    },
+    "translations": {
+      "label": "Translations",
+      "description": "Translation Management"
+    },
+    "logout": {
+      "label": "Logout",
+      "description": "Logout user"
+    }
   },
   "footer": {
     "license": "2023 Essencium License",
-    "privacy": "Privacy",
-    "imprint": "Imprint",
-    "contact": "Contact"
+    "privacy": {
+      "label": "Privacy",
+      "description": "Privacy Policy"
+    },
+    "imprint": {
+      "label": "Imprint",
+      "description": "Legal Notice"
+    },
+    "contact": {
+      "label": "Contact",
+      "description": "Contact form"
+    }
   },
   "profileView": {
     "title": "Profile",
+    "description": "User profile",
     "overviewCard": {
       "active": "active",
       "inactive": "inactive"
