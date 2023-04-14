@@ -29,19 +29,19 @@
     },
     "users": {
       "label": "Users",
-      "description": "User Management"
+      "description": "Users Management"
     },
     "roles": {
       "label": "Roles",
-      "description": "Role Management"
+      "description": "Roles Management"
     },
     "rights": {
       "label": "Rights",
-      "description": "Right Management"
+      "description": "Rights Management"
     },
     "translations": {
       "label": "Translations",
-      "description": "Translation Management"
+      "description": "Translations Management"
     },
     "logout": {
       "label": "Logout",
@@ -60,12 +60,12 @@
     },
     "contact": {
       "label": "Contact",
-      "description": "Contact form"
+      "description": "Contact Form"
     }
   },
   "profileView": {
     "title": "Profile",
-    "description": "User profile",
+    "description": "User Profile",
     "overviewCard": {
       "active": "active",
       "inactive": "inactive"
