@@ -40,58 +40,58 @@ export const NAV_LINKS: NavLink[] = [
   {
     icon: <IconHome2 size={20} />,
     color: 'blue',
-    label: 'navigation.home',
+    label: 'navigation.home.label',
     to: '/',
-    description: 'Homepage',
+    description: 'navigation.home.description',
   },
   {
     icon: <IconUsers size={20} />,
     color: 'blue',
-    label: 'navigation.users',
+    label: 'navigation.users.label',
     to: '/users',
-    description: 'Users',
+    description: 'navigation.users.description',
   },
   {
     icon: <IconUserCheck size={20} />,
     color: 'blue',
-    label: 'navigation.roles',
+    label: 'navigation.roles.label',
     to: '/roles',
-    description: 'User Roles',
+    description: 'navigation.roles.description',
   },
   {
     icon: <IconShieldCheck size={20} />,
     color: 'blue',
-    label: 'navigation.rights',
+    label: 'navigation.rights.label',
     to: '/rights',
-    description: 'User Rights',
+    description: 'navigation.rights.description',
   },
   {
     icon: <IconLanguage size={20} />,
     color: 'blue',
-    label: 'navigation.translations',
+    label: 'navigation.translations.label',
     to: '/translations',
-    description: 'Translations',
+    description: 'navigation.translations.description',
   },
 ]
 
 export const FOOTER_LINKS: FooterLink[] = [
   {
     icon: <IconShieldLock size={20} />,
-    label: 'footer.privacy',
+    label: 'footer.privacy.label',
     to: '/',
-    description: 'Privacy',
+    description: 'footer.privacy.description',
   },
   {
     icon: <IconSectionSign size={20} />,
-    label: 'footer.imprint',
+    label: 'footer.imprint.label',
     to: '/',
-    description: 'Imprint',
+    description: 'footer.imprint.description',
   },
   {
     icon: <IconMessage size={20} />,
-    label: 'footer.contact',
+    label: 'footer.contact.label',
     to: '/contact',
-    description: 'Contact',
+    description: 'footer.contact.description',
   },
 ]
 
@@ -102,7 +102,7 @@ export const SEARCH_ITEMS: SearchItems[] = [
     icon: <IconUsers size={20} />,
     label: 'profileView.title',
     to: '/profile',
-    description: 'User Profile',
+    description: 'profileView.description',
   },
 ]
 
@@ -132,7 +132,7 @@ function App({ children }: AppProps): JSX.Element {
   const actions: SpotlightAction[] = SEARCH_ITEMS.map(link => {
     return {
       title: t(link.label),
-      description: link.description,
+      description: link.description ? (t(link.description) as string) : '',
       onTrigger: () => navigate({ to: `/${link.to}` }),
       icon: link.icon,
     }

@@ -45,7 +45,7 @@ export function NavBar({ isOpen, links, handleLogout }: Props): JSX.Element {
         <Navbar.Section mt="auto">
           <MantineNavLink
             icon={<IconLogout />}
-            label={t('navigation.logout')}
+            label={t('navigation.logout.label')}
             onClick={() => handleLogout()}
             styles={{
               root: {
