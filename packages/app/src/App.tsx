@@ -132,7 +132,7 @@ function App({ children }: AppProps): JSX.Element {
   const actions: SpotlightAction[] = SEARCH_ITEMS.map(link => {
     return {
       title: t(link.label),
-      description: t(link.description as string) as string,
+      description: link.description ? (t(link.description) as string) : '',
       onTrigger: () => navigate({ to: `/${link.to}` }),
       icon: link.icon,
     }
