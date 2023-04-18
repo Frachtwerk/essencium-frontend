@@ -11,8 +11,8 @@ import {
   rolesRoute,
   rootRoute,
   setPasswordRoute,
-  userIndexRoute,
   translationsRoute,
+  userIndexRoute,
   usersRoute,
 } from '@/router/routes'
 

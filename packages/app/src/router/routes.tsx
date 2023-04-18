@@ -8,8 +8,8 @@ import { LoginView } from '@/views/LoginView'
 import { ProfileView } from '@/views/ProfileView'
 import { RightsView } from '@/views/RightsView'
 import { RolesView } from '@/views/RolesView'
-import { AddUserView } from '@/views/UsersView/AddUserView'
 import { TranslationsView } from '@/views/TranslationsView/TranslationsView'
+import { AddUserView } from '@/views/UsersView/AddUserView'
 import { UsersView } from '@/views/UsersView/UsersView'
 
 export const rootRoute = new RootRoute()
