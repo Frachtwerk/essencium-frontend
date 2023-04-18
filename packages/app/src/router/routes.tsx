@@ -9,6 +9,7 @@ import { ProfileView } from '@/views/ProfileView'
 import { RightsView } from '@/views/RightsView'
 import { RolesView } from '@/views/RolesView'
 import { AddUserView } from '@/views/UsersView/AddUserView'
+import { TranslationsView } from '@/views/TranslationsView/TranslationsView'
 import { UsersView } from '@/views/UsersView/UsersView'
 
 export const rootRoute = new RootRoute()
@@ -70,4 +71,10 @@ export const rolesRoute = new Route({
   getParentRoute: () => layoutRouteAppShell,
   path: 'roles',
   component: RolesView,
+})
+
+export const translationsRoute = new Route({
+  getParentRoute: () => layoutRouteAppShell,
+  path: 'translations',
+  component: TranslationsView,
 })
