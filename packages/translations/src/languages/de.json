@@ -301,5 +301,11 @@
       "pageCount": "Seiten:",
       "pageSize": "Größe:"
     }
+  },
+
+  "translationsView": {
+    "title": "Übersetzungen",
+    "select": "Wählen Sie die Sprache",
+    "divider": "Neue Übersetzung"
   }
 }

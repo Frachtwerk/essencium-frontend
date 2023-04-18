@@ -10,6 +10,7 @@ import {
   useMantineTheme,
 } from '@mantine/core'
 import { IconCheck, IconX } from '@tabler/icons-react'
+import { t } from 'i18next'
 import { FormEvent, useState } from 'react'
 import { JSONTree, KeyPath } from 'react-json-tree'
 
@@ -73,7 +74,7 @@ export function Translations({ getTranslations }: Props): JSX.Element {
   return (
     <>
       <Select
-        label="Choose language"
+        label={t('translationsView.select')}
         onChange={handleLanguageFilter}
         defaultValue="en"
         data={[
@@ -127,7 +128,11 @@ export function Translations({ getTranslations }: Props): JSX.Element {
                       />
                     </ActionIcon>
                   </Group>
-                  <Divider label="New Translation" m="sm" w="80%" />
+                  <Divider
+                    label={t('translationsView.divider')}
+                    m="sm"
+                    w="80%"
+                  />
                 </form>
               ) : (
                 <Text

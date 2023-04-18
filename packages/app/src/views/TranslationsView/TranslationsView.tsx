@@ -1,6 +1,6 @@
 import { Group, Title } from '@mantine/core'
 import { IconLanguage } from '@tabler/icons-react'
-import i18next from 'i18next'
+import i18next, { t } from 'i18next'
 import { Translations } from 'lib'
 
 export function TranslationsView(): JSX.Element {
@@ -15,7 +15,7 @@ export function TranslationsView(): JSX.Element {
     <>
       <Group>
         <IconLanguage size="32" />
-        <Title order={2}> Translation</Title>
+        <Title order={2}> {t('translationsView.title')}</Title>
       </Group>
 
       <Translations getTranslations={getTranslationsByLanguage} />

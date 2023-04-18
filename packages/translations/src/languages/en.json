@@ -321,5 +321,11 @@
       "pageCount": "Pages:",
       "pageSize": "Size:"
     }
+  },
+
+  "translationsView": {
+    "title": "Translations",
+    "select": "Choose Language",
+    "divider": "New Translation"
   }
 }
