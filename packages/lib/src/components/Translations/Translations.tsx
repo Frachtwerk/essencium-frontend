@@ -11,7 +11,6 @@ import {
 } from '@mantine/core'
 import { IconCheck, IconX } from '@tabler/icons-react'
 import { FormEvent, useState } from 'react'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { JSONTree, KeyPath } from 'react-json-tree'
 
 type CustomEventType = FormEvent<HTMLFormElement> & {
