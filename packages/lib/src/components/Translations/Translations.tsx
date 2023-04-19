@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import {
   ActionIcon,
   Box,
@@ -14,7 +15,7 @@ import { t } from 'i18next'
 import { FormEvent, useState } from 'react'
 import { JSONTree, KeyPath } from 'react-json-tree'
 
-type CustomEventType = FormEvent<HTMLFormElement> & {
+type FormEventWithTranslation = FormEvent<HTMLFormElement> & {
   target: FormEvent<HTMLFormElement>['target'] & {
     translation: {
       value: string
@@ -27,12 +28,12 @@ type Props = {
 }
 
 export function Translations({ getTranslations }: Props): JSX.Element {
-  const [keyPathString, setKeyPathString] = useState<string | null>(null)
-  const [language, setLanguage] = useState('en')
-
   const theme = useMantineTheme()
 
-  const treeTheme = {
+  const [keyPathString, setKeyPathString] = useState<string | null>(null)
+  const [selectedLanguage, setSelectedLanguage] = useState('en')
+
+  const TREE_THEME = {
     // background-color:
     base00: '#ffffff',
     // font-color value:
@@ -41,19 +42,25 @@ export function Translations({ getTranslations }: Props): JSX.Element {
     // font-color key:
     base0D: theme.colors.dark[9],
   }
-  const translations = getTranslations(language)
+  const translations = getTranslations(selectedLanguage)
 
-  function handleLanguageFilter(languageValue: string): void {
-    setLanguage(languageValue)
+  function handleSelectedLanguage(language: string): void {
+    setSelectedLanguage(language)
   }
 
-  function formateKeys(keyPath: KeyPath): string {
+  function formatKeyPathToReverseString(keyPath: KeyPath): string {
     return [...keyPath].reverse().join('.')
   }
 
-  function handleOpenEditMode(event: FormEvent, path: string): void {
+  function formatKeyPathToString(keyPath: KeyPath): string {
+    return keyPath.toString()
+  }
+
+  function handleOpenEditMode(event: FormEvent, keyPath: KeyPath): void {
     event.stopPropagation()
-    setKeyPathString(path)
+
+    const keyPathAsString = formatKeyPathToString(keyPath)
+    setKeyPathString(keyPathAsString)
   }
 
   function handleSubmit(
@@ -62,7 +69,7 @@ export function Translations({ getTranslations }: Props): JSX.Element {
     translation: string
   ): void {
     event.preventDefault()
-    const variable = formateKeys(keyPath)
+    const variable = formatKeyPathToReverseString(keyPath)
     const newTranslation = {
       variable,
       translation,
@@ -75,34 +82,33 @@ export function Translations({ getTranslations }: Props): JSX.Element {
     <>
       <Select
         label={t('translationsView.select')}
-        onChange={handleLanguageFilter}
-        defaultValue="en"
+        onChange={handleSelectedLanguage}
+        defaultValue={selectedLanguage}
         data={[
-          { value: 'en', label: 'English' },
-          { value: 'de', label: 'German' },
+          { value: 'en', label: t('en') as string },
+          { value: 'de', label: t('de') as string },
         ]}
         mb="xl"
         mt="xl"
         w="30%"
       />
+
       <Card shadow="sm" pl="lg" pt="lg" radius="sm" withBorder>
         <JSONTree
           hideRoot
           data={translations}
-          theme={treeTheme}
+          theme={TREE_THEME}
           getItemString={() => null}
-          // eslint-disable-next-line react/no-unstable-nested-components
           labelRenderer={([key]) => <Text fz="sm">{key}</Text>}
-          // eslint-disable-next-line react/no-unstable-nested-components
-          valueRenderer={(valueAsString, value, ...keyPath) => (
+          valueRenderer={(_, value, ...keyPath) => (
             <Box
               onClick={event => {
-                handleOpenEditMode(event, keyPath.toString())
+                handleOpenEditMode(event, keyPath)
               }}
             >
-              {keyPath.toString() === keyPathString ? (
+              {formatKeyPathToString(keyPath) === keyPathString ? (
                 <form
-                  onSubmit={(event: CustomEventType) => {
+                  onSubmit={(event: FormEventWithTranslation) => {
                     handleSubmit(event, keyPath, event.target.translation.value)
                   }}
                 >
@@ -118,6 +124,7 @@ export function Translations({ getTranslations }: Props): JSX.Element {
                     <ActionIcon type="submit">
                       <IconCheck size="1.125rem" color={theme.colors.blue[4]} />
                     </ActionIcon>
+
                     <ActionIcon type="reset">
                       <IconX
                         onClick={event => {
@@ -128,6 +135,7 @@ export function Translations({ getTranslations }: Props): JSX.Element {
                       />
                     </ActionIcon>
                   </Group>
+
                   <Divider
                     label={t('translationsView.divider')}
                     m="sm"
