@@ -3,15 +3,15 @@ import { Profile } from 'lib'
 import { useTranslation } from 'react-i18next'
 import { PasswordChange, UserInput } from 'types'
 
-import { useGetUser, useUpdatePassword, useUpdateUser } from '@/api/me'
+import { useGetMe, useUpdateMe, useUpdatePassword } from '@/api/me'
 import { useGetRoles } from '@/api/roles'
 
 export function ProfileView(): JSX.Element {
   const { t } = useTranslation()
 
-  const { data: user, isLoading: isLoadingUser } = useGetUser()
+  const { data: user, isLoading: isLoadingUser } = useGetMe()
 
-  const { mutate: updateUser } = useUpdateUser()
+  const { mutate: updateUser } = useUpdateMe()
 
   const { mutate: updatePassword } = useUpdatePassword()
 
