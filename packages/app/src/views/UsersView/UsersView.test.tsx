@@ -22,6 +22,9 @@ describe('UsersView', () => {
     vi.mock('@/api', () => {
       return {
         useGetUsers: vi.fn(),
+        useDeleteUser: () => ({
+          mutate: vi.fn(),
+        }),
       }
     })
 
@@ -37,6 +40,7 @@ describe('UsersView', () => {
     vi.mock('@tanstack/react-router', () => {
       return {
         Link: ({ children }: { children: React.ReactNode }) => children,
+        useNavigate: () => () => ({}),
       }
     })
   })

@@ -21,31 +21,31 @@ describe('NavBar', () => {
     {
       icon: <IconHome2 size={20} />,
       color: 'blue',
-      label: 'navigation.home',
+      label: 'navigation.home.label',
       to: '/home',
     },
     {
       icon: <IconUsers size={20} />,
       color: 'blue',
-      label: 'navigation.users',
+      label: 'navigation.users.label',
       to: '/users',
     },
     {
       icon: <IconUserCheck size={20} />,
       color: 'blue',
-      label: 'navigation.roles',
+      label: 'navigation.roles.label',
       to: '/roles',
     },
     {
       icon: <IconShieldCheck size={20} />,
       color: 'blue',
-      label: 'navigation.rights',
+      label: 'navigation.rights.label',
       to: '/rights',
     },
     {
       icon: <IconLanguage size={20} />,
       color: 'blue',
-      label: 'navigation.translations',
+      label: 'navigation.translations.label',
       to: '/translations',
     },
   ]
