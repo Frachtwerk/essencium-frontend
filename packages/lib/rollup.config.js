@@ -44,6 +44,7 @@ export default [
       'zod',
       'react-hook-form',
       '@hookform/resolvers',
+      'react-json-tree',
     ],
   },
   {

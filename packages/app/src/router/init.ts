@@ -11,6 +11,7 @@ import {
   rolesRoute,
   rootRoute,
   setPasswordRoute,
+  translationsRoute,
   userIndexRoute,
   usersRoute,
 } from '@/router/routes'
@@ -31,6 +32,7 @@ const routeTree = rootRoute.addChildren([
     usersRoute.addChildren([addUserRoute, userIndexRoute]),
     rightsRoute,
     rolesRoute,
+    translationsRoute,
   ]),
   layoutRouteLogin.addChildren([loginRoute, setPasswordRoute]),
 ])
