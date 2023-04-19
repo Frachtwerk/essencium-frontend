@@ -10,6 +10,7 @@ import { RightsView } from '@/views/RightsView'
 import { RolesView } from '@/views/RolesView'
 import { TranslationsView } from '@/views/TranslationsView/TranslationsView'
 import { AddUserView } from '@/views/UsersView/AddUserView'
+import { UpdateUserView } from '@/views/UsersView/UpdateUserView'
 import { UsersView } from '@/views/UsersView/UsersView'
 
 export const rootRoute = new RootRoute()
@@ -59,6 +60,12 @@ export const addUserRoute = new Route({
   getParentRoute: () => usersRoute,
   path: 'add',
   component: AddUserView,
+})
+
+export const updateUserRoute = new Route({
+  getParentRoute: () => usersRoute,
+  path: '$userId',
+  component: UpdateUserView,
 })
 
 export const rightsRoute = new Route({

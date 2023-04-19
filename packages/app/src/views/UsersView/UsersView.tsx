@@ -17,7 +17,7 @@ import {
   IconUsers,
   IconX,
 } from '@tabler/icons-react'
-import { Link as Routerlink } from '@tanstack/react-router'
+import { Link as Routerlink, useNavigate } from '@tanstack/react-router'
 import {
   ColumnDef,
   getCoreRowModel,
@@ -36,6 +36,8 @@ import { useGetUsers } from '@/api'
 export function UsersView(): JSX.Element {
   const { t } = useTranslation()
 
+  const navigate = useNavigate()
+
   const [activePage, setActivePage] = useState(1)
   const [pageSize, setPageSize] = useState(20)
   const [sorting, setSorting] = useState<SortingState>([])
@@ -53,6 +55,13 @@ export function UsersView(): JSX.Element {
   const handleRefetch = useCallback((): void => {
     refetchUsers()
   }, [refetchUsers])
+
+  const handleEditUser = useCallback(
+    (user: UserOutput) => {
+      navigate({ to: `${user.id}` })
+    },
+    [navigate]
+  )
 
   const columns = useMemo<ColumnDef<UserOutput>[]>(
     () => [
@@ -109,7 +118,7 @@ export function UsersView(): JSX.Element {
           return (
             <Flex direction="row" gap="xs">
               <ActionIcon size="sm" disabled={isAdmin} variant="transparent">
-                <IconPencil />
+                <IconPencil onClick={() => handleEditUser(info.row.original)} />
               </ActionIcon>
 
               <ActionIcon size="sm" disabled={isAdmin} variant="transparent">
@@ -124,7 +133,7 @@ export function UsersView(): JSX.Element {
         },
       },
     ],
-    [t]
+    [t, handleEditUser]
   )
 
   const table = useReactTable({
@@ -157,7 +166,7 @@ export function UsersView(): JSX.Element {
         <Title size="h2">
           <Flex align="center" gap={10}>
             <IconUsers size="32" />
-            <Text> {t('usersView.title')}</Text>
+            <Text>{t('usersView.title')}</Text>
           </Flex>
         </Title>
 
