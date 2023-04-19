@@ -134,3 +134,37 @@ export function useUpdateUser(): UseMutationResult<
 
   return mutation
 }
+
+export function useDeleteUser(): UseMutationResult<
+  null,
+  AxiosError,
+  UserOutput['id']
+> {
+  const mutation = useMutation<null, AxiosError, UserOutput['id']>({
+    mutationKey: ['useDeleteUser'],
+    mutationFn: (userId: UserOutput['id']) =>
+      api
+        .delete<null>(`${VERSION}/users/${userId}`)
+        .then(response => response.data),
+    onSuccess: () => {
+      showNotification({
+        autoClose: 4000,
+        title: `Successfully deleted a user`,
+        message: 'You deleted a user',
+        color: 'green',
+        style: { position: 'fixed', top: '20px', right: '10px' },
+      })
+    },
+    onError: (data: AxiosError) => {
+      showNotification({
+        autoClose: 4000,
+        title: 'We are sorry! Deleting a user was not successful.',
+        message: data.message,
+        color: 'red',
+        style: { position: 'fixed', top: '20px', right: '10px' },
+      })
+    },
+  })
+
+  return mutation
+}

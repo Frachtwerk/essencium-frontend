@@ -31,7 +31,7 @@ import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RoleOutput, UserOutput } from 'types'
 
-import { useGetUsers } from '@/api'
+import { useDeleteUser, useGetUsers } from '@/api'
 
 export function UsersView(): JSX.Element {
   const { t } = useTranslation()
@@ -61,6 +61,17 @@ export function UsersView(): JSX.Element {
       navigate({ to: `${user.id}` })
     },
     [navigate]
+  )
+
+  const { mutate: deleteUser } = useDeleteUser()
+
+  const handleDeleteUser = useCallback(
+    (user: UserOutput) => {
+      deleteUser(user.id, {
+        onSuccess: () => refetchUsers(),
+      })
+    },
+    [deleteUser, refetchUsers]
   )
 
   const columns = useMemo<ColumnDef<UserOutput>[]>(
@@ -113,16 +124,18 @@ export function UsersView(): JSX.Element {
         accessorKey: 'actions',
         header: () => <Text>{t('usersView.table.actions')}</Text>,
         cell: info => {
-          const isAdmin = info.row.original.role.name === 'ADMIN'
+          const user = info.row.original
+
+          const isAdmin = user.role.name === 'ADMIN'
 
           return (
             <Flex direction="row" gap="xs">
               <ActionIcon size="sm" disabled={isAdmin} variant="transparent">
-                <IconPencil onClick={() => handleEditUser(info.row.original)} />
+                <IconPencil onClick={() => handleEditUser(user)} />
               </ActionIcon>
 
               <ActionIcon size="sm" disabled={isAdmin} variant="transparent">
-                <IconTrash />
+                <IconTrash onClick={() => handleDeleteUser(user)} />
               </ActionIcon>
 
               <ActionIcon size="sm" disabled={isAdmin} variant="transparent">
@@ -133,7 +146,7 @@ export function UsersView(): JSX.Element {
         },
       },
     ],
-    [t, handleEditUser]
+    [t, handleEditUser, handleDeleteUser]
   )
 
   const table = useReactTable({
