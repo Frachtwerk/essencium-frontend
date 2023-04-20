@@ -16,13 +16,13 @@ const VERSION = 'v1'
 
 export const userAtom = atomWithStorage<UserOutput | null>('user', null)
 
-export function useGetUser(): UseQueryResult<UserOutput, unknown> {
+export function useGetMe(): UseQueryResult<UserOutput, unknown> {
   const store = useStore()
 
   const [, setUser] = useAtom(userAtom)
 
   const query = useQuery({
-    queryKey: ['getUser'],
+    queryKey: ['useGetMe'],
     queryFn: () =>
       api
         .get<UserOutput>(`${VERSION}/users/me`)
@@ -36,7 +36,7 @@ export function useGetUser(): UseQueryResult<UserOutput, unknown> {
   return query
 }
 
-export function useUpdateUser(): UseMutationResult<
+export function useUpdateMe(): UseMutationResult<
   UserOutput,
   AxiosError,
   UserInput
@@ -44,7 +44,7 @@ export function useUpdateUser(): UseMutationResult<
   const setUser = useSetAtom(userAtom)
 
   const mutation = useMutation<UserOutput, AxiosError, UserInput>({
-    mutationKey: ['useUpdateToken'],
+    mutationKey: ['useUpdateMe'],
     mutationFn: (userData: UserInput) =>
       api
         .put<UserOutput, UserInput>(`${VERSION}/users/me`, userData)

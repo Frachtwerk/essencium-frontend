@@ -9,44 +9,62 @@ import {
   TextInput,
   Title,
 } from '@mantine/core'
+import { useEffect, useMemo } from 'react'
 import { Controller } from 'react-hook-form'
 import { i18n } from 'translations'
-import { RoleOutput, UserInput, userInputSchema } from 'types'
+import { RoleOutput, UserInput, userInputSchema, UserOutput } from 'types'
 
 import { useZodForm } from '../../hooks'
 
 const { t } = i18n
 
 type Props = {
+  title: string
+  userToEdit?: UserOutput
   roles: RoleOutput[]
-  handleAddUser: (data: UserInput) => void
+  handleForm: (data: UserInput) => void
 }
 
-export function AddUser({ roles, handleAddUser }: Props): JSX.Element {
+export function UserForm({
+  title,
+  roles,
+  handleForm,
+  userToEdit,
+}: Props): JSX.Element {
+  const DEFAULT_VALUES = useMemo(
+    () => ({
+      firstName: userToEdit?.firstName || '',
+      lastName: userToEdit?.lastName || '',
+      phone: userToEdit?.phone || '',
+      mobile: userToEdit?.mobile || '',
+      email: userToEdit?.email || '',
+      password: '',
+      enabled: userToEdit?.enabled || true,
+      locale: userToEdit?.locale || 'de',
+      role: userToEdit?.role?.id || undefined,
+    }),
+    [userToEdit]
+  )
+
   const { handleSubmit, control, formState, setValue, reset } = useZodForm({
     schema: userInputSchema,
-    defaultValues: {
-      firstName: '',
-      lastName: '',
-      phone: '',
-      mobile: '',
-      email: '',
-      password: '',
-      enabled: true,
-      locale: 'de',
-      role: undefined,
-    },
+    defaultValues: DEFAULT_VALUES,
   })
 
-  function onSubmit(data: UserInput): void {
-    handleAddUser(data)
-    reset()
+  useEffect(() => {
+    if (userToEdit) {
+      reset(DEFAULT_VALUES)
+    }
+  }, [userToEdit, reset, DEFAULT_VALUES])
+
+  function onSubmit(user: UserInput): void {
+    handleForm(user)
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Title order={3} mb="lg">
-        {t('addUserView.form.userDataHeading')}
+        {title}
       </Title>
 
       <Flex

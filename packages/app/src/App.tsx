@@ -20,7 +20,7 @@ import { FooterLink, NavLink } from 'types'
 
 import { version } from '../package.json'
 import { useInvalidateToken } from './api/auth'
-import { useGetUser } from './api/me'
+import { useGetMe } from './api/me'
 import logoURL from './img/web/icon-512.png'
 import { logout } from './utils/logout'
 
@@ -119,7 +119,7 @@ function App({ children }: AppProps): JSX.Element {
     setOpenedNav(opened => !opened)
   }
 
-  const { data: user } = useGetUser()
+  const { data: user } = useGetMe()
 
   const { mutate: invalidateToken } = useInvalidateToken(user?.id ?? 0)
 

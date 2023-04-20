@@ -12,15 +12,15 @@ describe('Footer', () => {
 
   const FOOTER_LINKS: FooterLink[] = [
     {
-      label: 'footer.privacy',
+      label: 'footer.privacy.label',
       to: 'privacy',
     },
     {
-      label: 'footer.imprint',
+      label: 'footer.imprint.label',
       to: 'imprint',
     },
     {
-      label: 'footer.contact',
+      label: 'footer.contact.label',
       to: 'contact',
     },
   ]
