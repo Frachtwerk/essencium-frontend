@@ -1,6 +1,6 @@
 import { Card, Flex, Text, Title } from '@mantine/core'
 import { IconUserPlus } from '@tabler/icons-react'
-import { useParams } from '@tanstack/react-router'
+import { useNavigate, useParams } from '@tanstack/react-router'
 import { UserForm } from 'lib'
 import { useTranslation } from 'react-i18next'
 import { UserInput } from 'types'
@@ -9,6 +9,8 @@ import { useGetRoles, useGetUser, useUpdateUser } from '@/api'
 
 export function UpdateUserView(): JSX.Element {
   const { t } = useTranslation()
+
+  const navigate = useNavigate()
 
   const { userId: userIdParameter }: { userId: string } = useParams()
 
@@ -24,11 +26,18 @@ export function UpdateUserView(): JSX.Element {
   const roles = rolesRequest?.content || []
 
   function handleUpdateUser(updatedUser: UserInput): void {
-    updateUser({
-      // workaround before refactoring Input/Output logic of API --> #263
-      userId: Number(userIdParameter),
-      user: { ...updatedUser, id: Number(userIdParameter) },
-    })
+    updateUser(
+      {
+        // workaround before refactoring Input/Output logic of API --> #263
+        userId: Number(userIdParameter),
+        user: { ...updatedUser, id: Number(userIdParameter) },
+      },
+      {
+        onSuccess: () => {
+          navigate({ to: '../' })
+        },
+      }
+    )
   }
 
   return (
