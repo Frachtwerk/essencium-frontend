@@ -27,6 +27,7 @@ export function ProfileDataCard({
   handlePasswordUpdate,
 }: Props): JSX.Element {
   const { t } = useTranslation()
+
   const { route } = useMatch()
   const { path } = route
 
@@ -41,6 +42,7 @@ export function ProfileDataCard({
           <Tabs.Tab value="passwordChange" icon={<IconLock size={14} />}>
             {t('profileView.dataCard.tabs.passwordChange.title')}
           </Tabs.Tab>
+
           {path !== 'profile' ? (
             <Tabs.Tab value="settings" icon={<IconSettings size={14} />}>
               {t('profileView.dataCard.tabs.settings.title')}
