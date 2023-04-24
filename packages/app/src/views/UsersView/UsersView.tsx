@@ -22,7 +22,6 @@ import {
   ColumnDef,
   getCoreRowModel,
   getPaginationRowModel,
-  getSortedRowModel,
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
@@ -32,6 +31,7 @@ import { useTranslation } from 'react-i18next'
 import { RoleOutput, UserOutput } from 'types'
 
 import { useDeleteUser, useGetUsers } from '@/api'
+import { parseSorting } from '@/utils/parseSorting'
 
 export const FORM_DEFAULTS = {
   firstName: '',
@@ -46,6 +46,8 @@ export const FORM_DEFAULTS = {
   source: 'local',
 }
 
+const DEFAULT_SORTING: SortingState = [{ id: 'id', desc: false }]
+
 export function UsersView(): JSX.Element {
   const { t } = useTranslation()
 
@@ -53,7 +55,7 @@ export function UsersView(): JSX.Element {
 
   const [activePage, setActivePage] = useState(1)
   const [pageSize, setPageSize] = useState(20)
-  const [sorting, setSorting] = useState<SortingState>([])
+  const [sorting, setSorting] = useState<SortingState>(DEFAULT_SORTING)
 
   const {
     data: users,
@@ -63,7 +65,11 @@ export function UsersView(): JSX.Element {
     error,
     isInitialLoading,
     refetch: refetchUsers,
-  } = useGetUsers({ page: activePage - 1, size: pageSize })
+  } = useGetUsers({
+    page: activePage - 1,
+    size: pageSize,
+    sort: parseSorting(sorting, DEFAULT_SORTING),
+  })
 
   const handleRefetch = useCallback((): void => {
     refetchUsers()
@@ -136,6 +142,7 @@ export function UsersView(): JSX.Element {
       {
         accessorKey: 'actions',
         header: () => <Text>{t('usersView.table.actions')}</Text>,
+        enableSorting: false,
         cell: info => {
           const user = info.row.original
 
@@ -168,9 +175,9 @@ export function UsersView(): JSX.Element {
     state: {
       sorting,
     },
+    manualSorting: true,
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     pageCount: users?.totalPages,
   })

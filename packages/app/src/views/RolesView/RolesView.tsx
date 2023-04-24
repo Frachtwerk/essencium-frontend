@@ -6,7 +6,6 @@ import {
   ColumnDef,
   getCoreRowModel,
   getPaginationRowModel,
-  getSortedRowModel,
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
@@ -17,6 +16,9 @@ import { RightOutput, RoleOutput } from 'types'
 
 import { useGetRights } from '@/api/rights'
 import { useCreateRole, useGetRoles } from '@/api/roles'
+import { parseSorting } from '@/utils/parseSorting'
+
+const DEFAULT_SORTING: SortingState = [{ id: 'name', desc: false }]
 
 export function RolesView(): JSX.Element {
   const { t } = useTranslation()
@@ -25,7 +27,7 @@ export function RolesView(): JSX.Element {
 
   const [activePage, setActivePage] = useState(1)
   const [pageSize, setPageSize] = useState(20)
-  const [sorting, setSorting] = useState<SortingState>([])
+  const [sorting, setSorting] = useState<SortingState>(DEFAULT_SORTING)
 
   const {
     data: roles,
@@ -35,7 +37,11 @@ export function RolesView(): JSX.Element {
     isError: isErrorRoles,
     error: errorRoles,
     refetch: refetchRoles,
-  } = useGetRoles({ page: activePage - 1, size: pageSize })
+  } = useGetRoles({
+    page: activePage - 1,
+    size: pageSize,
+    sort: parseSorting(sorting, DEFAULT_SORTING),
+  })
 
   const { data: rights } = useGetRights({ page: 0, size: 9999 })
 
@@ -84,9 +90,9 @@ export function RolesView(): JSX.Element {
     state: {
       sorting,
     },
+    manualSorting: true,
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     pageCount: roles?.totalPages,
   })
