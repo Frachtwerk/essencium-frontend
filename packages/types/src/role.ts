@@ -29,3 +29,11 @@ export const roleInputSchema = sharedPropertiesSchema
   .merge(sharedPropertiesSchema)
 
 export type RoleInput = z.infer<typeof roleInputSchema>
+
+export const roleUpdateSchema = roleOutputSchema.merge(
+  z.object({
+    rights: z.array(rightOutputSchema.shape.id),
+  })
+)
+
+export type RoleUpdate = z.infer<typeof roleUpdateSchema>

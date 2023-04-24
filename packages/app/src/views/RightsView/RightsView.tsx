@@ -20,10 +20,10 @@ import {
 import { HttpNotification, Table, TablePagination } from 'lib'
 import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { RightOutput, RoleOutput } from 'types'
+import { RightOutput, RoleOutput, RoleUpdate } from 'types'
 
 import { useGetRights } from '@/api/rights'
-import { useGetRoles, useUpdateRole, UseUpdateRoleData } from '@/api/roles'
+import { useGetRoles, useUpdateRole } from '@/api/roles'
 
 export function RightsView(): JSX.Element {
   const { t } = useTranslation()
@@ -45,6 +45,7 @@ export function RightsView(): JSX.Element {
   const { data: roles, refetch: refetchRoles } = useGetRoles({
     page: activePage - 1,
     size: 9999,
+    sort: 'name,asc',
   })
 
   const handleRefetch = useCallback((): void => {
@@ -55,8 +56,8 @@ export function RightsView(): JSX.Element {
   const { mutate: updateRole } = useUpdateRole()
 
   const handleUpdateRole = useCallback(
-    (data: UseUpdateRoleData): void => {
-      updateRole(data, {
+    (updatedRole: RoleUpdate): void => {
+      updateRole(updatedRole, {
         onSuccess: handleRefetch,
       })
     },
@@ -103,7 +104,11 @@ export function RightsView(): JSX.Element {
     const roleColumns: ColumnDef<RightOutput>[] = (roles?.content || []).map(
       role => ({
         accessorKey: `${role.name}`,
-        header: () => <Text>{t(`rightsView.table.${role.name}`)}</Text>,
+        header: () => (
+          <Text color={role.protected ? 'grey' : 'primary'}>
+            {t(`rightsView.table.${role.name}`)}
+          </Text>
+        ),
         cell: info => {
           const right = info.row.original
 
@@ -112,7 +117,7 @@ export function RightsView(): JSX.Element {
             rights: getUpdatedRights(role, right),
           }
 
-          if (role.name === 'ADMIN') {
+          if (role.name === 'ADMIN' || role.protected) {
             return (
               <Checkbox disabled checked={hasRight(right.name, role.name)} />
             )
@@ -120,9 +125,7 @@ export function RightsView(): JSX.Element {
 
           return (
             <Checkbox
-              onChange={() =>
-                handleUpdateRole({ roleId: updatedRole.id, role: updatedRole })
-              }
+              onChange={() => handleUpdateRole(updatedRole)}
               checked={hasRight(right.name, role.name)}
             />
           )

@@ -98,11 +98,7 @@ export function useUpdateUser(): UseMutationResult<
     mutationKey: ['useUpdateUser'],
     mutationFn: (user: UserUpate) =>
       api
-        .put<UserOutput, UserUpate>(
-          `${VERSION}/users/${user.id}`,
-          // workaround before refactoring Input/Output logic of API --> #263
-          user
-        )
+        .put<UserOutput, UserUpate>(`${VERSION}/users/${user.id}`, user)
         .then(response => response.data),
     onSuccess: () => {
       showNotification({
