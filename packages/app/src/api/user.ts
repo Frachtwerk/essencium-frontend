@@ -6,7 +6,8 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { UserInput, UserOutput } from 'types'
+import { t } from 'i18next'
+import { UserInput, UserOutput, UserUpate } from 'types'
 import { PaginatedResponse } from 'types/src/base'
 
 import { api } from './api'
@@ -65,20 +66,20 @@ export function useCreateUser(): UseMutationResult<
       api
         .post<UserInput, UserInput>(`${VERSION}/users`, newUser)
         .then(res => res.data),
-    onSuccess: (newUser: UserInput) => {
+    onSuccess: () => {
       showNotification({
         autoClose: 4000,
-        title: `Successfully added ${newUser.firstName} ${newUser.lastName}`,
-        message: 'You added a new user',
+        title: t('notifications.createdDataSuccess.title'),
+        message: t('notifications.createdDataSuccess.message'),
         color: 'green',
         style: { position: 'fixed', top: '20px', right: '10px' },
       })
     },
-    onError: (data: AxiosError) => {
+    onError: () => {
       showNotification({
         autoClose: 4000,
-        title: 'We are sorry! Adding a new user was not successful.',
-        message: data.message,
+        title: t('notifications.createdDataError.title'),
+        message: t('notifications.createdDataError.message'),
         color: 'red',
         style: { position: 'fixed', top: '20px', right: '10px' },
       })
@@ -88,44 +89,35 @@ export function useCreateUser(): UseMutationResult<
   return mutation
 }
 
-// workaround before refactoring Input/Output logic of API --> #263
-export type UseUpdateUserData = {
-  userId: UserOutput['id']
-  user: UserInput & { id: UserOutput['id'] }
-}
-
 export function useUpdateUser(): UseMutationResult<
   UserOutput,
   AxiosError,
-  UseUpdateUserData
+  UserUpate
 > {
-  const mutation = useMutation<UserOutput, AxiosError, UseUpdateUserData>({
+  const mutation = useMutation<UserOutput, AxiosError, UserUpate>({
     mutationKey: ['useUpdateUser'],
-    mutationFn: ({ userId, user }: UseUpdateUserData) =>
+    mutationFn: (user: UserUpate) =>
       api
-        .put<UserOutput, UseUpdateUserData['user']>(
-          `${VERSION}/users/${userId}`,
+        .put<UserOutput, UserUpate>(
+          `${VERSION}/users/${user.id}`,
           // workaround before refactoring Input/Output logic of API --> #263
-          {
-            ...user,
-            id: userId,
-          }
+          user
         )
         .then(response => response.data),
-    onSuccess: (user: UserOutput) => {
+    onSuccess: () => {
       showNotification({
         autoClose: 4000,
-        title: `Successfully updated ${user.firstName} ${user.lastName}`,
-        message: 'You updated a user',
+        title: t('notifications.updatedDataSuccess.title'),
+        message: t('notifications.updatedDataSuccess.message'),
         color: 'green',
         style: { position: 'fixed', top: '20px', right: '10px' },
       })
     },
-    onError: (data: AxiosError) => {
+    onError: () => {
       showNotification({
         autoClose: 4000,
-        title: 'We are sorry! Updating a user was not successful.',
-        message: data.message,
+        title: t('notifications.updatedDataError.title'),
+        message: t('notifications.updatedDataError.message'),
         color: 'red',
         style: { position: 'fixed', top: '20px', right: '10px' },
       })
@@ -149,17 +141,17 @@ export function useDeleteUser(): UseMutationResult<
     onSuccess: () => {
       showNotification({
         autoClose: 4000,
-        title: `Successfully deleted a user`,
-        message: 'You deleted a user',
+        title: t('notifications.deletedDataSuccess.title'),
+        message: t('notifications.deletedDataSuccess.message'),
         color: 'green',
         style: { position: 'fixed', top: '20px', right: '10px' },
       })
     },
-    onError: (data: AxiosError) => {
+    onError: () => {
       showNotification({
         autoClose: 4000,
-        title: 'We are sorry! Deleting a user was not successful.',
-        message: data.message,
+        title: t('notifications.deletedDataError.title'),
+        message: t('notifications.deletedDataError.message'),
         color: 'red',
         style: { position: 'fixed', top: '20px', right: '10px' },
       })

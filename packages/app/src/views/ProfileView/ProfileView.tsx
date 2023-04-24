@@ -1,7 +1,7 @@
 import { Center, Loader } from '@mantine/core'
 import { Profile } from 'lib'
 import { useTranslation } from 'react-i18next'
-import { PasswordChange, UserInput } from 'types'
+import { PasswordChange, UserOutput } from 'types'
 
 import { useGetMe, useUpdateMe, useUpdatePassword } from '@/api/me'
 import { useGetRoles } from '@/api/roles'
@@ -19,7 +19,7 @@ export function ProfileView(): JSX.Element {
 
   const roles = rolesRequest?.content || []
 
-  function handleUpdate(data: UserInput): void {
+  function handleUpdate(data: UserOutput): void {
     updateUser(data)
   }
 

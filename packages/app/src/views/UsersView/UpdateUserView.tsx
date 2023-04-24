@@ -1,11 +1,14 @@
 import { Card, Flex, Text, Title } from '@mantine/core'
 import { IconUserPlus } from '@tabler/icons-react'
 import { useNavigate, useParams } from '@tanstack/react-router'
-import { UserForm } from 'lib'
+import { UserForm, useZodForm } from 'lib'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { UserInput } from 'types'
+import { UserUpate, userUpdateSchema } from 'types'
 
-import { useGetRoles, useGetUser, useUpdateUser } from '@/api'
+import { useGetUser, useUpdateUser } from '@/api'
+import { useGetRoles } from '@/api/roles'
+import { FORM_DEFAULTS } from '@/views/UsersView/UsersView'
 
 export function UpdateUserView(): JSX.Element {
   const { t } = useTranslation()
@@ -16,29 +19,46 @@ export function UpdateUserView(): JSX.Element {
 
   const { data: user } = useGetUser(Number(userIdParameter))
 
+  const {
+    handleSubmit,
+    control,
+    formState,
+    setValue,
+    reset: prefillForm,
+  } = useZodForm({
+    schema: userUpdateSchema,
+    defaultValues: FORM_DEFAULTS,
+  })
+
+  useEffect(() => {
+    if (user) {
+      const parsedUser = userUpdateSchema.parse({
+        ...user,
+        role: user.role.id,
+      })
+
+      prefillForm({ ...parsedUser })
+    }
+  }, [user, prefillForm])
+
   const { mutate: updateUser } = useUpdateUser()
 
-  const { data: rolesRequest } = useGetRoles({
+  const { data: rolesResponse } = useGetRoles({
     page: 0,
     size: 9999,
   })
 
-  const roles = rolesRequest?.content || []
+  const roles = rolesResponse?.content || []
 
-  function handleUpdateUser(updatedUser: UserInput): void {
-    updateUser(
-      {
-        // workaround before refactoring Input/Output logic of API --> #263
-        userId: Number(userIdParameter),
-        user: { ...updatedUser, id: Number(userIdParameter) },
+  function handleUpdateUser(updatedUser: UserUpate): void {
+    updateUser(updatedUser, {
+      onSuccess: () => {
+        navigate({ to: '../' })
       },
-      {
-        onSuccess: () => {
-          navigate({ to: '../' })
-        },
-      }
-    )
+    })
   }
+
+  const onSubmit = handleSubmit(handleUpdateUser)
 
   return (
     <>
@@ -46,16 +66,18 @@ export function UpdateUserView(): JSX.Element {
         <Flex>
           <IconUserPlus size="32" />
 
-          <Text ml="xs">{t('updateUserView.title')}</Text>
+          <Text ml="xs">{t('addUpdateUserView.update.title')}</Text>
         </Flex>
       </Title>
 
       <Card shadow="sm" p="lg" radius="sm" withBorder maw="81.25rem">
         <UserForm
-          title={t('updateUserView.form.userDataHeading')}
+          title={t('addUpdateUserView.form.userDataHeading')}
           roles={roles}
-          handleForm={handleUpdateUser}
-          userToEdit={user}
+          onSubmit={onSubmit}
+          control={control}
+          formState={formState}
+          setValue={setValue}
         />
       </Card>
     </>
