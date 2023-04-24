@@ -185,8 +185,13 @@
       "actions": "Actions"
     }
   },
-  "addUserView": {
-    "title": "Add a new user",
+  "addUpdateUserView": {
+    "add": {
+      "title": "Add a new user"
+    },
+    "update": {
+      "title": "Update a user"
+    },
     "form": {
       "userDataHeading": "User Data",
       "userSettingsHeading": "User Settings",
