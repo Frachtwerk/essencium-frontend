@@ -10,14 +10,14 @@ import {
 import { IconCheck, IconX } from '@tabler/icons-react'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { RoleOutput, UserOutput, UserUpate, userUpdateSchema } from 'types'
+import { RoleOutput, UserOutput, UserUpdate, userUpdateSchema } from 'types'
 
 import { useZodForm } from '../../../../../hooks'
 
 type Props = {
   user: UserOutput
   roles: RoleOutput[]
-  handleUpdate: (data: UserUpate) => void
+  handleUpdate: (data: UserUpdate) => void
 }
 
 export function ProfileSettingsForm({
@@ -34,7 +34,7 @@ export function ProfileSettingsForm({
     defaultValues: { ...user, role: user.role.id },
   })
 
-  function onSubmit(data: UserUpate): void {
+  function onSubmit(data: UserUpdate): void {
     handleUpdate(data)
   }
 

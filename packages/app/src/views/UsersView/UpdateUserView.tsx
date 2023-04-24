@@ -4,7 +4,7 @@ import { useNavigate, useParams } from '@tanstack/react-router'
 import { UserForm, useZodForm } from 'lib'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { UserUpate, userUpdateSchema } from 'types'
+import { UserUpdate, userUpdateSchema } from 'types'
 
 import { useGetUser, useUpdateUser } from '@/api'
 import { useGetRoles } from '@/api/roles'
@@ -50,7 +50,7 @@ export function UpdateUserView(): JSX.Element {
 
   const roles = rolesResponse?.content || []
 
-  function handleUpdateUser(updatedUser: UserUpate): void {
+  function handleUpdateUser(updatedUser: UserUpdate): void {
     updateUser(updatedUser, {
       onSuccess: () => {
         navigate({ to: '../' })

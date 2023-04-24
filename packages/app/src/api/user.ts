@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { t } from 'i18next'
-import { UserInput, UserOutput, UserUpate } from 'types'
+import { UserInput, UserOutput, UserUpdate } from 'types'
 import { PaginatedResponse } from 'types/src/base'
 
 import { api } from './api'
@@ -92,13 +92,13 @@ export function useCreateUser(): UseMutationResult<
 export function useUpdateUser(): UseMutationResult<
   UserOutput,
   AxiosError,
-  UserUpate
+  UserUpdate
 > {
-  const mutation = useMutation<UserOutput, AxiosError, UserUpate>({
+  const mutation = useMutation<UserOutput, AxiosError, UserUpdate>({
     mutationKey: ['useUpdateUser'],
-    mutationFn: (user: UserUpate) =>
+    mutationFn: (user: UserUpdate) =>
       api
-        .put<UserOutput, UserUpate>(`${VERSION}/users/${user.id}`, user)
+        .put<UserOutput, UserUpdate>(`${VERSION}/users/${user.id}`, user)
         .then(response => response.data),
     onSuccess: () => {
       showNotification({

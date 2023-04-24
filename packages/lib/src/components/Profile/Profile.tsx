@@ -1,12 +1,12 @@
 import { Grid } from '@mantine/core'
-import { RoleOutput, UserOutput, UserUpate } from 'types'
+import { RoleOutput, UserOutput, UserUpdate } from 'types'
 
 import { ProfileDataCard, ProfileOverviewCard } from './components'
 
 type Props = {
   user: UserOutput
   roles: RoleOutput[]
-  handleUpdate: (data: UserUpate) => void
+  handleUpdate: (data: UserUpdate) => void
   handlePasswordUpdate: (oldPassword: string, newPassword: string) => void
 }
 

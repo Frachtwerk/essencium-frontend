@@ -2,7 +2,7 @@ import { Card, Tabs } from '@mantine/core'
 import { IconLock, IconSettings, IconUser } from '@tabler/icons-react'
 import { useMatch } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
-import { PasswordChange, RoleOutput, UserOutput, UserUpate } from 'types'
+import { PasswordChange, RoleOutput, UserOutput, UserUpdate } from 'types'
 
 import {
   PasswordChangeForm,
@@ -13,7 +13,7 @@ import {
 type Props = {
   user: UserOutput
   roles: RoleOutput[]
-  handleUpdate: (data: UserUpate) => void
+  handleUpdate: (data: UserUpdate) => void
   handlePasswordUpdate: (
     oldPassword: PasswordChange['password'],
     newPassword: PasswordChange['password']

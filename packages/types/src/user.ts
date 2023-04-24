@@ -61,7 +61,7 @@ export const userUpdateSchema = userOutputSchema.merge(
   })
 )
 
-export type UserUpate = z.infer<typeof userUpdateSchema>
+export type UserUpdate = z.infer<typeof userUpdateSchema>
 
 export const passwordChangeSchema = z
   .object({

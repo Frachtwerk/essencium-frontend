@@ -1,10 +1,11 @@
 import { Center, Loader } from '@mantine/core'
 import { Profile } from 'lib'
 import { useTranslation } from 'react-i18next'
-import { PasswordChange, UserOutput } from 'types'
+import { PasswordChange, UserUpdate } from 'types'
 
 import { useGetMe, useUpdateMe, useUpdatePassword } from '@/api/me'
 import { useGetRoles } from '@/api/roles'
+import { logout } from '@/utils/logout'
 
 export function ProfileView(): JSX.Element {
   const { t } = useTranslation()
@@ -19,7 +20,7 @@ export function ProfileView(): JSX.Element {
 
   const roles = rolesRequest?.content || []
 
-  function handleUpdate(data: UserOutput): void {
+  function handleUpdate(data: UserUpdate): void {
     updateUser(data)
   }
 
@@ -31,8 +32,7 @@ export function ProfileView(): JSX.Element {
       { password, verification },
       {
         onSuccess: () => {
-          console.log('logging out')
-          // logout function invokations that is implemented in #191
+          logout()
         },
       }
     )

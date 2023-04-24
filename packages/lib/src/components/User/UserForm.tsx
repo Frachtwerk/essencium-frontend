@@ -16,14 +16,14 @@ import {
   UseFormSetValue,
 } from 'react-hook-form'
 import { i18n } from 'translations'
-import { RoleOutput, UserInput, UserUpate } from 'types'
+import { RoleOutput, UserInput, UserUpdate } from 'types'
 
 type Props = {
   title: string
   roles: RoleOutput[]
-  control: Control<UserInput | UserUpate>
-  formState: FormState<UserInput | UserUpate>
-  setValue: UseFormSetValue<UserInput | UserUpate>
+  control: Control<UserInput | UserUpdate>
+  formState: FormState<UserInput | UserUpdate>
+  setValue: UseFormSetValue<UserInput | UserUpdate>
   onSubmit: () => void
 }
 

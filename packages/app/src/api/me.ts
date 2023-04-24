@@ -9,7 +9,7 @@ import { AxiosError } from 'axios'
 import { t } from 'i18next'
 import { useAtom, useSetAtom, useStore } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
-import { PasswordChange, UserOutput } from 'types'
+import { PasswordChange, UserOutput, UserUpdate } from 'types'
 
 import { api } from './api'
 
@@ -40,15 +40,15 @@ export function useGetMe(): UseQueryResult<UserOutput, unknown> {
 export function useUpdateMe(): UseMutationResult<
   UserOutput,
   AxiosError,
-  UserOutput
+  UserUpdate
 > {
   const setUser = useSetAtom(userAtom)
 
-  const mutation = useMutation<UserOutput, AxiosError, UserOutput>({
+  const mutation = useMutation<UserOutput, AxiosError, UserUpdate>({
     mutationKey: ['useUpdateMe'],
-    mutationFn: (userData: UserOutput) =>
+    mutationFn: (user: UserUpdate) =>
       api
-        .put<UserOutput, UserOutput>(`${VERSION}/users/me`, userData)
+        .put<UserOutput, UserUpdate>(`${VERSION}/users/me`, user)
         .then(response => response.data),
     onSuccess: (updatedUser: UserOutput) => {
       setUser(updatedUser)
