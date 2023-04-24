@@ -185,6 +185,28 @@
       "actions": "Aktionen"
     }
   },
+  "addUpdateUserView": {
+    "add": {
+      "title": "Benutzer hinzufügen"
+    },
+    "update": {
+      "title": "Benutzer aktualisieren"
+    },
+    "form": {
+      "userDataHeading": "Benutzerdaten",
+      "userSettingsHeading": "Einstellungen",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "phone": "Telefon",
+      "mobile": "Mobile",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "status": "Status",
+      "language": "Sprache",
+      "role": "Rolle",
+      "save": "Benutzer speichern"
+    }
+  },
   "rightsView": {
     "title": "Rechte",
     "table": {
