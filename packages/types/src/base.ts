@@ -1,11 +1,11 @@
 import { z } from 'zod'
 
 export const basePropertiesSchema = z.object({
-  id: z.number(),
-  createdAt: z.string(),
-  createdBy: z.string(),
-  updatedAt: z.string(),
-  updatedBy: z.string(),
+  id: z.number().optional(),
+  createdAt: z.string().optional(),
+  createdBy: z.string().optional(),
+  updatedAt: z.string().optional(),
+  updatedBy: z.string().optional(),
 })
 
 export type BaseProperties = z.infer<typeof basePropertiesSchema>
