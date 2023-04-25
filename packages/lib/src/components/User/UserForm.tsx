@@ -9,60 +9,36 @@ import {
   TextInput,
   Title,
 } from '@mantine/core'
-import { useEffect, useMemo } from 'react'
-import { Controller } from 'react-hook-form'
+import {
+  Control,
+  Controller,
+  FormState,
+  UseFormSetValue,
+} from 'react-hook-form'
 import { i18n } from 'translations'
-import { RoleOutput, UserInput, userInputSchema, UserOutput } from 'types'
-
-import { useZodForm } from '../../hooks'
-
-const { t } = i18n
+import { RoleOutput, UserInput, UserUpdate } from 'types'
 
 type Props = {
   title: string
-  userToEdit?: UserOutput
   roles: RoleOutput[]
-  handleForm: (data: UserInput) => void
+  control: Control<UserInput | UserUpdate>
+  formState: FormState<UserInput | UserUpdate>
+  setValue: UseFormSetValue<UserInput | UserUpdate>
+  onSubmit: () => void
 }
 
 export function UserForm({
   title,
   roles,
-  handleForm,
-  userToEdit,
+  control,
+  formState,
+  setValue,
+  onSubmit,
 }: Props): JSX.Element {
-  const DEFAULT_VALUES = useMemo(
-    () => ({
-      firstName: userToEdit?.firstName || '',
-      lastName: userToEdit?.lastName || '',
-      phone: userToEdit?.phone || '',
-      mobile: userToEdit?.mobile || '',
-      email: userToEdit?.email || '',
-      password: '',
-      enabled: userToEdit?.enabled || true,
-      locale: userToEdit?.locale || 'de',
-      role: userToEdit?.role?.id || undefined,
-    }),
-    [userToEdit]
-  )
-
-  const { handleSubmit, control, formState, setValue, reset } = useZodForm({
-    schema: userInputSchema,
-    defaultValues: DEFAULT_VALUES,
-  })
-
-  useEffect(() => {
-    if (userToEdit) {
-      reset(DEFAULT_VALUES)
-    }
-  }, [userToEdit, reset, DEFAULT_VALUES])
-
-  function onSubmit(user: UserInput): void {
-    handleForm(user)
-  }
+  const { t } = i18n
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={onSubmit}>
       <Title order={3} mb="lg">
         {title}
       </Title>
@@ -79,8 +55,8 @@ export function UserForm({
             render={({ field }) => (
               <TextInput
                 {...field}
-                placeholder={String(t('addUserView.form.firstName'))}
-                label={t('addUserView.form.firstName')}
+                placeholder={String(t('addUpdateUserView.form.firstName'))}
+                label={t('addUpdateUserView.form.firstName')}
                 size="sm"
                 variant="filled"
                 radius="sm"
@@ -103,8 +79,8 @@ export function UserForm({
             render={({ field }) => (
               <TextInput
                 {...field}
-                placeholder={String(t('addUserView.form.lastName'))}
-                label={t('addUserView.form.lastName')}
+                placeholder={String(t('addUpdateUserView.form.lastName'))}
+                label={t('addUpdateUserView.form.lastName')}
                 size="sm"
                 variant="filled"
                 radius="sm"
@@ -133,8 +109,8 @@ export function UserForm({
             render={({ field }) => (
               <TextInput
                 {...field}
-                placeholder={String(t('addUserView.form.email'))}
-                label={t('addUserView.form.email')}
+                placeholder={String(t('addUpdateUserView.form.email'))}
+                label={t('addUpdateUserView.form.email')}
                 withAsterisk
                 size="sm"
                 variant="filled"
@@ -157,8 +133,8 @@ export function UserForm({
             render={({ field }) => (
               <PasswordInput
                 {...field}
-                placeholder={String(t('addUserView.form.password'))}
-                label={t('addUserView.form.password')}
+                placeholder={String(t('addUpdateUserView.form.password'))}
+                label={t('addUpdateUserView.form.password')}
                 size="sm"
                 variant="filled"
                 radius="sm"
@@ -186,8 +162,8 @@ export function UserForm({
             render={({ field }) => (
               <TextInput
                 {...field}
-                placeholder={String(t('addUserView.form.phone'))}
-                label={t('addUserView.form.phone')}
+                placeholder={String(t('addUpdateUserView.form.phone'))}
+                label={t('addUpdateUserView.form.phone')}
                 size="sm"
                 variant="filled"
                 radius="sm"
@@ -209,8 +185,8 @@ export function UserForm({
             render={({ field }) => (
               <TextInput
                 {...field}
-                placeholder={String(t('addUserView.form.mobile'))}
-                label={t('addUserView.form.mobile')}
+                placeholder={String(t('addUpdateUserView.form.mobile'))}
+                label={t('addUpdateUserView.form.mobile')}
                 size="sm"
                 variant="filled"
                 radius="sm"
@@ -227,7 +203,7 @@ export function UserForm({
       </Flex>
 
       <Title mt="lg" order={3}>
-        {t('addUserView.form.userSettingsHeading')}
+        {t('addUpdateUserView.form.userSettingsHeading')}
       </Title>
 
       <Controller
@@ -241,7 +217,7 @@ export function UserForm({
             color="blue"
             size="md"
             mt="sm"
-            label={t('addUserView.form.status')}
+            label={t('addUpdateUserView.form.status')}
           />
         )}
       />
@@ -261,8 +237,8 @@ export function UserForm({
                 {...field}
                 radius="sm"
                 withAsterisk
-                label={t('addUserView.form.language')}
-                placeholder={String(t('addUserView.form.language'))}
+                label={t('addUpdateUserView.form.language')}
+                placeholder={String(t('addUpdateUserView.form.language'))}
                 data={[
                   { value: 'de', label: 'Deutsch' },
                   { value: 'en', label: 'English' },
@@ -288,8 +264,8 @@ export function UserForm({
                 value={String(field.value)}
                 onChange={newVal => setValue(field.name, Number(newVal))}
                 radius="sm"
-                label={t('addUserView.form.role')}
-                placeholder={String(t('addUserView.form.role'))}
+                label={t('addUpdateUserView.form.role')}
+                placeholder={String(t('addUpdateUserView.form.role'))}
                 data={(roles || []).map(role => ({
                   value: String(role.id),
                   label: role.name,
@@ -308,7 +284,7 @@ export function UserForm({
       </Flex>
 
       <Button type="submit" mt="md">
-        {t('addUserView.form.save')}
+        {t('addUpdateUserView.form.save')}
       </Button>
     </form>
   )

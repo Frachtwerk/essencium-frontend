@@ -1,34 +1,42 @@
 import { Card, Flex, Text, Title } from '@mantine/core'
 import { IconUserPlus } from '@tabler/icons-react'
 import { useNavigate } from '@tanstack/react-router'
-import { UserForm } from 'lib'
+import { UserForm, useZodForm } from 'lib'
 import { useTranslation } from 'react-i18next'
-import { UserInput } from 'types'
+import { UserInput, userInputSchema } from 'types'
 
 import { useCreateUser } from '@/api'
 import { useGetRoles } from '@/api/roles'
+import { FORM_DEFAULTS } from '@/views/UsersView/UsersView'
 
 export function AddUserView(): JSX.Element {
   const { t } = useTranslation()
 
   const navigate = useNavigate()
 
+  const { handleSubmit, control, formState, setValue } = useZodForm({
+    schema: userInputSchema,
+    defaultValues: FORM_DEFAULTS,
+  })
+
   const { mutate: addUser } = useCreateUser()
 
-  const { data: rolesRequest } = useGetRoles({
+  const { data: rolesResponse } = useGetRoles({
     page: 0,
     size: 9999,
   })
 
-  const roles = rolesRequest?.content || []
+  const roles = rolesResponse?.content || []
 
-  function handleAddUser(data: UserInput): void {
-    addUser(data, {
+  function handleAddUser(user: UserInput): void {
+    addUser(user, {
       onSuccess: () => {
         navigate({ to: '../' })
       },
     })
   }
+
+  const onSubmit = handleSubmit(handleAddUser)
 
   return (
     <>
@@ -36,15 +44,18 @@ export function AddUserView(): JSX.Element {
         <Flex>
           <IconUserPlus size="32" />
 
-          <Text ml="xs"> {t('addUserView.title')}</Text>
+          <Text ml="xs">{t('addUpdateUserView.add.title')}</Text>
         </Flex>
       </Title>
 
       <Card shadow="sm" p="lg" radius="sm" withBorder maw="81.25rem">
         <UserForm
-          title={t('addUserView.form.userDataHeading')}
+          title={t('addUpdateUserView.form.userDataHeading')}
           roles={roles}
-          handleForm={handleAddUser}
+          onSubmit={onSubmit}
+          control={control}
+          formState={formState}
+          setValue={setValue}
         />
       </Card>
     </>

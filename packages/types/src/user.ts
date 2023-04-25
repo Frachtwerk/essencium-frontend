@@ -12,8 +12,14 @@ const sharedPropertiesSchema = z.object({
   firstName: z.string().min(2, String(t('validation.firstName.minLength'))),
   lastName: z.string().min(2, String(t('validation.lastName.minLength'))),
   locale: z.string(),
-  mobile: z.string().optional(),
-  phone: z.string().optional(),
+  mobile: z
+    .string()
+    .nullable()
+    .transform(value => (value === null ? undefined : value)),
+  phone: z
+    .string()
+    .nullable()
+    .transform(value => (value === null ? undefined : value)),
   source: z.string(),
 })
 
@@ -27,16 +33,35 @@ export const userOutputSchema = basePropertiesSchema
 
 export type UserOutput = z.infer<typeof userOutputSchema>
 
-export const userInputSchema = sharedPropertiesSchema
-  .merge(
-    z.object({
-      password: z.string().optional(),
-      role: z.number(),
-    })
-  )
-  .omit({ source: true })
+export const userInputSchema = sharedPropertiesSchema.merge(
+  z.object({
+    password: z.string().optional(),
+    role: roleOutputSchema.shape.id.refine(
+      role =>
+        role !== undefined && roleOutputSchema.shape.id.safeParse(role).success,
+      {
+        message: String(t('validation.role.isRequired')),
+      }
+    ),
+  })
+)
 
 export type UserInput = z.infer<typeof userInputSchema>
+
+export const userUpdateSchema = userOutputSchema.merge(
+  z.object({
+    password: z.string().optional(),
+    role: roleOutputSchema.shape.id.refine(
+      role =>
+        role !== undefined && roleOutputSchema.shape.id.safeParse(role).success,
+      {
+        message: String(t('validation.role.isRequired')),
+      }
+    ),
+  })
+)
+
+export type UserUpdate = z.infer<typeof userUpdateSchema>
 
 export const passwordChangeSchema = z
   .object({

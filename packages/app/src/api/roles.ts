@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useTranslation } from 'react-i18next'
-import { RoleInput, RoleOutput } from 'types'
+import { RoleInput, RoleOutput, RoleUpdate } from 'types'
 import { PaginatedResponse } from 'types/src/base'
 
 import { api } from './api'
@@ -19,6 +19,7 @@ export type RolesResponse = PaginatedResponse<RoleOutput>
 export type GetRolesParams = {
   page: RolesResponse['number']
   size: RolesResponse['size']
+  sort?: string
 }
 
 export function useCreateRole(): UseMutationResult<
@@ -69,6 +70,7 @@ export function useCreateRole(): UseMutationResult<
 export function useGetRoles({
   page,
   size,
+  sort,
 }: GetRolesParams): UseQueryResult<RolesResponse, AxiosError> {
   const query = useQuery<RolesResponse, AxiosError>({
     queryKey: ['getRoles', { page, size }],
@@ -78,6 +80,7 @@ export function useGetRoles({
           params: {
             page,
             size,
+            sort,
           },
         })
         .then(response => response.data),
@@ -86,23 +89,18 @@ export function useGetRoles({
   return query
 }
 
-export type UseUpdateRoleData = {
-  roleId: RoleOutput['id']
-  role: RoleInput
-}
-
 export function useUpdateRole(): UseMutationResult<
   RoleOutput,
   AxiosError,
-  UseUpdateRoleData
+  RoleUpdate
 > {
   const { t } = useTranslation()
 
-  const mutation = useMutation<RoleOutput, AxiosError, UseUpdateRoleData>({
+  const mutation = useMutation<RoleOutput, AxiosError, RoleUpdate>({
     mutationKey: ['useUpdateRole'],
-    mutationFn: ({ roleId, role }: UseUpdateRoleData) =>
+    mutationFn: (role: RoleUpdate) =>
       api
-        .put<RoleOutput, RoleInput>(`${VERSION}/roles/${roleId}`, role)
+        .put<RoleOutput, RoleUpdate>(`${VERSION}/roles/${role.id}`, role)
         .then(response => response.data),
     onSuccess: () => {
       showNotification({

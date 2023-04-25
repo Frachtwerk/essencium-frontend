@@ -6,9 +6,10 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
+import { t } from 'i18next'
 import { useAtom, useSetAtom, useStore } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
-import { PasswordChange, UserInput, UserOutput } from 'types'
+import { PasswordChange, UserOutput, UserUpdate } from 'types'
 
 import { api } from './api'
 
@@ -39,31 +40,31 @@ export function useGetMe(): UseQueryResult<UserOutput, unknown> {
 export function useUpdateMe(): UseMutationResult<
   UserOutput,
   AxiosError,
-  UserInput
+  UserUpdate
 > {
   const setUser = useSetAtom(userAtom)
 
-  const mutation = useMutation<UserOutput, AxiosError, UserInput>({
+  const mutation = useMutation<UserOutput, AxiosError, UserUpdate>({
     mutationKey: ['useUpdateMe'],
-    mutationFn: (userData: UserInput) =>
+    mutationFn: (user: UserUpdate) =>
       api
-        .put<UserOutput, UserInput>(`${VERSION}/users/me`, userData)
-        .then(res => res.data),
+        .put<UserOutput, UserUpdate>(`${VERSION}/users/me`, user)
+        .then(response => response.data),
     onSuccess: (updatedUser: UserOutput) => {
       setUser(updatedUser)
       showNotification({
         autoClose: 2500,
-        title: 'Successful Update',
-        message: 'Your personal data has been updated',
+        title: t('notifications.updatedDataSuccess.title'),
+        message: t('notifications.updatedDataSuccess.message'),
         color: 'green',
         style: { position: 'fixed', top: '20px', right: '10px' },
       })
     },
-    onError: (data: AxiosError) => {
+    onError: () => {
       showNotification({
         autoClose: 4000,
-        title: 'We are sorry! Updating your data was not successful.',
-        message: data.message,
+        title: t('notifications.updatedDataError.title'),
+        message: t('notifications.updatedDataError.message'),
         color: 'red',
         style: { position: 'fixed', top: '20px', right: '10px' },
       })
@@ -94,17 +95,17 @@ export function useUpdatePassword(): UseMutationResult<
     onSuccess: () => {
       showNotification({
         autoClose: 2500,
-        title: 'Successful Update',
-        message: 'Your passworrd has been updated',
+        title: t('notifications.updatedDataSuccess.title'),
+        message: t('notifications.updatedDataSuccess.message'),
         color: 'green',
         style: { position: 'fixed', top: '20px', right: '10px' },
       })
     },
-    onError: (data: AxiosError) => {
+    onError: () => {
       showNotification({
         autoClose: 4000,
-        title: 'We are sorry! Updating your password was not successful.',
-        message: data.message,
+        title: t('notifications.updatedDataError.title'),
+        message: t('notifications.updatedDataError.message'),
         color: 'red',
         style: { position: 'fixed', top: '20px', right: '10px' },
       })

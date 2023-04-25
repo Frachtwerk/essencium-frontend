@@ -33,6 +33,19 @@ import { RoleOutput, UserOutput } from 'types'
 
 import { useDeleteUser, useGetUsers } from '@/api'
 
+export const FORM_DEFAULTS = {
+  firstName: '',
+  lastName: '',
+  phone: '',
+  mobile: '',
+  email: '',
+  password: '',
+  enabled: true,
+  locale: 'de',
+  role: undefined,
+  source: 'local',
+}
+
 export function UsersView(): JSX.Element {
   const { t } = useTranslation()
 
