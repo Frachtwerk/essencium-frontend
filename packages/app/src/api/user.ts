@@ -19,20 +19,23 @@ export type UsersResponse = PaginatedResponse<UserOutput>
 export type GetUsersParams = {
   page: UsersResponse['number']
   size: UsersResponse['size']
+  sort?: string
 }
 
 export function useGetUsers({
   page,
   size,
+  sort,
 }: GetUsersParams): UseQueryResult<UsersResponse, AxiosError> {
   const query = useQuery<UsersResponse, AxiosError>({
-    queryKey: ['getUsers', { page, size }],
+    queryKey: ['getUsers', { page, size, sort }],
     queryFn: () =>
       api
         .get<UsersResponse>(`${VERSION}/users`, {
           params: {
             page,
             size,
+            sort,
           },
         })
         .then(response => response.data),

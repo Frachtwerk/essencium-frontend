@@ -198,7 +198,7 @@
       "firstName": "Vorname",
       "lastName": "Nachname",
       "phone": "Telefon",
-      "mobile": "Mobile",
+      "mobile": "Mobilnummer",
       "email": "E-Mail",
       "password": "Passwort",
       "status": "Status",

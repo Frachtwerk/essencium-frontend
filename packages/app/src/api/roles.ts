@@ -73,7 +73,7 @@ export function useGetRoles({
   sort,
 }: GetRolesParams): UseQueryResult<RolesResponse, AxiosError> {
   const query = useQuery<RolesResponse, AxiosError>({
-    queryKey: ['getRoles', { page, size }],
+    queryKey: ['getRoles', { page, size, sort }],
     queryFn: () =>
       api
         .get<RolesResponse>(`${VERSION}/roles`, {
