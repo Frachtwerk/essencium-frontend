@@ -52,6 +52,7 @@ export function useUpdateMe(): UseMutationResult<
         .then(response => response.data),
     onSuccess: (updatedUser: UserOutput) => {
       setUser(updatedUser)
+
       showNotification({
         autoClose: 2500,
         title: t('notifications.updatedDataSuccess.title'),
