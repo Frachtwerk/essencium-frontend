@@ -18,8 +18,8 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
     defaultValues: { ...user, role: user.role.id },
   })
 
-  function onSubmit(data: UserUpdate): void {
-    handleUpdate(data)
+  function onSubmit(updatedUser: UserUpdate): void {
+    handleUpdate(updatedUser)
   }
 
   return (
