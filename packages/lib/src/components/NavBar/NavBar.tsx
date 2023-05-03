@@ -6,17 +6,23 @@ import {
 } from '@mantine/core'
 import { IconLogout } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
-import { NavLink } from 'types'
+import { NavLink, UserOutput } from 'types'
 
 import { NavLinks } from './components'
 
 type Props = {
   isOpen: boolean
   links: NavLink[]
+  user?: UserOutput
   handleLogout: () => void
 }
 
-export function NavBar({ isOpen, links, handleLogout }: Props): JSX.Element {
+export function NavBar({
+  isOpen,
+  links,
+  user,
+  handleLogout,
+}: Props): JSX.Element {
   const theme = useMantineTheme()
 
   const { t } = useTranslation()
@@ -39,7 +45,7 @@ export function NavBar({ isOpen, links, handleLogout }: Props): JSX.Element {
         }}
       >
         <Navbar.Section grow>
-          <NavLinks links={links} />
+          <NavLinks links={links} user={user} />
         </Navbar.Section>
 
         <Navbar.Section mt="auto">
