@@ -9,11 +9,13 @@ import {
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
+import { useAtom } from 'jotai'
 import { AddRole, HttpNotification, Table, TablePagination } from 'lib'
 import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { RightOutput, RoleOutput } from 'types'
+import { RightOutput, RIGHTS, RoleOutput } from 'types'
 
+import { userAtom } from '@/api/me'
 import { useGetRights } from '@/api/rights'
 import { useCreateRole, useGetRoles } from '@/api/roles'
 import { parseSorting } from '@/utils/parseSorting'
@@ -22,6 +24,8 @@ const DEFAULT_SORTING: SortingState = [{ id: 'name', desc: false }]
 
 export function RolesView(): JSX.Element {
   const { t } = useTranslation()
+
+  const [user] = useAtom(userAtom)
 
   const [modalOpened, modalHandlers] = useDisclosure(false)
 
@@ -116,7 +120,8 @@ export function RolesView(): JSX.Element {
         <Title size="h2">
           <Flex align="center" gap={10}>
             <IconUserCheck size="32" />
-            <Text> {t('rolesView.title')}</Text>
+
+            <Text>{t('rolesView.title')}</Text>
           </Flex>
         </Title>
 
@@ -130,9 +135,13 @@ export function RolesView(): JSX.Element {
             {t('actions.refresh')}
           </Button>
 
-          <Button onClick={() => modalHandlers.open()}>
-            {t('rolesView.action.add')}
-          </Button>
+          {user?.role.rights
+            .map(right => right.name)
+            .includes(RIGHTS.ROLE_CREATE) ? (
+            <Button onClick={() => modalHandlers.open()}>
+              {t('rolesView.action.add')}
+            </Button>
+          ) : null}
         </Flex>
       </Flex>
 
