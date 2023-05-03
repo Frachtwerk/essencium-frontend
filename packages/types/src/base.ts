@@ -1,11 +1,13 @@
 import { z } from 'zod'
 
+// we use 'nullish' here because this is the datatype that comes form the backend.
+// we transform it to 'undefined' because react-form-hooks only works with 'undefined'
 export const basePropertiesSchema = z.object({
-  id: z.number().optional(),
-  createdAt: z.string().optional(),
-  createdBy: z.string().optional(),
-  updatedAt: z.string().optional(),
-  updatedBy: z.string().optional(),
+  id: z.number().nullish(),
+  createdAt: z.string().nullish(),
+  createdBy: z.string().nullish(),
+  updatedAt: z.string().nullish(),
+  updatedBy: z.string().nullish(),
 })
 
 export type BaseProperties = z.infer<typeof basePropertiesSchema>
