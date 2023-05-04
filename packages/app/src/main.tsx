@@ -26,9 +26,12 @@ import { Notifications } from '@mantine/notifications'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { RouterProvider } from '@tanstack/react-router'
-import React from 'react'
+import { useAtom } from 'jotai'
+import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
+import { i18n } from 'translations'
 
+import { userAtom } from './api/me'
 import { router } from './router/init'
 
 function Root(): JSX.Element {
@@ -56,6 +59,12 @@ function Root(): JSX.Element {
     })
 
   useHotkeys([['mod+J', () => toggleColorScheme()]])
+
+  const [user] = useAtom(userAtom)
+
+  useEffect(() => {
+    if (user) i18n.changeLanguage(user.locale)
+  }, [user])
 
   return (
     <ColorSchemeProvider

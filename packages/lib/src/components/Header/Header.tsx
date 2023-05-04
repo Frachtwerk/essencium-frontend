@@ -12,7 +12,6 @@ import {
 import { useTranslation } from 'react-i18next'
 import { UserOutput } from 'types'
 
-import { LanguageSelector } from './components/LanguageSelector'
 import { SearchBar } from './components/SearchBar'
 import { ThemeSelector } from './components/ThemeSelector'
 import { UserMenu } from './components/UserMenu'
@@ -80,8 +79,6 @@ export function Header({
         <Group noWrap>
           <Group noWrap>
             <ThemeSelector />
-
-            <LanguageSelector />
           </Group>
 
           {user ? <UserMenu user={user} /> : null}
