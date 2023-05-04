@@ -25,12 +25,14 @@ import {
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
+import { useAtom } from 'jotai'
 import { HttpNotification, Table, TablePagination } from 'lib'
 import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { RoleOutput, UserOutput } from 'types'
+import { RIGHTS, RoleOutput, UserOutput } from 'types'
 
 import { useDeleteUser, useGetUsers } from '@/api'
+import { userAtom } from '@/api/me'
 import { parseSorting } from '@/utils/parseSorting'
 
 export const FORM_DEFAULTS = {
@@ -49,6 +51,8 @@ export const FORM_DEFAULTS = {
 const DEFAULT_SORTING: SortingState = [{ id: 'id', desc: false }]
 
 export function UsersView(): JSX.Element {
+  const [user] = useAtom(userAtom)
+
   const { t } = useTranslation()
 
   const navigate = useNavigate()
@@ -76,8 +80,8 @@ export function UsersView(): JSX.Element {
   }, [refetchUsers])
 
   const handleEditUser = useCallback(
-    (user: UserOutput) => {
-      navigate({ to: `${user.id}` })
+    (userToEdit: UserOutput) => {
+      navigate({ to: `${userToEdit.id}` })
     },
     [navigate]
   )
@@ -85,8 +89,8 @@ export function UsersView(): JSX.Element {
   const { mutate: deleteUser } = useDeleteUser()
 
   const handleDeleteUser = useCallback(
-    (user: UserOutput) => {
-      deleteUser(user.id, {
+    (userToDelete: UserOutput) => {
+      deleteUser(userToDelete.id, {
         onSuccess: () => refetchUsers(),
       })
     },
@@ -144,19 +148,27 @@ export function UsersView(): JSX.Element {
         header: () => <Text>{t('usersView.table.actions')}</Text>,
         enableSorting: false,
         cell: info => {
-          const user = info.row.original
+          const rowUser = info.row.original
 
-          const isAdmin = user.role.name === 'ADMIN'
+          const isAdmin = rowUser.role.name === 'ADMIN'
 
           return (
             <Flex direction="row" gap="xs">
-              <ActionIcon size="sm" disabled={isAdmin} variant="transparent">
-                <IconPencil onClick={() => handleEditUser(user)} />
-              </ActionIcon>
+              {user?.role.rights
+                .map(right => right.name)
+                .includes(RIGHTS.USER_UPDATE) ? (
+                <ActionIcon size="sm" disabled={isAdmin} variant="transparent">
+                  <IconPencil onClick={() => handleEditUser(rowUser)} />
+                </ActionIcon>
+              ) : null}
 
-              <ActionIcon size="sm" disabled={isAdmin} variant="transparent">
-                <IconTrash onClick={() => handleDeleteUser(user)} />
-              </ActionIcon>
+              {user?.role.rights
+                .map(right => right.name)
+                .includes(RIGHTS.USER_DELETE) ? (
+                <ActionIcon size="sm" disabled={isAdmin} variant="transparent">
+                  <IconTrash onClick={() => handleDeleteUser(rowUser)} />
+                </ActionIcon>
+              ) : null}
 
               <ActionIcon size="sm" disabled={isAdmin} variant="transparent">
                 <IconDotsVertical />
@@ -166,7 +178,7 @@ export function UsersView(): JSX.Element {
         },
       },
     ],
-    [t, handleEditUser, handleDeleteUser]
+    [t, handleEditUser, handleDeleteUser, user]
   )
 
   const table = useReactTable({
@@ -199,6 +211,7 @@ export function UsersView(): JSX.Element {
         <Title size="h2">
           <Flex align="center" gap={10}>
             <IconUsers size="32" />
+
             <Text>{t('usersView.title')}</Text>
           </Flex>
         </Title>
@@ -213,14 +226,18 @@ export function UsersView(): JSX.Element {
             {t('usersView.action.refresh')}
           </Button>
 
-          <Button>
-            <Routerlink
-              style={{ textDecoration: 'none', color: 'white' }}
-              to="add"
-            >
-              {t('usersView.action.add')}
-            </Routerlink>
-          </Button>
+          {user?.role.rights
+            .map(right => right.name)
+            .includes(RIGHTS.USER_CREATE) ? (
+            <Button>
+              <Routerlink
+                style={{ textDecoration: 'none', color: 'white' }}
+                to="add"
+              >
+                {t('usersView.action.add')}
+              </Routerlink>
+            </Button>
+          ) : null}
         </Flex>
       </Flex>
 

@@ -16,7 +16,7 @@ import { useNavigate } from '@tanstack/react-router'
 import { Footer, Header, NavBar } from 'lib'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FooterLink, NavLink } from 'types'
+import { FooterLink, NavLink, RIGHTS } from 'types'
 
 import { version } from '../package.json'
 import { useInvalidateToken } from './api/auth'
@@ -43,6 +43,7 @@ export const NAV_LINKS: NavLink[] = [
     label: 'navigation.home.label',
     to: '/',
     description: 'navigation.home.description',
+    rights: [],
   },
   {
     icon: <IconUsers size={20} />,
@@ -50,6 +51,7 @@ export const NAV_LINKS: NavLink[] = [
     label: 'navigation.users.label',
     to: '/users',
     description: 'navigation.users.description',
+    rights: [RIGHTS.USER_READ],
   },
   {
     icon: <IconUserCheck size={20} />,
@@ -57,6 +59,7 @@ export const NAV_LINKS: NavLink[] = [
     label: 'navigation.roles.label',
     to: '/roles',
     description: 'navigation.roles.description',
+    rights: [RIGHTS.ROLE_READ, RIGHTS.RIGHT_READ],
   },
   {
     icon: <IconShieldCheck size={20} />,
@@ -64,6 +67,7 @@ export const NAV_LINKS: NavLink[] = [
     label: 'navigation.rights.label',
     to: '/rights',
     description: 'navigation.rights.description',
+    rights: [RIGHTS.ROLE_READ, RIGHTS.RIGHT_READ],
   },
   {
     icon: <IconLanguage size={20} />,
@@ -71,6 +75,7 @@ export const NAV_LINKS: NavLink[] = [
     label: 'navigation.translations.label',
     to: '/translations',
     description: 'navigation.translations.description',
+    rights: [RIGHTS.TRANSLATION_READ],
   },
 ]
 
@@ -154,6 +159,7 @@ function App({ children }: AppProps): JSX.Element {
           <NavBar
             isOpen={openedNav}
             links={NAV_LINKS}
+            user={user}
             handleLogout={handleLogout}
           />
         }

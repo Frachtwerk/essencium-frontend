@@ -4,4 +4,5 @@ export type NavLink = {
   color: string
   to: string
   description?: string
+  rights: string[]
 }

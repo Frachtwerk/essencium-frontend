@@ -16,11 +16,13 @@ import {
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
+import { useAtom } from 'jotai'
 import { HttpNotification, Table, TablePagination } from 'lib'
 import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { RightOutput, RoleOutput, RoleUpdate } from 'types'
+import { RightOutput, RIGHTS, RoleOutput, RoleUpdate } from 'types'
 
+import { userAtom } from '@/api/me'
 import { useGetRights } from '@/api/rights'
 import { useGetRoles, useUpdateRole } from '@/api/roles'
 import { parseSorting } from '@/utils/parseSorting'
@@ -29,6 +31,8 @@ const DEFAULT_SORTING: SortingState = [{ id: 'name', desc: false }]
 
 export function RightsView(): JSX.Element {
   const { t } = useTranslation()
+
+  const [user] = useAtom(userAtom)
 
   const [activePage, setActivePage] = useState(1)
   const [pageSize, setPageSize] = useState(20)
@@ -117,23 +121,29 @@ export function RightsView(): JSX.Element {
         ),
         enableSorting: false,
         cell: info => {
-          const right = info.row.original
+          const rightRow = info.row.original
 
           const updatedRole = {
             ...role,
-            rights: getUpdatedRights(role, right),
+            rights: getUpdatedRights(role, rightRow),
           }
 
-          if (role.name === 'ADMIN' || role.protected) {
+          if (
+            role.name === 'ADMIN' ||
+            role.protected ||
+            !user?.role.rights
+              .map(right => right.name)
+              .includes(RIGHTS.ROLE_UPDATE)
+          ) {
             return (
-              <Checkbox disabled checked={hasRight(right.name, role.name)} />
+              <Checkbox disabled checked={hasRight(rightRow.name, role.name)} />
             )
           }
 
           return (
             <Checkbox
               onChange={() => handleUpdateRole(updatedRole)}
-              checked={hasRight(right.name, role.name)}
+              checked={hasRight(rightRow.name, role.name)}
             />
           )
         },
@@ -148,7 +158,7 @@ export function RightsView(): JSX.Element {
       },
       ...roleColumns,
     ]
-  }, [t, hasRight, handleUpdateRole, roles?.content])
+  }, [t, hasRight, handleUpdateRole, roles?.content, user])
 
   const table = useReactTable({
     data: rights?.content || [],

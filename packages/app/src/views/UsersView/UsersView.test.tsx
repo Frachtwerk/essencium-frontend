@@ -28,19 +28,55 @@ describe('UsersView', () => {
       }
     })
 
+    vi.mock('@tanstack/react-router', () => {
+      return {
+        Link: ({ children }: { children: React.ReactNode }) => children,
+        useNavigate: () => () => ({}),
+        RootRoute: vi.fn(),
+        Route: vi.fn(),
+        ReactRouter: vi.fn(),
+      }
+    })
+
+    vi.mock('@/router/routes', () => {
+      return {
+        usersRoute: {
+          addChildren: vi.fn(),
+        },
+        rootRoute: {
+          addChildren: vi.fn(),
+        },
+        addUserRoute: vi.fn(),
+        contactRoute: vi.fn(),
+        indexRoute: vi.fn(),
+        loginRoute: vi.fn(),
+        profileRoute: vi.fn(),
+        rightsRoute: vi.fn(),
+        rolesRoute: vi.fn(),
+        setPasswordRoute: vi.fn(),
+        translationsRoute: vi.fn(),
+        updateUserRoute: vi.fn(),
+        userIndexRoute: vi.fn(),
+      }
+    })
+
+    vi.mock('@/router/layouts', () => {
+      return {
+        layoutRouteAppShell: {
+          addChildren: vi.fn(),
+        },
+        layoutRouteLogin: {
+          addChildren: vi.fn(),
+        },
+      }
+    })
+
     vi.mock('react-dom', async (): Promise<Awaited<typeof ReactDOM>> => {
       const actual = await vi.importActual<typeof ReactDOM>('react-dom')
 
       return {
         ...actual,
         createPortal: vi.fn().mockImplementation(() => null),
-      }
-    })
-
-    vi.mock('@tanstack/react-router', () => {
-      return {
-        Link: ({ children }: { children: React.ReactNode }) => children,
-        useNavigate: () => () => ({}),
       }
     })
   })
