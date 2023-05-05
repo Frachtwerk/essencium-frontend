@@ -13,6 +13,7 @@ import {
   IconUsers,
 } from '@tabler/icons-react'
 import { useNavigate } from '@tanstack/react-router'
+import i18next from 'i18next'
 import { Footer, Header, NavBar } from 'lib'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -21,6 +22,7 @@ import { FooterLink, NavLink } from 'types'
 import { version } from '../package.json'
 import { useInvalidateToken } from './api/auth'
 import { useGetMe } from './api/me'
+import { useGetTranslations } from './api/translations'
 import logoURL from './img/web/icon-512.png'
 import { logout } from './utils/logout'
 
@@ -113,6 +115,9 @@ function App({ children }: AppProps): JSX.Element {
 
   const { t } = useTranslation()
 
+  const { data: deTranslation } = useGetTranslations('de')
+  const { data: enTranslation } = useGetTranslations('en')
+
   const [openedNav, setOpenedNav] = useState(false)
 
   function handleOpenNav(): void {
@@ -137,6 +142,26 @@ function App({ children }: AppProps): JSX.Element {
       icon: link.icon,
     }
   })
+
+  i18next.addResourceBundle(
+    'de',
+    'translation',
+    {
+      ...deTranslation,
+    },
+    true,
+    true
+  )
+
+  i18next.addResourceBundle(
+    'en',
+    'translation',
+    {
+      ...enTranslation,
+    },
+    true,
+    true
+  )
 
   return (
     <SpotlightProvider

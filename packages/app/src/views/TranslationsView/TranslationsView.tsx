@@ -3,6 +3,8 @@ import { IconLanguage } from '@tabler/icons-react'
 import i18next, { t } from 'i18next'
 import { Translations } from 'lib'
 
+import { useDeleteTranslation, useUpdateTranslation } from '@/api/translations'
+
 function getTranslationsByLanguage(
   lang: string
 ): Record<string, string> | undefined {
@@ -12,6 +14,9 @@ function getTranslationsByLanguage(
 }
 
 export function TranslationsView(): JSX.Element {
+  const { mutate: updateTranslation } = useUpdateTranslation()
+  const { mutate: deleteTranslation } = useDeleteTranslation()
+
   return (
     <>
       <Group>
@@ -19,7 +24,11 @@ export function TranslationsView(): JSX.Element {
         <Title order={2}>{t('translationsView.title')}</Title>
       </Group>
 
-      <Translations getTranslations={getTranslationsByLanguage} />
+      <Translations
+        getTranslations={getTranslationsByLanguage}
+        updateTranslation={updateTranslation}
+        deleteTranslation={deleteTranslation}
+      />
     </>
   )
 }
