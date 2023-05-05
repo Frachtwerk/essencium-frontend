@@ -7,14 +7,15 @@ import {
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { t } from 'i18next'
-import { atom, useAtom, useSetAtom, useStore } from 'jotai'
+import { useAtom, useSetAtom, useStore } from 'jotai'
+import { atomWithStorage } from 'jotai/utils'
 import { PasswordChange, UserOutput, UserUpdate } from 'types'
 
 import { api } from './api'
 
 const VERSION = 'v1'
 
-export const userAtom = atom<UserOutput | null>(null)
+export const userAtom = atomWithStorage<UserOutput | null>('user', null)
 
 export function useGetMe(): UseQueryResult<UserOutput, unknown> {
   const store = useStore()
