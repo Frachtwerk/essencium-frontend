@@ -38,6 +38,22 @@ type SearchItems = {
   description?: string
 }
 
+function mergeTranslationSources(
+  languages: Record<'de' | 'en', Record<string, string> | undefined>
+): void {
+  Object.entries(languages).forEach(([language, serverTranslations]) => {
+    i18next.addResourceBundle(
+      language,
+      'translation',
+      {
+        ...serverTranslations,
+      },
+      true,
+      true
+    )
+  })
+}
+
 export const NAV_LINKS: NavLink[] = [
   {
     icon: <IconHome2 size={20} />,
@@ -115,8 +131,13 @@ function App({ children }: AppProps): JSX.Element {
 
   const { t } = useTranslation()
 
-  const { data: deTranslation } = useGetTranslations('de')
-  const { data: enTranslation } = useGetTranslations('en')
+  const { data: deServerTranslations } = useGetTranslations('de')
+  const { data: enServerTranslations } = useGetTranslations('en')
+
+  mergeTranslationSources({
+    de: deServerTranslations,
+    en: enServerTranslations,
+  })
 
   const [openedNav, setOpenedNav] = useState(false)
 
@@ -142,26 +163,6 @@ function App({ children }: AppProps): JSX.Element {
       icon: link.icon,
     }
   })
-
-  i18next.addResourceBundle(
-    'de',
-    'translation',
-    {
-      ...deTranslation,
-    },
-    true,
-    true
-  )
-
-  i18next.addResourceBundle(
-    'en',
-    'translation',
-    {
-      ...enTranslation,
-    },
-    true,
-    true
-  )
 
   return (
     <SpotlightProvider
