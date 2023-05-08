@@ -101,7 +101,7 @@ function AddRole({
           />
 
           {formState.errors.name && (
-            <Text mt={4} ml={5} fz="xs" color="red">
+            <Text ml={5} fz="xs" color="red">
               {formState.errors.name?.message}
             </Text>
           )}
@@ -126,7 +126,7 @@ function AddRole({
           />
 
           {formState.errors.description && (
-            <Text mt={4} ml={5} fz="xs" color="red">
+            <Text ml={5} fz="xs" color="red">
               {formState.errors.description?.message}
             </Text>
           )}
