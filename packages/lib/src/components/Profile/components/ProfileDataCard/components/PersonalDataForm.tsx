@@ -1,4 +1,12 @@
-import { Button, Flex, Select, Stack, Text, TextInput } from '@mantine/core'
+import {
+  Box,
+  Button,
+  Flex,
+  Select,
+  Stack,
+  Text,
+  TextInput,
+} from '@mantine/core'
 import { Controller } from 'react-hook-form'
 import { i18n } from 'translations'
 import { UserOutput, UserUpdate, userUpdateSchema } from 'types'
@@ -26,10 +34,10 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Flex
         direction={{ base: 'column', sm: 'row' }}
-        gap={{ base: 'sm', sm: 'lg' }}
+        gap={{ base: 'xs', sm: 'md' }}
         justify={{ sm: 'space-between' }}
       >
-        <Stack miw="45%" mb="md">
+        <Stack miw="45%">
           <Controller
             name="firstName"
             control={control}
@@ -49,14 +57,16 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
             )}
           />
 
-          {formState.errors.firstName && (
-            <Text fz="xs" color="red">
-              {formState.errors.firstName?.message}
-            </Text>
-          )}
+          <Box mt="-0.6rem" h="0.8rem">
+            {formState.errors.firstName && (
+              <Text ml={5} fz="xs" color="red">
+                {formState.errors.firstName?.message}
+              </Text>
+            )}
+          </Box>
         </Stack>
 
-        <Stack mb="md" miw="45%">
+        <Stack miw="45%">
           <Controller
             name="lastName"
             control={control}
@@ -76,20 +86,23 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
             )}
           />
 
-          {formState.errors.lastName && (
-            <Text mt={4} ml={5} fz="xs" color="red">
-              {formState.errors.lastName?.message}
-            </Text>
-          )}
+          <Box mt="-0.6rem" h="0.8rem">
+            {formState.errors.lastName && (
+              <Text ml={5} fz="xs" color="red">
+                {formState.errors.lastName?.message}
+              </Text>
+            )}
+          </Box>
         </Stack>
       </Flex>
 
       <Flex
         direction={{ base: 'column', sm: 'row' }}
-        gap={{ base: 'sm', sm: 'lg' }}
+        gap={{ base: 'sm', sm: 'md' }}
         justify={{ sm: 'space-between' }}
+        mt="xs"
       >
-        <Stack mb="md" miw="45%">
+        <Stack miw="45%">
           <Controller
             name="phone"
             control={control}
@@ -109,14 +122,16 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
             )}
           />
 
-          {formState.errors.phone && (
-            <Text mt={4} ml={5} fz="xs" color="red">
-              {formState.errors.phone?.message}
-            </Text>
-          )}
+          <Box mt="-0.6rem" h="0.8rem">
+            {formState.errors.phone && (
+              <Text ml={5} fz="xs" color="red">
+                {formState.errors.phone?.message}
+              </Text>
+            )}
+          </Box>
         </Stack>
 
-        <Stack mb="md" miw="45%">
+        <Stack miw="45%">
           <Controller
             name="mobile"
             control={control}
@@ -136,20 +151,23 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
             )}
           />
 
-          {formState.errors.mobile && (
-            <Text mt={4} ml={5} fz="xs" color="red">
-              {formState.errors.mobile?.message}
-            </Text>
-          )}
+          <Box mt="-0.6rem" h="0.8rem">
+            {formState.errors.mobile && (
+              <Text ml={5} fz="xs" color="red">
+                {formState.errors.mobile?.message}
+              </Text>
+            )}
+          </Box>
         </Stack>
       </Flex>
 
       <Flex
         direction={{ base: 'column', sm: 'row' }}
-        gap={{ base: 'sm', sm: 'lg' }}
+        gap={{ base: 'sm', sm: 'md' }}
         justify={{ sm: 'space-between' }}
+        mt="xs"
       >
-        <Stack mb="md" miw="45%">
+        <Stack miw="45%">
           <Controller
             name="email"
             control={control}
@@ -170,14 +188,16 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
             )}
           />
 
-          {formState.errors.email && (
-            <Text mt={4} ml={5} fz="xs" color="red">
-              {formState.errors.email?.message}
-            </Text>
-          )}
+          <Box mt="-0.6rem" h="0.8rem">
+            {formState.errors.email && (
+              <Text ml={5} fz="xs" color="red">
+                {formState.errors.email?.message}
+              </Text>
+            )}
+          </Box>
         </Stack>
 
-        <Stack mb="md" miw="45%">
+        <Stack miw="45%">
           <Controller
             name="locale"
             control={control}
@@ -199,11 +219,13 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
             )}
           />
 
-          {formState.errors.locale && (
-            <Text mt={4} ml={5} fz="xs" color="red">
-              {formState.errors.locale?.message}
-            </Text>
-          )}
+          <Box mt="-0.6rem" h="0.8rem">
+            {formState.errors.locale && (
+              <Text ml={5} fz="xs" color="red">
+                {formState.errors.locale?.message}
+              </Text>
+            )}
+          </Box>
         </Stack>
       </Flex>
 
