@@ -344,6 +344,9 @@
     }
   },
   "table": {
+    "misc": {
+      "showFilter": "Filter anzeigen"
+    },
     "footer": {
       "pageCount": "Seiten:",
       "pageSize": "Größe:"
