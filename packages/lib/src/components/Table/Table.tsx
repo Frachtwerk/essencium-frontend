@@ -4,7 +4,7 @@ import { flexRender, Table as TanstackTable } from '@tanstack/react-table'
 
 type Props<T> = {
   tableModel: TanstackTable<T>
-  onFilterChange: (key: string, value: string) => void
+  onFilterChange?: (key: string, value: string) => void
   showFilter?: boolean
 }
 
@@ -48,7 +48,7 @@ export function Table<T>({
                         value={(header.column.getFilterValue() ?? '') as string}
                         onChange={e => {
                           header.column.setFilterValue(e.target.value)
-                          onFilterChange(header.column.id, e.target.value)
+                          onFilterChange?.(header.column.id, e.target.value)
                         }}
                       />
                     ) : null}
