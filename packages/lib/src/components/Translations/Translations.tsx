@@ -15,6 +15,7 @@ import { IconArrowBackUp, IconCheck, IconX } from '@tabler/icons-react'
 import { t } from 'i18next'
 import { FormEvent, useState } from 'react'
 import { JSONTree, KeyPath } from 'react-json-tree'
+import { TranslationInput } from 'types'
 
 type FormEventWithTranslation = FormEvent<HTMLFormElement> & {
   target: FormEvent<HTMLFormElement>['target'] & {
@@ -22,12 +23,6 @@ type FormEventWithTranslation = FormEvent<HTMLFormElement> & {
       value: string
     }
   }
-}
-
-export type TranslationInput = {
-  locale: string
-  key: string
-  translation: string
 }
 
 type Props = {

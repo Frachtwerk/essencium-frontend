@@ -7,13 +7,11 @@ import {
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { t } from 'i18next'
-import type { TranslationInput } from 'lib'
+import { TranslationInput, TranslationOutput } from 'types'
 
 import { api } from './api'
 
 const VERSION = 'v1'
-
-type TranslationOutput = Record<string, string>
 
 export function useGetTranslations(
   locale: TranslationInput['locale']
