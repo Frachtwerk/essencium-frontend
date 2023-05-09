@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Flex,
   MediaQuery,
@@ -97,11 +98,13 @@ export function ProfileSettingsForm({
           />
         </MediaQuery>
 
-        {formState.errors.role && (
-          <Text fz="xs" color="red">
-            {formState.errors.role?.message}
-          </Text>
-        )}
+        <Box mt="-0.6rem" h="0.8rem">
+          {formState.errors.role && (
+            <Text ml={5} fz="xs" color="red">
+              {formState.errors.role?.message}
+            </Text>
+          )}
+        </Box>
       </Flex>
 
       <Button type="submit" mt="md" variant="light">

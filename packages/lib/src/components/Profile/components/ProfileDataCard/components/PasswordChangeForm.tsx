@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Flex,
   MediaQuery,
@@ -62,11 +63,13 @@ export function PasswordChangeForm({
               )}
             />
 
-            {formState.errors.verification && (
-              <Text fz="xs" color="red">
-                {formState.errors.verification?.message}
-              </Text>
-            )}
+            <Box mt="-0.6rem" h="0.8rem">
+              {formState.errors.verification && (
+                <Text ml={5} fz="xs" color="red">
+                  {formState.errors.verification?.message}
+                </Text>
+              )}
+            </Box>
           </Stack>
         </MediaQuery>
 
@@ -92,11 +95,13 @@ export function PasswordChangeForm({
               )}
             />
 
-            {formState.errors.password && (
-              <Text fz="xs" color="red">
-                {formState.errors.password?.message}
-              </Text>
-            )}
+            <Box mt="-0.6rem" h="0.8rem">
+              {formState.errors.password && (
+                <Text ml={5} fz="xs" color="red">
+                  {formState.errors.password?.message}
+                </Text>
+              )}
+            </Box>
           </Stack>
         </MediaQuery>
 
@@ -122,11 +127,13 @@ export function PasswordChangeForm({
               )}
             />
 
-            {formState.errors.confirmPassword && (
-              <Text fz="xs" color="red">
-                {formState.errors.confirmPassword?.message}
-              </Text>
-            )}
+            <Box mt="-0.6rem" h="0.8rem">
+              {formState.errors.confirmPassword && (
+                <Text ml={5} fz="xs" color="red">
+                  {formState.errors.confirmPassword?.message}
+                </Text>
+              )}
+            </Box>
           </Stack>
         </MediaQuery>
 

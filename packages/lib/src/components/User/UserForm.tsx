@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Flex,
   PasswordInput,
@@ -45,10 +46,10 @@ export function UserForm({
 
       <Flex
         direction={{ base: 'column', sm: 'row' }}
-        gap={{ base: 'sm', sm: 'lg' }}
+        gap={{ base: 'sm', sm: 'md' }}
         justify={{ sm: 'space-between' }}
       >
-        <Stack miw="45%" mb="md" spacing="xs">
+        <Stack miw="45%">
           <Controller
             name="firstName"
             control={control}
@@ -65,14 +66,16 @@ export function UserForm({
             )}
           />
 
-          {formState.errors.firstName && (
-            <Text fz="xs" color="red">
-              {formState.errors.firstName?.message}
-            </Text>
-          )}
+          <Box mt="-0.6rem" h="0.8rem">
+            {formState.errors.firstName && (
+              <Text ml={5} fz="xs" color="red">
+                {formState.errors.firstName?.message}
+              </Text>
+            )}
+          </Box>
         </Stack>
 
-        <Stack miw="45%" mb="md" spacing="xs">
+        <Stack miw="45%">
           <Controller
             name="lastName"
             control={control}
@@ -89,20 +92,23 @@ export function UserForm({
             )}
           />
 
-          {formState.errors.lastName && (
-            <Text mt={4} ml={5} fz="xs" color="red">
-              {formState.errors.lastName?.message}
-            </Text>
-          )}
+          <Box mt="-0.6rem" h="0.8rem">
+            {formState.errors.lastName && (
+              <Text ml={5} fz="xs" color="red">
+                {formState.errors.lastName?.message}
+              </Text>
+            )}
+          </Box>
         </Stack>
       </Flex>
 
       <Flex
         direction={{ base: 'column', sm: 'row' }}
-        gap={{ base: 'sm', sm: 'lg' }}
+        gap={{ base: 'sm', sm: 'md' }}
         justify={{ sm: 'space-between' }}
+        mt="xs"
       >
-        <Stack miw="45%" mb="md" spacing="xs">
+        <Stack miw="45%">
           <Controller
             name="email"
             control={control}
@@ -119,14 +125,16 @@ export function UserForm({
             )}
           />
 
-          {formState.errors.email && (
-            <Text mt={4} ml={5} fz="xs" color="red">
-              {formState.errors.email?.message}
-            </Text>
-          )}
+          <Box mt="-0.6rem" h="0.8rem">
+            {formState.errors.email && (
+              <Text ml={5} fz="xs" color="red">
+                {formState.errors.email?.message}
+              </Text>
+            )}
+          </Box>
         </Stack>
 
-        <Stack miw="45%" mb="md" spacing="xs">
+        <Stack miw="45%">
           <Controller
             name="password"
             control={control}
@@ -142,20 +150,23 @@ export function UserForm({
             )}
           />
 
-          {formState.errors.password && (
-            <Text fz="xs" color="red">
-              {formState.errors.password?.message}
-            </Text>
-          )}
+          <Box mt="-0.6rem" h="0.8rem">
+            {formState.errors.password && (
+              <Text ml={5} fz="xs" color="red">
+                {formState.errors.password?.message}
+              </Text>
+            )}
+          </Box>
         </Stack>
       </Flex>
 
       <Flex
         direction={{ base: 'column', sm: 'row' }}
-        gap={{ base: 'sm', sm: 'lg' }}
+        gap={{ base: 'sm', sm: 'md' }}
         justify={{ sm: 'space-between' }}
+        mt="xs"
       >
-        <Stack mb="md" miw="45%" spacing="xs">
+        <Stack miw="45%">
           <Controller
             name="phone"
             control={control}
@@ -171,14 +182,16 @@ export function UserForm({
             )}
           />
 
-          {formState.errors.phone && (
-            <Text fz="xs" color="red">
-              {formState.errors.phone?.message}
-            </Text>
-          )}
+          <Box mt="-0.6rem" h="0.8rem">
+            {formState.errors.phone && (
+              <Text ml={5} fz="xs" color="red">
+                {formState.errors.phone?.message}
+              </Text>
+            )}
+          </Box>
         </Stack>
 
-        <Stack miw="45%" mb="md" spacing="xs">
+        <Stack miw="45%">
           <Controller
             name="mobile"
             control={control}
@@ -194,11 +207,13 @@ export function UserForm({
             )}
           />
 
-          {formState.errors.mobile && (
-            <Text fz="xs" color="red">
-              {formState.errors.mobile?.message}
-            </Text>
-          )}
+          <Box mt="-0.6rem" h="0.8rem">
+            {formState.errors.mobile && (
+              <Text ml={5} fz="xs" color="red">
+                {formState.errors.mobile?.message}
+              </Text>
+            )}
+          </Box>
         </Stack>
       </Flex>
 
@@ -224,11 +239,11 @@ export function UserForm({
 
       <Flex
         direction={{ base: 'column', sm: 'row' }}
-        gap={{ base: 'sm', sm: 'lg' }}
+        gap={{ base: 'sm', sm: 'md' }}
         justify={{ sm: 'space-between' }}
-        mt="lg"
+        mt="sm"
       >
-        <Stack miw="45%" mb="md" spacing="xs">
+        <Stack miw="45%">
           <Controller
             name="locale"
             control={control}
@@ -247,14 +262,16 @@ export function UserForm({
             )}
           />
 
-          {formState.errors.locale && (
-            <Text fz="xs" color="red">
-              {formState.errors.locale?.message}
-            </Text>
-          )}
+          <Box mt="-0.6rem" h="0.8rem">
+            {formState.errors.locale && (
+              <Text ml={5} fz="xs" color="red">
+                {formState.errors.locale?.message}
+              </Text>
+            )}
+          </Box>
         </Stack>
 
-        <Stack miw="45%" mb="md" spacing="xs">
+        <Stack miw="45%">
           <Controller
             name="role"
             control={control}
@@ -275,11 +292,13 @@ export function UserForm({
             )}
           />
 
-          {formState.errors.role && (
-            <Text fz="xs" color="red">
-              {formState.errors.role?.message}
-            </Text>
-          )}
+          <Box mt="-0.6rem" h="0.8rem">
+            {formState.errors.role && (
+              <Text ml={5} fz="xs" color="red">
+                {formState.errors.role?.message}
+              </Text>
+            )}
+          </Box>
         </Stack>
       </Flex>
 

@@ -100,11 +100,13 @@ function AddRole({
             )}
           />
 
-          {formState.errors.name && (
-            <Text ml={5} fz="xs" color="red">
-              {formState.errors.name?.message}
-            </Text>
-          )}
+          <Box mt="-0.6rem" h="0.8rem">
+            {formState.errors.name && (
+              <Text ml={5} fz="xs" color="red">
+                {formState.errors.name?.message}
+              </Text>
+            )}
+          </Box>
 
           <Controller
             name="description"
@@ -125,11 +127,13 @@ function AddRole({
             )}
           />
 
-          {formState.errors.description && (
-            <Text ml={5} fz="xs" color="red">
-              {formState.errors.description?.message}
-            </Text>
-          )}
+          <Box mt="-0.6rem" h="0.8rem">
+            {formState.errors.description && (
+              <Text ml={5} fz="xs" color="red">
+                {formState.errors.description?.message}
+              </Text>
+            )}
+          </Box>
 
           <Divider
             my="xs"
