@@ -1,12 +1,17 @@
+import { i18n } from 'translations'
 import { z } from 'zod'
 
 import { basePropertiesSchema } from './base'
 import { rightOutputSchema } from './right'
 
+const { t } = i18n
+
 const sharedPropertiesSchema = z.object({
-  description: z.string(),
+  description: z
+    .string()
+    .min(8, String(t('validation.roleDescription.minLength'))),
   editable: z.boolean(),
-  name: z.string(),
+  name: z.string().min(2, String(t('validation.roleName.minLength'))),
   protected: z.boolean(),
 })
 
