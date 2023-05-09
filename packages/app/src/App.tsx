@@ -13,6 +13,7 @@ import {
   IconUsers,
 } from '@tabler/icons-react'
 import { useNavigate } from '@tanstack/react-router'
+import i18next from 'i18next'
 import { Footer, Header, NavBar } from 'lib'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -21,6 +22,7 @@ import { FooterLink, NavLink, RIGHTS } from 'types'
 import { version } from '../package.json'
 import { useInvalidateToken } from './api/auth'
 import { useGetMe } from './api/me'
+import { useGetTranslations } from './api/translations'
 import logoURL from './img/web/icon-512.png'
 import { logout } from './utils/logout'
 
@@ -34,6 +36,22 @@ type SearchItems = {
   color?: string
   to: string
   description?: string
+}
+
+function mergeTranslationSources(
+  languages: Record<'de' | 'en', Record<string, string> | undefined>
+): void {
+  Object.entries(languages).forEach(([language, serverTranslations]) => {
+    i18next.addResourceBundle(
+      language,
+      'translation',
+      {
+        ...serverTranslations,
+      },
+      true,
+      true
+    )
+  })
 }
 
 export const NAV_LINKS: NavLink[] = [
@@ -117,6 +135,14 @@ function App({ children }: AppProps): JSX.Element {
   const theme = useMantineTheme()
 
   const { t } = useTranslation()
+
+  const { data: deServerTranslations } = useGetTranslations('de')
+  const { data: enServerTranslations } = useGetTranslations('en')
+
+  mergeTranslationSources({
+    de: deServerTranslations,
+    en: enServerTranslations,
+  })
 
   const [openedNav, setOpenedNav] = useState(false)
 

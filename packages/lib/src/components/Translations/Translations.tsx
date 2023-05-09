@@ -8,12 +8,14 @@ import {
   Input,
   Select,
   Text,
+  Tooltip,
   useMantineTheme,
 } from '@mantine/core'
-import { IconCheck, IconX } from '@tabler/icons-react'
+import { IconArrowBackUp, IconCheck, IconX } from '@tabler/icons-react'
 import { t } from 'i18next'
 import { FormEvent, useState } from 'react'
 import { JSONTree, KeyPath } from 'react-json-tree'
+import { TranslationInput } from 'types'
 
 type FormEventWithTranslation = FormEvent<HTMLFormElement> & {
   target: FormEvent<HTMLFormElement>['target'] & {
@@ -25,9 +27,15 @@ type FormEventWithTranslation = FormEvent<HTMLFormElement> & {
 
 type Props = {
   getTranslations: (lang: string) => Record<string, string> | undefined
+  updateTranslation: ({ locale, key, translation }: TranslationInput) => void
+  deleteTranslation: (key: TranslationInput['key']) => void
 }
 
-export function Translations({ getTranslations }: Props): JSX.Element {
+export function Translations({
+  getTranslations,
+  updateTranslation,
+  deleteTranslation,
+}: Props): JSX.Element {
   const theme = useMantineTheme()
 
   const [keyPathString, setKeyPathString] = useState<string | null>(null)
@@ -69,12 +77,20 @@ export function Translations({ getTranslations }: Props): JSX.Element {
     translation: string
   ): void {
     event.preventDefault()
-    const variable = formatKeyPathToReverseString(keyPath)
-    const newTranslation = {
-      variable,
-      translation,
-    }
-    console.log(newTranslation)
+
+    const key = formatKeyPathToReverseString(keyPath)
+    const locale = selectedLanguage
+
+    updateTranslation({ locale, key, translation })
+
+    setKeyPathString(null)
+  }
+
+  function handleReset(keyPath: KeyPath): void {
+    const key = formatKeyPathToReverseString(keyPath)
+
+    deleteTranslation(key)
+
     setKeyPathString(null)
   }
 
@@ -121,19 +137,50 @@ export function Translations({ getTranslations }: Props): JSX.Element {
                       autoFocus
                     />
 
-                    <ActionIcon type="submit">
-                      <IconCheck size="1.125rem" color={theme.colors.blue[4]} />
-                    </ActionIcon>
+                    <Tooltip
+                      label={t('translationsView.save')}
+                      color={theme.colors.gray[6]}
+                      pl="md"
+                      position="bottom"
+                      withArrow
+                    >
+                      <ActionIcon type="submit">
+                        <IconCheck
+                          size="1.125rem"
+                          color={theme.colors.blue[4]}
+                        />
+                      </ActionIcon>
+                    </Tooltip>
 
-                    <ActionIcon type="reset">
-                      <IconX
-                        onClick={event => {
-                          event.stopPropagation()
-                          setKeyPathString(null)
-                        }}
-                        size="1.125rem"
-                      />
-                    </ActionIcon>
+                    <Tooltip
+                      label={t('translationsView.cancel')}
+                      color={theme.colors.gray[6]}
+                      pl="md"
+                      position="bottom"
+                      withArrow
+                    >
+                      <ActionIcon type="reset">
+                        <IconX
+                          onClick={event => {
+                            event.stopPropagation()
+                            setKeyPathString(null)
+                          }}
+                          size="1.125rem"
+                        />
+                      </ActionIcon>
+                    </Tooltip>
+
+                    <Tooltip
+                      label={t('translationsView.reset')}
+                      color={theme.colors.gray[6]}
+                      pl="md"
+                      position="bottom"
+                      withArrow
+                    >
+                      <ActionIcon onClick={() => handleReset(keyPath)}>
+                        <IconArrowBackUp size="1.125rem" />
+                      </ActionIcon>
+                    </Tooltip>
                   </Group>
 
                   <Divider

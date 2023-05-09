@@ -319,6 +319,22 @@
     "deletingAsyncData": {
       "title": "Löschen ...",
       "message": "Daten werden gelöscht"
+    },
+    "createdTranslationSuccess": {
+      "title": "Erfolg",
+      "message": "Übersetzung erfolgreich geändert"
+    },
+    "createdTranslationError": {
+      "title": "Fehler",
+      "message": "Übersetzung konnte nicht geändert werden"
+    },
+    "deletedTranslationSuccess": {
+      "title": "Erfolg",
+      "message": "Übersetzung erfolgreich zurückgesetzt"
+    },
+    "deletedTranslationError": {
+      "title": "Fehler",
+      "message": "Übersetzung konnte nicht zurückgesetzt werden"
     }
   },
   "table": {
@@ -330,6 +346,9 @@
   "translationsView": {
     "title": "Übersetzungen",
     "select": "Wählen Sie die Sprache",
-    "divider": "Neue Übersetzung"
+    "divider": "Neue Übersetzung",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "reset": "Zurücksetzen"
   }
 }
