@@ -61,15 +61,18 @@ export function RolesView(): JSX.Element {
         accessorKey: 'name',
         header: () => <Text>{t('rolesView.table.name')}</Text>,
         cell: info => info.getValue(),
+        size: 120,
       },
       {
         accessorKey: 'description',
         header: () => <Text>{t('rolesView.table.description')}</Text>,
         cell: info => info.getValue(),
+        size: 200,
       },
       {
         accessorKey: 'rights',
         header: () => <Text>{t('rolesView.table.rights')}</Text>,
+        size: 600,
         cell: info => (
           <>
             {(info.getValue() as RightOutput[]).map((right: RightOutput) => (

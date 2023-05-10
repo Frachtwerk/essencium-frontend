@@ -103,36 +103,44 @@ export function UsersView(): JSX.Element {
         accessorKey: 'id',
         header: () => <Text>{t('usersView.table.id')}</Text>,
         cell: info => info.getValue(),
+        size: 60,
       },
       {
         accessorKey: 'enabled',
         header: () => <Text>{t('usersView.table.active')}</Text>,
         cell: info => (info.getValue() ? <IconCheck /> : <IconX />),
+        size: 60,
       },
       {
         accessorKey: 'firstName',
         header: () => <Text>{t('usersView.table.firstName')}</Text>,
         cell: info => info.getValue(),
+        size: 120,
       },
       {
         accessorKey: 'lastName',
         header: () => <Text>{t('usersView.table.lastName')}</Text>,
         cell: info => info.getValue(),
+        size: 120,
       },
       {
         accessorKey: 'phone',
         header: () => <Text>{t('usersView.table.phone')}</Text>,
         cell: info => info.getValue(),
+        size: 180,
       },
       {
         accessorKey: 'email',
         header: () => <Text>{t('usersView.table.email')}</Text>,
         cell: info => info.getValue(),
+        size: 230,
+        maxSize: 250,
       },
       {
         accessorKey: 'locale',
         header: () => <Text>{t('usersView.table.locale')}</Text>,
         cell: info => t(`${info.getValue()}`),
+        size: 120,
       },
       {
         accessorKey: 'role',
@@ -142,11 +150,14 @@ export function UsersView(): JSX.Element {
             {(info.getValue() as RoleOutput).name}
           </Badge>
         ),
+        size: 120,
       },
       {
         accessorKey: 'actions',
         header: () => <Text>{t('usersView.table.actions')}</Text>,
         enableSorting: false,
+        size: 120,
+
         cell: info => {
           const rowUser = info.row.original
 
