@@ -137,6 +137,9 @@
     "forgotPassword": "Passwort vergessen?",
     "register": "Registrieren",
     "noAccount": "Kein Konto?",
+    "errorMessage": {
+      "title": "Ihre Anmeldung war leider nicht erfolgreich."
+    },
     "resetPassword": {
       "form": {
         "description": "Passwort vergessen? Geben Sie Ihre E-Mail ein und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts.",
@@ -148,6 +151,9 @@
       "successMessage": {
         "title": "E-Mail gesendet",
         "description": "Wir haben eine E-Mail mit einem Link zum Zurücksetzen Ihres Passworts an Ihr Konto gesendet. Bitte überprüfen Sie Ihren Posteingang und befolgen Sie die Anweisungen in der E-Mail."
+      },
+      "errorMessage": {
+        "title": "Zurücksetzen war leider nicht erfolgreich."
       }
     }
   },

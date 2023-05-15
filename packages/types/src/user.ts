@@ -85,3 +85,9 @@ export const loginFormSchema = z.object({
 })
 
 export type LoginForm = z.infer<typeof loginFormSchema>
+
+export const resetPasswordSchema = z.object({
+  email: z.string().email(String(t('validation.email.notValid'))),
+})
+
+export type ResetPassword = z.infer<typeof resetPasswordSchema>
