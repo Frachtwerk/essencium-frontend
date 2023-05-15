@@ -1,1 +1,1 @@
-export * from './SetPasswordForm'
+export * from './SetPasswordSuccessMessage'

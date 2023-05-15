@@ -163,6 +163,11 @@
       "newPassword": "New Password",
       "confirmPassword": "Confirm Password",
       "submit": "Save Password"
+    },
+    "successMessage": {
+      "title": "Update successful",
+      "text": "Your password has been updated. You can now login with your new credentials.",
+      "button": "Login now"
     }
   },
   "homeView": {
