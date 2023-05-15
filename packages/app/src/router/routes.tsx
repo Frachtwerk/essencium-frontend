@@ -1,6 +1,5 @@
 import { RootRoute, Route, Router } from '@tanstack/react-router'
-import { SetPassword } from 'lib'
-import { RIGHTS, UserOutput } from 'types'
+import { resetTokenSchema, RIGHTS, UserOutput } from 'types'
 
 import { layoutRouteAppShell, layoutRouteLogin } from '@/router/layouts'
 import { ContactView } from '@/views/ContactView'
@@ -9,6 +8,7 @@ import { LoginView } from '@/views/LoginView'
 import { ProfileView } from '@/views/ProfileView'
 import { RightsView } from '@/views/RightsView'
 import { RolesView } from '@/views/RolesView'
+import { SetPasswordView } from '@/views/SetPasswordView/SetPasswordView'
 import { TranslationsView } from '@/views/TranslationsView/TranslationsView'
 import { AddUserView } from '@/views/UsersView/AddUserView'
 import { UpdateUserView } from '@/views/UsersView/UpdateUserView'
@@ -36,8 +36,9 @@ export const indexRoute = new Route({
 
 export const setPasswordRoute = new Route({
   getParentRoute: () => layoutRouteLogin,
-  path: 'set-password',
-  component: SetPassword,
+  path: 'setPassword',
+  component: SetPasswordView,
+  validateSearch: search => resetTokenSchema.parse(search),
 })
 
 export const loginRoute = new Route({
