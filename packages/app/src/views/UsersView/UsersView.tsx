@@ -156,7 +156,6 @@ export function UsersView(): JSX.Element {
         accessorKey: 'actions',
         header: () => <Text>{t('usersView.table.actions')}</Text>,
         enableSorting: false,
-        size: 120,
 
         cell: info => {
           const rowUser = info.row.original
@@ -187,6 +186,7 @@ export function UsersView(): JSX.Element {
             </Flex>
           )
         },
+        size: 120,
       },
     ],
     [t, handleEditUser, handleDeleteUser, user]
