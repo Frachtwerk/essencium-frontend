@@ -15,11 +15,6 @@ type TokenResponse = {
   token: string
 }
 
-type SetPasswordRequest = {
-  password: string
-  resetToken: string
-}
-
 const VERSION = 'v1'
 
 export const authTokenAtom = atomWithStorage<string | null>('authToken', null)
@@ -103,19 +98,19 @@ export function useResetPassword(): UseMutationResult<
   return mutation
 }
 
-export function useSetPassword(
-  request: SetPasswordRequest
-): UseMutationResult<TokenResponse, AxiosError, void, unknown> {
-  const mutation = useMutation<TokenResponse, AxiosError>({
+export function useSetPassword(): UseMutationResult<
+  null,
+  AxiosError,
+  SetPasswordInput
+> {
+  const mutation = useMutation<null, AxiosError, SetPasswordInput>({
     mutationKey: ['useSetPassword'],
-    mutationFn: () =>
+    mutationFn: ({ password, verification }: SetPasswordInput) =>
       api
-        .post<TokenResponse, { data: SetPasswordRequest }>(
-          `${VERSION}/reset-credentials`,
-          {
-            data: request,
-          }
-        )
+        .post<null, SetPasswordInput>(`${VERSION}/set-password`, {
+          password,
+          verification,
+        })
         .then(res => res.data),
   })
 
