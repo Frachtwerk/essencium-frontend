@@ -21,6 +21,7 @@ export function Table<T>({ tableModel }: Props<T>): JSX.Element {
                       justify="space-between"
                       sx={{ cursor: 'pointer' }}
                       onClick={header.column.getToggleSortingHandler()}
+                      w={header.column.getSize()}
                     >
                       {flexRender(
                         header.column.columnDef.header,
@@ -43,7 +44,7 @@ export function Table<T>({ tableModel }: Props<T>): JSX.Element {
             {tableModel.getRowModel().rows.map(row => (
               <tr key={row.id}>
                 {row.getVisibleCells().map(cell => (
-                  <td key={cell.id}>
+                  <td key={cell.id} width={cell.column.getSize()}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}

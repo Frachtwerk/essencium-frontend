@@ -114,6 +114,7 @@ export function RightsView(): JSX.Element {
     const roleColumns: ColumnDef<RightOutput>[] = (roles?.content || []).map(
       role => ({
         accessorKey: `${role.name}`,
+        size: 100,
         header: () => (
           <Text color={role.protected ? 'grey' : 'primary'}>
             {t(`rightsView.table.${role.name}`)}
@@ -155,6 +156,7 @@ export function RightsView(): JSX.Element {
         accessorKey: 'name',
         header: () => <Text>{t('rightsView.table.name')}</Text>,
         cell: info => info.getValue(),
+        size: 150,
       },
       ...roleColumns,
     ]
