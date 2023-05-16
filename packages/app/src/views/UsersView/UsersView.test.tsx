@@ -97,7 +97,6 @@ describe('UsersView', () => {
 
     render(<UsersView />)
 
-    expect(screen.getByRole('presentation')).toBeDefined()
     expect(useGetUsers).toHaveBeenCalled()
     expect(createPortal).not.toHaveBeenCalled()
   })
@@ -131,7 +130,6 @@ describe('UsersView', () => {
 
     render(<UsersView />)
 
-    expect(screen.getByRole('presentation')).toBeDefined()
     expect(useGetUsers).toHaveBeenCalled()
     expect(createPortal).toHaveBeenCalled()
   })
@@ -148,7 +146,6 @@ describe('UsersView', () => {
 
     render(<UsersView />)
 
-    expect(screen.getByRole('presentation')).toBeDefined()
     expect(useGetUsers).toHaveBeenCalled()
     expect(createPortal).toHaveBeenCalled()
   })

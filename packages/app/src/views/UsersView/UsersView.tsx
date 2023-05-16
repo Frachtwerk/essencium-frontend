@@ -5,10 +5,11 @@ import {
   Button,
   Center,
   Flex,
-  Loader,
+  Switch,
   Text,
   Title,
 } from '@mantine/core'
+import { useDebouncedValue } from '@mantine/hooks'
 import {
   IconCheck,
   IconDotsVertical,
@@ -21,12 +22,11 @@ import { Link as Routerlink, useNavigate } from '@tanstack/react-router'
 import {
   ColumnDef,
   getCoreRowModel,
-  getPaginationRowModel,
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
 import { useAtom } from 'jotai'
-import { HttpNotification, Table, TablePagination } from 'lib'
+import { HttpNotification, LoadingSpinner, Table, TablePagination } from 'lib'
 import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RIGHTS, RoleOutput, UserOutput } from 'types'
@@ -60,6 +60,20 @@ export function UsersView(): JSX.Element {
   const [activePage, setActivePage] = useState(1)
   const [pageSize, setPageSize] = useState(20)
   const [sorting, setSorting] = useState<SortingState>(DEFAULT_SORTING)
+  const [columnFilters, setColumnFilters] = useState({})
+  const [columnFiltersDebounced] = useDebouncedValue(columnFilters, 350)
+  const [showFilter, setShowFilter] = useState(false)
+
+  function handleFilterChange(key: string, value: string): void {
+    // reset to first page when filtering
+    setActivePage(1)
+
+    setColumnFilters(prevFilters => ({
+      ...prevFilters,
+      // map 'firstName' and 'lastName' to 'name' hence the API can only handle 'name'
+      [key === 'firstName' || key === 'lastName' ? 'name' : key]: value,
+    }))
+  }
 
   const {
     data: users,
@@ -73,6 +87,7 @@ export function UsersView(): JSX.Element {
     page: activePage - 1,
     size: pageSize,
     sort: parseSorting(sorting, DEFAULT_SORTING),
+    filter: columnFiltersDebounced,
   })
 
   const handleRefetch = useCallback((): void => {
@@ -104,12 +119,14 @@ export function UsersView(): JSX.Element {
         header: () => <Text>{t('usersView.table.id')}</Text>,
         cell: info => info.getValue(),
         size: 60,
+        enableColumnFilter: false,
       },
       {
         accessorKey: 'enabled',
         header: () => <Text>{t('usersView.table.active')}</Text>,
         cell: info => (info.getValue() ? <IconCheck /> : <IconX />),
         size: 60,
+        enableColumnFilter: false,
       },
       {
         accessorKey: 'firstName',
@@ -128,6 +145,7 @@ export function UsersView(): JSX.Element {
         header: () => <Text>{t('usersView.table.phone')}</Text>,
         cell: info => info.getValue(),
         size: 180,
+        enableColumnFilter: false,
       },
       {
         accessorKey: 'email',
@@ -141,6 +159,7 @@ export function UsersView(): JSX.Element {
         header: () => <Text>{t('usersView.table.locale')}</Text>,
         cell: info => t(`${info.getValue()}`),
         size: 120,
+        enableColumnFilter: false,
       },
       {
         accessorKey: 'role',
@@ -156,7 +175,7 @@ export function UsersView(): JSX.Element {
         accessorKey: 'actions',
         header: () => <Text>{t('usersView.table.actions')}</Text>,
         enableSorting: false,
-
+        enableColumnFilter: false,
         cell: info => {
           const rowUser = info.row.original
 
@@ -201,7 +220,6 @@ export function UsersView(): JSX.Element {
     manualSorting: true,
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     pageCount: users?.totalPages,
   })
 
@@ -217,7 +235,6 @@ export function UsersView(): JSX.Element {
         loadingTitle={t('notifications.loadingAsyncData.title') as string}
         loadingMessage={t('notifications.loadingAsyncData.message') as string}
       />
-
       <Flex py="md" justify="space-between" align="center">
         <Title size="h2">
           <Flex align="center" gap={10}>
@@ -227,7 +244,14 @@ export function UsersView(): JSX.Element {
           </Flex>
         </Title>
 
-        <Flex align="center" gap="xs">
+        <Switch
+          label={t('table.misc.showFilter')}
+          checked={showFilter}
+          onChange={() => setShowFilter(!showFilter)}
+          ml="auto"
+        />
+
+        <Flex ml="xl" align="center" gap="xs">
           <Button
             variant="light"
             onClick={() => {
@@ -254,11 +278,15 @@ export function UsersView(): JSX.Element {
 
       {isLoading ? (
         <Center h="100%">
-          <Loader size="xl" name="loader" />
+          <LoadingSpinner show delay={250} />
         </Center>
       ) : (
         <>
-          <Table tableModel={table} />
+          <Table
+            tableModel={table}
+            onFilterChange={handleFilterChange}
+            showFilter={showFilter}
+          />
 
           <TablePagination
             table={table}

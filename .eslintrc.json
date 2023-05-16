@@ -105,6 +105,7 @@
       {
         "allowExpressions": true
       }
-    ]
+    ],
+    "consistent-return": "off"
   }
 }

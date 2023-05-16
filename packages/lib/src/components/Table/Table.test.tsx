@@ -1,9 +1,4 @@
-import {
-  getCoreRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
-} from '@tanstack/react-table'
+import { getCoreRowModel, useReactTable } from '@tanstack/react-table'
 import { render, RenderResult, screen } from '@testing-library/react'
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 
@@ -139,8 +134,6 @@ describe('Table', () => {
     vi.mock('@tanstack/react-table', async () => {
       return {
         getCoreRowModel: () => [],
-        getSortedRowModel: () => [],
-        getPaginationRowModel: () => [],
         useReactTable: () => {
           return {
             getHeaderGroups: () => [],
@@ -164,11 +157,15 @@ describe('Table', () => {
       data: USERS,
       columns: [],
       getCoreRowModel: getCoreRowModel(),
-      getSortedRowModel: getSortedRowModel(),
-      getPaginationRowModel: getPaginationRowModel(),
     })
 
-    TableMounted = render(<Table tableModel={table} />)
+    TableMounted = render(
+      <Table
+        tableModel={table}
+        onFilterChange={() => ({})}
+        showFilter={false}
+      />
+    )
   })
 
   afterAll(() => {

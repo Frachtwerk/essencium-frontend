@@ -5,7 +5,6 @@ import { IconUserCheck } from '@tabler/icons-react'
 import {
   ColumnDef,
   getCoreRowModel,
-  getPaginationRowModel,
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
@@ -100,7 +99,6 @@ export function RolesView(): JSX.Element {
     manualSorting: true,
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     pageCount: roles?.totalPages,
   })
 
