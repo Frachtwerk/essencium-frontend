@@ -6,7 +6,7 @@ export function SetPasswordForm(): JSX.Element {
   const { t } = useTranslation()
 
   return (
-    <Card w={450} shadow="sm" p="lg" radius="sm" withBorder data-testid="card">
+    <Card w={450} shadow="sm" p="lg" radius="sm" withBorder>
       <Title order={2} mb="md">
         {t('setPasswordView.title')}
       </Title>

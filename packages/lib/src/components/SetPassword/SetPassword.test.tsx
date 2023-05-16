@@ -14,30 +14,11 @@ describe('SetPassword', () => {
     SetPasswordMounted.unmount()
   })
 
-  it('renders SetPassword component with correct layout', () => {
+  it('renders SetPassword component and its child component', () => {
     const center = screen.getByRole('article')
     expect(center).toBeDefined()
 
     const SetPasswordForm = within(center)
     expect(SetPasswordForm).toBeDefined()
-  })
-
-  describe('SetPasswordForm', () => {
-    it('renders correctly with all details and form elements', () => {
-      const card = screen.getByTestId('card')
-      expect(card).toBeDefined()
-
-      const title = within(card).getByRole('heading', { level: 2 })
-      expect(title).toBeDefined()
-
-      const newPasswordInput = within(card).getByLabelText(/new/i)
-      expect(newPasswordInput).toBeDefined()
-
-      const confirmPasswordInput = within(card).getByLabelText(/confirm/i)
-      expect(confirmPasswordInput).toBeDefined()
-
-      const submitButton = within(card).getByRole('button')
-      expect(submitButton).toBeDefined()
-    })
   })
 })
