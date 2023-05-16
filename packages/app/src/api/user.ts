@@ -20,15 +20,17 @@ export type GetUsersParams = {
   page: UsersResponse['number']
   size: UsersResponse['size']
   sort?: string
+  filter?: Record<string, string>
 }
 
 export function useGetUsers({
   page,
   size,
   sort,
+  filter,
 }: GetUsersParams): UseQueryResult<UsersResponse, AxiosError> {
   const query = useQuery<UsersResponse, AxiosError>({
-    queryKey: ['getUsers', { page, size, sort }],
+    queryKey: ['getUsers', { page, size, sort, filter }],
     queryFn: () =>
       api
         .get<UsersResponse>(`${VERSION}/users`, {
@@ -36,6 +38,7 @@ export function useGetUsers({
             page,
             size,
             sort,
+            ...filter,
           },
         })
         .then(response => response.data),

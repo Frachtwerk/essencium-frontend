@@ -1,12 +1,18 @@
-import { Flex, Table as MantineTable } from '@mantine/core'
+import { Flex, Table as MantineTable, TextInput } from '@mantine/core'
 import { IconSortAscending2, IconSortDescending2 } from '@tabler/icons-react'
 import { flexRender, Table as TanstackTable } from '@tanstack/react-table'
 
 type Props<T> = {
   tableModel: TanstackTable<T>
+  onFilterChange?: (key: string, value: string) => void
+  showFilter?: boolean
 }
 
-export function Table<T>({ tableModel }: Props<T>): JSX.Element {
+export function Table<T>({
+  tableModel,
+  onFilterChange,
+  showFilter,
+}: Props<T>): JSX.Element {
   return (
     <Flex direction="column" align="end">
       <div style={{ overflowX: 'auto', width: '100%' }}>
@@ -15,7 +21,7 @@ export function Table<T>({ tableModel }: Props<T>): JSX.Element {
             {tableModel.getHeaderGroups().map(headerGroup => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map(header => (
-                  <th key={header.id}>
+                  <th key={header.id} style={{ verticalAlign: 'top' }}>
                     <Flex
                       align="center"
                       justify="space-between"
@@ -34,6 +40,18 @@ export function Table<T>({ tableModel }: Props<T>): JSX.Element {
                         }[(header.column.getIsSorted() as string) ?? null]
                       }
                     </Flex>
+
+                    {showFilter && header.column.getCanFilter() ? (
+                      <TextInput
+                        w="100%"
+                        size="xs"
+                        value={(header.column.getFilterValue() ?? '') as string}
+                        onChange={e => {
+                          header.column.setFilterValue(e.target.value)
+                          onFilterChange?.(header.column.id, e.target.value)
+                        }}
+                      />
+                    ) : null}
                   </th>
                 ))}
               </tr>
