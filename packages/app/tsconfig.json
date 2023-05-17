@@ -3,9 +3,9 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"],
-      "lib": ["../lib/src"],
-      "translations": ["../translations/src"],
-      "types": ["../types/src"]
+      "@frachtwerk/lib": ["../lib/src"],
+      "@frachtwerk/translations": ["../translations/src"],
+      "@frachtwerk/types": ["../types/src"]
     }
   }
 }

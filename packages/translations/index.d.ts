@@ -1,6 +1,6 @@
 import { i18n as i18next, ThirdPartyModule } from 'i18next'
 
-declare module 'translations' {
+declare module '@frachtwerk/translations' {
   type En = JSON
   type De = JSON
 

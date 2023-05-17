@@ -1,3 +1,4 @@
+export * from './base'
 export * from './footer'
 export * from './navbar'
 export * from './right'

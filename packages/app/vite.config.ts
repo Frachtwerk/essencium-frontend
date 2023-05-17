@@ -59,11 +59,11 @@ export default defineConfig({
       },
       // this entry enables HMR for the lib & translations development
       {
-        find: 'lib',
+        find: '@frachtwerk/lib',
         replacement: path.resolve(__dirname, '../lib/src/index.ts'),
       },
       {
-        find: 'translations',
+        find: '@frachtwerk/translations',
         replacement: path.resolve(__dirname, '../translations/src/index.ts'),
       },
       {

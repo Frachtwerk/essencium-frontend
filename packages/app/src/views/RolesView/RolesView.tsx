@@ -9,7 +9,12 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { useAtom } from 'jotai'
-import { AddRole, HttpNotification, Table, TablePagination } from 'lib'
+import {
+  AddRole,
+  HttpNotification,
+  Table,
+  TablePagination,
+} from '@frachtwerk/lib'
 import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RightOutput, RIGHTS, RoleOutput } from '@frachtwerk/types'

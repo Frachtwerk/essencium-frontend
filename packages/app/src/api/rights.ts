@@ -1,7 +1,6 @@
+import { PaginatedResponse, RightOutput } from '@frachtwerk/types'
 import { useQuery, UseQueryResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { RightOutput } from '@frachtwerk/types'
-import { PaginatedResponse } from 'types/src/base'
 
 import { api } from './api'
 

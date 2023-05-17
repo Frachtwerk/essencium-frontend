@@ -227,7 +227,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish 'translations' package
+      - name: Publish '@frachtwerk/translations' package
         run: pnpm publish --filter "@frachtwerk/translations" --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

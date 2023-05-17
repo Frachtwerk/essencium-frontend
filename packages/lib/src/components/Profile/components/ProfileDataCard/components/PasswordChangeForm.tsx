@@ -1,3 +1,4 @@
+import { i18n } from '@frachtwerk/translations'
 import { PasswordChange, passwordChangeSchema } from '@frachtwerk/types'
 import {
   Box,
@@ -9,7 +10,6 @@ import {
   Text,
 } from '@mantine/core'
 import { Controller } from 'react-hook-form'
-import { i18n } from 'translations'
 
 import { useZodForm } from '../../../../../hooks'
 

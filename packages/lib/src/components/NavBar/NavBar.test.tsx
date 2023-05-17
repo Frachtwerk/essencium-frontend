@@ -9,7 +9,7 @@ import {
 import { render, RenderResult, screen } from '@testing-library/react'
 import { CSSProperties } from 'react'
 import { initReactI18next } from 'react-i18next'
-import { initI18n } from 'translations'
+import { initI18n } from '@frachtwerk/translations'
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { NavBar } from './NavBar'

@@ -1,3 +1,4 @@
+import { Footer, Header, NavBar } from '@frachtwerk/lib'
 import { FooterLink, NavLink, RIGHTS } from '@frachtwerk/types'
 import { AppShell, Image, useMantineTheme } from '@mantine/core'
 import type { SpotlightAction } from '@mantine/spotlight'
@@ -15,7 +16,6 @@ import {
 } from '@tabler/icons-react'
 import { useNavigate } from '@tanstack/react-router'
 import i18next from 'i18next'
-import { Footer, Header, NavBar } from 'lib'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 

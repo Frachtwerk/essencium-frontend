@@ -1,4 +1,10 @@
 /* eslint-disable react/no-unstable-nested-components */
+import {
+  HttpNotification,
+  LoadingSpinner,
+  Table,
+  TablePagination,
+} from '@frachtwerk/lib'
 import { RIGHTS, RoleOutput, UserOutput } from '@frachtwerk/types'
 import {
   ActionIcon,
@@ -27,7 +33,6 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { useAtom } from 'jotai'
-import { HttpNotification, LoadingSpinner, Table, TablePagination } from 'lib'
 import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 

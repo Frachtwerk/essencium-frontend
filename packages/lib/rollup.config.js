@@ -39,7 +39,7 @@ export default [
       'react',
       'react-dom',
       'react-i18next',
-      'translations',
+      '@frachtwerk/translations',
       '@tanstack/react-router',
       'zod',
       'react-hook-form',

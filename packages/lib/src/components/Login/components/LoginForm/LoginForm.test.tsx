@@ -33,7 +33,7 @@ describe('LoginForm', () => {
       },
     }))
 
-    vi.mock('translations', () => ({
+    vi.mock('@frachtwerk/translations', () => ({
       i18n: {
         t: (str: unknown) => str,
       },

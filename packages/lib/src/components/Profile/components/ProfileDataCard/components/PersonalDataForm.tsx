@@ -9,7 +9,7 @@ import {
   TextInput,
 } from '@mantine/core'
 import { Controller } from 'react-hook-form'
-import { i18n } from 'translations'
+import { i18n } from '@frachtwerk/translations'
 
 import { useZodForm } from '../../../../../hooks'
 

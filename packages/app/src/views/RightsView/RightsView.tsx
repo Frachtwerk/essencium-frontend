@@ -1,4 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
+import { HttpNotification, Table, TablePagination } from '@frachtwerk/lib'
+import { RightOutput, RIGHTS, RoleOutput, RoleUpdate } from '@frachtwerk/types'
 import {
   Button,
   Center,
@@ -16,10 +18,8 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { useAtom } from 'jotai'
-import { HttpNotification, Table, TablePagination } from 'lib'
 import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { RightOutput, RIGHTS, RoleOutput, RoleUpdate } from '@frachtwerk/types'
 
 import { userAtom } from '@/api/me'
 import { useGetRights } from '@/api/rights'

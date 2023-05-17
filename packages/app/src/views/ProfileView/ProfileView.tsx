@@ -1,5 +1,5 @@
 import { Center, Loader } from '@mantine/core'
-import { Profile } from 'lib'
+import { Profile } from '@frachtwerk/lib'
 import { useTranslation } from 'react-i18next'
 import { PasswordChange, UserUpdate } from '@frachtwerk/types'
 

@@ -2,8 +2,8 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "paths": {
-      "translations": ["../translations/src"],
-      "types": ["../types/src"]
+      "@frachtwerk/translations": ["../translations/src"],
+      "@frachtwerk/types": ["../types/src"]
     }
   }
 }

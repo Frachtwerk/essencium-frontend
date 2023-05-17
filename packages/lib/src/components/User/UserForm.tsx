@@ -17,7 +17,7 @@ import {
   FormState,
   UseFormSetValue,
 } from 'react-hook-form'
-import { i18n } from 'translations'
+import { i18n } from '@frachtwerk/translations'
 
 type Props = {
   title: string

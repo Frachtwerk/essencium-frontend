@@ -65,14 +65,14 @@
     "fast-glob": "3.2.12",
     "i18next": "22.4.11",
     "jotai": "2.0.3",
-    "lib": "workspace:*",
+    "@frachtwerk/lib": "workspace:*",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "7.43.5",
     "react-i18next": "12.2.0",
     "react-json-tree": "0.18.0",
-    "translations": "workspace:*",
-    "types": "workspace:*",
+    "@frachtwerk/translations": "workspace:*",
+    "@frachtwerk/types": "workspace:*",
     "zod": "3.20.6"
   },
   "devDependencies": {
@@ -116,7 +116,7 @@
     ]
   },
   "dependenciesMeta": {
-    "lib": {
+    "@frachtwerk/lib": {
       "injected": true
     }
   }
