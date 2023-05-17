@@ -27,7 +27,6 @@ export function ResetPasswordForm({
   function onSubmit({ email }: ResetPassword): void {
     handlePasswordReset(email)
   }
-
   return (
     <Container p={0} m={0}>
       <form onSubmit={handleSubmit(onSubmit)}>
