@@ -161,7 +161,7 @@ jobs:
 
   version:
     name: version
-    needs: [lint, unit-test, e2e-tests, build]
+    needs: [lint, unit-tests, e2e-tests, build]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
