@@ -2,7 +2,12 @@ import { Card, Tabs } from '@mantine/core'
 import { IconLock, IconSettings, IconUser } from '@tabler/icons-react'
 import { useMatch } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
-import { PasswordChange, RoleOutput, UserOutput, UserUpdate } from 'types'
+import {
+  PasswordChange,
+  RoleOutput,
+  UserOutput,
+  UserUpdate,
+} from '@frachtwerk/types'
 
 import {
   PasswordChangeForm,

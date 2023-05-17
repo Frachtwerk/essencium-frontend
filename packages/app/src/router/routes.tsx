@@ -1,5 +1,10 @@
+import { SetPassword } from '@frachtwerk/essencium-lib'
+import {
+  resetPasswordSchema,
+  RIGHTS,
+  UserOutput,
+} from '@frachtwerk/essencium-types'
 import { RootRoute, Route, Router } from '@tanstack/react-router'
-import { resetTokenSchema, RIGHTS, UserOutput } from 'types'
 
 import { layoutRouteAppShell, layoutRouteLogin } from '@/router/layouts'
 import { ContactView } from '@/views/ContactView'

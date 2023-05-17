@@ -12,7 +12,7 @@ import { useAtom } from 'jotai'
 import { AddRole, HttpNotification, Table, TablePagination } from 'lib'
 import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { RightOutput, RIGHTS, RoleOutput } from 'types'
+import { RightOutput, RIGHTS, RoleOutput } from '@frachtwerk/types'
 
 import { userAtom } from '@/api/me'
 import { useGetRights } from '@/api/rights'

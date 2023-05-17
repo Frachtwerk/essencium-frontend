@@ -1,3 +1,4 @@
+import { UserOutput } from '@frachtwerk/types'
 import {
   Box,
   Group,
@@ -7,7 +8,6 @@ import {
 } from '@mantine/core'
 import { IconChevronRight, IconUserCircle } from '@tabler/icons-react'
 import { Link as RouterLink } from '@tanstack/react-router'
-import { UserOutput } from 'types'
 
 type Props = {
   user: UserOutput

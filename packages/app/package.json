@@ -1,5 +1,5 @@
 {
-  "name": "@fw-test/app",
+  "name": "@frachtwerk/app",
   "version": "0.9.0",
   "private": true,
   "description": "This is the starter application consuming the library.",

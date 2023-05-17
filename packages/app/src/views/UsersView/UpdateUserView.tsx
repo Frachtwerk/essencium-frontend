@@ -4,7 +4,7 @@ import { useNavigate, useParams } from '@tanstack/react-router'
 import { UserForm, useZodForm } from 'lib'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { UserUpdate, userUpdateSchema } from 'types'
+import { UserUpdate, userUpdateSchema } from '@frachtwerk/types'
 
 import { useGetUser, useUpdateUser } from '@/api'
 import { useGetRoles } from '@/api/roles'

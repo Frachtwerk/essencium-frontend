@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { t } from 'i18next'
-import { TranslationInput, TranslationOutput } from 'types'
+import { TranslationInput, TranslationOutput } from '@frachtwerk/types'
 
 import { api } from './api'
 

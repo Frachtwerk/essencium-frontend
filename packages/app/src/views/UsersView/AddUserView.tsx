@@ -1,9 +1,9 @@
+import { UserInput, userInputSchema } from '@frachtwerk/types'
 import { Card, Flex, Text, Title } from '@mantine/core'
 import { IconUserPlus } from '@tabler/icons-react'
 import { useNavigate } from '@tanstack/react-router'
 import { UserForm, useZodForm } from 'lib'
 import { useTranslation } from 'react-i18next'
-import { UserInput, userInputSchema } from 'types'
 
 import { useCreateUser } from '@/api'
 import { useGetRoles } from '@/api/roles'

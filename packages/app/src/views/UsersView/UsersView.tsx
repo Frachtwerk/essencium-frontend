@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unstable-nested-components */
+import { RIGHTS, RoleOutput, UserOutput } from '@frachtwerk/types'
 import {
   ActionIcon,
   Badge,
@@ -29,7 +30,6 @@ import { useAtom } from 'jotai'
 import { HttpNotification, LoadingSpinner, Table, TablePagination } from 'lib'
 import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { RIGHTS, RoleOutput, UserOutput } from 'types'
 
 import { useDeleteUser, useGetUsers } from '@/api'
 import { userAtom } from '@/api/me'

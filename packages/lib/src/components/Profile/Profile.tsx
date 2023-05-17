@@ -1,5 +1,5 @@
+import { RoleOutput, UserOutput, UserUpdate } from '@frachtwerk/types'
 import { Grid } from '@mantine/core'
-import { RoleOutput, UserOutput, UserUpdate } from 'types'
 
 import { ProfileDataCard, ProfileOverviewCard } from './components'
 

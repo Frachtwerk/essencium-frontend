@@ -1,8 +1,12 @@
+import {
+  ResetPassword,
+  SetPasswordInput,
+  UserOutput,
+} from '@frachtwerk/essencium-types'
 import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useAtom, useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
-import { ResetPassword, SetPasswordInput, UserOutput } from 'types'
 
 import { api } from '@/api'
 

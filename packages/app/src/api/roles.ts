@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useTranslation } from 'react-i18next'
-import { RoleInput, RoleOutput, RoleUpdate } from 'types'
+import { RoleInput, RoleOutput, RoleUpdate } from '@frachtwerk/types'
 import { PaginatedResponse } from 'types/src/base'
 
 import { api } from './api'

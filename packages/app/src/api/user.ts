@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { t } from 'i18next'
-import { UserInput, UserOutput, UserUpdate } from 'types'
+import { UserInput, UserOutput, UserUpdate } from '@frachtwerk/types'
 import { PaginatedResponse } from 'types/src/base'
 
 import { api } from './api'

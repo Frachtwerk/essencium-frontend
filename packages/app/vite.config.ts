@@ -67,7 +67,7 @@ export default defineConfig({
         replacement: path.resolve(__dirname, '../translations/src/index.ts'),
       },
       {
-        find: 'types',
+        find: '@frachtwerk/types',
         replacement: path.resolve(__dirname, '../types/src/index.ts'),
       },
     ],
