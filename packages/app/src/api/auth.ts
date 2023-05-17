@@ -97,7 +97,7 @@ export function useResetPassword(): UseMutationResult<
             headers: { 'content-type': 'text/plain' },
           }
         )
-        .then(res => res.data),
+        .then(response => response.data),
   })
 
   return mutation
