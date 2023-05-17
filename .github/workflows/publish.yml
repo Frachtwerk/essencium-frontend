@@ -26,6 +26,7 @@ jobs:
         with:
           node-version: 16
           cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -41,3 +42,5 @@ jobs:
       # testing publishing
       - name: Publish 'lib' package
         run: pnpm publish --filter "@fw-test/lib" --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
