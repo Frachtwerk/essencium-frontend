@@ -1,6 +1,6 @@
 {
   "name": "@fw-test/lib",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "This is the component library for the starter boilerplate.",
   "keywords": [
     "starter",
