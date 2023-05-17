@@ -148,7 +148,7 @@ jobs:
 
       - name: Build
         if: steps.cache-dist.outputs.cache-hit != 'true'
-        run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx build app
+        run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx build @frachtwerk/app
 
       - name: Cache dist folder for 'app' package
         id: cache-dist
@@ -161,7 +161,7 @@ jobs:
 
   version:
     name: version
-    needs: build
+    needs: [lint, unit-test, e2e-tests, build]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
