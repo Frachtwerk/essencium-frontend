@@ -10,8 +10,8 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  publish:
-    name: publish
+  versioning:
+    name: versioning
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -42,8 +42,41 @@ jobs:
         with:
           commit_message: 'chore: bump version'
 
-      # testing publishing
+  publish:
+    name: publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
       - name: Publish 'lib' package
         run: pnpm publish --filter "@fw-test/lib" --access public --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish 'types' package
+        run: pnpm publish --filter "@fw-test/types" --access public --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish 'translations' package
+        run: pnpm publish --filter "@fw-test/translations" --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
