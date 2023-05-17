@@ -11,15 +11,15 @@ import { useCreateToken, useResetPassword } from '@/api/auth'
 export function LoginView(): JSX.Element {
   const navigate = useNavigate()
 
+  const { mutate: resetPassword } = useResetPassword()
   const [isResetPasswordSent, setIsResetPasswordSent] = useState(false)
   const [isPasswordResetFormOpened, setIsPasswordResetFormOpened] =
     useState(false)
 
-  const { mutate } = useCreateToken()
-  const { mutate: handleReset } = useResetPassword()
+  const { mutate: createToken } = useCreateToken()
 
   function handleLogin(username: string, password: string): void {
-    mutate(
+    createToken(
       { username, password },
       {
         onSuccess: () => navigate({ to: '/' }),
@@ -37,7 +37,7 @@ export function LoginView(): JSX.Element {
   }
 
   function handlePasswordReset(email: ResetPassword['email']): void {
-    handleReset(email, {
+    resetPassword(email, {
       onSuccess: () => {
         setIsResetPasswordSent(true)
         setIsPasswordResetFormOpened(false)
