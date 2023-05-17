@@ -16,6 +16,7 @@ import '@fontsource/fira-code/500.css'
 import '@fontsource/fira-code/600.css'
 import '@fontsource/fira-code/700.css'
 
+import { i18n } from '@frachtwerk/translations'
 import {
   ColorScheme,
   ColorSchemeProvider,
@@ -29,7 +30,6 @@ import { RouterProvider } from '@tanstack/react-router'
 import { useAtom } from 'jotai'
 import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
-import { i18n } from '@frachtwerk/translations'
 
 import { userAtom } from './api/me'
 import { router } from './router/init'

@@ -1,8 +1,8 @@
+import { UserForm, useZodForm } from '@frachtwerk/lib'
 import { UserInput, userInputSchema } from '@frachtwerk/types'
 import { Card, Flex, Text, Title } from '@mantine/core'
 import { IconUserPlus } from '@tabler/icons-react'
 import { useNavigate } from '@tanstack/react-router'
-import { UserForm, useZodForm } from '@frachtwerk/lib'
 import { useTranslation } from 'react-i18next'
 
 import { useCreateUser } from '@/api'

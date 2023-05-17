@@ -1,3 +1,4 @@
+import { PasswordChange, UserOutput, UserUpdate } from '@frachtwerk/types'
 import { showNotification } from '@mantine/notifications'
 import {
   useMutation,
@@ -9,7 +10,6 @@ import { AxiosError } from 'axios'
 import { t } from 'i18next'
 import { useAtom, useSetAtom, useStore } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
-import { PasswordChange, UserOutput, UserUpdate } from '@frachtwerk/types'
 
 import { api } from './api'
 

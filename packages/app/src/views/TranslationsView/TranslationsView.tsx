@@ -1,7 +1,7 @@
+import { Translations } from '@frachtwerk/lib'
 import { Group, Title } from '@mantine/core'
 import { IconLanguage } from '@tabler/icons-react'
 import i18next, { t } from 'i18next'
-import { Translations } from '@frachtwerk/lib'
 
 import { useDeleteTranslation, useUpdateTranslation } from '@/api/translations'
 

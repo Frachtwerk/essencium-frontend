@@ -1,3 +1,4 @@
+import { i18n } from '@frachtwerk/translations'
 import { RoleOutput, UserInput, UserUpdate } from '@frachtwerk/types'
 import {
   Box,
@@ -17,7 +18,6 @@ import {
   FormState,
   UseFormSetValue,
 } from 'react-hook-form'
-import { i18n } from '@frachtwerk/translations'
 
 type Props = {
   title: string

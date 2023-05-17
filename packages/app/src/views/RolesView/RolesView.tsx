@@ -1,4 +1,11 @@
 /* eslint-disable react/no-unstable-nested-components */
+import {
+  AddRole,
+  HttpNotification,
+  Table,
+  TablePagination,
+} from '@frachtwerk/lib'
+import { RightOutput, RIGHTS, RoleOutput } from '@frachtwerk/types'
 import { Badge, Button, Center, Flex, Loader, Text, Title } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { IconUserCheck } from '@tabler/icons-react'
@@ -9,15 +16,8 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { useAtom } from 'jotai'
-import {
-  AddRole,
-  HttpNotification,
-  Table,
-  TablePagination,
-} from '@frachtwerk/lib'
 import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { RightOutput, RIGHTS, RoleOutput } from '@frachtwerk/types'
 
 import { userAtom } from '@/api/me'
 import { useGetRights } from '@/api/rights'

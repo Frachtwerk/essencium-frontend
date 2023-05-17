@@ -1,3 +1,4 @@
+import { i18n } from '@frachtwerk/translations'
 import { UserOutput, UserUpdate, userUpdateSchema } from '@frachtwerk/types'
 import {
   Box,
@@ -9,7 +10,6 @@ import {
   TextInput,
 } from '@mantine/core'
 import { Controller } from 'react-hook-form'
-import { i18n } from '@frachtwerk/translations'
 
 import { useZodForm } from '../../../../../hooks'
 
