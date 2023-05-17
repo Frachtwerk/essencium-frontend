@@ -1,16 +1,14 @@
-name: Release
+name: Publish
 on:
   push:
     branches:
       - main
-  pull_request: {}
-
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  release:
-    name: release
+  publish:
+    name: publish
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -39,3 +37,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: 'chore: bump version'
+
+      # testing publishing
+      - name: Publish 'lib' package
+        run: pnpm publish --filter "@fw-test/lib" --access public
