@@ -160,7 +160,7 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('pnpm-lock.yaml') }}
 
   version:
-    name: versioning
+    name: version
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
