@@ -150,6 +150,24 @@ jobs:
         if: steps.cache-dist.outputs.cache-hit != 'true'
         run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx build @frachtwerk/app
 
+      - name: Upload 'lib' dist folder
+        uses: actions/upload-artifact@v2
+        with:
+          name: lib-dist
+          path: packages/lib/dist
+
+      - name: Upload 'types' dist folder
+        uses: actions/upload-artifact@v2
+        with:
+          name: types-dist
+          path: packages/types/dist
+
+      - name: Upload 'translations' dist folder
+        uses: actions/upload-artifact@v2
+        with:
+          name: translations-dist
+          path: packages/translations/dist
+
       - name: Cache dist folder for 'app' package
         id: cache-dist
         uses: actions/cache@v3
@@ -215,8 +233,20 @@ jobs:
           cache: 'pnpm'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile && ls ./packages/lib
+      - name: Download 'lib' dist folder
+        uses: actions/download-artifact@v2
+        with:
+          name: lib-dist
+
+      - name: Download 'types' dist folder
+        uses: actions/download-artifact@v2
+        with:
+          name: types-dist
+
+      - name: Download 'translations' dist folder
+        uses: actions/download-artifact@v2
+        with:
+          name: translations-dist
 
       - name: Publish 'lib' package
         run: pnpm publish --filter "@frachtwerk/lib" --access public --no-git-checks
@@ -228,7 +258,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish '@frachtwerk/translations' package
+      - name: Publish 'translations' package
         run: pnpm publish --filter "@frachtwerk/translations" --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
