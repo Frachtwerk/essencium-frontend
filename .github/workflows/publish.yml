@@ -44,6 +44,6 @@ jobs:
 
       # testing publishing
       - name: Publish 'lib' package
-        run: pnpm publish --filter "@fw-test/lib" --publish-branch $GITHUB_REF_NAME --access public
+        run: pnpm publish --filter "@fw-test/lib" --publish-branch 284-automate-package-deployments --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
