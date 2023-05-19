@@ -112,7 +112,7 @@ jobs:
         run: pnpm test:e2e
 
       - name: Upload E2E test results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: always()
         with:
           name: e2e-test-results
@@ -151,19 +151,19 @@ jobs:
         run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx build @frachtwerk/essencium-app
 
       - name: Upload 'lib' dist folder
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: lib-dist
           path: packages/lib/dist
 
       - name: Upload 'types' dist folder
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: types-dist
           path: packages/types/dist
 
       - name: Upload 'translations' dist folder
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: translations-dist
           path: packages/translations/dist
@@ -212,19 +212,19 @@ jobs:
           commit_message: 'chore: sync versions [skip ci]'
 
       - name: Download 'lib' dist folder
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: lib-dist
           path: packages/lib/dist
 
       - name: Download 'types' dist folder
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: types-dist
           path: packages/types/dist
 
       - name: Download 'translations' dist folder
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: translations-dist
           path: packages/translations/dist
