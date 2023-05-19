@@ -2,7 +2,7 @@ import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useAtom, useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
-import { ResetPassword, UserOutput } from 'types'
+import { ResetPassword, SetPasswordInput, UserOutput } from 'types'
 
 import { api } from '@/api'
 
@@ -111,7 +111,7 @@ export function useSetPassword(): UseMutationResult<
           password,
           verification,
         })
-        .then(res => res.data),
+        .then(response => response.data),
   })
 
   return mutation
