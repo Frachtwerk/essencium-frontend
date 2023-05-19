@@ -240,19 +240,19 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: lib-dist
+          path: packages/lib/dist
 
       - name: Download 'types' dist folder
         uses: actions/download-artifact@v2
         with:
           name: types-dist
+          path: packages/types/dist
 
       - name: Download 'translations' dist folder
         uses: actions/download-artifact@v2
         with:
           name: translations-dist
-
-      - name: Show dist folder in lib package
-        run: ls -la packages/lib && ls -la packages/lib/dist
+          path: packages/translations/dist
 
       - name: Publish 'lib' package
         run: pnpm publish --filter "@frachtwerk/lib" --access public --no-git-checks
