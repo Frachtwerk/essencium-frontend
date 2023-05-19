@@ -2,7 +2,7 @@
   "name": "@frachtwerk/essencium-translations",
   "author": "Frachtwerk GmbH",
   "license": "MIT",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [

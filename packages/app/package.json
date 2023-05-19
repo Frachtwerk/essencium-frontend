@@ -1,6 +1,6 @@
 {
   "name": "@frachtwerk/essencium-app",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "private": true,
   "description": "This is the starter application consuming the library.",
   "keywords": [
