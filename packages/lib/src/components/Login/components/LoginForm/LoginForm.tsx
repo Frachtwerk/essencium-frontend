@@ -26,7 +26,7 @@ type Props = {
   setIsPasswordResetFormOpened: Dispatch<SetStateAction<boolean>>
   isPasswordResetFormOpened: boolean
   isResetPasswordSent: boolean
-  isLoadingSuccessMessage: boolean
+  isResettingPassword: boolean
 }
 
 export function LoginForm({
@@ -35,7 +35,7 @@ export function LoginForm({
   setIsPasswordResetFormOpened,
   isPasswordResetFormOpened,
   isResetPasswordSent,
-  isLoadingSuccessMessage,
+  isResettingPassword,
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
@@ -155,14 +155,8 @@ export function LoginForm({
         )}
       </Transition>
 
-      {isLoadingSuccessMessage && (
-        <Center h="100%">
-          <Loader size="lg" name="loader" />
-        </Center>
-      )}
-
       <Transition
-        mounted={isPasswordResetFormOpened && !isLoadingSuccessMessage}
+        mounted={isPasswordResetFormOpened && !isResettingPassword}
         transition="fade"
         duration={350}
         timingFunction="ease-in-and-out"
@@ -177,6 +171,12 @@ export function LoginForm({
           </div>
         )}
       </Transition>
+
+      {isResettingPassword && (
+        <Center h="100%">
+          <Loader size="lg" name="loader" />
+        </Center>
+      )}
 
       <Transition
         mounted={isResetPasswordSent}

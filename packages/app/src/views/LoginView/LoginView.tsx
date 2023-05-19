@@ -11,7 +11,7 @@ import { useCreateToken, useResetPassword } from '@/api/auth'
 export function LoginView(): JSX.Element {
   const navigate = useNavigate()
 
-  const { mutate: resetPassword, isLoading: isLoadingSuccessMessage } =
+  const { mutate: resetPassword, isLoading: isResettingPassword } =
     useResetPassword()
   const [isResetPasswordSent, setIsResetPasswordSent] = useState(false)
   const [isPasswordResetFormOpened, setIsPasswordResetFormOpened] =
@@ -64,7 +64,7 @@ export function LoginView(): JSX.Element {
           setIsPasswordResetFormOpened={setIsPasswordResetFormOpened}
           isResetPasswordSent={isResetPasswordSent}
           isPasswordResetFormOpened={isPasswordResetFormOpened}
-          isLoadingSuccessMessage={isLoadingSuccessMessage}
+          isResettingPassword={isResettingPassword}
         />
       }
     />
