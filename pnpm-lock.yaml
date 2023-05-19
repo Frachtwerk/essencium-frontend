@@ -97,6 +97,7 @@ importers:
       fast-glob: 3.2.12
       happy-dom: 8.9.0
       i18next: 22.4.11
+      i18next-browser-languagedetector: 7.0.1
       jotai: 2.0.3
       prettier: 2.8.4
       react: 18.2.0
@@ -141,6 +142,7 @@ importers:
       dayjs: 1.11.7
       fast-glob: 3.2.12
       i18next: 22.4.11
+      i18next-browser-languagedetector: 7.0.1
       jotai: 2.0.3_react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -2642,7 +2644,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.19.6_@babel+core@7.21.0
       magic-string: 0.27.0
       react-refresh: 0.14.0
-      vite: 4.1.4
+      vite: 4.1.4_@types+node@18.14.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -4991,7 +4993,6 @@ packages:
     resolution: {integrity: sha512-Pa5kFwaczXJAeHE56CHG2aWzFBMJNUNghf0Pm4SwSrEMps/PTKqW90EYWlIvhuYStf3Sn1K0vw+gH3+TLdkH1g==}
     dependencies:
       '@babel/runtime': 7.21.0
-    dev: true
 
   /i18next/22.4.11:
     resolution: {integrity: sha512-ShfTzXVMjXdF2iPiT/wbizOrssLh9Ab6VpuVROihLCAu+u25KbZiEYVgsA0W6g0SgjPa/JmGWcUEV/g6cKzEjQ==}
@@ -8943,7 +8944,7 @@ packages:
     resolution: {directory: packages/lib, type: directory}
     id: file:packages/lib
     name: '@frachtwerk/lib'
-    version: 0.9.0
+    version: 0.11.0
     engines: {node: '>=16', pnpm: '7'}
     peerDependencies:
       '@emotion/react': 11.10.6
