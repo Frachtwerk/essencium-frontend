@@ -4,7 +4,7 @@ import { AxiosError } from 'axios'
 import { t } from 'i18next'
 import { SetPasswordForm, SetPasswordSuccessMessage } from 'lib'
 import { useState } from 'react'
-import { ResetToken, SetPasswordInput } from 'types'
+import { SetPasswordInput } from 'types'
 
 import { useSetPassword } from '@/api/auth'
 import { router } from '@/router/init'
@@ -13,7 +13,7 @@ export function SetPasswordView(): JSX.Element {
   const { mutate: setPassword } = useSetPassword()
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
 
-  const verification: ResetToken['token'] =
+  const verification: SetPasswordInput['verification'] =
     router.state.currentLocation.search.token || ''
 
   function handleSetPassword(password: SetPasswordInput['password']): void {
