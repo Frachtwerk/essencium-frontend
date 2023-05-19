@@ -18,6 +18,12 @@ describe('LoginForm', () => {
   let passwordInput: HTMLInputElement
   let submitButton: HTMLButtonElement
 
+  const handlePasswordReset = vi.fn()
+  const setIsPasswordResetFormOpened = vi.fn()
+  const isPasswordResetFormOpened = false
+  const isResetPasswordSent = false
+  const isResettingPassword = false
+
   beforeAll(() => {
     vi.mock('react-i18next', () => ({
       useTranslation: () => {
@@ -35,7 +41,16 @@ describe('LoginForm', () => {
   })
 
   beforeEach(() => {
-    LoginFormMounted = render(<LoginForm handleLogin={() => {}} />)
+    LoginFormMounted = render(
+      <LoginForm
+        handleLogin={() => {}}
+        handlePasswordReset={handlePasswordReset}
+        setIsPasswordResetFormOpened={setIsPasswordResetFormOpened}
+        isResetPasswordSent={isResetPasswordSent}
+        isPasswordResetFormOpened={isPasswordResetFormOpened}
+        isResettingPassword={isResettingPassword}
+      />
+    )
   })
 
   afterEach(() => {

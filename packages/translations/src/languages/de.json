@@ -163,6 +163,11 @@
       "newPassword": "Neues Passwort",
       "confirmPassword": "Passwort bestätigen",
       "submit": "Passwort speichern"
+    },
+    "successMessage": {
+      "title": "Update erfolgreich",
+      "text": "Ihr Password wurde erfolgreich geändert. Sie können sich jetzt mit Ihren neuen Zugangsdaten anmelden.",
+      "button": "Jetzt anmelden"
     }
   },
   "homeView": {

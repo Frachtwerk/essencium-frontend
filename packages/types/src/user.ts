@@ -91,3 +91,28 @@ export const resetPasswordSchema = z.object({
 })
 
 export type ResetPassword = z.infer<typeof resetPasswordSchema>
+
+export const setPasswordFormSchema = z
+  .object({
+    password: z.string().min(8, String(t('validation.password.minLength'))),
+    confirmPassword: z
+      .string()
+      .min(8, String(t('validation.password.minLength'))),
+  })
+  .refine(data => data.password === data.confirmPassword, {
+    message: String(t('validation.password.confirmError')),
+    path: ['confirmPassword'],
+  })
+
+export type SetPasswordFormType = z.infer<typeof setPasswordFormSchema>
+
+export type SetPasswordInput = {
+  password: string
+  verification: string
+}
+
+export const resetTokenSchema = z.object({
+  token: z.string(),
+})
+
+export type ResetToken = z.infer<typeof resetTokenSchema>
