@@ -46,6 +46,7 @@ export function SetPasswordView(): JSX.Element {
         {!showSuccessMessage && (
           <SetPasswordForm handleSetPassword={handleSetPassword} />
         )}
+
         {showSuccessMessage && <SetPasswordSuccessMessage />}
       </Paper>
     </Container>
