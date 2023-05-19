@@ -251,6 +251,9 @@ jobs:
         with:
           name: translations-dist
 
+      - name: Show dist folder in lib package
+        run: ls -la packages/lib && ls -la packages/lib/dist
+
       - name: Publish 'lib' package
         run: pnpm publish --filter "@frachtwerk/lib" --access public --no-git-checks
         env:
