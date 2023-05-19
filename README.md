@@ -4,9 +4,9 @@
 
 [![Build](https://github.com/Frachtwerk/essencium-frontend/actions/workflows/build.yml/badge.svg)](https://github.com/Frachtwerk/essencium-frontend/actions/workflows/build.yml)
 
-[Preview](https://essencium-frontend.vercel.app)
+[Preview](https://staging.essencium.dev)
 |
-[Docs](https://docs.essencium-frontend.vercel.app/)
+[Docs](https://docs.essencium.dev)
 
 ![Essencium Logo](./packages/app/src/img/web/icon-192.png)
 
