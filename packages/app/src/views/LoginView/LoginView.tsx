@@ -1,4 +1,4 @@
-import { Login, Login, LoginForm, LoginForm } from '@frachtwerk/lib'
+import { Login, LoginForm } from '@frachtwerk/lib'
 import { ResetPassword } from '@frachtwerk/types'
 import { showNotification } from '@mantine/notifications'
 import { useNavigate } from '@tanstack/react-router'
