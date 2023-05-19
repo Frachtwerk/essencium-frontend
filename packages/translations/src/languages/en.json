@@ -137,6 +137,9 @@
     "forgotPassword": "Forgot Password?",
     "register": "Register",
     "noAccount": "No Account?",
+    "errorMessage": {
+      "title": "We are sorry. Your login was not successful."
+    },
     "resetPassword": {
       "form": {
         "description": "Forgot your password? Enter your E-Mail and we will send you a link to reset your password.",
@@ -148,6 +151,9 @@
       "successMessage": {
         "title": "Email sent",
         "description": "We sent an email with a link to reset your password to your account. Please check your inbox and follow the instructions in the email. "
+      },
+      "errorMessage": {
+        "title": "We are sorry. Resetting your password was not successful."
       }
     }
   },

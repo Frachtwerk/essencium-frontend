@@ -1,32 +1,43 @@
 import {
   Anchor,
+  Box,
   Button,
+  Center,
   Checkbox,
   Group,
+  Loader,
   Paper,
   PasswordInput,
   Text,
   TextInput,
   Transition,
 } from '@mantine/core'
-import { useState } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { LoginForm as TLoginForm, loginFormSchema } from 'types'
+import { LoginForm as TLoginForm, loginFormSchema, ResetPassword } from 'types'
 
 import { useZodForm } from '../../../../hooks'
 import { ResetPasswordForm, ResetPasswordSuccessMessage } from './components'
 
 type Props = {
   handleLogin: (name: string, pw: string) => void
+  handlePasswordReset: (email: ResetPassword['email']) => void
+  setIsPasswordResetFormOpened: Dispatch<SetStateAction<boolean>>
+  isPasswordResetFormOpened: boolean
+  isResetPasswordSent: boolean
+  isResettingPassword: boolean
 }
 
-export function LoginForm({ handleLogin }: Props): JSX.Element {
+export function LoginForm({
+  handleLogin,
+  handlePasswordReset,
+  setIsPasswordResetFormOpened,
+  isPasswordResetFormOpened,
+  isResetPasswordSent,
+  isResettingPassword,
+}: Props): JSX.Element {
   const { t } = useTranslation()
-
-  const [isPasswordResetFormOpened, setIsPasswordResetFormOpened] =
-    useState(false)
-  const [isResetPasswordSent, setIsResetPasswordSent] = useState(false)
 
   const { handleSubmit, control, formState } = useZodForm({
     schema: loginFormSchema,
@@ -42,7 +53,7 @@ export function LoginForm({ handleLogin }: Props): JSX.Element {
   }
 
   return (
-    <Paper shadow="sm" p="lg" mt="md" w={400} h={270} radius="sm">
+    <Paper shadow="sm" p="lg" mt="md" w={400} h={300} radius="sm">
       <Transition
         mounted={!isPasswordResetFormOpened && !isResetPasswordSent}
         transition="fade"
@@ -72,11 +83,13 @@ export function LoginForm({ handleLogin }: Props): JSX.Element {
                 )}
               />
 
-              {formState.errors.email && (
-                <Text mt={4} ml={5} fz="xs" color="red">
-                  {formState.errors.email?.message}
-                </Text>
-              )}
+              <Box mt="0.2rem" h="0.8rem">
+                {formState.errors.email && (
+                  <Text ml={5} fz="xs" color="red">
+                    {formState.errors.email?.message}
+                  </Text>
+                )}
+              </Box>
 
               <Controller
                 name="password"
@@ -95,16 +108,18 @@ export function LoginForm({ handleLogin }: Props): JSX.Element {
                       },
                     }}
                     withAsterisk
-                    mt="md"
+                    mt="xs"
                   />
                 )}
               />
 
-              {formState.errors.password && (
-                <Text mt={4} ml={5} fz="xs" color="red">
-                  {formState.errors.password?.message}
-                </Text>
-              )}
+              <Box mt="0.2rem" h="0.8rem">
+                {formState.errors.password && (
+                  <Text ml={5} fz="xs" color="red">
+                    {formState.errors.password?.message}
+                  </Text>
+                )}
+              </Box>
 
               <Group position="apart" mt="md">
                 <Controller
@@ -141,7 +156,7 @@ export function LoginForm({ handleLogin }: Props): JSX.Element {
       </Transition>
 
       <Transition
-        mounted={isPasswordResetFormOpened}
+        mounted={isPasswordResetFormOpened && !isResettingPassword}
         transition="fade"
         duration={350}
         timingFunction="ease-in-and-out"
@@ -151,11 +166,17 @@ export function LoginForm({ handleLogin }: Props): JSX.Element {
           <div style={styles}>
             <ResetPasswordForm
               setIsPasswordResetFormOpened={setIsPasswordResetFormOpened}
-              setIsResetPasswordSent={setIsResetPasswordSent}
+              handlePasswordReset={handlePasswordReset}
             />
           </div>
         )}
       </Transition>
+
+      {isResettingPassword && (
+        <Center h="100%">
+          <Loader size="lg" name="loader" />
+        </Center>
+      )}
 
       <Transition
         mounted={isResetPasswordSent}

@@ -2,7 +2,7 @@ import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useAtom, useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
-import { UserOutput } from 'types'
+import { ResetPassword, UserOutput } from 'types'
 
 import { api } from '@/api'
 
@@ -81,21 +81,23 @@ export function useRenewToken(): UseMutationResult<
   return mutation
 }
 
-export function useResetPassword(
-  username: string
-): UseMutationResult<TokenResponse, AxiosError, void, unknown> {
-  const mutation = useMutation<TokenResponse, AxiosError>({
+export function useResetPassword(): UseMutationResult<
+  null,
+  AxiosError,
+  ResetPassword['email']
+> {
+  const mutation = useMutation<null, AxiosError, ResetPassword['email']>({
     mutationKey: ['useResetPassword'],
-    mutationFn: () =>
+    mutationFn: (email: ResetPassword['email']) =>
       api
-        .post<TokenResponse, { data: string }>(
+        .post<null, ResetPassword['email']>(
           `${VERSION}/reset-credentials`,
+          email,
           {
-            data: username,
-          },
-          { headers: { 'content-type': 'text/plain' } }
+            headers: { 'content-type': 'text/plain' },
+          }
         )
-        .then(res => res.data),
+        .then(response => response.data),
   })
 
   return mutation
