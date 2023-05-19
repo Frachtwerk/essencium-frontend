@@ -2,7 +2,7 @@ import {
   LoginForm as TLoginForm,
   loginFormSchema,
   ResetPassword,
-} from '@frachtwerk/types'
+} from '@frachtwerk/essencium-types'
 import {
   Anchor,
   Box,

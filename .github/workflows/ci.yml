@@ -181,7 +181,7 @@ jobs:
 
       - name: Build
         if: steps.cache-dist.outputs.cache-hit != 'true'
-        run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx build @frachtwerk/app
+        run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx build @frachtwerk/essencium-app
 
       - name: Upload 'lib' dist folder
         uses: actions/upload-artifact@v2
@@ -255,16 +255,16 @@ jobs:
           path: packages/translations/dist
 
       - name: Publish 'lib' package
-        run: pnpm publish --filter "@frachtwerk/lib" --access public --no-git-checks
+        run: pnpm publish --filter "@frachtwerk/essencium-lib" --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish 'types' package
-        run: pnpm publish --filter "@frachtwerk/types" --access public --no-git-checks
+        run: pnpm publish --filter "@frachtwerk/essencium-types" --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish 'translations' package
-        run: pnpm publish --filter "@frachtwerk/translations" --access public --no-git-checks
+        run: pnpm publish --filter "@frachtwerk/essencium-translations" --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

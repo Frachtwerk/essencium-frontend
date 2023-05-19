@@ -1,4 +1,4 @@
-import { NavLink, UserOutput } from '@frachtwerk/types'
+import { NavLink, UserOutput } from '@frachtwerk/essencium-types'
 import {
   Navbar,
   NavLink as MantineNavLink,

@@ -1,4 +1,4 @@
-import { PaginatedResponse, RightOutput } from '@frachtwerk/types'
+import { PaginatedResponse, RightOutput } from '@frachtwerk/essencium-types'
 import { useQuery, UseQueryResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 

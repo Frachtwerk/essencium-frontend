@@ -3,7 +3,7 @@ import {
   RoleOutput,
   UserOutput,
   UserUpdate,
-} from '@frachtwerk/types'
+} from '@frachtwerk/essencium-types'
 import { Card, Tabs } from '@mantine/core'
 import { IconLock, IconSettings, IconUser } from '@tabler/icons-react'
 import { useMatch } from '@tanstack/react-router'

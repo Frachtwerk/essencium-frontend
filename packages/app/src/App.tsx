@@ -1,5 +1,5 @@
-import { Footer, Header, NavBar } from '@frachtwerk/lib'
-import { FooterLink, NavLink, RIGHTS } from '@frachtwerk/types'
+import { Footer, Header, NavBar } from '@frachtwerk/essencium-lib'
+import { FooterLink, NavLink, RIGHTS } from '@frachtwerk/essencium-types'
 import { AppShell, Image, useMantineTheme } from '@mantine/core'
 import type { SpotlightAction } from '@mantine/spotlight'
 import { SpotlightProvider } from '@mantine/spotlight'

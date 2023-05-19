@@ -1,4 +1,4 @@
-import { ResetPassword, resetPasswordSchema } from '@frachtwerk/types'
+import { ResetPassword, resetPasswordSchema } from '@frachtwerk/essencium-types'
 import { Box, Button, Container, Group, Text, TextInput } from '@mantine/core'
 import { Dispatch, SetStateAction } from 'react'
 import { Controller } from 'react-hook-form'

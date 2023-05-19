@@ -39,7 +39,7 @@ export default [
       'react',
       'react-dom',
       'react-i18next',
-      '@frachtwerk/translations',
+      '@frachtwerk/essencium-translations',
       '@tanstack/react-router',
       'zod',
       'react-hook-form',

@@ -16,7 +16,7 @@ import '@fontsource/fira-code/500.css'
 import '@fontsource/fira-code/600.css'
 import '@fontsource/fira-code/700.css'
 
-import { i18n } from '@frachtwerk/translations'
+import { i18n } from '@frachtwerk/essencium-translations'
 import {
   ColorScheme,
   ColorSchemeProvider,

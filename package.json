@@ -1,6 +1,6 @@
 {
-  "name": "@frachtwerk/essencium-frontend",
-  "version": "0.12.1",
+  "name": "@frachtwerk/essencium",
+  "version": "0.13.0",
   "private": true,
   "description": "This is a React-based starter monorepo consisting of a component library, docs and a boilerplate.",
   "keywords": [
@@ -21,17 +21,17 @@
   "license": "MIT",
   "author": "Frachtwerk GmbH",
   "scripts": {
-    "build": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx build @frachtwerk/app",
+    "build": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx build @frachtwerk/essencium-app",
     "clean": "nx run-many --target=clean && rimraf dist node_modules",
     "clean:install": "pnpm i -w && pnpm clean && pnpm install",
-    "dev": "nx dev @frachtwerk/app",
+    "dev": "nx dev @frachtwerk/essencium-app",
     "lint": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=lint --parallel=10",
     "format": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=format --parallel=10",
     "setup-env": "pnpm install && husky install",
     "test": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=test",
     "test:watch": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx run-many --target=test:watch --parallel=10",
     "test:unit": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=test:unit --parallel=10",
-    "test:e2e": "pnpm --filter @frachtwerk/app test:e2e",
+    "test:e2e": "pnpm --filter @frachtwerk/essencium-app test:e2e",
     "sync-versions": "ts-node ./scripts/sync-versions.ts",
     "seed-db": "ts-node ./scripts/seed-db.ts"
   },
@@ -57,7 +57,7 @@
     "rimraf": "4.4.0",
     "ts-node": "10.9.1",
     "typescript": "4.9.5",
-    "@frachtwerk/types": "workspace:*"
+    "@frachtwerk/essencium-types": "workspace:*"
   },
   "engines": {
     "node": ">=16",

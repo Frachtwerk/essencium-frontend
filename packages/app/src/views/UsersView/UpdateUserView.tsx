@@ -1,5 +1,5 @@
-import { UserForm, useZodForm } from '@frachtwerk/lib'
-import { UserUpdate, userUpdateSchema } from '@frachtwerk/types'
+import { UserForm, useZodForm } from '@frachtwerk/essencium-lib'
+import { UserUpdate, userUpdateSchema } from '@frachtwerk/essencium-types'
 import { Card, Flex, Text, Title } from '@mantine/core'
 import { IconUserPlus } from '@tabler/icons-react'
 import { useNavigate, useParams } from '@tanstack/react-router'

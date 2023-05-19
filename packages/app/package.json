@@ -1,5 +1,5 @@
 {
-  "name": "@frachtwerk/app",
+  "name": "@frachtwerk/essencium-app",
   "version": "0.12.1",
   "private": true,
   "description": "This is the starter application consuming the library.",
@@ -65,14 +65,14 @@
     "fast-glob": "3.2.12",
     "i18next": "22.4.11",
     "jotai": "2.0.3",
-    "@frachtwerk/lib": "workspace:*",
+    "@frachtwerk/essencium-lib": "workspace:*",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "7.43.5",
     "react-i18next": "12.2.0",
     "react-json-tree": "0.18.0",
-    "@frachtwerk/translations": "workspace:*",
-    "@frachtwerk/types": "workspace:*",
+    "@frachtwerk/essencium-translations": "workspace:*",
+    "@frachtwerk/essencium-types": "workspace:*",
     "zod": "3.20.6",
     "i18next-browser-languagedetector": "7.0.1"
   },
@@ -117,7 +117,7 @@
     ]
   },
   "dependenciesMeta": {
-    "@frachtwerk/lib": {
+    "@frachtwerk/essencium-lib": {
       "injected": true
     }
   }

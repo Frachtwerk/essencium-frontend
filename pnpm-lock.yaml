@@ -7,7 +7,7 @@ importers:
       '@commitlint/cli': 17.4.4
       '@commitlint/config-conventional': 17.4.4
       '@faker-js/faker': 7.6.0
-      '@frachtwerk/types': workspace:*
+      '@frachtwerk/essencium-types': workspace:*
       '@nrwl/eslint-plugin-nx': 15.8.6
       '@nrwl/nx-cloud': 15.1.1
       '@types/fs-extra': 11.0.1
@@ -30,7 +30,7 @@ importers:
       '@commitlint/cli': 17.4.4
       '@commitlint/config-conventional': 17.4.4
       '@faker-js/faker': 7.6.0
-      '@frachtwerk/types': link:packages/types
+      '@frachtwerk/essencium-types': link:packages/types
       '@nrwl/eslint-plugin-nx': 15.8.6_ogomhmmgzdmlkcitxzv7jc66ua
       '@types/fs-extra': 11.0.1
       '@types/node': 18.14.1
@@ -56,9 +56,9 @@ importers:
       '@fortawesome/fontawesome-svg-core': 6.3.0
       '@fortawesome/free-solid-svg-icons': 6.3.0
       '@fortawesome/react-fontawesome': 0.2.0
-      '@frachtwerk/lib': workspace:*
-      '@frachtwerk/translations': workspace:*
-      '@frachtwerk/types': workspace:*
+      '@frachtwerk/essencium-lib': workspace:*
+      '@frachtwerk/essencium-translations': workspace:*
+      '@frachtwerk/essencium-types': workspace:*
       '@hookform/resolvers': 2.9.11
       '@mantine/core': 6.0.2
       '@mantine/dates': 6.0.2
@@ -119,9 +119,9 @@ importers:
       '@fortawesome/fontawesome-svg-core': 6.3.0
       '@fortawesome/free-solid-svg-icons': 6.3.0
       '@fortawesome/react-fontawesome': 0.2.0_d5rbrisxfyemehbvmdbryvgjte
-      '@frachtwerk/lib': file:packages/lib_sqoq3lrj5yenhmlrvh4yvm5pry
-      '@frachtwerk/translations': link:../translations
-      '@frachtwerk/types': link:../types
+      '@frachtwerk/essencium-lib': file:packages/lib_7gnsm4u66utq5asdfncjukh5ey
+      '@frachtwerk/essencium-translations': link:../translations
+      '@frachtwerk/essencium-types': link:../types
       '@hookform/resolvers': 2.9.11_react-hook-form@7.43.5
       '@mantine/core': 6.0.2_md2nfwiomeeos7ogkicwnxcafa
       '@mantine/dates': 6.0.2_5lnseipk2idlpjpvohdnajqndm
@@ -178,7 +178,7 @@ importers:
       vite-plugin-sentry: 1.1.7_vite@4.1.4
       vitest: 0.29.2_happy-dom@8.9.0
     dependenciesMeta:
-      '@frachtwerk/lib':
+      '@frachtwerk/essencium-lib':
         injected: true
 
   packages/docs:
@@ -209,8 +209,8 @@ importers:
       '@fortawesome/fontawesome-svg-core': 6.3.0
       '@fortawesome/free-solid-svg-icons': 6.3.0
       '@fortawesome/react-fontawesome': 0.2.0
-      '@frachtwerk/translations': workspace:*
-      '@frachtwerk/types': workspace:*
+      '@frachtwerk/essencium-translations': workspace:*
+      '@frachtwerk/essencium-types': workspace:*
       '@hookform/resolvers': 2.9.11
       '@mantine/core': 6.0.2
       '@mantine/dates': 6.0.2
@@ -265,8 +265,8 @@ importers:
       '@fortawesome/fontawesome-svg-core': 6.3.0
       '@fortawesome/free-solid-svg-icons': 6.3.0
       '@fortawesome/react-fontawesome': 0.2.0_d5rbrisxfyemehbvmdbryvgjte
-      '@frachtwerk/translations': link:../translations
-      '@frachtwerk/types': link:../types
+      '@frachtwerk/essencium-translations': link:../translations
+      '@frachtwerk/essencium-types': link:../types
       '@hookform/resolvers': 2.9.11_react-hook-form@7.43.5
       '@mantine/core': 6.0.2_md2nfwiomeeos7ogkicwnxcafa
       '@mantine/dates': 6.0.2_5lnseipk2idlpjpvohdnajqndm
@@ -350,7 +350,7 @@ importers:
 
   packages/types:
     specifiers:
-      '@frachtwerk/translations': workspace:*
+      '@frachtwerk/essencium-translations': workspace:*
       '@rollup/plugin-commonjs': 24.0.1
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-terser': 0.4.0
@@ -363,7 +363,7 @@ importers:
       typescript: 4.9.5
       zod: 3.20.6
     devDependencies:
-      '@frachtwerk/translations': link:../translations
+      '@frachtwerk/essencium-translations': link:../translations
       '@rollup/plugin-commonjs': 24.0.1_rollup@3.18.0
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.18.0
       '@rollup/plugin-terser': 0.4.0_rollup@3.18.0
@@ -2644,7 +2644,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.19.6_@babel+core@7.21.0
       magic-string: 0.27.0
       react-refresh: 0.14.0
-      vite: 4.1.4_@types+node@18.14.1
+      vite: 4.1.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -8940,19 +8940,19 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
-  file:packages/lib_sqoq3lrj5yenhmlrvh4yvm5pry:
+  file:packages/lib_7gnsm4u66utq5asdfncjukh5ey:
     resolution: {directory: packages/lib, type: directory}
     id: file:packages/lib
-    name: '@frachtwerk/lib'
-    version: 0.11.0
+    name: '@frachtwerk/essencium-lib'
+    version: 0.12.1
     engines: {node: '>=16', pnpm: '7'}
     peerDependencies:
       '@emotion/react': 11.10.6
       '@fortawesome/fontawesome-svg-core': 6.3.0
       '@fortawesome/free-solid-svg-icons': 6.3.0
       '@fortawesome/react-fontawesome': 0.2.0
-      '@frachtwerk/translations': workspace:*
-      '@frachtwerk/types': workspace:*
+      '@frachtwerk/essencium-translations': workspace:*
+      '@frachtwerk/essencium-types': workspace:*
       '@hookform/resolvers': 2.9.11
       '@mantine/core': 6.0.2
       '@mantine/dates': 6.0.2
@@ -8975,8 +8975,8 @@ packages:
       '@fortawesome/fontawesome-svg-core': 6.3.0
       '@fortawesome/free-solid-svg-icons': 6.3.0
       '@fortawesome/react-fontawesome': 0.2.0_d5rbrisxfyemehbvmdbryvgjte
-      '@frachtwerk/translations': link:packages/translations
-      '@frachtwerk/types': link:packages/types
+      '@frachtwerk/essencium-translations': link:packages/translations
+      '@frachtwerk/essencium-types': link:packages/types
       '@hookform/resolvers': 2.9.11_react-hook-form@7.43.5
       '@mantine/core': 6.0.2_md2nfwiomeeos7ogkicwnxcafa
       '@mantine/dates': 6.0.2_5lnseipk2idlpjpvohdnajqndm

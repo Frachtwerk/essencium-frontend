@@ -1,4 +1,7 @@
-import { TranslationInput, TranslationOutput } from '@frachtwerk/types'
+import {
+  TranslationInput,
+  TranslationOutput,
+} from '@frachtwerk/essencium-types'
 import { showNotification } from '@mantine/notifications'
 import {
   useMutation,

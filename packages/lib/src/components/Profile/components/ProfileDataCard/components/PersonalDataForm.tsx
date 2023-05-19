@@ -1,5 +1,9 @@
-import { i18n } from '@frachtwerk/translations'
-import { UserOutput, UserUpdate, userUpdateSchema } from '@frachtwerk/types'
+import { i18n } from '@frachtwerk/essencium-translations'
+import {
+  UserOutput,
+  UserUpdate,
+  userUpdateSchema,
+} from '@frachtwerk/essencium-types'
 import {
   Box,
   Button,

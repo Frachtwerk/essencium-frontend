@@ -1,4 +1,4 @@
-import { Translations } from '@frachtwerk/lib'
+import { Translations } from '@frachtwerk/essencium-lib'
 import { Group, Title } from '@mantine/core'
 import { IconLanguage } from '@tabler/icons-react'
 import i18next, { t } from 'i18next'

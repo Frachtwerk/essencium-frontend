@@ -1,4 +1,4 @@
-import { i18n } from '@frachtwerk/translations'
+import { i18n } from '@frachtwerk/essencium-translations'
 import { z } from 'zod'
 
 import { basePropertiesSchema } from './base'

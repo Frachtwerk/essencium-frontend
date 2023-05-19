@@ -59,15 +59,15 @@ export default defineConfig({
       },
       // this entry enables HMR for the lib & translations development
       {
-        find: '@frachtwerk/lib',
+        find: '@frachtwerk/essencium-lib',
         replacement: path.resolve(__dirname, '../lib/src/index.ts'),
       },
       {
-        find: '@frachtwerk/translations',
+        find: '@frachtwerk/essencium-translations',
         replacement: path.resolve(__dirname, '../translations/src/index.ts'),
       },
       {
-        find: '@frachtwerk/types',
+        find: '@frachtwerk/essencium-types',
         replacement: path.resolve(__dirname, '../types/src/index.ts'),
       },
     ],

@@ -3,7 +3,7 @@ import {
   UserInput,
   UserOutput,
   UserUpdate,
-} from '@frachtwerk/types'
+} from '@frachtwerk/essencium-types'
 import { showNotification } from '@mantine/notifications'
 import {
   useMutation,

@@ -1,5 +1,5 @@
-import { Login, LoginForm } from '@frachtwerk/lib'
-import { ResetPassword } from '@frachtwerk/types'
+import { Login, LoginForm } from '@frachtwerk/essencium-lib'
+import { ResetPassword } from '@frachtwerk/essencium-types'
 import { showNotification } from '@mantine/notifications'
 import { useNavigate } from '@tanstack/react-router'
 import { AxiosError } from 'axios'

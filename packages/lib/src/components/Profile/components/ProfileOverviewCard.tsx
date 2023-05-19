@@ -1,4 +1,4 @@
-import { UserOutput } from '@frachtwerk/types'
+import { UserOutput } from '@frachtwerk/essencium-types'
 import { Avatar, Badge, Card, Flex, Text, Title } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 

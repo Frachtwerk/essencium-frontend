@@ -1,6 +1,15 @@
 /* eslint-disable react/no-unstable-nested-components */
-import { HttpNotification, Table, TablePagination } from '@frachtwerk/lib'
-import { RightOutput, RIGHTS, RoleOutput, RoleUpdate } from '@frachtwerk/types'
+import {
+  HttpNotification,
+  Table,
+  TablePagination,
+} from '@frachtwerk/essencium-lib'
+import {
+  RightOutput,
+  RIGHTS,
+  RoleOutput,
+  RoleUpdate,
+} from '@frachtwerk/essencium-types'
 import {
   Button,
   Center,

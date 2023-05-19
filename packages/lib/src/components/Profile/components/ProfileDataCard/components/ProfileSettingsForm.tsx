@@ -3,7 +3,7 @@ import {
   UserOutput,
   UserUpdate,
   userUpdateSchema,
-} from '@frachtwerk/types'
+} from '@frachtwerk/essencium-types'
 import {
   Box,
   Button,

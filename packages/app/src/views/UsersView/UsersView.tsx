@@ -4,8 +4,8 @@ import {
   LoadingSpinner,
   Table,
   TablePagination,
-} from '@frachtwerk/lib'
-import { RIGHTS, RoleOutput, UserOutput } from '@frachtwerk/types'
+} from '@frachtwerk/essencium-lib'
+import { RIGHTS, RoleOutput, UserOutput } from '@frachtwerk/essencium-types'
 import {
   ActionIcon,
   Badge,

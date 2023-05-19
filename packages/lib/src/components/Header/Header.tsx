@@ -1,4 +1,4 @@
-import { UserOutput } from '@frachtwerk/types'
+import { UserOutput } from '@frachtwerk/essencium-types'
 import {
   Box,
   Burger,

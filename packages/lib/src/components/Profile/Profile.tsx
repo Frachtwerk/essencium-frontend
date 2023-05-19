@@ -1,4 +1,4 @@
-import { RoleOutput, UserOutput, UserUpdate } from '@frachtwerk/types'
+import { RoleOutput, UserOutput, UserUpdate } from '@frachtwerk/essencium-types'
 import { Grid } from '@mantine/core'
 
 import { ProfileDataCard, ProfileOverviewCard } from './components'

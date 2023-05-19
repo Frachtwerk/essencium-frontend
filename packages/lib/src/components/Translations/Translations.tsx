@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unstable-nested-components */
-import { TranslationInput } from '@frachtwerk/types'
+import { TranslationInput } from '@frachtwerk/essencium-types'
 import {
   ActionIcon,
   Box,

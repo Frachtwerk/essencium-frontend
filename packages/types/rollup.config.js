@@ -22,7 +22,7 @@ export default [
       typescript({ tsconfig: './tsconfig.json' }),
       terser(),
     ],
-    external: ['zod', '@frachtwerk/translations'],
+    external: ['zod', '@frachtwerk/essencium-translations'],
   },
   {
     input: 'dist/types/index.d.ts',

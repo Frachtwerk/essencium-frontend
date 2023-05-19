@@ -4,8 +4,8 @@ import {
   HttpNotification,
   Table,
   TablePagination,
-} from '@frachtwerk/lib'
-import { RightOutput, RIGHTS, RoleOutput } from '@frachtwerk/types'
+} from '@frachtwerk/essencium-lib'
+import { RightOutput, RIGHTS, RoleOutput } from '@frachtwerk/essencium-types'
 import { Badge, Button, Center, Flex, Loader, Text, Title } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { IconUserCheck } from '@tabler/icons-react'

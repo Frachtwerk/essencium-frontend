@@ -1,5 +1,5 @@
-import { Profile } from '@frachtwerk/lib'
-import { PasswordChange, UserUpdate } from '@frachtwerk/types'
+import { Profile } from '@frachtwerk/essencium-lib'
+import { PasswordChange, UserUpdate } from '@frachtwerk/essencium-types'
 import { Center, Loader } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 

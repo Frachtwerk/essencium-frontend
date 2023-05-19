@@ -1,4 +1,8 @@
-import { RightOutput, RoleInput, roleInputSchema } from '@frachtwerk/types'
+import {
+  RightOutput,
+  RoleInput,
+  roleInputSchema,
+} from '@frachtwerk/essencium-types'
 import {
   Box,
   Button,

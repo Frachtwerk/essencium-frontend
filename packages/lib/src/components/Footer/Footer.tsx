@@ -1,4 +1,4 @@
-import { FooterLink } from '@frachtwerk/types'
+import { FooterLink } from '@frachtwerk/essencium-types'
 import {
   Flex,
   Footer as MantineFooter,

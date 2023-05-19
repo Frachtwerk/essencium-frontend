@@ -1,4 +1,8 @@
-import { PasswordChange, UserOutput, UserUpdate } from '@frachtwerk/types'
+import {
+  PasswordChange,
+  UserOutput,
+  UserUpdate,
+} from '@frachtwerk/essencium-types'
 import { showNotification } from '@mantine/notifications'
 import {
   useMutation,

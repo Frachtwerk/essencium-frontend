@@ -1,5 +1,5 @@
-import { initI18n } from '@frachtwerk/translations'
-import { NavLink } from '@frachtwerk/types'
+import { initI18n } from '@frachtwerk/essencium-translations'
+import { NavLink } from '@frachtwerk/essencium-types'
 import {
   IconHome2,
   IconLanguage,

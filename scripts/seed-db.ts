@@ -1,7 +1,11 @@
 /* eslint-disable no-console */
 
 import { faker } from '@faker-js/faker'
-import { RightOutput, RoleOutput, UserOutput } from '@frachtwerk/types'
+import {
+  RightOutput,
+  RoleOutput,
+  UserOutput,
+} from '@frachtwerk/essencium-types'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 
 const CONFIG = {
