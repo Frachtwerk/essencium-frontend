@@ -1,7 +1,5 @@
 import {
   LoginForm as TLoginForm,
-  LoginForm as TLoginForm,
-  loginFormSchema,
   loginFormSchema,
   ResetPassword,
 } from '@frachtwerk/types'
