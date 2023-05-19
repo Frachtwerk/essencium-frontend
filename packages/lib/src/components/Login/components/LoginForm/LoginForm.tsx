@@ -2,8 +2,10 @@ import {
   Anchor,
   Box,
   Button,
+  Center,
   Checkbox,
   Group,
+  Loader,
   Paper,
   PasswordInput,
   Text,
@@ -24,6 +26,7 @@ type Props = {
   setIsPasswordResetFormOpened: Dispatch<SetStateAction<boolean>>
   isPasswordResetFormOpened: boolean
   isResetPasswordSent: boolean
+  isLoadingSuccessMessage: boolean
 }
 
 export function LoginForm({
@@ -32,6 +35,7 @@ export function LoginForm({
   setIsPasswordResetFormOpened,
   isPasswordResetFormOpened,
   isResetPasswordSent,
+  isLoadingSuccessMessage,
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
@@ -151,8 +155,14 @@ export function LoginForm({
         )}
       </Transition>
 
+      {isLoadingSuccessMessage && (
+        <Center h="100%">
+          <Loader size="lg" name="loader" />
+        </Center>
+      )}
+
       <Transition
-        mounted={isPasswordResetFormOpened}
+        mounted={isPasswordResetFormOpened && !isLoadingSuccessMessage}
         transition="fade"
         duration={350}
         timingFunction="ease-in-and-out"
