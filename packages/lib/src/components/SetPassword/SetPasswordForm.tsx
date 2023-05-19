@@ -20,8 +20,8 @@ export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
     schema: setPasswordFormSchema,
   })
 
-  function onSubmit(setPasswordRequest: SetPasswordFormType): void {
-    handleSetPassword(setPasswordRequest.password)
+  function onSubmit({ password }: SetPasswordFormType): void {
+    handleSetPassword(password)
   }
 
   return (
