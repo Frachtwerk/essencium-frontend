@@ -1,8 +1,12 @@
 /* eslint-disable no-console */
 
 import { faker } from '@faker-js/faker'
+import {
+  RightOutput,
+  RoleOutput,
+  UserOutput,
+} from '@frachtwerk/essencium-types'
 import axios, { AxiosError, AxiosResponse } from 'axios'
-import { RightOutput, RoleOutput, UserOutput } from 'types'
 
 const CONFIG = {
   NUM_ENTITIES: 50,

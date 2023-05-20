@@ -12,7 +12,7 @@ export default [
       {
         file: 'dist/index.js',
         format: 'esm',
-        sourcemap: true,
+        sourcemap: false,
       },
     ],
     plugins: [
@@ -22,7 +22,7 @@ export default [
       typescript({ tsconfig: './tsconfig.json' }),
       terser(),
     ],
-    external: ['zod', 'translations'],
+    external: ['zod', '@frachtwerk/essencium-translations'],
   },
   {
     input: 'dist/types/index.d.ts',

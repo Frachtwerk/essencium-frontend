@@ -3,9 +3,9 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"],
-      "lib": ["../lib/dist"],
-      "translations": ["../translations/dist"],
-      "types": ["../types/dist"]
+      "@frachtwerk/essencium-lib": ["../lib/dist"],
+      "@frachtwerk/essencium-translations": ["../translations/dist"],
+      "@frachtwerk/essencium-types": ["../types/dist"]
     }
   }
 }

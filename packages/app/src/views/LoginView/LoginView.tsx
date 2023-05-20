@@ -1,10 +1,10 @@
+import { Login, LoginForm } from '@frachtwerk/essencium-lib'
+import { ResetPassword } from '@frachtwerk/essencium-types'
 import { showNotification } from '@mantine/notifications'
 import { useNavigate } from '@tanstack/react-router'
 import { AxiosError } from 'axios'
 import { t } from 'i18next'
-import { Login, LoginForm } from 'lib'
 import { useState } from 'react'
-import { ResetPassword } from 'types'
 
 import { useCreateToken, useResetPassword } from '@/api/auth'
 

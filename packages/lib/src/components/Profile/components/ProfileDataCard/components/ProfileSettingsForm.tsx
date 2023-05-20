@@ -1,4 +1,10 @@
 import {
+  RoleOutput,
+  UserOutput,
+  UserUpdate,
+  userUpdateSchema,
+} from '@frachtwerk/essencium-types'
+import {
   Box,
   Button,
   Flex,
@@ -11,7 +17,6 @@ import {
 import { IconCheck, IconX } from '@tabler/icons-react'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { RoleOutput, UserOutput, UserUpdate, userUpdateSchema } from 'types'
 
 import { useZodForm } from '../../../../../hooks'
 

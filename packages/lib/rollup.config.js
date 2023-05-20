@@ -12,7 +12,7 @@ export default [
       {
         file: 'dist/index.js',
         format: 'esm',
-        sourcemap: true,
+        sourcemap: false,
       },
     ],
     plugins: [
@@ -39,7 +39,7 @@ export default [
       'react',
       'react-dom',
       'react-i18next',
-      'translations',
+      '@frachtwerk/essencium-translations',
       '@tanstack/react-router',
       'zod',
       'react-hook-form',

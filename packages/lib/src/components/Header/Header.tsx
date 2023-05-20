@@ -1,3 +1,4 @@
+import { UserOutput } from '@frachtwerk/essencium-types'
 import {
   Box,
   Burger,
@@ -10,7 +11,6 @@ import {
   useMantineTheme,
 } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
-import { UserOutput } from 'types'
 
 import { SearchBar } from './components/SearchBar'
 import { ThemeSelector } from './components/ThemeSelector'

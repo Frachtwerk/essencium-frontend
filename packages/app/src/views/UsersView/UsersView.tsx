@@ -1,5 +1,12 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {
+  HttpNotification,
+  LoadingSpinner,
+  Table,
+  TablePagination,
+} from '@frachtwerk/essencium-lib'
+import { RIGHTS, RoleOutput, UserOutput } from '@frachtwerk/essencium-types'
+import {
   ActionIcon,
   Badge,
   Button,
@@ -26,10 +33,8 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { useAtom } from 'jotai'
-import { HttpNotification, LoadingSpinner, Table, TablePagination } from 'lib'
 import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { RIGHTS, RoleOutput, UserOutput } from 'types'
 
 import { useDeleteUser, useGetUsers } from '@/api'
 import { userAtom } from '@/api/me'

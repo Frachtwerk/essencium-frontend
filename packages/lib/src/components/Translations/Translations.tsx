@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unstable-nested-components */
+import { TranslationInput } from '@frachtwerk/essencium-types'
 import {
   ActionIcon,
   Box,
@@ -15,7 +16,6 @@ import { IconArrowBackUp, IconCheck, IconX } from '@tabler/icons-react'
 import { t } from 'i18next'
 import { FormEvent, useState } from 'react'
 import { JSONTree, KeyPath } from 'react-json-tree'
-import { TranslationInput } from 'types'
 
 type FormEventWithTranslation = FormEvent<HTMLFormElement> & {
   target: FormEvent<HTMLFormElement>['target'] & {

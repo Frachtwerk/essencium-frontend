@@ -1,3 +1,9 @@
+import { i18n } from '@frachtwerk/essencium-translations'
+import {
+  UserOutput,
+  UserUpdate,
+  userUpdateSchema,
+} from '@frachtwerk/essencium-types'
 import {
   Box,
   Button,
@@ -8,8 +14,6 @@ import {
   TextInput,
 } from '@mantine/core'
 import { Controller } from 'react-hook-form'
-import { i18n } from 'translations'
-import { UserOutput, UserUpdate, userUpdateSchema } from 'types'
 
 import { useZodForm } from '../../../../../hooks'
 

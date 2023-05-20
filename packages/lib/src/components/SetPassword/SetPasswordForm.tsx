@@ -1,11 +1,11 @@
-import { Box, Button, PasswordInput, Stack, Text } from '@mantine/core'
-import { Controller } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
 import {
   setPasswordFormSchema,
   SetPasswordFormType,
   SetPasswordInput,
-} from 'types'
+} from '@frachtwerk/essencium-types'
+import { Box, Button, PasswordInput, Stack, Text } from '@mantine/core'
+import { Controller } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 
 import { useZodForm } from '../../hooks'
 

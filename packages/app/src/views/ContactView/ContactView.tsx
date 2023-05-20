@@ -1,4 +1,4 @@
-import { Contact } from 'lib'
+import { Contact } from '@frachtwerk/essencium-lib'
 
 export function ContactView(): JSX.Element {
   return <Contact />

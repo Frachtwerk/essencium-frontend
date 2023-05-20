@@ -4,6 +4,6 @@ A build can be created by executing the command `pnpm build`. Behind this comman
 
 ### Releasing a new version
 
-Currently, the release process is pretty minimalistic. The developer must bump the `version` field inside the root `package.json` file and commit the change. Then, a Github Action workflow called `release` is triggered and synces all versions of each `packages.json` file in the packages to the version stated inside the root `package.json`.
+Currently, the release process is pretty minimalistic. The developer must bump the `version` field inside the root `package.json` file and commit the change. Then, a Github Action workflow is triggered and synces all versions of each `packages.json` file in the packages to the version stated inside the root `package.json` and releases the packages on npm.
 
 In the current state of Essencium we sync all package versions instead of incrementing each version independently. The leading version is always inside the root `package.json` file.

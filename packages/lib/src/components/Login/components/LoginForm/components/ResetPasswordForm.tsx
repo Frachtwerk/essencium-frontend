@@ -1,8 +1,8 @@
+import { ResetPassword, resetPasswordSchema } from '@frachtwerk/essencium-types'
 import { Box, Button, Container, Group, Text, TextInput } from '@mantine/core'
 import { Dispatch, SetStateAction } from 'react'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { ResetPassword, resetPasswordSchema } from 'types'
 
 import { useZodForm } from '../../../../../hooks'
 

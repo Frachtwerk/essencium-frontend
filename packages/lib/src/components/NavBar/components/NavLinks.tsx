@@ -1,3 +1,4 @@
+import { NavLink, UserOutput } from '@frachtwerk/essencium-types'
 import {
   NavLink as MantineNavLink,
   Stack,
@@ -5,7 +6,6 @@ import {
 } from '@mantine/core'
 import { Link as RouterLink } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
-import { NavLink, UserOutput } from 'types'
 
 type Props = {
   links: NavLink[]

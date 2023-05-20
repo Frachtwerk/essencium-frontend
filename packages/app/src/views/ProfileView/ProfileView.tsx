@@ -1,7 +1,7 @@
+import { Profile } from '@frachtwerk/essencium-lib'
+import { PasswordChange, UserUpdate } from '@frachtwerk/essencium-types'
 import { Center, Loader } from '@mantine/core'
-import { Profile } from 'lib'
 import { useTranslation } from 'react-i18next'
-import { PasswordChange, UserUpdate } from 'types'
 
 import { useGetMe, useUpdateMe, useUpdatePassword } from '@/api/me'
 import { useGetRoles } from '@/api/roles'

@@ -13,7 +13,7 @@ export default [
       {
         file: 'dist/index.js',
         format: 'esm',
-        sourcemap: true,
+        sourcemap: false,
       },
     ],
     plugins: [

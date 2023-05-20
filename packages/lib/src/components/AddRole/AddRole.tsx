@@ -1,4 +1,9 @@
 import {
+  RightOutput,
+  RoleInput,
+  roleInputSchema,
+} from '@frachtwerk/essencium-types'
+import {
   Box,
   Button,
   Checkbox,
@@ -15,7 +20,6 @@ import { IconShieldCheck } from '@tabler/icons-react'
 import { t } from 'i18next'
 import { useState } from 'react'
 import { Controller } from 'react-hook-form'
-import { RightOutput, RoleInput, roleInputSchema } from 'types'
 
 import { useZodForm } from '../../hooks'
 

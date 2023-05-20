@@ -1,6 +1,6 @@
 {
-  "name": "app",
-  "version": "0.6.0",
+  "name": "@frachtwerk/essencium-app",
+  "version": "0.13.1",
   "private": true,
   "description": "This is the starter application consuming the library.",
   "keywords": [
@@ -51,7 +51,7 @@
     "@mantine/modals": "6.0.2",
     "@mantine/notifications": "6.0.2",
     "@mantine/spotlight": "6.0.2",
-    "@playwright/test": "1.33.0",
+    "@playwright/test": "1.34.0",
     "@sentry/react": "7.40.0",
     "@sentry/tracing": "7.40.0",
     "@tabler/icons-react": "2.11.0",
@@ -65,15 +65,16 @@
     "fast-glob": "3.2.12",
     "i18next": "22.4.11",
     "jotai": "2.0.3",
-    "lib": "workspace:*",
+    "@frachtwerk/essencium-lib": "workspace:*",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "7.43.5",
     "react-i18next": "12.2.0",
     "react-json-tree": "0.18.0",
-    "translations": "workspace:*",
-    "types": "workspace:*",
-    "zod": "3.20.6"
+    "@frachtwerk/essencium-translations": "workspace:*",
+    "@frachtwerk/essencium-types": "workspace:*",
+    "zod": "3.20.6",
+    "i18next-browser-languagedetector": "7.0.1"
   },
   "devDependencies": {
     "@babel/core": "7.21.0",
@@ -116,7 +117,7 @@
     ]
   },
   "dependenciesMeta": {
-    "lib": {
+    "@frachtwerk/essencium-lib": {
       "injected": true
     }
   }

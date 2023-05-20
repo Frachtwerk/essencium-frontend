@@ -1,5 +1,16 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {
+  HttpNotification,
+  Table,
+  TablePagination,
+} from '@frachtwerk/essencium-lib'
+import {
+  RightOutput,
+  RIGHTS,
+  RoleOutput,
+  RoleUpdate,
+} from '@frachtwerk/essencium-types'
+import {
   Button,
   Center,
   Checkbox,
@@ -16,10 +27,8 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { useAtom } from 'jotai'
-import { HttpNotification, Table, TablePagination } from 'lib'
 import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { RightOutput, RIGHTS, RoleOutput, RoleUpdate } from 'types'
 
 import { userAtom } from '@/api/me'
 import { useGetRights } from '@/api/rights'

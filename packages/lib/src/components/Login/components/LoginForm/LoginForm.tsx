@@ -1,4 +1,9 @@
 import {
+  LoginForm as TLoginForm,
+  loginFormSchema,
+  ResetPassword,
+} from '@frachtwerk/essencium-types'
+import {
   Anchor,
   Box,
   Button,
@@ -15,7 +20,6 @@ import {
 import { Dispatch, SetStateAction } from 'react'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { LoginForm as TLoginForm, loginFormSchema, ResetPassword } from 'types'
 
 import { useZodForm } from '../../../../hooks'
 import { ResetPasswordForm, ResetPasswordSuccessMessage } from './components'

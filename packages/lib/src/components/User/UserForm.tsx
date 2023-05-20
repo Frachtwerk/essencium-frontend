@@ -1,3 +1,5 @@
+import { i18n } from '@frachtwerk/essencium-translations'
+import { RoleOutput, UserInput, UserUpdate } from '@frachtwerk/essencium-types'
 import {
   Box,
   Button,
@@ -16,8 +18,6 @@ import {
   FormState,
   UseFormSetValue,
 } from 'react-hook-form'
-import { i18n } from 'translations'
-import { RoleOutput, UserInput, UserUpdate } from 'types'
 
 type Props = {
   title: string

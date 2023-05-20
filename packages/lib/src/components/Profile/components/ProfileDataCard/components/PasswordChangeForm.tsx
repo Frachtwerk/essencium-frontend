@@ -1,3 +1,8 @@
+import { i18n } from '@frachtwerk/essencium-translations'
+import {
+  PasswordChange,
+  passwordChangeSchema,
+} from '@frachtwerk/essencium-types'
 import {
   Box,
   Button,
@@ -8,8 +13,6 @@ import {
   Text,
 } from '@mantine/core'
 import { Controller } from 'react-hook-form'
-import { i18n } from 'translations'
-import { PasswordChange, passwordChangeSchema } from 'types'
 
 import { useZodForm } from '../../../../../hooks'
 

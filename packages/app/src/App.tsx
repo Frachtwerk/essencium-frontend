@@ -1,3 +1,5 @@
+import { Footer, Header, NavBar } from '@frachtwerk/essencium-lib'
+import { FooterLink, NavLink, RIGHTS } from '@frachtwerk/essencium-types'
 import { AppShell, Image, useMantineTheme } from '@mantine/core'
 import type { SpotlightAction } from '@mantine/spotlight'
 import { SpotlightProvider } from '@mantine/spotlight'
@@ -14,10 +16,8 @@ import {
 } from '@tabler/icons-react'
 import { useNavigate } from '@tanstack/react-router'
 import i18next from 'i18next'
-import { Footer, Header, NavBar } from 'lib'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FooterLink, NavLink, RIGHTS } from 'types'
 
 import { version } from '../package.json'
 import { useInvalidateToken } from './api/auth'

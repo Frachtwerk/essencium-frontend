@@ -1,8 +1,8 @@
+import { initI18n } from '@frachtwerk/essencium-translations'
+import { UserOutput } from '@frachtwerk/essencium-types'
 import * as mantine from '@mantine/core'
 import { render, RenderResult, screen } from '@testing-library/react'
 import { initReactI18next } from 'react-i18next'
-import { initI18n } from 'translations'
-import { UserOutput } from 'types'
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { SearchBar, UserMenu } from './components'

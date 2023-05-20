@@ -1,3 +1,7 @@
+import {
+  TranslationInput,
+  TranslationOutput,
+} from '@frachtwerk/essencium-types'
 import { showNotification } from '@mantine/notifications'
 import {
   useMutation,
@@ -7,7 +11,6 @@ import {
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { t } from 'i18next'
-import { TranslationInput, TranslationOutput } from 'types'
 
 import { api } from './api'
 

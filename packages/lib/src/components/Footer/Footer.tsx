@@ -1,3 +1,4 @@
+import { FooterLink } from '@frachtwerk/essencium-types'
 import {
   Flex,
   Footer as MantineFooter,
@@ -8,7 +9,6 @@ import {
 import { IconCopyright } from '@tabler/icons-react'
 import { Link as RouterLink } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
-import { FooterLink } from 'types'
 
 type Props = {
   links: FooterLink[]

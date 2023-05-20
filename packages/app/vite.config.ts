@@ -48,7 +48,7 @@ export default defineConfig({
     },
   },
   build: {
-    sourcemap: true,
+    sourcemap: false,
   },
   resolve: {
     alias: [
@@ -59,15 +59,15 @@ export default defineConfig({
       },
       // this entry enables HMR for the lib & translations development
       {
-        find: 'lib',
+        find: '@frachtwerk/essencium-lib',
         replacement: path.resolve(__dirname, '../lib/src/index.ts'),
       },
       {
-        find: 'translations',
+        find: '@frachtwerk/essencium-translations',
         replacement: path.resolve(__dirname, '../translations/src/index.ts'),
       },
       {
-        find: 'types',
+        find: '@frachtwerk/essencium-types',
         replacement: path.resolve(__dirname, '../types/src/index.ts'),
       },
     ],

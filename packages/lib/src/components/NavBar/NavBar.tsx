@@ -1,3 +1,4 @@
+import { NavLink, UserOutput } from '@frachtwerk/essencium-types'
 import {
   Navbar,
   NavLink as MantineNavLink,
@@ -6,7 +7,6 @@ import {
 } from '@mantine/core'
 import { IconLogout } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
-import { NavLink, UserOutput } from 'types'
 
 import { NavLinks } from './components'
 

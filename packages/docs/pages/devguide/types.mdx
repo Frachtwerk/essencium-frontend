@@ -5,8 +5,8 @@ The monorepo contains a package called `types` which has clear rules which types
 An example is a type called `Props` that includes some prop types of a component. Initially, we assume the type is only used in this file so it's declared there.
 
 ```tsx
-// imported from 'types' package because 'UserInput' is used in multiple packages
-import { UserInput } from 'types'
+// imported from '@frachtwerk/essencium-types' package because 'UserInput' is used in multiple packages
+import { UserInput } from '@frachtwerk/essencium-types'
 
 // exported to be used in multiple files but not in other packages
 export type Avatar = {

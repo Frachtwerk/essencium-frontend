@@ -6,7 +6,7 @@
     "declaration": true,
     "declarationDir": "types",
     "declarationMap": false,
-    "sourceMap": true,
+    "sourceMap": false,
     "moduleResolution": "node"
   },
   "include": ["src/**/*.ts", "rollup.config.js"],
