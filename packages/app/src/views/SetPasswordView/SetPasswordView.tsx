@@ -1,10 +1,13 @@
+import {
+  SetPasswordForm,
+  SetPasswordSuccessMessage,
+} from '@frachtwerk/essencium-lib'
+import { SetPasswordInput } from '@frachtwerk/essencium-types'
 import { Container, Paper, Title } from '@mantine/core'
 import { showNotification } from '@mantine/notifications'
 import { AxiosError } from 'axios'
 import { t } from 'i18next'
-import { SetPasswordForm, SetPasswordSuccessMessage } from 'lib'
 import { useState } from 'react'
-import { SetPasswordInput } from 'types'
 
 import { useSetPassword } from '@/api/auth'
 import { router } from '@/router/init'
