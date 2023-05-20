@@ -1,6 +1,5 @@
-import { SetPassword } from '@frachtwerk/essencium-lib'
 import {
-  resetPasswordSchema,
+  resetTokenSchema,
   RIGHTS,
   UserOutput,
 } from '@frachtwerk/essencium-types'
