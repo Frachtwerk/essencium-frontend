@@ -368,7 +368,8 @@
     "select": "Wählen Sie die Sprache",
     "search": {
       "label": "Durchsuchen Sie die Übersetzungen",
-      "placeholder": "Suchen ..."
+      "placeholder": "Suchen ...",
+      "noResults": "Keine Übersetzungen gefunden"
     },
     "divider": "Neue Übersetzung",
     "save": "Speichern",

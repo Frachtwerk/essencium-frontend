@@ -368,7 +368,8 @@
     "select": "Choose Language",
     "search": {
       "label": "Search all translations",
-      "placeholder": "Search ..."
+      "placeholder": "Search ...",
+      "noResults": "No translations found"
     },
     "divider": "New Translation",
     "save": "Save",

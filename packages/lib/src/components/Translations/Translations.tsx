@@ -43,7 +43,9 @@ export function searchTranslationsObject(
   searchQuery: string
 ): Record<string, string> {
   const searchResult: Record<string, string> = {}
+
   const regexSearchTerm = new RegExp(searchQuery, 'gi')
+
   if (object !== undefined) {
     Object.keys(object).forEach(key => {
       if (
@@ -56,6 +58,7 @@ export function searchTranslationsObject(
           object[key] as unknown as Record<string, string>,
           searchQuery
         )
+
         if (Object.keys(nestedResult).length > 0) {
           ;(searchResult[key] as unknown as Record<string, string>) =
             nestedResult
@@ -65,6 +68,7 @@ export function searchTranslationsObject(
 
     return searchResult
   }
+
   return {}
 }
 
@@ -169,99 +173,109 @@ export function Translations({
       </Flex>
 
       <Card shadow="sm" pl="lg" pt="lg" radius="sm" withBorder>
-        <JSONTree
-          hideRoot
-          data={filteredTranslations}
-          theme={TREE_THEME}
-          getItemString={() => null}
-          labelRenderer={([key]) => <Text fz="sm">{key}</Text>}
-          valueRenderer={(_, value, ...keyPath) => (
-            <Box
-              onClick={event => {
-                handleOpenEditMode(event, keyPath)
-              }}
-            >
-              {formatKeyPathToString(keyPath) === keyPathString ? (
-                <form
-                  onSubmit={(event: FormEventWithTranslation) => {
-                    handleSubmit(event, keyPath, event.target.translation.value)
-                  }}
-                >
-                  <Group>
-                    <Input
-                      name="translation"
-                      defaultValue={value as string}
-                      type="text"
-                      variant="unstyled"
-                      autoFocus
+        {!Object.keys(filteredTranslations).length ? (
+          <Text fz="sm" color="gray">
+            {t('translationsView.search.noResults')}
+          </Text>
+        ) : (
+          <JSONTree
+            hideRoot
+            data={filteredTranslations}
+            theme={TREE_THEME}
+            getItemString={() => null}
+            labelRenderer={([key]) => <Text fz="sm">{key}</Text>}
+            valueRenderer={(_, value, ...keyPath) => (
+              <Box
+                onClick={event => {
+                  handleOpenEditMode(event, keyPath)
+                }}
+              >
+                {formatKeyPathToString(keyPath) === keyPathString ? (
+                  <form
+                    onSubmit={(event: FormEventWithTranslation) => {
+                      handleSubmit(
+                        event,
+                        keyPath,
+                        event.target.translation.value
+                      )
+                    }}
+                  >
+                    <Group>
+                      <Input
+                        name="translation"
+                        defaultValue={value as string}
+                        type="text"
+                        variant="unstyled"
+                        autoFocus
+                      />
+
+                      <Tooltip
+                        label={t('translationsView.save')}
+                        color={theme.colors.gray[6]}
+                        pl="md"
+                        position="bottom"
+                        withArrow
+                      >
+                        <ActionIcon type="submit">
+                          <IconCheck
+                            size="1.125rem"
+                            color={theme.colors.blue[4]}
+                          />
+                        </ActionIcon>
+                      </Tooltip>
+
+                      <Tooltip
+                        label={t('translationsView.cancel')}
+                        color={theme.colors.gray[6]}
+                        pl="md"
+                        position="bottom"
+                        withArrow
+                      >
+                        <ActionIcon type="reset">
+                          <IconX
+                            onClick={event => {
+                              event.stopPropagation()
+                              setKeyPathString(null)
+                            }}
+                            size="1.125rem"
+                          />
+                        </ActionIcon>
+                      </Tooltip>
+
+                      <Tooltip
+                        label={t('translationsView.reset')}
+                        color={theme.colors.gray[6]}
+                        pl="md"
+                        position="bottom"
+                        withArrow
+                      >
+                        <ActionIcon onClick={() => handleReset(keyPath)}>
+                          <IconArrowBackUp size="1.125rem" />
+                        </ActionIcon>
+                      </Tooltip>
+                    </Group>
+
+                    <Divider
+                      label={t('translationsView.divider')}
+                      m="sm"
+                      w="80%"
                     />
-
-                    <Tooltip
-                      label={t('translationsView.save')}
-                      color={theme.colors.gray[6]}
-                      pl="md"
-                      position="bottom"
-                      withArrow
-                    >
-                      <ActionIcon type="submit">
-                        <IconCheck
-                          size="1.125rem"
-                          color={theme.colors.blue[4]}
-                        />
-                      </ActionIcon>
-                    </Tooltip>
-
-                    <Tooltip
-                      label={t('translationsView.cancel')}
-                      color={theme.colors.gray[6]}
-                      pl="md"
-                      position="bottom"
-                      withArrow
-                    >
-                      <ActionIcon type="reset">
-                        <IconX
-                          onClick={event => {
-                            event.stopPropagation()
-                            setKeyPathString(null)
-                          }}
-                          size="1.125rem"
-                        />
-                      </ActionIcon>
-                    </Tooltip>
-
-                    <Tooltip
-                      label={t('translationsView.reset')}
-                      color={theme.colors.gray[6]}
-                      pl="md"
-                      position="bottom"
-                      withArrow
-                    >
-                      <ActionIcon onClick={() => handleReset(keyPath)}>
-                        <IconArrowBackUp size="1.125rem" />
-                      </ActionIcon>
-                    </Tooltip>
-                  </Group>
-
-                  <Divider
-                    label={t('translationsView.divider')}
-                    m="sm"
-                    w="80%"
-                  />
-                </form>
-              ) : (
-                <Text
-                  fz="sm"
-                  style={{
-                    cursor: 'pointer',
-                  }}
-                >
-                  {value as string}
-                  <Divider my="sm" w="60%" />
-                </Text>
-              )}
-            </Box>
-          )}
-        />
+                  </form>
+                ) : (
+                  <Text
+                    fz="sm"
+                    style={{
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {value as string}
+                    <Divider my="sm" w="60%" />
+                  </Text>
+                )}
+              </Box>
+            )}
+          />
+        )}
       </Card>
     </>
   )
