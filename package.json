@@ -21,7 +21,7 @@
   "license": "MIT",
   "author": "Frachtwerk GmbH",
   "scripts": {
-    "build": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx build app",
+    "build": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx build @frachtwerk/essencium-app",
     "clean": "nx run-many --target=clean && rimraf dist node_modules",
     "clean:install": "pnpm i -w && pnpm clean && pnpm install",
     "dev": "nx dev @frachtwerk/essencium-app",
