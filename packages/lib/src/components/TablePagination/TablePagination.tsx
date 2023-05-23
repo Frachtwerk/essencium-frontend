@@ -1,7 +1,7 @@
+import { PaginatedResponse } from '@frachtwerk/essencium-types'
 import { Flex, Pagination, Select, Text } from '@mantine/core'
 import { Table as TanstackTable } from '@tanstack/react-table'
 import { t } from 'i18next'
-import { PaginatedResponse } from 'types/src/base'
 
 type Props<T> = {
   table: TanstackTable<T>
