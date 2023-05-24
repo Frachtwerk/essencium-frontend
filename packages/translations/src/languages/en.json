@@ -366,6 +366,11 @@
   "translationsView": {
     "title": "Translations",
     "select": "Choose Language",
+    "search": {
+      "label": "Search all translations",
+      "placeholder": "Search ...",
+      "noResults": "No translations found"
+    },
     "divider": "New Translation",
     "save": "Save",
     "cancel": "Cancel",
