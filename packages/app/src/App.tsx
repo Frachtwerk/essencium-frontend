@@ -15,7 +15,6 @@ import {
   IconUsers,
 } from '@tabler/icons-react'
 import { useNavigate } from '@tanstack/react-router'
-import i18next from 'i18next'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -25,6 +24,7 @@ import { useGetMe } from './api/me'
 import { useGetTranslations } from './api/translations'
 import logoURL from './img/web/icon-512.png'
 import { logout } from './utils/logout'
+import { mergeTranslationSources } from './utils/translation'
 
 type AppProps = {
   children: React.ReactNode
@@ -36,22 +36,6 @@ type SearchItems = {
   color?: string
   to: string
   description?: string
-}
-
-function mergeTranslationSources(
-  languages: Record<'de' | 'en', Record<string, string> | undefined>
-): void {
-  Object.entries(languages).forEach(([language, serverTranslations]) => {
-    i18next.addResourceBundle(
-      language,
-      'translation',
-      {
-        ...serverTranslations,
-      },
-      true,
-      true
-    )
-  })
 }
 
 export const NAV_LINKS: NavLink[] = [
