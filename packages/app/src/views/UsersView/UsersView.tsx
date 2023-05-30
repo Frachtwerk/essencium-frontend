@@ -184,14 +184,18 @@ export function UsersView(): JSX.Element {
         cell: info => {
           const rowUser = info.row.original
 
-          const isAdmin = rowUser.role.name === 'ADMIN'
+          const isDefaultUser = rowUser.firstName === 'Admin'
 
           return (
             <Flex direction="row" gap="xs">
               {user?.role.rights
                 .map(right => right.name)
                 .includes(RIGHTS.USER_UPDATE) ? (
-                <ActionIcon size="sm" disabled={isAdmin} variant="transparent">
+                <ActionIcon
+                  size="sm"
+                  disabled={isDefaultUser}
+                  variant="transparent"
+                >
                   <IconPencil onClick={() => handleEditUser(rowUser)} />
                 </ActionIcon>
               ) : null}
@@ -199,12 +203,20 @@ export function UsersView(): JSX.Element {
               {user?.role.rights
                 .map(right => right.name)
                 .includes(RIGHTS.USER_DELETE) ? (
-                <ActionIcon size="sm" disabled={isAdmin} variant="transparent">
+                <ActionIcon
+                  size="sm"
+                  disabled={isDefaultUser}
+                  variant="transparent"
+                >
                   <IconTrash onClick={() => handleDeleteUser(rowUser)} />
                 </ActionIcon>
               ) : null}
 
-              <ActionIcon size="sm" disabled={isAdmin} variant="transparent">
+              <ActionIcon
+                size="sm"
+                disabled={isDefaultUser}
+                variant="transparent"
+              >
                 <IconDotsVertical />
               </ActionIcon>
             </Flex>
