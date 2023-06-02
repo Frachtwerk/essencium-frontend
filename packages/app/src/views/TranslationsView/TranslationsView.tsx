@@ -1,9 +1,15 @@
 import { Translations } from '@frachtwerk/essencium-lib'
+import { TranslationInput } from '@frachtwerk/essencium-types'
 import { Group, Title } from '@mantine/core'
 import { IconLanguage } from '@tabler/icons-react'
 import i18next, { t } from 'i18next'
 
-import { useDeleteTranslation, useUpdateTranslation } from '@/api/translations'
+import {
+  useDeleteTranslation,
+  useGetTranslations,
+  useUpdateTranslation,
+} from '@/api/translations'
+import { mergeTranslationSources } from '@/utils/mergeTranslationSources'
 
 function getTranslationsByLanguage(
   lang: string
@@ -17,6 +23,25 @@ export function TranslationsView(): JSX.Element {
   const { mutate: updateTranslation } = useUpdateTranslation()
   const { mutate: deleteTranslation } = useDeleteTranslation()
 
+  const { data: deServerTranslations, refetch: refetchServerTranslationsDe } =
+    useGetTranslations('de')
+  const { data: enServerTranslations, refetch: refetchServerTranslationsEn } =
+    useGetTranslations('en')
+
+  async function onUpdateTranslation(
+    translationInput: TranslationInput
+  ): Promise<void> {
+    await updateTranslation(translationInput)
+
+    await refetchServerTranslationsDe()
+    await refetchServerTranslationsEn()
+
+    mergeTranslationSources({
+      de: deServerTranslations,
+      en: enServerTranslations,
+    })
+  }
+
   return (
     <>
       <Group>
@@ -26,7 +51,7 @@ export function TranslationsView(): JSX.Element {
 
       <Translations
         getTranslations={getTranslationsByLanguage}
-        updateTranslation={updateTranslation}
+        updateTranslation={onUpdateTranslation}
         deleteTranslation={deleteTranslation}
       />
     </>
