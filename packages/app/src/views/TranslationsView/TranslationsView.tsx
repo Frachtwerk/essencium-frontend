@@ -31,7 +31,7 @@ export function TranslationsView(): JSX.Element {
   async function onUpdateTranslation(
     translationInput: TranslationInput
   ): Promise<void> {
-    updateTranslation(translationInput)
+    await updateTranslation(translationInput)
 
     await refetchServerTranslationsDe()
     await refetchServerTranslationsEn()
