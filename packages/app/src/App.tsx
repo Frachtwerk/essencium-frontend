@@ -24,7 +24,7 @@ import { useGetMe } from './api/me'
 import { useGetTranslations } from './api/translations'
 import logoURL from './img/web/icon-512.png'
 import { logout } from './utils/logout'
-import { mergeTranslationSources } from './utils/translation'
+import { mergeTranslationSources } from './utils/mergeTranslationSources'
 
 type AppProps = {
   children: React.ReactNode

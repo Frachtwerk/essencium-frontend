@@ -9,7 +9,7 @@ import {
   useGetTranslations,
   useUpdateTranslation,
 } from '@/api/translations'
-import { mergeTranslationSources } from '@/utils/translation'
+import { mergeTranslationSources } from '@/utils/mergeTranslationSources'
 
 function getTranslationsByLanguage(
   lang: string
