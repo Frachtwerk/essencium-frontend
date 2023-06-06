@@ -1,9 +1,11 @@
 import { Translations } from '@frachtwerk/essencium-lib'
-import { TranslationInput } from '@frachtwerk/essencium-types'
+import { TranslationInput, UserOutput } from '@frachtwerk/essencium-types'
 import { Group, Title } from '@mantine/core'
 import { IconLanguage } from '@tabler/icons-react'
 import i18next, { t } from 'i18next'
+import { useAtom } from 'jotai'
 
+import { userAtom } from '@/api/me'
 import {
   useDeleteTranslation,
   useGetTranslations,
@@ -20,6 +22,10 @@ function getTranslationsByLanguage(
 }
 
 export function TranslationsView(): JSX.Element {
+  const [user] = useAtom(userAtom)
+
+  const userLanguage: UserOutput['locale'] = user?.locale || 'en'
+
   const { mutate: updateTranslation } = useUpdateTranslation()
   const { mutate: deleteTranslation } = useDeleteTranslation()
 
@@ -53,6 +59,7 @@ export function TranslationsView(): JSX.Element {
         getTranslations={getTranslationsByLanguage}
         updateTranslation={onUpdateTranslation}
         deleteTranslation={deleteTranslation}
+        userLanguage={userLanguage}
       />
     </>
   )
