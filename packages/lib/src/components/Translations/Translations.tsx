@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unstable-nested-components */
-import { TranslationInput } from '@frachtwerk/essencium-types'
+import { TranslationInput, UserOutput } from '@frachtwerk/essencium-types'
 import {
   ActionIcon,
   Box,
@@ -36,6 +36,7 @@ type Props = {
   getTranslations: (lang: string) => Record<string, string> | undefined
   updateTranslation: ({ locale, key, translation }: TranslationInput) => void
   deleteTranslation: (key: TranslationInput['key']) => void
+  userLanguage: UserOutput['locale']
 }
 
 export function searchTranslationsObject(
@@ -76,6 +77,7 @@ export function Translations({
   getTranslations,
   updateTranslation,
   deleteTranslation,
+  userLanguage,
 }: Props): JSX.Element {
   const theme = useMantineTheme()
 
@@ -91,7 +93,7 @@ export function Translations({
 
   const [keyPathString, setKeyPathString] = useState<string | null>(null)
 
-  const [selectedLanguage, setSelectedLanguage] = useState('en')
+  const [selectedLanguage, setSelectedLanguage] = useState(userLanguage)
   const translations = getTranslations(selectedLanguage)
 
   const [searchQuery, setSearchQuery] = useState('')
