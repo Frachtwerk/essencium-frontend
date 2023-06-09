@@ -31,18 +31,24 @@ export function TranslationsView(): JSX.Element {
   const { data: enServerTranslations, refetch: refetchServerTranslationsEn } =
     useGetTranslations('en')
 
-  const { mutate: updateTranslation } = useUpdateTranslation(() => {
-    refetchServerTranslationsDe()
-    refetchServerTranslationsEn()
-  })
+  const { mutate: updateTranslation } = useUpdateTranslation()
   const { mutate: deleteTranslation } = useDeleteTranslation()
 
   function onUpdateTranslation(translationInput: TranslationInput): void {
-    updateTranslation(translationInput)
+    updateTranslation(translationInput, {
+      onSuccess: async () => {
+        const promises = Promise.all([
+          refetchServerTranslationsDe(),
+          refetchServerTranslationsEn(),
+        ])
 
-    mergeTranslationSources({
-      de: deServerTranslations,
-      en: enServerTranslations,
+        await promises
+
+        mergeTranslationSources({
+          de: deServerTranslations,
+          en: enServerTranslations,
+        })
+      },
     })
   }
 

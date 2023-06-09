@@ -30,9 +30,11 @@ export function useGetTranslations(
   return query
 }
 
-export function useUpdateTranslation(
-  refetchTranslations: () => void
-): UseMutationResult<TranslationOutput, AxiosError, TranslationInput> {
+export function useUpdateTranslation(): UseMutationResult<
+  TranslationOutput,
+  AxiosError,
+  TranslationInput
+> {
   const mutation = useMutation<TranslationOutput, AxiosError, TranslationInput>(
     {
       mutationKey: ['useUpdateTranslation'],
@@ -57,7 +59,6 @@ export function useUpdateTranslation(
           color: 'green',
           style: { position: 'fixed', top: '20px', right: '10px' },
         })
-        refetchTranslations()
       },
       onError: () => {
         showNotification({
