@@ -26,25 +26,29 @@ export function TranslationsView(): JSX.Element {
 
   const userLanguage: UserOutput['locale'] = user?.locale || 'en'
 
-  const { mutate: updateTranslation } = useUpdateTranslation()
-  const { mutate: deleteTranslation } = useDeleteTranslation()
-
   const { data: deServerTranslations, refetch: refetchServerTranslationsDe } =
     useGetTranslations('de')
   const { data: enServerTranslations, refetch: refetchServerTranslationsEn } =
     useGetTranslations('en')
 
-  async function onUpdateTranslation(
-    translationInput: TranslationInput
-  ): Promise<void> {
-    await updateTranslation(translationInput)
+  const { mutate: updateTranslation } = useUpdateTranslation()
+  const { mutate: deleteTranslation } = useDeleteTranslation()
 
-    await refetchServerTranslationsDe()
-    await refetchServerTranslationsEn()
+  function onUpdateTranslation(translationInput: TranslationInput): void {
+    updateTranslation(translationInput, {
+      onSuccess: async () => {
+        const promises = Promise.all([
+          refetchServerTranslationsDe(),
+          refetchServerTranslationsEn(),
+        ])
 
-    mergeTranslationSources({
-      de: deServerTranslations,
-      en: enServerTranslations,
+        await promises
+
+        mergeTranslationSources({
+          de: deServerTranslations,
+          en: enServerTranslations,
+        })
+      },
     })
   }
 
