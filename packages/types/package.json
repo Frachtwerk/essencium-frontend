@@ -2,7 +2,7 @@
   "name": "@frachtwerk/essencium-types",
   "author": "Frachtwerk GmbH",
   "license": "MIT",
-  "version": "0.18.0",
+  "version": "0.18.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
