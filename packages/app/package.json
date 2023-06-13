@@ -51,7 +51,7 @@
     "@mantine/modals": "6.0.2",
     "@mantine/notifications": "6.0.2",
     "@mantine/spotlight": "6.0.2",
-    "@playwright/test": "1.35.0",
+    "@playwright/test": "^1.35.0",
     "@sentry/react": "7.40.0",
     "@sentry/tracing": "7.40.0",
     "@tabler/icons-react": "2.11.0",

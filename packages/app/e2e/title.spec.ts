@@ -1,15 +1,14 @@
 import { expect, test } from '@playwright/test'
 
-test('preview has title', async ({ page }) => {
-  await page.goto('https://essencium-frontend.vercel.app/')
+import { BASE_URL } from '../playwright.config'
 
-  // Expect a title "to contain" a substring.
+test('preview has title', async ({ page }) => {
+  await page.goto(BASE_URL)
   await expect(page).toHaveTitle(/Essencium/)
 })
 
 test('docs have title', async ({ page }) => {
-  await page.goto('https://docs.essencium-frontend.vercel.app/')
+  await page.goto('https://docs.essencium.dev/')
 
-  // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(/Essencium/)
 })

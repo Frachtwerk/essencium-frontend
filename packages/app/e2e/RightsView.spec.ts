@@ -1,10 +1,10 @@
 import { expect, test } from '@playwright/test'
 
-const RIGHTS_VIEW_URL = 'https://essencium-frontend.vercel.app/rights'
+import { BASE_URL } from '../playwright.config'
 
 test.describe('RightsView', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(RIGHTS_VIEW_URL)
+    await page.goto(`${BASE_URL}/rights`)
   })
 
   test('should render the rights view title', ({ page }) => {

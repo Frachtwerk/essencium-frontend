@@ -3,3 +3,7 @@ dist
 .DS_Store
 .rollup.cache
 nx-cloud.env
+
+
+
+playwright/.auth
