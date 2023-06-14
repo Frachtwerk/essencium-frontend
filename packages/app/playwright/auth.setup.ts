@@ -1,8 +1,8 @@
 import { test as setup } from '@playwright/test'
 
-import { BASE_URL } from './playwright.config'
+import { BASE_URL } from '../playwright.config'
 
-const authFile = './playwright/.auth/user.json'
+const authFile = './.auth/user.json'
 
 setup('authenticate', async ({ page }) => {
   await page.goto(`${BASE_URL}/login`)

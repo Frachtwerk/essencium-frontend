@@ -4,3 +4,4 @@ vite.config.ts
 i18n.js
 dist/
 coverage/
+playwright-report/

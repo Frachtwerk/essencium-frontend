@@ -45,7 +45,7 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    { name: 'setup', testDir: './', testMatch: /.*\.setup\.ts/ },
+    { name: 'setup', testDir: './playwright', testMatch: /.*\.setup\.ts/ },
 
     {
       name: 'chromium',
