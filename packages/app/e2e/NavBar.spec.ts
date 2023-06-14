@@ -17,12 +17,13 @@ test.describe('NavBar', () => {
     await expect(page).toHaveURL(`${BASE_URL}/translations`)
   })
 
-  test('open search bar and navigate to users', async ({ page }) => {
+  test.only('open search bar and navigate to roles', async ({ page }) => {
     await page.locator('body').press('Meta+k')
     await expect(page.getByPlaceholder('Search ...')).toBeVisible()
     await page.getByPlaceholder('Search ...').click()
-    await page.getByPlaceholder('Search ...').fill('users')
+    await page.getByPlaceholder('Search ...').fill('roles')
     await page.getByPlaceholder('Search ...').press('Enter')
-    await expect(page).toHaveURL(`${BASE_URL}/users`)
+    await page.waitForURL(`${BASE_URL}/roles`)
+    expect(page.getByRole('heading', { name: 'Roles' })).toBeVisible()
   })
 })

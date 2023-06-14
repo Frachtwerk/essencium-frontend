@@ -6,7 +6,7 @@
       "localStorage": [
         {
           "name": "authToken",
-          "value": "\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbmQyZW5kQHRlc3QuZGUiLCJpYXQiOjE2ODY3MjYzMjEsImV4cCI6MTY4NjgxMjcyMSwiaXNzIjoiZnJhY2h0d2Vyay1zdGFydGVyIiwibm9uY2UiOiIwMTc3MjU2MSIsImdpdmVuX25hbWUiOiJFbmQyRW5kIiwiZmFtaWx5X25hbWUiOiJUZXN0dXNlciIsInVpZCI6MTMwfQ.Hwc_1CcKkZBGu8sVqBRdoV6ubmSxANlCkBmt-DfRIDI\""
+          "value": "\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbmQyZW5kQHRlc3QuZGUiLCJpYXQiOjE2ODY3MzQxMjMsImV4cCI6MTY4NjgyMDUyMywiaXNzIjoiZnJhY2h0d2Vyay1zdGFydGVyIiwibm9uY2UiOiIwMTc3MjU2MSIsImdpdmVuX25hbWUiOiJFbmQyRW5kIiwiZmFtaWx5X25hbWUiOiJUZXN0dXNlciIsInVpZCI6MTMwfQ.jAYT3isoLSrTmpysrkCa8GEicNMkq5mdRJqZ8RuGdt8\""
         },
         {
           "name": "i18nextLng",
