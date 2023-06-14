@@ -11,9 +11,19 @@ test.describe('RolesView', () => {
 
   test('go to rolesView, render and sort table', async ({ page }) => {
     await expect(page.getByRole('heading', { name: 'Roles' })).toBeVisible()
-    await expect(page.getByRole('cell', { name: 'Name' })).toBeVisible()
-    await expect(page.getByRole('cell', { name: 'Description' })).toBeVisible()
-    await expect(page.getByRole('cell', { name: 'Rights' })).toBeVisible()
+    await page.waitForTimeout(4000)
+    await expect(
+      page
+        .getByRole('cell', { name: 'Name', exact: true })
+        .locator('div')
+        .first()
+    ).toBeVisible()
+    await expect(
+      page.getByRole('cell', { name: 'Description' }).locator('div').first()
+    ).toBeVisible()
+    await expect(
+      page.getByRole('cell', { name: 'Rights' }).locator('div').first()
+    ).toBeVisible()
     await expect(
       page.getByRole('cell', { name: 'ADMIN', exact: true })
     ).toBeVisible()
