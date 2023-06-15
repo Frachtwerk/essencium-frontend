@@ -19,7 +19,6 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { version } from '../package.json'
-import { useInvalidateToken } from './api/auth'
 import { useGetMe } from './api/me'
 import { useGetTranslations } from './api/translations'
 import logoURL from './img/web/icon-512.png'
@@ -136,14 +135,6 @@ function App({ children }: AppProps): JSX.Element {
 
   const { data: user } = useGetMe()
 
-  const { mutate: invalidateToken } = useInvalidateToken(user?.id ?? 0)
-
-  function handleLogout(): void {
-    invalidateToken(null, {
-      onSuccess: logout,
-    })
-  }
-
   const actions: SpotlightAction[] = SEARCH_ITEMS.map(link => {
     return {
       title: t(link.label),
@@ -170,7 +161,7 @@ function App({ children }: AppProps): JSX.Element {
             isOpen={openedNav}
             links={NAV_LINKS}
             user={user}
-            handleLogout={handleLogout}
+            handleLogout={logout}
           />
         }
         footer={<Footer links={FOOTER_LINKS} />}
