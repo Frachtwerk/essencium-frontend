@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-import { BASE_URL } from '../playwright.config'
+import { ADMIN, BASE_URL } from '../playwright.config'
 
 test.use({ storageState: './playwright/.auth/noAuth.json' })
 
@@ -20,9 +20,9 @@ test.describe('LoginView', () => {
 
   test('login', async ({ page }) => {
     await page.getByPlaceholder('E-Mail').click()
-    await page.getByPlaceholder('E-Mail').fill('end2end@test.de')
+    await page.getByPlaceholder('E-Mail').fill(ADMIN.username)
     await page.getByPlaceholder('Password').click()
-    await page.getByPlaceholder('Password').fill('end2endtest')
+    await page.getByPlaceholder('Password').fill(ADMIN.password)
     await page.getByRole('button', { name: 'Login' }).click()
     await expect(page).toHaveURL(BASE_URL)
     const logoutButton = page.getByRole('button', { name: 'Logout' })
@@ -32,7 +32,7 @@ test.describe('LoginView', () => {
   test('reset password', async ({ page }) => {
     await page.getByText('Reset Password').click()
     await page.getByPlaceholder('Your Email').click()
-    await page.getByPlaceholder('Your Email').fill('end2end@test.de')
+    await page.getByPlaceholder('Your Email').fill(ADMIN.username)
     await page.getByRole('button', { name: 'Reset Password' }).click()
     const passwordResetSuccessMessage = page.getByRole('heading', {
       name: 'Email sent',

@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-import { BASE_URL } from '../playwright.config'
+import { ADMIN, BASE_URL } from '../playwright.config'
 
 test.describe('ProfileView', () => {
   test.beforeEach(async ({ page }) => {
@@ -15,9 +15,9 @@ test.describe('ProfileView', () => {
     await expect(InputFirstName).toHaveValue('TestName')
 
     await page.getByPlaceholder('First Name').click()
-    await page.getByPlaceholder('First Name').fill('End2End')
+    await page.getByPlaceholder('First Name').fill(ADMIN.firstName)
     await page.getByRole('button', { name: 'Save Changes' }).click()
-    await expect(InputFirstName).toHaveValue('End2End')
+    await expect(InputFirstName).toHaveValue(ADMIN.firstName)
   })
 
   test('change language', async ({ page }) => {

@@ -19,7 +19,8 @@ test.describe('NavBar', () => {
 
   test('open search bar and navigate to roles', async ({ page }) => {
     await page.getByRole('button', { name: 'Search ... ⌘ + K' }).click()
-    await page.getByPlaceholder('Search ...').fill('roles')
+    const searchBar = page.getByPlaceholder('Search ...')
+    await searchBar.fill('roles')
     await page.getByRole('button', { name: 'Roles Roles Management' }).click()
     await page.waitForURL(`${BASE_URL}/roles`)
     expect(page.getByRole('heading', { name: 'Roles' })).toBeVisible()

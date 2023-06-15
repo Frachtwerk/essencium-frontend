@@ -24,27 +24,25 @@ test.describe('RolesView', () => {
     await expect(
       page.getByRole('cell', { name: 'Rights' }).locator('div').first()
     ).toBeVisible()
-    await expect(
-      page.getByRole('cell', { name: 'ADMIN', exact: true })
-    ).toBeVisible()
-    await page.getByRole('cell', { name: 'Name' }).getByRole('img').click()
-    await expect(
-      page.getByRole('cell', { name: 'USER', exact: true })
-    ).toBeVisible()
-    await page.getByRole('cell', { name: 'Name' }).getByRole('img').click()
-    await expect(
-      page.getByRole('cell', { name: 'USER', exact: true })
-    ).not.toBeVisible()
+
+    const firstCellOfFirstRow = page.locator(
+      '//*[@id="root"]/div/div/main/div[2]/div/table/tbody/tr[1]/td[1]'
+    )
+    await expect(firstCellOfFirstRow).toHaveText('ADMIN')
+    const sortIcon = page.getByRole('cell', { name: 'Name' }).getByRole('img')
+    await sortIcon.click()
+    await expect(firstCellOfFirstRow).not.toHaveText('ADMIN')
+    await await sortIcon.click()
   })
 
   test('open and close add role modal', async ({ page }) => {
     await page.getByRole('button', { name: 'Add Role' }).click()
-    await expect(page.locator('form')).toBeVisible()
+    const addRoleModal = page.locator('form')
+    await expect(addRoleModal).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Add Role' })).toBeVisible()
-    await page.getByRole('button').first().click()
+    const closeButton = page.getByRole('button').first()
+    await closeButton.click()
     await expect(page.locator('form')).not.toBeVisible()
-    await expect(
-      page.getByRole('heading', { name: 'Add Role' })
-    ).not.toBeVisible()
+    await expect(addRoleModal).not.toBeVisible()
   })
 })
