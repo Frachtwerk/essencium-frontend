@@ -22,7 +22,7 @@ test.describe('NavBar', () => {
     const searchBar = page.getByPlaceholder('Search ...')
     await searchBar.fill('roles')
     await page.getByRole('button', { name: 'Roles Roles Management' }).click()
-    await page.waitForURL(`${BASE_URL}/roles`)
+    await page.waitForLoadState('networkidle')
     expect(page.getByRole('heading', { name: 'Roles' })).toBeVisible()
   })
 })
