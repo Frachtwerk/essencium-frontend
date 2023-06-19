@@ -7,11 +7,10 @@ import { Callout } from 'nextra-theme-docs'
   contribute 🎉.
 </Callout>
 
-Essencium consists of a core library (`lib`), a translations package (`translations`) and a boilerplate (`app`) that consums those packages. Additonally, we have a `docs` package to document the project.
+Essencium consists of a core library (`lib`), a types package (`types`) and a boilerplate (`app`) that consums those packages. Additonally, we have a `docs` package to document the project.
 We chose a monorepo architecture for better developer experience and less complex maintainability.
 
 All components are developed inside the `lib` and imported inside the `app`. That allows us to easily update our `lib` package.
-Translations and i18next are managed in `translations` package in the corresponding language files.
 
 That gives us the following architecture:
 
@@ -27,9 +26,6 @@ That gives us the following architecture:
 │   │   ├── package.json
 │   │   └── ... 📝
 │   └── lib
-│   │   ├── package.json
-│   │   └── ... 📝
-│   └── translations
 │   │   ├── package.json
 │   │   └── ... 📝
 ├── .commitlintrc.json
