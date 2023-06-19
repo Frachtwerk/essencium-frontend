@@ -162,12 +162,6 @@ jobs:
           name: types-dist
           path: packages/types/dist
 
-      - name: Upload 'translations' dist folder
-        uses: actions/upload-artifact@v3
-        with:
-          name: translations-dist
-          path: packages/translations/dist
-
       - name: Cache dist folder for 'app' package
         id: cache-dist
         uses: actions/cache@v3
@@ -223,12 +217,6 @@ jobs:
           name: types-dist
           path: packages/types/dist
 
-      - name: Download 'translations' dist folder
-        uses: actions/download-artifact@v3
-        with:
-          name: translations-dist
-          path: packages/translations/dist
-
       - name: Publish 'lib' package
         run: pnpm publish --filter "@frachtwerk/essencium-lib" --access public --no-git-checks
         env:
@@ -236,10 +224,5 @@ jobs:
 
       - name: Publish 'types' package
         run: pnpm publish --filter "@frachtwerk/essencium-types" --access public --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Publish 'translations' package
-        run: pnpm publish --filter "@frachtwerk/essencium-translations" --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -2,7 +2,6 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "paths": {
-      "@frachtwerk/essencium-translations": ["../translations/src"],
       "@frachtwerk/essencium-types": ["../types/src"]
     }
   }
