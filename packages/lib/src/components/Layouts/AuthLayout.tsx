@@ -1,6 +1,10 @@
-import { Footer, Header, NavBar } from '@frachtwerk/essencium-lib'
-import { FooterLink, NavLink, RIGHTS } from '@frachtwerk/essencium-types'
-import { AppShell, Image, useMantineTheme } from '@mantine/core'
+import {
+  FooterLink,
+  NavLink,
+  RIGHTS,
+  UserOutput,
+} from '@frachtwerk/essencium-types'
+import { AppShell, useMantineTheme } from '@mantine/core'
 import type { SpotlightAction } from '@mantine/spotlight'
 import { SpotlightProvider } from '@mantine/spotlight'
 import {
@@ -14,20 +18,21 @@ import {
   IconUserCheck,
   IconUsers,
 } from '@tabler/icons-react'
-import { useNavigate } from '@tanstack/react-router'
-import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { UseQueryResult } from '@tanstack/react-query'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
+import React, { useEffect, useState } from 'react'
 
-import { version } from '../package.json'
-import { useInvalidateToken } from './api/auth'
-import { useGetMe } from './api/me'
-import { useGetTranslations } from './api/translations'
-import logoURL from './img/web/icon-512.png'
-import { logout } from './utils/logout'
-import { mergeTranslationSources } from './utils/mergeTranslationSources'
+import { Footer } from '../Footer'
+import { Header } from '../Header'
+import { NavBar } from '../NavBar'
 
-type AppProps = {
+type Props = {
   children: React.ReactNode
+  version?: string
+  logout: () => void
+  useGetMe: () => UseQueryResult<UserOutput, unknown>
 }
 
 type SearchItems = {
@@ -113,20 +118,17 @@ export const SEARCH_ITEMS: SearchItems[] = [
   },
 ]
 
-function App({ children }: AppProps): JSX.Element {
-  const navigate = useNavigate()
+export function AuthLayout({
+  children,
+  version,
+  logout,
+  useGetMe,
+}: Props): JSX.Element | null {
+  const router = useRouter()
 
   const theme = useMantineTheme()
 
   const { t } = useTranslation()
-
-  const { data: deServerTranslations } = useGetTranslations('de')
-  const { data: enServerTranslations } = useGetTranslations('en')
-
-  mergeTranslationSources({
-    de: deServerTranslations,
-    en: enServerTranslations,
-  })
 
   const [openedNav, setOpenedNav] = useState(false)
 
@@ -136,22 +138,20 @@ function App({ children }: AppProps): JSX.Element {
 
   const { data: user } = useGetMe()
 
-  const { mutate: invalidateToken } = useInvalidateToken(user?.id ?? 0)
-
-  function handleLogout(): void {
-    invalidateToken(null, {
-      onSuccess: logout,
-    })
-  }
-
   const actions: SpotlightAction[] = SEARCH_ITEMS.map(link => {
     return {
       title: t(link.label),
       description: link.description ? (t(link.description) as string) : '',
-      onTrigger: () => navigate({ to: `/${link.to}` }),
+      onTrigger: () => router.push(`${link.to}`),
       icon: link.icon,
     }
   })
+
+  useEffect(() => {
+    const authToken = localStorage.getItem('authToken')
+
+    if (!authToken) router.push('/login')
+  }, [user, router])
 
   return (
     <SpotlightProvider
@@ -170,7 +170,7 @@ function App({ children }: AppProps): JSX.Element {
             isOpen={openedNav}
             links={NAV_LINKS}
             user={user}
-            handleLogout={handleLogout}
+            handleLogout={logout}
           />
         }
         footer={<Footer links={FOOTER_LINKS} />}
@@ -182,10 +182,10 @@ function App({ children }: AppProps): JSX.Element {
             user={user}
             logo={
               <Image
-                src={logoURL}
+                src="/img/web/icon-192.png"
                 alt="Essencium Logo"
-                width="30px"
-                height="auto"
+                width={30}
+                height={30}
               />
             }
           />
@@ -196,5 +196,3 @@ function App({ children }: AppProps): JSX.Element {
     </SpotlightProvider>
   )
 }
-
-export default App

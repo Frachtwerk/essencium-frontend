@@ -6,8 +6,8 @@ import {
 } from '@frachtwerk/essencium-types'
 import { Card, Tabs } from '@mantine/core'
 import { IconLock, IconSettings, IconUser } from '@tabler/icons-react'
-import { useMatch } from '@tanstack/react-router'
-import { useTranslation } from 'react-i18next'
+import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 
 import {
   PasswordChangeForm,
@@ -33,8 +33,7 @@ export function ProfileDataCard({
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
-  const { route } = useMatch()
-  const { path } = route
+  const router = useRouter()
 
   return (
     <Card shadow="sm" p="lg" radius="sm" withBorder>
@@ -48,7 +47,7 @@ export function ProfileDataCard({
             {t('profileView.dataCard.tabs.passwordChange.title')}
           </Tabs.Tab>
 
-          {path !== 'profile' ? (
+          {router.pathname !== 'profile' ? (
             <Tabs.Tab value="settings" icon={<IconSettings size={14} />}>
               {t('profileView.dataCard.tabs.settings.title')}
             </Tabs.Tab>
@@ -63,7 +62,7 @@ export function ProfileDataCard({
           <PasswordChangeForm handlePasswordUpdate={handlePasswordUpdate} />
         </Tabs.Panel>
 
-        {path !== 'profile' ? (
+        {router.pathname !== 'profile' ? (
           <Tabs.Panel value="settings" pt="lg">
             <ProfileSettingsForm
               user={user}

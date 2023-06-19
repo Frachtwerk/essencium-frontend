@@ -8,8 +8,8 @@ import {
   useMantineTheme,
 } from '@mantine/core'
 import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons-react'
+import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 
 export function ThemeSelector(): JSX.Element {
   const { t } = useTranslation()
@@ -20,12 +20,14 @@ export function ThemeSelector(): JSX.Element {
   const [hasSelectedLight, setSelectedLight] = useState(false)
   const [hasSelectedDark, setSelectedDark] = useState(false)
 
-  const systemColorScheme: ColorScheme = window.matchMedia(
-    '(prefers-color-scheme: light)'
-  ).matches
-    ? 'light'
-    : 'dark'
+  let systemColorScheme: ColorScheme = 'light'
 
+  if (typeof window !== 'undefined') {
+    systemColorScheme = window.matchMedia('(prefers-color-scheme: light)')
+      .matches
+      ? 'light'
+      : 'dark'
+  }
   return (
     <Popover width={130} position="bottom" withArrow shadow="sm">
       <Popover.Target>

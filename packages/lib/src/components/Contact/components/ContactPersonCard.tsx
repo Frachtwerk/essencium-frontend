@@ -15,9 +15,11 @@ import {
   IconMail,
   IconPhoneCall,
 } from '@tabler/icons-react'
-import { t } from 'i18next'
+import { useTranslation } from 'next-i18next'
 
 export function ContactPersonCard(): JSX.Element {
+  const { t } = useTranslation()
+
   return (
     <Card shadow="sm" p="lg" radius="md" withBorder data-testid="card">
       <Flex

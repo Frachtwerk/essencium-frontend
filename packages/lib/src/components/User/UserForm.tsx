@@ -1,4 +1,3 @@
-import { i18n } from '@frachtwerk/essencium-translations'
 import { RoleOutput, UserInput, UserUpdate } from '@frachtwerk/essencium-types'
 import {
   Box,
@@ -12,6 +11,7 @@ import {
   TextInput,
   Title,
 } from '@mantine/core'
+import { useTranslation } from 'next-i18next'
 import {
   Control,
   Controller,
@@ -36,7 +36,7 @@ export function UserForm({
   setValue,
   onSubmit,
 }: Props): JSX.Element {
-  const { t } = i18n
+  const { t } = useTranslation()
 
   return (
     <form onSubmit={onSubmit}>
@@ -69,7 +69,9 @@ export function UserForm({
           <Box mt="-0.6rem" h="0.8rem">
             {formState.errors.firstName && (
               <Text ml={5} fz="xs" color="red">
-                {formState.errors.firstName?.message}
+                {formState.errors.firstName?.message
+                  ? String(t(formState.errors.firstName.message))
+                  : null}
               </Text>
             )}
           </Box>
@@ -95,7 +97,9 @@ export function UserForm({
           <Box mt="-0.6rem" h="0.8rem">
             {formState.errors.lastName && (
               <Text ml={5} fz="xs" color="red">
-                {formState.errors.lastName?.message}
+                {formState.errors.lastName?.message
+                  ? String(t(formState.errors.lastName.message))
+                  : null}
               </Text>
             )}
           </Box>
@@ -128,7 +132,9 @@ export function UserForm({
           <Box mt="-0.6rem" h="0.8rem">
             {formState.errors.email && (
               <Text ml={5} fz="xs" color="red">
-                {formState.errors.email?.message}
+                {formState.errors.email?.message
+                  ? String(t(formState.errors.email.message))
+                  : null}
               </Text>
             )}
           </Box>
@@ -153,7 +159,9 @@ export function UserForm({
           <Box mt="-0.6rem" h="0.8rem">
             {formState.errors.password && (
               <Text ml={5} fz="xs" color="red">
-                {formState.errors.password?.message}
+                {formState.errors.password?.message
+                  ? String(t(formState.errors.password.message))
+                  : null}
               </Text>
             )}
           </Box>
@@ -185,7 +193,9 @@ export function UserForm({
           <Box mt="-0.6rem" h="0.8rem">
             {formState.errors.phone && (
               <Text ml={5} fz="xs" color="red">
-                {formState.errors.phone?.message}
+                {formState.errors.phone?.message
+                  ? String(t(formState.errors.phone.message))
+                  : null}
               </Text>
             )}
           </Box>
@@ -210,7 +220,9 @@ export function UserForm({
           <Box mt="-0.6rem" h="0.8rem">
             {formState.errors.mobile && (
               <Text ml={5} fz="xs" color="red">
-                {formState.errors.mobile?.message}
+                {formState.errors.mobile?.message
+                  ? String(t(formState.errors.mobile.message))
+                  : null}
               </Text>
             )}
           </Box>
@@ -265,7 +277,9 @@ export function UserForm({
           <Box mt="-0.6rem" h="0.8rem">
             {formState.errors.locale && (
               <Text ml={5} fz="xs" color="red">
-                {formState.errors.locale?.message}
+                {formState.errors.locale?.message
+                  ? String(t(formState.errors.locale.message))
+                  : null}
               </Text>
             )}
           </Box>
@@ -295,7 +309,9 @@ export function UserForm({
           <Box mt="-0.6rem" h="0.8rem">
             {formState.errors.role && (
               <Text ml={5} fz="xs" color="red">
-                {formState.errors.role?.message}
+                {formState.errors.role?.message
+                  ? String(t(formState.errors.role.message))
+                  : null}
               </Text>
             )}
           </Box>

@@ -1,8 +1,6 @@
-import { initI18n } from '@frachtwerk/essencium-translations'
 import { FooterLink } from '@frachtwerk/essencium-types'
 import { render, RenderResult, screen } from '@testing-library/react'
 import { CSSProperties } from 'react'
-import { initReactI18next } from 'react-i18next'
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { Footer } from './Footer'
@@ -42,8 +40,6 @@ describe('Footer', () => {
       ),
     }))
 
-    initI18n(initReactI18next)
-
     FooterMounted = render(<Footer links={FOOTER_LINKS} />)
   })
 
@@ -52,19 +48,16 @@ describe('Footer', () => {
   })
 
   it('should contain the correct content', () => {
-    expect(screen.getByText('Privacy').closest('a')).toHaveProperty(
-      'href',
-      'privacy'
-    )
+    expect(
+      screen.getByText('footer.privacy.label').closest('a')
+    ).toHaveProperty('href', 'privacy')
 
-    expect(screen.getByText('Imprint').closest('a')).toHaveProperty(
-      'href',
-      'imprint'
-    )
+    expect(
+      screen.getByText('footer.imprint.label').closest('a')
+    ).toHaveProperty('href', 'imprint')
 
-    expect(screen.getByText('Contact').closest('a')).toHaveProperty(
-      'href',
-      'contact'
-    )
+    expect(
+      screen.getByText('footer.contact.label').closest('a')
+    ).toHaveProperty('href', 'contact')
   })
 })

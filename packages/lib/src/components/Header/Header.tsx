@@ -10,7 +10,8 @@ import {
   Text,
   useMantineTheme,
 } from '@mantine/core'
-import { useTranslation } from 'react-i18next'
+import NextLink from 'next/link'
+import { useTranslation } from 'next-i18next'
 
 import { SearchBar } from './components/SearchBar'
 import { ThemeSelector } from './components/ThemeSelector'
@@ -56,11 +57,15 @@ export function Header({
 
         <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
           <Group spacing="xs" noWrap align="center">
-            <Box>{logo}</Box>
+            <NextLink href="/">
+              <Box>{logo}</Box>
+            </NextLink>
 
-            <Text size={21} mr="10" weight="500">
-              {t('header.title')}
-            </Text>
+            <NextLink href="/" style={{ textDecoration: 'none' }}>
+              <Text size={21} mr="10" weight="500" color={theme.black}>
+                {t('header.title')}
+              </Text>
+            </NextLink>
 
             {version ? (
               <>

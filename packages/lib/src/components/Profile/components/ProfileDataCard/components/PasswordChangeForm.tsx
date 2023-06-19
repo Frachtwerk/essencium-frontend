@@ -1,4 +1,3 @@
-import { i18n } from '@frachtwerk/essencium-translations'
 import {
   PasswordChange,
   passwordChangeSchema,
@@ -12,11 +11,10 @@ import {
   Stack,
   Text,
 } from '@mantine/core'
+import { useTranslation } from 'next-i18next'
 import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../../../../hooks'
-
-const { t } = i18n
 
 type Props = {
   handlePasswordUpdate: (
@@ -28,6 +26,8 @@ type Props = {
 export function PasswordChangeForm({
   handlePasswordUpdate,
 }: Props): JSX.Element {
+  const { t } = useTranslation()
+
   const { handleSubmit, control, formState } = useZodForm({
     schema: passwordChangeSchema,
     defaultValues: {
@@ -69,7 +69,9 @@ export function PasswordChangeForm({
             <Box mt="-0.6rem" h="0.8rem">
               {formState.errors.verification && (
                 <Text ml={5} fz="xs" color="red">
-                  {formState.errors.verification?.message}
+                  {formState.errors.verification?.message
+                    ? String(t(formState.errors.verification.message))
+                    : null}
                 </Text>
               )}
             </Box>
@@ -101,7 +103,9 @@ export function PasswordChangeForm({
             <Box mt="-0.6rem" h="0.8rem">
               {formState.errors.password && (
                 <Text ml={5} fz="xs" color="red">
-                  {formState.errors.password?.message}
+                  {formState.errors.password?.message
+                    ? String(t(formState.errors.password.message))
+                    : null}
                 </Text>
               )}
             </Box>
@@ -133,7 +137,9 @@ export function PasswordChangeForm({
             <Box mt="-0.6rem" h="0.8rem">
               {formState.errors.confirmPassword && (
                 <Text ml={5} fz="xs" color="red">
-                  {formState.errors.confirmPassword?.message}
+                  {formState.errors.confirmPassword?.message
+                    ? String(t(formState.errors.confirmPassword.message))
+                    : null}
                 </Text>
               )}
             </Box>

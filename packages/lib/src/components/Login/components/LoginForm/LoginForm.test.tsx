@@ -1,13 +1,5 @@
 import { fireEvent, render, RenderResult, screen } from '@testing-library/react'
-import {
-  afterEach,
-  beforeAll,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vi,
-} from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { LoginForm } from './LoginForm'
 
@@ -23,22 +15,6 @@ describe('LoginForm', () => {
   const isPasswordResetFormOpened = false
   const isResetPasswordSent = false
   const isResettingPassword = false
-
-  beforeAll(() => {
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => {
-        return {
-          t: (str: unknown) => str,
-        }
-      },
-    }))
-
-    vi.mock('@frachtwerk/essencium-translations', () => ({
-      i18n: {
-        t: (str: unknown) => str,
-      },
-    }))
-  })
 
   beforeEach(() => {
     LoginFormMounted = render(

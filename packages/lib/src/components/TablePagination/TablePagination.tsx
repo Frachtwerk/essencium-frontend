@@ -1,7 +1,7 @@
 import { PaginatedResponse } from '@frachtwerk/essencium-types'
 import { Flex, Pagination, Select, Text } from '@mantine/core'
 import { Table as TanstackTable } from '@tanstack/react-table'
-import { t } from 'i18next'
+import { useTranslation } from 'next-i18next'
 
 type Props<T> = {
   table: TanstackTable<T>
@@ -20,6 +20,8 @@ export function TablePagination<T>({
   setActivePage,
   handleRefetch,
 }: Props<T>): JSX.Element {
+  const { t } = useTranslation()
+
   return (
     <Flex align="center">
       <Flex align="center" mr="xl">

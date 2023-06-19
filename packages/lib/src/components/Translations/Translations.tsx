@@ -20,7 +20,8 @@ import {
   IconSearch,
   IconX,
 } from '@tabler/icons-react'
-import { t } from 'i18next'
+import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 import { FormEvent, useState } from 'react'
 import { JSONTree, KeyPath } from 'react-json-tree'
 
@@ -77,6 +78,10 @@ export function Translations({
   updateTranslation,
   deleteTranslation,
 }: Props): JSX.Element {
+  const router = useRouter()
+
+  const { t } = useTranslation()
+
   const theme = useMantineTheme()
 
   const TREE_THEME = {
@@ -91,7 +96,9 @@ export function Translations({
 
   const [keyPathString, setKeyPathString] = useState<string | null>(null)
 
-  const [selectedLanguage, setSelectedLanguage] = useState('en')
+  const [selectedLanguage, setSelectedLanguage] = useState(
+    router?.locale || 'en'
+  )
   const translations = getTranslations(selectedLanguage)
 
   const [searchQuery, setSearchQuery] = useState('')

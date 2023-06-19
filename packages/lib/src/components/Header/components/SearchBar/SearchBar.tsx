@@ -8,7 +8,7 @@ import {
 } from '@mantine/core'
 import { openSpotlight } from '@mantine/spotlight'
 import { IconSearch } from '@tabler/icons-react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 
 export function SearchBar(): JSX.Element {
   const { t } = useTranslation()

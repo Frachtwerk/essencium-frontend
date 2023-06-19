@@ -1,4 +1,3 @@
-import { initI18n } from '@frachtwerk/essencium-translations'
 import { NavLink } from '@frachtwerk/essencium-types'
 import {
   IconHome2,
@@ -8,8 +7,6 @@ import {
   IconUsers,
 } from '@tabler/icons-react'
 import { render, RenderResult, screen } from '@testing-library/react'
-import { CSSProperties } from 'react'
-import { initReactI18next } from 'react-i18next'
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { NavBar } from './NavBar'
@@ -56,23 +53,9 @@ describe('NavBar', () => {
   ]
 
   beforeAll(() => {
-    vi.mock('@tanstack/react-router', () => ({
-      Link: ({
-        children,
-        to,
-        ...props
-      }: {
-        children: React.ReactNode
-        to: string
-        style: CSSProperties
-      }) => (
-        <a {...props} href={to}>
-          {children}
-        </a>
-      ),
+    vi.mock('next/router', () => ({
+      useRouter: () => ({}),
     }))
-
-    initI18n(initReactI18next)
 
     NavBarMounted = render(
       <NavBar isOpen links={NAV_LINKS} handleLogout={() => {}} />
@@ -84,25 +67,20 @@ describe('NavBar', () => {
   })
 
   it('should contain the correct navigation links', () => {
-    expect(screen.getByText('Home').closest('a')).toHaveProperty(
-      'href',
-      '/home'
-    )
-    expect(screen.getByText('Users').closest('a')).toHaveProperty(
-      'href',
-      '/users'
-    )
-    expect(screen.getByText('Roles').closest('a')).toHaveProperty(
-      'href',
-      '/roles'
-    )
-    expect(screen.getByText('Rights').closest('a')).toHaveProperty(
-      'href',
-      '/rights'
-    )
-    expect(screen.getByText('Translations').closest('a')).toHaveProperty(
-      'href',
-      '/translations'
-    )
+    expect(
+      screen.getByText('navigation.home.label').closest('a')
+    ).toHaveProperty('href', '/home')
+    expect(
+      screen.getByText('navigation.users.label').closest('a')
+    ).toHaveProperty('href', '/users')
+    expect(
+      screen.getByText('navigation.roles.label').closest('a')
+    ).toHaveProperty('href', '/roles')
+    expect(
+      screen.getByText('navigation.rights.label').closest('a')
+    ).toHaveProperty('href', '/rights')
+    expect(
+      screen.getByText('navigation.translations.label').closest('a')
+    ).toHaveProperty('href', '/translations')
   })
 })
