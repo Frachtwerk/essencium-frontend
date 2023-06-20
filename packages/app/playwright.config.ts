@@ -2,9 +2,10 @@ import { defineConfig, devices } from '@playwright/test'
 
 export const BASE_URL = 'https://staging.essencium.dev'
 
+export const BASE_URL_DOCS = 'https://docs.essencium.dev/'
 export const ADMIN = {
-  username: 'admin@frachtwerk.de',
-  password: 'adminAdminAdmin',
+  username: '',
+  password: '',
   firstName: 'Admin',
   lastName: 'User',
 }

@@ -10,7 +10,7 @@ test('LoginView > redirect to login page', async ({ page }) => {
 
   await expect(page).toHaveTitle(/Essencium/)
   const heading = page.getByRole('heading', { name: 'Login' })
-  await expect(heading).toBeVisible
+  await expect(heading).toBeVisible()
 })
 
 test.describe('LoginView', () => {
@@ -37,7 +37,8 @@ test.describe('LoginView', () => {
     const passwordResetSuccessMessage = page.getByRole('heading', {
       name: 'Email sent',
     })
-    await expect(passwordResetSuccessMessage).toBeVisible
+    await page.waitForLoadState('networkidle')
+    await expect(passwordResetSuccessMessage).toBeVisible()
   })
 
   test('reset password cancel', async ({ page }) => {
@@ -45,7 +46,7 @@ test.describe('LoginView', () => {
     const text = page.getByText(
       'Forgot your password? Enter your E-Mail and we will send you a link to reset you'
     )
-    await expect(text).toBeVisible
+    await expect(text).toBeVisible()
     await page.getByRole('button', { name: 'Cancel' }).click()
     const loginForm = await page
       .locator('div')
@@ -53,14 +54,21 @@ test.describe('LoginView', () => {
         hasText: 'E-Mail *Password *Remember LoginReset PasswordLogin',
       })
       .nth(3)
-    await expect(loginForm).toBeVisible
+    await expect(loginForm).toBeVisible()
   })
 
   test('login form validation', async ({ page }) => {
     await page.getByPlaceholder('E-Mail').click()
     await page.getByPlaceholder('E-Mail').fill('a')
     await page.getByPlaceholder('Password').click()
-    const errorMessage = page.getByText('E-Mail is not valid')
-    await expect(errorMessage).toBeVisible()
+    const errorMessageEmail = page.getByText('E-Mail is not valid')
+    await expect(errorMessageEmail).toBeVisible()
+    await page.getByPlaceholder('Password').click()
+    await page.getByPlaceholder('Password').fill('123')
+    await page.getByPlaceholder('E-Mail').click()
+    const errorMessagePassword = page.getByText(
+      'Password must be at least 8 characters long'
+    )
+    await expect(errorMessagePassword).toBeVisible()
   })
 })

@@ -9,9 +9,8 @@ test.describe('RolesView', () => {
     await expect(page).toHaveURL(`${BASE_URL}/roles`)
   })
 
-  test('go to rolesView, render and sort table', async ({ page }) => {
+  test('go to rolesView, render and sort table by name', async ({ page }) => {
     await expect(page.getByRole('heading', { name: 'Roles' })).toBeVisible()
-    await page.waitForTimeout(4000)
     await expect(
       page
         .getByRole('cell', { name: 'Name', exact: true })
@@ -32,7 +31,7 @@ test.describe('RolesView', () => {
     const sortIcon = page.getByRole('cell', { name: 'Name' }).getByRole('img')
     await sortIcon.click()
     await expect(firstCellOfFirstRow).not.toHaveText('ADMIN')
-    await await sortIcon.click()
+    await sortIcon.click()
   })
 
   test('open and close add role modal', async ({ page }) => {

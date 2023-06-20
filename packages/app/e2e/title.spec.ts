@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-import { BASE_URL } from '../playwright.config'
+import { BASE_URL, BASE_URL_DOCS } from '../playwright.config'
 
 test('preview has title', async ({ page }) => {
   await page.goto(BASE_URL)
@@ -8,7 +8,7 @@ test('preview has title', async ({ page }) => {
 })
 
 test('docs have title', async ({ page }) => {
-  await page.goto('https://docs.essencium.dev/')
+  await page.goto(BASE_URL_DOCS)
 
   await expect(page).toHaveTitle(/Essencium/)
 })

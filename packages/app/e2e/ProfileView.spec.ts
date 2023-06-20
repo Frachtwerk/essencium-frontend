@@ -20,6 +20,28 @@ test.describe('ProfileView', () => {
     await expect(InputFirstName).toHaveValue(ADMIN.firstName)
   })
 
+  test('form validation', async ({ page }) => {
+    await page.getByPlaceholder('First Name').click()
+    await page.getByPlaceholder('First Name').fill('T')
+    await page.getByRole('button', { name: 'Save Changes' }).click()
+    const firstNameErrorMessage = page.getByText(
+      'First Name must be at least 2 characters long'
+    )
+    await expect(firstNameErrorMessage).toBeVisible()
+    await page.getByPlaceholder('Last Name').click()
+    await page.getByPlaceholder('Last Name').fill('T')
+    await page.getByRole('button', { name: 'Save Changes' }).click()
+    const lastNameErrorMessage = page.getByText(
+      'Last Name must be at least 2 characters long'
+    )
+    await expect(lastNameErrorMessage).toBeVisible()
+    await page.getByPlaceholder('E-Mail').click()
+    await page.getByPlaceholder('E-Mail').fill('admin')
+    await page.getByRole('button', { name: 'Save Changes' }).click()
+    const emailErrorMessage = page.getByText('E-Mail is not valid')
+    await expect(emailErrorMessage).toBeVisible()
+  })
+
   test('change language', async ({ page }) => {
     await page.getByPlaceholder('Language').click()
     await page.getByRole('option', { name: 'Deutsch' }).click()
