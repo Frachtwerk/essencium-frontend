@@ -4,8 +4,8 @@ export const BASE_URL = 'https://staging.essencium.dev'
 
 export const BASE_URL_DOCS = 'https://docs.essencium.dev/'
 export const ADMIN = {
-  username: '',
-  password: '',
+  username: 'admin@frachtwerk.de',
+  password: 'adminAdminAdmin',
   firstName: 'Admin',
   lastName: 'User',
 }
