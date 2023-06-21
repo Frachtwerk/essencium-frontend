@@ -137,3 +137,38 @@ export function useUpdateRole(): UseMutationResult<
 
   return mutation
 }
+
+export function useDeleteRole(): UseMutationResult<
+  null,
+  AxiosError,
+  RoleOutput['id']
+> {
+  const { t } = useTranslation()
+  const mutation = useMutation<null, AxiosError, RoleOutput['id']>({
+    mutationKey: ['useDeleteRole'],
+    mutationFn: (roleId: RoleOutput['id']) =>
+      api
+        .delete<null>(`${VERSION}/roles/${roleId}`)
+        .then(response => response.data),
+    onSuccess: () => {
+      showNotification({
+        autoClose: 4000,
+        title: t('notifications.deletedDataSuccess.title'),
+        message: t('notifications.deletedDataSuccess.message'),
+        color: 'green',
+        style: { position: 'fixed', top: '20px', right: '10px' },
+      })
+    },
+    onError: () => {
+      showNotification({
+        autoClose: 4000,
+        title: t('notifications.deletedDataError.title'),
+        message: t('notifications.deletedDataError.message'),
+        color: 'red',
+        style: { position: 'fixed', top: '20px', right: '10px' },
+      })
+    },
+  })
+
+  return mutation
+}

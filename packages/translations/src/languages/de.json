@@ -20,7 +20,9 @@
     }
   },
   "actions": {
-    "refresh": "Daten aktualisieren"
+    "refresh": "Daten aktualisieren",
+    "delete": "Löschen",
+    "cancel": "Abbrechen"
   },
   "navigation": {
     "home": {
@@ -262,14 +264,20 @@
       "rights": "Rechte"
     },
     "modal": {
-      "title": "Rolle hinzufügen",
+      "titleAdd": "Rolle hinzufügen",
+      "titleEdit": "Rolle bearbeiten",
       "name": "Name",
       "description": "Beschreibung",
       "protected": "Geschützt",
       "editable": "Editierbar",
       "rights": "Rechte",
       "cancel": "Abbrechen",
-      "submit": "Speichern"
+      "submit": "Speichern",
+      "update": "Ändern"
+    },
+    "deleteDialog": {
+      "title": "Rolle löschen",
+      "text": "Wollen Sie diese Rolle wirklich löschen? "
     }
   },
   "validation": {
