@@ -1,0 +1,18 @@
+{
+  "cookies": [],
+  "origins": [
+    {
+      "origin": "https://staging.essencium.dev",
+      "localStorage": [
+        {
+          "name": "authToken",
+          "value": "\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBmcmFjaHR3ZXJrLmRlIiwiaWF0IjoxNjg2OTE0NTk0LCJleHAiOjE2ODcwMDA5OTQsImlzcyI6ImZyYWNodHdlcmstc3RhcnRlciIsIm5vbmNlIjoiN2YxZDk1MjEiLCJnaXZlbl9uYW1lIjoiQWRtaW4iLCJmYW1pbHlfbmFtZSI6IlVzZXIiLCJ1aWQiOjE4fQ.a5g2DOnwa09FO9F7Zdrs8vtbkEQCYixC8NQZznAoWIM\""
+        },
+        {
+          "name": "i18nextLng",
+          "value": "en-US"
+        }
+      ]
+    }
+  ]
+}
