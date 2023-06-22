@@ -1,5 +1,15 @@
 import { defineConfig, devices } from '@playwright/test'
 
+export const BASE_URL = 'https://staging.essencium.dev'
+
+export const BASE_URL_DOCS = 'https://docs.essencium.dev/'
+export const ADMIN = {
+  username: 'admin@frachtwerk.de',
+  password: 'adminAdminAdmin',
+  firstName: 'Admin',
+  lastName: 'User',
+}
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -43,20 +53,31 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    { name: 'setup', testDir: './playwright', testMatch: /.*\.setup\.ts/ },
+
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: './playwright/.auth/user.json',
+      },
+      dependencies: ['setup'],
     },
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      use: {
+        ...devices['Desktop Firefox'],
+        storageState: './playwright/.auth/user.json',
+      },
+      dependencies: ['setup'],
     },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    /* exclude because of login error in safari */
+    //   {
+    //     name: 'webkit',
+    //     use: { ...devices['Desktop Safari'] },
+    //   },
 
     /* Test against mobile viewports. */
     // {

@@ -12,11 +12,12 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { t } from 'i18next'
+import { useAtomValue } from 'jotai'
+import { useTranslation } from 'next-i18next'
 
-import { api } from './api'
+import { authTokenAtom } from '@/api/auth'
 
-const VERSION = 'v1'
+import { api, VERSION } from './api'
 
 export type UsersResponse = PaginatedResponse<UserOutput>
 
@@ -33,7 +34,10 @@ export function useGetUsers({
   sort,
   filter,
 }: GetUsersParams): UseQueryResult<UsersResponse, AxiosError> {
-  const query = useQuery<UsersResponse, AxiosError>({
+  const authToken = useAtomValue(authTokenAtom)
+
+  return useQuery<UsersResponse, AxiosError>({
+    enabled: Boolean(authToken),
     queryKey: ['getUsers', { page, size, sort, filter }],
     queryFn: () =>
       api
@@ -47,22 +51,21 @@ export function useGetUsers({
         })
         .then(response => response.data),
   })
-
-  return query
 }
 
 export function useGetUser(
   userId: UserOutput['id']
 ): UseQueryResult<UserOutput, AxiosError> {
-  const query = useQuery<UserOutput, AxiosError>({
+  const authToken = useAtomValue(authTokenAtom)
+
+  return useQuery<UserOutput, AxiosError>({
+    enabled: Boolean(authToken) && Boolean(userId),
     queryKey: ['useGetUser', userId],
     queryFn: () =>
       api
         .get<UserOutput>(`${VERSION}/users/${userId}`)
         .then(response => response.data),
   })
-
-  return query
 }
 
 export function useCreateUser(): UseMutationResult<
@@ -70,6 +73,8 @@ export function useCreateUser(): UseMutationResult<
   AxiosError,
   UserInput
 > {
+  const { t } = useTranslation()
+
   const mutation = useMutation<UserInput, AxiosError, UserInput>({
     mutationKey: ['useCreateUser'],
     mutationFn: (newUser: UserInput) =>
@@ -104,6 +109,8 @@ export function useUpdateUser(): UseMutationResult<
   AxiosError,
   UserUpdate
 > {
+  const { t } = useTranslation()
+
   const mutation = useMutation<UserOutput, AxiosError, UserUpdate>({
     mutationKey: ['useUpdateUser'],
     mutationFn: (user: UserUpdate) =>
@@ -138,6 +145,8 @@ export function useDeleteUser(): UseMutationResult<
   AxiosError,
   UserOutput['id']
 > {
+  const { t } = useTranslation()
+
   const mutation = useMutation<null, AxiosError, UserOutput['id']>({
     mutationKey: ['useDeleteUser'],
     mutationFn: (userId: UserOutput['id']) =>

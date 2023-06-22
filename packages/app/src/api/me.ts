@@ -11,13 +11,13 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { t } from 'i18next'
-import { useAtom, useSetAtom, useStore } from 'jotai'
+import { useAtom, useAtomValue, useSetAtom, useStore } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
+import { useTranslation } from 'next-i18next'
 
-import { api } from './api'
+import { authTokenAtom } from '@/api/auth'
 
-const VERSION = 'v1'
+import { api, VERSION } from './api'
 
 export const userAtom = atomWithStorage<UserOutput | null>('user', null)
 
@@ -25,8 +25,10 @@ export function useGetMe(): UseQueryResult<UserOutput, unknown> {
   const store = useStore()
 
   const [, setUser] = useAtom(userAtom)
+  const authToken = useAtomValue(authTokenAtom)
 
   const query = useQuery({
+    enabled: Boolean(authToken),
     queryKey: ['useGetMe'],
     queryFn: () =>
       api
@@ -46,6 +48,8 @@ export function useUpdateMe(): UseMutationResult<
   AxiosError,
   UserUpdate
 > {
+  const { t } = useTranslation()
+
   const setUser = useSetAtom(userAtom)
 
   const mutation = useMutation<UserOutput, AxiosError, UserUpdate>({
@@ -84,6 +88,8 @@ export function useUpdatePassword(): UseMutationResult<
   AxiosError,
   Omit<PasswordChange, 'confirmPassword'>
 > {
+  const { t } = useTranslation()
+
   const mutation = useMutation<
     UserOutput,
     AxiosError,
