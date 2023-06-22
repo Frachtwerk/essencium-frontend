@@ -7,7 +7,7 @@ import { ReactElement } from 'react'
 
 import { useGetMe, useUpdateMe, useUpdatePassword } from '@/api/me'
 import { useGetRoles } from '@/api/roles'
-import Layout from '@/components/layouts/AuthLayout'
+import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
 import { logout } from '@/utils/logout'
 
@@ -75,7 +75,7 @@ function ProfileView(): JSX.Element {
 }
 
 ProfileView.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>
+  return <AuthLayout>{page}</AuthLayout>
 }
 
 export const getStaticProps = baseGetStaticProps()

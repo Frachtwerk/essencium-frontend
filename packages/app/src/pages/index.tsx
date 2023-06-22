@@ -1,7 +1,7 @@
 import { Home } from '@frachtwerk/essencium-lib'
 import { ReactElement } from 'react'
 
-import Layout from '@/components/layouts/AuthLayout'
+import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
 
 function HomePage(): JSX.Element {
@@ -9,7 +9,7 @@ function HomePage(): JSX.Element {
 }
 
 HomePage.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>
+  return <AuthLayout>{page}</AuthLayout>
 }
 
 export const getStaticProps = baseGetStaticProps()
