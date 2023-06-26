@@ -57,7 +57,7 @@ test.describe('UsersView', () => {
     await page.getByPlaceholder('Phone Number').fill('12345')
     await page.getByRole('button', { name: 'Save User' }).click()
 
-    await page.waitForURL(`${BASE_URL}/users/`)
+    await page.waitForURL(`${BASE_URL}/users`)
     await sortIcon.click()
     await expect(page.getByRole('cell', { name: '12345' })).toBeVisible()
 

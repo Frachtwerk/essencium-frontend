@@ -50,9 +50,7 @@ test.describe('LoginView', () => {
     await page.getByRole('button', { name: 'Cancel' }).click()
     const loginForm = await page
       .locator('div')
-      .filter({
-        hasText: 'E-Mail *Password *Remember LoginReset PasswordLogin',
-      })
+      .filter({ hasText: 'E-Mail *Password *Reset PasswordLogin' })
       .nth(3)
     await expect(loginForm).toBeVisible()
   })
