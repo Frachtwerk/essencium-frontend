@@ -7,7 +7,7 @@ import {
   useMantineTheme,
 } from '@mantine/core'
 import { IconChevronRight, IconUserCircle } from '@tabler/icons-react'
-import { Link as RouterLink } from '@tanstack/react-router'
+import NextLink from 'next/link'
 
 type Props = {
   user: UserOutput
@@ -18,7 +18,7 @@ export function UserMenu({ user }: Props): JSX.Element {
 
   return (
     <Box>
-      <RouterLink to="/profile" style={{ textDecoration: 'none' }}>
+      <NextLink href="/profile" style={{ textDecoration: 'none' }}>
         <UnstyledButton
           sx={{
             display: 'block',
@@ -53,7 +53,7 @@ export function UserMenu({ user }: Props): JSX.Element {
             <IconChevronRight size={18} />
           </Group>
         </UnstyledButton>
-      </RouterLink>
+      </NextLink>
     </Box>
   )
 }

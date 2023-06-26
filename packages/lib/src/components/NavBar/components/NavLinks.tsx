@@ -4,8 +4,9 @@ import {
   Stack,
   useMantineTheme,
 } from '@mantine/core'
-import { Link as RouterLink } from '@tanstack/react-router'
-import { useTranslation } from 'react-i18next'
+import NextLink from 'next/link'
+import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 
 type Props = {
   links: NavLink[]
@@ -13,6 +14,8 @@ type Props = {
 }
 
 export function NavLinks({ links, user }: Props): JSX.Element {
+  const router = useRouter()
+
   const { t } = useTranslation()
 
   const theme = useMantineTheme()
@@ -30,28 +33,25 @@ export function NavLinks({ links, user }: Props): JSX.Element {
       {links.map(link =>
         !link.rights.length ||
         (link.rights && hasRequiredRights(link.rights)) ? (
-          <RouterLink
+          <NextLink
             key={link.label}
-            to={link.to}
-            search={{}}
-            params={{}}
+            href={link.to}
             style={{ textDecoration: 'none' }}
           >
             <MantineNavLink
               icon={link.icon}
               label={t(link.label)}
-              active={link.to === window.location.pathname}
+              active={link.to === router.pathname}
               styles={{
                 root: {
                   borderRadius: theme.radius.sm,
                 },
                 label: {
                   fontSize: theme.fontSizes.sm,
-                  fontWeight: 450,
                 },
               }}
             />
-          </RouterLink>
+          </NextLink>
         ) : null
       )}
     </Stack>

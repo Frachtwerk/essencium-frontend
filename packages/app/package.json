@@ -1,124 +1,57 @@
 {
   "name": "@frachtwerk/essencium-app",
-  "version": "0.19.1",
+  "version": "0.18.0",
   "private": true,
-  "description": "This is the starter application consuming the library.",
-  "keywords": [
-    "starter",
-    "boilerplate",
-    "frontend",
-    "react",
-    "mantine"
-  ],
-  "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/master/README.md",
-  "bugs": {
-    "url": "https://github.com/Frachtwerk/essencium-frontend/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:Frachtwerk/essencium-frontend.git"
-  },
-  "license": "MIT",
-  "author": "Frachtwerk GmbH",
-  "type": "module",
-  "main": "index.js",
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && vite build && rimraf dist/**/*.js.map",
+    "build": "next build",
     "clean": "rimraf dist node_modules",
     "clean:install": "pnpm clean && pnpm install",
-    "dev": "vite",
+    "dev": "next dev",
     "format": "prettier --write .",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "release": "standard-version",
+    "lint": "next lint",
+    "preview": "next start",
     "test": "pnpm test:unit && pnpm test:e2e",
     "test:unit": "vitest run",
-    "test:e2e": "playwright test",
+    "test:e2e": "playwright test .",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest watch"
   },
   "dependencies": {
     "@emotion/react": "11.10.6",
-    "@fontsource/fira-code": "4.5.13",
-    "@fontsource/fira-sans": "4.5.10",
-    "@fortawesome/fontawesome-svg-core": "6.3.0",
-    "@fortawesome/free-solid-svg-icons": "6.3.0",
-    "@fortawesome/react-fontawesome": "0.2.0",
-    "@hookform/resolvers": "2.9.11",
+    "@frachtwerk/essencium-lib": "workspace:*",
+    "@frachtwerk/essencium-types": "workspace:*",
     "@mantine/core": "6.0.2",
-    "@mantine/dates": "6.0.2",
     "@mantine/hooks": "6.0.2",
-    "@mantine/modals": "6.0.2",
     "@mantine/notifications": "6.0.2",
     "@mantine/spotlight": "6.0.2",
-    "@playwright/test": "^1.35.0",
-    "@sentry/react": "7.40.0",
-    "@sentry/tracing": "7.40.0",
+    "@playwright/test": "^1.35.1",
     "@tabler/icons-react": "2.11.0",
     "@tanstack/react-query": "4.24.10",
-    "@tanstack/react-query-devtools": "4.24.12",
-    "@tanstack/react-router": "0.0.1-beta.83",
-    "@tanstack/react-router-devtools": "0.0.1-beta.83",
     "@tanstack/react-table": "8.7.9",
-    "axios": "1.3.4",
-    "dayjs": "1.11.7",
-    "fast-glob": "3.2.12",
-    "i18next": "22.4.11",
-    "jotai": "2.0.3",
-    "@frachtwerk/essencium-lib": "workspace:*",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-hook-form": "7.43.5",
-    "react-i18next": "12.2.0",
-    "react-json-tree": "0.18.0",
-    "@frachtwerk/essencium-translations": "workspace:*",
-    "@frachtwerk/essencium-types": "workspace:*",
-    "zod": "3.20.6",
-    "i18next-browser-languagedetector": "7.0.1"
-  },
-  "devDependencies": {
-    "@babel/core": "7.21.0",
-    "@testing-library/react": "14.0.0",
     "@types/node": "18.14.1",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
-    "@typescript-eslint/eslint-plugin": "5.54.0",
-    "@typescript-eslint/parser": "5.54.0",
-    "@vitejs/plugin-react": "3.1.0",
-    "@vitest/coverage-c8": "0.29.2",
-    "dotenv": "16.0.3",
+    "axios": "1.3.4",
     "eslint": "8.35.0",
-    "eslint-config-airbnb": "19.0.4",
-    "eslint-config-airbnb-typescript": "17.0.0",
-    "eslint-config-prettier": "8.6.0",
-    "eslint-plugin-import": "2.27.5",
-    "eslint-plugin-jsx-a11y": "6.7.1",
-    "eslint-plugin-react": "7.32.2",
-    "eslint-plugin-react-hooks": "4.6.0",
-    "happy-dom": "8.9.0",
-    "prettier": "2.8.4",
-    "rimraf": "4.4.0",
-    "standard-version": "9.5.0",
-    "typescript": "4.9.5",
+    "eslint-config-next": "13.4.4",
+    "i18next": "22.5.1",
+    "jotai": "2.0.3",
+    "next": "13.4.4",
+    "next-i18next": "13.3.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-i18next": "12.3.1",
+    "typescript": "4.9.5"
+  },
+  "devDependencies": {
+    "@testing-library/react": "14.0.0",
+    "@vitejs/plugin-react": "3.1.0",
     "vite": "4.1.4",
-    "vite-plugin-sentry": "1.1.7",
     "vitest": "0.29.2"
-  },
-  "engines": {
-    "node": ">=16",
-    "pnpm": "7"
-  },
-  "volta": {
-    "node": "16.19.1"
   },
   "nx": {
     "tags": [
       "scope:app"
     ]
-  },
-  "dependenciesMeta": {
-    "@frachtwerk/essencium-lib": {
-      "injected": true
-    }
   }
 }

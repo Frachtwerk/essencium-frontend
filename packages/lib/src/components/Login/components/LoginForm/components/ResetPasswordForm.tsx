@@ -1,8 +1,8 @@
 import { ResetPassword, resetPasswordSchema } from '@frachtwerk/essencium-types'
 import { Box, Button, Container, Group, Text, TextInput } from '@mantine/core'
+import { useTranslation } from 'next-i18next'
 import { Dispatch, SetStateAction } from 'react'
 import { Controller } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
 
 import { useZodForm } from '../../../../../hooks'
 
@@ -54,20 +54,21 @@ export function ResetPasswordForm({
         <Box mt="-0.6rem" h="0.8rem">
           {formState.errors.email && (
             <Text ml={5} fz="xs" color="red">
-              {formState.errors.email?.message}
+              {formState.errors.email?.message
+                ? String(t(formState.errors.email.message))
+                : null}
             </Text>
           )}
         </Box>
 
         <Group>
-          <Button mt="lg" type="submit" color="cyan">
+          <Button mt="lg" type="submit">
             {t('loginView.resetPassword.form.submitButton')}
           </Button>
 
           <Button
             mt="md"
             variant="light"
-            color="cyan"
             onClick={() => {
               setIsPasswordResetFormOpened(false)
             }}

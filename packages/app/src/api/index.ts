@@ -1,3 +1,7 @@
 export * from './api'
+export * from './auth'
+export * from './me'
+export * from './rights'
 export * from './roles'
+export * from './translations'
 export * from './user'

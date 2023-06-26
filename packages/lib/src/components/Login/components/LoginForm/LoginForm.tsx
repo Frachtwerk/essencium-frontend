@@ -8,7 +8,6 @@ import {
   Box,
   Button,
   Center,
-  Checkbox,
   Group,
   Loader,
   Paper,
@@ -17,9 +16,9 @@ import {
   TextInput,
   Transition,
 } from '@mantine/core'
+import { useTranslation } from 'next-i18next'
 import { Dispatch, SetStateAction } from 'react'
 import { Controller } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
 
 import { useZodForm } from '../../../../hooks'
 import { ResetPasswordForm, ResetPasswordSuccessMessage } from './components'
@@ -48,7 +47,6 @@ export function LoginForm({
     defaultValues: {
       email: '',
       password: '',
-      rememberUser: false,
     },
   })
 
@@ -90,7 +88,9 @@ export function LoginForm({
               <Box mt="0.2rem" h="0.8rem">
                 {formState.errors.email && (
                   <Text ml={5} fz="xs" color="red">
-                    {formState.errors.email?.message}
+                    {formState.errors.email?.message
+                      ? String(t(formState.errors.email.message))
+                      : null}
                   </Text>
                 )}
               </Box>
@@ -120,30 +120,16 @@ export function LoginForm({
               <Box mt="0.2rem" h="0.8rem">
                 {formState.errors.password && (
                   <Text ml={5} fz="xs" color="red">
-                    {formState.errors.password?.message}
+                    {formState.errors.password?.message
+                      ? String(t(formState.errors.password.message))
+                      : null}
                   </Text>
                 )}
               </Box>
 
               <Group position="apart" mt="md">
-                <Controller
-                  name="rememberUser"
-                  control={control}
-                  render={({ field }) => (
-                    <Checkbox
-                      {...field}
-                      value={undefined}
-                      checked={field.value}
-                      label={t('loginView.form.rememberLogin')}
-                      color="cyan"
-                      size="xs"
-                    />
-                  )}
-                />
-
                 <Anchor
                   size="xs"
-                  color="cyan"
                   fw="bold"
                   onClick={() => setIsPasswordResetFormOpened(true)}
                 >
@@ -151,7 +137,7 @@ export function LoginForm({
                 </Anchor>
               </Group>
 
-              <Button type="submit" fullWidth mt="md" color="cyan">
+              <Button type="submit" fullWidth mt="md">
                 {t('loginView.form.submit')}
               </Button>
             </form>

@@ -9,7 +9,7 @@ import {
   Title,
 } from '@mantine/core'
 import { IconSend } from '@tabler/icons-react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 
 export function ContactForm(): JSX.Element {
   const { t } = useTranslation()

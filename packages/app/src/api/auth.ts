@@ -8,7 +8,7 @@ import { AxiosError } from 'axios'
 import { useAtom, useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 
-import { api } from '@/api'
+import { api, VERSION } from './api'
 
 type LoginCredentials = {
   username: string
@@ -18,8 +18,6 @@ type LoginCredentials = {
 type TokenResponse = {
   token: string
 }
-
-const VERSION = 'v1'
 
 export const authTokenAtom = atomWithStorage<string | null>('authToken', null)
 

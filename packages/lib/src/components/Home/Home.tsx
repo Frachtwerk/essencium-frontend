@@ -14,8 +14,8 @@ import {
   IconSettings,
   IconUser,
 } from '@tabler/icons-react'
-import { Link as RouterLink } from '@tanstack/react-router'
-import { useTranslation } from 'react-i18next'
+import NextLink from 'next/link'
+import { useTranslation } from 'next-i18next'
 
 export function Home(): JSX.Element {
   const { t } = useTranslation()
@@ -67,7 +67,7 @@ export function Home(): JSX.Element {
           </Group>
 
           <Group position="apart" mt="md">
-            <RouterLink to="users" style={{ textDecoration: 'none' }}>
+            <NextLink href="/users" style={{ textDecoration: 'none' }}>
               <Text
                 color={
                   theme.colorScheme === 'dark'
@@ -77,9 +77,9 @@ export function Home(): JSX.Element {
               >
                 {t('homeView.action.users')}
               </Text>
-            </RouterLink>
+            </NextLink>
 
-            <RouterLink to="users">
+            <NextLink href="/users">
               <ActionIcon
                 color={theme.colors.blue[6]}
                 size="md"
@@ -87,11 +87,11 @@ export function Home(): JSX.Element {
               >
                 <IconUser size={16} />
               </ActionIcon>
-            </RouterLink>
+            </NextLink>
           </Group>
 
           <Group position="apart" mt="md">
-            <RouterLink to="profile" style={{ textDecoration: 'none' }}>
+            <NextLink href="/profile" style={{ textDecoration: 'none' }}>
               <Text
                 color={
                   theme.colorScheme === 'dark'
@@ -101,9 +101,9 @@ export function Home(): JSX.Element {
               >
                 {t('homeView.action.profile')}
               </Text>
-            </RouterLink>
+            </NextLink>
 
-            <RouterLink to="profile">
+            <NextLink href="profile">
               <ActionIcon
                 color={theme.colors.blue[6]}
                 size="md"
@@ -111,7 +111,7 @@ export function Home(): JSX.Element {
               >
                 <IconSettings size={16} />
               </ActionIcon>
-            </RouterLink>
+            </NextLink>
           </Group>
         </Container>
       </Flex>

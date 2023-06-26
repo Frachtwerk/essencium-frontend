@@ -1,26 +1,21 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "composite": true,
-    "target": "ES6",
-    "esModuleInterop": false,
-    "isolatedModules": true,
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "types": ["vite-plugin-sentry/client"],
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
-    "module": "ESNext"
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "e2e/**/*.ts",
-    "playwright/**/*.ts",
-    "package.json",
-    "playwright.config.ts"
-  ],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }

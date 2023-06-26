@@ -7,8 +7,8 @@ import {
   useMantineTheme,
 } from '@mantine/core'
 import { IconCopyright } from '@tabler/icons-react'
-import { Link as RouterLink } from '@tanstack/react-router'
-import { useTranslation } from 'react-i18next'
+import NextLink from 'next/link'
+import { useTranslation } from 'next-i18next'
 
 type Props = {
   links: FooterLink[]
@@ -36,11 +36,9 @@ export function Footer({ links }: Props): JSX.Element {
 
         <Flex direction="row" gap="xl">
           {links.map(link => (
-            <RouterLink
+            <NextLink
               key={link.label}
-              to={link.to}
-              search={{}}
-              params={{}}
+              href={link.to}
               style={{
                 textDecoration: 'none',
                 color:
@@ -50,7 +48,7 @@ export function Footer({ links }: Props): JSX.Element {
               }}
             >
               <Text>{t(link.label)}</Text>
-            </RouterLink>
+            </NextLink>
           ))}
         </Flex>
       </Flex>

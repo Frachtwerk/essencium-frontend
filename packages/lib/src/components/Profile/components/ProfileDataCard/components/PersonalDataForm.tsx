@@ -1,4 +1,3 @@
-import { i18n } from '@frachtwerk/essencium-translations'
 import {
   UserOutput,
   UserUpdate,
@@ -13,11 +12,10 @@ import {
   Text,
   TextInput,
 } from '@mantine/core'
+import { useTranslation } from 'next-i18next'
 import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../../../../hooks'
-
-const { t } = i18n
 
 type Props = {
   user: UserOutput
@@ -25,6 +23,8 @@ type Props = {
 }
 
 export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
+  const { t } = useTranslation()
+
   const { handleSubmit, control, formState } = useZodForm({
     schema: userUpdateSchema,
     defaultValues: { ...user, role: user.role.id },

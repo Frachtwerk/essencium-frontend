@@ -4,7 +4,6 @@
     "paths": {
       "@/*": ["./src/*"],
       "@frachtwerk/essencium-lib": ["../lib/src"],
-      "@frachtwerk/essencium-translations": ["../translations/src"],
       "@frachtwerk/essencium-types": ["../types/src"]
     }
   }

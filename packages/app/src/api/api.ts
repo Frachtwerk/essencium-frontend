@@ -8,15 +8,16 @@ import axios, {
 
 import { logout } from '@/utils/logout'
 
+export const VERSION = 'v1'
+
 export const axiosInstance: AxiosInstance = axios.create({
-  baseURL:
-    process.env.NODE_ENV === 'development'
-      ? '/'
-      : 'https://backend.staging.essencium.dev/',
+  baseURL: 'https://backend.staging.essencium.dev/',
 })
 
 axiosInstance.interceptors.request.use(
   (request: InternalAxiosRequestConfig<AxiosRequestConfig>) => {
+    if (typeof window === 'undefined') return request
+
     const authToken = JSON.parse(localStorage.getItem('authToken') as string)
 
     if (authToken) {
@@ -35,6 +36,8 @@ axiosInstance.interceptors.response.use(
   (error: AxiosError) => {
     if (error?.response?.status === 401) {
       logout()
+
+      if (window.location.pathname !== '/login') window.location.href = '/login'
     }
 
     throw error

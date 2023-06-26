@@ -1,6 +1,6 @@
 import { Center, Stack, Text, Title } from '@mantine/core'
 import { IconMailForward } from '@tabler/icons-react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 
 export function ResetPasswordSuccessMessage(): JSX.Element {
   const { t } = useTranslation()

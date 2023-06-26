@@ -6,7 +6,7 @@ import {
   useMantineTheme,
 } from '@mantine/core'
 import { IconLogout } from '@tabler/icons-react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 
 import { NavLinks } from './components'
 
@@ -32,8 +32,7 @@ export function NavBar({
       hidden={!isOpen}
       p="sm"
       hiddenBreakpoint="sm"
-      width={{ sm: 180 }}
-      styles={{ root: { maxWidth: 'min-content' } }}
+      width={{ sm: 250 }}
       fixed
     >
       <Stack
@@ -59,7 +58,6 @@ export function NavBar({
               },
               label: {
                 fontSize: theme.fontSizes.sm,
-                fontWeight: 450,
               },
             }}
           />

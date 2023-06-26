@@ -10,24 +10,26 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { t } from 'i18next'
+import { useAtomValue } from 'jotai'
+import { useTranslation } from 'next-i18next'
 
-import { api } from './api'
+import { authTokenAtom } from '@/api/auth'
 
-const VERSION = 'v1'
+import { api, VERSION } from './api'
 
 export function useGetTranslations(
   locale: TranslationInput['locale']
 ): UseQueryResult<TranslationOutput, AxiosError> {
-  const query = useQuery<TranslationOutput, AxiosError>({
+  const authToken = useAtomValue(authTokenAtom)
+
+  return useQuery<TranslationOutput, AxiosError>({
+    enabled: Boolean(authToken),
     queryKey: [`useGetTranslations-${locale}`],
     queryFn: () =>
       api
         .get<TranslationOutput>(`${VERSION}/translations/${locale}`)
         .then(response => response.data),
   })
-
-  return query
 }
 
 export function useUpdateTranslation(): UseMutationResult<
@@ -35,6 +37,8 @@ export function useUpdateTranslation(): UseMutationResult<
   AxiosError,
   TranslationInput
 > {
+  const { t } = useTranslation()
+
   const mutation = useMutation<TranslationOutput, AxiosError, TranslationInput>(
     {
       mutationKey: ['useUpdateTranslation'],
@@ -80,6 +84,8 @@ export function useDeleteTranslation(): UseMutationResult<
   AxiosError,
   TranslationInput['key']
 > {
+  const { t } = useTranslation()
+
   const mutation = useMutation<null, AxiosError, TranslationInput['key']>({
     mutationKey: ['useDeleteTranslation'],
     mutationFn: (key: TranslationInput['key']) => {

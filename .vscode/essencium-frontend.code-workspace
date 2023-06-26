@@ -12,10 +12,6 @@
       "path": "../packages/app"
     },
     {
-      "name": "translations",
-      "path": "../packages/translations"
-    },
-    {
       "name": "docs",
       "path": "../packages/docs"
     },
@@ -26,6 +22,7 @@
   ],
   "settings": {
     "i18n-ally.keystyle": "nested",
-    "i18n-ally.sourceLanguage": "en"
+    "i18n-ally.sourceLanguage": "en",
+    "i18n-ally.localesPaths": ["packages/app/public/locales"]
   }
 }

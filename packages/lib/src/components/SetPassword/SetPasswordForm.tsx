@@ -4,8 +4,8 @@ import {
   SetPasswordInput,
 } from '@frachtwerk/essencium-types'
 import { Box, Button, PasswordInput, Stack, Text } from '@mantine/core'
+import { useTranslation } from 'next-i18next'
 import { Controller } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
 
 import { useZodForm } from '../../hooks'
 
@@ -50,7 +50,9 @@ export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
         <Box mt="-1.5rem" h="0.8rem">
           {formState.errors.password && (
             <Text ml={5} fz="xs" color="red">
-              {formState.errors.password?.message}
+              {formState.errors.password?.message
+                ? String(t(formState.errors.password.message))
+                : null}
             </Text>
           )}
         </Box>
@@ -80,7 +82,9 @@ export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
         <Box mt="-1.5rem" h="0.8rem">
           {formState.errors.confirmPassword && (
             <Text ml={5} fz="xs" color="red">
-              {formState.errors.confirmPassword?.message}
+              {formState.errors.confirmPassword?.message
+                ? String(t(formState.errors.confirmPassword.message))
+                : null}
             </Text>
           )}
         </Box>

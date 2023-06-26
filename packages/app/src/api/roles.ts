@@ -12,11 +12,12 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { useTranslation } from 'react-i18next'
+import { useAtomValue } from 'jotai'
+import { useTranslation } from 'next-i18next'
 
-import { api } from './api'
+import { authTokenAtom } from '@/api/auth'
 
-const VERSION = 'v1'
+import { api, VERSION } from './api'
 
 export type RolesResponse = PaginatedResponse<RoleOutput>
 
@@ -76,7 +77,10 @@ export function useGetRoles({
   size,
   sort,
 }: GetRolesParams): UseQueryResult<RolesResponse, AxiosError> {
-  const query = useQuery<RolesResponse, AxiosError>({
+  const authToken = useAtomValue(authTokenAtom)
+
+  return useQuery<RolesResponse, AxiosError>({
+    enabled: Boolean(authToken),
     queryKey: ['getRoles', { page, size, sort }],
     queryFn: () =>
       api
@@ -89,8 +93,6 @@ export function useGetRoles({
         })
         .then(response => response.data),
   })
-
-  return query
 }
 
 export function useUpdateRole(): UseMutationResult<
@@ -121,15 +123,6 @@ export function useUpdateRole(): UseMutationResult<
         title: t('notifications.updatedDataError.title'),
         message: data.message,
         color: 'red',
-        style: { position: 'fixed', top: '20px', right: '10px' },
-      })
-    },
-    onMutate: () => {
-      showNotification({
-        autoClose: 2500,
-        title: t('notifications.updatingAsyncData.title'),
-        message: t('notifications.updatingAsyncData.message'),
-        color: 'yellow',
         style: { position: 'fixed', top: '20px', right: '10px' },
       })
     },

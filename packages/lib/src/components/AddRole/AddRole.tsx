@@ -17,7 +17,7 @@ import {
   TextInput,
 } from '@mantine/core'
 import { IconShieldCheck } from '@tabler/icons-react'
-import { t } from 'i18next'
+import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 import { Controller } from 'react-hook-form'
 
@@ -42,6 +42,8 @@ function AddRole({
   rights,
   handleCreateRole,
 }: Props): JSX.Element {
+  const { t } = useTranslation()
+
   const [selectedRights, setSelectedRights] = useState<RightOutput[]>([])
 
   const { handleSubmit, control, formState, reset } = useZodForm({
@@ -107,7 +109,9 @@ function AddRole({
           <Box mt="-0.6rem" h="0.8rem">
             {formState.errors.name && (
               <Text ml={5} fz="xs" color="red">
-                {formState.errors.name?.message}
+                {formState.errors.name?.message
+                  ? String(t(formState.errors.name.message))
+                  : null}
               </Text>
             )}
           </Box>
@@ -134,7 +138,9 @@ function AddRole({
           <Box mt="-0.6rem" h="0.8rem">
             {formState.errors.description && (
               <Text ml={5} fz="xs" color="red">
-                {formState.errors.description?.message}
+                {formState.errors.description?.message
+                  ? String(t(formState.errors.description.message))
+                  : null}
               </Text>
             )}
           </Box>
@@ -158,7 +164,7 @@ function AddRole({
                 {Object.values(rights).map(right => (
                   <Chip
                     key={right.id}
-                    value={right.id}
+                    value={String(right.id)}
                     variant="light"
                     onClick={() => toggleRight(right)}
                   >

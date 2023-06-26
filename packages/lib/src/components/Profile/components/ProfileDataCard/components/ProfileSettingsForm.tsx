@@ -15,8 +15,8 @@ import {
   useMantineTheme,
 } from '@mantine/core'
 import { IconCheck, IconX } from '@tabler/icons-react'
+import { useTranslation } from 'next-i18next'
 import { Controller } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
 
 import { useZodForm } from '../../../../../hooks'
 

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unstable-nested-components */
-import { TranslationInput, UserOutput } from '@frachtwerk/essencium-types'
+import { TranslationInput } from '@frachtwerk/essencium-types'
 import {
   ActionIcon,
   Box,
@@ -20,7 +20,8 @@ import {
   IconSearch,
   IconX,
 } from '@tabler/icons-react'
-import { t } from 'i18next'
+import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 import { FormEvent, useState } from 'react'
 import { JSONTree, KeyPath } from 'react-json-tree'
 
@@ -36,7 +37,6 @@ type Props = {
   getTranslations: (lang: string) => Record<string, string> | undefined
   updateTranslation: ({ locale, key, translation }: TranslationInput) => void
   deleteTranslation: (key: TranslationInput['key']) => void
-  userLanguage: UserOutput['locale']
 }
 
 export function searchTranslationsObject(
@@ -77,8 +77,11 @@ export function Translations({
   getTranslations,
   updateTranslation,
   deleteTranslation,
-  userLanguage,
 }: Props): JSX.Element {
+  const router = useRouter()
+
+  const { t } = useTranslation()
+
   const theme = useMantineTheme()
 
   const TREE_THEME = {
@@ -93,7 +96,9 @@ export function Translations({
 
   const [keyPathString, setKeyPathString] = useState<string | null>(null)
 
-  const [selectedLanguage, setSelectedLanguage] = useState(userLanguage)
+  const [selectedLanguage, setSelectedLanguage] = useState(
+    router?.locale || 'en'
+  )
   const translations = getTranslations(selectedLanguage)
 
   const [searchQuery, setSearchQuery] = useState('')

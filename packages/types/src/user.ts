@@ -1,16 +1,13 @@
-import { i18n } from '@frachtwerk/essencium-translations'
 import { z } from 'zod'
 
 import { basePropertiesSchema } from './base'
 import { roleOutputSchema } from './role'
 
-const { t } = i18n
-
 const sharedPropertiesSchema = z.object({
-  email: z.string().email(String(t('validation.email.notValid'))),
+  email: z.string().email('validation.email.notValid'),
   enabled: z.boolean(),
-  firstName: z.string().min(2, String(t('validation.firstName.minLength'))),
-  lastName: z.string().min(2, String(t('validation.lastName.minLength'))),
+  firstName: z.string().min(2, 'validation.firstName.minLength'),
+  lastName: z.string().min(2, 'validation.lastName.minLength'),
   locale: z.string(),
   mobile: z
     .string()
@@ -40,7 +37,7 @@ export const userInputSchema = sharedPropertiesSchema.merge(
       role =>
         role !== undefined && roleOutputSchema.shape.id.safeParse(role).success,
       {
-        message: String(t('validation.role.isRequired')),
+        message: 'validation.role.isRequired',
       }
     ),
   })
@@ -55,7 +52,7 @@ export const userUpdateSchema = userOutputSchema.merge(
       role =>
         role !== undefined && roleOutputSchema.shape.id.safeParse(role).success,
       {
-        message: String(t('validation.role.isRequired')),
+        message: 'validation.role.isRequired',
       }
     ),
   })
@@ -65,42 +62,37 @@ export type UserUpdate = z.infer<typeof userUpdateSchema>
 
 export const passwordChangeSchema = z
   .object({
-    verification: z.string().min(8, String(t('validation.password.minLength'))),
-    password: z.string().min(8, String(t('validation.password.minLength'))),
-    confirmPassword: z
-      .string()
-      .min(8, String(t('validation.password.minLength'))),
+    verification: z.string().min(8, 'validation.password.minLength'),
+    password: z.string().min(8, 'validation.password.minLength'),
+    confirmPassword: z.string().min(8, 'validation.password.minLength'),
   })
   .refine(data => data.password === data.confirmPassword, {
-    message: String(t('validation.password.confirmError')),
+    message: 'validation.password.confirmError',
     path: ['confirmPassword'],
   })
 
 export type PasswordChange = z.infer<typeof passwordChangeSchema>
 
 export const loginFormSchema = z.object({
-  email: z.string().email(String(t('validation.email.notValid'))),
-  password: z.string().min(8, String(t('validation.password.minLength'))),
-  rememberUser: z.boolean(),
+  email: z.string().email('validation.email.notValid'),
+  password: z.string().min(8, 'validation.password.minLength'),
 })
 
 export type LoginForm = z.infer<typeof loginFormSchema>
 
 export const resetPasswordSchema = z.object({
-  email: z.string().email(String(t('validation.email.notValid'))),
+  email: z.string().email('validation.email.notValid'),
 })
 
 export type ResetPassword = z.infer<typeof resetPasswordSchema>
 
 export const setPasswordFormSchema = z
   .object({
-    password: z.string().min(8, String(t('validation.password.minLength'))),
-    confirmPassword: z
-      .string()
-      .min(8, String(t('validation.password.minLength'))),
+    password: z.string().min(8, 'validation.password.minLength'),
+    confirmPassword: z.string().min(8, 'validation.password.minLength'),
   })
   .refine(data => data.password === data.confirmPassword, {
-    message: String(t('validation.password.confirmError')),
+    message: 'validation.password.confirmError',
     path: ['confirmPassword'],
   })
 
@@ -110,9 +102,3 @@ export type SetPasswordInput = {
   password: string
   verification: string
 }
-
-export const resetTokenSchema = z.object({
-  token: z.string(),
-})
-
-export type ResetToken = z.infer<typeof resetTokenSchema>
