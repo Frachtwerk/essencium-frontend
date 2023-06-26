@@ -64,7 +64,9 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
           <Box mt="-0.6rem" h="0.8rem">
             {formState.errors.firstName && (
               <Text ml={5} fz="xs" color="red">
-                {formState.errors.firstName?.message}
+                {formState.errors.firstName?.message
+                  ? String(t(formState.errors.firstName.message))
+                  : null}
               </Text>
             )}
           </Box>
@@ -93,7 +95,9 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
           <Box mt="-0.6rem" h="0.8rem">
             {formState.errors.lastName && (
               <Text ml={5} fz="xs" color="red">
-                {formState.errors.lastName?.message}
+                {formState.errors.lastName?.message
+                  ? String(t(formState.errors.lastName.message))
+                  : null}
               </Text>
             )}
           </Box>
@@ -129,7 +133,9 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
           <Box mt="-0.6rem" h="0.8rem">
             {formState.errors.phone && (
               <Text ml={5} fz="xs" color="red">
-                {formState.errors.phone?.message}
+                {formState.errors.phone?.message
+                  ? String(t(formState.errors.phone.message))
+                  : null}
               </Text>
             )}
           </Box>
@@ -158,7 +164,9 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
           <Box mt="-0.6rem" h="0.8rem">
             {formState.errors.mobile && (
               <Text ml={5} fz="xs" color="red">
-                {formState.errors.mobile?.message}
+                {formState.errors.mobile?.message
+                  ? String(t(formState.errors.mobile.message))
+                  : null}
               </Text>
             )}
           </Box>
@@ -195,7 +203,9 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
           <Box mt="-0.6rem" h="0.8rem">
             {formState.errors.email && (
               <Text ml={5} fz="xs" color="red">
-                {formState.errors.email?.message}
+                {formState.errors.email?.message
+                  ? String(t(formState.errors.email.message))
+                  : null}
               </Text>
             )}
           </Box>
@@ -226,7 +236,9 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
           <Box mt="-0.6rem" h="0.8rem">
             {formState.errors.locale && (
               <Text ml={5} fz="xs" color="red">
-                {formState.errors.locale?.message}
+                {formState.errors.locale?.message
+                  ? String(t(formState.errors.locale.message))
+                  : null}
               </Text>
             )}
           </Box>
