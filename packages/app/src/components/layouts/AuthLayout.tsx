@@ -1,4 +1,5 @@
 import { AuthLayout } from '@frachtwerk/essencium-lib'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React from 'react'
 
@@ -9,9 +10,10 @@ import packageJson from '../../../package.json'
 
 type Props = {
   children: React.ReactNode
+  routeName?: string
 }
 
-function AuthLayoutView({ children }: Props): JSX.Element | null {
+function AuthLayoutView({ children, routeName }: Props): JSX.Element | null {
   const router = useRouter()
 
   function handleLogout(): void {
@@ -20,12 +22,17 @@ function AuthLayoutView({ children }: Props): JSX.Element | null {
     router.push('/login')
   }
 
+  const pageTitle = `${routeName ? `${routeName} -` : ''} Essencium`
+
   return (
     <AuthLayout
       version={packageJson.version}
       logout={handleLogout}
       useGetMe={useGetMe}
     >
+      <Head>
+        <title>{pageTitle}</title>
+      </Head>
       {children}
     </AuthLayout>
   )

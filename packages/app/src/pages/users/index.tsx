@@ -41,6 +41,7 @@ import { useDeleteUser, useGetUsers } from '@/api'
 import { userAtom } from '@/api/me'
 import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
+import { getTranslation } from '@/utils/getTranslation'
 import { parseSorting } from '@/utils/parseSorting'
 
 export const FORM_DEFAULTS = {
@@ -323,7 +324,11 @@ function UsersView(): JSX.Element {
 }
 
 UsersView.getLayout = function getLayout(page: React.ReactNode): JSX.Element {
-  return <AuthLayout>{page}</AuthLayout>
+  return (
+    <AuthLayout routeName={getTranslation('navigation.users.label')}>
+      {page}
+    </AuthLayout>
+  )
 }
 
 export const getStaticProps = baseGetStaticProps()

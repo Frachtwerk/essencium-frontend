@@ -10,6 +10,7 @@ import { useGetRoles } from '@/api/roles'
 import AuthLayout from '@/components/layouts/AuthLayout'
 import { FORM_DEFAULTS } from '@/pages/users'
 import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
+import { getTranslation } from '@/utils/getTranslation'
 
 function AddUserView(): JSX.Element {
   const router = useRouter()
@@ -65,7 +66,11 @@ function AddUserView(): JSX.Element {
 }
 
 AddUserView.getLayout = function getLayout(page: React.ReactNode): JSX.Element {
-  return <AuthLayout>{page}</AuthLayout>
+  return (
+    <AuthLayout routeName={getTranslation('addUpdateUserView.add.title')}>
+      {page}
+    </AuthLayout>
+  )
 }
 
 export const getStaticProps = baseGetStaticProps()

@@ -24,6 +24,7 @@ import { useGetRights } from '@/api/rights'
 import { useCreateRole, useGetRoles } from '@/api/roles'
 import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
+import { getTranslation } from '@/utils/getTranslation'
 import { parseSorting } from '@/utils/parseSorting'
 
 const DEFAULT_SORTING: SortingState = [{ id: 'name', desc: false }]
@@ -186,7 +187,11 @@ function RolesView(): JSX.Element {
 }
 
 RolesView.getLayout = function getLayout(page: React.ReactNode): JSX.Element {
-  return <AuthLayout>{page}</AuthLayout>
+  return (
+    <AuthLayout routeName={getTranslation('rolesView.title')}>
+      {page}
+    </AuthLayout>
+  )
 }
 
 export const getStaticProps = baseGetStaticProps()

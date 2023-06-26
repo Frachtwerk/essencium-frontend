@@ -11,7 +11,9 @@ import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 
 import { useSetPassword } from '@/api/auth'
+import PublicLayout from '@/components/layouts/PublicLayout'
 import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
+import { getTranslation } from '@/utils/getTranslation'
 
 function SetPasswordView(): JSX.Element {
   const { t } = useTranslation()
@@ -58,6 +60,16 @@ function SetPasswordView(): JSX.Element {
         {showSuccessMessage && <SetPasswordSuccessMessage />}
       </Paper>
     </Container>
+  )
+}
+
+SetPasswordView.getLayout = function getLayout(
+  page: React.ReactNode
+): JSX.Element {
+  return (
+    <PublicLayout routeName={getTranslation('setPasswordView.title')}>
+      {page}
+    </PublicLayout>
   )
 }
 

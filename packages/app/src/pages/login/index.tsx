@@ -7,7 +7,9 @@ import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 
 import { useCreateToken, useResetPassword } from '@/api/auth'
+import PublicLayout from '@/components/layouts/PublicLayout'
 import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
+import { getTranslation } from '@/utils/getTranslation'
 
 function LoginView(): JSX.Element {
   const { t } = useTranslation()
@@ -71,6 +73,14 @@ function LoginView(): JSX.Element {
         />
       }
     />
+  )
+}
+
+LoginView.getLayout = function getLayout(page: React.ReactNode): JSX.Element {
+  return (
+    <PublicLayout routeName={getTranslation('loginView.title')}>
+      {page}
+    </PublicLayout>
   )
 }
 

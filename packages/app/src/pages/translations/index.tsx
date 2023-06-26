@@ -78,7 +78,11 @@ function TranslationsView(): JSX.Element {
 TranslationsView.getLayout = function getLayout(
   page: React.ReactNode
 ): JSX.Element {
-  return <AuthLayout>{page}</AuthLayout>
+  return (
+    <AuthLayout routeName={getTranslation('translationsView.title')}>
+      {page}
+    </AuthLayout>
+  )
 }
 
 export const getStaticProps = baseGetStaticProps()

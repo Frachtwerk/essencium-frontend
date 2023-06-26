@@ -9,6 +9,7 @@ import { useGetMe, useUpdateMe, useUpdatePassword } from '@/api/me'
 import { useGetRoles } from '@/api/roles'
 import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
+import { getTranslation } from '@/utils/getTranslation'
 import { logout } from '@/utils/logout'
 
 function ProfileView(): JSX.Element {
@@ -75,7 +76,11 @@ function ProfileView(): JSX.Element {
 }
 
 ProfileView.getLayout = function getLayout(page: ReactElement) {
-  return <AuthLayout>{page}</AuthLayout>
+  return (
+    <AuthLayout routeName={getTranslation('profileView.title')}>
+      {page}
+    </AuthLayout>
+  )
 }
 
 export const getStaticProps = baseGetStaticProps()
