@@ -11,6 +11,7 @@ import {
 } from '@/api/translations'
 import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
+import { getTranslation } from '@/utils/getTranslation'
 import { mergeTranslationSources } from '@/utils/mergeTranslationSources'
 
 function getTranslationsByLanguage(
