@@ -6,6 +6,8 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: 'happy-dom',
+    exclude: ['node_modules', 'e2e'],
+    passWithNoTests: true,
   },
   resolve: {
     alias: [

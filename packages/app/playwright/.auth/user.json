@@ -6,11 +6,7 @@
       "localStorage": [
         {
           "name": "authToken",
-          "value": "\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBmcmFjaHR3ZXJrLmRlIiwiaWF0IjoxNjg3NzcxNjQ1LCJleHAiOjE2ODc4NTgwNDUsImlzcyI6ImZyYWNodHdlcmstc3RhcnRlciIsIm5vbmNlIjoiN2YxZDk1MjEiLCJnaXZlbl9uYW1lIjoiQWRtaW4iLCJmYW1pbHlfbmFtZSI6IkFkbWluIiwidWlkIjoxOH0.FQuCtUfDUsXr3PSTNac7XSeYq1zVOLmcNYPSkASDm4s\""
-        },
-        {
-          "name": "i18nextLng",
-          "value": "en-US"
+          "value": "\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBmcmFjaHR3ZXJrLmRlIiwiaWF0IjoxNjg3NzcyMzk4LCJleHAiOjE2ODc4NTg3OTgsImlzcyI6ImZyYWNodHdlcmstc3RhcnRlciIsIm5vbmNlIjoiN2YxZDk1MjEiLCJnaXZlbl9uYW1lIjoiQWRtaW4iLCJmYW1pbHlfbmFtZSI6IkFkbWluIiwidWlkIjoxOH0.XFFdDn_KxzPEsl_bfZHK3RnEzcqJHcd03Gobw7kukj8\""
         }
       ]
     }
