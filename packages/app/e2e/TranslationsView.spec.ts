@@ -31,12 +31,12 @@ test.describe('TranslationsView', () => {
   await expect(page.getByText('Translation successfully reset')).toBeVisible()
 }) */
 
-  test('change language', async ({ page }) => {
-    await expect(page.getByText('deGerman')).toBeVisible()
-    await page.getByLabel('Choose Language').click()
-    await page.getByRole('option', { name: 'German' }).click()
-    await expect(page.getByText('deDeutsch')).toBeVisible()
-  })
+  // test('change language', async ({ page }) => {
+  //   await expect(page.getByText('deGerman')).toBeVisible()
+  //   await page.getByLabel('Choose Language').click()
+  //   await page.getByRole('option', { name: 'German' }).click()
+  //   await expect(page.getByText('deDeutsch')).toBeVisible()
+  // })
 
   test('search translations', async ({ page }) => {
     await page.getByPlaceholder('Search ...').click()

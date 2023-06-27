@@ -14,16 +14,10 @@ import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
 import { getTranslation } from '@/utils/getTranslation'
 import { mergeTranslationSources } from '@/utils/mergeTranslationSources'
 
-import de from '../../../public/locales/de/common.json'
-
 function getTranslationsByLanguage(
   lang: string
 ): Record<string, string> | undefined {
   const translations = i18n?.getResourceBundle(lang, 'common')
-
-  if (!translations) {
-    i18n?.addResourceBundle(lang, 'common', de)
-  }
 
   return translations
 }
