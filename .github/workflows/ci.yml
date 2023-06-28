@@ -14,40 +14,6 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  release:
-    name: Release
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      issues: write
-      pull-requests: write
-      id-token: write
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 7
-
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
-        run: npm audit signatures
-
-      - name: Release
-        run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx run-many --target=release --parallel=10
-
   lint:
     name: Lint
     runs-on: ubuntu-latest

@@ -33,8 +33,7 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest watch",
-    "release": "semantic-release"
+    "test:watch": "vitest watch"
   },
   "devDependencies": {
     "@babel/core": "7.21.0",
