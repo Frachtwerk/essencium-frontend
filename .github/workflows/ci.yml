@@ -46,7 +46,7 @@ jobs:
         run: npm audit signatures
 
       - name: Release
-        run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx affected --target=release --parallel=10
+        run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx run-many --target=release --parallel=10
 
   lint:
     name: Lint
