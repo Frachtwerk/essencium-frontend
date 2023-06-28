@@ -1,5 +1,6 @@
 {
   "name": "@frachtwerk/essencium-lib",
+  "version": "0.30.0",
   "description": "This is the component library for the starter boilerplate.",
   "keywords": [
     "starter",
@@ -30,10 +31,10 @@
     "clean:install": "pnpm clean && pnpm install",
     "format": "prettier --write .",
     "lint": "eslint .",
-    "release": "standard-version",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "release": "semantic-release"
   },
   "devDependencies": {
     "@babel/core": "7.21.0",
@@ -84,7 +85,6 @@
     "rollup": "3.18.0",
     "rollup-plugin-dts": "5.2.0",
     "rollup-plugin-peer-deps-external": "2.2.4",
-    "standard-version": "9.5.0",
     "tslib": "2.5.0",
     "@frachtwerk/essencium-types": "workspace:*",
     "typescript": "4.9.5",

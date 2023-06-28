@@ -33,7 +33,7 @@
     "test:e2e": "pnpm --filter @frachtwerk/essencium-app test:e2e",
     "sync-versions": "ts-node ./scripts/sync-versions.ts",
     "seed-db": "ts-node ./scripts/seed-db.ts",
-    "release": "semantic-release"
+    "release": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=release"
   },
   "dependencies": {
     "@nrwl/nx-cloud": "15.1.1"

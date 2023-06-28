@@ -42,11 +42,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Set base and head SHAs for nx
+        uses: nrwl/nx-set-shas@v3
+
       - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
         run: npm audit signatures
 
       - name: Release
-        run: pnpm release
+        run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx affected --target=release --parallel=10
 
   lint:
     name: Lint
