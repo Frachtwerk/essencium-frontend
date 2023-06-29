@@ -6,7 +6,7 @@ import {
   roleUpdateSchema,
 } from '@frachtwerk/essencium-types'
 import { Modal } from '@mantine/core'
-import { useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect } from 'react'
 
 import { useZodForm } from '../../hooks'
 import { RoleForm } from './components/RoleForm'
@@ -21,6 +21,8 @@ type Props = {
   role: RoleOutput
   formDefaults: RoleInput
   updateRole: (data: RoleUpdate) => void
+  toggleRight: (right: RightOutput) => void
+  setSelectedRights: Dispatch<SetStateAction<RightOutput[]>>
 }
 
 export function EditRole({
@@ -33,13 +35,13 @@ export function EditRole({
   role,
   formDefaults,
   updateRole,
+  toggleRight,
+  setSelectedRights,
 }: Props): JSX.Element {
-  const [selectedRights, setSelectedRights] = useState<RightOutput[]>([])
-
   useEffect(() => {
     if (!role) return
     setSelectedRights(role.rights)
-  }, [role])
+  }, [role, setSelectedRights])
 
   const {
     handleSubmit,
@@ -62,22 +64,8 @@ export function EditRole({
     }
   }, [role, prefillForm])
 
-  function handleUpdateRole(roleData: RoleInput): void {
-    updateRole({
-      ...roleData,
-      rights: [...selectedRights.map(right => right.id)],
-    })
-  }
+  const onSubmit = handleSubmit(updateRole)
 
-  const onSubmit = handleSubmit(handleUpdateRole)
-
-  function toggleRight(right: RightOutput): void {
-    if (selectedRights.some(r => r.id === right.id)) {
-      setSelectedRights(selectedRights.filter(r => r.id !== right.id))
-    } else {
-      setSelectedRights([...selectedRights, right])
-    }
-  }
   return (
     <Modal
       title={title}

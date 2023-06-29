@@ -7,7 +7,12 @@ import {
   Table,
   TablePagination,
 } from '@frachtwerk/essencium-lib'
-import { RightOutput, RIGHTS, RoleOutput } from '@frachtwerk/essencium-types'
+import {
+  RightOutput,
+  RIGHTS,
+  RoleInput,
+  RoleOutput,
+} from '@frachtwerk/essencium-types'
 import {
   ActionIcon,
   Badge,
@@ -59,11 +64,10 @@ export function RolesView(): JSX.Element {
   const [editModalOpened, editModalHandlers] = useDisclosure(false)
   const [deleteModalOpened, deleteModalHandlers] = useDisclosure(false)
 
-  const [roleToEdit, setRoleToEdit] = useState<RoleOutput | null>(null)
+  const [selectedRights, setSelectedRights] = useState<RightOutput[]>([])
 
-  const [roleToDelete, setRoleToDelete] = useState<
-    RoleOutput['id'] | null | undefined
-  >(null)
+  const [roleToEditOrDelete, setRoleToEditOrDelete] =
+    useState<RoleOutput | null>(null)
 
   const [activePage, setActivePage] = useState(1)
   const [pageSize, setPageSize] = useState(20)
@@ -102,6 +106,44 @@ export function RolesView(): JSX.Element {
         handleRefetch()
       },
     })
+  }
+
+  function handleCreateRole(roleData: RoleInput): void {
+    createRole(
+      {
+        ...roleData,
+        rights: [...selectedRights.map(right => right.id)],
+      },
+      {
+        onSuccess: () => {
+          addModalHandlers.close()
+          handleRefetch()
+        },
+      }
+    )
+  }
+
+  function handleUpdateRole(roleData: RoleInput): void {
+    updateRole(
+      {
+        ...roleData,
+        rights: [...selectedRights.map(right => right.id)],
+      },
+      {
+        onSuccess: () => {
+          editModalHandlers.close()
+          handleRefetch()
+        },
+      }
+    )
+  }
+
+  function toggleRight(right: RightOutput): void {
+    if (selectedRights.some(r => r.id === right.id)) {
+      setSelectedRights(selectedRights.filter(r => r.id !== right.id))
+    } else {
+      setSelectedRights([...selectedRights, right])
+    }
   }
 
   const columns = useMemo<ColumnDef<RoleOutput>[]>(() => {
@@ -153,7 +195,7 @@ export function RolesView(): JSX.Element {
                 <ActionIcon size="sm" variant="transparent">
                   <IconPencil
                     onClick={() => {
-                      setRoleToEdit(rowRole)
+                      setRoleToEditOrDelete(rowRole)
                       editModalHandlers.open()
                     }}
                   />
@@ -166,7 +208,7 @@ export function RolesView(): JSX.Element {
                 <ActionIcon size="sm" variant="transparent">
                   <IconTrash
                     onClick={() => {
-                      setRoleToDelete(rowRole.id)
+                      setRoleToEditOrDelete(rowRole)
                       deleteModalHandlers.open()
                     }}
                   />
@@ -245,7 +287,8 @@ export function RolesView(): JSX.Element {
           addModalHandlers.close()
         }}
         rights={rights?.content || []}
-        createRole={createRole}
+        createRole={handleCreateRole}
+        toggleRight={toggleRight}
         formDefaults={FORM_DEFAULTS}
       />
 
@@ -256,13 +299,15 @@ export function RolesView(): JSX.Element {
         title={t('rolesView.modal.titleEdit')}
         onClose={() => {
           editModalHandlers.close()
-          setRoleToEdit(null)
+          setRoleToEditOrDelete(null)
         }}
         rights={rights?.content || []}
-        updateRole={updateRole}
+        updateRole={handleUpdateRole}
         formDefaults={FORM_DEFAULTS}
+        toggleRight={toggleRight}
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        role={roleToEdit!}
+        role={roleToEditOrDelete!}
+        setSelectedRights={setSelectedRights}
       />
 
       <DeleteDialog
@@ -270,8 +315,12 @@ export function RolesView(): JSX.Element {
         onClose={() => {
           deleteModalHandlers.close()
         }}
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        deleteFunction={() => handleDeleteRole(roleToDelete!)}
+        deleteFunction={() => {
+          if (roleToEditOrDelete) {
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            handleDeleteRole(roleToEditOrDelete.id!)
+          }
+        }}
         title={t('rolesView.deleteDialog.title')}
         text={t('rolesView.deleteDialog.text')}
       />

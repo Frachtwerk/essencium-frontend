@@ -4,7 +4,6 @@ import {
   roleInputSchema,
 } from '@frachtwerk/essencium-types'
 import { Modal } from '@mantine/core'
-import { useState } from 'react'
 
 import { useZodForm } from '../../hooks'
 import { RoleForm } from './components/RoleForm'
@@ -18,6 +17,7 @@ type Props = {
   rights: RightOutput[]
   createRole: (data: RoleInput) => void
   formDefaults: RoleInput
+  toggleRight: (right: RightOutput) => void
 }
 
 export function AddRole({
@@ -29,30 +29,14 @@ export function AddRole({
   rights,
   createRole,
   formDefaults,
+  toggleRight,
 }: Props): JSX.Element {
-  const [selectedRights, setSelectedRights] = useState<RightOutput[]>([])
-
   const { handleSubmit, control, formState, reset } = useZodForm({
     schema: roleInputSchema,
     defaultValues: formDefaults,
   })
 
-  function handleCreateRole(roleData: RoleInput): void {
-    createRole({
-      ...roleData,
-      rights: [...selectedRights.map(right => right.id)],
-    })
-  }
-
-  const onSubmit = handleSubmit(handleCreateRole)
-
-  function toggleRight(right: RightOutput): void {
-    if (selectedRights.some(r => r.id === right.id)) {
-      setSelectedRights(selectedRights.filter(r => r.id !== right.id))
-    } else {
-      setSelectedRights([...selectedRights, right])
-    }
-  }
+  const onSubmit = handleSubmit(createRole)
 
   return (
     <Modal

@@ -22,6 +22,7 @@ export function DeleteDialog({
       closeOnClickOutside={false}
       closeOnEscape
       onClose={onClose}
+      withCloseButton={false}
       padding="lg"
       centered
     >

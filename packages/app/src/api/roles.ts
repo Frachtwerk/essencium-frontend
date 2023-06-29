@@ -144,6 +144,7 @@ export function useDeleteRole(): UseMutationResult<
   RoleOutput['id']
 > {
   const { t } = useTranslation()
+
   const mutation = useMutation<null, AxiosError, RoleOutput['id']>({
     mutationKey: ['useDeleteRole'],
     mutationFn: (roleId: RoleOutput['id']) =>
