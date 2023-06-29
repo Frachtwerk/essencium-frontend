@@ -118,11 +118,11 @@
     "react-json-tree": "0.18.0"
   },
   "engines": {
-    "node": ">=16",
+    "node": ">=18",
     "pnpm": "7"
   },
   "volta": {
-    "node": "16.19.1"
+    "node": "18.16.0"
   },
   "nx": {
     "tags": [

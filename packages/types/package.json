@@ -8,7 +8,7 @@
     "dist"
   ],
   "engines": {
-    "node": ">=16",
+    "node": ">=18",
     "pnpm": "7"
   },
   "type": "module",
@@ -57,6 +57,6 @@
     ]
   },
   "volta": {
-    "node": "16.19.1"
+    "node": "18.16.0"
   }
 }
