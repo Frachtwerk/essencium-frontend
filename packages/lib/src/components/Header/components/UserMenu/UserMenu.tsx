@@ -6,7 +6,7 @@ import {
   UnstyledButton,
   useMantineTheme,
 } from '@mantine/core'
-import { IconChevronRight, IconUser, IconUserCircle } from '@tabler/icons-react'
+import { IconChevronRight, IconUser } from '@tabler/icons-react'
 import NextLink from 'next/link'
 
 type Props = {

@@ -10,8 +10,6 @@ import { openSpotlight } from '@mantine/spotlight'
 import {
   IconBrandReact,
   IconSearch,
-  IconSettings,
-  IconUser,
   IconUserEdit,
   IconUsers,
 } from '@tabler/icons-react'
