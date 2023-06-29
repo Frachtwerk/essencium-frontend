@@ -197,14 +197,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Sync version
-        run: pnpm sync-versions
-
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: 'chore: sync versions [skip ci]'
-
       - name: Download 'lib' dist folder
         uses: actions/download-artifact@v3
         with:
