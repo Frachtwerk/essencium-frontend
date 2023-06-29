@@ -1,12 +1,12 @@
 {
   "name": "@frachtwerk/essencium",
   "private": true,
-  "description": "This is a React-based starter monorepo consisting of a component library, docs and a boilerplate.",
+  "description": "This is a Next.js-based boilerplate monorepo.",
   "keywords": [
-    "starter",
     "boilerplate",
     "frontend",
     "react",
+    "next",
     "mantine"
   ],
   "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/master/README.md",
