@@ -1,4 +1,9 @@
-import { Flex, Table as MantineTable, TextInput } from '@mantine/core'
+import {
+  Flex,
+  Table as MantineTable,
+  TextInput,
+  useMantineTheme,
+} from '@mantine/core'
 import { IconSortAscending2, IconSortDescending2 } from '@tabler/icons-react'
 import { flexRender, Table as TanstackTable } from '@tanstack/react-table'
 
@@ -13,6 +18,8 @@ export function Table<T>({
   onFilterChange,
   showFilter,
 }: Props<T>): JSX.Element {
+  const theme = useMantineTheme()
+
   return (
     <Flex direction="column" align="end">
       <div style={{ overflowX: 'auto', width: '100%' }}>
@@ -24,8 +31,14 @@ export function Table<T>({
                   <th key={header.id} style={{ verticalAlign: 'top' }}>
                     <Flex
                       align="center"
-                      justify="space-between"
-                      sx={{ cursor: 'pointer' }}
+                      justify="flex-start"
+                      gap="sm"
+                      sx={{
+                        cursor: 'pointer',
+                        '&:hover': {
+                          color: theme.colors.blue[6],
+                        },
+                      }}
                       onClick={header.column.getToggleSortingHandler()}
                       w={header.column.getSize()}
                     >
@@ -60,7 +73,13 @@ export function Table<T>({
 
           <tbody aria-label="table-body">
             {tableModel.getRowModel().rows.map(row => (
-              <tr key={row.id}>
+              <tr
+                key={row.id}
+                style={{
+                  borderBottom: '2px solid white',
+                  borderTop: '2px solid white',
+                }}
+              >
                 {row.getVisibleCells().map(cell => (
                   <td key={cell.id} width={cell.column.getSize()}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

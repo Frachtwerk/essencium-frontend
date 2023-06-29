@@ -74,14 +74,21 @@
       "tabs": {
         "personalData": {
           "title": "Persönliche Daten",
-          "content": {
+          "label": {
             "firstName": "Vorname",
             "lastName": "Nachname",
             "email": "E-Mail",
             "phone": "Telefonnummer",
             "mobile": "Handynummer",
-            "language": "Sprache",
-            "saveChanges": "Änderungen speichern"
+            "language": "Sprache"
+          },
+          "saveChanges": "Änderungen speichern",
+          "placeholder": {
+            "firstName": "Jane",
+            "lastName": "Doe",
+            "email": "jane@mail.de",
+            "phone": "030 123456",
+            "mobile": "0171 123456"
           }
         },
         "passwordChange": {
@@ -214,7 +221,15 @@
       "status": "Status",
       "language": "Sprache",
       "role": "Rolle",
-      "save": "Benutzer speichern"
+      "save": "Benutzer speichern",
+      "placeholder": {
+        "firstName": "Norman",
+        "lastName": "Anderson",
+        "phone": "555 987654",
+        "mobile": "0177 98765432",
+        "email": "norman.anderson@mail.com",
+        "password": "***********"
+      }
     }
   },
   "rightsView": {

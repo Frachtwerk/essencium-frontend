@@ -19,7 +19,7 @@ import {
   Text,
   Title,
 } from '@mantine/core'
-import { IconShieldCheckFilled } from '@tabler/icons-react'
+import { IconShieldHalf } from '@tabler/icons-react'
 import {
   ColumnDef,
   getCoreRowModel,
@@ -203,7 +203,7 @@ function RightsView(): JSX.Element {
       <Flex py="md" justify="space-between" align="center">
         <Title size="h2">
           <Flex align="center" gap={10}>
-            <IconShieldCheckFilled size="32" />
+            <IconShieldHalf size="32" />
             <Text> {t('rightsView.title')}</Text>
           </Flex>
         </Title>

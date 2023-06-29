@@ -49,10 +49,12 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
               <TextInput
                 {...field}
                 placeholder={String(
-                  t('profileView.dataCard.tabs.personalData.content.firstName')
+                  t(
+                    'profileView.dataCard.tabs.personalData.placeholder.firstName'
+                  )
                 )}
                 label={t(
-                  'profileView.dataCard.tabs.personalData.content.firstName'
+                  'profileView.dataCard.tabs.personalData.label.firstName'
                 )}
                 size="sm"
                 variant="filled"
@@ -80,10 +82,12 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
               <TextInput
                 {...field}
                 placeholder={String(
-                  t('profileView.dataCard.tabs.personalData.content.lastName')
+                  t(
+                    'profileView.dataCard.tabs.personalData.placeholder.lastName'
+                  )
                 )}
                 label={t(
-                  'profileView.dataCard.tabs.personalData.content.lastName'
+                  'profileView.dataCard.tabs.personalData.label.lastName'
                 )}
                 size="sm"
                 variant="filled"
@@ -118,11 +122,9 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
               <TextInput
                 {...field}
                 placeholder={String(
-                  t('profileView.dataCard.tabs.personalData.content.phone')
+                  t('profileView.dataCard.tabs.personalData.placeholder.phone')
                 )}
-                label={t(
-                  'profileView.dataCard.tabs.personalData.content.phone'
-                )}
+                label={t('profileView.dataCard.tabs.personalData.label.phone')}
                 size="sm"
                 variant="filled"
                 radius="sm"
@@ -149,11 +151,9 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
               <TextInput
                 {...field}
                 placeholder={String(
-                  t('profileView.dataCard.tabs.personalData.content.mobile')
+                  t('profileView.dataCard.tabs.personalData.placeholder.mobile')
                 )}
-                label={t(
-                  'profileView.dataCard.tabs.personalData.content.mobile'
-                )}
+                label={t('profileView.dataCard.tabs.personalData.label.mobile')}
                 size="sm"
                 variant="filled"
                 radius="sm"
@@ -187,11 +187,9 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
               <TextInput
                 {...field}
                 placeholder={String(
-                  t('profileView.dataCard.tabs.personalData.content.email')
+                  t('profileView.dataCard.tabs.personalData.placeholder.email')
                 )}
-                label={t(
-                  'profileView.dataCard.tabs.personalData.content.email'
-                )}
+                label={t('profileView.dataCard.tabs.personalData.label.email')}
                 withAsterisk
                 size="sm"
                 variant="filled"
@@ -220,10 +218,10 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
                 {...field}
                 radius="sm"
                 label={t(
-                  'profileView.dataCard.tabs.personalData.content.language'
+                  'profileView.dataCard.tabs.personalData.label.language'
                 )}
                 placeholder={String(
-                  t('profileView.dataCard.tabs.personalData.content.language')
+                  t('profileView.dataCard.tabs.personalData.label.language')
                 )}
                 data={[
                   { value: 'de', label: 'Deutsch' },
@@ -245,8 +243,8 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
         </Stack>
       </Flex>
 
-      <Button type="submit" mt="md" variant="light">
-        {t('profileView.dataCard.tabs.personalData.content.saveChanges')}
+      <Button type="submit" mt="md">
+        {t('profileView.dataCard.tabs.personalData.saveChanges')}
       </Button>
     </form>
   )

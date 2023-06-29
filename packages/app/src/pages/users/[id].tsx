@@ -1,7 +1,7 @@
 import { UserForm, useZodForm } from '@frachtwerk/essencium-lib'
 import { UserUpdate, userUpdateSchema } from '@frachtwerk/essencium-types'
 import { Card, Flex, Text, Title } from '@mantine/core'
-import { IconUserPlus } from '@tabler/icons-react'
+import { IconUserEdit } from '@tabler/icons-react'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
@@ -68,7 +68,7 @@ function UpdateUserView(): JSX.Element {
     <>
       <Title py="md" order={2}>
         <Flex>
-          <IconUserPlus size="32" />
+          <IconUserEdit size="32" />
 
           <Text ml="xs">{t('addUpdateUserView.update.title')}</Text>
         </Flex>
