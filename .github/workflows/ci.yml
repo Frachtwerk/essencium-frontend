@@ -31,7 +31,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           cache: 'pnpm'
 
       - name: Install dependencies
@@ -60,7 +60,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           cache: 'pnpm'
 
       - name: Install dependencies
@@ -89,7 +89,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           cache: 'pnpm'
 
       - name: Install dependencies
@@ -137,7 +137,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           cache: 'pnpm'
 
       - name: Install dependencies
@@ -171,9 +171,9 @@ jobs:
           path: packages/app/dist
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('pnpm-lock.yaml') }}
 
-  publish:
-    name: Publish
-    if: github.ref == 'refs/heads/main'
+  release:
+    name: Release
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     needs: [lint, unit-tests, e2e-tests, build]
     steps:
@@ -190,20 +190,40 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Create Release Pull Request
+        uses: changesets/action@v1
+
+  publish:
+    name: Publish
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: [lint, unit-tests, e2e-tests, build, release]
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
           cache: 'pnpm'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Sync version
-        run: pnpm sync-versions
-
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: 'chore: sync versions [skip ci]'
 
       - name: Download 'lib' dist folder
         uses: actions/download-artifact@v3

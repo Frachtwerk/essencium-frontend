@@ -1,5 +1,6 @@
 {
   "name": "@frachtwerk/essencium-docs",
+  "version": "0.30.0",
   "description": "Essencium Frontend Docs",
   "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/main/README.md",
   "bugs": {
@@ -16,7 +17,8 @@
     "clean": "rimraf node_modules .next",
     "clean:install": "pnpm clean && pnpm install",
     "dev": "next dev",
-    "format": "prettier --write .",
+    "format:write": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint .",
     "start": "next start"
   },
@@ -33,6 +35,6 @@
     "typescript": "4.9.5"
   },
   "volta": {
-    "node": "18.13.0"
+    "node": "18.16.0"
   }
 }

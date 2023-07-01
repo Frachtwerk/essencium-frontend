@@ -1,5 +1,6 @@
 {
   "name": "@frachtwerk/essencium-types",
+  "version": "0.30.0",
   "author": "Frachtwerk GmbH",
   "license": "MIT",
   "main": "dist/index.js",
@@ -8,7 +9,7 @@
     "dist"
   ],
   "engines": {
-    "node": ">=16",
+    "node": ">=18",
     "pnpm": "7"
   },
   "type": "module",
@@ -31,7 +32,8 @@
     "build": "rimraf dist && rollup -c",
     "clean": "rimraf dist node_modules",
     "clean:install": "pnpm clean && pnpm install",
-    "format": "prettier --write .",
+    "format:write": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint ."
   },
   "devDependencies": {
@@ -56,6 +58,6 @@
     ]
   },
   "volta": {
-    "node": "16.19.1"
+    "node": "18.16.0"
   }
 }

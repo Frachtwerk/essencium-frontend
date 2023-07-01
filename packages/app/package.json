@@ -1,12 +1,14 @@
 {
   "name": "@frachtwerk/essencium-app",
+  "version": "0.30.0",
   "private": true,
   "scripts": {
     "build": "next build",
     "clean": "rimraf dist node_modules",
     "clean:install": "pnpm clean && pnpm install",
     "dev": "next dev",
-    "format": "prettier --write .",
+    "format:write": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "next lint",
     "preview": "next start",
     "test": "pnpm test:unit && pnpm test:e2e",
