@@ -1,5 +1,6 @@
 {
   "name": "@frachtwerk/essencium-app",
+  "version": "0.30.0",
   "private": true,
   "scripts": {
     "build": "next build",
