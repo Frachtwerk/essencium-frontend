@@ -35,6 +35,7 @@
     "seed-db": "ts-node ./scripts/seed-db.ts"
   },
   "dependencies": {
+    "@changesets/cli": "2.26.2",
     "@nrwl/nx-cloud": "15.1.1"
   },
   "devDependencies": {
