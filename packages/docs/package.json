@@ -1,7 +1,6 @@
 {
   "name": "@frachtwerk/essencium-docs",
   "version": "1.0.0",
-  "private": true,
   "description": "Essencium Frontend Docs",
   "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/main/README.md",
   "bugs": {

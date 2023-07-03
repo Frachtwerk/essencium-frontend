@@ -173,9 +173,22 @@ jobs:
 
   release:
     name: Release
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     needs: [lint, unit-tests, e2e-tests, build]
+    steps:
+      - name: Release Please
+        uses: google-github-actions/release-please-action@v3
+        with:
+          release-type: node
+          command: manifest
+          monorepo-tags: true
+
+  publish:
+    name: Publish
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: [release]
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -192,6 +205,7 @@ jobs:
         with:
           node-version: 18
           cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -208,9 +222,12 @@ jobs:
           name: types-dist
           path: packages/types/dist
 
-      - name: Create Release Pull Request
-        uses: changesets/action@v1
-        with:
-          publish: pnpm changeset:publish
+      - name: Publish 'lib' package
+        run: pnpm publish --filter "@frachtwerk/essencium-lib" --access public --no-git-checks
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish 'types' package
+        run: pnpm publish --filter "@frachtwerk/essencium-types" --access public --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
