@@ -5,4 +5,4 @@
 '@frachtwerk/essencium-lib': major
 ---
 
-test changeset
+Release stable version 1.0.0
