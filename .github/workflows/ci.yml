@@ -211,6 +211,6 @@ jobs:
       - name: Create Release Pull Request
         uses: changesets/action@v1
         with:
-          publish: changeset publish
+          publish: pnpm changeset:publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

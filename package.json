@@ -32,7 +32,8 @@
     "test:watch": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx run-many --target=test:watch --parallel=10",
     "test:unit": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=test:unit --parallel=10",
     "test:e2e": "pnpm --filter @frachtwerk/essencium-app test:e2e",
-    "seed-db": "ts-node ./scripts/seed-db.ts"
+    "seed-db": "ts-node ./scripts/seed-db.ts",
+    "changeset:publish": "changeset publish"
   },
   "dependencies": {
     "@changesets/cli": "2.26.2",
