@@ -211,6 +211,6 @@ jobs:
       - name: Create Release Pull Request
         uses: changesets/action@v1
         with:
-          publish: pnpm publish --filter "@frachtwerk/essencium-lib" "@frachtwerk/essencium-types" --access public --no-git-checks
+          publish: pnpm publish --filter "@frachtwerk/essencium-lib" --filter "@frachtwerk/essencium-types" --access public --no-git-checks
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
