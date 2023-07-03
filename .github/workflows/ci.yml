@@ -74,6 +74,7 @@ jobs:
 
   e2e-tests:
     name: E2E Tests
+    if: contains(github.event.pull_request.changed_files, 'packages/app') || contains(github.event.pull_request.changed_files, 'packages/lib') || contains(github.event.pull_request.changed_files, 'packages/types
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
