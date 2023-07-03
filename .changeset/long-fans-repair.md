@@ -1,8 +1,8 @@
 ---
-'@frachtwerk/essencium-types': minor
-'@frachtwerk/essencium-docs': minor
-'@frachtwerk/essencium-app': minor
-'@frachtwerk/essencium-lib': minor
+'@frachtwerk/essencium-types': major
+'@frachtwerk/essencium-docs': major
+'@frachtwerk/essencium-app': major
+'@frachtwerk/essencium-lib': major
 ---
 
 test changeset
