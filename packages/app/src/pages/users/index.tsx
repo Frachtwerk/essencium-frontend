@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {
   HttpNotification,
-  LoadingSpinner,
   Table,
   TablePagination,
 } from '@frachtwerk/essencium-lib'
@@ -10,7 +9,6 @@ import {
   ActionIcon,
   Badge,
   Button,
-  Center,
   Flex,
   Group,
   Popover,
@@ -62,6 +60,12 @@ export const FORM_DEFAULTS = {
 }
 
 const DEFAULT_SORTING: SortingState = [{ id: 'id', desc: false }]
+
+export function removeDuplicates(
+  array: Array<string> | undefined
+): Array<string> {
+  return [...new Set(array)]
+}
 
 function UsersView(): JSX.Element {
   const router = useRouter()
@@ -115,6 +119,24 @@ function UsersView(): JSX.Element {
     },
     [router]
   )
+
+  function getFilterData(): Record<string, Array<string>> {
+    const { content: usersContent } = users || {}
+
+    const firstName = usersContent?.map(userItem => userItem.firstName)
+    const lastName = usersContent?.map(userItem => userItem.lastName)
+    const email = usersContent?.map(userItem => userItem.email)
+    const role = usersContent?.map(userItem => userItem.role.name)
+
+    return {
+      firstName: removeDuplicates(firstName),
+      lastName: removeDuplicates(lastName),
+      email: removeDuplicates(email),
+      role: removeDuplicates(role),
+    }
+  }
+
+  const filterData = getFilterData()
 
   const { mutate: deleteUser } = useDeleteUser()
 
@@ -348,28 +370,24 @@ function UsersView(): JSX.Element {
         </Flex>
       </Flex>
 
-      {isLoading ? (
-        <Center h="100%">
-          <LoadingSpinner show delay={250} />
-        </Center>
-      ) : (
-        <>
-          <Table
-            tableModel={table}
-            onFilterChange={handleFilterChange}
-            showFilter={showFilter}
-          />
+      <>
+        <Table
+          tableModel={table}
+          isLoading={isLoading}
+          onFilterChange={handleFilterChange}
+          showFilter={showFilter}
+          filterData={filterData}
+        />
 
-          <TablePagination
-            table={table}
-            activePage={activePage}
-            pageSize={pageSize}
-            setActivePage={setActivePage}
-            setPageSize={setPageSize}
-            handleRefetch={handleRefetch}
-          />
-        </>
-      )}
+        <TablePagination
+          table={table}
+          activePage={activePage}
+          pageSize={pageSize}
+          setActivePage={setActivePage}
+          setPageSize={setPageSize}
+          handleRefetch={handleRefetch}
+        />
+      </>
     </>
   )
 }
