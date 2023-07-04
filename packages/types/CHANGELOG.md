@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v1.0.0...essencium-types-v1.1.0) (2023-07-04)
+
+
+### Features
+
+* export new test type ([482c142](https://github.com/Frachtwerk/essencium-frontend/commit/482c1422b309486a754c2b5bff0cc4bb8ec307e6))
+
+
+### Bug Fixes
+
+* add test type to test release process ([9a9d1e0](https://github.com/Frachtwerk/essencium-frontend/commit/9a9d1e00626846d846f3fc6abe1a713b9b660a0f))
+* test release process (test commit) ([482c142](https://github.com/Frachtwerk/essencium-frontend/commit/482c1422b309486a754c2b5bff0cc4bb8ec307e6))
+
 ## 1.0.0 (2023-07-03)
 
 
