@@ -2,3 +2,5 @@
 dist
 coverage
 .rollup.cache
+
+CHANGELOG.md
