@@ -32,3 +32,5 @@ export const rightOutputSchema = basePropertiesSchema.pick({ id: true }).merge(
 )
 
 export type RightOutput = z.infer<typeof rightOutputSchema>
+
+export type TestType = true
