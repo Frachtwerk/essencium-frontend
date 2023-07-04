@@ -64,7 +64,10 @@ const DEFAULT_SORTING: SortingState = [{ id: 'id', desc: false }]
 export function removeDuplicates(
   array: Array<string> | undefined
 ): Array<string> {
-  return [...new Set(array)]
+  if (array) {
+    return array.filter((item, index) => array.indexOf(item) === index)
+  }
+  return []
 }
 
 function UsersView(): JSX.Element {
