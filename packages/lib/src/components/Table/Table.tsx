@@ -23,7 +23,7 @@ export function Table<T>({
 }: Props<T>): JSX.Element {
   const theme = useMantineTheme()
 
-  const [filterValue, setFilterValue] = useState<string>('')
+  const [filterValue, setFilterValue] = useState<Record<string, string>>({})
 
   return (
     <Flex direction="column" align="end">
@@ -70,9 +70,12 @@ export function Table<T>({
                         data={filterData ? filterData[header.column.id] : []}
                         searchable
                         clearable
-                        value={filterValue}
+                        value={filterValue[header.column.id]}
                         onChange={event => {
-                          setFilterValue(event!)
+                          setFilterValue({
+                            ...filterValue,
+                            [header.column.id]: event!,
+                          })
                           header.column.setFilterValue(event)
                           onFilterChange?.(header.column.id, event!)
                         }}

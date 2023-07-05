@@ -70,6 +70,12 @@ export function removeDuplicates(
   return []
 }
 
+type ColumnFilter = {
+  name: string
+  email: string
+  role: string
+}
+
 function UsersView(): JSX.Element {
   const router = useRouter()
 
@@ -82,7 +88,12 @@ function UsersView(): JSX.Element {
   const [activePage, setActivePage] = useState(1)
   const [pageSize, setPageSize] = useState(20)
   const [sorting, setSorting] = useState<SortingState>(DEFAULT_SORTING)
-  const [columnFilters, setColumnFilters] = useState({})
+  const [columnFilters, setColumnFilters] = useState<ColumnFilter>({
+    name: '',
+    email: '',
+    role: '',
+  })
+
   const [columnFiltersDebounced] = useDebouncedValue(columnFilters, 350)
   const [showFilter, setShowFilter] = useState(false)
 
@@ -92,15 +103,13 @@ function UsersView(): JSX.Element {
 
     setColumnFilters(prevFilters => ({
       ...prevFilters,
-      // map 'firstName' and 'lastName' to 'name' hence the API can only handle 'name'
-      [key === 'firstName' || key === 'lastName' ? 'name' : key]: value,
+      [key]: value,
     }))
   }
 
   const {
     data: users,
     isError,
-    isLoading,
     isFetching,
     error,
     isInitialLoading,
@@ -126,14 +135,14 @@ function UsersView(): JSX.Element {
   function getFilterData(): Record<string, Array<string>> {
     const { content: usersContent } = users || {}
 
-    const firstName = usersContent?.map(userItem => userItem.firstName)
-    const lastName = usersContent?.map(userItem => userItem.lastName)
+    const name = usersContent?.map(
+      userItem => `${userItem.firstName} ${userItem.lastName}`
+    )
     const email = usersContent?.map(userItem => userItem.email)
     const role = usersContent?.map(userItem => userItem.role.name)
 
     return {
-      firstName: removeDuplicates(firstName),
-      lastName: removeDuplicates(lastName),
+      name: removeDuplicates(name),
       email: removeDuplicates(email),
       role: removeDuplicates(role),
     }
@@ -171,17 +180,19 @@ function UsersView(): JSX.Element {
         enableColumnFilter: false,
       },
       {
-        accessorKey: 'firstName',
-        header: () => <Text>{t('usersView.table.firstName')}</Text>,
-        cell: info => info.getValue(),
-        size: 120,
+        accessorKey: 'name',
+        header: () => <Text>{t('usersView.table.name')}</Text>,
+        cell: info => {
+          const rowUser = info.row.original
+          return (
+            <Text>
+              {rowUser.firstName} {rowUser.lastName}
+            </Text>
+          )
+        },
+        size: 180,
       },
-      {
-        accessorKey: 'lastName',
-        header: () => <Text>{t('usersView.table.lastName')}</Text>,
-        cell: info => info.getValue(),
-        size: 120,
-      },
+
       {
         accessorKey: 'phone',
         header: () => <Text>{t('usersView.table.phone')}</Text>,
@@ -376,7 +387,6 @@ function UsersView(): JSX.Element {
       <>
         <Table
           tableModel={table}
-          isLoading={isLoading}
           onFilterChange={handleFilterChange}
           showFilter={showFilter}
           filterData={filterData}
