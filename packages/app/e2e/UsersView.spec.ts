@@ -5,7 +5,7 @@ import { BASE_URL } from '../playwright.config'
 test.describe('UsersView', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(BASE_URL)
-    await page.getByRole('button', { name: 'Users' }).click()
+    await page.getByRole('button', { name: 'Users', exact: true }).click()
     await expect(page).toHaveURL(`${BASE_URL}/users`)
   })
 
@@ -25,13 +25,13 @@ test.describe('UsersView', () => {
   test('add, edit and delete user', async ({ page }) => {
     await page.getByRole('link', { name: 'Add User' }).click()
     await expect(page).toHaveURL(`${BASE_URL}/users/add`)
-    await page.getByPlaceholder('First Name').click()
-    await page.getByPlaceholder('First Name').fill('Test')
-    await page.getByPlaceholder('First Name').press('Tab')
-    await page.getByPlaceholder('Last Name').fill('Person')
-    await page.getByPlaceholder('Last Name').press('Tab')
-    await page.getByPlaceholder('Email').fill('test@person.de')
-    await page.getByPlaceholder('Role').click()
+    await page.getByLabel('First Name').click()
+    await page.getByLabel('First Name').fill('Test')
+    await page.getByLabel('First Name').press('Tab')
+    await page.getByLabel('Last Name').fill('Person')
+    await page.getByLabel('Last Name').press('Tab')
+    await page.getByLabel('Email').fill('test@person.de')
+    await page.getByLabel('Role').click()
     await page.getByRole('option', { name: 'ADMIN' }).click()
     await page.getByRole('button', { name: 'Save User' }).click()
 
@@ -52,9 +52,9 @@ test.describe('UsersView', () => {
     await expect(
       page.getByRole('heading', { name: 'Update a user' })
     ).toBeVisible()
-    await expect(page.getByPlaceholder('First Name')).toHaveValue('Test')
-    await page.getByPlaceholder('Phone Number').click()
-    await page.getByPlaceholder('Phone Number').fill('12345')
+    await expect(page.getByLabel('First Name')).toHaveValue('Test')
+    await page.getByLabel('Phone Number').click()
+    await page.getByLabel('Phone Number').fill('12345')
     await page.getByRole('button', { name: 'Save User' }).click()
 
     await page.waitForURL(`${BASE_URL}/users`)

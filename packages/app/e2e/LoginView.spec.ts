@@ -19,10 +19,10 @@ test.describe('LoginView', () => {
   })
 
   test('login', async ({ page }) => {
-    await page.getByPlaceholder('E-Mail').click()
-    await page.getByPlaceholder('E-Mail').fill(ADMIN.username)
-    await page.getByPlaceholder('Password').click()
-    await page.getByPlaceholder('Password').fill(ADMIN.password)
+    await page.getByLabel('E-Mail').click()
+    await page.getByLabel('E-Mail').fill(ADMIN.username)
+    await page.getByLabel('Password').click()
+    await page.getByLabel('Password').fill(ADMIN.password)
     await page.getByRole('button', { name: 'Login' }).click()
     await expect(page).toHaveURL(BASE_URL)
     const logoutButton = page.getByRole('button', { name: 'Logout' })
@@ -31,8 +31,8 @@ test.describe('LoginView', () => {
 
   test('reset password', async ({ page }) => {
     await page.getByText('Reset Password').click()
-    await page.getByPlaceholder('Your Email').click()
-    await page.getByPlaceholder('Your Email').fill(ADMIN.username)
+    await page.getByLabel('Your Email').click()
+    await page.getByLabel('Your Email').fill(ADMIN.username)
     await page.getByRole('button', { name: 'Reset Password' }).click()
     const passwordResetSuccessMessage = page.getByRole('heading', {
       name: 'Email sent',
@@ -56,14 +56,14 @@ test.describe('LoginView', () => {
   })
 
   test('login form validation', async ({ page }) => {
-    await page.getByPlaceholder('E-Mail').click()
-    await page.getByPlaceholder('E-Mail').fill('a')
-    await page.getByPlaceholder('Password').click()
+    await page.getByLabel('E-Mail').click()
+    await page.getByLabel('E-Mail').fill('a')
+    await page.getByLabel('Password').click()
     const errorMessageEmail = page.getByText('E-Mail is not valid')
     await expect(errorMessageEmail).toBeVisible()
-    await page.getByPlaceholder('Password').click()
-    await page.getByPlaceholder('Password').fill('123')
-    await page.getByPlaceholder('E-Mail').click()
+    await page.getByLabel('Password').click()
+    await page.getByLabel('Password').fill('123')
+    await page.getByLabel('E-Mail').click()
     const errorMessagePassword = page.getByText(
       'Password must be at least 8 characters long'
     )
