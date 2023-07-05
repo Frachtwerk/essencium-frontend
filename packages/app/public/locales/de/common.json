@@ -283,7 +283,11 @@
       "editable": "Editierbar",
       "rights": "Rechte",
       "cancel": "Abbrechen",
-      "submit": "Speichern"
+      "submit": "Speichern",
+      "placeholder": {
+        "name": "NUTZER",
+        "description": "Nutzer der Applikation"
+      }
     }
   },
   "validation": {

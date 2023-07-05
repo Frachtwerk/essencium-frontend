@@ -283,7 +283,11 @@
       "editable": "Editable",
       "rights": "Rights",
       "cancel": "Cancel",
-      "submit": "Add Role"
+      "submit": "Add Role",
+      "placeholder": {
+        "name": "USER",
+        "description": "Application User"
+      }
     }
   },
   "validation": {

@@ -34,9 +34,13 @@ export function Table<T>({
                       justify="flex-start"
                       gap="sm"
                       sx={{
-                        cursor: 'pointer',
+                        cursor: header.column.getCanSort()
+                          ? 'pointer'
+                          : 'default',
                         '&:hover': {
-                          color: theme.colors.blue[6],
+                          color: header.column.getCanSort()
+                            ? theme.colors.blue[6]
+                            : theme.colors.dark[4],
                         },
                       }}
                       onClick={header.column.getToggleSortingHandler()}

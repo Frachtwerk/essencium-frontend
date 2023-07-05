@@ -62,7 +62,7 @@ function TranslationsView(): JSX.Element {
 
   return (
     <>
-      <Group>
+      <Group py="md">
         <IconLanguage size="32" />
         <Title order={2}>{t('translationsView.title')}</Title>
       </Group>

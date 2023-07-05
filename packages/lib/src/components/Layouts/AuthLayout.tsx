@@ -10,8 +10,11 @@ import { SpotlightProvider } from '@mantine/spotlight'
 import {
   IconHome,
   IconLanguage,
+  IconMessage,
   IconSearch,
+  IconSectionSign,
   IconShieldHalf,
+  IconShieldLock,
   IconUsers,
   IconUserStar,
 } from '@tabler/icons-react'
@@ -86,16 +89,19 @@ export const NAV_LINKS: NavLink[] = [
 export const FOOTER_LINKS: FooterLink[] = [
   {
     label: 'footer.privacy.label',
+    icon: <IconShieldLock size={20} />,
     to: '/',
     description: 'footer.privacy.description',
   },
   {
     label: 'footer.imprint.label',
+    icon: <IconSectionSign size={20} />,
     to: '/',
     description: 'footer.imprint.description',
   },
   {
     label: 'footer.contact.label',
+    icon: <IconMessage size={20} />,
     to: '/contact',
     description: 'footer.contact.description',
   },

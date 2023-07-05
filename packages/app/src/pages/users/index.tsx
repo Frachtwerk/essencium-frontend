@@ -134,7 +134,7 @@ function UsersView(): JSX.Element {
         accessorKey: 'enabled',
         header: () => <Text>{t('usersView.table.active')}</Text>,
         cell: info => (info.getValue() ? <IconCheck /> : <IconX />),
-        size: 60,
+        size: 80,
         enableColumnFilter: false,
       },
       {
