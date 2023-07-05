@@ -56,7 +56,9 @@ export function UserForm({
             render={({ field }) => (
               <TextInput
                 {...field}
-                placeholder={String(t('addUpdateUserView.form.firstName'))}
+                placeholder={String(
+                  t('addUpdateUserView.form.placeholder.firstName')
+                )}
                 label={t('addUpdateUserView.form.firstName')}
                 size="sm"
                 variant="filled"
@@ -84,7 +86,9 @@ export function UserForm({
             render={({ field }) => (
               <TextInput
                 {...field}
-                placeholder={String(t('addUpdateUserView.form.lastName'))}
+                placeholder={String(
+                  t('addUpdateUserView.form.placeholder.lastName')
+                )}
                 label={t('addUpdateUserView.form.lastName')}
                 size="sm"
                 variant="filled"
@@ -119,7 +123,9 @@ export function UserForm({
             render={({ field }) => (
               <TextInput
                 {...field}
-                placeholder={String(t('addUpdateUserView.form.email'))}
+                placeholder={String(
+                  t('addUpdateUserView.form.placeholder.email')
+                )}
                 label={t('addUpdateUserView.form.email')}
                 withAsterisk
                 size="sm"
@@ -147,7 +153,9 @@ export function UserForm({
             render={({ field }) => (
               <PasswordInput
                 {...field}
-                placeholder={String(t('addUpdateUserView.form.password'))}
+                placeholder={String(
+                  t('addUpdateUserView.form.placeholder.password')
+                )}
                 label={t('addUpdateUserView.form.password')}
                 size="sm"
                 variant="filled"
@@ -181,7 +189,9 @@ export function UserForm({
             render={({ field }) => (
               <TextInput
                 {...field}
-                placeholder={String(t('addUpdateUserView.form.phone'))}
+                placeholder={String(
+                  t('addUpdateUserView.form.placeholder.phone')
+                )}
                 label={t('addUpdateUserView.form.phone')}
                 size="sm"
                 variant="filled"
@@ -208,7 +218,9 @@ export function UserForm({
             render={({ field }) => (
               <TextInput
                 {...field}
-                placeholder={String(t('addUpdateUserView.form.mobile'))}
+                placeholder={String(
+                  t('addUpdateUserView.form.placeholder.mobile')
+                )}
                 label={t('addUpdateUserView.form.mobile')}
                 size="sm"
                 variant="filled"

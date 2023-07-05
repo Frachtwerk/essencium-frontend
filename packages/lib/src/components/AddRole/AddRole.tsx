@@ -93,9 +93,10 @@ function AddRole({
             render={({ field }) => (
               <TextInput
                 {...field}
-                placeholder="Name"
-                label="Name"
+                placeholder={t('rolesView.modal.placeholder.name') as string}
+                label={t('rolesView.modal.name')}
                 required
+                variant="filled"
                 styles={{
                   label: {
                     fontWeight: 'bold',
@@ -122,9 +123,12 @@ function AddRole({
             render={({ field }) => (
               <TextInput
                 {...field}
-                placeholder="Description"
-                label="Description"
+                placeholder={
+                  t('rolesView.modal.placeholder.description') as string
+                }
+                label={t('rolesView.modal.description')}
                 required
+                variant="filled"
                 styles={{
                   label: {
                     fontWeight: 'bold',

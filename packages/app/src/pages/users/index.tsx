@@ -134,7 +134,7 @@ function UsersView(): JSX.Element {
         accessorKey: 'enabled',
         header: () => <Text>{t('usersView.table.active')}</Text>,
         cell: info => (info.getValue() ? <IconCheck /> : <IconX />),
-        size: 60,
+        size: 80,
         enableColumnFilter: false,
       },
       {
@@ -273,15 +273,6 @@ function UsersView(): JSX.Element {
         />
 
         <Flex ml="xl" align="center" gap="xs">
-          <Button
-            variant="light"
-            onClick={() => {
-              handleRefetch()
-            }}
-          >
-            {t('usersView.action.refresh')}
-          </Button>
-
           {user?.role.rights
             .map(right => right.name)
             .includes(RIGHTS.USER_CREATE) ? (
@@ -294,6 +285,14 @@ function UsersView(): JSX.Element {
               </NextLink>
             </Button>
           ) : null}
+          <Button
+            variant="light"
+            onClick={() => {
+              handleRefetch()
+            }}
+          >
+            {t('usersView.action.refresh')}
+          </Button>
         </Flex>
       </Flex>
 

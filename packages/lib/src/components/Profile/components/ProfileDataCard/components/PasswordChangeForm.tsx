@@ -52,16 +52,12 @@ export function PasswordChangeForm({
               render={({ field }) => (
                 <PasswordInput
                   {...field}
-                  placeholder={String(
-                    t(
-                      'profileView.dataCard.tabs.passwordChange.content.currentPassword'
-                    )
-                  )}
                   label={t(
                     'profileView.dataCard.tabs.passwordChange.content.currentPassword'
                   )}
                   radius="sm"
                   withAsterisk
+                  variant="filled"
                 />
               )}
             />
@@ -86,16 +82,12 @@ export function PasswordChangeForm({
               render={({ field }) => (
                 <PasswordInput
                   {...field}
-                  placeholder={String(
-                    t(
-                      'profileView.dataCard.tabs.passwordChange.content.newPassword'
-                    )
-                  )}
                   label={t(
                     'profileView.dataCard.tabs.passwordChange.content.newPassword'
                   )}
                   radius="sm"
                   withAsterisk
+                  variant="filled"
                 />
               )}
             />
@@ -120,16 +112,12 @@ export function PasswordChangeForm({
               render={({ field }) => (
                 <PasswordInput
                   {...field}
-                  placeholder={String(
-                    t(
-                      'profileView.dataCard.tabs.passwordChange.content.confirmNewPassword'
-                    )
-                  )}
                   label={t(
                     'profileView.dataCard.tabs.passwordChange.content.confirmNewPassword'
                   )}
                   radius="sm"
                   withAsterisk
+                  variant="filled"
                 />
               )}
             />
@@ -146,7 +134,7 @@ export function PasswordChangeForm({
           </Stack>
         </MediaQuery>
 
-        <Button type="submit" mt="md" variant="light">
+        <Button type="submit" mt="md">
           {t('profileView.dataCard.tabs.passwordChange.content.savePassword')}
         </Button>
       </Flex>

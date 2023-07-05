@@ -6,9 +6,18 @@ import {
   TablePagination,
 } from '@frachtwerk/essencium-lib'
 import { RightOutput, RIGHTS, RoleOutput } from '@frachtwerk/essencium-types'
-import { Badge, Button, Center, Flex, Loader, Text, Title } from '@mantine/core'
+import {
+  Badge,
+  Button,
+  Center,
+  Flex,
+  Loader,
+  Text,
+  Title,
+  useMantineTheme,
+} from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { IconUserCheck } from '@tabler/icons-react'
+import { IconUserStar } from '@tabler/icons-react'
 import {
   ColumnDef,
   getCoreRowModel,
@@ -31,6 +40,8 @@ const DEFAULT_SORTING: SortingState = [{ id: 'name', desc: false }]
 
 function RolesView(): JSX.Element {
   const { t } = useTranslation()
+
+  const theme = useMantineTheme()
 
   const [user] = useAtom(userAtom)
 
@@ -85,8 +96,12 @@ function RolesView(): JSX.Element {
             {(info.getValue() as RightOutput[]).map((right: RightOutput) => (
               <Badge
                 key={right.id}
-                variant="outline"
-                color="orange"
+                sx={{
+                  backgroundColor: theme.colors.gray[2],
+                  color: theme.colors.gray[8],
+                  border: 'none',
+                  fontWeight: 'normal',
+                }}
                 style={{ margin: 3 }}
               >
                 {right.name}
@@ -96,7 +111,7 @@ function RolesView(): JSX.Element {
         ),
       },
     ]
-  }, [t])
+  }, [t, theme.colors.gray])
 
   const table = useReactTable({
     data: roles?.content || [],
@@ -128,13 +143,21 @@ function RolesView(): JSX.Element {
       <Flex py="md" justify="space-between" align="center">
         <Title size="h2">
           <Flex align="center" gap={10}>
-            <IconUserCheck size="32" />
+            <IconUserStar size="32" />
 
             <Text>{t('rolesView.title')}</Text>
           </Flex>
         </Title>
 
         <Flex align="center" gap="xs">
+          {user?.role.rights
+            .map(right => right.name)
+            .includes(RIGHTS.ROLE_CREATE) ? (
+            <Button onClick={() => modalHandlers.open()}>
+              {t('rolesView.action.add')}
+            </Button>
+          ) : null}
+
           <Button
             variant="light"
             onClick={() => {
@@ -143,14 +166,6 @@ function RolesView(): JSX.Element {
           >
             {t('actions.refresh')}
           </Button>
-
-          {user?.role.rights
-            .map(right => right.name)
-            .includes(RIGHTS.ROLE_CREATE) ? (
-            <Button onClick={() => modalHandlers.open()}>
-              {t('rolesView.action.add')}
-            </Button>
-          ) : null}
         </Flex>
       </Flex>
 

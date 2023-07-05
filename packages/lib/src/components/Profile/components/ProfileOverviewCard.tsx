@@ -1,5 +1,14 @@
 import { UserOutput } from '@frachtwerk/essencium-types'
-import { Avatar, Badge, Card, Flex, Text, Title } from '@mantine/core'
+import {
+  Avatar,
+  Badge,
+  Card,
+  Flex,
+  Text,
+  Title,
+  useMantineTheme,
+} from '@mantine/core'
+import { IconUser } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
 
 type Props = {
@@ -8,6 +17,7 @@ type Props = {
 
 export function ProfileOverviewCard({ user }: Props): JSX.Element {
   const { t } = useTranslation()
+  const theme = useMantineTheme()
 
   return (
     <Card shadow="sm" p="lg" radius="sm" withBorder>
@@ -17,8 +27,10 @@ export function ProfileOverviewCard({ user }: Props): JSX.Element {
           radius="xl"
           src={null}
           alt="no image here"
-          color="indigo"
-        />
+          color={theme.colors.blue[6]}
+        >
+          <IconUser size={50} />
+        </Avatar>
 
         <Title order={2}>
           {user.firstName} {user.lastName}

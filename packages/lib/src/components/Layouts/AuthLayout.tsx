@@ -8,15 +8,15 @@ import { AppShell, useMantineTheme } from '@mantine/core'
 import type { SpotlightAction } from '@mantine/spotlight'
 import { SpotlightProvider } from '@mantine/spotlight'
 import {
-  IconHome2,
+  IconHome,
   IconLanguage,
   IconMessage,
   IconSearch,
   IconSectionSign,
-  IconShieldCheck,
+  IconShieldHalf,
   IconShieldLock,
-  IconUserCheck,
   IconUsers,
+  IconUserStar,
 } from '@tabler/icons-react'
 import { UseQueryResult } from '@tanstack/react-query'
 import Image from 'next/image'
@@ -45,7 +45,7 @@ type SearchItems = {
 
 export const NAV_LINKS: NavLink[] = [
   {
-    icon: <IconHome2 size={20} />,
+    icon: <IconHome />,
     color: 'blue',
     label: 'navigation.home.label',
     to: '/',
@@ -53,7 +53,7 @@ export const NAV_LINKS: NavLink[] = [
     rights: [],
   },
   {
-    icon: <IconUsers size={20} />,
+    icon: <IconUsers />,
     color: 'blue',
     label: 'navigation.users.label',
     to: '/users',
@@ -61,7 +61,7 @@ export const NAV_LINKS: NavLink[] = [
     rights: [RIGHTS.USER_READ],
   },
   {
-    icon: <IconUserCheck size={20} />,
+    icon: <IconUserStar />,
     color: 'blue',
     label: 'navigation.roles.label',
     to: '/roles',
@@ -69,7 +69,7 @@ export const NAV_LINKS: NavLink[] = [
     rights: [RIGHTS.ROLE_READ, RIGHTS.RIGHT_READ],
   },
   {
-    icon: <IconShieldCheck size={20} />,
+    icon: <IconShieldHalf />,
     color: 'blue',
     label: 'navigation.rights.label',
     to: '/rights',
@@ -77,7 +77,7 @@ export const NAV_LINKS: NavLink[] = [
     rights: [RIGHTS.ROLE_READ, RIGHTS.RIGHT_READ],
   },
   {
-    icon: <IconLanguage size={20} />,
+    icon: <IconLanguage />,
     color: 'blue',
     label: 'navigation.translations.label',
     to: '/translations',
@@ -88,20 +88,20 @@ export const NAV_LINKS: NavLink[] = [
 
 export const FOOTER_LINKS: FooterLink[] = [
   {
-    icon: <IconShieldLock size={20} />,
     label: 'footer.privacy.label',
+    icon: <IconShieldLock size={20} />,
     to: '/',
     description: 'footer.privacy.description',
   },
   {
-    icon: <IconSectionSign size={20} />,
     label: 'footer.imprint.label',
+    icon: <IconSectionSign size={20} />,
     to: '/',
     description: 'footer.imprint.description',
   },
   {
-    icon: <IconMessage size={20} />,
     label: 'footer.contact.label',
+    icon: <IconMessage size={20} />,
     to: '/contact',
     description: 'footer.contact.description',
   },
@@ -111,7 +111,7 @@ export const SEARCH_ITEMS: SearchItems[] = [
   ...NAV_LINKS,
   ...FOOTER_LINKS,
   {
-    icon: <IconUsers size={20} />,
+    icon: <IconSearch />,
     label: 'profileView.title',
     to: '/profile',
     description: 'profileView.description',
@@ -157,7 +157,7 @@ export function AuthLayout({
     <SpotlightProvider
       actions={actions}
       searchPlaceholder={t('header.spotlight.placeholder') as string}
-      searchIcon={<IconSearch size={18} />}
+      searchIcon={<IconSearch />}
       highlightQuery
       highlightColor={theme.colors.blue[6]}
       nothingFoundMessage={t('header.spotlight.nothingFound') as string}

@@ -1,6 +1,6 @@
 import { Translations } from '@frachtwerk/essencium-lib'
 import { TranslationInput } from '@frachtwerk/essencium-types'
-import { Group, Title } from '@mantine/core'
+import { Flex, Text, Title } from '@mantine/core'
 import { IconLanguage } from '@tabler/icons-react'
 import { i18n, useTranslation } from 'next-i18next'
 
@@ -62,10 +62,12 @@ function TranslationsView(): JSX.Element {
 
   return (
     <>
-      <Group>
-        <IconLanguage size="32" />
-        <Title order={2}>{t('translationsView.title')}</Title>
-      </Group>
+      <Title py="md" size="h2">
+        <Flex align="center" gap={10}>
+          <IconLanguage size="32" />
+          <Text>{t('translationsView.title')}</Text>
+        </Flex>
+      </Title>
 
       <Translations
         getTranslations={getTranslationsByLanguage}

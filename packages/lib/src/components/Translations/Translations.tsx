@@ -12,6 +12,7 @@ import {
   Text,
   TextInput,
   Tooltip,
+  useMantineColorScheme,
   useMantineTheme,
 } from '@mantine/core'
 import {
@@ -84,14 +85,24 @@ export function Translations({
 
   const theme = useMantineTheme()
 
+  const { colorScheme } = useMantineColorScheme()
+
   const TREE_THEME = {
     // background-color:
     base00: '#ffffff',
     // font-color value:
     base0B: theme.colors.blue[6],
-
     // font-color key:
     base0D: theme.colors.dark[9],
+  }
+
+  const TREE_THEME_DARK = {
+    // background-color:
+    base00: theme.colors.dark[6],
+    // font-color value:
+    base0B: theme.colors.blue[2],
+    // font-color key:
+    base0D: theme.colors.dark[1],
   }
 
   const [keyPathString, setKeyPathString] = useState<string | null>(null)
@@ -188,7 +199,7 @@ export function Translations({
           <JSONTree
             hideRoot
             data={filteredTranslations}
-            theme={TREE_THEME}
+            theme={colorScheme === 'light' ? TREE_THEME : TREE_THEME_DARK}
             getItemString={() => null}
             labelRenderer={([key]) => <Text fz="sm">{key}</Text>}
             valueRenderer={(_, value, ...keyPath) => (

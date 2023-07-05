@@ -74,14 +74,21 @@
       "tabs": {
         "personalData": {
           "title": "Personal Data",
-          "content": {
+          "label": {
             "firstName": "First Name",
             "lastName": "Last Name",
             "email": "E-Mail",
             "phone": "Phone Number",
             "mobile": "Mobile Number",
-            "language": "Language",
-            "saveChanges": "Save Changes"
+            "language": "Language"
+          },
+          "saveChanges": "Save Changes",
+          "placeholder": {
+            "firstName": "Jane",
+            "lastName": "Doe",
+            "email": "jane@mail.de",
+            "phone": "030 123456",
+            "mobile": "0171 123456"
           }
         },
         "passwordChange": {
@@ -214,7 +221,15 @@
       "status": "Status",
       "language": "Language",
       "role": "Role",
-      "save": "Save User"
+      "save": "Save User",
+      "placeholder": {
+        "firstName": "Norman",
+        "lastName": "Anderson",
+        "phone": "555 987654",
+        "mobile": "0177 98765432",
+        "email": "norman.anderson@mail.com",
+        "password": "***********"
+      }
     }
   },
   "rightsView": {
@@ -268,7 +283,11 @@
       "editable": "Editable",
       "rights": "Rights",
       "cancel": "Cancel",
-      "submit": "Add Role"
+      "submit": "Add Role",
+      "placeholder": {
+        "name": "USER",
+        "description": "Application User"
+      }
     }
   },
   "validation": {

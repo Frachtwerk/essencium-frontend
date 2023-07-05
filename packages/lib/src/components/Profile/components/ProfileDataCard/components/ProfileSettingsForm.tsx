@@ -112,7 +112,7 @@ export function ProfileSettingsForm({
         </Box>
       </Flex>
 
-      <Button type="submit" mt="md" variant="light">
+      <Button type="submit" mt="md">
         {t('profileView.dataCard.tabs.settings.content.saveSettings')}
       </Button>
     </form>
