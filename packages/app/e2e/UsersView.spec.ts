@@ -5,7 +5,7 @@ import { BASE_URL } from '../playwright.config'
 test.describe('UsersView', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(BASE_URL)
-    await page.getByRole('button', { name: 'Users' }).click()
+    await page.getByRole('button', { name: 'Users', exact: true }).click()
     await expect(page).toHaveURL(`${BASE_URL}/users`)
   })
 
