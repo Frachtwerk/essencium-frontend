@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v1.0.0...essencium-lib-v1.0.1) (2023-07-06)
+
+
+### Bug Fixes
+
+* remove unused imports ([7374546](https://github.com/Frachtwerk/essencium-frontend/commit/7374546125a1997858cce5cb5a7c267c2f43f717))
+* use same margins as in other views ([2e086b7](https://github.com/Frachtwerk/essencium-frontend/commit/2e086b7379c713fb04f717f1c87f2a5707977628))
+
 ## 1.0.0 (2023-07-03)
 
 
