@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v1.0.1...essencium-types-v1.0.2) (2023-07-06)
+
+
+### Bug Fixes
+
+* use same margins as in other views ([2e086b7](https://github.com/Frachtwerk/essencium-frontend/commit/2e086b7379c713fb04f717f1c87f2a5707977628))
+
 ## [1.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v1.0.0...essencium-types-v1.0.1) (2023-07-04)
 
 
