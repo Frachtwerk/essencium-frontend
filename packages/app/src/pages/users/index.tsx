@@ -4,6 +4,7 @@ import {
   Table,
   TablePagination,
 } from '@frachtwerk/essencium-lib'
+import type { FilterObjectUser } from '@frachtwerk/essencium-types'
 import { RIGHTS, RoleOutput, UserOutput } from '@frachtwerk/essencium-types'
 import {
   ActionIcon,
@@ -70,12 +71,6 @@ export function removeDuplicates(
   return []
 }
 
-type ColumnFilter = {
-  name: string
-  email: string
-  role: string
-}
-
 function UsersView(): JSX.Element {
   const router = useRouter()
 
@@ -88,22 +83,25 @@ function UsersView(): JSX.Element {
   const [activePage, setActivePage] = useState(1)
   const [pageSize, setPageSize] = useState(20)
   const [sorting, setSorting] = useState<SortingState>(DEFAULT_SORTING)
-  const [columnFilters, setColumnFilters] = useState<ColumnFilter>({
-    name: '',
-    email: '',
-    role: '',
+  const [columnFilters, setColumnFilters] = useState<FilterObjectUser>({
+    name: null,
+    email: null,
+    role: null,
   })
 
   const [columnFiltersDebounced] = useDebouncedValue(columnFilters, 350)
   const [showFilter, setShowFilter] = useState(false)
 
-  function handleFilterChange(key: string, value: string): void {
+  function handleFilterChange(
+    key: FilterObjectUser['key'],
+    value: FilterObjectUser['value']
+  ): void {
     // reset to first page when filtering
     setActivePage(1)
 
     setColumnFilters(prevFilters => ({
       ...prevFilters,
-      [key]: value,
+      [key as string]: value,
     }))
   }
 

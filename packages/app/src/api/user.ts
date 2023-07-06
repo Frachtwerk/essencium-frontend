@@ -1,4 +1,5 @@
 import {
+  FilterObjectUser,
   PaginatedResponse,
   UserInput,
   UserOutput,
@@ -25,7 +26,7 @@ export type GetUsersParams = {
   page: UsersResponse['number']
   size: UsersResponse['size']
   sort?: string
-  filter?: Record<string, string>
+  filter?: FilterObjectUser
 }
 
 export function useGetUsers({

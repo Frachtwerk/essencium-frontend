@@ -1,3 +1,4 @@
+import { FilterObjectUser } from '@frachtwerk/essencium-types'
 import {
   Flex,
   Select,
@@ -10,7 +11,10 @@ import { useState } from 'react'
 
 type Props<T> = {
   tableModel: TanstackTable<T>
-  onFilterChange?: (key: string, value: string) => void
+  onFilterChange?: (
+    key: FilterObjectUser['key'],
+    value: FilterObjectUser['value']
+  ) => void
   showFilter?: boolean
   filterData?: Record<string, Array<string>>
 }
@@ -23,7 +27,11 @@ export function Table<T>({
 }: Props<T>): JSX.Element {
   const theme = useMantineTheme()
 
-  const [filterValue, setFilterValue] = useState<Record<string, string>>({})
+  const [filterValue, setFilterValue] = useState<FilterObjectUser>({
+    name: null,
+    email: null,
+    role: null,
+  })
 
   return (
     <Flex direction="column" align="end">
@@ -74,10 +82,10 @@ export function Table<T>({
                         onChange={event => {
                           setFilterValue({
                             ...filterValue,
-                            [header.column.id]: event!,
+                            [header.column.id]: event,
                           })
                           header.column.setFilterValue(event)
-                          onFilterChange?.(header.column.id, event!)
+                          onFilterChange?.(header.column.id, event)
                         }}
                       />
                     ) : null}
