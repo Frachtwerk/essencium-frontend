@@ -120,11 +120,11 @@ export function RoleForm({
             <Flex wrap="wrap" gap="sm" my="xs">
               {Object.values(rights).map(right => (
                 <Chip
-                  defaultChecked={
+                  defaultChecked={Boolean(
                     role &&
-                    role.rights.length > 0 &&
-                    role?.rights.find(item => item.id === right.id)
-                  }
+                      role.rights.length > 0 &&
+                      role?.rights.find(item => item.id === right.id)
+                  )}
                   key={right.id}
                   value={right.id}
                   variant="light"
