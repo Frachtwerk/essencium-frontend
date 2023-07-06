@@ -23,9 +23,9 @@ export function TablePagination<T>({
   const { t } = useTranslation()
 
   return (
-    <Flex align="center">
+    <Flex align="center" mt="xs">
       <Flex align="center" mr="xl">
-        <Text size="sm" mt="xs" mr="xs">
+        <Text size="sm" mr="xs">
           {t('table.footer.pageSize')}
         </Text>
 
@@ -33,7 +33,6 @@ export function TablePagination<T>({
           defaultValue={String(pageSize)}
           data={['10', '20', '30', '40', '50', '100']}
           w={70}
-          mt="xs"
           onChange={e => {
             table.setPageSize(Number(e))
             setPageSize(Number(e))
@@ -44,7 +43,6 @@ export function TablePagination<T>({
       </Flex>
 
       <Pagination
-        mt="xs"
         total={table.getPageCount()}
         value={activePage}
         onChange={e => {
