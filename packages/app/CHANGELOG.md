@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v1.0.1...essencium-app-v1.1.0) (2023-07-07)
+
+
+### Features
+
+* add functionality to invalidate a user's authToken ([35cfe60](https://github.com/Frachtwerk/essencium-frontend/commit/35cfe60d59da158b72b92f84dcd5d1ba767bd602))
+
 ## [1.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v1.0.0...essencium-app-v1.0.1) (2023-07-06)
 
 
