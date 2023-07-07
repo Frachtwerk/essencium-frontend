@@ -12,14 +12,18 @@ import {
   Button,
   Center,
   Flex,
+  Group,
+  Popover,
   Switch,
   Text,
   Title,
+  useMantineTheme,
 } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
 import {
   IconCheck,
   IconDotsVertical,
+  IconLogout,
   IconPencil,
   IconTrash,
   IconUsers,
@@ -37,7 +41,7 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useCallback, useMemo, useState } from 'react'
 
-import { useDeleteUser, useGetUsers } from '@/api'
+import { useDeleteUser, useGetUsers, useInvalidateToken } from '@/api'
 import { userAtom } from '@/api/me'
 import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
@@ -65,6 +69,8 @@ function UsersView(): JSX.Element {
   const [user] = useAtom(userAtom)
 
   const { t } = useTranslation()
+
+  const theme = useMantineTheme()
 
   const [activePage, setActivePage] = useState(1)
   const [pageSize, setPageSize] = useState(20)
@@ -120,6 +126,8 @@ function UsersView(): JSX.Element {
     },
     [deleteUser, refetchUsers]
   )
+
+  const { mutate: invalidateToken } = useInvalidateToken()
 
   const columns = useMemo<ColumnDef<UserOutput>[]>(
     () => [
@@ -216,20 +224,64 @@ function UsersView(): JSX.Element {
                 </ActionIcon>
               ) : null}
 
-              <ActionIcon
-                size="sm"
-                disabled={isDefaultUser}
-                variant="transparent"
-              >
-                <IconDotsVertical />
-              </ActionIcon>
+              {user?.role.rights
+                .map(right => right.name)
+                .includes(RIGHTS.USER_UPDATE) ? (
+                <Popover width={130} position="bottom" withArrow shadow="sm">
+                  <Popover.Target>
+                    <ActionIcon
+                      size="sm"
+                      disabled={isDefaultUser}
+                      variant="transparent"
+                    >
+                      <IconDotsVertical />
+                    </ActionIcon>
+                  </Popover.Target>
+
+                  <Popover.Dropdown p={0}>
+                    <Group
+                      onClick={() => invalidateToken(rowUser.id)}
+                      spacing="xs"
+                      sx={{
+                        padding: '0.7rem 0 0.5rem 1rem',
+                        cursor: 'pointer',
+                        '&:hover': {
+                          backgroundColor:
+                            theme.colorScheme === 'dark'
+                              ? theme.colors.gray[9]
+                              : theme.colors.gray[0],
+                        },
+                      }}
+                    >
+                      <IconLogout
+                        size={16}
+                        color={
+                          theme.colorScheme === 'dark'
+                            ? theme.colors.gray[3]
+                            : theme.colors.gray[7]
+                        }
+                      />
+
+                      {t('usersView.table.invalidate')}
+                    </Group>
+                  </Popover.Dropdown>
+                </Popover>
+              ) : null}
             </Flex>
           )
         },
         size: 120,
       },
     ],
-    [t, handleEditUser, handleDeleteUser, user]
+    [
+      t,
+      handleEditUser,
+      handleDeleteUser,
+      user,
+      invalidateToken,
+      theme.colors.gray,
+      theme.colorScheme,
+    ]
   )
 
   const table = useReactTable({

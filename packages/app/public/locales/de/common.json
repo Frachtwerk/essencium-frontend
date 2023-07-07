@@ -199,7 +199,8 @@
       "email": "E-Mail",
       "locale": "Sprache",
       "role": "Rolle",
-      "actions": "Aktionen"
+      "actions": "Aktionen",
+      "invalidate": "Nutzer ausloggen"
     }
   },
   "addUpdateUserView": {
@@ -370,6 +371,14 @@
     "deletedTranslationError": {
       "title": "Fehler",
       "message": "Übersetzung konnte nicht zurückgesetzt werden"
+    },
+    "invalidateUserSuccess": {
+      "title": "Erfolg",
+      "message": "Der Nutzer wurde ausgeloggt."
+    },
+    "invalidateUserError": {
+      "title": "Fehler",
+      "message": "Der Nutzer konnte nicht ausgeloggt werden."
     }
   },
   "table": {
