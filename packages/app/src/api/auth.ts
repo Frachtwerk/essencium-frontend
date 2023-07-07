@@ -3,10 +3,12 @@ import {
   SetPasswordInput,
   UserOutput,
 } from '@frachtwerk/essencium-types'
+import { showNotification } from '@mantine/notifications'
 import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useAtom, useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
+import { useTranslation } from 'next-i18next'
 
 import { api, VERSION } from './api'
 
@@ -42,15 +44,39 @@ export function useCreateToken(): UseMutationResult<
   return mutation
 }
 
-export function useInvalidateToken(
-  userId: UserOutput['id']
-): UseMutationResult<null, AxiosError, null, unknown> {
-  const mutation = useMutation<null, AxiosError, null>({
+export function useInvalidateToken(): UseMutationResult<
+  null,
+  AxiosError,
+  UserOutput['id'],
+  unknown
+> {
+  const { t } = useTranslation()
+
+  const mutation = useMutation<null, AxiosError, UserOutput['id']>({
     mutationKey: ['useInvalidateToken'],
-    mutationFn: () =>
+    mutationFn: (userId: UserOutput['id']) =>
       api
         .post<null, null>(`/${VERSION}/users/${userId}/terminate`, null)
         .then(response => response.data),
+    onSuccess: () => {
+      showNotification({
+        autoClose: 4000,
+        title: t('notifications.invalidateUserSuccess.title'),
+        message: t('notifications.invalidateUserSuccess.message'),
+        color: 'green',
+        style: { position: 'fixed', top: '20px', right: '10px' },
+      })
+    },
+
+    onError: () => {
+      showNotification({
+        autoClose: 4000,
+        title: t('notifications.invalidateUserError.title'),
+        message: t('notifications.invalidateUserError.message'),
+        color: 'red',
+        style: { position: 'fixed', top: '20px', right: '10px' },
+      })
+    },
   })
 
   return mutation

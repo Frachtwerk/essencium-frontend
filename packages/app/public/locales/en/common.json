@@ -199,7 +199,8 @@
       "email": "E-Mail",
       "locale": "Language",
       "role": "Role",
-      "actions": "Actions"
+      "actions": "Actions",
+      "invalidate": "Logout User"
     }
   },
   "addUpdateUserView": {
@@ -370,6 +371,14 @@
     "deletedTranslationError": {
       "title": "Error",
       "message": "Translation could not be reset"
+    },
+    "invalidateUserSuccess": {
+      "title": "Success",
+      "message": "The user has been logged out."
+    },
+    "invalidateUserError": {
+      "title": "Error",
+      "message": "The use can not be logged out."
     }
   },
   "table": {
