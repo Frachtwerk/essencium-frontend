@@ -253,7 +253,14 @@ function UsersView(): JSX.Element {
                         },
                       }}
                     >
-                      <IconLogout size={16} color={theme.colors.gray[7]} />
+                      <IconLogout
+                        size={16}
+                        color={
+                          theme.colorScheme === 'dark'
+                            ? theme.colors.gray[3]
+                            : theme.colors.gray[7]
+                        }
+                      />
 
                       {t('usersView.table.invalidate')}
                     </Group>
