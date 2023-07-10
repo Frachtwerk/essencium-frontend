@@ -11,8 +11,8 @@ export const BASE_URL = 'https://staging.essencium.dev'
 
 export const BASE_URL_DOCS = 'https://docs.essencium.dev/'
 export const ADMIN = {
-  username: 'admin@frachtwerk.de',
-  password: 'adminAdminAdmin',
+  username: process.env.ADMIN_USERNAME,
+  password: process.env.ADMIN_PASSWORD,
   firstName: 'Admin',
   lastName: 'User',
 }

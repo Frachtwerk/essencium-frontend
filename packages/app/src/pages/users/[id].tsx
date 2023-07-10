@@ -101,10 +101,16 @@ UpdateUserView.getLayout = function getLayout(
 export const getStaticProps = baseGetStaticProps()
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data: tokenData } = await axiosInstance.post('/auth/token', {
-    username: 'admin@frachtwerk.de',
-    password: 'adminAdminAdmin',
-  })
+  const { data: tokenData } = await axiosInstance.post(
+    '/auth/token',
+    {
+      username: process.env.ADMIN_USERNAME,
+      password: process.env.ADMIN_PASSWORD,
+    },
+    {
+      baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+    }
+  )
 
   const { data: usersData } = await axiosInstance.get<UsersResponse>('/users', {
     params: {
@@ -121,7 +127,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: users.map(user => ({
       params: {
-        id: user.id as unknown as string,
+        id: String(user.id),
       },
     })),
     fallback: true,
