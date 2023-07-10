@@ -8,10 +8,8 @@ import axios, {
 
 import { logout } from '@/utils/logout'
 
-export const VERSION = 'v1'
-
 export const axiosInstance: AxiosInstance = axios.create({
-  baseURL: 'https://backend.staging.essencium.dev/',
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
 })
 
 axiosInstance.interceptors.request.use(

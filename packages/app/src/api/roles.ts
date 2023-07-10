@@ -17,7 +17,7 @@ import { useTranslation } from 'next-i18next'
 
 import { authTokenAtom } from '@/api/auth'
 
-import { api, VERSION } from './api'
+import { api } from './api'
 
 export type RolesResponse = PaginatedResponse<RoleOutput>
 
@@ -38,7 +38,7 @@ export function useCreateRole(): UseMutationResult<
     mutationKey: ['useCreateRole'],
     mutationFn: (role: RoleInput) =>
       api
-        .post<RoleOutput, RoleInput>(`${VERSION}/roles`, role)
+        .post<RoleOutput, RoleInput>('/roles', role)
         .then(response => response.data),
     onSuccess: () => {
       showNotification({
@@ -84,7 +84,7 @@ export function useGetRoles({
     queryKey: ['getRoles', { page, size, sort }],
     queryFn: () =>
       api
-        .get<RolesResponse>(`${VERSION}/roles`, {
+        .get<RolesResponse>('/roles', {
           params: {
             page,
             size,
@@ -106,7 +106,7 @@ export function useUpdateRole(): UseMutationResult<
     mutationKey: ['useUpdateRole'],
     mutationFn: (role: RoleUpdate) =>
       api
-        .put<RoleOutput, RoleUpdate>(`${VERSION}/roles/${role.id}`, role)
+        .put<RoleOutput, RoleUpdate>(`/roles/${role.id}`, role)
         .then(response => response.data),
     onSuccess: () => {
       showNotification({

@@ -17,7 +17,7 @@ import { useTranslation } from 'next-i18next'
 
 import { authTokenAtom } from '@/api/auth'
 
-import { api, VERSION } from './api'
+import { api } from './api'
 
 export const userAtom = atomWithStorage<UserOutput | null>('user', null)
 
@@ -31,9 +31,7 @@ export function useGetMe(): UseQueryResult<UserOutput, unknown> {
     enabled: Boolean(authToken),
     queryKey: ['useGetMe'],
     queryFn: () =>
-      api
-        .get<UserOutput>(`${VERSION}/users/me`)
-        .then(response => response.data),
+      api.get<UserOutput>('/users/me').then(response => response.data),
     onSuccess(data: UserOutput) {
       setUser(data)
       store.set(userAtom, data)
@@ -56,7 +54,7 @@ export function useUpdateMe(): UseMutationResult<
     mutationKey: ['useUpdateMe'],
     mutationFn: (user: UserUpdate) =>
       api
-        .put<UserOutput, UserUpdate>(`${VERSION}/users/me`, user)
+        .put<UserOutput, UserUpdate>('/users/me', user)
         .then(response => response.data),
     onSuccess: (updatedUser: UserOutput) => {
       setUser(updatedUser)
@@ -99,7 +97,7 @@ export function useUpdatePassword(): UseMutationResult<
     mutationFn: (passwordData: Omit<PasswordChange, 'confirmPassword'>) =>
       api
         .put<UserOutput, Omit<PasswordChange, 'confirmPassword'>>(
-          `${VERSION}/users/me/password`,
+          '/users/me/password',
           passwordData
         )
         .then(response => response.data),

@@ -15,7 +15,7 @@ import { useTranslation } from 'next-i18next'
 
 import { authTokenAtom } from '@/api/auth'
 
-import { api, VERSION } from './api'
+import { api } from './api'
 
 export function useGetTranslations(
   locale: TranslationInput['locale']
@@ -27,7 +27,7 @@ export function useGetTranslations(
     queryKey: [`useGetTranslations-${locale}`],
     queryFn: () =>
       api
-        .get<TranslationOutput>(`${VERSION}/translations/${locale}`)
+        .get<TranslationOutput>(`/translations/${locale}`)
         .then(response => response.data),
   })
 }
@@ -45,7 +45,7 @@ export function useUpdateTranslation(): UseMutationResult<
       mutationFn: ({ locale, key, translation }: TranslationInput) => {
         return api
           .put<TranslationOutput, TranslationInput['translation']>(
-            `${VERSION}/translations/${locale}/${key}`,
+            `/translations/${locale}/${key}`,
             translation,
             {
               headers: {
@@ -90,7 +90,7 @@ export function useDeleteTranslation(): UseMutationResult<
     mutationKey: ['useDeleteTranslation'],
     mutationFn: (key: TranslationInput['key']) => {
       return api
-        .delete<null>(`${VERSION}/translations/delete/${key}`, {
+        .delete<null>(`/translations/delete/${key}`, {
           headers: {
             'Content-Type': 'text/plain',
           },

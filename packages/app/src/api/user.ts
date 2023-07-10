@@ -18,7 +18,7 @@ import { useTranslation } from 'next-i18next'
 
 import { authTokenAtom } from '@/api/auth'
 
-import { api, VERSION } from './api'
+import { api } from './api'
 
 export type UsersResponse = PaginatedResponse<UserOutput>
 
@@ -42,7 +42,7 @@ export function useGetUsers({
     queryKey: ['getUsers', { page, size, sort, filter }],
     queryFn: () =>
       api
-        .get<UsersResponse>(`${VERSION}/users`, {
+        .get<UsersResponse>('/users', {
           params: {
             page,
             size,
@@ -63,9 +63,7 @@ export function useGetUser(
     enabled: Boolean(authToken) && Boolean(userId),
     queryKey: ['useGetUser', userId],
     queryFn: () =>
-      api
-        .get<UserOutput>(`${VERSION}/users/${userId}`)
-        .then(response => response.data),
+      api.get<UserOutput>(`/users/${userId}`).then(response => response.data),
   })
 }
 
@@ -79,9 +77,7 @@ export function useCreateUser(): UseMutationResult<
   const mutation = useMutation<UserInput, AxiosError, UserInput>({
     mutationKey: ['useCreateUser'],
     mutationFn: (newUser: UserInput) =>
-      api
-        .post<UserInput, UserInput>(`${VERSION}/users`, newUser)
-        .then(res => res.data),
+      api.post<UserInput, UserInput>('/users', newUser).then(res => res.data),
     onSuccess: () => {
       showNotification({
         autoClose: 4000,
@@ -116,7 +112,7 @@ export function useUpdateUser(): UseMutationResult<
     mutationKey: ['useUpdateUser'],
     mutationFn: (user: UserUpdate) =>
       api
-        .put<UserOutput, UserUpdate>(`${VERSION}/users/${user.id}`, user)
+        .put<UserOutput, UserUpdate>(`/users/${user.id}`, user)
         .then(response => response.data),
     onSuccess: () => {
       showNotification({
@@ -151,9 +147,7 @@ export function useDeleteUser(): UseMutationResult<
   const mutation = useMutation<null, AxiosError, UserOutput['id']>({
     mutationKey: ['useDeleteUser'],
     mutationFn: (userId: UserOutput['id']) =>
-      api
-        .delete<null>(`${VERSION}/users/${userId}`)
-        .then(response => response.data),
+      api.delete<null>(`/users/${userId}`).then(response => response.data),
     onSuccess: () => {
       showNotification({
         autoClose: 4000,

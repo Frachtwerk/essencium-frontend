@@ -10,7 +10,7 @@ import { useAtom, useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 import { useTranslation } from 'next-i18next'
 
-import { api, VERSION } from './api'
+import { api } from './api'
 
 type LoginCredentials = {
   username: string
@@ -34,7 +34,13 @@ export function useCreateToken(): UseMutationResult<
     mutationKey: ['useCreateToken'],
     mutationFn: (loginCredentials: LoginCredentials) =>
       api
-        .post<TokenResponse, LoginCredentials>('/auth/token', loginCredentials)
+        .post<TokenResponse, LoginCredentials>(
+          '/auth/token',
+          loginCredentials,
+          {
+            baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+          }
+        )
         .then(response => response.data),
     onSuccess: (data: TokenResponse) => {
       setToken(data.token)
@@ -56,7 +62,7 @@ export function useInvalidateToken(): UseMutationResult<
     mutationKey: ['useInvalidateToken'],
     mutationFn: (userId: UserOutput['id']) =>
       api
-        .post<null, null>(`/${VERSION}/users/${userId}/terminate`, null)
+        .post<null, null>(`/users/${userId}/terminate`, null)
         .then(response => response.data),
     onSuccess: () => {
       showNotification({
@@ -113,13 +119,9 @@ export function useResetPassword(): UseMutationResult<
     mutationKey: ['useResetPassword'],
     mutationFn: (email: ResetPassword['email']) =>
       api
-        .post<null, ResetPassword['email']>(
-          `${VERSION}/reset-credentials`,
-          email,
-          {
-            headers: { 'content-type': 'text/plain' },
-          }
-        )
+        .post<null, ResetPassword['email']>('/reset-credentials', email, {
+          headers: { 'content-type': 'text/plain' },
+        })
         .then(response => response.data),
   })
 
@@ -135,7 +137,7 @@ export function useSetPassword(): UseMutationResult<
     mutationKey: ['useSetPassword'],
     mutationFn: ({ password, verification }: SetPasswordInput) =>
       api
-        .post<null, SetPasswordInput>(`${VERSION}/set-password`, {
+        .post<null, SetPasswordInput>('/set-password', {
           password,
           verification,
         })

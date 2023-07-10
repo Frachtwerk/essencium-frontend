@@ -5,7 +5,7 @@ import { useAtomValue } from 'jotai'
 
 import { authTokenAtom } from '@/api/auth'
 
-import { api, VERSION } from './api'
+import { api } from './api'
 
 export type RightsResponse = PaginatedResponse<RightOutput>
 
@@ -27,7 +27,7 @@ export const useGetRights = ({
     queryKey: ['rights', { page, size, sort }],
     queryFn: () =>
       api
-        .get<RightOutput[]>(`${VERSION}/rights`, {
+        .get<RightOutput[]>('/rights', {
           params: {
             page,
             size,
