@@ -151,6 +151,9 @@ jobs:
       - name: Build
         if: steps.cache-dist.outputs.cache-hit != 'true'
         run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx build @frachtwerk/essencium-app
+        env:
+          ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
 
       - name: Upload 'lib' dist folder
         uses: actions/upload-artifact@v3
