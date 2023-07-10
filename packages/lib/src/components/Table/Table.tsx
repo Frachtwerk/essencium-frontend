@@ -1,4 +1,3 @@
-import { FilterObjectUser } from '@frachtwerk/essencium-types'
 import {
   Flex,
   Select,
@@ -7,16 +6,15 @@ import {
 } from '@mantine/core'
 import { IconSortAscending2, IconSortDescending2 } from '@tabler/icons-react'
 import { flexRender, Table as TanstackTable } from '@tanstack/react-table'
-import { useState } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 
 type Props<T> = {
   tableModel: TanstackTable<T>
-  onFilterChange?: (
-    key: FilterObjectUser['key'],
-    value: FilterObjectUser['value']
-  ) => void
+  onFilterChange?: (key: string, value: string | null) => void
   showFilter?: boolean
   filterData?: Record<string, Array<string>>
+  filterValue?: Record<string, string | null>
+  setFilterValue?: Dispatch<SetStateAction<Record<string, string | null>>>
 }
 
 export function Table<T>({
@@ -24,14 +22,10 @@ export function Table<T>({
   onFilterChange,
   showFilter,
   filterData,
+  filterValue,
+  setFilterValue,
 }: Props<T>): JSX.Element {
   const theme = useMantineTheme()
-
-  const [filterValue, setFilterValue] = useState<FilterObjectUser>({
-    name: null,
-    email: null,
-    role: null,
-  })
 
   return (
     <Flex direction="column" align="end">
@@ -78,12 +72,13 @@ export function Table<T>({
                         data={filterData ? filterData[header.column.id] : []}
                         searchable
                         clearable
-                        value={filterValue[header.column.id]}
+                        value={filterValue && filterValue[header.column.id]}
                         onChange={event => {
-                          setFilterValue({
-                            ...filterValue,
-                            [header.column.id]: event,
-                          })
+                          if (setFilterValue)
+                            setFilterValue({
+                              ...filterValue,
+                              [header.column.id]: event,
+                            })
                           header.column.setFilterValue(event)
                           onFilterChange?.(header.column.id, event)
                         }}

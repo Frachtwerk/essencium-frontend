@@ -4,8 +4,12 @@ import {
   Table,
   TablePagination,
 } from '@frachtwerk/essencium-lib'
-import type { FilterObjectUser } from '@frachtwerk/essencium-types'
-import { RIGHTS, RoleOutput, UserOutput } from '@frachtwerk/essencium-types'
+import {
+  FilterObjectUser,
+  RIGHTS,
+  RoleOutput,
+  UserOutput,
+} from '@frachtwerk/essencium-types'
 import {
   ActionIcon,
   Badge,
@@ -62,9 +66,7 @@ export const FORM_DEFAULTS = {
 
 const DEFAULT_SORTING: SortingState = [{ id: 'id', desc: false }]
 
-export function removeDuplicates(
-  array: Array<string> | undefined
-): Array<string> {
+export function removeDuplicates(array: string[] | undefined): string[] {
   if (array) {
     return array.filter((item, index) => array.indexOf(item) === index)
   }
@@ -145,8 +147,6 @@ function UsersView(): JSX.Element {
       role: removeDuplicates(role),
     }
   }
-
-  const filterData = getFilterData()
 
   const { mutate: deleteUser } = useDeleteUser()
 
@@ -387,7 +387,9 @@ function UsersView(): JSX.Element {
           tableModel={table}
           onFilterChange={handleFilterChange}
           showFilter={showFilter}
-          filterData={filterData}
+          filterData={getFilterData()}
+          filterValue={columnFilters}
+          setFilterValue={setColumnFilters}
         />
 
         <TablePagination
