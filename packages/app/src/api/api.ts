@@ -14,6 +14,7 @@ export const axiosInstance: AxiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (request: InternalAxiosRequestConfig<AxiosRequestConfig>) => {
+    // Need to check if window is defined because this code is also used on server side
     if (typeof window === 'undefined') return request
 
     const authToken = JSON.parse(localStorage.getItem('authToken') as string)
