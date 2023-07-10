@@ -111,6 +111,9 @@ function RolesView(): JSX.Element {
         deleteModalHandlers.close()
         handleRefetch()
       },
+      onError: () => {
+        deleteModalHandlers.close()
+      },
     })
   }
 
@@ -124,6 +127,9 @@ function RolesView(): JSX.Element {
         onSuccess: () => {
           addModalHandlers.close()
           handleRefetch()
+        },
+        onError: () => {
+          addModalHandlers.close()
         },
       }
     )
@@ -139,6 +145,9 @@ function RolesView(): JSX.Element {
         onSuccess: () => {
           editModalHandlers.close()
           handleRefetch()
+        },
+        onError: () => {
+          editModalHandlers.close()
         },
       }
     )
@@ -334,8 +343,7 @@ function RolesView(): JSX.Element {
         }}
         deleteFunction={() => {
           if (roleToEditOrDelete) {
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            handleDeleteRole(roleToEditOrDelete.id!)
+            handleDeleteRole(roleToEditOrDelete?.id)
           }
         }}
         title={t('rolesView.deleteDialog.title')}

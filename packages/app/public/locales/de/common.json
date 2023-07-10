@@ -295,7 +295,7 @@
     },
     "deleteDialog": {
       "title": "Rolle löschen",
-      "text": "Wollen Sie diese Rolle wirklich löschen? "
+      "text": "Wollen Sie diese Rolle wirklich löschen?"
     }
   },
   "validation": {

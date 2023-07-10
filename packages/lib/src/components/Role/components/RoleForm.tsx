@@ -67,7 +67,9 @@ export function RoleForm({
         <Box mt="-0.6rem" h="0.8rem">
           {formState.errors.name && (
             <Text ml={5} fz="xs" color="red">
-              {formState.errors.name?.message}
+              {formState.errors.name?.message
+                ? String(t(formState.errors.name.message))
+                : null}
             </Text>
           )}
         </Box>
@@ -97,7 +99,9 @@ export function RoleForm({
         <Box mt="-0.6rem" h="0.8rem">
           {formState.errors.description && (
             <Text ml={5} fz="xs" color="red">
-              {formState.errors.description?.message}
+              {formState.errors.description?.message
+                ? String(t(formState.errors.description.message))
+                : null}
             </Text>
           )}
         </Box>
