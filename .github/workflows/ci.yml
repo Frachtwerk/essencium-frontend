@@ -110,6 +110,9 @@ jobs:
 
       - name: Run E2E tests
         run: pnpm test:e2e
+        env:
+          ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
 
   # Not active as long as repo is private, because otherwise the Artifact storage quota will be exceeded.
 
