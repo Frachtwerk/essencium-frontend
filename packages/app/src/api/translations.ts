@@ -1,8 +1,8 @@
+import { withBaseStylingShowNotification } from '@frachtwerk/essencium-lib'
 import {
   TranslationInput,
   TranslationOutput,
 } from '@frachtwerk/essencium-types'
-import { showNotification } from '@mantine/notifications'
 import {
   useMutation,
   UseMutationResult,
@@ -11,7 +11,6 @@ import {
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useAtomValue } from 'jotai'
-import { useTranslation } from 'next-i18next'
 
 import { authTokenAtom } from '@/api/auth'
 
@@ -37,8 +36,6 @@ export function useUpdateTranslation(): UseMutationResult<
   AxiosError,
   TranslationInput
 > {
-  const { t } = useTranslation()
-
   const mutation = useMutation<TranslationOutput, AxiosError, TranslationInput>(
     {
       mutationKey: ['useUpdateTranslation'],
@@ -56,21 +53,15 @@ export function useUpdateTranslation(): UseMutationResult<
           .then(response => response.data)
       },
       onSuccess: () => {
-        showNotification({
-          autoClose: 2500,
-          title: t('notifications.createdTranslationSuccess.title'),
-          message: t('notifications.createdTranslationSuccess.message'),
-          color: 'green',
-          style: { position: 'fixed', top: '20px', right: '10px' },
+        withBaseStylingShowNotification({
+          notificationType: 'updated',
+          color: 'success',
         })
       },
       onError: () => {
-        showNotification({
-          autoClose: 2500,
-          title: t('notifications.createdTranslationError.title'),
-          message: t('notifications.createdTranslationError.message'),
-          color: 'red',
-          style: { position: 'fixed', top: '20px', right: '10px' },
+        withBaseStylingShowNotification({
+          notificationType: 'updated',
+          color: 'error',
         })
       },
     }
@@ -84,8 +75,6 @@ export function useDeleteTranslation(): UseMutationResult<
   AxiosError,
   TranslationInput['key']
 > {
-  const { t } = useTranslation()
-
   const mutation = useMutation<null, AxiosError, TranslationInput['key']>({
     mutationKey: ['useDeleteTranslation'],
     mutationFn: (key: TranslationInput['key']) => {
@@ -98,21 +87,15 @@ export function useDeleteTranslation(): UseMutationResult<
         .then(response => response.data)
     },
     onSuccess: () => {
-      showNotification({
-        autoClose: 2500,
-        title: t('notifications.deletedTranslationSuccess.title'),
-        message: t('notifications.deletedTranslationSuccess.message'),
-        color: 'green',
-        style: { position: 'fixed', top: '20px', right: '10px' },
+      withBaseStylingShowNotification({
+        notificationType: 'deleted',
+        color: 'success',
       })
     },
     onError: () => {
-      showNotification({
-        autoClose: 2500,
-        title: t('notifications.deletedTranslationError.title'),
-        message: t('notifications.deletedTranslationError.message'),
-        color: 'red',
-        style: { position: 'fixed', top: '20px', right: '10px' },
+      withBaseStylingShowNotification({
+        notificationType: 'deleted',
+        color: 'error',
       })
     },
   })

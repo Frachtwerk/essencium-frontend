@@ -3,6 +3,7 @@ import {
   HttpNotification,
   Table,
   TablePagination,
+  withBaseStylingShowNotification,
 } from '@frachtwerk/essencium-lib'
 import {
   FilterObjectUser,
@@ -161,6 +162,30 @@ function UsersView(): JSX.Element {
 
   const { mutate: invalidateToken } = useInvalidateToken()
 
+  const handleInvalidateToken = useCallback(
+    (rowUser: UserOutput): void => {
+      invalidateToken(rowUser.id, {
+        onSuccess: () => {
+          withBaseStylingShowNotification({
+            title: t('notifications.invalidateUserSuccess.title'),
+            message: t('notifications.invalidateUserSuccess.message'),
+            color: 'success',
+            notificationType: 'updated',
+          })
+        },
+        onError: () => {
+          withBaseStylingShowNotification({
+            title: t('notifications.invalidateUserError.title'),
+            message: t('notifications.invalidateUserError.message'),
+            color: 'error',
+            notificationType: 'updated',
+          })
+        },
+      })
+    },
+    [t, invalidateToken]
+  )
+
   const columns = useMemo<ColumnDef<UserOutput>[]>(
     () => [
       {
@@ -274,7 +299,7 @@ function UsersView(): JSX.Element {
 
                   <Popover.Dropdown p={0}>
                     <Group
-                      onClick={() => invalidateToken(rowUser.id)}
+                      onClick={() => handleInvalidateToken(user)}
                       spacing="xs"
                       sx={{
                         padding: '0.7rem 0 0.5rem 1rem',
@@ -312,9 +337,9 @@ function UsersView(): JSX.Element {
       handleEditUser,
       handleDeleteUser,
       user,
-      invalidateToken,
       theme.colors.gray,
       theme.colorScheme,
+      handleInvalidateToken,
     ]
   )
 

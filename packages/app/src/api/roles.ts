@@ -1,10 +1,10 @@
+import { withBaseStylingShowNotification } from '@frachtwerk/essencium-lib'
 import {
   PaginatedResponse,
   RoleInput,
   RoleOutput,
   RoleUpdate,
 } from '@frachtwerk/essencium-types'
-import { showNotification } from '@mantine/notifications'
 import {
   useMutation,
   UseMutationResult,
@@ -13,7 +13,6 @@ import {
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useAtomValue } from 'jotai'
-import { useTranslation } from 'next-i18next'
 
 import { authTokenAtom } from '@/api/auth'
 
@@ -32,8 +31,6 @@ export function useCreateRole(): UseMutationResult<
   AxiosError,
   RoleInput
 > {
-  const { t } = useTranslation()
-
   const mutation = useMutation<RoleOutput, AxiosError, RoleInput>({
     mutationKey: ['useCreateRole'],
     mutationFn: (role: RoleInput) =>
@@ -41,30 +38,15 @@ export function useCreateRole(): UseMutationResult<
         .post<RoleOutput, RoleInput>('/roles', role)
         .then(response => response.data),
     onSuccess: () => {
-      showNotification({
-        autoClose: 2500,
-        title: t('notifications.createdDataSuccess.title'),
-        message: t('notifications.createdDataSuccess.message'),
-        color: 'green',
-        style: { position: 'fixed', top: '20px', right: '10px' },
+      withBaseStylingShowNotification({
+        notificationType: 'created',
+        color: 'success',
       })
     },
-    onError: (data: AxiosError) => {
-      showNotification({
-        autoClose: 4000,
-        title: t('notifications.createdDataError.title'),
-        message: data.message,
-        color: 'red',
-        style: { position: 'fixed', top: '20px', right: '10px' },
-      })
-    },
-    onMutate: () => {
-      showNotification({
-        autoClose: 2500,
-        title: t('notifications.creatingAsyncData.title'),
-        message: t('notifications.creatingAsyncData.message'),
-        color: 'yellow',
-        style: { position: 'fixed', top: '20px', right: '10px' },
+    onError: () => {
+      withBaseStylingShowNotification({
+        notificationType: 'created',
+        color: 'error',
       })
     },
   })
@@ -100,8 +82,6 @@ export function useUpdateRole(): UseMutationResult<
   AxiosError,
   RoleUpdate
 > {
-  const { t } = useTranslation()
-
   const mutation = useMutation<RoleOutput, AxiosError, RoleUpdate>({
     mutationKey: ['useUpdateRole'],
     mutationFn: (role: RoleUpdate) =>
@@ -109,21 +89,15 @@ export function useUpdateRole(): UseMutationResult<
         .put<RoleOutput, RoleUpdate>(`/roles/${role.id}`, role)
         .then(response => response.data),
     onSuccess: () => {
-      showNotification({
-        autoClose: 2500,
-        title: t('notifications.updatedDataSuccess.title'),
-        message: t('notifications.updatedDataSuccess.message'),
-        color: 'green',
-        style: { position: 'fixed', top: '20px', right: '10px' },
+      withBaseStylingShowNotification({
+        notificationType: 'updated',
+        color: 'success',
       })
     },
-    onError: (data: AxiosError) => {
-      showNotification({
-        autoClose: 4000,
-        title: t('notifications.updatedDataError.title'),
-        message: data.message,
-        color: 'red',
-        style: { position: 'fixed', top: '20px', right: '10px' },
+    onError: () => {
+      withBaseStylingShowNotification({
+        notificationType: 'updated',
+        color: 'error',
       })
     },
   })

@@ -1,9 +1,9 @@
+import { withBaseStylingShowNotification } from '@frachtwerk/essencium-lib'
 import {
   PasswordChange,
   UserOutput,
   UserUpdate,
 } from '@frachtwerk/essencium-types'
-import { showNotification } from '@mantine/notifications'
 import {
   useMutation,
   UseMutationResult,
@@ -13,7 +13,6 @@ import {
 import { AxiosError } from 'axios'
 import { useAtom, useAtomValue, useSetAtom, useStore } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
-import { useTranslation } from 'next-i18next'
 
 import { authTokenAtom } from '@/api/auth'
 
@@ -46,8 +45,6 @@ export function useUpdateMe(): UseMutationResult<
   AxiosError,
   UserUpdate
 > {
-  const { t } = useTranslation()
-
   const setUser = useSetAtom(userAtom)
 
   const mutation = useMutation<UserOutput, AxiosError, UserUpdate>({
@@ -59,21 +56,15 @@ export function useUpdateMe(): UseMutationResult<
     onSuccess: (updatedUser: UserOutput) => {
       setUser(updatedUser)
 
-      showNotification({
-        autoClose: 2500,
-        title: t('notifications.updatedDataSuccess.title'),
-        message: t('notifications.updatedDataSuccess.message'),
-        color: 'green',
-        style: { position: 'fixed', top: '20px', right: '10px' },
+      withBaseStylingShowNotification({
+        notificationType: 'updated',
+        color: 'success',
       })
     },
     onError: () => {
-      showNotification({
-        autoClose: 4000,
-        title: t('notifications.updatedDataError.title'),
-        message: t('notifications.updatedDataError.message'),
-        color: 'red',
-        style: { position: 'fixed', top: '20px', right: '10px' },
+      withBaseStylingShowNotification({
+        notificationType: 'updated',
+        color: 'error',
       })
     },
   })
@@ -86,8 +77,6 @@ export function useUpdatePassword(): UseMutationResult<
   AxiosError,
   Omit<PasswordChange, 'confirmPassword'>
 > {
-  const { t } = useTranslation()
-
   const mutation = useMutation<
     UserOutput,
     AxiosError,
@@ -102,21 +91,15 @@ export function useUpdatePassword(): UseMutationResult<
         )
         .then(response => response.data),
     onSuccess: () => {
-      showNotification({
-        autoClose: 2500,
-        title: t('notifications.updatedDataSuccess.title'),
-        message: t('notifications.updatedDataSuccess.message'),
-        color: 'green',
-        style: { position: 'fixed', top: '20px', right: '10px' },
+      withBaseStylingShowNotification({
+        notificationType: 'updated',
+        color: 'success',
       })
     },
     onError: () => {
-      showNotification({
-        autoClose: 4000,
-        title: t('notifications.updatedDataError.title'),
-        message: t('notifications.updatedDataError.message'),
-        color: 'red',
-        style: { position: 'fixed', top: '20px', right: '10px' },
+      withBaseStylingShowNotification({
+        notificationType: 'updated',
+        color: 'error',
       })
     },
   })

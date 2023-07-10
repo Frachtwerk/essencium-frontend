@@ -1,11 +1,10 @@
 import {
   SetPasswordForm,
   SetPasswordSuccessMessage,
+  withBaseStylingShowNotification,
 } from '@frachtwerk/essencium-lib'
 import { SetPasswordInput } from '@frachtwerk/essencium-types'
 import { Container, Paper, Title } from '@mantine/core'
-import { showNotification } from '@mantine/notifications'
-import { AxiosError } from 'axios'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
@@ -31,13 +30,10 @@ function SetPasswordView(): JSX.Element {
       { password, verification },
       {
         onSuccess: () => setShowSuccessMessage(true),
-        onError: (data: AxiosError) => {
-          showNotification({
-            autoClose: 4000,
-            title: t('notifications.updatedDataError.title'),
-            message: data.message,
-            color: 'red',
-            style: { position: 'fixed', top: '20px', right: '10px' },
+        onError: () => {
+          withBaseStylingShowNotification({
+            color: 'error',
+            notificationType: 'updated',
           })
         },
       }
