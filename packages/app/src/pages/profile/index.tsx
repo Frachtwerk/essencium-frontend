@@ -1,4 +1,4 @@
-import { Profile } from '@frachtwerk/essencium-lib'
+import { getTranslation, logout, Profile } from '@frachtwerk/essencium-lib'
 import { PasswordChange, UserUpdate } from '@frachtwerk/essencium-types'
 import { Center, Loader } from '@mantine/core'
 import { useRouter } from 'next/router'
@@ -8,9 +8,7 @@ import { ReactElement } from 'react'
 import { useGetMe, useUpdateMe, useUpdatePassword } from '@/api/me'
 import { useGetRoles } from '@/api/roles'
 import AuthLayout from '@/components/layouts/AuthLayout'
-import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
-import { getTranslation } from '@/utils/getTranslation'
-import { logout } from '@/utils/logout'
+import { baseGetStaticProps } from '@/utils/next'
 
 function ProfileView(): JSX.Element {
   const { t } = useTranslation()

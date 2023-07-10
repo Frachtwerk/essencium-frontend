@@ -1,4 +1,5 @@
 import {
+  getTranslation,
   Login,
   LoginForm,
   withBaseStylingShowNotification,
@@ -10,8 +11,7 @@ import { useState } from 'react'
 
 import { useCreateToken, useResetPassword } from '@/api/auth'
 import PublicLayout from '@/components/layouts/PublicLayout'
-import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
-import { getTranslation } from '@/utils/getTranslation'
+import { baseGetStaticProps } from '@/utils/next'
 
 function LoginView(): JSX.Element {
   const { t } = useTranslation()

@@ -3,7 +3,9 @@ import {
   AddRole,
   DeleteDialog,
   EditRole,
+  getTranslation,
   HttpNotification,
+  parseSorting,
   Table,
   TablePagination,
 } from '@frachtwerk/essencium-lib'
@@ -45,9 +47,7 @@ import {
   useUpdateRole,
 } from '@/api/roles'
 import AuthLayout from '@/components/layouts/AuthLayout'
-import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
-import { getTranslation } from '@/utils/getTranslation'
-import { parseSorting } from '@/utils/parseSorting'
+import { baseGetStaticProps } from '@/utils/next'
 
 const DEFAULT_SORTING: SortingState = [{ id: 'name', desc: false }]
 

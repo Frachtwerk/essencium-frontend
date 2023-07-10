@@ -1,4 +1,5 @@
 import {
+  getTranslation,
   SetPasswordForm,
   SetPasswordSuccessMessage,
   withBaseStylingShowNotification,
@@ -11,8 +12,7 @@ import { useState } from 'react'
 
 import { useSetPassword } from '@/api/auth'
 import PublicLayout from '@/components/layouts/PublicLayout'
-import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
-import { getTranslation } from '@/utils/getTranslation'
+import { baseGetStaticProps } from '@/utils/next'
 
 function SetPasswordView(): JSX.Element {
   const { t } = useTranslation()

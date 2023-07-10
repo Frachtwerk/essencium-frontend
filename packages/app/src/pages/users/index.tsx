@@ -1,6 +1,8 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {
+  getTranslation,
   HttpNotification,
+  parseSorting,
   Table,
   TablePagination,
   withBaseStylingShowNotification,
@@ -48,9 +50,7 @@ import { useCallback, useMemo, useState } from 'react'
 import { useDeleteUser, useGetUsers, useInvalidateToken } from '@/api'
 import { userAtom } from '@/api/me'
 import AuthLayout from '@/components/layouts/AuthLayout'
-import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
-import { getTranslation } from '@/utils/getTranslation'
-import { parseSorting } from '@/utils/parseSorting'
+import { baseGetStaticProps } from '@/utils/next'
 
 export const FORM_DEFAULTS = {
   firstName: '',

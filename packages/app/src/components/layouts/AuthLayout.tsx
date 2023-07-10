@@ -1,10 +1,9 @@
-import { AuthLayout } from '@frachtwerk/essencium-lib'
+import { AuthLayout, logout } from '@frachtwerk/essencium-lib'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React from 'react'
 
 import { useGetMe } from '@/api/me'
-import { logout } from '@/utils/logout'
 
 import packageJson from '../../../package.json'
 

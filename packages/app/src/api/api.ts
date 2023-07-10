@@ -1,3 +1,4 @@
+import { logout } from '@frachtwerk/essencium-lib'
 import axios, {
   AxiosError,
   AxiosInstance,
@@ -5,8 +6,6 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios'
-
-import { logout } from '@/utils/logout'
 
 export const axiosInstance: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,

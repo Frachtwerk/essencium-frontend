@@ -1,4 +1,4 @@
-import { UserForm, useZodForm } from '@frachtwerk/essencium-lib'
+import { getTranslation, UserForm, useZodForm } from '@frachtwerk/essencium-lib'
 import { UserUpdate, userUpdateSchema } from '@frachtwerk/essencium-types'
 import { Card, Flex, Text, Title } from '@mantine/core'
 import { IconUserEdit } from '@tabler/icons-react'
@@ -11,8 +11,7 @@ import { axiosInstance, useGetUser, UsersResponse, useUpdateUser } from '@/api'
 import { useGetRoles } from '@/api/roles'
 import AuthLayout from '@/components/layouts/AuthLayout'
 import { FORM_DEFAULTS } from '@/pages/users'
-import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
-import { getTranslation } from '@/utils/getTranslation'
+import { baseGetStaticProps } from '@/utils/next'
 
 function UpdateUserView(): JSX.Element {
   const router = useRouter()
