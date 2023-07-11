@@ -1,12 +1,20 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {
   AddRole,
+  DeleteDialog,
+  EditRole,
   HttpNotification,
   Table,
   TablePagination,
 } from '@frachtwerk/essencium-lib'
-import { RightOutput, RIGHTS, RoleOutput } from '@frachtwerk/essencium-types'
 import {
+  RightOutput,
+  RIGHTS,
+  RoleInput,
+  RoleOutput,
+} from '@frachtwerk/essencium-types'
+import {
+  ActionIcon,
   Badge,
   Button,
   Center,
@@ -17,7 +25,7 @@ import {
   useMantineTheme,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { IconUserStar } from '@tabler/icons-react'
+import { IconPencil, IconTrash, IconUserStar } from '@tabler/icons-react'
 import {
   ColumnDef,
   getCoreRowModel,
@@ -30,13 +38,26 @@ import { useCallback, useMemo, useState } from 'react'
 
 import { userAtom } from '@/api/me'
 import { useGetRights } from '@/api/rights'
-import { useCreateRole, useGetRoles } from '@/api/roles'
+import {
+  useCreateRole,
+  useDeleteRole,
+  useGetRoles,
+  useUpdateRole,
+} from '@/api/roles'
 import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
 import { getTranslation } from '@/utils/getTranslation'
 import { parseSorting } from '@/utils/parseSorting'
 
 const DEFAULT_SORTING: SortingState = [{ id: 'name', desc: false }]
+
+export const FORM_DEFAULTS = {
+  name: '',
+  description: '',
+  rights: [],
+  protected: false,
+  editable: true,
+}
 
 function RolesView(): JSX.Element {
   const { t } = useTranslation()
@@ -45,7 +66,14 @@ function RolesView(): JSX.Element {
 
   const [user] = useAtom(userAtom)
 
-  const [modalOpened, modalHandlers] = useDisclosure(false)
+  const [addModalOpened, addModalHandlers] = useDisclosure(false)
+  const [editModalOpened, editModalHandlers] = useDisclosure(false)
+  const [deleteModalOpened, deleteModalHandlers] = useDisclosure(false)
+
+  const [selectedRights, setSelectedRights] = useState<RightOutput[]>([])
+
+  const [roleToEditOrDelete, setRoleToEditOrDelete] =
+    useState<RoleOutput | null>(null)
 
   const [activePage, setActivePage] = useState(1)
   const [pageSize, setPageSize] = useState(20)
@@ -69,9 +97,69 @@ function RolesView(): JSX.Element {
 
   const { mutate: createRole } = useCreateRole()
 
+  const { mutate: updateRole } = useUpdateRole()
+
+  const { mutate: deleteRole } = useDeleteRole()
+
   const handleRefetch = useCallback((): void => {
     refetchRoles()
   }, [refetchRoles])
+
+  function handleDeleteRole(roleId: RoleOutput['id']): void {
+    deleteRole(roleId, {
+      onSuccess: () => {
+        deleteModalHandlers.close()
+        handleRefetch()
+      },
+      onError: () => {
+        deleteModalHandlers.close()
+      },
+    })
+  }
+
+  function handleCreateRole(roleData: RoleInput): void {
+    createRole(
+      {
+        ...roleData,
+        rights: [...selectedRights.map(right => right.id)],
+      },
+      {
+        onSuccess: () => {
+          addModalHandlers.close()
+          handleRefetch()
+        },
+        onError: () => {
+          addModalHandlers.close()
+        },
+      }
+    )
+  }
+
+  function handleUpdateRole(roleData: RoleInput): void {
+    updateRole(
+      {
+        ...roleData,
+        rights: [...selectedRights.map(right => right.id)],
+      },
+      {
+        onSuccess: () => {
+          editModalHandlers.close()
+          handleRefetch()
+        },
+        onError: () => {
+          editModalHandlers.close()
+        },
+      }
+    )
+  }
+
+  function toggleRight(right: RightOutput): void {
+    if (selectedRights.some(r => r.id === right.id)) {
+      setSelectedRights(selectedRights.filter(r => r.id !== right.id))
+    } else {
+      setSelectedRights([...selectedRights, right])
+    }
+  }
 
   const columns = useMemo<ColumnDef<RoleOutput>[]>(() => {
     return [
@@ -110,8 +198,55 @@ function RolesView(): JSX.Element {
           </>
         ),
       },
+
+      {
+        accessorKey: 'actions',
+        header: () => <Text>{t('usersView.table.actions')}</Text>,
+        enableSorting: false,
+        enableColumnFilter: false,
+        cell: info => {
+          const rowRole = info.row.original
+
+          return (
+            <Flex direction="row" gap="xs">
+              {user?.role.rights
+                .map(right => right.name)
+                .includes(RIGHTS.RIGHT_UPDATE) && rowRole.editable === true ? (
+                <ActionIcon size="sm" variant="transparent">
+                  <IconPencil
+                    onClick={() => {
+                      setRoleToEditOrDelete(rowRole)
+                      editModalHandlers.open()
+                    }}
+                  />
+                </ActionIcon>
+              ) : null}
+
+              {user?.role.rights
+                .map(right => right.name)
+                .includes(RIGHTS.ROLE_DELETE) && rowRole.protected === false ? (
+                <ActionIcon size="sm" variant="transparent">
+                  <IconTrash
+                    onClick={() => {
+                      setRoleToEditOrDelete(rowRole)
+                      deleteModalHandlers.open()
+                    }}
+                  />
+                </ActionIcon>
+              ) : null}
+            </Flex>
+          )
+        },
+        size: 120,
+      },
     ]
-  }, [t, theme.colors.gray])
+  }, [
+    t,
+    theme.colors.gray,
+    user?.role.rights,
+    editModalHandlers,
+    deleteModalHandlers,
+  ])
 
   const table = useReactTable({
     data: roles?.content || [],
@@ -153,7 +288,7 @@ function RolesView(): JSX.Element {
           {user?.role.rights
             .map(right => right.name)
             .includes(RIGHTS.ROLE_CREATE) ? (
-            <Button onClick={() => modalHandlers.open()}>
+            <Button onClick={() => addModalHandlers.open()}>
               {t('rolesView.action.add')}
             </Button>
           ) : null}
@@ -170,13 +305,49 @@ function RolesView(): JSX.Element {
       </Flex>
 
       <AddRole
-        opened={modalOpened}
-        onClose={() => modalHandlers.close()}
+        opened={addModalOpened}
         closeOnClickOutside={false}
         closeOnEscape
-        size="xl"
+        title={t('rolesView.modal.titleAdd')}
+        onClose={() => {
+          addModalHandlers.close()
+        }}
         rights={rights?.content || []}
-        handleCreateRole={createRole}
+        createRole={handleCreateRole}
+        toggleRight={toggleRight}
+        formDefaults={FORM_DEFAULTS}
+      />
+
+      <EditRole
+        opened={editModalOpened}
+        closeOnClickOutside={false}
+        closeOnEscape
+        title={t('rolesView.modal.titleEdit')}
+        onClose={() => {
+          editModalHandlers.close()
+          setRoleToEditOrDelete(null)
+        }}
+        rights={rights?.content || []}
+        updateRole={handleUpdateRole}
+        formDefaults={FORM_DEFAULTS}
+        toggleRight={toggleRight}
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        role={roleToEditOrDelete!}
+        setSelectedRights={setSelectedRights}
+      />
+
+      <DeleteDialog
+        opened={deleteModalOpened}
+        onClose={() => {
+          deleteModalHandlers.close()
+        }}
+        deleteFunction={() => {
+          if (roleToEditOrDelete) {
+            handleDeleteRole(roleToEditOrDelete?.id)
+          }
+        }}
+        title={t('rolesView.deleteDialog.title')}
+        text={t('rolesView.deleteDialog.text')}
       />
 
       {isLoadingRoles ? (

@@ -20,7 +20,9 @@
     }
   },
   "actions": {
-    "refresh": "Refresh data"
+    "refresh": "Refresh data",
+    "delete": "Delete",
+    "cancel": "Cancel"
   },
   "navigation": {
     "home": {
@@ -276,7 +278,8 @@
       "rights": "Rights"
     },
     "modal": {
-      "title": "Add Role",
+      "titleAdd": "Add Role",
+      "titleEdit": "Edit Role",
       "name": "Name",
       "description": "Description",
       "protected": "Protected",
@@ -284,10 +287,15 @@
       "rights": "Rights",
       "cancel": "Cancel",
       "submit": "Add Role",
+      "update": "Update Role",
       "placeholder": {
         "name": "USER",
         "description": "Application User"
       }
+    },
+    "deleteDialog": {
+      "title": "Delete a role",
+      "text": "Are you sure you want to delete this role?"
     }
   },
   "validation": {
