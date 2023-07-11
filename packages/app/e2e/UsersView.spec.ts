@@ -13,8 +13,7 @@ test.describe('UsersView', () => {
     await expect(page.getByRole('heading', { name: 'Users' })).toBeVisible()
     await expect(page.getByRole('cell', { name: 'ID' })).toBeVisible()
     await expect(page.getByRole('cell', { name: 'Active' })).toBeVisible()
-    await expect(page.getByRole('cell', { name: 'First Name' })).toBeVisible()
-    await expect(page.getByRole('cell', { name: 'Last Name' })).toBeVisible()
+    await expect(page.getByRole('cell', { name: 'Name' })).toBeVisible()
     await expect(page.getByRole('cell', { name: 'Phone' })).toBeVisible()
     await expect(page.getByRole('cell', { name: 'E-Mail' })).toBeVisible()
     await expect(page.getByRole('cell', { name: 'Language' })).toBeVisible()
@@ -37,10 +36,9 @@ test.describe('UsersView', () => {
 
     await page.waitForTimeout(4000)
     await page.goto(`${BASE_URL}/users`)
-    const sortIcon = page.getByRole('cell', { name: 'ID' }).getByRole('img')
-    await sortIcon.click()
+
     await expect(
-      page.getByRole('cell', { name: 'Test', exact: true })
+      page.getByRole('cell', { name: 'Test Person', exact: true })
     ).toBeVisible()
 
     const editIcon = page
@@ -56,9 +54,7 @@ test.describe('UsersView', () => {
     await page.getByLabel('Phone Number').click()
     await page.getByLabel('Phone Number').fill('12345')
     await page.getByRole('button', { name: 'Save User' }).click()
-
     await page.waitForURL(`${BASE_URL}/users`)
-    await sortIcon.click()
     await expect(page.getByRole('cell', { name: '12345' })).toBeVisible()
 
     const deleteIcon = page
