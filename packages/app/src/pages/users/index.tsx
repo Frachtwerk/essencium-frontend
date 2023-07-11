@@ -1,16 +1,19 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {
   HttpNotification,
-  LoadingSpinner,
   Table,
   TablePagination,
 } from '@frachtwerk/essencium-lib'
-import { RIGHTS, RoleOutput, UserOutput } from '@frachtwerk/essencium-types'
+import {
+  FilterObjectUser,
+  RIGHTS,
+  RoleOutput,
+  UserOutput,
+} from '@frachtwerk/essencium-types'
 import {
   ActionIcon,
   Badge,
   Button,
-  Center,
   Flex,
   Group,
   Popover,
@@ -63,6 +66,13 @@ export const FORM_DEFAULTS = {
 
 const DEFAULT_SORTING: SortingState = [{ id: 'id', desc: false }]
 
+export function removeDuplicates(array: string[] | undefined): string[] {
+  if (array) {
+    return array.filter((item, index) => array.indexOf(item) === index)
+  }
+  return []
+}
+
 function UsersView(): JSX.Element {
   const router = useRouter()
 
@@ -75,25 +85,31 @@ function UsersView(): JSX.Element {
   const [activePage, setActivePage] = useState(1)
   const [pageSize, setPageSize] = useState(20)
   const [sorting, setSorting] = useState<SortingState>(DEFAULT_SORTING)
-  const [columnFilters, setColumnFilters] = useState({})
+  const [columnFilters, setColumnFilters] = useState<FilterObjectUser>({
+    name: null,
+    email: null,
+    role: null,
+  })
+
   const [columnFiltersDebounced] = useDebouncedValue(columnFilters, 350)
   const [showFilter, setShowFilter] = useState(false)
 
-  function handleFilterChange(key: string, value: string): void {
+  function handleFilterChange(
+    key: FilterObjectUser['key'],
+    value: FilterObjectUser['value']
+  ): void {
     // reset to first page when filtering
     setActivePage(1)
 
     setColumnFilters(prevFilters => ({
       ...prevFilters,
-      // map 'firstName' and 'lastName' to 'name' hence the API can only handle 'name'
-      [key === 'firstName' || key === 'lastName' ? 'name' : key]: value,
+      [key as string]: value,
     }))
   }
 
   const {
     data: users,
     isError,
-    isLoading,
     isFetching,
     error,
     isInitialLoading,
@@ -115,6 +131,22 @@ function UsersView(): JSX.Element {
     },
     [router]
   )
+
+  function getFilterData(): Record<string, Array<string>> {
+    const { content: usersContent } = users || {}
+
+    const name = usersContent?.map(
+      userItem => `${userItem.firstName} ${userItem.lastName}`
+    )
+    const email = usersContent?.map(userItem => userItem.email)
+    const role = usersContent?.map(userItem => userItem.role.name)
+
+    return {
+      name: removeDuplicates(name),
+      email: removeDuplicates(email),
+      role: removeDuplicates(role),
+    }
+  }
 
   const { mutate: deleteUser } = useDeleteUser()
 
@@ -146,17 +178,19 @@ function UsersView(): JSX.Element {
         enableColumnFilter: false,
       },
       {
-        accessorKey: 'firstName',
-        header: () => <Text>{t('usersView.table.firstName')}</Text>,
-        cell: info => info.getValue(),
-        size: 120,
+        accessorKey: 'name',
+        header: () => <Text>{t('usersView.table.name')}</Text>,
+        cell: info => {
+          const rowUser = info.row.original
+          return (
+            <Text>
+              {rowUser.firstName} {rowUser.lastName}
+            </Text>
+          )
+        },
+        size: 180,
       },
-      {
-        accessorKey: 'lastName',
-        header: () => <Text>{t('usersView.table.lastName')}</Text>,
-        cell: info => info.getValue(),
-        size: 120,
-      },
+
       {
         accessorKey: 'phone',
         header: () => <Text>{t('usersView.table.phone')}</Text>,
@@ -348,28 +382,25 @@ function UsersView(): JSX.Element {
         </Flex>
       </Flex>
 
-      {isLoading ? (
-        <Center h="100%">
-          <LoadingSpinner show delay={250} />
-        </Center>
-      ) : (
-        <>
-          <Table
-            tableModel={table}
-            onFilterChange={handleFilterChange}
-            showFilter={showFilter}
-          />
+      <>
+        <Table
+          tableModel={table}
+          onFilterChange={handleFilterChange}
+          showFilter={showFilter}
+          filterData={getFilterData()}
+          filterValue={columnFilters}
+          setFilterValue={setColumnFilters}
+        />
 
-          <TablePagination
-            table={table}
-            activePage={activePage}
-            pageSize={pageSize}
-            setActivePage={setActivePage}
-            setPageSize={setPageSize}
-            handleRefetch={handleRefetch}
-          />
-        </>
-      )}
+        <TablePagination
+          table={table}
+          activePage={activePage}
+          pageSize={pageSize}
+          setActivePage={setActivePage}
+          setPageSize={setPageSize}
+          handleRefetch={handleRefetch}
+        />
+      </>
     </>
   )
 }

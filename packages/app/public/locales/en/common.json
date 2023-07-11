@@ -192,8 +192,7 @@
     "table": {
       "id": "ID",
       "active": "Active",
-      "firstName": "First Name",
-      "lastName": "Last Name",
+      "name": "Name",
       "description": "Description",
       "phone": "Phone",
       "email": "E-Mail",

@@ -1,22 +1,29 @@
 import {
   Flex,
+  Select,
   Table as MantineTable,
-  TextInput,
   useMantineTheme,
 } from '@mantine/core'
 import { IconSortAscending2, IconSortDescending2 } from '@tabler/icons-react'
 import { flexRender, Table as TanstackTable } from '@tanstack/react-table'
+import { Dispatch, SetStateAction } from 'react'
 
 type Props<T> = {
   tableModel: TanstackTable<T>
-  onFilterChange?: (key: string, value: string) => void
+  onFilterChange?: (key: string, value: string | null) => void
   showFilter?: boolean
+  filterData?: Record<string, Array<string>>
+  filterValue?: Record<string, string | null>
+  setFilterValue?: Dispatch<SetStateAction<Record<string, string | null>>>
 }
 
 export function Table<T>({
   tableModel,
   onFilterChange,
   showFilter,
+  filterData,
+  filterValue,
+  setFilterValue,
 }: Props<T>): JSX.Element {
   const theme = useMantineTheme()
 
@@ -59,13 +66,21 @@ export function Table<T>({
                     </Flex>
 
                     {showFilter && header.column.getCanFilter() ? (
-                      <TextInput
-                        w="100%"
+                      <Select
                         size="xs"
-                        value={(header.column.getFilterValue() ?? '') as string}
-                        onChange={e => {
-                          header.column.setFilterValue(e.target.value)
-                          onFilterChange?.(header.column.id, e.target.value)
+                        my="xs"
+                        data={filterData ? filterData[header.column.id] : []}
+                        searchable
+                        clearable
+                        value={filterValue && filterValue[header.column.id]}
+                        onChange={event => {
+                          if (setFilterValue)
+                            setFilterValue({
+                              ...filterValue,
+                              [header.column.id]: event,
+                            })
+                          header.column.setFilterValue(event)
+                          onFilterChange?.(header.column.id, event)
                         }}
                       />
                     ) : null}

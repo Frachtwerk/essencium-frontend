@@ -23,7 +23,7 @@ export function TablePagination<T>({
   const { t } = useTranslation()
 
   return (
-    <Flex align="center">
+    <Flex align="center" mt="xs">
       <Flex align="center" mr="xl">
         <Text size="sm" mr="xs">
           {t('table.footer.pageSize')}
