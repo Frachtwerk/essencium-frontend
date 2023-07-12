@@ -52,10 +52,16 @@ importers:
   packages/app:
     specifiers:
       '@emotion/react': 11.10.6
+      '@fortawesome/fontawesome-svg-core': 6.3.0
+      '@fortawesome/free-solid-svg-icons': 6.3.0
+      '@fortawesome/react-fontawesome': 0.2.0
       '@frachtwerk/essencium-lib': workspace:*
       '@frachtwerk/essencium-types': workspace:*
+      '@hookform/resolvers': 2.9.11
       '@mantine/core': 6.0.2
+      '@mantine/dates': 6.0.2
       '@mantine/hooks': 6.0.2
+      '@mantine/modals': 6.0.2
       '@mantine/notifications': 6.0.2
       '@mantine/spotlight': 6.0.2
       '@playwright/test': ^1.35.1
@@ -68,6 +74,7 @@ importers:
       '@types/react-dom': 18.0.11
       '@vitejs/plugin-react': 3.1.0
       axios: 1.3.4
+      dayjs: 1.11.7
       eslint: 8.35.0
       eslint-config-next: 13.4.4
       i18next: 22.5.1
@@ -76,16 +83,25 @@ importers:
       next-i18next: 13.3.0
       react: 18.2.0
       react-dom: 18.2.0
+      react-hook-form: 7.43.5
       react-i18next: 12.3.1
+      react-json-tree: 0.18.0
       typescript: 4.9.5
       vite: 4.1.4
       vitest: 0.29.2
+      zod: 3.20.6
     dependencies:
       '@emotion/react': 11.10.6_pmekkgnqduwlme35zpnqhenc34
+      '@fortawesome/fontawesome-svg-core': 6.3.0
+      '@fortawesome/free-solid-svg-icons': 6.3.0
+      '@fortawesome/react-fontawesome': 0.2.0_d5rbrisxfyemehbvmdbryvgjte
       '@frachtwerk/essencium-lib': link:../lib
       '@frachtwerk/essencium-types': link:../types
+      '@hookform/resolvers': 2.9.11_react-hook-form@7.43.5
       '@mantine/core': 6.0.2_md2nfwiomeeos7ogkicwnxcafa
+      '@mantine/dates': 6.0.2_5lnseipk2idlpjpvohdnajqndm
       '@mantine/hooks': 6.0.2_react@18.2.0
+      '@mantine/modals': 6.0.2_reujnkpez4ozmj6vonlofpozxe
       '@mantine/notifications': 6.0.2_reujnkpez4ozmj6vonlofpozxe
       '@mantine/spotlight': 6.0.2_reujnkpez4ozmj6vonlofpozxe
       '@playwright/test': 1.35.1
@@ -96,6 +112,7 @@ importers:
       '@types/react': 18.0.28
       '@types/react-dom': 18.0.11
       axios: 1.3.4
+      dayjs: 1.11.7
       eslint: 8.35.0
       eslint-config-next: 13.4.4_ycpbpc6yetojsgtrx3mwntkhsu
       i18next: 22.5.1
@@ -104,8 +121,11 @@ importers:
       next-i18next: 13.3.0_5aecsc364zu3tcjcojso364wwi
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      react-hook-form: 7.43.5_react@18.2.0
       react-i18next: 12.3.1_spyi3zqm3bqfobczid2f6jym6y
+      react-json-tree: 0.18.0_pmekkgnqduwlme35zpnqhenc34
       typescript: 4.9.5
+      zod: 3.20.6
     devDependencies:
       '@testing-library/react': 14.0.0_biqbaboplfbrettd7655fr4n2y
       '@vitejs/plugin-react': 3.1.0_vite@4.1.4
@@ -1217,7 +1237,6 @@ packages:
     resolution: {integrity: sha512-4BC1NMoacEBzSXRwKjZ/X/gmnbp/HU5Qqat7E8xqorUtBFZS+bwfGH5/wqOC2K6GV0rgEobp3OjGRMa5fK9pFg==}
     engines: {node: '>=6'}
     requiresBuild: true
-    dev: true
 
   /@fortawesome/fontawesome-svg-core/6.3.0:
     resolution: {integrity: sha512-uz9YifyKlixV6AcKlOX8WNdtF7l6nakGyLYxYaCa823bEBqyj/U2ssqtctO38itNEwXb8/lMzjdoJ+aaJuOdrw==}
@@ -1225,7 +1244,6 @@ packages:
     requiresBuild: true
     dependencies:
       '@fortawesome/fontawesome-common-types': 6.3.0
-    dev: true
 
   /@fortawesome/free-solid-svg-icons/6.3.0:
     resolution: {integrity: sha512-x5tMwzF2lTH8pyv8yeZRodItP2IVlzzmBuD1M7BjawWgg9XAvktqJJ91Qjgoaf8qJpHQ8FEU9VxRfOkLhh86QA==}
@@ -1233,7 +1251,6 @@ packages:
     requiresBuild: true
     dependencies:
       '@fortawesome/fontawesome-common-types': 6.3.0
-    dev: true
 
   /@fortawesome/react-fontawesome/0.2.0_d5rbrisxfyemehbvmdbryvgjte:
     resolution: {integrity: sha512-uHg75Rb/XORTtVt7OS9WoK8uM276Ufi7gCzshVWkUJbHhh3svsUUeqXerrM96Wm7fRiDzfKRwSoahhMIkGAYHw==}
@@ -1244,7 +1261,6 @@ packages:
       '@fortawesome/fontawesome-svg-core': 6.3.0
       prop-types: 15.8.1
       react: 18.2.0
-    dev: true
 
   /@headlessui/react/1.7.13_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-9n+EQKRtD9266xIHXdY5MfiXPDfYwl7zBM7KOx2Ae3Gdgxy8QML1FkCMjq6AsOf0l6N9uvI4HcFtuFlenaldKg==}
@@ -1264,7 +1280,6 @@ packages:
       react-hook-form: ^7.0.0
     dependencies:
       react-hook-form: 7.43.5_react@18.2.0
-    dev: true
 
   /@humanwhocodes/config-array/0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
@@ -1373,7 +1388,6 @@ packages:
       '@mantine/utils': 6.0.2_react@18.2.0
       dayjs: 1.11.7
       react: 18.2.0
-    dev: true
 
   /@mantine/hooks/6.0.2_react@18.2.0:
     resolution: {integrity: sha512-wLSkp0NRe4XN7JujIUvkKghIBJC9YZ33CJlrFbcBFLD6LiSLX7lWyWOsiFzXrPND0Hpgn3AjckFQGblA8n34XA==}
@@ -1395,7 +1409,6 @@ packages:
       '@mantine/utils': 6.0.2_react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-    dev: true
 
   /@mantine/notifications/6.0.2_reujnkpez4ozmj6vonlofpozxe:
     resolution: {integrity: sha512-EpQgTl5j925N88WY05etFe5ov71UnJRep6nGwv+CVATXmNV8E8z4b+2R6B5ofg4bW9VkS2BJKT2TgKRzaCMLeg==}
@@ -2342,7 +2355,6 @@ packages:
 
   /@types/base16/1.0.2:
     resolution: {integrity: sha512-oYO/U4VD1DavwrKuCSQWdLG+5K22SLPem2OQaHmFcQuwHoVeGC+JGVRji2MUqZUAIQZHEonOeVfAX09hYiLsdg==}
-    dev: true
 
   /@types/chai-subset/1.3.3:
     resolution: {integrity: sha512-frBecisrNGz+F4T6bcc+NLeolfiojh5FxW2klu669+8BARtyQv2C/GkNW6FUodVe4BroGMP/wER/YDGc7rEllw==}
@@ -2421,7 +2433,6 @@ packages:
 
   /@types/lodash/4.14.194:
     resolution: {integrity: sha512-r22s9tAS7imvBt2lyHC9B8AGwWnXaYb1tY09oyLkXDs4vArpYJzw09nj8MLx5VfciBPGIb+ZwG0ssYnEPJxn/g==}
-    dev: true
 
   /@types/mdast/3.0.10:
     resolution: {integrity: sha512-W864tg/Osz1+9f4lrGTZpCSO5/z4608eUp19tbozkq2HJK6i3z1kT0H9tlADXuYIb1YYOBByU4Jsqkk75q48qA==}
@@ -2985,7 +2996,6 @@ packages:
 
   /base16/1.0.0:
     resolution: {integrity: sha512-pNdYkNPiJUnEhnfXV56+sQy8+AaPcG3POZAUnwr4EeqCUZFz4u2PePbo3e5Gj4ziYPCWGUZT9RHisvJKnwFuBQ==}
-    dev: true
 
   /base64-js/1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
@@ -3305,14 +3315,12 @@ packages:
     dependencies:
       color-name: 1.1.4
       simple-swizzle: 0.2.2
-    dev: true
 
   /color/3.2.1:
     resolution: {integrity: sha512-aBl7dZI9ENN6fUGC7mWpMTPNHmWUSNan9tuWN6ahh5ZLNk9baLJOnSMlrQkHcrfFgz2/RigjUVAjdx36VcemKA==}
     dependencies:
       color-convert: 1.9.3
       color-string: 1.9.1
-    dev: true
 
   /combined-stream/1.0.8:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
@@ -3492,7 +3500,6 @@ packages:
 
   /dayjs/1.11.7:
     resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
-    dev: true
 
   /debug/3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
@@ -5104,7 +5111,6 @@ packages:
 
   /is-arrayish/0.3.2:
     resolution: {integrity: sha512-eVRqCvVlZbuw3GrM63ovNSNAeA1K16kaR/LRY/92w0zxQ5/1YzwblUX652i4Xs9RwAGjW9d9y6X88t8OaAJfWQ==}
-    dev: true
 
   /is-bigint/1.0.4:
     resolution: {integrity: sha512-zB9CruMamjym81i2JZ3UMn54PKGsQzsJeo6xvN3HJJ4CAsQNB6iRutp2To77OfCNuoxspsIhzaPoO1zyCEhFOg==}
@@ -5575,7 +5581,6 @@ packages:
 
   /lodash.curry/4.1.1:
     resolution: {integrity: sha512-/u14pXGviLaweY5JI0IUzgzF2J6Ne8INyzAZjImcryjgkZ+ebruBxy2/JaOOkTqScddcYtakjhSaeemV8lR0tA==}
-    dev: true
 
   /lodash.get/4.4.2:
     resolution: {integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==}
@@ -7203,7 +7208,6 @@ packages:
       color: 3.2.1
       csstype: 3.1.2
       lodash.curry: 4.1.1
-    dev: true
 
   /react-dom/18.2.0_react@18.2.0:
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
@@ -7221,7 +7225,6 @@ packages:
       react: ^16.8.0 || ^17 || ^18
     dependencies:
       react: 18.2.0
-    dev: true
 
   /react-i18next/12.3.1_spyi3zqm3bqfobczid2f6jym6y:
     resolution: {integrity: sha512-5v8E2XjZDFzK7K87eSwC7AJcAkcLt5xYZ4+yTPDAW1i7C93oOY1dnr4BaQM7un4Hm+GmghuiPvevWwlca5PwDA==}
@@ -7255,12 +7258,11 @@ packages:
       '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.22.5
       '@types/lodash': 4.14.194
       '@types/react': 18.0.28
       react: 18.2.0
       react-base16-styling: 0.9.1
-    dev: true
 
   /react-refresh/0.14.0:
     resolution: {integrity: sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==}
@@ -7763,7 +7765,6 @@ packages:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
     dependencies:
       is-arrayish: 0.3.2
-    dev: true
 
   /slash/3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
