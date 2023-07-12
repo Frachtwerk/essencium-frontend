@@ -5,7 +5,6 @@ import {
   parseSorting,
   Table,
   TablePagination,
-  withBaseStylingShowNotification,
 } from '@frachtwerk/essencium-lib'
 import {
   FilterObjectUser,
