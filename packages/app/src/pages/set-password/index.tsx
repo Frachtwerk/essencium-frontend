@@ -2,7 +2,6 @@ import {
   getTranslation,
   SetPasswordForm,
   SetPasswordSuccessMessage,
-  withBaseStylingShowNotification,
 } from '@frachtwerk/essencium-lib'
 import { SetPasswordInput } from '@frachtwerk/essencium-types'
 import { Container, Paper, Title } from '@mantine/core'
