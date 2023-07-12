@@ -1,3 +1,4 @@
+import { withBaseStylingShowNotification } from '@frachtwerk/essencium-lib'
 import {
   ResetPassword,
   SetPasswordInput,
@@ -5,8 +6,9 @@ import {
 } from '@frachtwerk/essencium-types'
 import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { useAtom, useSetAtom } from 'jotai'
+import { useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
+import { useTranslation } from 'next-i18next'
 
 import { api } from './api'
 
@@ -54,33 +56,29 @@ export function useInvalidateToken(): UseMutationResult<
   UserOutput['id'],
   unknown
 > {
+  const { t } = useTranslation()
+
   const mutation = useMutation<null, AxiosError, UserOutput['id']>({
     mutationKey: ['useInvalidateToken'],
     mutationFn: (userId: UserOutput['id']) =>
       api
         .post<null, null>(`/users/${userId}/terminate`, null)
         .then(response => response.data),
-  })
-
-  return mutation
-}
-
-export function useRenewToken(): UseMutationResult<
-  TokenResponse,
-  AxiosError,
-  void,
-  unknown
-> {
-  const [token, setToken] = useAtom(authTokenAtom)
-
-  const mutation = useMutation<TokenResponse, AxiosError>({
-    mutationKey: ['useRenewToken'],
-    mutationFn: () =>
-      api
-        .post<TokenResponse, null>('/auth/token', null)
-        .then(response => response.data || token),
-    onSuccess: (data: TokenResponse) => {
-      setToken(data.token)
+    onSuccess: () => {
+      withBaseStylingShowNotification({
+        title: t('notifications.invalidateUserSuccess.title'),
+        message: t('notifications.invalidateUserSuccess.message'),
+        color: 'success',
+        notificationType: 'updated',
+      })
+    },
+    onError: () => {
+      withBaseStylingShowNotification({
+        title: t('notifications.invalidateUserError.title'),
+        message: t('notifications.invalidateUserError.message'),
+        color: 'error',
+        notificationType: 'updated',
+      })
     },
   })
 
@@ -100,6 +98,12 @@ export function useResetPassword(): UseMutationResult<
           headers: { 'content-type': 'text/plain' },
         })
         .then(response => response.data),
+    onError: () => {
+      withBaseStylingShowNotification({
+        color: 'error',
+        notificationType: 'updated',
+      })
+    },
   })
 
   return mutation
@@ -119,6 +123,12 @@ export function useSetPassword(): UseMutationResult<
           verification,
         })
         .then(response => response.data),
+    onError: () => {
+      withBaseStylingShowNotification({
+        color: 'error',
+        notificationType: 'updated',
+      })
+    },
   })
 
   return mutation

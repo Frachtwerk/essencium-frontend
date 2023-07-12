@@ -48,13 +48,6 @@ function LoginView(): JSX.Element {
         setIsResetPasswordSent(true)
         setIsPasswordResetFormOpened(false)
       },
-      onError: () => {
-        withBaseStylingShowNotification({
-          title: t('loginView.errorMessage.title'),
-          color: 'error',
-          notificationType: 'updated',
-        })
-      },
     })
   }
 

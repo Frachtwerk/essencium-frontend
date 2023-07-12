@@ -30,12 +30,6 @@ function SetPasswordView(): JSX.Element {
       { password, verification },
       {
         onSuccess: () => setShowSuccessMessage(true),
-        onError: () => {
-          withBaseStylingShowNotification({
-            color: 'error',
-            notificationType: 'updated',
-          })
-        },
       }
     )
   }

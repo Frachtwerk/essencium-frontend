@@ -164,26 +164,9 @@ function UsersView(): JSX.Element {
 
   const handleInvalidateToken = useCallback(
     (rowUser: UserOutput): void => {
-      invalidateToken(rowUser.id, {
-        onSuccess: () => {
-          withBaseStylingShowNotification({
-            title: t('notifications.invalidateUserSuccess.title'),
-            message: t('notifications.invalidateUserSuccess.message'),
-            color: 'success',
-            notificationType: 'updated',
-          })
-        },
-        onError: () => {
-          withBaseStylingShowNotification({
-            title: t('notifications.invalidateUserError.title'),
-            message: t('notifications.invalidateUserError.message'),
-            color: 'error',
-            notificationType: 'updated',
-          })
-        },
-      })
+      invalidateToken(rowUser.id)
     },
-    [t, invalidateToken]
+    [invalidateToken]
   )
 
   const columns = useMemo<ColumnDef<UserOutput>[]>(
