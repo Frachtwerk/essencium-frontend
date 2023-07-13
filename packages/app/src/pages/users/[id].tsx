@@ -1,4 +1,4 @@
-import { UserForm, useZodForm } from '@frachtwerk/essencium-lib'
+import { getTranslation, UserForm, useZodForm } from '@frachtwerk/essencium-lib'
 import { UserUpdate, userUpdateSchema } from '@frachtwerk/essencium-types'
 import { Card, Flex, Text, Title } from '@mantine/core'
 import { IconUserEdit } from '@tabler/icons-react'
@@ -11,8 +11,7 @@ import { axiosInstance, useGetUser, UsersResponse, useUpdateUser } from '@/api'
 import { useGetRoles } from '@/api/roles'
 import AuthLayout from '@/components/layouts/AuthLayout'
 import { FORM_DEFAULTS } from '@/pages/users'
-import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
-import { getTranslation } from '@/utils/getTranslation'
+import { baseGetStaticProps } from '@/utils/next'
 
 function UpdateUserView(): JSX.Element {
   const router = useRouter()
@@ -101,10 +100,16 @@ UpdateUserView.getLayout = function getLayout(
 export const getStaticProps = baseGetStaticProps()
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data: tokenData } = await axiosInstance.post('/auth/token', {
-    username: 'admin@frachtwerk.de',
-    password: 'adminAdminAdmin',
-  })
+  const { data: tokenData } = await axiosInstance.post(
+    '/auth/token',
+    {
+      username: process.env.ADMIN_USERNAME,
+      password: process.env.ADMIN_PASSWORD,
+    },
+    {
+      baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+    }
+  )
 
   const { data: usersData } = await axiosInstance.get<UsersResponse>('/users', {
     params: {
@@ -121,7 +126,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: users.map(user => ({
       params: {
-        id: user.id as unknown as string,
+        id: String(user.id),
       },
     })),
     fallback: true,

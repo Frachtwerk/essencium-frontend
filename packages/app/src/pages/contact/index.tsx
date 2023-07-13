@@ -1,8 +1,7 @@
-import { Contact } from '@frachtwerk/essencium-lib'
+import { Contact, getTranslation } from '@frachtwerk/essencium-lib'
 
 import AuthLayout from '@/components/layouts/AuthLayout'
-import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
-import { getTranslation } from '@/utils/getTranslation'
+import { baseGetStaticProps } from '@/utils/next'
 
 function ContactView(): JSX.Element {
   return <Contact />

@@ -1,39 +1,35 @@
 {
   "name": "@frachtwerk/essencium-types",
   "version": "1.0.2",
-  "author": "Frachtwerk GmbH",
-  "license": "MIT",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "engines": {
-    "node": ">=18",
-    "pnpm": "7"
-  },
-  "type": "module",
   "description": "This is the shared types library.",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:Frachtwerk/essencium-frontend.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Frachtwerk/essencium-frontend/issues"
-  },
-  "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/master/README.md",
   "keywords": [
     "starter",
     "boilerplate",
     "frontend",
     "types"
   ],
+  "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/master/README.md",
+  "bugs": {
+    "url": "https://github.com/Frachtwerk/essencium-frontend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Frachtwerk/essencium-frontend.git"
+  },
+  "license": "MIT",
+  "author": "Frachtwerk GmbH",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rimraf dist && rollup -c",
     "clean": "rimraf dist node_modules",
     "clean:install": "pnpm clean && pnpm install",
-    "format:write": "prettier --write .",
     "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
     "lint": "eslint ."
   },
   "devDependencies": {
@@ -52,12 +48,16 @@
   "peerDependencies": {
     "zod": "3.20.6"
   },
+  "engines": {
+    "node": ">=18",
+    "pnpm": "7"
+  },
+  "volta": {
+    "node": "18.16.0"
+  },
   "nx": {
     "tags": [
       "scope:types"
     ]
-  },
-  "volta": {
-    "node": "18.16.0"
   }
 }

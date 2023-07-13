@@ -363,22 +363,6 @@
       "title": "Deleting ...",
       "message": "Deleting data on the server"
     },
-    "createdTranslationSuccess": {
-      "title": "Success",
-      "message": "Updated translation successfully"
-    },
-    "createdTranslationError": {
-      "title": "Error",
-      "message": "Could not update translation"
-    },
-    "deletedTranslationSuccess": {
-      "title": "Success",
-      "message": "Translation successfully reset"
-    },
-    "deletedTranslationError": {
-      "title": "Error",
-      "message": "Translation could not be reset"
-    },
     "invalidateUserSuccess": {
       "title": "Success",
       "message": "The user has been logged out."

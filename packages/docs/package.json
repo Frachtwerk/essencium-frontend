@@ -17,8 +17,8 @@
     "clean": "rimraf node_modules .next",
     "clean:install": "pnpm clean && pnpm install",
     "dev": "next dev",
-    "format:write": "prettier --write .",
     "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
     "lint": "eslint .",
     "start": "next start"
   },

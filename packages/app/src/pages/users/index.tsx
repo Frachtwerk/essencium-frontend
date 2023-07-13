@@ -1,6 +1,8 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {
+  getTranslation,
   HttpNotification,
+  parseSorting,
   Table,
   TablePagination,
 } from '@frachtwerk/essencium-lib'
@@ -47,9 +49,7 @@ import { useCallback, useMemo, useState } from 'react'
 import { useDeleteUser, useGetUsers, useInvalidateToken } from '@/api'
 import { userAtom } from '@/api/me'
 import AuthLayout from '@/components/layouts/AuthLayout'
-import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
-import { getTranslation } from '@/utils/getTranslation'
-import { parseSorting } from '@/utils/parseSorting'
+import { baseGetStaticProps } from '@/utils/next'
 
 export const FORM_DEFAULTS = {
   firstName: '',
@@ -160,6 +160,13 @@ function UsersView(): JSX.Element {
   )
 
   const { mutate: invalidateToken } = useInvalidateToken()
+
+  const handleInvalidateToken = useCallback(
+    (rowUser: UserOutput): void => {
+      invalidateToken(rowUser.id)
+    },
+    [invalidateToken]
+  )
 
   const columns = useMemo<ColumnDef<UserOutput>[]>(
     () => [
@@ -274,7 +281,7 @@ function UsersView(): JSX.Element {
 
                   <Popover.Dropdown p={0}>
                     <Group
-                      onClick={() => invalidateToken(rowUser.id)}
+                      onClick={() => handleInvalidateToken(user)}
                       spacing="xs"
                       sx={{
                         padding: '0.7rem 0 0.5rem 1rem',
@@ -312,9 +319,9 @@ function UsersView(): JSX.Element {
       handleEditUser,
       handleDeleteUser,
       user,
-      invalidateToken,
       theme.colors.gray,
       theme.colorScheme,
+      handleInvalidateToken,
     ]
   )
 

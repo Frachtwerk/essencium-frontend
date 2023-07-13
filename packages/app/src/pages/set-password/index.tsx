@@ -1,19 +1,17 @@
 import {
+  getTranslation,
   SetPasswordForm,
   SetPasswordSuccessMessage,
 } from '@frachtwerk/essencium-lib'
 import { SetPasswordInput } from '@frachtwerk/essencium-types'
 import { Container, Paper, Title } from '@mantine/core'
-import { showNotification } from '@mantine/notifications'
-import { AxiosError } from 'axios'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 
 import { useSetPassword } from '@/api/auth'
 import PublicLayout from '@/components/layouts/PublicLayout'
-import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
-import { getTranslation } from '@/utils/getTranslation'
+import { baseGetStaticProps } from '@/utils/next'
 
 function SetPasswordView(): JSX.Element {
   const { t } = useTranslation()
@@ -31,15 +29,6 @@ function SetPasswordView(): JSX.Element {
       { password, verification },
       {
         onSuccess: () => setShowSuccessMessage(true),
-        onError: (data: AxiosError) => {
-          showNotification({
-            autoClose: 4000,
-            title: t('notifications.updatedDataError.title'),
-            message: data.message,
-            color: 'red',
-            style: { position: 'fixed', top: '20px', right: '10px' },
-          })
-        },
       }
     )
   }

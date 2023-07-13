@@ -32,6 +32,7 @@ export default [
       '@mantine/hooks',
       '@mantine/modals',
       '@mantine/spotlight',
+      '@mantine/notifications',
       '@tabler/icons',
       '@tanstack/react-query',
       '@tanstack/react-table',

@@ -363,22 +363,6 @@
       "title": "Löschen ...",
       "message": "Daten werden gelöscht"
     },
-    "createdTranslationSuccess": {
-      "title": "Erfolg",
-      "message": "Übersetzung erfolgreich geändert"
-    },
-    "createdTranslationError": {
-      "title": "Fehler",
-      "message": "Übersetzung konnte nicht geändert werden"
-    },
-    "deletedTranslationSuccess": {
-      "title": "Erfolg",
-      "message": "Übersetzung erfolgreich zurückgesetzt"
-    },
-    "deletedTranslationError": {
-      "title": "Fehler",
-      "message": "Übersetzung konnte nicht zurückgesetzt werden"
-    },
     "invalidateUserSuccess": {
       "title": "Erfolg",
       "message": "Der Nutzer wurde ausgeloggt."

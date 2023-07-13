@@ -1,15 +1,17 @@
-import { Login, LoginForm } from '@frachtwerk/essencium-lib'
+import {
+  getTranslation,
+  Login,
+  LoginForm,
+  withBaseStylingShowNotification,
+} from '@frachtwerk/essencium-lib'
 import { ResetPassword } from '@frachtwerk/essencium-types'
-import { showNotification } from '@mantine/notifications'
-import { AxiosError } from 'axios'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 
 import { useCreateToken, useResetPassword } from '@/api/auth'
 import PublicLayout from '@/components/layouts/PublicLayout'
-import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
-import { getTranslation } from '@/utils/getTranslation'
+import { baseGetStaticProps } from '@/utils/next'
 
 function LoginView(): JSX.Element {
   const { t } = useTranslation()
@@ -29,13 +31,11 @@ function LoginView(): JSX.Element {
       { username, password },
       {
         onSuccess: () => router.push('/'),
-        onError: (data: AxiosError) => {
-          showNotification({
-            autoClose: 4000,
+        onError: () => {
+          withBaseStylingShowNotification({
             title: t('loginView.errorMessage.title'),
-            message: data.message,
-            color: 'red',
-            style: { position: 'fixed', top: '20px', right: '10px' },
+            color: 'error',
+            notificationType: 'created',
           })
         },
       }
@@ -47,15 +47,6 @@ function LoginView(): JSX.Element {
       onSuccess: () => {
         setIsResetPasswordSent(true)
         setIsPasswordResetFormOpened(false)
-      },
-      onError: (data: AxiosError) => {
-        showNotification({
-          autoClose: 4000,
-          title: t('loginView.errorMessage.title'),
-          message: data.message,
-          color: 'red',
-          style: { position: 'fixed', top: '20px', right: '10px' },
-        })
       },
     })
   }

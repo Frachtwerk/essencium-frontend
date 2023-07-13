@@ -1,9 +1,8 @@
-import { Home } from '@frachtwerk/essencium-lib'
+import { getTranslation, Home } from '@frachtwerk/essencium-lib'
 import { ReactElement } from 'react'
 
 import AuthLayout from '@/components/layouts/AuthLayout'
-import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
-import { getTranslation } from '@/utils/getTranslation'
+import { baseGetStaticProps } from '@/utils/next'
 
 function HomePage(): JSX.Element {
   return <Home />

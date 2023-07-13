@@ -1,4 +1,8 @@
-import { Translations } from '@frachtwerk/essencium-lib'
+import {
+  getTranslation,
+  mergeTranslationSources,
+  Translations,
+} from '@frachtwerk/essencium-lib'
 import { TranslationInput } from '@frachtwerk/essencium-types'
 import { Flex, Text, Title } from '@mantine/core'
 import { IconLanguage } from '@tabler/icons-react'
@@ -10,9 +14,7 @@ import {
   useUpdateTranslation,
 } from '@/api/translations'
 import AuthLayout from '@/components/layouts/AuthLayout'
-import { baseGetStaticProps } from '@/utils/baseGetStaticProps'
-import { getTranslation } from '@/utils/getTranslation'
-import { mergeTranslationSources } from '@/utils/mergeTranslationSources'
+import { baseGetStaticProps } from '@/utils/next'
 
 function getTranslationsByLanguage(
   lang: string

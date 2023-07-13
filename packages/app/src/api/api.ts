@@ -1,3 +1,4 @@
+import { logout } from '@frachtwerk/essencium-lib'
 import axios, {
   AxiosError,
   AxiosInstance,
@@ -6,16 +7,13 @@ import axios, {
   InternalAxiosRequestConfig,
 } from 'axios'
 
-import { logout } from '@/utils/logout'
-
-export const VERSION = 'v1'
-
 export const axiosInstance: AxiosInstance = axios.create({
-  baseURL: 'https://backend.staging.essencium.dev/',
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
 })
 
 axiosInstance.interceptors.request.use(
   (request: InternalAxiosRequestConfig<AxiosRequestConfig>) => {
+    // Need to check if window is defined because this code is also used on server side
     if (typeof window === 'undefined') return request
 
     const authToken = JSON.parse(localStorage.getItem('authToken') as string)
