@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v1.0.2...essencium-types-v1.1.0) (2023-07-13)
+
+
+### Features
+
+* add edit & delete functionality to rolesView on nextBranch ([3449b89](https://github.com/Frachtwerk/essencium-frontend/commit/3449b899e607c9f62ca9ec0a285e67c86c42711a))
+
 ## [1.0.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v1.0.1...essencium-types-v1.0.2) (2023-07-06)
 
 
