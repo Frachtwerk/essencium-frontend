@@ -1,4 +1,4 @@
-import { PublicLayout } from '@frachtwerk/essencium-lib'
+import { Center } from '@mantine/core'
 import Head from 'next/head'
 
 type Props = {
@@ -10,12 +10,12 @@ function PublicLayoutView({ children, routeName }: Props): JSX.Element | null {
   const pageTitle = `${routeName ? `${routeName} -` : ''} Essencium`
 
   return (
-    <PublicLayout>
+    <Center>
       <Head>
         <title>{pageTitle}</title>
       </Head>
       {children}
-    </PublicLayout>
+    </Center>
   )
 }
 
