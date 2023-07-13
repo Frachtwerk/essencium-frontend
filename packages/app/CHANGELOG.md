@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v1.1.0...essencium-app-v1.2.0) (2023-07-13)
+
+
+### Features
+
+* add searchable drop-down for filtering tables ([22cc447](https://github.com/Frachtwerk/essencium-frontend/commit/22cc4471a2b8e7ab4e457acd0581f9858e20d104))
+
+
+### Bug Fixes
+
+* adjust e2e test for UsersView ([9e45e1e](https://github.com/Frachtwerk/essencium-frontend/commit/9e45e1e546dab221f23badfdbf4b498efb459b35))
+* replace new Set with filter method ([25c8bf9](https://github.com/Frachtwerk/essencium-frontend/commit/25c8bf93f8daddc118747045e04d07b6b80fc3cd))
+
 ## [1.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v1.0.1...essencium-app-v1.1.0) (2023-07-07)
 
 
