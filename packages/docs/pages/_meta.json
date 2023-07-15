@@ -1,12 +1,8 @@
 {
   "index": "Introduction",
-  "architecture": "Project Architecture",
+  "architecture": "Architecture",
   "devguide": "Development Guide",
   "styleguide": "Style Guide",
-  "about": {
-    "title": "About",
-    "type": "page"
-  },
   "contact": {
     "title": "Contact ↗",
     "type": "page",

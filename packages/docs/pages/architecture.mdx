@@ -1,16 +1,12 @@
-import { Callout } from 'nextra-theme-docs'
-
 # Architecture
 
-<Callout type="warning" emoji="⚠️">
-  Some sections are still drafts and marked with a 📝 symbol. Feel free to
-  contribute 🎉.
-</Callout>
+Essencium consists of a core library (called `lib` inside the monorepo and `@frachtwerk/essencium-lib` on npm), a types
+package (called `types` inside the monorepo and `@frachtwerk/essencium-types` on npm) and a boilerplate (`app`) that
+consums those packages. Additonally, we have a `docs` package to document the project (this is what you're currently
+reading). We chose a monorepo architecture for better developer experience and less complex maintainability.
 
-Essencium consists of a core library (`lib`), a types package (`types`) and a boilerplate (`app`) that consums those packages. Additonally, we have a `docs` package to document the project.
-We chose a monorepo architecture for better developer experience and less complex maintainability.
-
-All components are developed inside the `lib` and imported inside the `app`. That allows us to easily update our `lib` package.
+All components are developed inside the `lib` and imported inside the `app`. That allows us to easily update our `lib`
+package.
 
 That gives us the following architecture:
 
@@ -21,23 +17,29 @@ That gives us the following architecture:
 ├── packages
 │   ├── app
 │   │   ├── package.json
-│   │   └── ... 📝
+│   │   └── ...
 │   └── docs
 │   │   ├── package.json
-│   │   └── ... 📝
+│   │   └── ...
 │   └── lib
 │   │   ├── package.json
-│   │   └── ... 📝
+│   │   └── ...
+│   └── types
+│   │   ├── package.json
+│   │   └── ...
+├── scripts
 ├── .commitlintrc.json
 ├── .eslintrc.json
 ├── .gitignore
 ├── .npmrc
 ├── .prettierrc.json
-├── nx-cloud.env (not in repo)
+├── .release-please-manifest.json
 ├── nx.json
 ├── package.json
 ├── pnpm-lock.yaml
 ├── pnpm-workspace.yaml
 ├── README.md
+├── release-please-config.json
+├── renovate.json
 └── tsconfig.json
 ```
