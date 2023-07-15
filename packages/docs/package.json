@@ -20,19 +20,24 @@
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
     "lint": "eslint .",
+    "sort-package-json": "sort-package-json",
     "start": "next start"
   },
   "dependencies": {
     "clsx": "1.2.1",
-    "next": "13.2.4",
-    "nextra": "2.2.19",
-    "nextra-theme-docs": "2.2.19",
+    "next": "13.4.8",
+    "nextra": "2.8.0",
+    "nextra-theme-docs": "2.8.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@types/node": "18.14.1",
-    "typescript": "4.9.5"
+    "@types/node": "20.3.3",
+    "typescript": "5.1.6"
+  },
+  "engines": {
+    "node": ">=18",
+    "pnpm": "7"
   },
   "volta": {
     "node": "18.16.0"
