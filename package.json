@@ -30,14 +30,15 @@
     "lint": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=lint --parallel=10",
     "seed-db": "ts-node ./scripts/seed-db.ts",
     "setup-env": "pnpm install && husky install",
+    "sort-package-json": "sort-package-json && nx affected --target=sort-package-json",
     "test": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=test",
     "test:e2e": "pnpm --filter @frachtwerk/essencium-app test:e2e",
     "test:unit": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=test:unit --parallel=10",
     "test:watch": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx run-many --target=test:watch --parallel=10"
   },
   "dependencies": {
-    "@changesets/cli": "2.26.2",
-    "@nrwl/nx-cloud": "15.1.1"
+    "@nrwl/nx-cloud": "15.1.1",
+    "sort-package-json": "2.5.0"
   },
   "devDependencies": {
     "@commitlint/cli": "17.4.4",
