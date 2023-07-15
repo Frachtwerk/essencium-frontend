@@ -1,6 +1,6 @@
 {
-  "setup": "Environment setup",
-  "codestyle": "Code style and linting",
+  "setup": "Setup",
+  "codestyle-and-linting": "Code style and linting",
   "packageResponsibilities": "Package responsibilities",
   "dependencies": "Dependencies",
   "new-component": "New Component",
