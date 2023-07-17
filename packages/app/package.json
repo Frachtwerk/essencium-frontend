@@ -11,6 +11,7 @@
     "format:write": "prettier --write .",
     "lint": "next lint",
     "preview": "next start",
+    "sort-package-json": "sort-package-json",
     "test": "pnpm test:unit && pnpm test:e2e",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test .",
@@ -59,6 +60,13 @@
     "@vitejs/plugin-react": "3.1.0",
     "vite": "4.1.4",
     "vitest": "0.29.2"
+  },
+  "engines": {
+    "node": ">=18",
+    "pnpm": "7"
+  },
+  "volta": {
+    "node": "18.16.0"
   },
   "nx": {
     "tags": [

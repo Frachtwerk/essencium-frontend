@@ -30,7 +30,8 @@
     "clean:install": "pnpm clean && pnpm install",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "sort-package-json": "sort-package-json"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "24.0.1",
