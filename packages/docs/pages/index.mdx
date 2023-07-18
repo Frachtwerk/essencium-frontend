@@ -14,7 +14,7 @@ and pasting the code manually.
 
 We chose to use a monorepo architecture with the library, types, docs and the application as packages. That allows to
 easily develop the library, utilizing Vite and inspect the source code changes of the library via HMR inside the browser
-as if it was a single codebase. As a build tool we use `nx`. That allows us to run certain commands (like `build` or
+as if it was a single codebase. As a build tool we use [`nx`](https://nx.dev/getting-started/why-nx). That allows us to run certain commands (like `build` or
 `test`) for all packages, with keeping the correct dependency order in mind. Additionally, `nx` caches jobs, that means
 if source files of a dependency have not been changed, the needed files get fetched from the cache instead of being
 re-built.
