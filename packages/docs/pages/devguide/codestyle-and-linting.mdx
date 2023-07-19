@@ -1,0 +1,174 @@
+import { Callout } from 'nextra-theme-docs'
+
+# Code style and linting
+
+For enforcing code style and utilizing static code analyzing we use [Prettier](https://prettier.io/) and [ESLint](https://eslint.org/).
+
+## Prettier configuration
+
+You can always execute the commands `pnpm format:(write|check)` to apply the Prettier formatting settings for all project files inside the
+`src`-directory (`write` actually writes the formattings to the files whereas `check` only does a dry-run).
+
+### Rules
+
+<Callout type="warning" emoji="⚠️">
+  Todo: Check if the config can be imported from the prettier config directly
+</Callout>
+
+```json
+{
+  "semi": false,
+  "singleQuote": true,
+  "arrowParens": "avoid",
+  "bracketSpacing": true
+}
+```
+
+## ESLint configuration
+
+We use some ESLint rulesets. The most noteworthy ruleset is the [Airbnb JavaScript Style Guide](https://airbnb.io/javascript/react/).
+
+We modified some rules to fit our code style. By default, ESLint will display an error if any rule is not satisfied. We don't work with
+warnings.
+
+The following rulesets are used:
+
+- `airbnb`
+- `airbnb-typescript`
+- `airbnb/hooks`
+- `plugin:react/recommended`
+- `plugin:@typescript-eslint/recommended`
+- `plugin:prettier/recommended`
+
+and the following **plugins**:
+
+- `react`
+- `@typescript-eslint`
+- `prettier`
+- `@nrwl/nx`
+- `simple-import-sort`
+
+Run `pnpm lint` to lint all projects files inside the `src`-directory based on the ESLint configuration.
+
+### Rules
+
+#### `"react/react-in-jsx-scope": "off"`
+
+This rule automatically imports the `react` package in our file when we use JSX.
+
+#### `"react/jsx-props-no-spreading": "off"`
+
+Allow spreading props into components.
+
+#### `"react/require-default-props": "off"`
+
+Disable the requirement of default props for components.
+
+#### `"react/jsx-no-bind"`
+
+```json
+["error", { "allowFunctions": true, "allowArrowFunctions": true }]
+```
+
+Allow passing function references (expressions and declarations) as callbacks to component props.
+
+#### `"simple-import-sort/imports": "error"`
+
+To keep our import order consistent we chose to let it auto-sort by this ESLint plugin.
+
+#### `"simple-import-sort/exports": "error"`
+
+To keep our export order consistent we chose to let it auto-sort by this ESLint plugin.
+
+#### `"prettier/prettier": "error"`
+
+If any rule from the `.prettierrc.json` is not met, throw an error.
+
+#### `"import/extensions"`
+
+```json
+[
+  2,
+  "ignorePackages",
+  {
+    "": "never",
+    "js": "never",
+    "jsx": "never",
+    "ts": "never",
+    "tsx": "never"
+  }
+]
+```
+
+Allow omitting file extensions when importing either a `.js`, `.jsx`, `.ts` or `.tsx` file.
+
+#### `"import/no-extraneous-dependencies"`
+
+```json
+[
+  "error",
+  {
+    "devDependencies": [
+      "**/*.test.ts",
+      "**/*.test.tsx",
+      "**/*.config.js",
+      "**/*.config.ts",
+      "./scripts/sync-versions.ts",
+      "./scripts/seed-db.ts"
+    ]
+  }
+]
+```
+
+Forbid the import of external modules that are not declared in the `package.json`'s dependencies, devDependencies, optionalDependencies,
+peerDependencies, or bundledDependencies.
+
+#### `"import/prefer-default-export": "off"`
+
+Do not prefer default export.
+
+#### `"@nrwl/nx/enforce-module-boundaries"`
+
+```json
+[
+  "error",
+  {
+    "allow": [],
+    "depConstraints": [
+      {
+        "sourceTag": "scope:app",
+        "onlyDependOnLibsWithTags": ["scope:app", "scope:lib", "scope:types"]
+      },
+      {
+        "sourceTag": "scope:lib",
+        "onlyDependOnLibsWithTags": ["scope:lib", "scope:types"]
+      },
+      {
+        "sourceTag": "scope:types",
+        "onlyDependOnLibsWithTags": ["scope:types"]
+      }
+    ]
+  }
+]
+```
+
+Here we set contraints which package can import other packages inside the `packages` folder. For example, it does not make sense to import
+anything from `app` in `lib` but vice versa.
+
+#### `"@typescript-eslint/explicit-function-return-type"`
+
+```json
+[
+  "error",
+  {
+    "allowExpressions": true
+  }
+]
+```
+
+Always pass the return type of a **function declaration**. As we follow the rule to prefer function declarations over expressions for
+'standalone' functions (not as callback) it makes sense to enforce the rule only for function declarations.
+
+#### `"consistent-return": "off"`
+
+We disabled the rule due to the fact that we don't want to return `undefined` in every function explicitly.
