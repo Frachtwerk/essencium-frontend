@@ -1,18 +1,22 @@
-# Managing Dependencies
+# Dependencies
 
-For maintaing the Essencium project it is important to understand how to manage dependencies and their updates. This will help ensure that the project remains stable & secure. Here are some specific things to keep in mind when managing dependencies in Essencium:
+For maintaing the Essencium project it is important to understand how to manage dependencies and their updates. This will help ensure that the project remains stable & secure. Here are some specific things to keep in mind when managing dependencies in Essencium.
 
-## Installing Dependencies
+## Installing & uninstalling Dependencies
 
 When installing dependencies in Essencium, make sure to place them in the appropriate location based on the specific package structure of the project. See [package responsibilities](/devguide/packageResponsibilities).
 
+They can be installed via `pnpm --filter @frachtwerk/essencium-<package> add <dependency>`.
+
 It is important to note that some dependencies may need to be set under `peerDependencies` in the `lib` package, whenever they are required for components within `lib` to work. This ensures that the consuming project can provide the required dependencies at runtime.
 
-It is also important to use fixed version numbers for dependencies to ensure consistency across packages and avoid compatibility issues.
+It is also important to use fixed version numbers for dependencies to ensure consistency across packages and avoid compatibility issues that can lead to breaking changes.
 
-## Updating Dependencies
+Uninstalling a dependency can be done via `pnpm --filter @frachtwerk/essencium-<package> remove <dependency>`.
 
-Essencium uses Renovatebot to automate the process of updating dependencies. A pull request for each dependency update will be created automatically.
+## Updating dependencies
+
+Essencium uses [Renovate](https://www.mend.io/renovate/) to automate the process of updating dependencies. A pull request for each dependency update will be created automatically.
 
 Dependencies should be updated regularly to keep Essencium up-to-date with the latest security patches, bug fixes, and performance improvements.
 
