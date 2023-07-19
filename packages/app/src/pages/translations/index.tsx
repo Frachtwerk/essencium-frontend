@@ -7,6 +7,7 @@ import { TranslationInput } from '@frachtwerk/essencium-types'
 import { Flex, Text, Title } from '@mantine/core'
 import { IconLanguage } from '@tabler/icons-react'
 import { i18n, useTranslation } from 'next-i18next'
+import { useEffect } from 'react'
 
 import {
   useDeleteTranslation,
@@ -35,9 +36,7 @@ function TranslationsView(): JSX.Element {
   const { data: enServerTranslations, refetch: refetchServerTranslationsEn } =
     useGetTranslations('en')
 
-  async function onUpdateTranslation(
-    translationInput: TranslationInput
-  ): Promise<void> {
+  function onUpdateTranslation(translationInput: TranslationInput): void {
     updateTranslation(translationInput, {
       onSuccess: async () => {
         const promises = Promise.all([
@@ -46,21 +45,18 @@ function TranslationsView(): JSX.Element {
         ])
 
         await promises
-        mergeTranslationSources({
-          de: deServerTranslations,
-          en: enServerTranslations,
-        })
       },
     })
+  }
 
-    await refetchServerTranslationsDe()
-    await refetchServerTranslationsEn()
-
+  useEffect(() => {
     mergeTranslationSources({
       de: deServerTranslations,
       en: enServerTranslations,
     })
-  }
+
+    i18n?.init()
+  }, [enServerTranslations, deServerTranslations])
 
   return (
     <>
