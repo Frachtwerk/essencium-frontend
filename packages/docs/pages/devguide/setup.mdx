@@ -2,22 +2,20 @@ import { Callout } from 'nextra-theme-docs'
 
 ### Prerequisites
 
-The repository requires Node version 18, which is in [LTS](https://github.com/nodejs/release#release-schedule) until
-**30.04.2025**. It can be easily installed via the [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm) following
-the setup in the `README.md`. Additionally, we support the tool manager [Volta](https://volta.sh/). Volta makes sure
-that your environment (like the Node version, `pnpm` version etc.) is always the same for that specific repository. By
-navigating to the repository folder on your machine, Volta automatically switches to the versions of the tools specified
-in the `package.json` files.
+The repository requires Node version 18, which is in [LTS](https://github.com/nodejs/release#release-schedule) until **30.04.2025**. It can
+be easily installed via the [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm) following the setup in the `README.md`.
+Additionally, we support the tool manager [Volta](https://volta.sh/). Volta makes sure that your environment (like the Node version, `pnpm`
+version etc.) is always the same for that specific repository. By navigating to the repository folder on your machine, Volta automatically
+switches to the versions of the tools specified in the `package.json` files.
 
-Besides, you need the package manager [`pnpm`](https://pnpm.io/), which can be installed with
-`npm install --global pnpm` (will be installed globally). `pnpm` is much faster than `npm` and handles the
-`node_modules` folder in a much more efficient way. It is also possible to use `npm` or `yarn` instead of `pnpm`. You
-need to convert the lockfile accordingly.
+Besides, you need the package manager [`pnpm`](https://pnpm.io/), which can be installed with `npm install --global pnpm` (will be installed
+globally). `pnpm` is much faster than `npm` and handles the `node_modules` folder in a much more efficient way. It is also possible to use
+`npm` or `yarn` instead of `pnpm`. You need to convert the lockfile accordingly.
 
 ### Setup
 
-Before the setup is complete, you need to run `pnpm setup-env` inside the root. The script will automatically install
-all dependencies and enables [Husky](https://typicode.github.io/husky) hooks for `pre-commit` and `commit-msg` linting.
+Before the setup is complete, you need to run `pnpm setup-env` inside the root. The script will automatically install all dependencies and
+enables [Husky](https://typicode.github.io/husky) hooks for `pre-commit` and `commit-msg` linting.
 
 #### `pre-commit` hook
 
@@ -25,35 +23,10 @@ all dependencies and enables [Husky](https://typicode.github.io/husky) hooks for
   If the hook fails, the commit will be aborted.
 </Callout>
 
-To ensure a consistent code style, the `pre-commit` hook runs [ESLint](https://eslint.org/) using the following
-**rulesets**:
+To ensure a consistent code style, the `pre-commit` hook runs [ESLint](https://eslint.org/).
 
-- `airbnb`
-- `airbnb-typescript`
-- `airbnb/hooks`
-- `plugin:react/recommended`
-- `plugin:@typescript-eslint/recommended`
-- `plugin:prettier/recommended`
+To get more details about the rules, visit [Codestyle and Linting](/devguide/codestyle-and-linting#eslint-configuration) in our docs.
 
-and the following **plugins**:
-
-- `react`
-- `@typescript-eslint`
-- `prettier`
-- `@nrwl/nx`
-- `simple-import-sort`
-
-To get more details about the rules, visit [Codestyle and Linting](/devguide/codestyle-and-linting) in our docs.
-
-It also runs [Prettier](https://prettier.io/) (in write-mode) and applies the following rules:
-
-```json
-{
-  "semi": false,
-  "singleQuote": true,
-  "arrowParens": "avoid",
-  "bracketSpacing": true
-}
-```
+It also runs [Prettier](https://prettier.io/) (in write-mode) and applies [certain rules](/devguide/codestyle-and-linting#rules).
 
 At last, it sorts all `package.json` files via [`sort-package-json`](https://github.com/keithamus/sort-package-json).
