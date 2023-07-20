@@ -1,26 +1,18 @@
-import { Callout } from 'nextra-theme-docs'
-
 # New component
 
-<Callout type="warning" emoji="⚠️">
-  Some sections are still drafts and marked with a 📝 symbol. Feel free to contribute 🎉.
-</Callout>
-
-## Location and structure 📝
+## Location and structure
 
 The files and folder structure follows the
 [tightly-coupled architecture](https://nordicapis.com/the-difference-between-tight-coupling-and-loose-coupling/) and
 underlies the [Next.js file-system router](https://nextjs.org/docs/pages). That means that a file and code should live
-as close as possible to its context. In the image below you can see we've a header component that is located under
-`src/components`. It does have other components it uses. Because they're specific to it, they live in the
-`header/components` folder and follow the same architecture. We don't place components beside the page (inside the
+as close as possible to its context. In the image below you can see we've a `UserAdd` component (used by `pages/users/add/index.tsx`) that is located under
+`src/components/users/add`. It does have other components it uses. Because they're specific to it, they live in the
+`components` folder and follow the same architecture. We don't place components beside the page (inside the
 `pages` folder) because they're treated as routes then.
 
-But to maintain a clean strucutre, we construct the same folder structure that fits to the structure of the page.
+But to maintain a clean structure, we construct the same folder structure that fits to the structure of the page.
 
-<Callout type="warning" emoji="⚠️">
-  📝 add image of sample project
-</Callout>
+![New Component Structure](/images/new-component-structure.png)
 
 ## Details
 
@@ -45,8 +37,8 @@ function NewComponent(...) { ... }
 
 <details>
   <summary>Why?</summary>
-  Functional components are easier to read and write. They're also more performant than class components. Additionally, we
-  can make use of React Hooks.
+  Functional components are easier to read and write. They're also more performant
+  than class components. Additionally, we can make use of React Hooks.
 </details>
 
 ---
@@ -71,7 +63,8 @@ import type { NewType } from ...
 
 <details>
   <summary>Why?</summary>
-  It helps reducing the bundle size of your JavaScript code. The smaller the bundle size, the faster the page loads.
+  It helps reducing the bundle size of your JavaScript code. The smaller the bundle
+  size, the faster the page loads.
 </details>
 
 ---
@@ -94,7 +87,6 @@ function NewComponent(...) { ... }
 ---
 
 - export the functional component as default export (`export default MyComponent`) and at the bottom of the file
-
 
 ```tsx
 // ❌
@@ -249,7 +241,8 @@ function NewComponent(...): JSX.Element {
 
 <details>
   <summary>Why?</summary>
-  To prevent hard coded strings inside the code and have only one source-of-truth for all your translations.
+  To prevent hard coded strings inside the code and have only one source-of-truth
+  for all your translations.
 </details>
 
 ---
@@ -279,8 +272,9 @@ function NewComponent(...): JSX.Element {
 
 <details>
   <summary>Why?</summary>
-  By telling TypeScript that a variable or function is of type `any` you disable TypeScript for it and don't get any type-safety
-  anymore. Some typing is hard, we all know that, but at least ask for help and don't go the simple and insecure way.
+  By telling TypeScript that a variable or function is of type `any` you disable
+  TypeScript for it and don't get any type-safety anymore. Some typing is hard, we
+  all know that, but at least ask for help and don't go the simple and insecure way.
 </details>
 
 ---
@@ -289,8 +283,8 @@ function NewComponent(...): JSX.Element {
 
 <details>
   <summary>Why?</summary>
-  Double-check if you make unnecessary or too many server requests caused by a suboptimal implementation. It could led to
-  a bad performance and UX.
+  Double-check if you make unnecessary or too many server requests caused by a suboptimal
+  implementation. It could led to a bad performance and UX.
 </details>
 
 ---
@@ -298,8 +292,9 @@ function NewComponent(...): JSX.Element {
 - provide feedback for every write, delete, update operation
 
 <details>
-  <summary>Why?</summary>A good UX consists of proper user feedback i.e. notifications. That gives the user confidence
-  that his action was successful or has failed.
+  <summary>Why?</summary>A good UX consists of proper user feedback i.e.
+  notifications. That gives the user confidence that his action was successful
+  or has failed.
 </details>
 
 ---
@@ -308,7 +303,8 @@ function NewComponent(...): JSX.Element {
 
 <details>
   <summary>Why?</summary>
-  Tools like Prettier (semantic) and ESLint (syntax) ensure a consistent codebase and keep readability on a high level.
+  Tools like Prettier (semantic) and ESLint (syntax) ensure a consistent codebase
+  and keep readability on a high level.
 </details>
 
 ---
@@ -317,8 +313,8 @@ function NewComponent(...): JSX.Element {
 
 <details>
   <summary>Why?</summary>
-  Even though your implementation is fine, a warning or even an error can occur. Sometimes they're not reflected in the UI
-  but in the console.
+  Even though your implementation is fine, a warning or even an error can occur.
+  Sometimes they're not reflected in the UI but in the console.
 </details>
 
 ## Example
