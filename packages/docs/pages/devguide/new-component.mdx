@@ -1,27 +1,39 @@
 import { Callout } from 'nextra-theme-docs'
 
-# Writing a new component
+# New component
 
 <Callout type="warning" emoji="⚠️">
-  Some sections are still drafts and marked with a 📝 symbol. Feel free to
-  contribute 🎉.
+  Some sections are still drafts and marked with a 📝 symbol. Feel free to contribute 🎉.
 </Callout>
 
-## Location
+## Location and structure 📝
 
-The files and folder structure follows the [tightly-coupled architecture](https://nordicapis.com/the-difference-between-tight-coupling-and-loose-coupling/). That means that a file should live as close as possible to its context.
-In the image below you can see we've a Header component. On the same level we declare its types as well as its test. This is the closest place for those files to the Header component.
-The Header component does have other components it uses. Because they're specific to it, they live in the `Header/components` folder and follow the same architecture. The `index.ts` files just export all named imports to the next-level `index.ts`.
+The files and folder structure follows the
+[tightly-coupled architecture](https://nordicapis.com/the-difference-between-tight-coupling-and-loose-coupling/) and
+underlies the [Next.js file-system router](https://nextjs.org/docs/pages). That means that a file and code should live
+as close as possible to its context. In the image below you can see we've a header component that is located under
+`src/components`. It does have other components it uses. Because they're specific to it, they live in the
+`header/components` folder and follow the same architecture. We don't place components beside the page (inside the
+`pages` folder) because they're treated as routes then.
 
-📝 (replace the image after issue [#56](https://github.com/Frachtwerk/essencium-frontend/issues/56))
+But to maintain a clean strucutre, we construct the same folder structure that fits to the structure of the page.
 
-![Hello](/images/tightly-coupled-principle.png)
+<Callout type="warning" emoji="⚠️">
+  📝 add image of sample project
+</Callout>
 
 ## Details
 
-- The component name is equal to the file name (both `PascalCase`).
+### General
 
-- Use functional components instead of class components.
+- the component is located in:
+  - the `components` folder
+  - a folder that is named after the page folder it belongs to i.e. `components/users/UserForm.tsx`
+- the file is named after the component and written in `PascalCase`
+
+### Specific
+
+- use functional components instead of class components
 
 ```tsx
 // ❌
@@ -32,13 +44,14 @@ function NewComponent(...) { ... }
 ```
 
 <details>
-  <summary>Why? 📝</summary>
-  ...
+  <summary>Why?</summary>
+  Functional components are easier to read and write. They're also more performant than class components. Additionally, we
+  can make use of React Hooks.
 </details>
 
 ---
 
-- Import types with `import type { ... } from ...` syntax.
+- import types with `import type { ... } from ...` syntax
 
 ```typescript
 // ❌
@@ -50,18 +63,20 @@ import type { NewType } from ...
 
 ---
 
-- Check size of imports (i.e. with VSCode plugin [import costs](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost)) and reduce where possible (green is fine, red should be reviewed)
+- check size of imports (i.e. with VSCode plugin
+  [import costs](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost)) and reduce where possible
+  (green is fine, red should be reviewed)
 
 ![Import Cost Valid](/images/import-cost-green.png)
 
 <details>
-  <summary>Why? 📝</summary>
-  ...
+  <summary>Why?</summary>
+  It helps reducing the bundle size of your JavaScript code. The smaller the bundle size, the faster the page loads.
 </details>
 
 ---
 
-- Use function declaration syntax instead of arrow function syntax.
+- use function declaration syntax instead of arrow function syntax.
 
 ```tsx
 // ❌
@@ -71,28 +86,36 @@ const NewComponent = (...) => { ... }
 function NewComponent(...) { ... }
 ```
 
+<details>
+  <summary>Why?</summary>
+  It's easier to read and identify a piece of code as function.
+</details>
+
 ---
 
-- Export the functional component as named export (`export function MyComponent(...)`).
+- export the functional component as default export (`export default MyComponent`) and at the bottom of the file
+
 
 ```tsx
 // ❌
-export default function NewComponent(...) { ... }
+export function NewComponent(...) { ... }
 
 // ✅
-export function NewComponent(...) { ... }
+function NewComponent(...) { ... }
+...
+export default function NewComponent
 ```
 
 <details>
 <summary>Why?</summary>
 
-Exporting functions, variables and types via the named export syntax has the advantage of automatic bulk-renaming if needed.
+Next.js needs a React component to be exported via `export default`.
 
 </details>
 
 ---
 
-- Type the component's props with a TypeScript `type` and destructure them where possible.
+- type the component's props with a TypeScript `type` and destructure them where possible.
 
 ```tsx
 // ❌
@@ -102,24 +125,23 @@ function NewComponent(cmpProps: { username: string; age: number; }) { ... }
 function NewComponent({ username, age }: { username: string; age: number; }) { ... }
 
 // ✅
-// types.ts
-type NewComponentProps = {
-  username: string;
-  age: number;
+type Props = {
+  username: string
+  age: number
 }
 
 // NewComponent.tsx
-function NewComponent({ username, age }: NewComponentProps) { ... }
+function NewComponent({ username, age }: Props) { ... }
 ```
 
 <details>
-  <summary>Why? 📝</summary>
-  ...
+  <summary>Why?</summary>
+  Reducec the amount of code and increases the readability.
 </details>
 
 ---
 
-- Specify the return type of a component.
+- specify the return type of a component.
 
 ```tsx
 // ❌
@@ -133,22 +155,24 @@ function NewComponent(...): JSX.Element { ... }
 <summary>Why?</summary>
 
 By specifying the concret return type, TypeScript will give you an error if you accidentally return a wrong type.
-Additionally, it increases the consistency of always specifying the return type of functions throughout the codebase and provides a better readability if you can directly recognize what a function returns.
+Additionally, it increases the consistency of always specifying the return type of functions throughout the codebase and
+provides a better readability if you can directly recognize what a function returns.
 
 </details>
 
 ---
 
-- Declare types in a separate file on the same level as the component inside a `types.ts` file.
+- declare types specific to a file inside the file at the top (like `type Props`)
 
 <details>
-  <summary>Why? 📝</summary>
-  ...
+  <summary>Why?</summary>
+  Here we apply the [tightly-coupled architecture](https://nordicapis.com/the-difference-between-tight-coupling-and-loose-coupling/).
 </details>
 
 ---
 
-- Logic that belongs together should live as close together as possible and they should be separated through a blank line.
+- logic that belongs together should live as close together as possible and they should be separated through a blank
+  line.
 
 ```tsx
 // ❌
@@ -186,10 +210,10 @@ function NewComponent(...): JSX.Element {
   return (
     <div>
       <div>
-        <h2> Foo </h2>
+        <h2>Foo</h2>
       </div>
       <div>
-        <h3> Bar </h3>
+        <h3>Bar</h3>
       </div>
     </div>
   )
@@ -200,11 +224,11 @@ function NewComponent(...): JSX.Element {
   return (
     <div>
       <div>
-        <h2> Foo </h2>
+        <h2>Foo</h2>
       </div>
 
       <div>
-        <h3> Bar </h3>
+        <h3>Bar</h3>
       </div>
     </div>
   )
@@ -213,33 +237,24 @@ function NewComponent(...): JSX.Element {
 
 ---
 
-- Lazy load components if it makes sense.
-
-<details>
-  <summary>Why? 📝</summary>
-  ...
-</details>
-
----
-
-- All texts are replaced with a corresponding `i18n` variable.
+- all texts are replaced with a corresponding `i18n` variable
 
 ```tsx
 // ❌
-<h3> Login </h3>
+<h3>Login</h3>
 
 // ✅
-<h3> {t('login.title')} </h3>
+<h3>{t('login.title')}</h3>
 ```
 
 <details>
-  <summary>Why? 📝</summary>
-  ...
+  <summary>Why?</summary>
+  To prevent hard coded strings inside the code and have only one source-of-truth for all your translations.
 </details>
 
 ---
 
-- Do not use TypeScript `any`.
+- avoid `any` where possible
 
 ```tsx
 // ❌
@@ -250,14 +265,10 @@ function NewComponent(...): JSX.Element {
 }
 
 // ✅
-// types.ts
-export type User = {
+type User = {
   name: string
   email: string
 }
-
-// NewComponent.tsx
-import type { User } from './types'
 
 function NewComponent(...): JSX.Element {
   const { t } = useTranslation()
@@ -268,84 +279,59 @@ function NewComponent(...): JSX.Element {
 
 <details>
   <summary>Why?</summary>
-  By telling TypeScript that a variable or function is of type `any` you disable
-  TypeScript for it and don't get any type-safety anymore. Some typing is hard, we
-  all know that, but at least ask for help and don't go the simple and insecure way.
+  By telling TypeScript that a variable or function is of type `any` you disable TypeScript for it and don't get any type-safety
+  anymore. Some typing is hard, we all know that, but at least ask for help and don't go the simple and insecure way.
 </details>
 
 ---
 
-- Treat server requests as sensible.
+- treat server requests as sensible
 
 <details>
   <summary>Why?</summary>
-  Double-check if you make unnecessary or too many server requests caused by a suboptimal
-  implementation. It could led to a bad performance and UX.
+  Double-check if you make unnecessary or too many server requests caused by a suboptimal implementation. It could led to
+  a bad performance and UX.
 </details>
 
 ---
 
-- Provide feedback for every write, delete, update operation.
+- provide feedback for every write, delete, update operation
 
 <details>
-  <summary>Why?</summary>A good UX consists of proper user feedback i.e.
-  notifications. That gives the user confidence that his action was successful
-  or has failed.
+  <summary>Why?</summary>A good UX consists of proper user feedback i.e. notifications. That gives the user confidence
+  that his action was successful or has failed.
 </details>
 
 ---
 
-- Use proper code formatting via Prettier & linting via ESLint.
-
-<details>
-  <summary>Why?</summary>
-  Tools like Prettier (semantic) and ESLint (syntax) ensure a consistent codebase
-  and keep readability on a high level.
-</details>
-
----
-
-- Check console (browser and terminal) for any errors or warnings.
+- use proper code formatting via Prettier & linting via ESLint
 
 <details>
   <summary>Why?</summary>
-  Even though your implementation is fine, a warning or even an error can occur.
-  Sometimes they're not reflected in the UI but in the console.
+  Tools like Prettier (semantic) and ESLint (syntax) ensure a consistent codebase and keep readability on a high level.
 </details>
 
-## Checklist
+---
 
--
+- check console (browser and terminal) for any errors or warnings
 
-- [ ] The files and folder structure is tightly coupled.
-
-- [ ] The name of the component is equal to the file name and both are written in PascalCase.
-- [ ] The component is a functional component.
-- [ ] Types are imported with the correct syntax.
-- [ ] The size of the imports has been calculated and is ok (green).
-- [ ] All functions are declared with function declaration.
-- [ ] The component is exported as named export.
-- [ ] All props are typed correctly and destructured.
-- [ ] The return type of the component is specified.
-- [ ] All types are declared in a seperate file inside the component.
-- [ ] `any` is not used in type declaration.
-- [ ] Logic that belonges together is grouped together and separated by a blank line.
-- [ ] JSX Elements, that have the same indentation are separated by a blank line.
-- [ ] Lazy loading of imported components is implemented if it makes sense.
-- [ ] All texts are replaced with a corresponding `i18n` variable.
-- [ ] Server requests are treated as sensible.
-- [ ] Feedback is provided for the user for every write, delete and update operation.
-- [ ] The code is formatted and linted properly via Prettier & ESLint.
-- [ ] The console does not show any errors or warnings.
+<details>
+  <summary>Why?</summary>
+  Even though your implementation is fine, a warning or even an error can occur. Sometimes they're not reflected in the UI
+  but in the console.
+</details>
 
 ## Example
 
 ```tsx
 // NewComponent.tsx
+import { User } from 'your-types-package'
 
-import type { User } from './types'
+type Props = {
+  onSave: () => void
+}
 
-export function NewComponent({name, email}: User): JSX.Element {
+export function NewComponent({onSave}: Props): JSX.Element {
   const { t } = useTranslation()
 
   const [user, setUser] = useState<User>({ name: '', email: '' })
@@ -357,16 +343,17 @@ export function NewComponent({name, email}: User): JSX.Element {
     ...
     setToggleColorTheme('dark')
     ...
+    onSave()
   }
 
     return (
     <div>
       <div>
-        <h2> {t('newComponent.title')} </h2>
+        <h2>{t('newComponent.title')}</h2>
       </div>
 
       <div>
-        <h3> {name} </h3>
+        <h3>{name}</h3>
       </div>
     </div>
   )
