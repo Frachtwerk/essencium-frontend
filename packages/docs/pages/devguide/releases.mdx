@@ -1,9 +1,17 @@
-### Build a new release
+# Releases
 
-A build can be created by executing the command `pnpm build`. Behind this command, `nx` takes control and builds all packages inside of the monorepo. All TypeScript files get transpiled to JavaScript files, and afterwards, these files get bundled with [Rollup](https://rollupjs.org/guide/en/) for production. A new folder `dist` is created holding the build artifact that can be distributed in each package.
+## CI/CD
 
-### Releasing a new version
+Releases are managed by [release-please](https://github.com/googleapis/release-please) and inside the CI/CD pipeline.
+Release-please recognizes changes and parses the commit messages (via
+[`conventional-commits`](https://www.conventionalcommits.org/)) to determine the next version. Also, it generates a
+changelog for each package. A new Git tag is created, and the release is published to the `npm` registry (`lib` and
+`types` packages).
 
-Currently, the release process is pretty minimalistic. The developer must bump the `version` field inside the root `package.json` file and commit the change. Then, a Github Action workflow is triggered and synces all versions of each `packages.json` file in the packages to the version stated inside the root `package.json` and releases the packages on npm.
+## Manual Build
 
-In the current state of Essencium we sync all package versions instead of incrementing each version independently. The leading version is always inside the root `package.json` file.
+A build can be created by executing the command `pnpm build`. Behind this command, [`nx`](https://nx.dev/) takes control
+and builds all packages inside of the monorepo as well as the Next.js application which is built statically. All
+TypeScript files get transpiled to JavaScript files, and afterwards, these files get bundled with
+[Rollup](https://rollupjs.org/guide/en/) for production. A new folder `dist` or `.next` (for the `app` package) is
+created holding the build artifacts that can be distributed.
