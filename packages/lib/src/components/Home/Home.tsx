@@ -1,26 +1,13 @@
-import {
-  Button,
-  Center,
-  Container,
-  Flex,
-  Stack,
-  useMantineTheme,
-} from '@mantine/core'
+import { Button, Center, Container, Flex, Stack } from '@mantine/core'
 import { openSpotlight } from '@mantine/spotlight'
-import {
-  IconBrandReact,
-  IconSearch,
-  IconUserEdit,
-  IconUsers,
-} from '@tabler/icons-react'
+import { IconSearch, IconUserEdit, IconUsers } from '@tabler/icons-react'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
 export function Home(): JSX.Element {
   const { t } = useTranslation()
   const router = useRouter()
-
-  const theme = useMantineTheme()
 
   return (
     <Center
@@ -30,15 +17,17 @@ export function Home(): JSX.Element {
       }}
     >
       <Flex direction="column" gap="lg">
-        <Center>
-          <IconBrandReact
-            size={220}
-            color={
-              theme.colorScheme === 'dark'
-                ? theme.colors.gray[5]
-                : theme.colors.gray[1]
-            }
-            strokeWidth={1}
+        <Center
+          my="xl"
+          sx={{
+            opacity: 1,
+          }}
+        >
+          <Image
+            src="/img/web/emblem_400x400px.svg"
+            alt="Essencium Logo"
+            width={200}
+            height={200}
           />
         </Center>
 
