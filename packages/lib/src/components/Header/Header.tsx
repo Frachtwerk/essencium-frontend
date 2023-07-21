@@ -7,11 +7,9 @@ import {
   Group,
   Header as MantineHeader,
   MediaQuery,
-  Text,
   useMantineTheme,
 } from '@mantine/core'
 import NextLink from 'next/link'
-import { useTranslation } from 'next-i18next'
 
 import { SearchBar } from './components/SearchBar'
 import { ThemeSelector } from './components/ThemeSelector'
@@ -32,8 +30,6 @@ export function Header({
   version,
   user,
 }: Props): JSX.Element {
-  const { t } = useTranslation()
-
   const theme = useMantineTheme()
 
   return (
@@ -59,12 +55,6 @@ export function Header({
           <Group spacing="xs" noWrap align="center">
             <NextLink href="/">
               <Box>{logo}</Box>
-            </NextLink>
-
-            <NextLink href="/" style={{ textDecoration: 'none' }}>
-              <Text size={21} mr="10" weight="500" color={theme.black}>
-                {t('header.title')}
-              </Text>
             </NextLink>
 
             {version ? (

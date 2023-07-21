@@ -4,17 +4,12 @@ import React from 'react'
 
 const config: DocsThemeConfig = {
   logo: (
-    <>
-      <img
-        src="/icon-512.png"
-        alt="Essencium Logo"
-        width="25px"
-        height="auto"
-      />
-      <span style={{ marginLeft: '.4em', fontWeight: 800 }}>
-        Essencium Docs
-      </span>
-    </>
+    <img
+      src="/logotype_400x100px.svg"
+      alt="Essencium Logo"
+      width="150px"
+      height="auto"
+    />
   ),
   head: function useHead() {
     return (
