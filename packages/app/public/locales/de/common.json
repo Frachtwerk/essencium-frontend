@@ -3,6 +3,7 @@
   "en": "Englisch",
   "header": {
     "title": "Essencium",
+    "logo": "Essencium Logo",
     "spotlight": {
       "placeholder": "Suchen ...",
       "nothingFound": "Nichts gefunden"
@@ -128,7 +129,10 @@
       }
     },
     "contactPersonCard": {
-      "title": "Ihr Ansprechpartner"
+      "title": "Ihr Ansprechpartner",
+      "avatar": {
+        "alt": "Ansprechpartner Avatar"
+      }
     }
   },
   "loginView": {
