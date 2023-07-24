@@ -17,12 +17,7 @@ export function Home(): JSX.Element {
       }}
     >
       <Flex direction="column" gap="lg">
-        <Center
-          my="xl"
-          sx={{
-            opacity: 1,
-          }}
-        >
+        <Center my="xl">
           <Image
             src="/img/web/emblem_400x400px.svg"
             alt="Essencium Logo"
