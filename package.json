@@ -44,6 +44,7 @@
     "@commitlint/cli": "17.4.4",
     "@commitlint/config-conventional": "17.4.4",
     "@faker-js/faker": "7.6.0",
+    "@frachtwerk/essencium-prettier-config": "workspace:*",
     "@frachtwerk/essencium-types": "workspace:*",
     "@nrwl/eslint-plugin-nx": "15.8.6",
     "@types/fs-extra": "11.0.1",

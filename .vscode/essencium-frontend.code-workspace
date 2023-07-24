@@ -18,6 +18,10 @@
     {
       "name": "types",
       "path": "../packages/types"
+    },
+    {
+      "name": "prettier-config",
+      "path": "../packages/prettier-config"
     }
   ],
   "settings": {
