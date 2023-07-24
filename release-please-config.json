@@ -4,7 +4,8 @@
     "packages/types": {},
     "packages/lib": {},
     "packages/docs": {},
-    "packages/app": {}
+    "packages/app": {},
+    "packages/prettier-config": {}
   },
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
 }
