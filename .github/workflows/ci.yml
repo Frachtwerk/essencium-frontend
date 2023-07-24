@@ -248,11 +248,16 @@ jobs:
           path: packages/types/dist
 
       - name: Publish 'lib' package
-        run: pnpm publish --filter "@frachtwerk/essencium-lib" --access public --no-git-checks
+        run: pnpm publish --filter "@frachtwerk/essencium-lib" --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish 'types' package
-        run: pnpm publish --filter "@frachtwerk/essencium-types" --access public --no-git-checks
+        run: pnpm publish --filter "@frachtwerk/essencium-types" --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish 'prettier-config' package
+        run: pnpm publish --filter "@frachtwerk/essencium-prettier-config" --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
