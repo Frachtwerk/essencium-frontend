@@ -20,7 +20,7 @@ export function Home(): JSX.Element {
         <Center my="xl">
           <Image
             src="/img/web/emblem_400x400px.svg"
-            alt="Essencium Logo"
+            alt={t('header.logo')}
             width={200}
             height={200}
           />

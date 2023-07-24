@@ -26,7 +26,7 @@ export function ProfileOverviewCard({ user }: Props): JSX.Element {
           size="xl"
           radius="xl"
           src={null}
-          alt="no image here"
+          alt={`${user.firstName} ${user.lastName} avatar`}
           color={theme.colors.blue[6]}
         >
           <IconUser size={50} />

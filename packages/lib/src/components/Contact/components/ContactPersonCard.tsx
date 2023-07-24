@@ -35,7 +35,7 @@ export function ContactPersonCard(): JSX.Element {
           radius="xl"
           mt="xs"
           src={null}
-          alt="User avatar"
+          alt={String(t('contactView.contactPersonCard.avatar.alt'))}
           color="indigo"
         />
 
