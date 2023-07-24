@@ -183,10 +183,11 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
             user={user}
             logo={
               <Image
-                src="/img/web/icon-192.png"
-                alt="Essencium Logo"
-                width={30}
-                height={30}
+                src="/img/web/logotype_400x100px.svg"
+                alt={t('header.logo')}
+                width={150}
+                height={37.5}
+                style={{ verticalAlign: 'initial' }}
               />
             }
           />
