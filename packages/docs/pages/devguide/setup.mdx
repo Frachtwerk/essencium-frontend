@@ -1,5 +1,3 @@
-import { Callout } from 'nextra-theme-docs'
-
 ### Prerequisites
 
 The repository requires Node version 18, which is in [LTS](https://github.com/nodejs/release#release-schedule) until
@@ -18,42 +16,4 @@ need to convert the lockfile accordingly.
 
 Before the setup is complete, you need to run `pnpm setup-env` inside the root. The script will automatically install
 all dependencies and enables [Husky](https://typicode.github.io/husky) hooks for `pre-commit` and `commit-msg` linting.
-
-#### `pre-commit` hook
-
-<Callout type="warning" emoji="⚠️">
-  If the hook fails, the commit will be aborted.
-</Callout>
-
-To ensure a consistent code style, the `pre-commit` hook runs [ESLint](https://eslint.org/) using the following
-**rulesets**:
-
-- `airbnb`
-- `airbnb-typescript`
-- `airbnb/hooks`
-- `plugin:react/recommended`
-- `plugin:@typescript-eslint/recommended`
-- `plugin:prettier/recommended`
-
-and the following **plugins**:
-
-- `react`
-- `@typescript-eslint`
-- `prettier`
-- `@nrwl/nx`
-- `simple-import-sort`
-
-To get more details about the rules, visit [Codestyle and Linting](/devguide/codestyle-and-linting) in our docs.
-
-It also runs [Prettier](https://prettier.io/) (in write-mode) and applies the following rules:
-
-```json
-{
-  "semi": false,
-  "singleQuote": true,
-  "arrowParens": "avoid",
-  "bracketSpacing": true
-}
-```
-
-At last, it sorts all `package.json` files via [`sort-package-json`](https://github.com/keithamus/sort-package-json).
+More about the hooks can be read [here](/devguide/commits).

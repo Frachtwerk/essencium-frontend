@@ -1,0 +1,12 @@
+# New page
+
+To create a new page, go into the `pages` folder and create a new folder called like the path of the URL since we use
+[Next.js file-system router](https://nextjs.org/docs/pages) i.e. `users`. Inside this folder, create a file called
+`index.tsx` which is the entrypoint for your route.
+
+You can create further sub-pages by creating a new folder on the level of the `index.tsx`. For example, if you want to
+create a new sub-page under `/users`, you can create a folder called `add` and create another file called `index.tsx`
+inside it. This will create a new route `/users/add`. More details can be inside the
+[Next.js docs](https://nextjs.org/docs). If the folder name contains more than one word, use `-` to separate them, i.e. `general-settings` in order to build up a consistent folder structure that is close the the one inside the `pages` directory.
+
+![New Page Structure](/images/new-page-structure.png)

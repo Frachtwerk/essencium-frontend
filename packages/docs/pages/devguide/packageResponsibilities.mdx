@@ -6,27 +6,35 @@ Currently, we have the following packages:
 - `app`
 - `docs`
 - `lib`
+- `types`
 
 The challenge is to maintain separation of concerns for each package. The following sections list the responsibilities of each package.
 
 ## `app`
 
-- the main application that consumes the `lib` package
-- React views that import components from `lib`
+- the main application that consumes the `lib` & `types` package
+- Next.js pages that import components from `lib`
 - API implementation
 - application state
-- routing
-- error logging
+- routing (via [Next.js pages router](https://nextjs.org/docs/pages))
+- error logging (via [Sentry](https://sentry.io/))
+- E2E tests (via [Playwright](https://playwright.dev/))
 
-## `docs`
+## `docs` (this)
 
 - documentation for the whole Essencium project
 - getting started
-- devguide
-- styleguide
-- changelog
+- architecture
+- development guide
+- style guide
 
 ## `lib`
 
-- single React components with their types
+- single Next.js components
 - specific hooks
+- specific utility functions
+
+## `types`
+
+- shared types ('shared' means types that are used in `app` and `lib` together)
+- zod schemas

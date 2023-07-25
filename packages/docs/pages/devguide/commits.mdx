@@ -1,3 +1,21 @@
-[`Commitlint`](https://commitlint.js.org/#/) makes sure you are following the rules of [`conventional-commits`](https://www.conventionalcommits.org/) (`type(scope?): message`). In combination with [`husky`](https://typicode.github.io/husky/#/) we can use the the Git `commit-msg` hook to lint the commit message.
+# Commits
 
-If the commit message doesn’t follow the convention of conventional-commits, commitlint will error out and husky gives you an idea of what is wrong.
+[`Commitlint`](https://commitlint.js.org/#/) makes sure you are following the rules of
+[`conventional-commits`](https://www.conventionalcommits.org/)
+
+Schema: `<type>(<scope?>): <message>`
+
+In combination with[`husky`](https://typicode.github.io/husky/#/) we can use Git hooks like `pre-commit` and
+`commit-msg` to lint the commit and its message.
+
+## `pre-commit` hook
+
+To ensure a consistent code style, the `pre-commit` hook runs [ESLint](https://eslint.org/). To get more details about
+the rules, visit [Codestyle and Linting](/devguide/codestyle-and-linting#eslint-configuration) in our docs. It also runs
+[Prettier](https://prettier.io/) (in write-mode) and applies [certain rules](/devguide/codestyle-and-linting#rules). At
+last, it sorts all `package.json` files via [`sort-package-json`](https://github.com/keithamus/sort-package-json).
+
+## `commit-msg` hook
+
+If the commit message doesn’t follow the convention of conventional-commits, commitlint will error out and husky gives
+you an idea of what is wrong.

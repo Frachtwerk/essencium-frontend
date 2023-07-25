@@ -1,8 +1,10 @@
 # Types
 
-The monorepo contains a package called `types` which has clear rules which types are included there. Basically, types should live and be exported in the corresponding file where it is initially created.
+The monorepo contains a package called `types` which has clear rules which types are included there. Basically, types
+should live and be exported in the corresponding file where it is initially created.
 
-An example is a type called `Props` that includes some prop types of a component. Initially, we assume the type is only used in this file so it's declared there.
+An example is a type called `Props` that includes some prop types of a component. Initially, we assume the type is only
+used in this file so it's declared there.
 
 ```tsx
 // imported from '@frachtwerk/essencium-types' package because 'UserInput' is used in multiple packages
@@ -23,4 +25,5 @@ type Props = {
 function Profile(props: Props): JSX.Element { ... }
 ```
 
-Sometimes we have a case, where a type is used across multiple packages in the monorepo. This is exactly why the `types` package exists. **It holds all types that are used by more than one package.**
+Sometimes we have a case, where a type is used across multiple packages in the monorepo. This is exactly why the `types`
+package exists. **It holds all types that are used by more than one package.**
