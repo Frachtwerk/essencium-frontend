@@ -202,6 +202,10 @@
       "role": "Role",
       "actions": "Actions",
       "invalidate": "Logout User"
+    },
+    "deleteDialog": {
+      "title": "Delete a user",
+      "text": "Are you sure you want to delete this user?"
     }
   },
   "addUpdateUserView": {
