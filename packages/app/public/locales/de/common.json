@@ -206,6 +206,10 @@
       "role": "Rolle",
       "actions": "Aktionen",
       "invalidate": "Nutzer ausloggen"
+    },
+    "deleteDialog": {
+      "title": "Nutzer löschen",
+      "text": "Wollen Sie diesen Nutzer wirklich löschen?"
     }
   },
   "addUpdateUserView": {

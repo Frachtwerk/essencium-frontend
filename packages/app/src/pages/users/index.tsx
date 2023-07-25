@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {
+  DeleteDialog,
   getTranslation,
   HttpNotification,
   parseSorting,
@@ -24,7 +25,7 @@ import {
   Title,
   useMantineTheme,
 } from '@mantine/core'
-import { useDebouncedValue } from '@mantine/hooks'
+import { useDebouncedValue, useDisclosure } from '@mantine/hooks'
 import {
   IconCheck,
   IconDotsVertical,
@@ -81,6 +82,11 @@ function UsersView(): JSX.Element {
   const { t } = useTranslation()
 
   const theme = useMantineTheme()
+
+  const [deleteModalOpened, deleteModalHandlers] = useDisclosure(false)
+  const [userToBeDeleted, setUserToBeDeleted] = useState<UserOutput | null>(
+    null
+  )
 
   const [activePage, setActivePage] = useState(1)
   const [pageSize, setPageSize] = useState(20)
@@ -153,10 +159,13 @@ function UsersView(): JSX.Element {
   const handleDeleteUser = useCallback(
     (userToDelete: UserOutput) => {
       deleteUser(userToDelete.id, {
-        onSuccess: () => refetchUsers(),
+        onSuccess: () => {
+          refetchUsers()
+          deleteModalHandlers.close()
+        },
       })
     },
-    [deleteUser, refetchUsers]
+    [deleteUser, refetchUsers, deleteModalHandlers]
   )
 
   const { mutate: invalidateToken } = useInvalidateToken()
@@ -261,7 +270,12 @@ function UsersView(): JSX.Element {
                   disabled={isDefaultUser}
                   variant="transparent"
                 >
-                  <IconTrash onClick={() => handleDeleteUser(rowUser)} />
+                  <IconTrash
+                    onClick={() => {
+                      setUserToBeDeleted(rowUser)
+                      deleteModalHandlers.open()
+                    }}
+                  />
                 </ActionIcon>
               ) : null}
 
@@ -317,11 +331,11 @@ function UsersView(): JSX.Element {
     [
       t,
       handleEditUser,
-      handleDeleteUser,
       user,
       theme.colors.gray,
       theme.colorScheme,
       handleInvalidateToken,
+      deleteModalHandlers,
     ]
   )
 
@@ -390,6 +404,20 @@ function UsersView(): JSX.Element {
       </Flex>
 
       <>
+        <DeleteDialog
+          opened={deleteModalOpened}
+          onClose={() => {
+            deleteModalHandlers.close()
+          }}
+          deleteFunction={() => {
+            if (userToBeDeleted) {
+              handleDeleteUser(userToBeDeleted)
+            }
+          }}
+          title={t('usersView.deleteDialog.title')}
+          text={t('usersView.deleteDialog.text')}
+        />
+
         <Table
           tableModel={table}
           onFilterChange={handleFilterChange}
