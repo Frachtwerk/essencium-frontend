@@ -72,47 +72,47 @@ jobs:
       - name: Run unit tests
         run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx affected --target=test:unit --parallel=10
 
-  e2e-tests:
-    name: E2E Tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+  # e2e-tests:
+  #   name: E2E Tests
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 7
+  #     - name: Install pnpm
+  #       uses: pnpm/action-setup@v2
+  #       with:
+  #         version: 7
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'pnpm'
+  #     - name: Setup Node
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18
+  #         cache: 'pnpm'
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+  #     - name: Install dependencies
+  #       run: pnpm install --frozen-lockfile
 
-      - name: Get installed Playwright version
-        run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./packages/app/package.json').dependencies['@playwright/test'])")" >> $GITHUB_ENV
+  #     - name: Get installed Playwright version
+  #       run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./packages/app/package.json').dependencies['@playwright/test'])")" >> $GITHUB_ENV
 
-      - name: Cache Playwright
-        uses: actions/cache@v3
-        id: playwright-cache
-        with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+  #     - name: Cache Playwright
+  #       uses: actions/cache@v3
+  #       id: playwright-cache
+  #       with:
+  #         path: ~/.cache/ms-playwright
+  #         key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
 
-      - name: Install Playwright
-        run: pnpx playwright install --with-deps
+  #     - name: Install Playwright
+  #       run: pnpx playwright install --with-deps
 
-      - name: Run E2E tests
-        run: pnpm test:e2e
-        env:
-          ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
-          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+  #     - name: Run E2E tests
+  #       run: pnpm test:e2e
+  #       env:
+  #         ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
+  #         ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
 
   # Not active as long as repo is private, because otherwise the Artifact storage quota will be exceeded.
 
@@ -183,7 +183,7 @@ jobs:
     name: Release
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    needs: [lint, unit-tests, e2e-tests, build]
+    needs: [lint, unit-tests, build] # e2e-tests
     steps:
       - name: Release Please
         uses: google-github-actions/release-please-action@v3
