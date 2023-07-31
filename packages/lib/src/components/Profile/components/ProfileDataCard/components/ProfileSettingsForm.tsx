@@ -35,7 +35,7 @@ export function ProfileSettingsForm({
 
   const theme = useMantineTheme()
 
-  const { handleSubmit, control, formState, setValue } = useZodForm({
+  const { handleSubmit, control, formState } = useZodForm({
     schema: userUpdateSchema,
     defaultValues: { ...user, role: user.role.name },
   })
@@ -85,8 +85,6 @@ export function ProfileSettingsForm({
             render={({ field }) => (
               <Select
                 {...field}
-                value={String(field.value)}
-                onChange={newVal => setValue(field.name, newVal ?? '')}
                 mb="md"
                 maw="60%"
                 radius="sm"
@@ -94,10 +92,7 @@ export function ProfileSettingsForm({
                 placeholder={String(
                   t('profileView.dataCard.tabs.settings.content.role')
                 )}
-                data={(roles || []).map(role => ({
-                  value: String(role.name),
-                  label: role.name,
-                }))}
+                data={(roles || []).map(role => role.name)}
               />
             )}
           />
