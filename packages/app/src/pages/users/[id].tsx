@@ -20,7 +20,7 @@ function UpdateUserView(): JSX.Element {
 
   const userIdParameter = router.query?.id
 
-  const { data: user } = useGetUser(Number(userIdParameter))
+  const { data: user } = useGetUser(String(userIdParameter))
 
   const {
     handleSubmit,
@@ -37,7 +37,7 @@ function UpdateUserView(): JSX.Element {
     if (user) {
       const parsedUser = userUpdateSchema.parse({
         ...user,
-        role: user.role.id,
+        role: user.role.name,
       })
 
       prefillForm({ ...parsedUser })

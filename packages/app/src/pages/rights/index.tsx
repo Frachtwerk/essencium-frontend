@@ -38,7 +38,7 @@ import { useGetRoles, useUpdateRole } from '@/api/roles'
 import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/next'
 
-const DEFAULT_SORTING: SortingState = [{ id: 'name', desc: false }]
+const DEFAULT_SORTING: SortingState = [{ id: 'authority', desc: false }]
 
 function RightsView(): JSX.Element {
   const { t } = useTranslation()
@@ -86,7 +86,7 @@ function RightsView(): JSX.Element {
   )
 
   const hasRight = useCallback(
-    (rightName: string, roleName: string) => {
+    (rightAuthority: string, roleName: string) => {
       if (!roles?.content) {
         return false
       }
@@ -96,7 +96,9 @@ function RightsView(): JSX.Element {
       if (!matchedRole)
         throw Error(`Role ${roleName} does not exist in ${roles.content}`)
 
-      return matchedRole.rights.some(right => right.name === rightName)
+      return matchedRole.rights.some(
+        right => right.authority === rightAuthority
+      )
     },
     [roles?.content]
   )
@@ -105,20 +107,21 @@ function RightsView(): JSX.Element {
   function getUpdatedRights(
     role: RoleOutput,
     userRight: RightOutput
-  ): RightOutput['id'][] {
+  ): RightOutput[] {
     const rightToUpdate = role.rights.find(
-      right => right.name === userRight.name
+      right => right.authority === userRight.authority
     )
 
     if (rightToUpdate) {
-      return role.rights
-        .filter(right => right.name !== userRight.name)
-        .map(right => right.id)
+      return role.rights.filter(
+        right => right.authority !== userRight.authority
+      )
     }
 
-    return [...role.rights, { name: userRight.name, id: userRight.id }].map(
-      right => right.id
-    )
+    return [
+      ...role.rights,
+      { authority: userRight.authority, description: userRight.description },
+    ]
   }
 
   const columns = useMemo<ColumnDef<RightOutput>[]>(() => {
@@ -144,18 +147,26 @@ function RightsView(): JSX.Element {
             role.name === 'ADMIN' ||
             role.protected ||
             !user?.role.rights
-              .map(right => right.name)
+              .map(right => right.authority)
               .includes(RIGHTS.ROLE_UPDATE)
           ) {
             return (
-              <Checkbox disabled checked={hasRight(rightRow.name, role.name)} />
+              <Checkbox
+                disabled
+                checked={hasRight(rightRow.authority, role.name)}
+              />
             )
           }
 
           return (
             <Checkbox
-              onChange={() => handleUpdateRole(updatedRole)}
-              checked={hasRight(rightRow.name, role.name)}
+              onChange={() =>
+                handleUpdateRole({
+                  ...updatedRole,
+                  rights: updatedRole.rights.map(right => right.authority),
+                })
+              }
+              checked={hasRight(rightRow.authority, role.name)}
             />
           )
         },
@@ -164,7 +175,7 @@ function RightsView(): JSX.Element {
 
     return [
       {
-        accessorKey: 'name',
+        accessorKey: 'authority',
         header: () => <Text>{t('rightsView.table.name')}</Text>,
         cell: info => info.getValue(),
         size: 150,

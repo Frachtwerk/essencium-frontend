@@ -305,12 +305,12 @@ export function UserForm({
               <Select
                 {...field}
                 value={String(field.value)}
-                onChange={newVal => setValue(field.name, Number(newVal))}
+                onChange={newVal => setValue(field.name, newVal ?? '')}
                 radius="sm"
                 label={t('addUpdateUserView.form.role')}
                 placeholder={String(t('addUpdateUserView.form.role'))}
                 data={(roles || []).map(role => ({
-                  value: String(role.id),
+                  value: String(role.name),
                   label: role.name,
                 }))}
                 withAsterisk

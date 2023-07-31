@@ -12,11 +12,11 @@ const sharedPropertiesSchema = z.object({
   mobile: z
     .string()
     .nullable()
-    .transform(value => (value === null ? undefined : value)),
+    .transform(value => (value === null ? '' : value)),
   phone: z
     .string()
     .nullable()
-    .transform(value => (value === null ? undefined : value)),
+    .transform(value => (value === null ? '' : value)),
   source: z.string(),
 })
 
@@ -33,9 +33,10 @@ export type UserOutput = z.infer<typeof userOutputSchema>
 export const userInputSchema = sharedPropertiesSchema.merge(
   z.object({
     password: z.string().optional(),
-    role: roleOutputSchema.shape.id.refine(
+    role: roleOutputSchema.shape.name.refine(
       role =>
-        role !== undefined && roleOutputSchema.shape.id.safeParse(role).success,
+        role !== undefined &&
+        roleOutputSchema.shape.name.safeParse(role).success,
       {
         message: 'validation.role.isRequired',
       }
@@ -48,9 +49,10 @@ export type UserInput = z.infer<typeof userInputSchema>
 export const userUpdateSchema = userOutputSchema.merge(
   z.object({
     password: z.string().optional(),
-    role: roleOutputSchema.shape.id.refine(
+    role: roleOutputSchema.shape.name.refine(
       role =>
-        role !== undefined && roleOutputSchema.shape.id.safeParse(role).success,
+        role !== undefined &&
+        roleOutputSchema.shape.name.safeParse(role).success,
       {
         message: 'validation.role.isRequired',
       }
