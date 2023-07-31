@@ -65,7 +65,7 @@ export const FORM_DEFAULTS = {
   source: 'local',
 }
 
-const DEFAULT_SORTING: SortingState = [{ id: 'id', desc: false }]
+const DEFAULT_SORTING: SortingState = [{ id: 'firstName', desc: false }]
 
 export function removeDuplicates(array: string[] | undefined): string[] {
   if (array) {
@@ -180,13 +180,6 @@ function UsersView(): JSX.Element {
   const columns = useMemo<ColumnDef<UserOutput>[]>(
     () => [
       {
-        accessorKey: 'id',
-        header: () => <Text>{t('usersView.table.id')}</Text>,
-        cell: info => info.getValue(),
-        size: 60,
-        enableColumnFilter: false,
-      },
-      {
         accessorKey: 'enabled',
         header: () => <Text>{t('usersView.table.active')}</Text>,
         cell: info => (info.getValue() ? <IconCheck /> : <IconX />),
@@ -251,7 +244,7 @@ function UsersView(): JSX.Element {
           return (
             <Flex direction="row" gap="xs">
               {user?.role.rights
-                .map(right => right.name)
+                .map(right => right.authority)
                 .includes(RIGHTS.USER_UPDATE) ? (
                 <ActionIcon
                   size="sm"
@@ -263,7 +256,7 @@ function UsersView(): JSX.Element {
               ) : null}
 
               {user?.role.rights
-                .map(right => right.name)
+                .map(right => right.authority)
                 .includes(RIGHTS.USER_DELETE) ? (
                 <ActionIcon
                   size="sm"
@@ -280,7 +273,7 @@ function UsersView(): JSX.Element {
               ) : null}
 
               {user?.role.rights
-                .map(right => right.name)
+                .map(right => right.authority)
                 .includes(RIGHTS.USER_UPDATE) ? (
                 <Popover width={130} position="bottom" withArrow shadow="sm">
                   <Popover.Target>
@@ -381,16 +374,14 @@ function UsersView(): JSX.Element {
 
         <Flex ml="xl" align="center" gap="xs">
           {user?.role.rights
-            .map(right => right.name)
+            .map(right => right.authority)
             .includes(RIGHTS.USER_CREATE) ? (
-            <Button>
-              <NextLink
-                style={{ textDecoration: 'none', color: 'white' }}
-                href="/users/add"
-              >
-                {t('usersView.action.add')}
-              </NextLink>
-            </Button>
+            <NextLink
+              style={{ textDecoration: 'none', color: 'white' }}
+              href="/users/add"
+            >
+              <Button>{t('usersView.action.add')}</Button>
+            </NextLink>
           ) : null}
           <Button
             variant="light"

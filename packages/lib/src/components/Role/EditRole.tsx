@@ -57,7 +57,7 @@ export function EditRole({
     if (role) {
       const parsedRole = roleUpdateSchema.parse({
         ...role,
-        rights: role.rights.map(right => right.id),
+        rights: role.rights.map(right => right.authority),
       })
 
       prefillForm({ ...parsedRole })

@@ -1,5 +1,6 @@
 import {
   UserOutput,
+  userOutputSchema,
   UserUpdate,
   userUpdateSchema,
 } from '@frachtwerk/essencium-types'
@@ -27,7 +28,7 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
 
   const { handleSubmit, control, formState } = useZodForm({
     schema: userUpdateSchema,
-    defaultValues: { ...user, role: user.role.id },
+    defaultValues: { ...userOutputSchema.parse(user), role: user.role.name },
   })
 
   function onSubmit(updatedUser: UserUpdate): void {

@@ -105,8 +105,8 @@ function RolesView(): JSX.Element {
     refetchRoles()
   }, [refetchRoles])
 
-  function handleDeleteRole(roleId: RoleOutput['id']): void {
-    deleteRole(roleId, {
+  function handleDeleteRole(roleName: RoleOutput['name']): void {
+    deleteRole(roleName, {
       onSuccess: () => {
         deleteModalHandlers.close()
         handleRefetch()
@@ -121,7 +121,7 @@ function RolesView(): JSX.Element {
     createRole(
       {
         ...roleData,
-        rights: [...selectedRights.map(right => right.id)],
+        rights: selectedRights.map(right => right.authority),
       },
       {
         onSuccess: () => {
@@ -139,7 +139,7 @@ function RolesView(): JSX.Element {
     updateRole(
       {
         ...roleData,
-        rights: [...selectedRights.map(right => right.id)],
+        rights: selectedRights.map(right => right.authority),
       },
       {
         onSuccess: () => {
@@ -154,8 +154,10 @@ function RolesView(): JSX.Element {
   }
 
   function toggleRight(right: RightOutput): void {
-    if (selectedRights.some(r => r.id === right.id)) {
-      setSelectedRights(selectedRights.filter(r => r.id !== right.id))
+    if (selectedRights.some(r => r.authority === right.authority)) {
+      setSelectedRights(
+        selectedRights.filter(r => r.authority !== right.authority)
+      )
     } else {
       setSelectedRights([...selectedRights, right])
     }
@@ -183,7 +185,7 @@ function RolesView(): JSX.Element {
           <>
             {(info.getValue() as RightOutput[]).map((right: RightOutput) => (
               <Badge
-                key={right.id}
+                key={right.authority}
                 sx={{
                   backgroundColor: theme.colors.gray[2],
                   color: theme.colors.gray[8],
@@ -192,7 +194,7 @@ function RolesView(): JSX.Element {
                 }}
                 style={{ margin: 3 }}
               >
-                {right.name}
+                {right.authority}
               </Badge>
             ))}
           </>
@@ -210,7 +212,7 @@ function RolesView(): JSX.Element {
           return (
             <Flex direction="row" gap="xs">
               {user?.role.rights
-                .map(right => right.name)
+                .map(right => right.authority)
                 .includes(RIGHTS.RIGHT_UPDATE) && rowRole.editable === true ? (
                 <ActionIcon size="sm" variant="transparent">
                   <IconPencil
@@ -223,7 +225,7 @@ function RolesView(): JSX.Element {
               ) : null}
 
               {user?.role.rights
-                .map(right => right.name)
+                .map(right => right.authority)
                 .includes(RIGHTS.ROLE_DELETE) && rowRole.protected === false ? (
                 <ActionIcon size="sm" variant="transparent">
                   <IconTrash
@@ -286,7 +288,7 @@ function RolesView(): JSX.Element {
 
         <Flex align="center" gap="xs">
           {user?.role.rights
-            .map(right => right.name)
+            .map(right => right.authority)
             .includes(RIGHTS.ROLE_CREATE) ? (
             <Button onClick={() => addModalHandlers.open()}>
               {t('rolesView.action.add')}
@@ -343,7 +345,7 @@ function RolesView(): JSX.Element {
         }}
         deleteFunction={() => {
           if (roleToEditOrDelete) {
-            handleDeleteRole(roleToEditOrDelete?.id)
+            handleDeleteRole(roleToEditOrDelete?.name)
           }
         }}
         title={t('rolesView.deleteDialog.title')}

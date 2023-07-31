@@ -33,7 +33,6 @@ export function UserForm({
   roles,
   control,
   formState,
-  setValue,
   onSubmit,
 }: Props): JSX.Element {
   const { t } = useTranslation()
@@ -304,15 +303,10 @@ export function UserForm({
             render={({ field }) => (
               <Select
                 {...field}
-                value={String(field.value)}
-                onChange={newVal => setValue(field.name, Number(newVal))}
                 radius="sm"
                 label={t('addUpdateUserView.form.role')}
                 placeholder={String(t('addUpdateUserView.form.role'))}
-                data={(roles || []).map(role => ({
-                  value: String(role.id),
-                  label: role.name,
-                }))}
+                data={(roles || []).map(role => role.name)}
                 withAsterisk
               />
             )}

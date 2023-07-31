@@ -64,7 +64,7 @@ importers:
       '@mantine/modals': 6.0.2
       '@mantine/notifications': 6.0.2
       '@mantine/spotlight': 6.0.2
-      '@playwright/test': ^1.36.0
+      '@playwright/test': ^1.36.2
       '@tabler/icons-react': 2.11.0
       '@tanstack/react-query': 4.24.10
       '@tanstack/react-table': 8.7.9
@@ -104,7 +104,7 @@ importers:
       '@mantine/modals': 6.0.2_reujnkpez4ozmj6vonlofpozxe
       '@mantine/notifications': 6.0.2_reujnkpez4ozmj6vonlofpozxe
       '@mantine/spotlight': 6.0.2_reujnkpez4ozmj6vonlofpozxe
-      '@playwright/test': 1.36.0
+      '@playwright/test': 1.36.2
       '@tabler/icons-react': 2.11.0_react@18.2.0
       '@tanstack/react-query': 4.24.10_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-table': 8.7.9_biqbaboplfbrettd7655fr4n2y
@@ -1799,13 +1799,13 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /@playwright/test/1.36.0:
-    resolution: {integrity: sha512-yN+fvMYtiyLFDCQos+lWzoX4XW3DNuaxjBu68G0lkgLgC6BP+m/iTxJQoSicz/x2G5EsrqlZTqTIP9sTgLQerg==}
+  /@playwright/test/1.36.2:
+    resolution: {integrity: sha512-2rVZeyPRjxfPH6J0oGJqE8YxiM1IBRyM8hyrXYK7eSiAqmbNhxwcLa7dZ7fy9Kj26V7FYia5fh9XJRq4Dqme+g==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      '@types/node': 18.14.1
-      playwright-core: 1.36.0
+      '@types/node': 20.3.3
+      playwright-core: 1.36.2
     optionalDependencies:
       fsevents: 2.3.2
     dev: false
@@ -2225,7 +2225,6 @@ packages:
 
   /@types/node/20.3.3:
     resolution: {integrity: sha512-wheIYdr4NYML61AjC8MKj/2jrR/kDQri/CIpVoZwldwhnIrD/j9jIU5bJ8yBKuB2VhpFV7Ab6G2XkBjv9r9Zzw==}
-    dev: true
 
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -7098,8 +7097,8 @@ packages:
       pathe: 1.1.0
     dev: true
 
-  /playwright-core/1.36.0:
-    resolution: {integrity: sha512-7RTr8P6YJPAqB+8j5ATGHqD6LvLLM39sYVNsslh78g8QeLcBs5750c6+msjrHUwwGt+kEbczBj1XB22WMwn+WA==}
+  /playwright-core/1.36.2:
+    resolution: {integrity: sha512-sQYZt31dwkqxOrP7xy2ggDfEzUxM1lodjhsQ3NMMv5uGTRDsLxU0e4xf4wwMkF2gplIxf17QMBCodSFgm6bFVQ==}
     engines: {node: '>=16'}
     hasBin: true
     dev: false
