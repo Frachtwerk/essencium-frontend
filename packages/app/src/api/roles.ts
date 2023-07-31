@@ -86,7 +86,7 @@ export function useUpdateRole(): UseMutationResult<
     mutationKey: ['useUpdateRole'],
     mutationFn: (role: RoleUpdate) =>
       api
-        .put<RoleOutput, RoleUpdate>(`/roles/${role.id}`, role)
+        .put<RoleOutput, RoleUpdate>(`/roles/${role.name}`, role)
         .then(response => response.data),
     onSuccess: () => {
       withBaseStylingShowNotification({
@@ -108,11 +108,11 @@ export function useUpdateRole(): UseMutationResult<
 export function useDeleteRole(): UseMutationResult<
   null,
   AxiosError,
-  RoleOutput['id']
+  RoleOutput['name']
 > {
-  const mutation = useMutation<null, AxiosError, RoleOutput['id']>({
+  const mutation = useMutation<null, AxiosError, RoleOutput['name']>({
     mutationKey: ['useDeleteRole'],
-    mutationFn: (roleId: RoleOutput['id']) =>
+    mutationFn: (roleId: RoleOutput['name']) =>
       api.delete<null>(`/roles/${roleId}`).then(response => response.data),
     onSuccess: () => {
       withBaseStylingShowNotification({

@@ -60,6 +60,7 @@ export function RoleForm({
                 },
               }}
               withAsterisk
+              disabled={Boolean(role)}
             />
           )}
         />
@@ -127,14 +128,16 @@ export function RoleForm({
                   defaultChecked={Boolean(
                     role &&
                       role.rights.length > 0 &&
-                      role?.rights.find(item => item.id === right.id)
+                      role?.rights.find(
+                        item => item.authority === right.authority
+                      )
                   )}
-                  key={right.id}
-                  value={right.id}
+                  key={right.authority}
+                  value={right.authority}
                   variant="light"
                   onClick={() => toggleRight(right)}
                 >
-                  {right.name}
+                  {right.authority}
                 </Chip>
               ))}
             </Flex>

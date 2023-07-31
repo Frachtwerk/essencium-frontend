@@ -37,7 +37,7 @@ export function ProfileSettingsForm({
 
   const { handleSubmit, control, formState, setValue } = useZodForm({
     schema: userUpdateSchema,
-    defaultValues: { ...user, role: user.role.id },
+    defaultValues: { ...user, role: user.role.name },
   })
 
   function onSubmit(data: UserUpdate): void {
@@ -86,7 +86,7 @@ export function ProfileSettingsForm({
               <Select
                 {...field}
                 value={String(field.value)}
-                onChange={newVal => setValue(field.name, Number(newVal))}
+                onChange={newVal => setValue(field.name, newVal ?? '')}
                 mb="md"
                 maw="60%"
                 radius="sm"
@@ -95,7 +95,7 @@ export function ProfileSettingsForm({
                   t('profileView.dataCard.tabs.settings.content.role')
                 )}
                 data={(roles || []).map(role => ({
-                  value: String(role.id),
+                  value: String(role.name),
                   label: role.name,
                 }))}
               />
