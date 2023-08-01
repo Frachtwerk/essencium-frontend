@@ -57,4 +57,4 @@ We encourage suggestions for new features or enhancements that align with the pr
 
 Code reviews are an essential part of maintaining code quality and consistency. Our project follows a peer review process, where designated reviewers provide feedback on submitted pull requests. Once a pull request is approved, one of the project maintainers will merge it. Contributors can expect to receive feedback within a reasonable timeframe, and communication regarding the progress of their contributions will be conducted through the pull request comments.
 
-To ensure smooth collaboration, contributors are not granted direct commit access. However, exceptional contributors who consistently provide valuable contributions may be
+To ensure smooth collaboration, contributors are not granted direct commit access. However, exceptional contributors who consistently provide valuable contributions may be.
