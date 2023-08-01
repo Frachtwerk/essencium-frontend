@@ -37,7 +37,7 @@
     "test:watch": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx run-many --target=test:watch --parallel=10"
   },
   "dependencies": {
-    "@nrwl/nx-cloud": "15.1.1",
+    "@nrwl/nx-cloud": "15.3.5",
     "sort-package-json": "2.5.0"
   },
   "devDependencies": {
