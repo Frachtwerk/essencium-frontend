@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v1.1.0...essencium-types-v1.0.1) (2023-08-01)
+## [2.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v1.1.0...essencium-types-v2.0.0) (2023-08-01)
 
 
 ### ⚠ BREAKING CHANGES
