@@ -1,1 +1,6 @@
-{"packages/types":"1.1.0","packages/lib":"1.1.0","packages/app":"1.2.0","packages/docs":"1.0.0"}
+{
+  "packages/types": "2.0.0",
+  "packages/lib": "2.0.0",
+  "packages/app": "2.0.0",
+  "packages/docs": "1.1.0"
+}
