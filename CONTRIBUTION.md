@@ -6,7 +6,7 @@ Thank you for considering contributing to our project! It's people like you that
 
 ### What are these guidelines for?
 
-These guidelines serve as a reference for contributors, both new and experienced, to understand the expectations and processes involved in contributing to our project. By following these guidelines, we all can pay respect to the time of the mainainers and contributers managing this project and helping you assessing changes and finalize your pull requests.
+These guidelines serve as a reference for contributors, both new and experienced, to understand the expectations and processes involved in contributing to our project. By following these guidelines, we all can pay respect to the time of the maintainers and contributers managing this project and helping you assessing changes and finalize your pull requests.
 
 ### What contributions are we looking for?
 
