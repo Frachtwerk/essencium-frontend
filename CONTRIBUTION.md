@@ -47,7 +47,7 @@ If your contribution requires tests, make sure to include them in your pull requ
 
 ## How to Report a Bug
 
-If you discover a security vulnerability, **do not** open an issue. Instead, please email us at [XXXX](mailto:XXXX) directly, so we can address it promptly and confidentially. For reporting non-security-related bugs, we appreciate if you can use our bug report template, which provides a structured format for gathering essential information to reproduce and understand the issue.
+If you discover a security vulnerability, **do not** open an issue. Instead, please email us at [contact@frachtwerk.de](mailto:contact@frachtwerk.de) directly, so we can address it promptly and confidentially. For reporting non-security-related bugs, we appreciate if you can use our bug report template, which provides a structured format for gathering essential information to reproduce and understand the issue.
 
 ## How to Suggest a Feature or Enhancement
 
