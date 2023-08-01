@@ -203,7 +203,7 @@ importers:
       react-json-tree: 0.18.0
       rimraf: 4.4.0
       rollup: 3.18.0
-      rollup-plugin-dts: 5.2.0
+      rollup-plugin-dts: 5.3.1
       rollup-plugin-peer-deps-external: 2.2.4
       tslib: 2.5.0
       typescript: 4.9.5
@@ -259,7 +259,7 @@ importers:
       react-json-tree: 0.18.0_pmekkgnqduwlme35zpnqhenc34
       rimraf: 4.4.0
       rollup: 3.18.0
-      rollup-plugin-dts: 5.2.0_fn2onl6nbsljlgjr3jlzr6w7we
+      rollup-plugin-dts: 5.3.1_fn2onl6nbsljlgjr3jlzr6w7we
       rollup-plugin-peer-deps-external: 2.2.4_rollup@3.18.0
       tslib: 2.5.0
       typescript: 4.9.5
@@ -275,7 +275,7 @@ importers:
       '@rollup/plugin-typescript': 11.0.0
       '@types/react': 18.0.28
       rollup: 3.18.0
-      rollup-plugin-dts: 5.1.1
+      rollup-plugin-dts: 5.3.1
       rollup-plugin-peer-deps-external: 2.2.4
       tslib: 2.5.0
       typescript: 4.9.5
@@ -287,7 +287,7 @@ importers:
       '@rollup/plugin-typescript': 11.0.0_elyygukqrpnyv7sactoooq5kjq
       '@types/react': 18.0.28
       rollup: 3.18.0
-      rollup-plugin-dts: 5.1.1_fn2onl6nbsljlgjr3jlzr6w7we
+      rollup-plugin-dts: 5.3.1_fn2onl6nbsljlgjr3jlzr6w7we
       rollup-plugin-peer-deps-external: 2.2.4_rollup@3.18.0
       tslib: 2.5.0
       typescript: 4.9.5
@@ -308,6 +308,15 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/highlight': 7.18.6
+
+  /@babel/code-frame/7.22.5:
+    resolution: {integrity: sha512-Xmwn266vad+6DAqEB2A6V/CcZVp62BbwVmcOJc2RPuwih1kw02TjQvWVWlcKGbBPd+8/0V5DEkOcizRGYsspYQ==}
+    engines: {node: '>=6.9.0'}
+    requiresBuild: true
+    dependencies:
+      '@babel/highlight': 7.22.5
+    dev: true
+    optional: true
 
   /@babel/compat-data/7.21.0:
     resolution: {integrity: sha512-gMuZsmsgxk/ENC3O/fRw5QY8A9/uxQbbCEypnLIiYYc/qVJtEV7ouxC3EllIIwNzMqAQee5tanFabWsUOutS7g==}
@@ -430,6 +439,12 @@ packages:
     resolution: {integrity: sha512-awrNfaMtnHUr653GgGEs++LlAvW6w+DcPrOliSMXWCKo597CwL5Acf/wWdNkf/tfEQE3mjkeD1YOVZOUV/od1w==}
     engines: {node: '>=6.9.0'}
 
+  /@babel/helper-validator-identifier/7.22.5:
+    resolution: {integrity: sha512-aJXu+6lErq8ltp+JhkJUfk1MTGyuA4v7f3pA+BJ5HLfNC6nAQ0Cpi9uOquUj8Hehg0aUiHzWQbOVJGao6ztBAQ==}
+    engines: {node: '>=6.9.0'}
+    dev: true
+    optional: true
+
   /@babel/helper-validator-option/7.21.0:
     resolution: {integrity: sha512-rmL/B8/f0mKS2baE9ZpyTcTavvEuWhTTW8amjzXNvYG4AwBsqTLikfXsEofsJEfKHf+HQVQbFOHy6o+4cnC/fQ==}
     engines: {node: '>=6.9.0'}
@@ -453,6 +468,16 @@ packages:
       '@babel/helper-validator-identifier': 7.19.1
       chalk: 2.4.2
       js-tokens: 4.0.0
+
+  /@babel/highlight/7.22.5:
+    resolution: {integrity: sha512-BSKlD1hgnedS5XRnGOljZawtag7H1yPfQp0tdNJCHoH6AZ+Pcm9VvkrK59/Yy593Ypg0zMxH2BxD1VPYUQ7UIw==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      '@babel/helper-validator-identifier': 7.22.5
+      chalk: 2.4.2
+      js-tokens: 4.0.0
+    dev: true
+    optional: true
 
   /@babel/parser/7.21.3:
     resolution: {integrity: sha512-lobG0d7aOfQRXh8AyklEAgZGvA4FShxo6xQbUrrT/cNBPUdIDojlokwJsQyCC/eKia7ifqM0yP+2DRZ4WKw2RQ==}
@@ -1159,6 +1184,10 @@ packages:
 
   /@jridgewell/sourcemap-codec/1.4.14:
     resolution: {integrity: sha512-XPSJHWmi394fuUuzDnGz1wiKqWfo1yXecHQMRf2l6hztTO+nPru658AyDngaBe7isIxEkRsPR3FZh+s7iVa4Uw==}
+    dev: true
+
+  /@jridgewell/sourcemap-codec/1.4.15:
+    resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==}
     dev: true
 
   /@jridgewell/trace-mapping/0.3.17:
@@ -5692,11 +5721,11 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /magic-string/0.29.0:
-    resolution: {integrity: sha512-WcfidHrDjMY+eLjlU+8OvwREqHwpgCeKVBUpQ3OhYYuvfaYCUgcbuBzappNzZvg/v8onU3oQj+BYpkOJe9Iw4Q==}
+  /magic-string/0.30.2:
+    resolution: {integrity: sha512-lNZdu7pewtq/ZvWUp9Wpf/x7WzMTsR26TWV03BRZrXFsv+BI6dy8RAiKgm1uM/kyR0rCfUcqvOlXKG66KhIGug==}
     engines: {node: '>=12'}
     dependencies:
-      '@jridgewell/sourcemap-codec': 1.4.14
+      '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
   /make-dir/3.1.0:
@@ -7558,32 +7587,18 @@ packages:
     resolution: {integrity: sha512-IXgzBWvWQwE6PrDI05OvmXUIruQTcoMDzRsOd5CDvHCVLcLHMTSYvOK5Cm46kWqlV3yAbuSpBZdJ5oP5OUoStg==}
     dev: false
 
-  /rollup-plugin-dts/5.1.1_fn2onl6nbsljlgjr3jlzr6w7we:
-    resolution: {integrity: sha512-zpgo52XmnLg8w4k3MScinFHZK1+ro6r7uVe34fJ0Ee8AM45FvgvTuvfWWaRgIpA4pQ1BHJuu2ospncZhkcJVeA==}
-    engines: {node: '>=v14'}
+  /rollup-plugin-dts/5.3.1_fn2onl6nbsljlgjr3jlzr6w7we:
+    resolution: {integrity: sha512-gusMi+Z4gY/JaEQeXnB0RUdU82h1kF0WYzCWgVmV4p3hWXqelaKuCvcJawfeg+EKn2T1Ie+YWF2OiN1/L8bTVg==}
+    engines: {node: '>=v14.21.3'}
     peerDependencies:
-      rollup: ^3.0.0
-      typescript: ^4.1
+      rollup: ^3.0
+      typescript: ^4.1 || ^5.0
     dependencies:
-      magic-string: 0.27.0
+      magic-string: 0.30.2
       rollup: 3.18.0
       typescript: 4.9.5
     optionalDependencies:
-      '@babel/code-frame': 7.18.6
-    dev: true
-
-  /rollup-plugin-dts/5.2.0_fn2onl6nbsljlgjr3jlzr6w7we:
-    resolution: {integrity: sha512-B68T/haEu2MKcz4kNUhXB8/h5sq4gpplHAJIYNHbh8cp4ZkvzDvNca/11KQdFrB9ZeKucegQIotzo5T0JUtM8w==}
-    engines: {node: '>=v14'}
-    peerDependencies:
-      rollup: ^3.0.0
-      typescript: ^4.1
-    dependencies:
-      magic-string: 0.29.0
-      rollup: 3.18.0
-      typescript: 4.9.5
-    optionalDependencies:
-      '@babel/code-frame': 7.18.6
+      '@babel/code-frame': 7.22.5
     dev: true
 
   /rollup-plugin-peer-deps-external/2.2.4_rollup@3.18.0:
