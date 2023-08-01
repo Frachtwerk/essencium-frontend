@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v1.0.0...essencium-docs-v1.1.0) (2023-08-01)
+
+
+### Features
+
+* add Essencium logo ([f64b087](https://github.com/Frachtwerk/essencium-frontend/commit/f64b0871e76f144a429463886069bd82f8d04f44))
+
 ## 1.0.0 (2023-07-06)
 
 
