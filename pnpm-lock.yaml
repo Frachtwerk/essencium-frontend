@@ -77,14 +77,14 @@ importers:
       dayjs: 1.11.7
       eslint: 8.35.0
       eslint-config-next: 13.4.4
-      i18next: 23.2.11
+      i18next: 22.5.1
       jotai: 2.0.3
       next: 13.4.11
-      next-i18next: 14.0.0
+      next-i18next: 13.3.0
       react: 18.2.0
       react-dom: 18.2.0
       react-hook-form: 7.43.5
-      react-i18next: 13.0.2
+      react-i18next: 12.3.1
       react-json-tree: 0.18.0
       typescript: 4.9.5
       vite: 4.1.4
@@ -115,14 +115,14 @@ importers:
       dayjs: 1.11.7
       eslint: 8.35.0
       eslint-config-next: 13.4.4_ycpbpc6yetojsgtrx3mwntkhsu
-      i18next: 23.2.11
+      i18next: 22.5.1
       jotai: 2.0.3_react@18.2.0
       next: 13.4.11_biqbaboplfbrettd7655fr4n2y
-      next-i18next: 14.0.0_7kkq6fe2t6wimipxxsgiyrmj5e
+      next-i18next: 13.3.0_hpq25ofbijhfwmhrix7yu5soqm
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.43.5_react@18.2.0
-      react-i18next: 13.0.2_ctize4pwwv5bii3bzjqwwlegcq
+      react-i18next: 12.3.1_spyi3zqm3bqfobczid2f6jym6y
       react-json-tree: 0.18.0_pmekkgnqduwlme35zpnqhenc34
       typescript: 4.9.5
       zod: 3.20.6
@@ -192,14 +192,14 @@ importers:
       eslint-plugin-react: 7.32.2
       eslint-plugin-react-hooks: 4.6.0
       happy-dom: 8.9.0
-      i18next: 23.2.11
+      i18next: 22.5.1
       next: 13.4.11
-      next-i18next: 14.0.0
+      next-i18next: 13.3.0
       prettier: 2.8.4
       react: 18.2.0
       react-dom: 18.2.0
       react-hook-form: 7.43.5
-      react-i18next: 13.0.2
+      react-i18next: 12.3.1
       react-json-tree: 0.18.0
       rimraf: 4.4.0
       rollup: 3.18.0
@@ -248,14 +248,14 @@ importers:
       eslint-plugin-react: 7.32.2_eslint@8.35.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.35.0
       happy-dom: 8.9.0
-      i18next: 23.2.11
+      i18next: 22.5.1
       next: 13.4.11_6m24vuloj5ihw4zc5lbsktc4fu
-      next-i18next: 14.0.0_7kkq6fe2t6wimipxxsgiyrmj5e
+      next-i18next: 13.3.0_hpq25ofbijhfwmhrix7yu5soqm
       prettier: 2.8.4
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.43.5_react@18.2.0
-      react-i18next: 13.0.2_ctize4pwwv5bii3bzjqwwlegcq
+      react-i18next: 12.3.1_spyi3zqm3bqfobczid2f6jym6y
       react-json-tree: 0.18.0_pmekkgnqduwlme35zpnqhenc34
       rimraf: 4.4.0
       rollup: 3.18.0
@@ -5046,8 +5046,8 @@ packages:
   /i18next-fs-backend/2.1.5:
     resolution: {integrity: sha512-7fgSH8nVhXSBYPHR/W3tEXXhcnwHwNiND4Dfx9knzPzdsWTUTL/TdDVV+DY0dL0asHKLbdoJaXS4LdVW6R8MVQ==}
 
-  /i18next/23.2.11:
-    resolution: {integrity: sha512-MA4FsxOjyCaOZtRDB4yuwjCvqYEioD4G4LlXOn7SO3rnQUlxTufyLsOqfL9MKakeLRBkefe8bqcs0D6Z/xFk1w==}
+  /i18next/22.5.1:
+    resolution: {integrity: sha512-8TGPgM3pAD+VRsMtUMNknRz3kzqwp/gPALrWMsDnmC1mKqJwpWyooQRLMcbTwq8z8YwSmuj+ZYvc+xCuEpkssA==}
     dependencies:
       '@babel/runtime': 7.22.5
 
@@ -6445,24 +6445,24 @@ packages:
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
-  /next-i18next/14.0.0_7kkq6fe2t6wimipxxsgiyrmj5e:
-    resolution: {integrity: sha512-umv8hOZoSoAA+td3ErfemyO/5Ib2pnYCdQ8/Oy+fncS2skFIL3hHKRer3Oa3Nfm4Xbv5p6DHWzm3NhT1j4tWwg==}
+  /next-i18next/13.3.0_hpq25ofbijhfwmhrix7yu5soqm:
+    resolution: {integrity: sha512-X4kgi51BCOoGdKbv87eZ8OU7ICQDg5IP+T5fNjqDY3os9ea0OKTY4YpAiVFiwcI9XimcUmSPbKO4a9jFUyYSgg==}
     engines: {node: '>=14'}
     peerDependencies:
-      i18next: ^23.0.1
+      i18next: ^22.0.6
       next: '>= 12.0.0'
       react: '>= 17.0.2'
-      react-i18next: ^13.0.0
+      react-i18next: ^12.2.0
     dependencies:
       '@babel/runtime': 7.22.5
       '@types/hoist-non-react-statics': 3.3.1
       core-js: 3.31.0
       hoist-non-react-statics: 3.3.2
-      i18next: 23.2.11
+      i18next: 22.5.1
       i18next-fs-backend: 2.1.5
       next: 13.4.11_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
-      react-i18next: 13.0.2_ctize4pwwv5bii3bzjqwwlegcq
+      react-i18next: 12.3.1_spyi3zqm3bqfobczid2f6jym6y
 
   /next-mdx-remote/4.4.1_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-1BvyXaIou6xy3XoNF4yaMZUCb6vD2GTAa5ciOa6WoO+gAUTYsb1K4rI/HSC2ogAWLrb/7VSV52skz07vOzmqIQ==}
@@ -7219,10 +7219,10 @@ packages:
     dependencies:
       react: 18.2.0
 
-  /react-i18next/13.0.2_ctize4pwwv5bii3bzjqwwlegcq:
-    resolution: {integrity: sha512-NEVxC32v0oR4egwYM0QM0WE93AiJG5r0NTXTL8mhQfAhsMfDS2fSO6jpluyfsfypP988KzUQrAXncspcJ7+GHA==}
+  /react-i18next/12.3.1_spyi3zqm3bqfobczid2f6jym6y:
+    resolution: {integrity: sha512-5v8E2XjZDFzK7K87eSwC7AJcAkcLt5xYZ4+yTPDAW1i7C93oOY1dnr4BaQM7un4Hm+GmghuiPvevWwlca5PwDA==}
     peerDependencies:
-      i18next: '>= 23.2.3'
+      i18next: '>= 19.0.0'
       react: '>= 16.8.0'
       react-dom: '*'
       react-native: '*'
@@ -7234,7 +7234,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.22.5
       html-parse-stringify: 3.0.1
-      i18next: 23.2.11
+      i18next: 22.5.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
 
