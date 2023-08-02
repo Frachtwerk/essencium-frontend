@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v2.0.0...essencium-types-v2.0.1) (2023-08-02)
+
+
+### Bug Fixes
+
+* intentional change to publish new version ([e3c5285](https://github.com/Frachtwerk/essencium-frontend/commit/e3c52854551ec4e2ffe1a4059208e3574f6db8ca))
+
 ## [2.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v1.0.1...essencium-types-v2.0.0) (2023-08-02)
 
 
