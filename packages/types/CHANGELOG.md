@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v1.0.1...essencium-types-v2.0.0) (2023-08-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* refactor code to match backend version
+
+### Features
+
+* add edit & delete functionality to rolesView on nextBranch ([3449b89](https://github.com/Frachtwerk/essencium-frontend/commit/3449b899e607c9f62ca9ec0a285e67c86c42711a))
+
+
+### Bug Fixes
+
+* use same margins as in other views ([2e086b7](https://github.com/Frachtwerk/essencium-frontend/commit/2e086b7379c713fb04f717f1c87f2a5707977628))
+
+
+### Code Refactoring
+
+* refactor code to match backend version ([57d47bf](https://github.com/Frachtwerk/essencium-frontend/commit/57d47bf0eac6a3411acd6d35c12852c056b4b94a))
+
 ## [1.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v2.0.0...essencium-types-v1.0.1) (2023-08-02)
 
 
