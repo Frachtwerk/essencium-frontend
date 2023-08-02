@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v2.0.0...essencium-lib-v2.0.1) (2023-08-02)
+
+
+### Bug Fixes
+
+* downgrade i18n and its deps for react and next ([7fed0e3](https://github.com/Frachtwerk/essencium-frontend/commit/7fed0e34d5f0f3ac73e9aa9fc66f747e833027b2))
+
 ## [2.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v1.1.0...essencium-lib-v2.0.0) (2023-08-01)
 
 
