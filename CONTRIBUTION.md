@@ -1,4 +1,4 @@
-# CONTRIBUTING (WIP, Stand 28.07.2023)
+# CONTRIBUTING
 
 ## Introduction
 
@@ -44,6 +44,20 @@ To submit a contribution, follow these steps:
 5. Open a pull request with a descriptive title and detailed explanation of your changes.
 
 If your contribution requires tests, make sure to include them in your pull request. Provide instructions on how to run the tests, if applicable. Additionally, if there's a different process for submitting "small fixes," we will communicate it to you explicitly.
+
+#### Git Commit Messages
+
+- Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- Use the imperative mood ("Move cursor to..." not "Moves cursor to...")
+- Limit the first line to 72 characters or less
+- Reference issues and pull requests liberally after the first line
+- When only changing documentation, include [ci skip] in the commit title
+
+#### Documentation
+
+- For new or changed features adjust the documentation files in this repository
+- Document changes in [CHANGELOG.md](./CHANGELOG.md)
+- If user need to perform additional steps before upgrading to a version containing your changes describe these in [MIGRATION.md](./MIGRATION.md)
 
 ## How to Report a Bug
 
