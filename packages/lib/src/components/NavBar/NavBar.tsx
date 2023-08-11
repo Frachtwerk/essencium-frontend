@@ -29,7 +29,6 @@ import {
   Stack,
   useMantineTheme,
 } from '@mantine/core'
-import { transitions } from '@mantine/core/lib/Transition/transitions'
 import { IconLogout, IconPinFilled, IconPinnedOff } from '@tabler/icons-react'
 import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
