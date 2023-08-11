@@ -19,13 +19,20 @@
 
 import { NavLink, UserOutput } from '@frachtwerk/essencium-types'
 import {
+  Box,
+  Code,
+  Flex,
+  Group,
+  MediaQuery,
   Navbar,
   NavLink as MantineNavLink,
   Stack,
   useMantineTheme,
 } from '@mantine/core'
-import { IconLogout } from '@tabler/icons-react'
+import { IconLogout, IconPinFilled, IconPinnedOff } from '@tabler/icons-react'
+import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
+import { Dispatch, SetStateAction } from 'react'
 
 import { NavLinks } from './components'
 
@@ -34,54 +41,184 @@ type Props = {
   links: NavLink[]
   user?: UserOutput
   handleLogout: () => void
+  logo: JSX.Element
+  icon: JSX.Element
+  version?: string
+  foldedNav: boolean
+  setFoldedNav: Dispatch<SetStateAction<boolean>>
+  fixedNav: boolean
+  setFixedNav: Dispatch<SetStateAction<boolean>>
 }
 
 export function NavBar({
   isOpen,
   links,
   user,
+  logo,
+  icon,
+  version,
   handleLogout,
+  foldedNav,
+  setFoldedNav,
+  fixedNav,
+  setFixedNav,
 }: Props): JSX.Element {
   const theme = useMantineTheme()
 
   const { t } = useTranslation()
 
-  return (
-    <Navbar
-      hidden={!isOpen}
-      p="sm"
-      hiddenBreakpoint="sm"
-      width={{ sm: 250 }}
-      fixed
-    >
-      <Stack
-        style={{
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-        }}
-      >
-        <Navbar.Section grow>
-          <NavLinks links={links} user={user} />
-        </Navbar.Section>
+  function toggleFixedNav(): void {
+    setFixedNav(fixed => !fixed)
+  }
 
-        <Navbar.Section mt="auto">
-          <MantineNavLink
-            icon={<IconLogout />}
-            label={t('navigation.logout.label')}
-            onClick={() => handleLogout()}
-            styles={{
-              root: {
-                borderRadius: theme.radius.sm,
-              },
-              label: {
-                fontSize: theme.fontSizes.sm,
-              },
+  const width = fixedNav ? '250px' : '80px'
+
+  return (
+    <Box>
+      <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+        <Navbar
+          onMouseEnter={() => {
+            if (!fixedNav) {
+              setFoldedNav(false)
+            }
+          }}
+          onMouseLeave={() => {
+            if (!fixedNav) {
+              setFoldedNav(true)
+            }
+          }}
+          p="sm"
+          hiddenBreakpoint="sm"
+          sx={{
+            width,
+            transition: 'width 0.4s ease-in-out',
+            '&:hover': {
+              width: '250px',
+            },
+          }}
+          height="100%"
+          zIndex={100}
+          fixed
+          mt={isOpen ? '0' : '-3.6rem'}
+        >
+          <Stack
+            style={{
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
             }}
-          />
-        </Navbar.Section>
-      </Stack>
-    </Navbar>
+          >
+            <Navbar.Section mb="xl">
+              <Group spacing="xs" align="center">
+                <NextLink href="/">
+                  {foldedNav ? <Box>{icon}</Box> : <Box>{logo}</Box>}
+                </NextLink>{' '}
+                {version && !foldedNav ? (
+                  <Box>
+                    <Code>{version}</Code>
+
+                    {process.env.NODE_ENV === 'development' && !foldedNav ? (
+                      <Code>{process.env.NODE_ENV}</Code>
+                    ) : null}
+                  </Box>
+                ) : null}
+              </Group>
+            </Navbar.Section>
+
+            <Navbar.Section grow>
+              <NavLinks links={links} user={user} />
+            </Navbar.Section>
+
+            <Navbar.Section mt="auto">
+              <Flex
+                justify={fixedNav && !foldedNav ? 'flex-end' : 'space-between'}
+              >
+                <Box onClick={() => toggleFixedNav()} pl={0} ml="sm" mt="xs">
+                  {fixedNav ? (
+                    <IconPinFilled size={22} />
+                  ) : (
+                    <IconPinnedOff size={22} />
+                  )}
+                </Box>
+              </Flex>
+            </Navbar.Section>
+
+            <Navbar.Section mt="auto" mb="70px">
+              <MantineNavLink
+                icon={<IconLogout />}
+                label={t('navigation.logout.label')}
+                onClick={() => handleLogout()}
+                styles={{
+                  root: {
+                    borderRadius: theme.radius.sm,
+                  },
+                  label: {
+                    fontSize: theme.fontSizes.sm,
+                  },
+                }}
+              />
+            </Navbar.Section>
+          </Stack>
+        </Navbar>
+      </MediaQuery>
+
+      <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+        <Navbar
+          hidden={!isOpen}
+          p="sm"
+          hiddenBreakpoint="sm"
+          height="100%"
+          zIndex={100}
+          fixed
+        >
+          <Stack
+            style={{
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Navbar.Section mb="xl">
+              <Group spacing="xs" align="center">
+                <NextLink href="/">
+                  <Box>{logo}</Box>
+                </NextLink>
+                {version ? (
+                  <Box>
+                    <Code>{version}</Code>
+
+                    {process.env.NODE_ENV === 'development' ? (
+                      <Code>{process.env.NODE_ENV}</Code>
+                    ) : null}
+                  </Box>
+                ) : null}
+              </Group>
+            </Navbar.Section>
+
+            <Navbar.Section grow>
+              <NavLinks links={links} user={user} />
+            </Navbar.Section>
+
+            <Navbar.Section mt="auto" grow>
+              <MantineNavLink
+                icon={<IconLogout />}
+                label={t('navigation.logout.label')}
+                onClick={() => handleLogout()}
+                styles={{
+                  root: {
+                    borderRadius: theme.radius.sm,
+                  },
+                  label: {
+                    fontSize: theme.fontSizes.sm,
+                  },
+                }}
+              />
+            </Navbar.Section>
+          </Stack>
+        </Navbar>
+      </MediaQuery>
+    </Box>
   )
 }
