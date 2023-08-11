@@ -20,6 +20,7 @@
 import { Footer, Header, logout, NavBar } from '@frachtwerk/essencium-lib'
 import { FooterLink, NavLink, RIGHTS } from '@frachtwerk/essencium-types'
 import { AppShell, Box, useMantineTheme } from '@mantine/core'
+import { useMediaQuery } from '@mantine/hooks'
 import type { SpotlightAction } from '@mantine/spotlight'
 import { SpotlightProvider } from '@mantine/spotlight'
 import {
@@ -173,6 +174,18 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
 
   const pageTitle = `${routeName ? `${routeName} -` : ''} Essencium`
 
+  const isNoPhone = useMediaQuery('(min-width: sm)')
+
+  function getSidebarMargin(): string {
+    if (fixedNav) {
+      return '250px'
+    }
+    if (isNoPhone) {
+      return '90px'
+    }
+    return '0px'
+  }
+
   return (
     <SpotlightProvider
       actions={actions}
@@ -223,7 +236,7 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
         header={
           <Header
             user={user}
-            marginLeft={fixedNav ? '250px' : '90px'}
+            marginLeft={getSidebarMargin()}
             isOpen={openedNav}
             handleOpenNav={handleOpenNav}
           />
@@ -231,7 +244,7 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
       >
         <Box
           style={{
-            marginLeft: fixedNav ? '250px' : '90px',
+            marginLeft: getSidebarMargin(),
           }}
         >
           {children}
