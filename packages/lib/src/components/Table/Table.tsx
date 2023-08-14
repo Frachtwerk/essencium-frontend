@@ -125,7 +125,9 @@ export function Table<T>({
                   borderBottom: '2px solid white',
                   borderTop: '2px solid white',
                 }}
-                className={firstColSticky ? 'table__row--bg' : ''}
+                className={`${
+                  firstColSticky ? 'table__row--bg' : ''
+                } table__row--hover`}
               >
                 {row.getVisibleCells().map(cell => (
                   <td
