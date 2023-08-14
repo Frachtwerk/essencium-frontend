@@ -17,6 +17,8 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import './Table.css'
+
 import {
   Flex,
   Select,
@@ -34,6 +36,7 @@ type Props<T> = {
   filterData?: Record<string, Array<string>>
   filterValue?: Record<string, string | null>
   setFilterValue?: Dispatch<SetStateAction<Record<string, string | null>>>
+  firstColSticky?: boolean
 }
 
 export function Table<T>({
@@ -43,6 +46,7 @@ export function Table<T>({
   filterData,
   filterValue,
   setFilterValue,
+  firstColSticky,
 }: Props<T>): JSX.Element {
   const theme = useMantineTheme()
 
@@ -54,7 +58,11 @@ export function Table<T>({
             {tableModel.getHeaderGroups().map(headerGroup => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map(header => (
-                  <th key={header.id} style={{ verticalAlign: 'top' }}>
+                  <th
+                    key={header.id}
+                    style={{ verticalAlign: 'top' }}
+                    className={firstColSticky ? 'table__col--sticky' : ''}
+                  >
                     <Flex
                       align="center"
                       justify="flex-start"
@@ -117,9 +125,14 @@ export function Table<T>({
                   borderBottom: '2px solid white',
                   borderTop: '2px solid white',
                 }}
+                className={firstColSticky ? 'table__row--bg' : ''}
               >
                 {row.getVisibleCells().map(cell => (
-                  <td key={cell.id} width={cell.column.getSize()}>
+                  <td
+                    key={cell.id}
+                    width={cell.column.getSize()}
+                    className={firstColSticky ? 'table__col--sticky' : ''}
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}

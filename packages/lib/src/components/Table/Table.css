@@ -1,0 +1,11 @@
+.table__col--sticky:first-child {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  z-index: 10;
+  background: white;
+}
+
+.table__row--bg:nth-of-type(2n + 1) .table__col--sticky:first-child {
+  background: #f8f9fa;
+}
