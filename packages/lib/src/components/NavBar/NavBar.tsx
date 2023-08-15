@@ -112,7 +112,21 @@ export function NavBar({
             <Navbar.Section mb="xl">
               <Group spacing="xs" align="center">
                 <NextLink href="/">
-                  {foldedNav ? <Box pr={150}>{icon}</Box> : <Box>{logo}</Box>}
+                  {foldedNav ? (
+                    <Box pr={150}>{icon}</Box>
+                  ) : (
+                    <Flex justify="space-between" align="center" gap="xl">
+                      <Box>{logo}</Box>
+
+                      <Box onClick={() => toggleFixedNav()} ml="xl" mt="xs">
+                        {fixedNav ? (
+                          <IconPinFilled size={20} />
+                        ) : (
+                          <IconPinnedOff size={20} />
+                        )}
+                      </Box>
+                    </Flex>
+                  )}
                 </NextLink>
                 {version ? (
                   <Box>
@@ -128,20 +142,6 @@ export function NavBar({
 
             <Navbar.Section grow>
               <NavLinks links={links} user={user} />
-            </Navbar.Section>
-
-            <Navbar.Section mt="auto">
-              <Flex
-                justify={fixedNav && !foldedNav ? 'flex-end' : 'space-between'}
-              >
-                <Box onClick={() => toggleFixedNav()} pl={0} ml="sm" mt="xs">
-                  {fixedNav ? (
-                    <IconPinFilled size={22} />
-                  ) : (
-                    <IconPinnedOff size={22} />
-                  )}
-                </Box>
-              </Flex>
             </Navbar.Section>
 
             <Navbar.Section mt="auto" mb="70px">

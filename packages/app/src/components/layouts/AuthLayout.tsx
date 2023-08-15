@@ -174,7 +174,7 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
 
   const pageTitle = `${routeName ? `${routeName} -` : ''} Essencium`
 
-  const isNoPhone = useMediaQuery('(min-width: sm)')
+  const isNoPhone = useMediaQuery('(min-width: 48em)')
 
   function getSidebarMargin(): string {
     if (fixedNav) {
@@ -218,7 +218,7 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
                 src="/img/web/logotype_400x100px.svg"
                 alt={t('header.logo')}
                 width={150}
-                height={43}
+                height={42.703}
                 style={{ verticalAlign: 'initial' }}
               />
             }
