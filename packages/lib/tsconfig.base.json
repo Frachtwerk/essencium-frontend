@@ -9,6 +9,11 @@
     "sourceMap": false,
     "moduleResolution": "node"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "rollup.config.js"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "rollup.config.js",
+    "./declaration.d.ts"
+  ],
   "exclude": ["dist", "node_modules", ".rollup.cache"]
 }

@@ -16,9 +16,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
-
-import './Table.css'
-
 import {
   Flex,
   Select,
@@ -28,6 +25,8 @@ import {
 import { IconSortAscending2, IconSortDescending2 } from '@tabler/icons-react'
 import { flexRender, Table as TanstackTable } from '@tanstack/react-table'
 import { Dispatch, SetStateAction } from 'react'
+
+import * as styles from './Table.module.css'
 
 type Props<T> = {
   tableModel: TanstackTable<T>
@@ -61,7 +60,7 @@ export function Table<T>({
                   <th
                     key={header.id}
                     style={{ verticalAlign: 'top' }}
-                    className={firstColSticky ? 'table__col--sticky' : ''}
+                    className={firstColSticky && styles.tableColSticky}
                   >
                     <Flex
                       align="center"
@@ -125,15 +124,13 @@ export function Table<T>({
                   borderBottom: '2px solid white',
                   borderTop: '2px solid white',
                 }}
-                className={`${
-                  firstColSticky ? 'table__row--bg' : ''
-                } table__row--hover`}
+                className={firstColSticky && styles.tableRowBg}
               >
                 {row.getVisibleCells().map(cell => (
                   <td
                     key={cell.id}
                     width={cell.column.getSize()}
-                    className={firstColSticky ? 'table__col--sticky' : ''}
+                    className={firstColSticky && styles.tableColSticky}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
