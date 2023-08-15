@@ -29,6 +29,7 @@ import {
   Stack,
   useMantineTheme,
 } from '@mantine/core'
+import { useTimeout } from '@mantine/hooks'
 import { IconLogout, IconPinFilled, IconPinnedOff } from '@tabler/icons-react'
 import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
@@ -67,6 +68,8 @@ export function NavBar({
 
   const { t } = useTranslation()
 
+  const { start, clear } = useTimeout(() => setFoldedNav(false), 270)
+
   function toggleFixedNav(): void {
     setFixedNav(fixed => !fixed)
   }
@@ -79,12 +82,13 @@ export function NavBar({
         <Navbar
           onMouseEnter={() => {
             if (!fixedNav) {
-              setFoldedNav(false)
+              start()
             }
           }}
           onMouseLeave={() => {
             if (!fixedNav) {
               setFoldedNav(true)
+              clear()
             }
           }}
           p="sm"
