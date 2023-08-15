@@ -218,7 +218,7 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
                 src="/img/web/logotype_400x100px.svg"
                 alt={t('header.logo')}
                 width={150}
-                height={42.703}
+                height={50}
                 style={{ verticalAlign: 'initial' }}
               />
             }

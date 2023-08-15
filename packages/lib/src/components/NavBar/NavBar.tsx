@@ -115,23 +115,30 @@ export function NavBar({
           >
             <Navbar.Section mb="xl">
               <Group spacing="xs" align="center">
-                <NextLink href="/">
-                  {foldedNav ? (
-                    <Box pr={150}>{icon}</Box>
-                  ) : (
-                    <Flex justify="space-between" align="center" gap="xl">
-                      <Box>{logo}</Box>
+                <Flex justify="space-between" align="center" gap="xl">
+                  <NextLink href="/">
+                    {foldedNav ? (
+                      <Box pr={150}>{icon}</Box>
+                    ) : (
+                      <Box sx={{ height: '50px' }}>{logo}</Box>
+                    )}
+                  </NextLink>
 
-                      <Box onClick={() => toggleFixedNav()} ml="xl" mt="xs">
-                        {fixedNav ? (
-                          <IconPinFilled size={20} />
-                        ) : (
-                          <IconPinnedOff size={20} />
-                        )}
-                      </Box>
-                    </Flex>
-                  )}
-                </NextLink>
+                  {!foldedNav ? (
+                    <Box
+                      onClick={() => toggleFixedNav()}
+                      ml="xl"
+                      mt="xs"
+                      sx={{ cursor: 'pointer' }}
+                    >
+                      {fixedNav ? (
+                        <IconPinFilled size={20} color="black" />
+                      ) : (
+                        <IconPinnedOff size={20} color="black" />
+                      )}
+                    </Box>
+                  ) : null}
+                </Flex>
                 {version ? (
                   <Box>
                     <Code>{version}</Code>
