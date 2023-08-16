@@ -26,7 +26,7 @@ import { IconSortAscending2, IconSortDescending2 } from '@tabler/icons-react'
 import { flexRender, Table as TanstackTable } from '@tanstack/react-table'
 import { Dispatch, SetStateAction } from 'react'
 
-import * as styles from './Table.module.css'
+import styles from './Table.module.css'
 
 type Props<T> = {
   tableModel: TanstackTable<T>
@@ -60,7 +60,9 @@ export function Table<T>({
                   <th
                     key={header.id}
                     style={{ verticalAlign: 'top' }}
-                    className={firstColSticky && styles.tableColSticky}
+                    className={
+                      firstColSticky ? styles.tableColSticky : undefined
+                    }
                   >
                     <Flex
                       align="center"
@@ -124,13 +126,15 @@ export function Table<T>({
                   borderBottom: '2px solid white',
                   borderTop: '2px solid white',
                 }}
-                className={firstColSticky && styles.tableRowBg}
+                className={firstColSticky ? styles.tableRowBg : undefined}
               >
                 {row.getVisibleCells().map(cell => (
                   <td
                     key={cell.id}
                     width={cell.column.getSize()}
-                    className={firstColSticky && styles.tableColSticky}
+                    className={
+                      firstColSticky ? styles.tableColSticky : undefined
+                    }
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
