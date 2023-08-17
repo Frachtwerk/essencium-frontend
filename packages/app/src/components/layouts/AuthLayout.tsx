@@ -36,9 +36,10 @@ import {
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
+import { i18n, useTranslation } from 'next-i18next'
 import React, { useEffect, useState } from 'react'
 
+import { useGetTranslations } from '@/api'
 import { useGetMe } from '@/api/me'
 
 import packageJson from '../../../package.json'
@@ -154,6 +155,17 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
       icon: link.icon,
     }
   })
+
+  const { data: backendTranslationsEn } = useGetTranslations('en')
+  const { data: backendTranslationsDe } = useGetTranslations('de')
+
+  i18n?.addResourceBundle(
+    i18n.language,
+    'common',
+    i18n.language === 'de' ? backendTranslationsDe : backendTranslationsEn,
+    true,
+    true
+  )
 
   useEffect(() => {
     const authToken = localStorage.getItem('authToken')

@@ -51,6 +51,7 @@ type FormEventWithTranslation = FormEvent<HTMLFormElement> & {
       value: string
     }
   }
+  nativeEvent: { submitter: { name: string } }
 }
 
 type Props = {
@@ -157,25 +158,29 @@ export function Translations({
     setKeyPathString(keyPathAsString)
   }
 
+  function handleReset(keyPath: KeyPath): void {
+    const key = formatKeyPathToReverseString(keyPath)
+
+    deleteTranslation(key)
+
+    setKeyPathString(null)
+  }
+
   function handleSubmit(
-    event: FormEvent,
+    event: FormEventWithTranslation,
     keyPath: KeyPath,
     translation: string
   ): void {
     event.preventDefault()
 
-    const key = formatKeyPathToReverseString(keyPath)
-    const locale = selectedLanguage
+    if (event.nativeEvent.submitter.name === 'reset') {
+      handleReset(keyPath)
+    } else if (event.nativeEvent.submitter.name === 'save') {
+      const key = formatKeyPathToReverseString(keyPath)
+      const locale = selectedLanguage
 
-    updateTranslation({ locale, key, translation })
-
-    setKeyPathString(null)
-  }
-
-  function handleReset(keyPath: KeyPath): void {
-    const key = formatKeyPathToReverseString(keyPath)
-
-    deleteTranslation(key)
+      updateTranslation({ locale, key, translation })
+    }
 
     setKeyPathString(null)
   }
@@ -253,7 +258,7 @@ export function Translations({
                         position="bottom"
                         withArrow
                       >
-                        <ActionIcon type="submit">
+                        <ActionIcon type="submit" name="save">
                           <IconCheck
                             size="1.125rem"
                             color={theme.colors.blue[4]}
@@ -286,7 +291,7 @@ export function Translations({
                         position="bottom"
                         withArrow
                       >
-                        <ActionIcon onClick={() => handleReset(keyPath)}>
+                        <ActionIcon type="submit" name="reset">
                           <IconArrowBackUp size="1.125rem" />
                         </ActionIcon>
                       </Tooltip>
