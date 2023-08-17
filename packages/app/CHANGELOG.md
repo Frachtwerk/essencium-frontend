@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v2.0.1...essencium-app-v2.1.0) (2023-08-17)
+
+
+### Features
+
+* release commit for topbar and sidebar refactoring ([#370](https://github.com/Frachtwerk/essencium-frontend/issues/370)) ([e96dddb](https://github.com/Frachtwerk/essencium-frontend/commit/e96dddb745e59be1b3ecb214cfc10b030e89a472))
+
 ## [2.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v2.0.0...essencium-app-v2.0.1) (2023-08-02)
 
 
