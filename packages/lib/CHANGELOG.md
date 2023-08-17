@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v2.0.1...essencium-lib-v2.1.0) (2023-08-17)
+
+
+### Features
+
+* **lib:** set optional functionality firstColSticky ([b68ae1b](https://github.com/Frachtwerk/essencium-frontend/commit/b68ae1b3d852304d08ffbcb06ee16aa838c8896d))
+
 ## [2.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v2.0.0...essencium-lib-v2.0.1) (2023-08-02)
 
 
