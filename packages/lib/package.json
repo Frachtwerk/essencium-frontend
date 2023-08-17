@@ -2,6 +2,8 @@
   "name": "@frachtwerk/essencium-lib",
   "version": "2.1.0",
   "description": "This is the component library for the starter boilerplate.",
+  "version": "2.0.1",
+  "description": "This is the component library for the Essencium frontend.",
   "keywords": [
     "starter",
     "boilerplate",
