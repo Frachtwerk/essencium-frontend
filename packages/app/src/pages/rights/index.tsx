@@ -254,7 +254,7 @@ function RightsView(): JSX.Element {
         </Center>
       ) : (
         <>
-          <Table tableModel={table} />
+          <Table tableModel={table} firstColSticky />
 
           <TablePagination
             table={table}

@@ -16,7 +16,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
-
 import {
   Flex,
   Select,
@@ -27,6 +26,8 @@ import { IconSortAscending2, IconSortDescending2 } from '@tabler/icons-react'
 import { flexRender, Table as TanstackTable } from '@tanstack/react-table'
 import { Dispatch, SetStateAction } from 'react'
 
+import styles from './Table.module.css'
+
 type Props<T> = {
   tableModel: TanstackTable<T>
   onFilterChange?: (key: string, value: string | null) => void
@@ -34,6 +35,7 @@ type Props<T> = {
   filterData?: Record<string, Array<string>>
   filterValue?: Record<string, string | null>
   setFilterValue?: Dispatch<SetStateAction<Record<string, string | null>>>
+  firstColSticky?: boolean
 }
 
 export function Table<T>({
@@ -43,6 +45,7 @@ export function Table<T>({
   filterData,
   filterValue,
   setFilterValue,
+  firstColSticky,
 }: Props<T>): JSX.Element {
   const theme = useMantineTheme()
 
@@ -54,7 +57,13 @@ export function Table<T>({
             {tableModel.getHeaderGroups().map(headerGroup => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map(header => (
-                  <th key={header.id} style={{ verticalAlign: 'top' }}>
+                  <th
+                    key={header.id}
+                    style={{ verticalAlign: 'top' }}
+                    className={
+                      firstColSticky ? styles.tableColSticky : undefined
+                    }
+                  >
                     <Flex
                       align="center"
                       justify="flex-start"
@@ -117,9 +126,16 @@ export function Table<T>({
                   borderBottom: '2px solid white',
                   borderTop: '2px solid white',
                 }}
+                className={firstColSticky ? styles.tableRowBg : undefined}
               >
                 {row.getVisibleCells().map(cell => (
-                  <td key={cell.id} width={cell.column.getSize()}>
+                  <td
+                    key={cell.id}
+                    width={cell.column.getSize()}
+                    className={
+                      firstColSticky ? styles.tableColSticky : undefined
+                    }
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
