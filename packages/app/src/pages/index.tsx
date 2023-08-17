@@ -27,7 +27,7 @@ function HomePage(): JSX.Element {
   return <Home />
 }
 
-HomePage.getLayout = function getLayout(page: ReactElement) {
+HomePage.getLayout = function getLayout(page: ReactElement): JSX.Element {
   return (
     <AuthLayout routeName={getTranslation('navigation.home.label')}>
       {page}

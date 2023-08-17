@@ -60,6 +60,7 @@ export function RoleForm({
   reset,
 }: Props): JSX.Element {
   const { t } = useTranslation()
+
   return (
     <form onSubmit={onSubmit}>
       <Flex direction="column" gap="md">
