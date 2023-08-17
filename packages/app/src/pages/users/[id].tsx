@@ -39,7 +39,7 @@ function UpdateUserView(): JSX.Element {
 
   const userIdParameter = router.query?.id
 
-  const { data: user } = useGetUser(String(userIdParameter))
+  const { data: user } = useGetUser(Number(userIdParameter))
 
   const {
     handleSubmit,
