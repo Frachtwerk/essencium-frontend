@@ -141,7 +141,6 @@ async function seedDatabase(): Promise<void> {
             lastName: faker.name.lastName(),
             locale: faker.helpers.arrayElement(CONFIG.AVAILABLE_LOCALES),
             mobile: faker.phone.number(),
-            source: 'local',
             role: faker.helpers.arrayElement(
               createdRoles.map((role: RoleOutput) => role.id)
             ),

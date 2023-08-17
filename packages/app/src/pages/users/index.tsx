@@ -81,7 +81,6 @@ export const FORM_DEFAULTS = {
   enabled: true,
   locale: 'de',
   role: undefined,
-  source: 'local',
 }
 
 const DEFAULT_SORTING: SortingState = [{ id: 'firstName', desc: false }]

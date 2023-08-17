@@ -37,7 +37,6 @@ const sharedPropertiesSchema = z.object({
     .string()
     .nullable()
     .transform(value => (value === null ? '' : value)),
-  source: z.string(),
 })
 
 export const userOutputSchema = basePropertiesSchema
