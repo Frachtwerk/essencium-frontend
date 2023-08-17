@@ -29,51 +29,50 @@ export function Home(): JSX.Element {
   const router = useRouter()
 
   return (
-    <Center
-      sx={{
-        width: '100%',
-        height: '80%',
-      }}
+    <Flex
+      direction="column"
+      gap="lg"
+      align="center"
+      justify="center"
+      sx={{ height: '80vh' }}
     >
-      <Flex direction="column" gap="lg">
-        <Center my="xl">
-          <Image
-            src="/img/web/emblem_400x400px.svg"
-            alt={t('header.logo')}
-            width={200}
-            height={200}
-          />
-        </Center>
+      <Center my="xl">
+        <Image
+          src="/img/web/emblem_400x400px.svg"
+          alt={t('header.logo')}
+          width={200}
+          height={200}
+        />
+      </Center>
 
-        <Container w={300}>
-          <Stack>
-            <Button
-              onClick={() => openSpotlight()}
-              variant="outline"
-              leftIcon={<IconSearch />}
-              fullWidth
-            >
-              {t('homeView.action.search')}
-            </Button>
-            <Button
-              onClick={() => router.push('/users')}
-              variant="outline"
-              leftIcon={<IconUsers />}
-              fullWidth
-            >
-              {t('homeView.action.users')}
-            </Button>
-            <Button
-              onClick={() => router.push('/profile')}
-              variant="outline"
-              leftIcon={<IconUserEdit />}
-              fullWidth
-            >
-              {t('homeView.action.profile')}
-            </Button>
-          </Stack>
-        </Container>
-      </Flex>
-    </Center>
+      <Container w={300}>
+        <Stack>
+          <Button
+            onClick={() => openSpotlight()}
+            variant="outline"
+            leftIcon={<IconSearch />}
+            fullWidth
+          >
+            {t('homeView.action.search')}
+          </Button>
+          <Button
+            onClick={() => router.push('/users')}
+            variant="outline"
+            leftIcon={<IconUsers />}
+            fullWidth
+          >
+            {t('homeView.action.users')}
+          </Button>
+          <Button
+            onClick={() => router.push('/profile')}
+            variant="outline"
+            leftIcon={<IconUserEdit />}
+            fullWidth
+          >
+            {t('homeView.action.profile')}
+          </Button>
+        </Stack>
+      </Container>
+    </Flex>
   )
 }

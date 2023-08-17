@@ -19,7 +19,8 @@
 
 import { Footer, Header, logout, NavBar } from '@frachtwerk/essencium-lib'
 import { FooterLink, NavLink, RIGHTS } from '@frachtwerk/essencium-types'
-import { AppShell, useMantineTheme } from '@mantine/core'
+import { AppShell, Box, useMantineTheme } from '@mantine/core'
+import { useMediaQuery } from '@mantine/hooks'
 import type { SpotlightAction } from '@mantine/spotlight'
 import { SpotlightProvider } from '@mantine/spotlight'
 import {
@@ -140,6 +141,10 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
 
   const [openedNav, setOpenedNav] = useState(false)
 
+  const [foldedNav, setFoldedNav] = useState(true)
+
+  const [fixedNav, setFixedNav] = useState(false)
+
   function handleOpenNav(): void {
     setOpenedNav(opened => !opened)
   }
@@ -169,6 +174,18 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
 
   const pageTitle = `${routeName ? `${routeName} -` : ''} Essencium`
 
+  const isNoPhone = useMediaQuery('(min-width: 48em)')
+
+  function getSidebarMargin(): string {
+    if (fixedNav) {
+      return '250px'
+    }
+    if (isNoPhone) {
+      return '90px'
+    }
+    return '0px'
+  }
+
   return (
     <SpotlightProvider
       actions={actions}
@@ -191,28 +208,47 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
             links={NAV_LINKS}
             user={user}
             handleLogout={handleLogout}
-          />
-        }
-        footer={<Footer links={FOOTER_LINKS} />}
-        header={
-          <Header
-            isOpen={openedNav}
-            handleOpenNav={handleOpenNav}
             version={packageJson.version}
-            user={user}
+            foldedNav={foldedNav}
+            setFoldedNav={setFoldedNav}
+            fixedNav={fixedNav}
+            setFixedNav={setFixedNav}
             logo={
               <Image
                 src="/img/web/logotype_400x100px.svg"
                 alt={t('header.logo')}
                 width={150}
-                height={37.5}
+                height={50}
                 style={{ verticalAlign: 'initial' }}
+              />
+            }
+            icon={
+              <Image
+                src="/img/web/emblem_400x400px.svg"
+                alt={t('header.logo')}
+                width={50}
+                height={50}
               />
             }
           />
         }
+        footer={<Footer links={FOOTER_LINKS} />}
+        header={
+          <Header
+            user={user}
+            marginLeft={getSidebarMargin()}
+            isOpen={openedNav}
+            handleOpenNav={handleOpenNav}
+          />
+        }
       >
-        {children}
+        <Box
+          style={{
+            marginLeft: getSidebarMargin(),
+          }}
+        >
+          {children}
+        </Box>
       </AppShell>
     </SpotlightProvider>
   )

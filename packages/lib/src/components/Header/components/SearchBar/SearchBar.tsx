@@ -19,7 +19,6 @@
 
 import {
   Group,
-  Kbd,
   MediaQuery,
   Text,
   UnstyledButton,
@@ -38,27 +37,19 @@ export function SearchBar(): JSX.Element {
     <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
       <UnstyledButton
         sx={{
-          width: '35%',
-          border: '1px solid',
-          borderColor:
-            theme.colorScheme === 'dark'
-              ? theme.colors.gray[7]
-              : theme.colors.gray[3],
-          borderRadius: theme.radius.sm,
-          padding: '5px 10px',
+          width: '15%',
+          padding: '5px 2px',
         }}
         onClick={() => openSpotlight()}
       >
         <Group position="apart">
-          <Group>
+          <Group spacing="xs">
             <IconSearch size="16" color={theme.colors.gray[4]} />
 
-            <Text color={theme.colors.gray[5]}>
+            <Text color={theme.colors.gray[5]} size="sm">
               {t('header.spotlight.placeholder')}
             </Text>
           </Group>
-
-          <Kbd>⌘ + K</Kbd>
         </Group>
       </UnstyledButton>
     </MediaQuery>

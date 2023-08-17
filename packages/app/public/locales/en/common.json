@@ -5,7 +5,7 @@
     "title": "Essencium",
     "logo": "Essencium Logo",
     "spotlight": {
-      "placeholder": "Search ...",
+      "placeholder": "Search (Ctrl + K)",
       "nothingFound": "Nothing found"
     },
     "themeToggle": {
