@@ -33,6 +33,10 @@ import {
 import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/next'
 
+interface TTranslations {
+  [key: string]: string | TTranslations
+}
+
 function getTranslationsByLanguage(
   lang: string
 ): Record<string, string> | undefined {
@@ -80,12 +84,17 @@ function TranslationsView(): JSX.Element {
         const keyPath = translationKey.split('.')
 
         const valueByKeyPath: string = keyPath.reduce(
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (obj: any, key: string) => {
+          (obj: TTranslations | string, key: string) => {
+            if (typeof obj === 'string') {
+              return obj
+            }
+
             return obj[key]
           },
-          i18n?.language === 'de' ? De : En
-        )
+          i18n?.language === 'de'
+            ? (De as TTranslations)
+            : (En as TTranslations)
+        ) as string
 
         i18n?.addResource(
           i18n.language,
