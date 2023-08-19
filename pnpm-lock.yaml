@@ -89,7 +89,7 @@ importers:
       typescript: 4.9.5
       vite: 4.1.4
       vitest: 0.29.2
-      zod: 3.20.6
+      zod: 3.22.2
     dependencies:
       '@emotion/react': 11.10.6_pmekkgnqduwlme35zpnqhenc34
       '@fortawesome/fontawesome-svg-core': 6.3.0
@@ -125,7 +125,7 @@ importers:
       react-i18next: 12.3.1_spyi3zqm3bqfobczid2f6jym6y
       react-json-tree: 0.18.0_pmekkgnqduwlme35zpnqhenc34
       typescript: 4.9.5
-      zod: 3.20.6
+      zod: 3.22.2
     devDependencies:
       '@testing-library/react': 14.0.0_biqbaboplfbrettd7655fr4n2y
       '@vitejs/plugin-react': 3.1.0_vite@4.1.4
@@ -211,7 +211,7 @@ importers:
       typescript: 4.9.5
       vite: 4.1.4
       vitest: 0.29.2
-      zod: 3.20.6
+      zod: 3.22.2
     devDependencies:
       '@babel/core': 7.21.0
       '@emotion/react': 11.10.6_pmekkgnqduwlme35zpnqhenc34
@@ -269,7 +269,7 @@ importers:
       typescript: 4.9.5
       vite: 4.1.4
       vitest: 0.29.2_happy-dom@8.9.0
-      zod: 3.20.6
+      zod: 3.22.2
 
   packages/types:
     specifiers:
@@ -283,7 +283,7 @@ importers:
       rollup-plugin-peer-deps-external: 2.2.4
       tslib: 2.5.0
       typescript: 4.9.5
-      zod: 3.20.6
+      zod: 3.22.2
     devDependencies:
       '@rollup/plugin-commonjs': 24.0.1_rollup@3.18.0
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.18.0
@@ -295,7 +295,7 @@ importers:
       rollup-plugin-peer-deps-external: 2.2.4_rollup@3.18.0
       tslib: 2.5.0
       typescript: 4.9.5
-      zod: 3.20.6
+      zod: 3.22.2
 
 packages:
 
@@ -6887,7 +6887,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       scroll-into-view-if-needed: 3.0.6
-      zod: 3.20.6
+      zod: 3.22.2
     dev: false
 
   /nextra/2.8.0_huavqdni4pobvfczobpbvo6vhq:
@@ -6923,7 +6923,7 @@ packages:
       title: 3.5.3
       unist-util-remove: 3.1.1
       unist-util-visit: 4.1.2
-      zod: 3.20.6
+      zod: 3.22.2
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -9737,11 +9737,11 @@ packages:
     engines: {node: '>=12.20'}
     dev: true
 
-  /zod/3.20.6:
-    resolution: {integrity: sha512-oyu0m54SGCtzh6EClBVqDDlAYRz4jrVtKwQ7ZnsEmMI9HnzuZFj8QFwAY1M5uniIYACdGvv0PBWPF2kO0aNofA==}
-
   /zod/3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
+
+  /zod/3.22.2:
+    resolution: {integrity: sha512-wvWkphh5WQsJbVk1tbx1l1Ly4yg+XecD+Mq280uBGt9wa5BKSWf4Mhp6GmrkPixhMxmabYY7RbzlwVP32pbGCg==}
 
   /zwitch/2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
