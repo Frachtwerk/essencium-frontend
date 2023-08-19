@@ -19,7 +19,6 @@
 
 import {
   UserOutput,
-  userOutputSchema,
   UserUpdate,
   userUpdateSchema,
 } from '@frachtwerk/essencium-types'
@@ -33,6 +32,7 @@ import {
   TextInput,
 } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
+import { useEffect } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../../../../hooks'
@@ -45,10 +45,37 @@ type Props = {
 export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
   const { t } = useTranslation()
 
-  const { handleSubmit, control, formState } = useZodForm({
+  const {
+    handleSubmit,
+    control,
+    formState,
+    reset: prefillForm,
+  } = useZodForm({
     schema: userUpdateSchema,
-    defaultValues: { ...userOutputSchema.parse(user), role: user.role.name },
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      phone: '',
+      mobile: '',
+      email: '',
+      password: '',
+      enabled: true,
+      locale: 'de',
+      role: undefined,
+    },
   })
+
+  useEffect(() => {
+    if (user) {
+      const parsedUser = userUpdateSchema.parse({
+        ...user,
+        role: user.role.name,
+        enabled: true,
+      })
+
+      prefillForm({ ...parsedUser })
+    }
+  }, [user, prefillForm])
 
   function onSubmit(updatedUser: UserUpdate): void {
     handleUpdate(updatedUser)

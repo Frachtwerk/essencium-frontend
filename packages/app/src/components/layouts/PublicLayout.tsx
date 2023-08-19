@@ -25,7 +25,7 @@ type Props = {
   routeName?: string
 }
 
-function PublicLayoutView({ children, routeName }: Props): JSX.Element | null {
+function PublicLayout({ children, routeName }: Props): JSX.Element | null {
   const pageTitle = `${routeName ? `${routeName} -` : ''} Essencium`
 
   return (
@@ -38,4 +38,4 @@ function PublicLayoutView({ children, routeName }: Props): JSX.Element | null {
   )
 }
 
-export default PublicLayoutView
+export default PublicLayout

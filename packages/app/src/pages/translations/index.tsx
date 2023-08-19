@@ -17,16 +17,14 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {
-  getTranslation,
-  mergeTranslationSources,
-  Translations,
-} from '@frachtwerk/essencium-lib'
+import { getTranslation, Translations } from '@frachtwerk/essencium-lib'
 import { TranslationInput } from '@frachtwerk/essencium-types'
 import { Flex, Text, Title } from '@mantine/core'
 import { IconLanguage } from '@tabler/icons-react'
 import { i18n, useTranslation } from 'next-i18next'
 
+import De from '@/../public/locales/de/common.json'
+import En from '@/../public/locales/en/common.json'
 import {
   useDeleteTranslation,
   useGetTranslations,
@@ -34,6 +32,10 @@ import {
 } from '@/api/translations'
 import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/next'
+
+interface TTranslations {
+  [key: string]: string | TTranslations
+}
 
 function getTranslationsByLanguage(
   lang: string
@@ -49,35 +51,60 @@ function TranslationsView(): JSX.Element {
   const { mutate: updateTranslation } = useUpdateTranslation()
   const { mutate: deleteTranslation } = useDeleteTranslation()
 
-  const { data: deServerTranslations, refetch: refetchServerTranslationsDe } =
+  const { refetch: refetchServerTranslationsDe, data: backendTranslationsDe } =
     useGetTranslations('de')
-  const { data: enServerTranslations, refetch: refetchServerTranslationsEn } =
+  const { refetch: refetchServerTranslationsEn, data: backendTranslationsEn } =
     useGetTranslations('en')
 
-  async function onUpdateTranslation(
-    translationInput: TranslationInput
-  ): Promise<void> {
+  function onUpdateTranslation(translationInput: TranslationInput): void {
     updateTranslation(translationInput, {
       onSuccess: async () => {
-        const promises = Promise.all([
-          refetchServerTranslationsDe(),
-          refetchServerTranslationsEn(),
-        ])
+        await refetchServerTranslationsDe()
+        await refetchServerTranslationsEn()
 
-        await promises
-        mergeTranslationSources({
-          de: deServerTranslations,
-          en: enServerTranslations,
-        })
+        i18n?.addResourceBundle(
+          i18n.language,
+          'common',
+          i18n.language === 'de'
+            ? backendTranslationsDe
+            : backendTranslationsEn,
+          true,
+          true
+        )
       },
     })
+  }
 
-    await refetchServerTranslationsDe()
-    await refetchServerTranslationsEn()
+  function onDeleteTranslation(translationKey: TranslationInput['key']): void {
+    deleteTranslation(translationKey, {
+      onSuccess: async () => {
+        await refetchServerTranslationsDe()
+        await refetchServerTranslationsEn()
 
-    mergeTranslationSources({
-      de: deServerTranslations,
-      en: enServerTranslations,
+        const keyPath = translationKey.split('.')
+
+        const valueByKeyPath: string = keyPath.reduce(
+          (obj: TTranslations | string, key: string) => {
+            if (typeof obj === 'string') {
+              return obj
+            }
+
+            return obj[key]
+          },
+          i18n?.language === 'de'
+            ? (De as TTranslations)
+            : (En as TTranslations)
+        ) as string
+
+        i18n?.addResource(
+          i18n.language,
+          'common',
+          translationKey,
+          valueByKeyPath
+        )
+
+        i18n?.init()
+      },
     })
   }
 
@@ -93,7 +120,7 @@ function TranslationsView(): JSX.Element {
       <Translations
         getTranslations={getTranslationsByLanguage}
         updateTranslation={onUpdateTranslation}
-        deleteTranslation={deleteTranslation}
+        deleteTranslation={onDeleteTranslation}
       />
     </>
   )
