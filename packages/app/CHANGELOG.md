@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v2.1.0...essencium-app-v2.1.1) (2023-08-19)
+
+
+### Bug Fixes
+
+* apply translation updates reactively ([db895e0](https://github.com/Frachtwerk/essencium-frontend/commit/db895e0010f1b29a3248225c8fb7976ccbb941f7))
+
 ## [2.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v2.0.1...essencium-app-v2.1.0) (2023-08-17)
 
 

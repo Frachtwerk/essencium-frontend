@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.2.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v2.2.0...essencium-lib-v2.2.1) (2023-08-19)
+
+
+### Bug Fixes
+
+* apply translation updates reactively ([db895e0](https://github.com/Frachtwerk/essencium-frontend/commit/db895e0010f1b29a3248225c8fb7976ccbb941f7))
+* prefill form with default values ([dc9e089](https://github.com/Frachtwerk/essencium-frontend/commit/dc9e089f148eee155b015b6a4fe33f973ba55b7c))
+
 ## [2.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v2.1.0...essencium-lib-v2.2.0) (2023-08-17)
 
 
