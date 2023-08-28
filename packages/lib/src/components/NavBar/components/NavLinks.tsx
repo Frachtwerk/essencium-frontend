@@ -67,6 +67,7 @@ export function NavLinks({ links, user }: Props): JSX.Element {
                 },
                 label: {
                   fontSize: theme.fontSizes.sm,
+                  whiteSpace: 'nowrap',
                 },
               }}
             />
