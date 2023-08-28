@@ -33,9 +33,9 @@ type Props = {
 }
 
 export function NavLinks({ links, user }: Props): JSX.Element {
-  const router = useRouter()
-
   const { t } = useTranslation()
+
+  const router = useRouter()
 
   const theme = useMantineTheme()
 
