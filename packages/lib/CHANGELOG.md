@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v2.2.1...essencium-lib-v2.2.2) (2023-08-28)
+
+
+### Bug Fixes
+
+* release commit for prevent line break when coll. nav bar ([4eb4886](https://github.com/Frachtwerk/essencium-frontend/commit/4eb4886ebf70585a88d71bec298a471e5d491bff))
+
 ## [2.2.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v2.2.0...essencium-lib-v2.2.1) (2023-08-19)
 
 
