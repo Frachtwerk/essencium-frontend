@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v2.1.1...essencium-app-v2.2.0) (2023-08-30)
+
+
+### Features
+
+* add healthcheck endpoint ([26ef301](https://github.com/Frachtwerk/essencium-frontend/commit/26ef301697a06c53c69858662a746947a323b0f1))
+
 ## [2.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v2.1.0...essencium-app-v2.1.1) (2023-08-19)
 
 
