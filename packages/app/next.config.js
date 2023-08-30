@@ -8,6 +8,14 @@ const nextConfig = {
     '@frachtwerk/essencium-types',
   ],
   i18n,
+  rewrites: async () => {
+    return [
+      {
+        source: '/healthcheck',
+        destination: '/api/healthcheck',
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
