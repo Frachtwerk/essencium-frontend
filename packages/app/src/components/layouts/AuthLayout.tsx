@@ -220,7 +220,13 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
             links={NAV_LINKS}
             user={user}
             handleLogout={handleLogout}
-            version={packageJson.version}
+            version={
+              packageJson.version &&
+              process.env.NEXT_PUBLIC_SHOW_VERSION &&
+              process.env.NEXT_PUBLIC_SHOW_VERSION === 'true'
+                ? packageJson.version
+                : undefined
+            }
             foldedNav={foldedNav}
             setFoldedNav={setFoldedNav}
             fixedNav={fixedNav}
