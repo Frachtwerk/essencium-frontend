@@ -143,7 +143,7 @@ export function NavBar({
                 {version ? <Code>{version}</Code> : null}
 
                 {process.env.NEXT_PUBLIC_ENV && !foldedNav ? (
-                  <Code ml="xs">{process.env.NEXT_PUBLIC_ENV}</Code>
+                  <Code>{process.env.NEXT_PUBLIC_ENV}</Code>
                 ) : null}
               </Group>
             </Navbar.Section>
