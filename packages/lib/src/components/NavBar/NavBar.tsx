@@ -140,13 +140,13 @@ export function NavBar({
                   ) : null}
                 </Flex>
                 {version ? (
-                  <Box>
+                  <>
                     <Code>{version}</Code>
 
-                    {process.env.NODE_ENV === 'development' && !foldedNav ? (
-                      <Code>{process.env.NODE_ENV}</Code>
+                    {process.env.NEXT_PUBLIC_ENV ? (
+                      <Code>{process.env.NEXT_PUBLIC_ENV}</Code>
                     ) : null}
-                  </Box>
+                  </>
                 ) : null}
               </Group>
             </Navbar.Section>
