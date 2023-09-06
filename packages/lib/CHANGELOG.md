@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v2.2.2...essencium-lib-v2.3.0) (2023-09-06)
+
+
+### Features
+
+* toggle version indicator via env var ([63a43e5](https://github.com/Frachtwerk/essencium-frontend/commit/63a43e59be76633f192e755914ee34116831a2e9))
+
+
+### Bug Fixes
+
+* adjust logic to listen to the 'NEXT_PUBLIC_ENV' variable ([433d8da](https://github.com/Frachtwerk/essencium-frontend/commit/433d8dab7d2239169962e963c50c7367843dc14d))
+
 ## [2.2.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v2.2.1...essencium-lib-v2.2.2) (2023-08-28)
 
 
