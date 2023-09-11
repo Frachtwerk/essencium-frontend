@@ -18,19 +18,22 @@
  */
 
 import { getTranslation, Translations } from '@frachtwerk/essencium-lib'
-import { TranslationInput } from '@frachtwerk/essencium-types'
+import { RIGHTS, TranslationInput } from '@frachtwerk/essencium-types'
 import { Flex, Text, Title } from '@mantine/core'
 import { IconLanguage } from '@tabler/icons-react'
+import { useAtom } from 'jotai'
 import { i18n, useTranslation } from 'next-i18next'
 
 import De from '@/../public/locales/de/common.json'
 import En from '@/../public/locales/en/common.json'
+import { userRightsAtom } from '@/api/me'
 import {
   useDeleteTranslation,
   useGetTranslations,
   useUpdateTranslation,
 } from '@/api/translations'
 import AuthLayout from '@/components/layouts/AuthLayout'
+import { hasRequiredRights } from '@/utils/hasRequiredRights'
 import { baseGetStaticProps } from '@/utils/next'
 
 interface TTranslations {
@@ -47,6 +50,8 @@ function getTranslationsByLanguage(
 
 function TranslationsView(): JSX.Element {
   const { t } = useTranslation()
+
+  const [userRights] = useAtom(userRightsAtom)
 
   const { mutate: updateTranslation } = useUpdateTranslation()
   const { mutate: deleteTranslation } = useDeleteTranslation()
@@ -118,6 +123,8 @@ function TranslationsView(): JSX.Element {
       </Title>
 
       <Translations
+        canDelete={hasRequiredRights(userRights, RIGHTS.TRANSLATION_DELETE)}
+        canUpdate={hasRequiredRights(userRights, RIGHTS.TRANSLATION_UPDATE)}
         getTranslations={getTranslationsByLanguage}
         updateTranslation={onUpdateTranslation}
         deleteTranslation={onDeleteTranslation}

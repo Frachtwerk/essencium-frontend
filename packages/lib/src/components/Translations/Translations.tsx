@@ -58,6 +58,8 @@ type Props = {
   getTranslations: (lang: string) => Record<string, string> | undefined
   updateTranslation: ({ locale, key, translation }: TranslationInput) => void
   deleteTranslation: (key: TranslationInput['key']) => void
+  canUpdate: boolean
+  canDelete: boolean
 }
 
 export function searchTranslationsObject(
@@ -98,6 +100,8 @@ export function Translations({
   getTranslations,
   updateTranslation,
   deleteTranslation,
+  canUpdate,
+  canDelete,
 }: Props): JSX.Element {
   const router = useRouter()
 
@@ -232,7 +236,8 @@ export function Translations({
                   handleOpenEditMode(event, keyPath)
                 }}
               >
-                {formatKeyPathToString(keyPath) === keyPathString ? (
+                {formatKeyPathToString(keyPath) === keyPathString &&
+                (canUpdate || canDelete) ? (
                   <form
                     onSubmit={(event: FormEventWithTranslation) => {
                       handleSubmit(
@@ -251,20 +256,22 @@ export function Translations({
                         autoFocus
                       />
 
-                      <Tooltip
-                        label={t('translationsView.save')}
-                        color={theme.colors.gray[6]}
-                        pl="md"
-                        position="bottom"
-                        withArrow
-                      >
-                        <ActionIcon type="submit" name="save">
-                          <IconCheck
-                            size="1.125rem"
-                            color={theme.colors.blue[4]}
-                          />
-                        </ActionIcon>
-                      </Tooltip>
+                      {canUpdate ? (
+                        <Tooltip
+                          label={t('translationsView.save')}
+                          color={theme.colors.gray[6]}
+                          pl="md"
+                          position="bottom"
+                          withArrow
+                        >
+                          <ActionIcon type="submit" name="save">
+                            <IconCheck
+                              size="1.125rem"
+                              color={theme.colors.blue[4]}
+                            />
+                          </ActionIcon>
+                        </Tooltip>
+                      ) : null}
 
                       <Tooltip
                         label={t('translationsView.cancel')}
@@ -284,17 +291,19 @@ export function Translations({
                         </ActionIcon>
                       </Tooltip>
 
-                      <Tooltip
-                        label={t('translationsView.reset')}
-                        color={theme.colors.gray[6]}
-                        pl="md"
-                        position="bottom"
-                        withArrow
-                      >
-                        <ActionIcon type="submit" name="reset">
-                          <IconArrowBackUp size="1.125rem" />
-                        </ActionIcon>
-                      </Tooltip>
+                      {canDelete ? (
+                        <Tooltip
+                          label={t('translationsView.reset')}
+                          color={theme.colors.gray[6]}
+                          pl="md"
+                          position="bottom"
+                          withArrow
+                        >
+                          <ActionIcon type="submit" name="reset">
+                            <IconArrowBackUp size="1.125rem" />
+                          </ActionIcon>
+                        </Tooltip>
+                      ) : null}
                     </Group>
 
                     <Divider
@@ -307,7 +316,7 @@ export function Translations({
                   <Text
                     fz="sm"
                     style={{
-                      cursor: 'pointer',
+                      cursor: canUpdate || canDelete ? 'pointer' : '',
                     }}
                   >
                     {value as string}
