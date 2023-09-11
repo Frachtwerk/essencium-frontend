@@ -17,7 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { NavLink, UserOutput } from '@frachtwerk/essencium-types'
+import { NavLink } from '@frachtwerk/essencium-types'
 import {
   NavLink as MantineNavLink,
   Stack,
@@ -29,10 +29,10 @@ import { useTranslation } from 'next-i18next'
 
 type Props = {
   links: NavLink[]
-  user?: UserOutput
+  userRights?: string[] | null
 }
 
-export function NavLinks({ links, user }: Props): JSX.Element {
+export function NavLinks({ links, userRights }: Props): JSX.Element {
   const { t } = useTranslation()
 
   const router = useRouter()
@@ -40,11 +40,7 @@ export function NavLinks({ links, user }: Props): JSX.Element {
   const theme = useMantineTheme()
 
   function hasRequiredRights(rights: string[]): boolean {
-    return Boolean(
-      rights.every(right =>
-        user?.role.rights.map(userRight => userRight.authority).includes(right)
-      )
-    )
+    return Boolean(rights.every(right => userRights?.includes(right)))
   }
 
   return (

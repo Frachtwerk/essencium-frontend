@@ -17,7 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { NavLink, UserOutput } from '@frachtwerk/essencium-types'
+import { NavLink } from '@frachtwerk/essencium-types'
 import {
   Box,
   Code,
@@ -40,7 +40,7 @@ import { NavLinks } from './components'
 type Props = {
   isOpen: boolean
   links: NavLink[]
-  user?: UserOutput
+  userRights?: string[] | null
   handleLogout: () => void
   logo: JSX.Element
   icon: JSX.Element
@@ -54,7 +54,7 @@ type Props = {
 export function NavBar({
   isOpen,
   links,
-  user,
+  userRights,
   logo,
   icon,
   version,
@@ -149,7 +149,7 @@ export function NavBar({
             </Navbar.Section>
 
             <Navbar.Section grow>
-              <NavLinks links={links} user={user} />
+              <NavLinks links={links} userRights={userRights} />
             </Navbar.Section>
 
             <Navbar.Section mt="auto" mb="70px">
@@ -206,7 +206,7 @@ export function NavBar({
             </Navbar.Section>
 
             <Navbar.Section grow>
-              <NavLinks links={links} user={user} />
+              <NavLinks links={links} userRights={userRights} />
             </Navbar.Section>
 
             <Navbar.Section mt="auto" grow>
