@@ -67,8 +67,9 @@ import { useTranslation } from 'next-i18next'
 import { useCallback, useMemo, useState } from 'react'
 
 import { useDeleteUser, useGetUsers, useInvalidateToken } from '@/api'
-import { userAtom } from '@/api/me'
+import { userAtom, userRightsAtom } from '@/api/me'
 import AuthLayout from '@/components/layouts/AuthLayout'
+import { hasRequiredRights } from '@/utils/hasRequiredRights'
 import { baseGetStaticProps } from '@/utils/next'
 
 export const FORM_DEFAULTS = {
@@ -96,6 +97,8 @@ function UsersView(): JSX.Element {
   const router = useRouter()
 
   const [user] = useAtom(userAtom)
+
+  const [userRights] = useAtom(userRightsAtom)
 
   const { t } = useTranslation()
 
@@ -189,8 +192,8 @@ function UsersView(): JSX.Element {
   const { mutate: invalidateToken } = useInvalidateToken()
 
   const handleInvalidateToken = useCallback(
-    (rowUser: UserOutput): void => {
-      invalidateToken(rowUser.id)
+    (rowUser: UserOutput | null): void => {
+      invalidateToken(rowUser?.id)
     },
     [invalidateToken]
   )
@@ -261,9 +264,7 @@ function UsersView(): JSX.Element {
 
           return (
             <Flex direction="row" gap="xs">
-              {user?.role.rights
-                .map(right => right.authority)
-                .includes(RIGHTS.USER_UPDATE) ? (
+              {hasRequiredRights(userRights, RIGHTS.USER_UPDATE) ? (
                 <ActionIcon
                   size="sm"
                   disabled={isDefaultUser}
@@ -273,9 +274,7 @@ function UsersView(): JSX.Element {
                 </ActionIcon>
               ) : null}
 
-              {user?.role.rights
-                .map(right => right.authority)
-                .includes(RIGHTS.USER_DELETE) ? (
+              {hasRequiredRights(userRights, RIGHTS.USER_DELETE) ? (
                 <ActionIcon
                   size="sm"
                   disabled={isDefaultUser}
@@ -290,9 +289,7 @@ function UsersView(): JSX.Element {
                 </ActionIcon>
               ) : null}
 
-              {user?.role.rights
-                .map(right => right.authority)
-                .includes(RIGHTS.USER_UPDATE) ? (
+              {hasRequiredRights(userRights, RIGHTS.USER_UPDATE) ? (
                 <Popover width={130} position="bottom" withArrow shadow="sm">
                   <Popover.Target>
                     <ActionIcon
@@ -343,6 +340,7 @@ function UsersView(): JSX.Element {
       t,
       handleEditUser,
       user,
+      userRights,
       theme.colors.gray,
       theme.colorScheme,
       handleInvalidateToken,
@@ -391,9 +389,7 @@ function UsersView(): JSX.Element {
         />
 
         <Flex ml="xl" align="center" gap="xs">
-          {user?.role.rights
-            .map(right => right.authority)
-            .includes(RIGHTS.USER_CREATE) ? (
+          {hasRequiredRights(userRights, RIGHTS.USER_CREATE) ? (
             <NextLink
               style={{ textDecoration: 'none', color: 'white' }}
               href="/users/add"

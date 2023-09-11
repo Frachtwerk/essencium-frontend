@@ -34,6 +34,7 @@ import {
   IconUsers,
   IconUserStar,
 } from '@tabler/icons-react'
+import { useAtom } from 'jotai'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -41,7 +42,7 @@ import { i18n, useTranslation } from 'next-i18next'
 import React, { useEffect, useState } from 'react'
 
 import { useGetTranslations } from '@/api'
-import { useGetMe } from '@/api/me'
+import { useGetMe, userRightsAtom } from '@/api/me'
 
 import packageJson from '../../../package.json'
 
@@ -152,6 +153,8 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
 
   const { data: user } = useGetMe()
 
+  const [userRights] = useAtom(userRightsAtom)
+
   const actions: SpotlightAction[] = SEARCH_ITEMS.map(link => {
     return {
       title: t(link.label),
@@ -218,7 +221,7 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
           <NavBar
             isOpen={openedNav}
             links={NAV_LINKS}
-            user={user}
+            userRights={userRights}
             handleLogout={handleLogout}
             version={
               packageJson.version &&

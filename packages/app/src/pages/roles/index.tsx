@@ -57,7 +57,7 @@ import { useAtom } from 'jotai'
 import { useTranslation } from 'next-i18next'
 import { useCallback, useMemo, useState } from 'react'
 
-import { userAtom } from '@/api/me'
+import { userRightsAtom } from '@/api/me'
 import { useGetRights } from '@/api/rights'
 import {
   useCreateRole,
@@ -66,6 +66,7 @@ import {
   useUpdateRole,
 } from '@/api/roles'
 import AuthLayout from '@/components/layouts/AuthLayout'
+import { hasRequiredRights } from '@/utils/hasRequiredRights'
 import { baseGetStaticProps } from '@/utils/next'
 
 const DEFAULT_SORTING: SortingState = [{ id: 'name', desc: false }]
@@ -83,7 +84,7 @@ function RolesView(): JSX.Element {
 
   const theme = useMantineTheme()
 
-  const [user] = useAtom(userAtom)
+  const [userRights] = useAtom(userRightsAtom)
 
   const [addModalOpened, addModalHandlers] = useDisclosure(false)
   const [editModalOpened, editModalHandlers] = useDisclosure(false)
@@ -230,9 +231,8 @@ function RolesView(): JSX.Element {
 
           return (
             <Flex direction="row" gap="xs">
-              {user?.role.rights
-                .map(right => right.authority)
-                .includes(RIGHTS.RIGHT_UPDATE) && rowRole.editable === true ? (
+              {hasRequiredRights(userRights, RIGHTS.RIGHT_UPDATE) &&
+              rowRole.editable === true ? (
                 <ActionIcon size="sm" variant="transparent">
                   <IconPencil
                     onClick={() => {
@@ -243,9 +243,8 @@ function RolesView(): JSX.Element {
                 </ActionIcon>
               ) : null}
 
-              {user?.role.rights
-                .map(right => right.authority)
-                .includes(RIGHTS.ROLE_DELETE) && rowRole.protected === false ? (
+              {hasRequiredRights(userRights, RIGHTS.ROLE_DELETE) &&
+              rowRole.protected === false ? (
                 <ActionIcon size="sm" variant="transparent">
                   <IconTrash
                     onClick={() => {
@@ -261,13 +260,7 @@ function RolesView(): JSX.Element {
         size: 120,
       },
     ]
-  }, [
-    t,
-    theme.colors.gray,
-    user?.role.rights,
-    editModalHandlers,
-    deleteModalHandlers,
-  ])
+  }, [t, theme.colors.gray, userRights, editModalHandlers, deleteModalHandlers])
 
   const table = useReactTable({
     data: roles?.content || [],
@@ -306,9 +299,7 @@ function RolesView(): JSX.Element {
         </Title>
 
         <Flex align="center" gap="xs">
-          {user?.role.rights
-            .map(right => right.authority)
-            .includes(RIGHTS.ROLE_CREATE) ? (
+          {hasRequiredRights(userRights, RIGHTS.ROLE_CREATE) ? (
             <Button onClick={() => addModalHandlers.open()}>
               {t('rolesView.action.add')}
             </Button>
