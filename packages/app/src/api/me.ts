@@ -20,7 +20,6 @@
 import { withBaseStylingShowNotification } from '@frachtwerk/essencium-lib'
 import {
   PasswordChange,
-  RightOutput,
   UserOutput,
   UserUpdate,
 } from '@frachtwerk/essencium-types'
