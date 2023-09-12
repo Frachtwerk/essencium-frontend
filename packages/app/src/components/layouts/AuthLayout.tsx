@@ -34,6 +34,8 @@ import {
   IconUsers,
   IconUserStar,
 } from '@tabler/icons-react'
+import { useAtom } from 'jotai'
+import { atomWithStorage } from 'jotai/utils'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -133,6 +135,9 @@ export const SEARCH_ITEMS: SearchItems[] = [
   },
 ]
 
+const isFixedNavAtom = atomWithStorage('isFixedNav', false)
+const isFoldedNavAtom = atomWithStorage('isFoldedNav', true)
+
 function AuthLayout({ children, routeName }: Props): JSX.Element | null {
   const router = useRouter()
 
@@ -140,14 +145,14 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
 
   const { t } = useTranslation()
 
-  const [openedNav, setOpenedNav] = useState(false)
+  const [isOpenedNav, setIsOpenedNav] = useState(false)
 
-  const [foldedNav, setFoldedNav] = useState(true)
+  const [isFoldedNav, setIsFoldedNav] = useAtom(isFoldedNavAtom)
 
-  const [fixedNav, setFixedNav] = useState(false)
+  const [isFixedNav, setIsFixedNav] = useAtom(isFixedNavAtom)
 
   function handleOpenNav(): void {
-    setOpenedNav(opened => !opened)
+    setIsOpenedNav(opened => !opened)
   }
 
   const { data: user } = useGetMe()
@@ -189,7 +194,7 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
   const isNoPhone = useMediaQuery('(min-width: 48em)')
 
   function getSidebarMargin(): string {
-    if (fixedNav) {
+    if (isFixedNav) {
       return '250px'
     }
     if (isNoPhone) {
@@ -216,7 +221,7 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
         navbarOffsetBreakpoint="sm"
         navbar={
           <NavBar
-            isOpen={openedNav}
+            isOpen={isOpenedNav}
             links={NAV_LINKS}
             user={user}
             handleLogout={handleLogout}
@@ -227,10 +232,10 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
                 ? packageJson.version
                 : undefined
             }
-            foldedNav={foldedNav}
-            setFoldedNav={setFoldedNav}
-            fixedNav={fixedNav}
-            setFixedNav={setFixedNav}
+            foldedNav={isFoldedNav}
+            setFoldedNav={setIsFoldedNav}
+            fixedNav={isFixedNav}
+            setFixedNav={setIsFixedNav}
             logo={
               <Image
                 src="/img/web/logotype_400x100px.svg"
@@ -255,7 +260,7 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
           <Header
             user={user}
             marginLeft={getSidebarMargin()}
-            isOpen={openedNav}
+            isOpen={isOpenedNav}
             handleOpenNav={handleOpenNav}
           />
         }
