@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v2.3.0...essencium-app-v2.3.1) (2023-09-12)
+
+
+### Bug Fixes
+
+* make boolean env var consistent with 0 or 1 ([179d5bf](https://github.com/Frachtwerk/essencium-frontend/commit/179d5bf4cbfc3d4cce1aa7ab4d75130b36ff1ef2))
+
 ## [2.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v2.2.0...essencium-app-v2.3.0) (2023-09-06)
 
 
