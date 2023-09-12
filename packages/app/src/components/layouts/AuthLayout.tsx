@@ -223,7 +223,7 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
             version={
               packageJson.version &&
               process.env.NEXT_PUBLIC_SHOW_VERSION &&
-              process.env.NEXT_PUBLIC_SHOW_VERSION === 'true'
+              process.env.NEXT_PUBLIC_SHOW_VERSION === '1'
                 ? packageJson.version
                 : undefined
             }
