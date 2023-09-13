@@ -43,8 +43,8 @@ export const userRightsAtom = atomWithStorage<string[] | null>('rights', null)
 export function useGetMe(): UseQueryResult<UserOutput, unknown> {
   const store = useStore()
 
-  const [, setUser] = useAtom(userAtom)
-  const [, setUserRights] = useAtom(userRightsAtom)
+  const setUser = useSetAtom(userAtom)
+  const setUserRights = useSetAtom(userRightsAtom)
   const authToken = useAtomValue(authTokenAtom)
 
   const query = useQuery({

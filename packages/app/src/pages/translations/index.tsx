@@ -51,7 +51,7 @@ function getTranslationsByLanguage(
 function TranslationsView(): JSX.Element {
   const { t } = useTranslation()
 
-  const [userRights] = useAtom(userRightsAtom)
+  const userRights = useAtomValue(userRightsAtom)
 
   const { mutate: updateTranslation } = useUpdateTranslation()
   const { mutate: deleteTranslation } = useDeleteTranslation()

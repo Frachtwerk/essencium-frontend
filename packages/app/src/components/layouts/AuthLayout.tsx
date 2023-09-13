@@ -153,7 +153,7 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
 
   const { data: user } = useGetMe()
 
-  const [userRights] = useAtom(userRightsAtom)
+  const userRights = useAtomValue(userRightsAtom)
 
   const actions: SpotlightAction[] = SEARCH_ITEMS.map(link => {
     return {

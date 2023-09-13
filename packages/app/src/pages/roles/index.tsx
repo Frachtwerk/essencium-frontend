@@ -84,7 +84,7 @@ function RolesView(): JSX.Element {
 
   const theme = useMantineTheme()
 
-  const [userRights] = useAtom(userRightsAtom)
+  const userRights = useAtomValue(userRightsAtom)
 
   const [addModalOpened, addModalHandlers] = useDisclosure(false)
   const [editModalOpened, editModalHandlers] = useDisclosure(false)

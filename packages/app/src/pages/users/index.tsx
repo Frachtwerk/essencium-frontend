@@ -96,9 +96,9 @@ export function removeDuplicates(array: string[] | undefined): string[] {
 function UsersView(): JSX.Element {
   const router = useRouter()
 
-  const [user] = useAtom(userAtom)
+  const user = useAtomValue(userAtom)
 
-  const [userRights] = useAtom(userRightsAtom)
+  const userRights = useAtomValue(userRightsAtom)
 
   const { t } = useTranslation()
 

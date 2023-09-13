@@ -63,7 +63,7 @@ const DEFAULT_SORTING: SortingState = [{ id: 'authority', desc: false }]
 function RightsView(): JSX.Element {
   const { t } = useTranslation()
 
-  const [userRights] = useAtom(userRightsAtom)
+  const userRights = useAtomValue(userRightsAtom)
 
   const [activePage, setActivePage] = useState(1)
   const [pageSize, setPageSize] = useState(20)
