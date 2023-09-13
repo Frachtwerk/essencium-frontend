@@ -57,6 +57,7 @@ type SearchItems = {
   color?: string
   to: string
   description?: string
+  rights?: string[]
 }
 
 export const NAV_LINKS: NavLink[] = [
@@ -155,7 +156,11 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
 
   const userRights = useAtomValue(userRightsAtom)
 
-  const actions: SpotlightAction[] = SEARCH_ITEMS.map(link => {
+  const actions: SpotlightAction[] | null = SEARCH_ITEMS.filter(link =>
+    !link.rights || link.rights?.some(right => userRights?.includes(right))
+      ? link
+      : null
+  ).map(link => {
     return {
       title: t(link.label),
       description: link.description ? (t(link.description) as string) : '',
