@@ -21,7 +21,7 @@ import { getTranslation, Translations } from '@frachtwerk/essencium-lib'
 import { RIGHTS, TranslationInput } from '@frachtwerk/essencium-types'
 import { Flex, Text, Title } from '@mantine/core'
 import { IconLanguage } from '@tabler/icons-react'
-import { useAtom } from 'jotai'
+import { useAtomValue } from 'jotai'
 import { i18n, useTranslation } from 'next-i18next'
 
 import De from '@/../public/locales/de/common.json'

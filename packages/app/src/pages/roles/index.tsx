@@ -23,6 +23,7 @@ import {
   DeleteDialog,
   EditRole,
   getTranslation,
+  hasRequiredRights,
   HttpNotification,
   parseSorting,
   Table,
@@ -53,7 +54,7 @@ import {
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
-import { useAtom } from 'jotai'
+import { useAtomValue } from 'jotai'
 import { useTranslation } from 'next-i18next'
 import { useCallback, useMemo, useState } from 'react'
 
@@ -66,7 +67,6 @@ import {
   useUpdateRole,
 } from '@/api/roles'
 import AuthLayout from '@/components/layouts/AuthLayout'
-import { hasRequiredRights } from '@/utils/hasRequiredRights'
 import { baseGetStaticProps } from '@/utils/next'
 
 const DEFAULT_SORTING: SortingState = [{ id: 'name', desc: false }]

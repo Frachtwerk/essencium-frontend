@@ -26,6 +26,7 @@ import {
   TablePagination,
 } from '@frachtwerk/essencium-lib'
 import {
+  hasRequiredRights,
   RightOutput,
   RIGHTS,
   RoleOutput,
@@ -47,7 +48,7 @@ import {
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
-import { useAtom } from 'jotai'
+import { useAtomValue } from 'jotai'
 import { useTranslation } from 'next-i18next'
 import { useCallback, useMemo, useState } from 'react'
 
@@ -55,7 +56,6 @@ import { userRightsAtom } from '@/api/me'
 import { useGetRights } from '@/api/rights'
 import { useGetRoles, useUpdateRole } from '@/api/roles'
 import AuthLayout from '@/components/layouts/AuthLayout'
-import { hasRequiredRights } from '@/utils/hasRequiredRights'
 import { baseGetStaticProps } from '@/utils/next'
 
 const DEFAULT_SORTING: SortingState = [{ id: 'authority', desc: false }]
@@ -166,7 +166,8 @@ function RightsView(): JSX.Element {
           if (
             role.name === 'ADMIN' ||
             role.protected ||
-            !hasRequiredRights(userRights, RIGHTS.ROLE_UPDATE)
+            (!hasRequiredRights(userRights, RIGHTS.ROLE_UPDATE) &&
+              !hasRequiredRights(userRights, RIGHTS.RIGHT_UPDATE))
           ) {
             return (
               <Checkbox

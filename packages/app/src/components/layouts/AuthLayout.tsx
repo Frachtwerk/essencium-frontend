@@ -34,7 +34,7 @@ import {
   IconUsers,
   IconUserStar,
 } from '@tabler/icons-react'
-import { useAtom } from 'jotai'
+import { useAtomValue } from 'jotai'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'

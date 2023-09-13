@@ -21,6 +21,7 @@
 import {
   DeleteDialog,
   getTranslation,
+  hasRequiredRights,
   HttpNotification,
   parseSorting,
   Table,
@@ -60,7 +61,7 @@ import {
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
-import { useAtom } from 'jotai'
+import { useAtomValue } from 'jotai'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
@@ -69,7 +70,6 @@ import { useCallback, useMemo, useState } from 'react'
 import { useDeleteUser, useGetUsers, useInvalidateToken } from '@/api'
 import { userAtom, userRightsAtom } from '@/api/me'
 import AuthLayout from '@/components/layouts/AuthLayout'
-import { hasRequiredRights } from '@/utils/hasRequiredRights'
 import { baseGetStaticProps } from '@/utils/next'
 
 export const FORM_DEFAULTS = {
