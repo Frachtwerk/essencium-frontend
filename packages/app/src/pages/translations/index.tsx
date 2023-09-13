@@ -123,8 +123,7 @@ function TranslationsView(): JSX.Element {
       </Title>
 
       <Translations
-        canDelete={hasRequiredRights(userRights, RIGHTS.TRANSLATION_DELETE)}
-        canUpdate={hasRequiredRights(userRights, RIGHTS.TRANSLATION_UPDATE)}
+        userRights={userRights}
         getTranslations={getTranslationsByLanguage}
         updateTranslation={onUpdateTranslation}
         deleteTranslation={onDeleteTranslation}

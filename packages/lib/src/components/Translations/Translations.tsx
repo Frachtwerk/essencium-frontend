@@ -18,7 +18,7 @@
  */
 
 /* eslint-disable react/no-unstable-nested-components */
-import { TranslationInput } from '@frachtwerk/essencium-types'
+import { RIGHTS, TranslationInput } from '@frachtwerk/essencium-types'
 import {
   ActionIcon,
   Box,
@@ -45,6 +45,8 @@ import { useTranslation } from 'next-i18next'
 import { FormEvent, useState } from 'react'
 import { JSONTree, KeyPath } from 'react-json-tree'
 
+import { hasRequiredRights } from '../../utils/hasRequiredRights'
+
 type FormEventWithTranslation = FormEvent<HTMLFormElement> & {
   target: FormEvent<HTMLFormElement>['target'] & {
     translation: {
@@ -58,8 +60,7 @@ type Props = {
   getTranslations: (lang: string) => Record<string, string> | undefined
   updateTranslation: ({ locale, key, translation }: TranslationInput) => void
   deleteTranslation: (key: TranslationInput['key']) => void
-  canUpdate: boolean
-  canDelete: boolean
+  userRights: string[] | null
 }
 
 export function searchTranslationsObject(
@@ -100,8 +101,7 @@ export function Translations({
   getTranslations,
   updateTranslation,
   deleteTranslation,
-  canUpdate,
-  canDelete,
+  userRights,
 }: Props): JSX.Element {
   const router = useRouter()
 
@@ -237,7 +237,8 @@ export function Translations({
                 }}
               >
                 {formatKeyPathToString(keyPath) === keyPathString &&
-                (canUpdate || canDelete) ? (
+                (hasRequiredRights(userRights, RIGHTS.TRANSLATION_UPDATE) ||
+                  hasRequiredRights(userRights, RIGHTS.TRANSLATION_DELETE)) ? (
                   <form
                     onSubmit={(event: FormEventWithTranslation) => {
                       handleSubmit(
@@ -256,7 +257,10 @@ export function Translations({
                         autoFocus
                       />
 
-                      {canUpdate ? (
+                      {hasRequiredRights(
+                        userRights,
+                        RIGHTS.TRANSLATION_UPDATE
+                      ) ? (
                         <Tooltip
                           label={t('translationsView.save')}
                           color={theme.colors.gray[6]}
@@ -291,7 +295,10 @@ export function Translations({
                         </ActionIcon>
                       </Tooltip>
 
-                      {canDelete ? (
+                      {hasRequiredRights(
+                        userRights,
+                        RIGHTS.TRANSLATION_DELETE
+                      ) ? (
                         <Tooltip
                           label={t('translationsView.reset')}
                           color={theme.colors.gray[6]}
@@ -316,7 +323,14 @@ export function Translations({
                   <Text
                     fz="sm"
                     style={{
-                      cursor: canUpdate || canDelete ? 'pointer' : '',
+                      cursor:
+                        hasRequiredRights(
+                          userRights,
+                          RIGHTS.TRANSLATION_UPDATE
+                        ) ||
+                        hasRequiredRights(userRights, RIGHTS.TRANSLATION_DELETE)
+                          ? 'pointer'
+                          : '',
                     }}
                   >
                     {value as string}
