@@ -18,6 +18,7 @@
  */
 
 export * from './auth'
+export * from './hasRequiredRights'
 export * from './notifications'
 export * from './parse'
 export * from './translations'

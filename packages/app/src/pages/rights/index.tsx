@@ -20,13 +20,13 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {
   getTranslation,
+  hasRequiredRights,
   HttpNotification,
   parseSorting,
   Table,
   TablePagination,
 } from '@frachtwerk/essencium-lib'
 import {
-  hasRequiredRights,
   RightOutput,
   RIGHTS,
   RoleOutput,
@@ -166,8 +166,8 @@ function RightsView(): JSX.Element {
           if (
             role.name === 'ADMIN' ||
             role.protected ||
-            (!hasRequiredRights(userRights, RIGHTS.ROLE_UPDATE) &&
-              !hasRequiredRights(userRights, RIGHTS.RIGHT_UPDATE))
+            !hasRequiredRights(userRights, RIGHTS.ROLE_UPDATE) ||
+            !hasRequiredRights(userRights, RIGHTS.RIGHT_UPDATE)
           ) {
             return (
               <Checkbox

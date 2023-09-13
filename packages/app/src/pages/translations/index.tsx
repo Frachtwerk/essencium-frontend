@@ -18,7 +18,7 @@
  */
 
 import { getTranslation, Translations } from '@frachtwerk/essencium-lib'
-import { RIGHTS, TranslationInput } from '@frachtwerk/essencium-types'
+import { TranslationInput } from '@frachtwerk/essencium-types'
 import { Flex, Text, Title } from '@mantine/core'
 import { IconLanguage } from '@tabler/icons-react'
 import { useAtomValue } from 'jotai'
@@ -33,7 +33,6 @@ import {
   useUpdateTranslation,
 } from '@/api/translations'
 import AuthLayout from '@/components/layouts/AuthLayout'
-import { hasRequiredRights } from '@/utils/hasRequiredRights'
 import { baseGetStaticProps } from '@/utils/next'
 
 interface TTranslations {
