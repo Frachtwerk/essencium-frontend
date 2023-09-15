@@ -1,10 +1,11 @@
 {
-  "name": "@frachtwerk/essencium-prettier-config",
+  "name": "@frachtwerk/prettier-config-essencium",
   "version": "1.0.0",
-  "description": "This is the shared prettier config.",
+  "description": "This is the shared Prettier config for Essencium.",
   "keywords": [
-    "config",
-    "prettier"
+    "prettier-config",
+    "prettier",
+    "essencium"
   ],
   "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/main/README.md",
   "bugs": {
@@ -17,14 +18,14 @@
   "license": "MIT",
   "author": "Frachtwerk GmbH",
   "type": "module",
-  "main": "prettier-config.json",
+  "main": "index.json",
   "scripts": {
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
     "sort-package-json": "sort-package-json"
   },
   "peerDependencies": {
-    "prettier": "2.8.4"
+    "prettier": "3.0.3"
   },
   "engines": {
     "node": ">=18",
@@ -32,5 +33,10 @@
   },
   "volta": {
     "node": "18.16.0"
+  },
+  "nx": {
+    "tags": [
+      "scope:prettier-config"
+    ]
   }
 }

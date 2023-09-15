@@ -257,7 +257,12 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish 'prettier-config' package
-        run: pnpm publish --filter "@frachtwerk/essencium-prettier-config" --access public
+      - name: Publish 'prettier-config-essencium' package
+        run: pnpm publish --filter "@frachtwerk/prettier-config-essencium" --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish 'eslint-config-essencium' package
+        run: pnpm publish --filter "@frachtwerk/eslint-config-essencium" --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

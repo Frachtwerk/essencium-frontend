@@ -4,5 +4,6 @@
     "paths": {
       "@frachtwerk/essencium-types": ["../types/src"]
     }
-  }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
 }

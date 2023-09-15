@@ -1,55 +1,43 @@
 {
-  "name": "@frachtwerk/essencium-docs",
-  "version": "1.2.0",
-  "description": "Essencium Frontend Docs",
+  "name": "@frachtwerk/eslint-config-essencium",
+  "version": "1.0.0",
+  "description": "This is the shared ESLint config for Essencium.",
+  "keywords": [
+    "eslint",
+    "eslint-config",
+    "essencium"
+  ],
   "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/main/README.md",
   "bugs": {
     "url": "https://github.com/Frachtwerk/essencium-frontend/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Frachtwerk/essencium-frontend.git"
+    "url": "git@github.com:Frachtwerk/essencium-frontend.git"
   },
   "license": "MIT",
   "author": "Frachtwerk GmbH",
+  "main": "index.cjs",
   "scripts": {
-    "build": "next build",
-    "clean": "rimraf node_modules .next",
-    "clean:install": "pnpm clean && pnpm install",
-    "dev": "next dev",
-    "format:check": "prettier --check .",
-    "format:write": "prettier --write .",
-    "lint": "eslint .",
-    "sort-package-json": "sort-package-json",
-    "start": "next start"
-  },
-  "dependencies": {
-    "clsx": "1.2.1",
-    "next": "13.4.8",
-    "nextra": "2.8.0",
-    "nextra-theme-docs": "2.8.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "sort-package-json": "sort-package-json"
   },
   "devDependencies": {
-    "@frachtwerk/eslint-config-essencium": "workspace:*",
     "@frachtwerk/prettier-config-essencium": "workspace:*",
-    "@types/node": "20.3.3",
+    "prettier": "3.0.3"
+  },
+  "peerDependencies": {
     "@typescript-eslint/eslint-plugin": "5.54.0",
     "@typescript-eslint/parser": "5.54.0",
     "eslint": "8.35.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.0.0",
-    "eslint-config-next": "13.4.4",
     "eslint-config-prettier": "8.6.0",
     "eslint-plugin-import": "2.27.5",
     "eslint-plugin-jsx-a11y": "6.7.1",
     "eslint-plugin-prettier": "5.0.0",
     "eslint-plugin-react": "7.32.2",
     "eslint-plugin-react-hooks": "4.6.0",
-    "eslint-plugin-simple-import-sort": "10.0.0",
-    "prettier": "3.0.3",
-    "typescript": "5.1.6"
+    "eslint-plugin-simple-import-sort": "10.0.0"
   },
   "engines": {
     "node": ">=18",
@@ -60,7 +48,7 @@
   },
   "nx": {
     "tags": [
-      "scope:docs"
+      "scope:eslint-config"
     ]
   }
 }

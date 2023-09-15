@@ -1,6 +1,7 @@
 {
   "folders": [
     {
+      "name": "root",
       "path": "../"
     },
     {
@@ -22,6 +23,10 @@
     {
       "name": "prettier-config",
       "path": "../packages/prettier-config"
+    },
+    {
+      "name": "eslint-config",
+      "path": "../packages/eslint-config"
     }
   ],
   "settings": {
