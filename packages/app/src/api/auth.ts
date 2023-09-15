@@ -58,7 +58,7 @@ export function useCreateToken(): UseMutationResult<
           loginCredentials,
           {
             baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-          }
+          },
         )
         .then(response => response.data),
     onSuccess: (data: TokenResponse) => {

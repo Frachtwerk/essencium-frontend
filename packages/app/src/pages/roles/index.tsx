@@ -150,7 +150,7 @@ function RolesView(): JSX.Element {
         onError: () => {
           addModalHandlers.close()
         },
-      }
+      },
     )
   }
 
@@ -168,7 +168,7 @@ function RolesView(): JSX.Element {
         onError: () => {
           editModalHandlers.close()
         },
-      }
+      },
     )
   }
 

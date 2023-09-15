@@ -36,7 +36,7 @@ import { authTokenAtom } from '@/api/auth'
 import { api } from './api'
 
 export function useGetTranslations(
-  locale: TranslationInput['locale']
+  locale: TranslationInput['locale'],
 ): UseQueryResult<TranslationOutput, AxiosError> {
   const authToken = useAtomValue(authTokenAtom)
 
@@ -67,7 +67,7 @@ export function useUpdateTranslation(): UseMutationResult<
               headers: {
                 'Content-Type': 'text/plain',
               },
-            }
+            },
           )
           .then(response => response.data)
       },
@@ -83,7 +83,7 @@ export function useUpdateTranslation(): UseMutationResult<
           color: 'error',
         })
       },
-    }
+    },
   )
 
   return mutation

@@ -38,7 +38,7 @@ interface TTranslations {
 }
 
 function getTranslationsByLanguage(
-  lang: string
+  lang: string,
 ): Record<string, string> | undefined {
   const translations = i18n?.getResourceBundle(lang, 'common')
 
@@ -69,7 +69,7 @@ function TranslationsView(): JSX.Element {
             ? backendTranslationsDe
             : backendTranslationsEn,
           true,
-          true
+          true,
         )
       },
     })
@@ -93,14 +93,14 @@ function TranslationsView(): JSX.Element {
           },
           i18n?.language === 'de'
             ? (De as TTranslations)
-            : (En as TTranslations)
+            : (En as TTranslations),
         ) as string
 
         i18n?.addResource(
           i18n.language,
           'common',
           translationKey,
-          valueByKeyPath
+          valueByKeyPath,
         )
 
         i18n?.init()
@@ -127,7 +127,7 @@ function TranslationsView(): JSX.Element {
 }
 
 TranslationsView.getLayout = function getLayout(
-  page: React.ReactNode
+  page: React.ReactNode,
 ): JSX.Element {
   return (
     <AuthLayout routeName={getTranslation('translationsView.title')}>

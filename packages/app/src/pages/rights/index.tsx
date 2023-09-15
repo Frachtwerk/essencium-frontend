@@ -101,7 +101,7 @@ function RightsView(): JSX.Element {
         onSuccess: handleRefetch,
       })
     },
-    [handleRefetch, updateRole]
+    [handleRefetch, updateRole],
   )
 
   const hasRight = useCallback(
@@ -116,24 +116,24 @@ function RightsView(): JSX.Element {
         throw Error(`Role ${roleName} does not exist in ${roles.content}`)
 
       return matchedRole.rights.some(
-        right => right.authority === rightAuthority
+        right => right.authority === rightAuthority,
       )
     },
-    [roles?.content]
+    [roles?.content],
   )
 
   // returns rights array for role after activating/deactivating a right
   function getUpdatedRights(
     role: RoleOutput,
-    userRight: RightOutput
+    userRight: RightOutput,
   ): RightOutput[] {
     const rightToUpdate = role.rights.find(
-      right => right.authority === userRight.authority
+      right => right.authority === userRight.authority,
     )
 
     if (rightToUpdate) {
       return role.rights.filter(
-        right => right.authority !== userRight.authority
+        right => right.authority !== userRight.authority,
       )
     }
 
@@ -189,7 +189,7 @@ function RightsView(): JSX.Element {
             />
           )
         },
-      })
+      }),
     )
 
     return [

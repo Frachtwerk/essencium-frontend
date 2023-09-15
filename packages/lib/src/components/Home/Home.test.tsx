@@ -41,11 +41,11 @@ describe('Home', () => {
     expect(screen.getByText('homeView.action.search')).toBeDefined()
 
     expect(
-      screen.getByText('homeView.action.users').closest('a')
+      screen.getByText('homeView.action.users').closest('a'),
     ).toHaveProperty('href', '/users')
 
     expect(
-      screen.getByText('homeView.action.profile').closest('a')
+      screen.getByText('homeView.action.profile').closest('a'),
     ).toHaveProperty('href', '/profile')
   })
 })

@@ -34,6 +34,6 @@ export function Notification({ children, ...props }: Props): JSX.Element {
     >
       {children}
     </MantineNotification>,
-    document.getElementById('notification') as HTMLElement
+    document.getElementById('notification') as HTMLElement,
   )
 }

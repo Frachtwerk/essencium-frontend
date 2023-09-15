@@ -25,14 +25,14 @@ test.describe('ProfileView', () => {
     await page.getByLabel('First Name').fill('T')
     await page.getByRole('button', { name: 'Save Changes' }).click()
     const firstNameErrorMessage = page.getByText(
-      'First Name must be at least 2 characters long'
+      'First Name must be at least 2 characters long',
     )
     await expect(firstNameErrorMessage).toBeVisible()
     await page.getByLabel('Last Name').click()
     await page.getByLabel('Last Name').fill('T')
     await page.getByRole('button', { name: 'Save Changes' }).click()
     const lastNameErrorMessage = page.getByText(
-      'Last Name must be at least 2 characters long'
+      'Last Name must be at least 2 characters long',
     )
     await expect(lastNameErrorMessage).toBeVisible()
     await page.getByLabel('E-Mail').click()
@@ -47,7 +47,7 @@ test.describe('ProfileView', () => {
     await page.getByRole('option', { name: 'Deutsch' }).click()
     await page.getByRole('button', { name: 'Save Changes' }).click()
     await expect(
-      page.getByRole('button', { name: 'Änderungen speichern' })
+      page.getByRole('button', { name: 'Änderungen speichern' }),
     ).toBeVisible()
     await page.getByLabel('Sprache').click()
     await page.getByRole('option', { name: 'English' }).click()

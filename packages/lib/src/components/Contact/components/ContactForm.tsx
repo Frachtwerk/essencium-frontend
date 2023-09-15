@@ -78,7 +78,7 @@ export function ContactForm(): JSX.Element {
 
             <Textarea
               placeholder={String(
-                t('contactView.contactForm.form.messagePlaceholder')
+                t('contactView.contactForm.form.messagePlaceholder'),
               )}
               label={t('contactView.contactForm.form.message')}
               withAsterisk

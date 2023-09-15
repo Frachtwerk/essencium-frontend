@@ -25,19 +25,19 @@ export function withBaseStylingShowNotification(
     notificationType: 'created' | 'updated' | 'deleted'
     color: 'success' | 'error'
     message?: NotificationProps['message']
-  }
+  },
 ): void {
   const t = i18n?.t ?? ((key: string) => key)
 
   function getTitleOrMessage(
-    type: 'title' | 'message'
+    type: 'title' | 'message',
   ): NotificationProps[typeof type] {
     if (props[type]) return props[type]
 
     return t(
       `notifications.${props.notificationType}Data${
         props.color[0].toUpperCase() + props.color.slice(1)
-      }.${type}`
+      }.${type}`,
     )
   }
 

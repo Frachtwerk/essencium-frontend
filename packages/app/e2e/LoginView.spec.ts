@@ -44,7 +44,7 @@ test.describe('LoginView', () => {
   test('reset password cancel', async ({ page }) => {
     await page.getByText('Reset Password').click()
     const text = page.getByText(
-      'Forgot your password? Enter your E-Mail and we will send you a link to reset you'
+      'Forgot your password? Enter your E-Mail and we will send you a link to reset you',
     )
     await expect(text).toBeVisible()
     await page.getByRole('button', { name: 'Cancel' }).click()
@@ -65,7 +65,7 @@ test.describe('LoginView', () => {
     await page.getByLabel('Password').fill('123')
     await page.getByLabel('E-Mail').click()
     const errorMessagePassword = page.getByText(
-      'Password must be at least 8 characters long'
+      'Password must be at least 8 characters long',
     )
     await expect(errorMessagePassword).toBeVisible()
   })
