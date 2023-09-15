@@ -328,6 +328,11 @@
     },
     "roleName": {
       "minLength": "Rollenname muss mindestens 2 Zeichen lang sein."
+    },
+    "contact": {
+      "name": "Name muss mindestens zwei Zeichen lang sein",
+      "subject": "Der Betreff muss mindestens zwei Zeichen lang sein.",
+      "message": "Die Nachricht muss mindestens zehn Zeichen lang sein. "
     }
   },
   "notifications": {

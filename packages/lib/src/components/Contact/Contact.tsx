@@ -19,9 +19,13 @@
 
 import { Grid } from '@mantine/core'
 
-import { ContactForm, ContactPersonCard } from './components'
+import { ContactForm, ContactFormType, ContactPersonCard } from './components'
 
-export function Contact(): JSX.Element {
+type Props = {
+  onSubmit: (form: ContactFormType) => void
+}
+
+export function Contact({ onSubmit }: Props): JSX.Element {
   return (
     <Grid role="grid">
       <Grid.Col md={4} role="gridcell">
@@ -29,7 +33,7 @@ export function Contact(): JSX.Element {
       </Grid.Col>
 
       <Grid.Col md={8} role="gridcell">
-        <ContactForm />
+        <ContactForm onSubmit={onSubmit} />
       </Grid.Col>
     </Grid>
   )

@@ -328,6 +328,11 @@
     },
     "roleName": {
       "minLength": "Role name must be at least 2 characters long."
+    },
+    "contact": {
+      "name": "Name must be at least 2 characters long.",
+      "subject": "Subject must be at least 2 characters long.",
+      "message": "Message must be at least 10 characters long."
     }
   },
   "notifications": {
