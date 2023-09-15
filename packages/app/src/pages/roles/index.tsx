@@ -175,7 +175,7 @@ function RolesView(): JSX.Element {
   function toggleRight(right: RightOutput): void {
     if (selectedRights.some(r => r.authority === right.authority)) {
       setSelectedRights(
-        selectedRights.filter(r => r.authority !== right.authority)
+        selectedRights.filter(r => r.authority !== right.authority),
       )
     } else {
       setSelectedRights([...selectedRights, right])
