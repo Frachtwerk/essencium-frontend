@@ -5,7 +5,8 @@
     "packages/lib": {},
     "packages/docs": {},
     "packages/app": {},
-    "packages/prettier-config": {}
+    "packages/prettier-config": {},
+    "packages/eslint-config": {}
   },
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
 }
