@@ -186,18 +186,6 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
     if (!authToken) router.push('/login')
   }, [user, router])
 
-  useEffect(() => {
-    const requiredRights = NAV_LINKS.find(
-      link => link.to === router.pathname
-    )?.rights
-
-    if (
-      !requiredRights ||
-      !requiredRights?.some(right => userRights?.includes(right))
-    )
-      router.push('/')
-  }, [userRights, router])
-
   function handleLogout(): void {
     logout()
 
