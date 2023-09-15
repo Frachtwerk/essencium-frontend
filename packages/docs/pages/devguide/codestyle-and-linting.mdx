@@ -21,6 +21,9 @@ to lint all projects files inside the `src`-directory based on the ESLint config
 We modified some rules to fit our code style. By default, ESLint will display an error if any rule is not satisfied. We
 don't work with warnings.
 
+Our Prettier and ESLint configurations are located in own packages that get published to npm. This way we can easily
+share the configuration between projects and keep them up to date.
+
 ## `"react/react-in-jsx-scope": "off"`
 
 This rule automatically imports the `react` package in our file when we use JSX.

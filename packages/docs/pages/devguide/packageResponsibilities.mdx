@@ -7,6 +7,8 @@ Currently, we have the following packages:
 - `docs`
 - `lib`
 - `types`
+- `eslint-config`
+- `prettier-config`
 
 The challenge is to maintain separation of concerns for each package. The following sections list the responsibilities of each package.
 
@@ -32,9 +34,21 @@ The challenge is to maintain separation of concerns for each package. The follow
 
 - single Next.js components
 - specific hooks
+  <<<<<<< main
 - specific utility functions
 
 ## `types`
 
 - shared types ('shared' means types that are used in `app` and `lib` together)
-- zod schemas
+- # zod schemas
+
+## `eslint-config`
+
+- exports a ESLint config that is consumed by the other packages
+- is published as a npm package
+
+## `prettier-config`
+
+- exports a Prettier config that is consumed by the other packages
+- is published as a npm package
+  > > > > > > > docs: update docs for prettier and eslint package
