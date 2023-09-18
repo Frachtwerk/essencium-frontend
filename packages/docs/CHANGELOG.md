@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v1.2.0...essencium-docs-v1.3.0) (2023-09-18)
+
+
+### Features
+
+* add eslint config package ([87943a9](https://github.com/Frachtwerk/essencium-frontend/commit/87943a9e7e887d5c964d45b222046a4979362e43))
+
 ## [1.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v1.1.0...essencium-docs-v1.2.0) (2023-08-02)
 
 
