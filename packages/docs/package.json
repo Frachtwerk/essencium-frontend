@@ -1,6 +1,6 @@
 {
   "name": "@frachtwerk/essencium-docs",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Essencium Frontend Docs",
   "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/main/README.md",
   "bugs": {
@@ -32,7 +32,23 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@frachtwerk/eslint-config-essencium": "workspace:*",
+    "@frachtwerk/prettier-config-essencium": "workspace:*",
     "@types/node": "20.3.3",
+    "@typescript-eslint/eslint-plugin": "5.54.0",
+    "@typescript-eslint/parser": "5.54.0",
+    "eslint": "8.35.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-airbnb-typescript": "17.0.0",
+    "eslint-config-next": "13.4.4",
+    "eslint-config-prettier": "8.6.0",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-jsx-a11y": "6.7.1",
+    "eslint-plugin-prettier": "5.0.0",
+    "eslint-plugin-react": "7.32.2",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "eslint-plugin-simple-import-sort": "10.0.0",
+    "prettier": "3.0.3",
     "typescript": "5.1.6"
   },
   "engines": {
@@ -41,5 +57,10 @@
   },
   "volta": {
     "node": "18.16.0"
+  },
+  "nx": {
+    "tags": [
+      "scope:docs"
+    ]
   }
 }

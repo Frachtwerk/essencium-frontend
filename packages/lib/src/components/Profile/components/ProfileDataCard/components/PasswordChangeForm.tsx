@@ -38,7 +38,7 @@ import { useZodForm } from '../../../../../hooks'
 type Props = {
   handlePasswordUpdate: (
     oldPassword: PasswordChange['password'],
-    newPassword: PasswordChange['password']
+    newPassword: PasswordChange['password'],
   ) => void
 }
 
@@ -72,7 +72,7 @@ export function PasswordChangeForm({
                 <PasswordInput
                   {...field}
                   label={t(
-                    'profileView.dataCard.tabs.passwordChange.content.currentPassword'
+                    'profileView.dataCard.tabs.passwordChange.content.currentPassword',
                   )}
                   radius="sm"
                   withAsterisk
@@ -102,7 +102,7 @@ export function PasswordChangeForm({
                 <PasswordInput
                   {...field}
                   label={t(
-                    'profileView.dataCard.tabs.passwordChange.content.newPassword'
+                    'profileView.dataCard.tabs.passwordChange.content.newPassword',
                   )}
                   radius="sm"
                   withAsterisk
@@ -132,7 +132,7 @@ export function PasswordChangeForm({
                 <PasswordInput
                   {...field}
                   label={t(
-                    'profileView.dataCard.tabs.passwordChange.content.confirmNewPassword'
+                    'profileView.dataCard.tabs.passwordChange.content.confirmNewPassword',
                   )}
                   radius="sm"
                   withAsterisk

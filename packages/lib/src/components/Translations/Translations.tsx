@@ -65,7 +65,7 @@ type Props = {
 
 export function searchTranslationsObject(
   object: Record<string, string> | undefined,
-  searchQuery: string
+  searchQuery: string,
 ): Record<string, string> {
   const searchResult: Record<string, string> = {}
 
@@ -81,7 +81,7 @@ export function searchTranslationsObject(
       } else if (typeof object[key] === 'object' && object[key] !== null) {
         const nestedResult = searchTranslationsObject(
           object[key] as unknown as Record<string, string>,
-          searchQuery
+          searchQuery,
         )
 
         if (Object.keys(nestedResult).length > 0) {
@@ -132,7 +132,7 @@ export function Translations({
   const [keyPathString, setKeyPathString] = useState<string | null>(null)
 
   const [selectedLanguage, setSelectedLanguage] = useState(
-    router?.locale || 'en'
+    router?.locale || 'en',
   )
   const translations = getTranslations(selectedLanguage)
 
@@ -140,7 +140,7 @@ export function Translations({
 
   const filteredTranslations = searchTranslationsObject(
     translations,
-    searchQuery
+    searchQuery,
   )
 
   function handleSelectedLanguage(language: string): void {
@@ -173,7 +173,7 @@ export function Translations({
   function handleSubmit(
     event: FormEventWithTranslation,
     keyPath: KeyPath,
-    translation: string
+    translation: string,
   ): void {
     event.preventDefault()
 
@@ -244,7 +244,7 @@ export function Translations({
                       handleSubmit(
                         event,
                         keyPath,
-                        event.target.translation.value
+                        event.target.translation.value,
                       )
                     }}
                   >

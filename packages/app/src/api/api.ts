@@ -45,7 +45,7 @@ axiosInstance.interceptors.request.use(
   },
   (error: AxiosError) => {
     throw error
-  }
+  },
 )
 
 axiosInstance.interceptors.response.use(
@@ -58,32 +58,32 @@ axiosInstance.interceptors.response.use(
     }
 
     throw error
-  }
+  },
 )
 
 type CreateApi = {
   get: <TResponse>(
     url: string,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ) => Promise<AxiosResponse<TResponse>>
   put: <TResponse, TBody>(
     url: string,
     body: TBody,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ) => Promise<AxiosResponse<TResponse>>
   patch: <TResponse, TBody>(
     url: string,
     body: TBody,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ) => Promise<AxiosResponse<TResponse>>
   post: <TResponse, TBody>(
     url: string,
     body: TBody,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ) => Promise<AxiosResponse<TResponse>>
   delete: <TResponse>(
     url: string,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ) => Promise<AxiosResponse<TResponse>>
 }
 
@@ -94,17 +94,17 @@ function createApi(instance: AxiosInstance): CreateApi {
     put: <TResponse, TBody>(
       url: string,
       body: TBody,
-      config: AxiosRequestConfig = {}
+      config: AxiosRequestConfig = {},
     ) => instance.put<TResponse>(url, body, config),
     patch: <TResponse, TBody>(
       url: string,
       body: TBody,
-      config: AxiosRequestConfig = {}
+      config: AxiosRequestConfig = {},
     ) => instance.patch<TResponse>(url, body, config),
     post: <TResponse, TBody>(
       url: string,
       body: TBody,
-      config: AxiosRequestConfig = {}
+      config: AxiosRequestConfig = {},
     ) => instance.post<TResponse>(url, body, config),
     delete: <TResponse>(url: string, config: AxiosRequestConfig = {}) =>
       instance.delete<TResponse>(url, config),

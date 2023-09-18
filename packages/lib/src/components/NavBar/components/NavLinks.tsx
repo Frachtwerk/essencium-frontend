@@ -68,7 +68,7 @@ export function NavLinks({ links, userRights }: Props): JSX.Element {
               }}
             />
           </NextLink>
-        ) : null
+        ) : null,
       )}
     </Stack>
   )

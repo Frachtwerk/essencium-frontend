@@ -183,7 +183,7 @@ describe('Table', () => {
         tableModel={table}
         onFilterChange={() => ({})}
         showFilter={false}
-      />
+      />,
     )
   })
 

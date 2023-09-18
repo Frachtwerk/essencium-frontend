@@ -60,7 +60,7 @@ export function ResetPasswordForm({
             <TextInput
               {...field}
               placeholder={String(
-                t('loginView.resetPassword.form.placeholder')
+                t('loginView.resetPassword.form.placeholder'),
               )}
               label={String(t('loginView.resetPassword.form.label'))}
               withAsterisk

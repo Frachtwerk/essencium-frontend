@@ -68,15 +68,15 @@ describe('Footer', () => {
 
   it('should contain the correct content', () => {
     expect(
-      screen.getByText('footer.privacy.label').closest('a')
+      screen.getByText('footer.privacy.label').closest('a'),
     ).toHaveProperty('href', 'privacy')
 
     expect(
-      screen.getByText('footer.imprint.label').closest('a')
+      screen.getByText('footer.imprint.label').closest('a'),
     ).toHaveProperty('href', 'imprint')
 
     expect(
-      screen.getByText('footer.contact.label').closest('a')
+      screen.getByText('footer.contact.label').closest('a'),
     ).toHaveProperty('href', 'contact')
   })
 })

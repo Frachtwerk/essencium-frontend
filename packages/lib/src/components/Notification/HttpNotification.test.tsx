@@ -45,7 +45,7 @@ describe('HttpNotification', () => {
 
   it('returns nothing if no truthy loading or error state', () => {
     mountedHttpNotificaton = render(
-      <HttpNotification isLoading={false} isError={false} />
+      <HttpNotification isLoading={false} isError={false} />,
     )
 
     expect(screen.queryByRole('alert')).toBeNull()
@@ -58,7 +58,7 @@ describe('HttpNotification', () => {
         isError={false}
         loadingTitle="Loading..."
         loadingMessage="Retrieving data from the server"
-      />
+      />,
     )
 
     expect(screen.queryByRole('alert')).toBeDefined()
@@ -73,7 +73,7 @@ describe('HttpNotification', () => {
         isError
         errorTitle="Error"
         errorMessage="Unable to fetch data"
-      />
+      />,
     )
 
     expect(screen.queryByRole('alert')).toBeDefined()

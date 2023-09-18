@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v2.3.1...essencium-app-v2.4.0) (2023-09-18)
+
+
+### Features
+
+* add eslint config package ([87943a9](https://github.com/Frachtwerk/essencium-frontend/commit/87943a9e7e887d5c964d45b222046a4979362e43))
+* persist sidebar state in local storage ([01cea19](https://github.com/Frachtwerk/essencium-frontend/commit/01cea19e68ee08b8f4dac4ce7fbb4b5585e986ed))
+
 ## [2.3.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v2.3.0...essencium-app-v2.3.1) (2023-09-12)
 
 

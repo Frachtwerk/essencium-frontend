@@ -149,8 +149,8 @@ export function RoleForm({
                     role &&
                       role.rights.length > 0 &&
                       role?.rights.find(
-                        item => item.authority === right.authority
-                      )
+                        item => item.authority === right.authority,
+                      ),
                   )}
                   key={right.authority}
                   value={right.authority}

@@ -108,7 +108,7 @@ export function ProfileSettingsForm({
                 radius="sm"
                 label={t('profileView.dataCard.tabs.settings.content.role')}
                 placeholder={String(
-                  t('profileView.dataCard.tabs.settings.content.role')
+                  t('profileView.dataCard.tabs.settings.content.role'),
                 )}
                 data={(roles || []).map(role => role.name)}
               />

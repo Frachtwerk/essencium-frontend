@@ -52,7 +52,7 @@ function ProfileView(): JSX.Element {
 
   function handlePasswordUpdate(
     password: PasswordChange['password'],
-    verification: PasswordChange['password']
+    verification: PasswordChange['password'],
   ): void {
     updatePassword(
       { password, verification },
@@ -62,7 +62,7 @@ function ProfileView(): JSX.Element {
 
           router.push('/login')
         },
-      }
+      },
     )
   }
 

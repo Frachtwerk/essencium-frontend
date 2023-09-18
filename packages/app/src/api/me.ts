@@ -110,7 +110,7 @@ export function useUpdatePassword(): UseMutationResult<
       api
         .put<UserOutput, Omit<PasswordChange, 'confirmPassword'>>(
           '/users/me/password',
-          passwordData
+          passwordData,
         )
         .then(response => response.data),
     onSuccess: () => {

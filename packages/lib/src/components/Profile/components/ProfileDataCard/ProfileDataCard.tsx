@@ -40,7 +40,7 @@ type Props = {
   handleUpdate: (data: UserUpdate) => void
   handlePasswordUpdate: (
     oldPassword: PasswordChange['password'],
-    newPassword: PasswordChange['password']
+    newPassword: PasswordChange['password'],
   ) => void
 }
 

@@ -6,5 +6,6 @@
       "@frachtwerk/essencium-lib": ["../lib/src"],
       "@frachtwerk/essencium-types": ["../types/src"]
     }
-  }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
 }

@@ -9,7 +9,7 @@
 /coverage
 playwright-report
 test-results
-/playwright/.auth/
+playwright/.auth
 
 # next.js
 /.next/

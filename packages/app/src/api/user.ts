@@ -73,7 +73,7 @@ export function useGetUsers({
 }
 
 export function useGetUser(
-  userId: UserOutput['id']
+  userId: UserOutput['id'],
 ): UseQueryResult<UserOutput, AxiosError> {
   const authToken = useAtomValue(authTokenAtom)
 

@@ -51,7 +51,7 @@ describe('Header', () => {
         handleOpenNav={() => {}}
         logo={applicationLogo}
         user={mockUser}
-      />
+      />,
     )
   })
 

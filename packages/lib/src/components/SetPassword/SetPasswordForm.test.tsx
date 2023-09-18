@@ -29,7 +29,7 @@ describe('SetPassword', () => {
 
   beforeAll(() => {
     SetPasswordFormMounted = render(
-      <SetPasswordForm handleSetPassword={handleSetPassword} />
+      <SetPasswordForm handleSetPassword={handleSetPassword} />,
     )
   })
 

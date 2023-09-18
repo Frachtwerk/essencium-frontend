@@ -58,7 +58,7 @@ async function seedDatabase(): Promise<void> {
     },
     (error: AxiosError) => {
       return Promise.reject(error)
-    }
+    },
   )
 
   // Authenticate and set access token
@@ -81,7 +81,7 @@ async function seedDatabase(): Promise<void> {
       .filter((user: UserOutput) => user.email !== CONFIG.ADMIN_USERNAME)
       .map((user: UserOutput) => {
         return axiosInstance.delete(`/v1/users/${user.id}`)
-      })
+      }),
   )
 
   const { data: roles } = await axiosInstance.get('/v1/roles')
@@ -91,7 +91,7 @@ async function seedDatabase(): Promise<void> {
       .filter((role: RoleOutput) => !CONFIG.ROLES_TO_KEEP.includes(role.name))
       .map((role: RoleOutput) => {
         return axiosInstance.delete(`/v1/roles/${role.id}`)
-      })
+      }),
   )
 
   // Create new roles and users
@@ -110,7 +110,7 @@ async function seedDatabase(): Promise<void> {
             name: faker.name.jobType().toUpperCase(),
             protected: faker.datatype.boolean(),
             rights: faker.helpers.arrayElements(
-              rights.content.map((right: RightOutput) => right.id)
+              rights.content.map((right: RightOutput) => right.id),
             ),
           })
           .catch((error: AxiosError) => {
@@ -120,12 +120,12 @@ async function seedDatabase(): Promise<void> {
 
             return null
           })
-      })
+      }),
   )
 
   const createdRoles = createdRolesResponse
     .filter(
-      (response): response is AxiosResponse<RoleOutput> => response !== null
+      (response): response is AxiosResponse<RoleOutput> => response !== null,
     )
     .map(response => response.data)
 
@@ -142,7 +142,7 @@ async function seedDatabase(): Promise<void> {
             locale: faker.helpers.arrayElement(CONFIG.AVAILABLE_LOCALES),
             mobile: faker.phone.number(),
             role: faker.helpers.arrayElement(
-              createdRoles.map((role: RoleOutput) => role.id)
+              createdRoles.map((role: RoleOutput) => role.id),
             ),
           })
           .catch((error: AxiosError) => {
@@ -152,7 +152,7 @@ async function seedDatabase(): Promise<void> {
 
             return null
           })
-      })
+      }),
   )
 
   console.log('✅ Seeding successful')
