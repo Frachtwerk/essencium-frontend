@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v2.0.1...essencium-types-v2.1.0) (2023-09-18)
+
+
+### Features
+
+* add eslint config package ([87943a9](https://github.com/Frachtwerk/essencium-frontend/commit/87943a9e7e887d5c964d45b222046a4979362e43))
+
 ## [2.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v2.0.0...essencium-types-v2.0.1) (2023-08-02)
 
 

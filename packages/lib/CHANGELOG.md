@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v2.3.0...essencium-lib-v2.4.0) (2023-09-18)
+
+
+### Features
+
+* add eslint config package ([87943a9](https://github.com/Frachtwerk/essencium-frontend/commit/87943a9e7e887d5c964d45b222046a4979362e43))
+
 ## [2.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v2.2.2...essencium-lib-v2.3.0) (2023-09-06)
 
 
