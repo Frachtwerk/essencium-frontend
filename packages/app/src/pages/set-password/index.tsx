@@ -48,7 +48,7 @@ function SetPasswordView(): JSX.Element {
       { password, verification },
       {
         onSuccess: () => setShowSuccessMessage(true),
-      }
+      },
     )
   }
 
@@ -72,7 +72,7 @@ function SetPasswordView(): JSX.Element {
 }
 
 SetPasswordView.getLayout = function getLayout(
-  page: React.ReactNode
+  page: React.ReactNode,
 ): JSX.Element {
   return (
     <PublicLayout routeName={getTranslation('setPasswordView.title')}>

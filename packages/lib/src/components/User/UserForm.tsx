@@ -75,7 +75,7 @@ export function UserForm({
               <TextInput
                 {...field}
                 placeholder={String(
-                  t('addUpdateUserView.form.placeholder.firstName')
+                  t('addUpdateUserView.form.placeholder.firstName'),
                 )}
                 label={t('addUpdateUserView.form.firstName')}
                 size="sm"
@@ -105,7 +105,7 @@ export function UserForm({
               <TextInput
                 {...field}
                 placeholder={String(
-                  t('addUpdateUserView.form.placeholder.lastName')
+                  t('addUpdateUserView.form.placeholder.lastName'),
                 )}
                 label={t('addUpdateUserView.form.lastName')}
                 size="sm"
@@ -142,7 +142,7 @@ export function UserForm({
               <TextInput
                 {...field}
                 placeholder={String(
-                  t('addUpdateUserView.form.placeholder.email')
+                  t('addUpdateUserView.form.placeholder.email'),
                 )}
                 label={t('addUpdateUserView.form.email')}
                 withAsterisk
@@ -172,7 +172,7 @@ export function UserForm({
               <PasswordInput
                 {...field}
                 placeholder={String(
-                  t('addUpdateUserView.form.placeholder.password')
+                  t('addUpdateUserView.form.placeholder.password'),
                 )}
                 label={t('addUpdateUserView.form.password')}
                 size="sm"
@@ -208,7 +208,7 @@ export function UserForm({
               <TextInput
                 {...field}
                 placeholder={String(
-                  t('addUpdateUserView.form.placeholder.phone')
+                  t('addUpdateUserView.form.placeholder.phone'),
                 )}
                 label={t('addUpdateUserView.form.phone')}
                 size="sm"
@@ -237,7 +237,7 @@ export function UserForm({
               <TextInput
                 {...field}
                 placeholder={String(
-                  t('addUpdateUserView.form.placeholder.mobile')
+                  t('addUpdateUserView.form.placeholder.mobile'),
                 )}
                 label={t('addUpdateUserView.form.mobile')}
                 size="sm"

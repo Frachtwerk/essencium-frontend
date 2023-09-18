@@ -83,7 +83,7 @@ export function Table<T>({
                     >
                       {flexRender(
                         header.column.columnDef.header,
-                        header.getContext()
+                        header.getContext(),
                       )}
                       {
                         {
@@ -150,7 +150,7 @@ export function Table<T>({
                   <th key={header.id}>
                     {flexRender(
                       header.column.columnDef.footer,
-                      header.getContext()
+                      header.getContext(),
                     )}
                   </th>
                 ))}

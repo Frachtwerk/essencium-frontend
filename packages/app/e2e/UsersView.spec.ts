@@ -38,7 +38,7 @@ test.describe('UsersView', () => {
     await page.goto(`${BASE_URL}/users`)
 
     await expect(
-      page.getByRole('cell', { name: 'Test Person', exact: true })
+      page.getByRole('cell', { name: 'Test Person', exact: true }),
     ).toBeVisible()
 
     const editIcon = page
@@ -48,7 +48,7 @@ test.describe('UsersView', () => {
     await editIcon.click()
 
     await expect(
-      page.getByRole('heading', { name: 'Update a user' })
+      page.getByRole('heading', { name: 'Update a user' }),
     ).toBeVisible()
     await expect(page.getByLabel('First Name')).toHaveValue('Test')
     await page.getByLabel('Phone Number').click()
@@ -68,7 +68,7 @@ test.describe('UsersView', () => {
     await expect(
       page.getByRole('row', {
         name: 'Test Person 12345 test@person.de German ADMIN',
-      })
+      }),
     ).not.toBeVisible()
   })
 })

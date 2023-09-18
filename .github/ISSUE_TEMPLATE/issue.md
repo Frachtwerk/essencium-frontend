@@ -4,11 +4,13 @@ about: An improvement for this project
 title: ISSUE
 labels: ''
 assignees: ''
-
 ---
 
-**DESCRIPTION**
+**Description**
 A clear and concise description of what you want to happen.
 
-**SCOPE**
+**Scope**
 Technical scope of this issue, implementing the described functionality.
+
+- [ ] update `MIGRATION.md`
+- [ ] update docs

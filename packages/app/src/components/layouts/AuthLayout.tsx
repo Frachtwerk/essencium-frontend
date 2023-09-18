@@ -174,7 +174,7 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
     'common',
     i18n.language === 'de' ? backendTranslationsDe : backendTranslationsEn,
     true,
-    true
+    true,
   )
 
   useEffect(() => {

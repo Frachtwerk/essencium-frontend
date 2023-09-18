@@ -41,9 +41,12 @@ export function NavLinks({ links, user }: Props): JSX.Element {
 
   function hasRequiredRights(rights: string[]): boolean {
     return Boolean(
-      rights.every(right =>
-        user?.role.rights.map(userRight => userRight.authority).includes(right)
-      )
+      rights.every(
+        right =>
+          user?.role.rights
+            .map(userRight => userRight.authority)
+            .includes(right),
+      ),
     )
   }
 
@@ -72,7 +75,7 @@ export function NavLinks({ links, user }: Props): JSX.Element {
               }}
             />
           </NextLink>
-        ) : null
+        ) : null,
       )}
     </Stack>
   )

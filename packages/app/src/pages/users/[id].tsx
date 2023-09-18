@@ -107,7 +107,7 @@ function UpdateUserView(): JSX.Element {
 }
 
 UpdateUserView.getLayout = function getLayout(
-  page: React.ReactNode
+  page: React.ReactNode,
 ): JSX.Element {
   return (
     <AuthLayout routeName={getTranslation('addUpdateUserView.update.title')}>
@@ -127,7 +127,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     },
     {
       baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-    }
+    },
   )
 
   const { data: usersData } = await axiosInstance.get<UsersResponse>('/users', {

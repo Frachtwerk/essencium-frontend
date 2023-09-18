@@ -103,7 +103,7 @@ function UsersView(): JSX.Element {
 
   const [deleteModalOpened, deleteModalHandlers] = useDisclosure(false)
   const [userToBeDeleted, setUserToBeDeleted] = useState<UserOutput | null>(
-    null
+    null,
   )
 
   const [activePage, setActivePage] = useState(1)
@@ -120,7 +120,7 @@ function UsersView(): JSX.Element {
 
   function handleFilterChange(
     key: FilterObjectUser['key'],
-    value: FilterObjectUser['value']
+    value: FilterObjectUser['value'],
   ): void {
     // reset to first page when filtering
     setActivePage(1)
@@ -153,14 +153,14 @@ function UsersView(): JSX.Element {
     (userToEdit: UserOutput) => {
       router.push(`/users/${userToEdit.id}`)
     },
-    [router]
+    [router],
   )
 
   function getFilterData(): Record<string, Array<string>> {
     const { content: usersContent } = users || {}
 
     const name = usersContent?.map(
-      userItem => `${userItem.firstName} ${userItem.lastName}`
+      userItem => `${userItem.firstName} ${userItem.lastName}`,
     )
     const email = usersContent?.map(userItem => userItem.email)
     const role = usersContent?.map(userItem => userItem.role.name)
@@ -183,7 +183,7 @@ function UsersView(): JSX.Element {
         },
       })
     },
-    [deleteUser, refetchUsers, deleteModalHandlers]
+    [deleteUser, refetchUsers, deleteModalHandlers],
   )
 
   const { mutate: invalidateToken } = useInvalidateToken()
@@ -192,7 +192,7 @@ function UsersView(): JSX.Element {
     (rowUser: UserOutput): void => {
       invalidateToken(rowUser.id)
     },
-    [invalidateToken]
+    [invalidateToken],
   )
 
   const columns = useMemo<ColumnDef<UserOutput>[]>(
@@ -347,7 +347,7 @@ function UsersView(): JSX.Element {
       theme.colorScheme,
       handleInvalidateToken,
       deleteModalHandlers,
-    ]
+    ],
   )
 
   const table = useReactTable({

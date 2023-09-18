@@ -3,7 +3,7 @@
 Essencium consists of a core library (called `lib` inside the monorepo and `@frachtwerk/essencium-lib` on npm), a types
 package (called `types` inside the monorepo and `@frachtwerk/essencium-types` on npm) and a boilerplate (`app`) that
 consumes those packages. Additonally, we have a `docs` package to document the project (this is what you're currently
-reading). We chose a monorepo architecture for better developer experience and less complex maintainability.
+reading) and two packages for shared linting and formatting configurations (`eslint-config` and `prettier-config`). We chose a monorepo architecture for better developer experience and less complex maintainability.
 
 All components are developed inside the `lib` and imported inside the `app`. That allows us to easily update our `lib`
 package.
@@ -25,6 +25,12 @@ That gives us the following architecture:
 │   │   ├── package.json
 │   │   └── ...
 │   └── types
+│   │   ├── package.json
+│   │   └── ...
+│   └── eslint-config
+│   │   ├── package.json
+│   │   └── ...
+│   └── prettier-config
 │   │   ├── package.json
 │   │   └── ...
 ├── scripts

@@ -13,7 +13,7 @@ export const BASE_URL_DOCS = 'https://docs.essencium.dev/'
 
 if (!process.env.ADMIN_USERNAME || !process.env.ADMIN_PASSWORD) {
   throw new Error(
-    'Please provide ADMIN_USERNAME and ADMIN_PASSWORD env variables'
+    'Please provide ADMIN_USERNAME and ADMIN_PASSWORD env variables',
   )
 }
 

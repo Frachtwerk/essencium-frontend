@@ -121,7 +121,7 @@ export function LoginForm({
                   <PasswordInput
                     {...field}
                     placeholder={String(
-                      t('loginView.form.passwordPlaceholder')
+                      t('loginView.form.passwordPlaceholder'),
                     )}
                     label={t('loginView.form.password')}
                     required

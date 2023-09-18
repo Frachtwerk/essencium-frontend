@@ -1,6 +1,4 @@
-# Ignore artifacts:
 dist
 coverage
 .rollup.cache
-
 CHANGELOG.md

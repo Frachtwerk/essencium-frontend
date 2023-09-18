@@ -97,11 +97,11 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
                 {...field}
                 placeholder={String(
                   t(
-                    'profileView.dataCard.tabs.personalData.placeholder.firstName'
-                  )
+                    'profileView.dataCard.tabs.personalData.placeholder.firstName',
+                  ),
                 )}
                 label={t(
-                  'profileView.dataCard.tabs.personalData.label.firstName'
+                  'profileView.dataCard.tabs.personalData.label.firstName',
                 )}
                 size="sm"
                 variant="filled"
@@ -130,11 +130,11 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
                 {...field}
                 placeholder={String(
                   t(
-                    'profileView.dataCard.tabs.personalData.placeholder.lastName'
-                  )
+                    'profileView.dataCard.tabs.personalData.placeholder.lastName',
+                  ),
                 )}
                 label={t(
-                  'profileView.dataCard.tabs.personalData.label.lastName'
+                  'profileView.dataCard.tabs.personalData.label.lastName',
                 )}
                 size="sm"
                 variant="filled"
@@ -169,7 +169,7 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
               <TextInput
                 {...field}
                 placeholder={String(
-                  t('profileView.dataCard.tabs.personalData.placeholder.phone')
+                  t('profileView.dataCard.tabs.personalData.placeholder.phone'),
                 )}
                 label={t('profileView.dataCard.tabs.personalData.label.phone')}
                 size="sm"
@@ -198,7 +198,9 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
               <TextInput
                 {...field}
                 placeholder={String(
-                  t('profileView.dataCard.tabs.personalData.placeholder.mobile')
+                  t(
+                    'profileView.dataCard.tabs.personalData.placeholder.mobile',
+                  ),
                 )}
                 label={t('profileView.dataCard.tabs.personalData.label.mobile')}
                 size="sm"
@@ -234,7 +236,7 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
               <TextInput
                 {...field}
                 placeholder={String(
-                  t('profileView.dataCard.tabs.personalData.placeholder.email')
+                  t('profileView.dataCard.tabs.personalData.placeholder.email'),
                 )}
                 label={t('profileView.dataCard.tabs.personalData.label.email')}
                 withAsterisk
@@ -265,10 +267,10 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
                 {...field}
                 radius="sm"
                 label={t(
-                  'profileView.dataCard.tabs.personalData.label.language'
+                  'profileView.dataCard.tabs.personalData.label.language',
                 )}
                 placeholder={String(
-                  t('profileView.dataCard.tabs.personalData.label.language')
+                  t('profileView.dataCard.tabs.personalData.label.language'),
                 )}
                 data={[
                   { value: 'de', label: 'Deutsch' },

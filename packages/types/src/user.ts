@@ -43,7 +43,7 @@ export const userOutputSchema = basePropertiesSchema
   .merge(
     z.object({
       role: roleOutputSchema,
-    })
+    }),
   )
   .merge(sharedPropertiesSchema)
 
@@ -58,9 +58,9 @@ export const userInputSchema = sharedPropertiesSchema.merge(
         roleOutputSchema.shape.name.safeParse(role).success,
       {
         message: 'validation.role.isRequired',
-      }
+      },
     ),
-  })
+  }),
 )
 
 export type UserInput = z.infer<typeof userInputSchema>
@@ -74,9 +74,9 @@ export const userUpdateSchema = userOutputSchema.merge(
         roleOutputSchema.shape.name.safeParse(role).success,
       {
         message: 'validation.role.isRequired',
-      }
+      },
     ),
-  })
+  }),
 )
 
 export type UserUpdate = z.infer<typeof userUpdateSchema>

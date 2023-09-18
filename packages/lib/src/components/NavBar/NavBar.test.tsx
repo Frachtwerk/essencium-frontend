@@ -77,7 +77,7 @@ describe('NavBar', () => {
     }))
 
     NavBarMounted = render(
-      <NavBar isOpen links={NAV_LINKS} handleLogout={() => {}} />
+      <NavBar isOpen links={NAV_LINKS} handleLogout={() => {}} />,
     )
   })
 
@@ -87,19 +87,19 @@ describe('NavBar', () => {
 
   it('should contain the correct navigation links', () => {
     expect(
-      screen.getByText('navigation.home.label').closest('a')
+      screen.getByText('navigation.home.label').closest('a'),
     ).toHaveProperty('href', '/home')
     expect(
-      screen.getByText('navigation.users.label').closest('a')
+      screen.getByText('navigation.users.label').closest('a'),
     ).toHaveProperty('href', '/users')
     expect(
-      screen.getByText('navigation.roles.label').closest('a')
+      screen.getByText('navigation.roles.label').closest('a'),
     ).toHaveProperty('href', '/roles')
     expect(
-      screen.getByText('navigation.rights.label').closest('a')
+      screen.getByText('navigation.rights.label').closest('a'),
     ).toHaveProperty('href', '/rights')
     expect(
-      screen.getByText('navigation.translations.label').closest('a')
+      screen.getByText('navigation.translations.label').closest('a'),
     ).toHaveProperty('href', '/translations')
   })
 })

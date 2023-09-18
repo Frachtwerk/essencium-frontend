@@ -57,7 +57,7 @@ function LoginView(): JSX.Element {
             notificationType: 'created',
           })
         },
-      }
+      },
     )
   }
 

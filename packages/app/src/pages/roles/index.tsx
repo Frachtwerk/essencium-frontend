@@ -150,7 +150,7 @@ function RolesView(): JSX.Element {
         onError: () => {
           addModalHandlers.close()
         },
-      }
+      },
     )
   }
 
@@ -168,14 +168,14 @@ function RolesView(): JSX.Element {
         onError: () => {
           editModalHandlers.close()
         },
-      }
+      },
     )
   }
 
   function toggleRight(right: RightOutput): void {
     if (selectedRights.some(r => r.authority === right.authority)) {
       setSelectedRights(
-        selectedRights.filter(r => r.authority !== right.authority)
+        selectedRights.filter(r => r.authority !== right.authority),
       )
     } else {
       setSelectedRights([...selectedRights, right])

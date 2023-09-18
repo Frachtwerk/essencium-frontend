@@ -17,7 +17,7 @@ test.describe('NavBar', () => {
     await expect(page).toHaveURL(`${BASE_URL}/translations`)
     await expect(page.getByRole('button', { name: 'Logout' })).toBeVisible()
     await expect(
-      page.getByText('2023 Essencium License PrivacyImprintContact')
+      page.getByText('2023 Essencium License PrivacyImprintContact'),
     ).toBeVisible()
     await expect(page.getByRole('link', { name: 'Privacy' })).toBeVisible()
     await expect(page.getByRole('link', { name: 'Imprint' })).toBeVisible()

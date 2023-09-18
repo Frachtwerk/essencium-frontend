@@ -44,7 +44,7 @@ describe('LoginForm', () => {
         isResetPasswordSent={isResetPasswordSent}
         isPasswordResetFormOpened={isPasswordResetFormOpened}
         isResettingPassword={isResettingPassword}
-      />
+      />,
     )
   })
 

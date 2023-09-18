@@ -72,7 +72,7 @@ describe('Contact', () => {
       expect(within(phone).getByText(/555 - 5555 5555/)).toBeDefined()
       expect(within(mail).getByText(/test@email.de/)).toBeDefined()
       expect(
-        within(location).getByText(/Teststreet 1, 12345 Testcity/)
+        within(location).getByText(/Teststreet 1, 12345 Testcity/),
       ).toBeDefined()
 
       const social = within(socialIcons).getAllByLabelText('Social icon')
