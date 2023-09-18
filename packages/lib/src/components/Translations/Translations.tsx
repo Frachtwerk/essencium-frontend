@@ -18,7 +18,7 @@
  */
 
 /* eslint-disable react/no-unstable-nested-components */
-import { TranslationInput } from '@frachtwerk/essencium-types'
+import { RIGHTS, TranslationInput } from '@frachtwerk/essencium-types'
 import {
   ActionIcon,
   Box,
@@ -45,6 +45,8 @@ import { useTranslation } from 'next-i18next'
 import { FormEvent, useState } from 'react'
 import { JSONTree, KeyPath } from 'react-json-tree'
 
+import { hasRequiredRights } from '../../utils/hasRequiredRights'
+
 type FormEventWithTranslation = FormEvent<HTMLFormElement> & {
   target: FormEvent<HTMLFormElement>['target'] & {
     translation: {
@@ -58,6 +60,7 @@ type Props = {
   getTranslations: (lang: string) => Record<string, string> | undefined
   updateTranslation: ({ locale, key, translation }: TranslationInput) => void
   deleteTranslation: (key: TranslationInput['key']) => void
+  userRights: string[] | null
 }
 
 export function searchTranslationsObject(
@@ -98,6 +101,7 @@ export function Translations({
   getTranslations,
   updateTranslation,
   deleteTranslation,
+  userRights,
 }: Props): JSX.Element {
   const router = useRouter()
 
@@ -232,7 +236,9 @@ export function Translations({
                   handleOpenEditMode(event, keyPath)
                 }}
               >
-                {formatKeyPathToString(keyPath) === keyPathString ? (
+                {formatKeyPathToString(keyPath) === keyPathString &&
+                (hasRequiredRights(userRights, RIGHTS.TRANSLATION_UPDATE) ||
+                  hasRequiredRights(userRights, RIGHTS.TRANSLATION_DELETE)) ? (
                   <form
                     onSubmit={(event: FormEventWithTranslation) => {
                       handleSubmit(
@@ -251,20 +257,25 @@ export function Translations({
                         autoFocus
                       />
 
-                      <Tooltip
-                        label={t('translationsView.save')}
-                        color={theme.colors.gray[6]}
-                        pl="md"
-                        position="bottom"
-                        withArrow
-                      >
-                        <ActionIcon type="submit" name="save">
-                          <IconCheck
-                            size="1.125rem"
-                            color={theme.colors.blue[4]}
-                          />
-                        </ActionIcon>
-                      </Tooltip>
+                      {hasRequiredRights(
+                        userRights,
+                        RIGHTS.TRANSLATION_UPDATE
+                      ) ? (
+                        <Tooltip
+                          label={t('translationsView.save')}
+                          color={theme.colors.gray[6]}
+                          pl="md"
+                          position="bottom"
+                          withArrow
+                        >
+                          <ActionIcon type="submit" name="save">
+                            <IconCheck
+                              size="1.125rem"
+                              color={theme.colors.blue[4]}
+                            />
+                          </ActionIcon>
+                        </Tooltip>
+                      ) : null}
 
                       <Tooltip
                         label={t('translationsView.cancel')}
@@ -284,17 +295,22 @@ export function Translations({
                         </ActionIcon>
                       </Tooltip>
 
-                      <Tooltip
-                        label={t('translationsView.reset')}
-                        color={theme.colors.gray[6]}
-                        pl="md"
-                        position="bottom"
-                        withArrow
-                      >
-                        <ActionIcon type="submit" name="reset">
-                          <IconArrowBackUp size="1.125rem" />
-                        </ActionIcon>
-                      </Tooltip>
+                      {hasRequiredRights(
+                        userRights,
+                        RIGHTS.TRANSLATION_DELETE
+                      ) ? (
+                        <Tooltip
+                          label={t('translationsView.reset')}
+                          color={theme.colors.gray[6]}
+                          pl="md"
+                          position="bottom"
+                          withArrow
+                        >
+                          <ActionIcon type="submit" name="reset">
+                            <IconArrowBackUp size="1.125rem" />
+                          </ActionIcon>
+                        </Tooltip>
+                      ) : null}
                     </Group>
 
                     <Divider
@@ -307,7 +323,14 @@ export function Translations({
                   <Text
                     fz="sm"
                     style={{
-                      cursor: 'pointer',
+                      cursor:
+                        hasRequiredRights(
+                          userRights,
+                          RIGHTS.TRANSLATION_UPDATE
+                        ) ||
+                        hasRequiredRights(userRights, RIGHTS.TRANSLATION_DELETE)
+                          ? 'pointer'
+                          : '',
                     }}
                   >
                     {value as string}

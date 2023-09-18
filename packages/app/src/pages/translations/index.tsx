@@ -21,10 +21,12 @@ import { getTranslation, Translations } from '@frachtwerk/essencium-lib'
 import { TranslationInput } from '@frachtwerk/essencium-types'
 import { Flex, Text, Title } from '@mantine/core'
 import { IconLanguage } from '@tabler/icons-react'
+import { useAtomValue } from 'jotai'
 import { i18n, useTranslation } from 'next-i18next'
 
 import De from '@/../public/locales/de/common.json'
 import En from '@/../public/locales/en/common.json'
+import { userRightsAtom } from '@/api/me'
 import {
   useDeleteTranslation,
   useGetTranslations,
@@ -47,6 +49,8 @@ function getTranslationsByLanguage(
 
 function TranslationsView(): JSX.Element {
   const { t } = useTranslation()
+
+  const userRights = useAtomValue(userRightsAtom)
 
   const { mutate: updateTranslation } = useUpdateTranslation()
   const { mutate: deleteTranslation } = useDeleteTranslation()
@@ -118,6 +122,7 @@ function TranslationsView(): JSX.Element {
       </Title>
 
       <Translations
+        userRights={userRights}
         getTranslations={getTranslationsByLanguage}
         updateTranslation={onUpdateTranslation}
         deleteTranslation={onDeleteTranslation}

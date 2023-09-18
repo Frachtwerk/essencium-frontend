@@ -34,7 +34,7 @@ import {
   IconUsers,
   IconUserStar,
 } from '@tabler/icons-react'
-import { useAtom } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -43,7 +43,7 @@ import { i18n, useTranslation } from 'next-i18next'
 import React, { useEffect, useState } from 'react'
 
 import { useGetTranslations } from '@/api'
-import { useGetMe } from '@/api/me'
+import { useGetMe, userRightsAtom } from '@/api/me'
 
 import packageJson from '../../../package.json'
 
@@ -58,6 +58,7 @@ type SearchItems = {
   color?: string
   to: string
   description?: string
+  rights?: string[]
 }
 
 export const NAV_LINKS: NavLink[] = [
@@ -157,7 +158,13 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
 
   const { data: user } = useGetMe()
 
-  const actions: SpotlightAction[] = SEARCH_ITEMS.map(link => {
+  const userRights = useAtomValue(userRightsAtom)
+
+  const actions: SpotlightAction[] | null = SEARCH_ITEMS.filter(link =>
+    !link.rights || link.rights?.some(right => userRights?.includes(right))
+      ? link
+      : null
+  ).map(link => {
     return {
       title: t(link.label),
       description: link.description ? (t(link.description) as string) : '',
@@ -223,7 +230,7 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
           <NavBar
             isOpen={isOpenedNav}
             links={NAV_LINKS}
-            user={user}
+            userRights={userRights}
             handleLogout={handleLogout}
             version={
               packageJson.version &&

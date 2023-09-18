@@ -30,7 +30,7 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { useAtom, useAtomValue, useSetAtom, useStore } from 'jotai'
+import { useAtomValue, useSetAtom, useStore } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 
 import { authTokenAtom } from '@/api/auth'
@@ -38,11 +38,13 @@ import { authTokenAtom } from '@/api/auth'
 import { api } from './api'
 
 export const userAtom = atomWithStorage<UserOutput | null>('user', null)
+export const userRightsAtom = atomWithStorage<string[] | null>('rights', null)
 
 export function useGetMe(): UseQueryResult<UserOutput, unknown> {
   const store = useStore()
 
-  const [, setUser] = useAtom(userAtom)
+  const setUser = useSetAtom(userAtom)
+  const setUserRights = useSetAtom(userRightsAtom)
   const authToken = useAtomValue(authTokenAtom)
 
   const query = useQuery({
@@ -53,6 +55,8 @@ export function useGetMe(): UseQueryResult<UserOutput, unknown> {
     onSuccess(data: UserOutput) {
       setUser(data)
       store.set(userAtom, data)
+
+      setUserRights(data?.role.rights.map(right => right.authority))
     },
   })
 

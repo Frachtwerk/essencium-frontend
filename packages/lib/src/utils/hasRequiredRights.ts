@@ -17,8 +17,11 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './auth'
-export * from './hasRequiredRights'
-export * from './notifications'
-export * from './parse'
-export * from './translations'
+export function hasRequiredRights(
+  userRights: string[] | null,
+  requiredRight: string
+): boolean {
+  if (!userRights) return false
+
+  return userRights.includes(requiredRight)
+}

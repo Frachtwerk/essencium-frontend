@@ -20,6 +20,7 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {
   getTranslation,
+  hasRequiredRights,
   HttpNotification,
   parseSorting,
   Table,
@@ -47,11 +48,11 @@ import {
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
-import { useAtom } from 'jotai'
+import { useAtomValue } from 'jotai'
 import { useTranslation } from 'next-i18next'
 import { useCallback, useMemo, useState } from 'react'
 
-import { userAtom } from '@/api/me'
+import { userRightsAtom } from '@/api/me'
 import { useGetRights } from '@/api/rights'
 import { useGetRoles, useUpdateRole } from '@/api/roles'
 import AuthLayout from '@/components/layouts/AuthLayout'
@@ -62,7 +63,7 @@ const DEFAULT_SORTING: SortingState = [{ id: 'authority', desc: false }]
 function RightsView(): JSX.Element {
   const { t } = useTranslation()
 
-  const [user] = useAtom(userAtom)
+  const userRights = useAtomValue(userRightsAtom)
 
   const [activePage, setActivePage] = useState(1)
   const [pageSize, setPageSize] = useState(20)
@@ -165,9 +166,8 @@ function RightsView(): JSX.Element {
           if (
             role.name === 'ADMIN' ||
             role.protected ||
-            !user?.role.rights
-              .map(right => right.authority)
-              .includes(RIGHTS.ROLE_UPDATE)
+            !hasRequiredRights(userRights, RIGHTS.ROLE_UPDATE) ||
+            !hasRequiredRights(userRights, RIGHTS.RIGHT_UPDATE)
           ) {
             return (
               <Checkbox
@@ -201,7 +201,7 @@ function RightsView(): JSX.Element {
       },
       ...roleColumns,
     ]
-  }, [t, hasRight, handleUpdateRole, roles?.content, user])
+  }, [t, hasRight, handleUpdateRole, roles?.content, userRights])
 
   const table = useReactTable({
     data: rights?.content || [],
