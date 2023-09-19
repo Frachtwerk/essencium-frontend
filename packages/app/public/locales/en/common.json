@@ -383,6 +383,14 @@
     "invalidateUserError": {
       "title": "Error",
       "message": "The use can not be logged out."
+    },
+    "sendMessageSuccess": {
+      "title": "Success",
+      "message": "Your email has been sent."
+    },
+    "sendMessageError": {
+      "title": "Error",
+      "message": "Could not send your email."
     }
   },
   "table": {

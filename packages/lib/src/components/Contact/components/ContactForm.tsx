@@ -47,13 +47,13 @@ const contactFormSchema = z.object({
 export type ContactFormType = z.infer<typeof contactFormSchema>
 
 type Props = {
-  onSubmit: (form: ContactFormType) => void
+  sendMessage: (form: ContactFormType) => void
 }
 
-export function ContactForm({ onSubmit }: Props): JSX.Element {
+export function ContactForm({ sendMessage }: Props): JSX.Element {
   const { t } = useTranslation()
 
-  const { handleSubmit, control, formState } = useZodForm({
+  const { handleSubmit, control, formState, reset } = useZodForm({
     schema: contactFormSchema,
     defaultValues: {
       mailAddress: '',
@@ -62,6 +62,11 @@ export function ContactForm({ onSubmit }: Props): JSX.Element {
       message: '',
     },
   })
+
+  function onSubmit(form: ContactFormType): void {
+    sendMessage(form)
+    reset()
+  }
 
   return (
     <Card shadow="sm" p="lg" radius="md" withBorder>

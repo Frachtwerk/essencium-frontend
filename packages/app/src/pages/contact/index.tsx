@@ -17,11 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {
-  Contact,
-  ContactFormType,
-  getTranslation,
-} from '@frachtwerk/essencium-lib'
+import { Contact, getTranslation } from '@frachtwerk/essencium-lib'
 
 import { useSendContactMessage } from '@/api/contact'
 import AuthLayout from '@/components/layouts/AuthLayout'
@@ -30,11 +26,7 @@ import { baseGetStaticProps } from '@/utils/next'
 function ContactView(): JSX.Element {
   const { mutate: sendMessage } = useSendContactMessage()
 
-  function onSubmit(form: ContactFormType): void {
-    sendMessage(form)
-  }
-
-  return <Contact onSubmit={onSubmit} />
+  return <Contact sendMessage={sendMessage} />
 }
 
 ContactView.getLayout = function getLayout(page: React.ReactNode): JSX.Element {

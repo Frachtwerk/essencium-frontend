@@ -383,6 +383,14 @@
     "invalidateUserError": {
       "title": "Fehler",
       "message": "Der Nutzer konnte nicht ausgeloggt werden."
+    },
+    "sendMessageSuccess": {
+      "title": "Erfolg",
+      "message": "Ihre Email wurde erfolgreich versendet."
+    },
+    "sendMessageError": {
+      "title": "Fehler",
+      "message": "Ihre Email konnte leider nicht versendet werden."
     }
   },
   "table": {

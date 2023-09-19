@@ -20,6 +20,7 @@
 import { withBaseStylingShowNotification } from '@frachtwerk/essencium-lib'
 import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
+import { useTranslation } from 'react-i18next'
 
 import { api } from './api'
 
@@ -35,22 +36,28 @@ export function useSendContactMessage(): UseMutationResult<
   AxiosError,
   ContactInput
 > {
+  const { t } = useTranslation()
+
   const mutation = useMutation<void, AxiosError, ContactInput>({
     mutationKey: ['sendContactMessage'],
     mutationFn: (newMessage: ContactInput) =>
       api
         .post<void, ContactInput>('/contact', newMessage)
         .then(response => response.data),
+
     onSuccess: () => {
       withBaseStylingShowNotification({
         notificationType: 'created',
         color: 'success',
+        message: t('notifications.sendMessageSuccess.message'),
       })
     },
+
     onError: () => {
       withBaseStylingShowNotification({
         notificationType: 'created',
         color: 'error',
+        message: t('notifications.sendMessageError.message'),
       })
     },
   })
