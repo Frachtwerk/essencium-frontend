@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v2.1.0...essencium-types-v2.1.1) (2023-09-19)
+
+
+### Bug Fixes
+
+* accept UUIDs for id beside number ([227aea0](https://github.com/Frachtwerk/essencium-frontend/commit/227aea04af4d62a893e176c00378193b3ad74ad6))
+
 ## [2.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v2.0.1...essencium-types-v2.1.0) (2023-09-18)
 
 
