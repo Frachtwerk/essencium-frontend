@@ -17,6 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { ContactFormType } from '@frachtwerk/essencium-types'
 import {
   Box,
   Button,
@@ -32,46 +33,20 @@ import {
 } from '@mantine/core'
 import { IconSend } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
-import { Controller } from 'react-hook-form'
-import { z } from 'zod'
+import { Control, Controller, FormState } from 'react-hook-form'
 
-import { useZodForm } from '../../../hooks'
-
-const contactFormSchema = z.object({
-  mailAddress: z.string().email('validation.email.notValid'),
-  name: z.string().min(2, 'validation.contact.name'),
-  subject: z.string().min(2, 'validation.contact.subject'),
-  message: z.string().min(10, 'validation.contact.message'),
-})
-
-export type ContactFormType = z.infer<typeof contactFormSchema>
 
 type Props = {
-  sendMessage: (form: ContactFormType) => void
+  control: Control<ContactFormType>
+  formState: FormState<ContactFormType> 
 }
 
-export function ContactForm({ sendMessage }: Props): JSX.Element {
+export function ContactForm({formState, control}: Props): JSX.Element {
   const { t } = useTranslation()
 
-  const { handleSubmit, control, formState, reset } = useZodForm({
-    schema: contactFormSchema,
-    defaultValues: {
-      mailAddress: '',
-      name: '',
-      subject: '',
-      message: '',
-    },
-  })
-
-  function onSubmit(form: ContactFormType): void {
-    sendMessage(form)
-    reset()
-  }
-
   return (
-    <Card shadow="sm" p="lg" radius="md" withBorder>
-      <form data-testid="form" onSubmit={handleSubmit(onSubmit)}>
-        <Title order={3} mb="md">
+    <Card shadow="sm" p="lg" radius="md" withBorder>  
+       <Title order={3} mb="md">
           {t('contactView.contactForm.title')}
         </Title>
 
@@ -201,7 +176,6 @@ export function ContactForm({ sendMessage }: Props): JSX.Element {
             {t('contactView.contactForm.form.sendMessage')}
           </Button>
         </Group>
-      </form>
     </Card>
   )
 }

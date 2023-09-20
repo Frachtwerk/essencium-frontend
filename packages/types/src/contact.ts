@@ -17,12 +17,14 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './base'
-export * from './filter'
-export * from './footer'
-export * from './navbar'
-export * from './right'
-export * from './role'
-export * from './translation'
-export * from './user'
-export * from './contact'
+import { z } from "zod"
+
+
+export const contactFormSchema = z.object({
+  mailAddress: z.string().email('validation.email.notValid'),
+  name: z.string().min(2, 'validation.contact.name'),
+  subject: z.string().min(2, 'validation.contact.subject'),
+  message: z.string().min(10, 'validation.contact.message'),
+})
+
+export type ContactFormType = z.infer<typeof contactFormSchema>

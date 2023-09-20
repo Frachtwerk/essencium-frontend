@@ -19,13 +19,16 @@
 
 import { Grid } from '@mantine/core'
 
-import { ContactForm, ContactFormType, ContactPersonCard } from './components'
+import { ContactForm, ContactPersonCard } from './components'
+import { Control, FormState } from 'react-hook-form'
+import { ContactFormType } from '@frachtwerk/essencium-types'
 
 type Props = {
-  sendMessage: (form: ContactFormType) => void
+  control: Control<ContactFormType>
+  formState: FormState<ContactFormType> 
 }
 
-export function Contact({ sendMessage }: Props): JSX.Element {
+export function Contact({control, formState}: Props): JSX.Element {
   return (
     <Grid role="grid">
       <Grid.Col md={4} role="gridcell">
@@ -33,7 +36,7 @@ export function Contact({ sendMessage }: Props): JSX.Element {
       </Grid.Col>
 
       <Grid.Col md={8} role="gridcell">
-        <ContactForm sendMessage={sendMessage} />
+        <ContactForm control={control} formState={formState}/>
       </Grid.Col>
     </Grid>
   )
