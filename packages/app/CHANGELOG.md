@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v2.4.0...essencium-app-v2.4.1) (2023-09-20)
+
+
+### Bug Fixes
+
+* fix layout flickering by using mantine ssr package ([ef70a28](https://github.com/Frachtwerk/essencium-frontend/commit/ef70a28f0484170ffcc3ae363e312b1dd74b3b1d))
+
 ## [2.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v2.3.1...essencium-app-v2.4.0) (2023-09-18)
 
 
