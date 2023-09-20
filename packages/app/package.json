@@ -1,8 +1,8 @@
 {
   "name": "@frachtwerk/essencium-app",
   "version": "2.4.0",
-  "description": "This is the boilerplate based on the Essencium frontend library.",
   "private": true,
+  "description": "This is the boilerplate based on the Essencium frontend library.",
   "scripts": {
     "build": "next build",
     "clean": "rimraf dist node_modules",
@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@emotion/react": "11.10.6",
+    "@emotion/server": "11.11.0",
     "@fortawesome/fontawesome-svg-core": "6.3.0",
     "@fortawesome/free-solid-svg-icons": "6.3.0",
     "@fortawesome/react-fontawesome": "0.2.0",
@@ -31,6 +32,7 @@
     "@mantine/dates": "6.0.2",
     "@mantine/hooks": "6.0.2",
     "@mantine/modals": "6.0.2",
+    "@mantine/next": "6.0.2",
     "@mantine/notifications": "6.0.2",
     "@mantine/spotlight": "6.0.2",
     "@playwright/test": "^1.36.2",
