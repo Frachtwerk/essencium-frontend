@@ -40,12 +40,21 @@ import {
   IconSearch,
   IconX,
 } from '@tabler/icons-react'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { FormEvent, useState } from 'react'
-import { JSONTree, KeyPath } from 'react-json-tree'
+import { KeyPath } from 'react-json-tree'
 
 import { hasRequiredRights } from '../../utils/hasRequiredRights'
+
+// dynamically load the JSONTree component to avoid SSR errors
+const JSONTree = dynamic(
+  () => import('react-json-tree').then(response => response.JSONTree),
+  {
+    ssr: false,
+  },
+)
 
 type FormEventWithTranslation = FormEvent<HTMLFormElement> & {
   target: FormEvent<HTMLFormElement>['target'] & {
