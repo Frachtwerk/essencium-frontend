@@ -17,6 +17,10 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * this file is not located in @essencium/lib because the return
+ * value must be exported from a Next.js page via getStaticProps
+ */
 import { GetStaticProps, GetStaticPropsContext } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
