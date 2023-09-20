@@ -17,7 +17,16 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { getTranslation, UserForm, useZodForm } from '@frachtwerk/essencium-lib'
+import {
+  axiosInstance,
+  getTranslation,
+  useGetRoles,
+  useGetUser,
+  UserForm,
+  UsersResponse,
+  useUpdateUser,
+  useZodForm,
+} from '@frachtwerk/essencium-lib'
 import { UserUpdate, userUpdateSchema } from '@frachtwerk/essencium-types'
 import { Card, Flex, Text, Title } from '@mantine/core'
 import { IconUserEdit } from '@tabler/icons-react'
@@ -26,8 +35,6 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useEffect } from 'react'
 
-import { axiosInstance, useGetUser, UsersResponse, useUpdateUser } from '@/api'
-import { useGetRoles } from '@/api/roles'
 import AuthLayout from '@/components/layouts/AuthLayout'
 import { FORM_DEFAULTS } from '@/pages/users'
 import { baseGetStaticProps } from '@/utils/next'

@@ -19,6 +19,7 @@
 
 export * from './api'
 export * from './auth'
+export * from './contact'
 export * from './me'
 export * from './rights'
 export * from './roles'

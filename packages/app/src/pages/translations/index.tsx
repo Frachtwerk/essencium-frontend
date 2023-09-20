@@ -17,7 +17,14 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { getTranslation, Translations } from '@frachtwerk/essencium-lib'
+import {
+  getTranslation,
+  Translations,
+  useDeleteTranslation,
+  useGetTranslations,
+  userRightsAtom,
+  useUpdateTranslation,
+} from '@frachtwerk/essencium-lib'
 import { TranslationInput } from '@frachtwerk/essencium-types'
 import { Flex, Text, Title } from '@mantine/core'
 import { IconLanguage } from '@tabler/icons-react'
@@ -26,12 +33,6 @@ import { i18n, useTranslation } from 'next-i18next'
 
 import De from '@/../public/locales/de/common.json'
 import En from '@/../public/locales/en/common.json'
-import { userRightsAtom } from '@/api/me'
-import {
-  useDeleteTranslation,
-  useGetTranslations,
-  useUpdateTranslation,
-} from '@/api/translations'
 import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/next'
 

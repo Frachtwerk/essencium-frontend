@@ -21,6 +21,8 @@ import {
   getTranslation,
   Login,
   LoginForm,
+  useCreateToken,
+  useResetPassword,
   withBaseStylingShowNotification,
 } from '@frachtwerk/essencium-lib'
 import { ResetPassword } from '@frachtwerk/essencium-types'
@@ -28,7 +30,6 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 
-import { useCreateToken, useResetPassword } from '@/api/auth'
 import PublicLayout from '@/components/layouts/PublicLayout'
 import { baseGetStaticProps } from '@/utils/next'
 

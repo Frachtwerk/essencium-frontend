@@ -17,7 +17,15 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Footer, Header, logout, NavBar } from '@frachtwerk/essencium-lib'
+import {
+  Footer,
+  Header,
+  logout,
+  NavBar,
+  useGetMe,
+  useGetTranslations,
+  userRightsAtom,
+} from '@frachtwerk/essencium-lib'
 import { FooterLink, NavLink, RIGHTS } from '@frachtwerk/essencium-types'
 import { AppShell, Box, useMantineTheme } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
@@ -41,9 +49,6 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { i18n, useTranslation } from 'next-i18next'
 import React, { useEffect, useState } from 'react'
-
-import { useGetTranslations } from '@/api'
-import { useGetMe, userRightsAtom } from '@/api/me'
 
 import packageJson from '../../../package.json'
 

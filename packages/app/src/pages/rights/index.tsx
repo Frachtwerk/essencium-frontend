@@ -25,6 +25,10 @@ import {
   parseSorting,
   Table,
   TablePagination,
+  useGetRights,
+  useGetRoles,
+  userRightsAtom,
+  useUpdateRole,
 } from '@frachtwerk/essencium-lib'
 import {
   RightOutput,
@@ -52,9 +56,6 @@ import { useAtomValue } from 'jotai'
 import { useTranslation } from 'next-i18next'
 import { useCallback, useMemo, useState } from 'react'
 
-import { userRightsAtom } from '@/api/me'
-import { useGetRights } from '@/api/rights'
-import { useGetRoles, useUpdateRole } from '@/api/roles'
 import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/next'
 

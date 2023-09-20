@@ -29,6 +29,7 @@ export default [
       terser(),
     ],
     external: [
+      'axios',
       '@emotion/react',
       '@fortawesome/fontawesome-svg-core',
       '@fortawesome/free-solid-svg-icons',

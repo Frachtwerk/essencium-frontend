@@ -17,7 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { withBaseStylingShowNotification } from '@frachtwerk/essencium-lib'
 import {
   FilterObjectUser,
   PaginatedResponse,
@@ -34,9 +33,9 @@ import {
 import { AxiosError } from 'axios'
 import { useAtomValue } from 'jotai'
 
-import { authTokenAtom } from '@/api/auth'
-
+import { withBaseStylingShowNotification } from '../utils'
 import { api } from './api'
+import { authTokenAtom } from './auth'
 
 export type UsersResponse = PaginatedResponse<UserOutput>
 

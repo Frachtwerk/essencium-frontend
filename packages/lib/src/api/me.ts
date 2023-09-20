@@ -17,7 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { withBaseStylingShowNotification } from '@frachtwerk/essencium-lib'
 import {
   PasswordChange,
   UserOutput,
@@ -33,9 +32,9 @@ import { AxiosError } from 'axios'
 import { useAtomValue, useSetAtom, useStore } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 
-import { authTokenAtom } from '@/api/auth'
-
+import { withBaseStylingShowNotification } from '../utils'
 import { api } from './api'
+import { authTokenAtom } from './auth'
 
 export const userAtom = atomWithStorage<UserOutput | null>('user', null)
 export const userRightsAtom = atomWithStorage<string[] | null>('rights', null)

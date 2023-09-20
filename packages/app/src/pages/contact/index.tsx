@@ -17,10 +17,14 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Contact, getTranslation, useZodForm } from '@frachtwerk/essencium-lib'
+import {
+  Contact,
+  getTranslation,
+  useSendContactMessage,
+  useZodForm,
+} from '@frachtwerk/essencium-lib'
 import { contactFormSchema, ContactFormType } from '@frachtwerk/essencium-types'
 
-import { useSendContactMessage } from '@/api/contact'
 import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/next'
 

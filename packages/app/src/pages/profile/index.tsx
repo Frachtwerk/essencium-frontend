@@ -17,15 +17,21 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { getTranslation, logout, Profile } from '@frachtwerk/essencium-lib'
+import {
+  getTranslation,
+  logout,
+  Profile,
+  useGetMe,
+  useGetRoles,
+  useUpdateMe,
+  useUpdatePassword,
+} from '@frachtwerk/essencium-lib'
 import { PasswordChange, UserUpdate } from '@frachtwerk/essencium-types'
 import { Center, Loader } from '@mantine/core'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { ReactElement } from 'react'
 
-import { useGetMe, useUpdateMe, useUpdatePassword } from '@/api/me'
-import { useGetRoles } from '@/api/roles'
 import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/next'
 

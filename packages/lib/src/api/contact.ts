@@ -17,11 +17,11 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { withBaseStylingShowNotification } from '@frachtwerk/essencium-lib'
 import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useTranslation } from 'react-i18next'
 
+import { withBaseStylingShowNotification } from '../utils'
 import { api } from './api'
 
 type ContactInput = {

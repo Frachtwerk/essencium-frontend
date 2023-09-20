@@ -21,6 +21,7 @@ import {
   getTranslation,
   SetPasswordForm,
   SetPasswordSuccessMessage,
+  useSetPassword,
 } from '@frachtwerk/essencium-lib'
 import { SetPasswordInput } from '@frachtwerk/essencium-types'
 import { Container, Paper, Title } from '@mantine/core'
@@ -28,7 +29,6 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 
-import { useSetPassword } from '@/api/auth'
 import PublicLayout from '@/components/layouts/PublicLayout'
 import { baseGetStaticProps } from '@/utils/next'
 
