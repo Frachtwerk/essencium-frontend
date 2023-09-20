@@ -17,18 +17,14 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { TranslationsView } from '@frachtwerk/essencium-lib'
-
-import De from '@/../public/locales/de/common.json'
-import En from '@/../public/locales/en/common.json'
-import { baseGetStaticProps } from '@/utils/next'
-
-function TranslationsViewWithProps(): JSX.Element {
-  return <TranslationsView localTranslations={{ De, En }} />
-}
-
-TranslationsViewWithProps.getLayout = TranslationsView.getLayout
-
-export const getStaticProps = baseGetStaticProps()
-
-export default TranslationsViewWithProps
+export * from './AddUserView'
+export * from './ContactView'
+export * from './HomeView'
+export * from './LoginView'
+export * from './ProfileView'
+export * from './RightsView'
+export * from './RolesView'
+export * from './SetPasswordView'
+export * from './TranslationsView'
+export * from './UpdateUserView'
+export * from './UsersView'

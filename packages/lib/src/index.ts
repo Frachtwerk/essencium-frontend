@@ -20,4 +20,7 @@
 export * from './api'
 export * from './components'
 export * from './hooks'
+export * from './layouts'
+export * from './root'
 export * from './utils'
+export * from './views'

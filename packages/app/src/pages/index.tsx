@@ -17,29 +17,10 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { AuthLayout, getTranslation, Home } from '@frachtwerk/essencium-lib'
-import { ReactElement } from 'react'
+import { HomeView } from '@frachtwerk/essencium-lib'
 
 import { baseGetStaticProps } from '@/utils/next'
 
-function HomePage(): JSX.Element {
-  return <Home />
-}
-
-HomePage.getLayout = function getLayout(
-  page: ReactElement,
-  version?: string,
-): JSX.Element {
-  return (
-    <AuthLayout
-      routeName={getTranslation('navigation.home.label')}
-      version={version}
-    >
-      {page}
-    </AuthLayout>
-  )
-}
-
 export const getStaticProps = baseGetStaticProps()
 
-export default HomePage
+export default HomeView

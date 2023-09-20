@@ -17,54 +17,9 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {
-  AuthLayout,
-  Contact,
-  getTranslation,
-  useSendContactMessage,
-  useZodForm,
-} from '@frachtwerk/essencium-lib'
-import { contactFormSchema, ContactFormType } from '@frachtwerk/essencium-types'
+import { ContactView } from '@frachtwerk/essencium-lib'
 
 import { baseGetStaticProps } from '@/utils/next'
-
-function ContactView(): JSX.Element {
-  const { mutate: sendMessage } = useSendContactMessage()
-
-  const { handleSubmit, control, formState, reset } = useZodForm({
-    schema: contactFormSchema,
-    defaultValues: {
-      mailAddress: '',
-      name: '',
-      subject: '',
-      message: '',
-    },
-  })
-
-  function onSubmit(form: ContactFormType): void {
-    sendMessage(form, { onSuccess: () => reset() })
-  }
-
-  return (
-    <form data-testid="form" onSubmit={handleSubmit(onSubmit)}>
-      <Contact control={control} formState={formState} />
-    </form>
-  )
-}
-
-ContactView.getLayout = function getLayout(
-  page: React.ReactNode,
-  version?: string,
-): JSX.Element {
-  return (
-    <AuthLayout
-      routeName={getTranslation('contactView.contactForm.title')}
-      version={version}
-    >
-      {page}
-    </AuthLayout>
-  )
-}
 
 export const getStaticProps = baseGetStaticProps()
 

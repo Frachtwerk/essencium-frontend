@@ -17,18 +17,26 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { TranslationsView } from '@frachtwerk/essencium-lib'
+import { ReactElement } from 'react'
 
-import De from '@/../public/locales/de/common.json'
-import En from '@/../public/locales/en/common.json'
-import { baseGetStaticProps } from '@/utils/next'
+import { Home } from '../components/Home'
+import { AuthLayout } from '../layouts'
+import { getTranslation } from '../utils'
 
-function TranslationsViewWithProps(): JSX.Element {
-  return <TranslationsView localTranslations={{ De, En }} />
+export function HomeView(): JSX.Element {
+  return <Home />
 }
 
-TranslationsViewWithProps.getLayout = TranslationsView.getLayout
-
-export const getStaticProps = baseGetStaticProps()
-
-export default TranslationsViewWithProps
+HomeView.getLayout = function getLayout(
+  page: ReactElement,
+  version?: string,
+): JSX.Element {
+  return (
+    <AuthLayout
+      routeName={getTranslation('navigation.home.label')}
+      version={version}
+    >
+      {page}
+    </AuthLayout>
+  )
+}

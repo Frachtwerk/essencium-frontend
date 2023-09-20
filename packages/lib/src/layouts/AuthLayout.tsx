@@ -41,11 +41,11 @@ import { useRouter } from 'next/router'
 import { i18n, useTranslation } from 'next-i18next'
 import React, { useEffect, useState } from 'react'
 
-import { useGetMe, useGetTranslations, userRightsAtom } from '../../api'
-import { logout } from '../../utils'
-import { Footer } from '../Footer'
-import { Header } from '../Header'
-import { NavBar } from '../NavBar'
+import { useGetMe, useGetTranslations, userRightsAtom } from '../api'
+import { Footer } from '../components/Footer'
+import { Header } from '../components/Header'
+import { NavBar } from '../components/NavBar'
+import { logout } from '../utils'
 
 type Props = {
   children: React.ReactNode

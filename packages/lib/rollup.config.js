@@ -31,6 +31,7 @@ export default [
     external: [
       'axios',
       '@emotion/react',
+      '@emotion/server',
       '@fortawesome/fontawesome-svg-core',
       '@fortawesome/free-solid-svg-icons',
       '@fortawesome/react-fontawesome',
@@ -39,6 +40,7 @@ export default [
       '@mantine/hooks',
       '@mantine/modals',
       '@mantine/spotlight',
+      '@mantine/next',
       '@mantine/notifications',
       '@tabler/icons',
       '@tanstack/react-query',
