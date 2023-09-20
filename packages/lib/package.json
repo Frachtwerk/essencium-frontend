@@ -33,9 +33,9 @@
     "format:write": "prettier --write .",
     "lint": "eslint .",
     "sort-package-json": "sort-package-json",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest watch"
+    "test:unit": "vitest run",
+    "test:unit:coverage": "vitest run --coverage",
+    "test:unit:watch": "vitest watch"
   },
   "devDependencies": {
     "@babel/core": "7.21.0",
