@@ -18,6 +18,7 @@
  */
 
 import {
+  AuthLayout,
   getTranslation,
   useCreateUser,
   useGetRoles,
@@ -30,7 +31,6 @@ import { IconUserPlus } from '@tabler/icons-react'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
-import AuthLayout from '@/components/layouts/AuthLayout'
 import { FORM_DEFAULTS } from '@/pages/users'
 import { baseGetStaticProps } from '@/utils/next'
 
@@ -87,9 +87,15 @@ function AddUserView(): JSX.Element {
   )
 }
 
-AddUserView.getLayout = function getLayout(page: React.ReactNode): JSX.Element {
+AddUserView.getLayout = function getLayout(
+  page: React.ReactNode,
+  version?: string,
+): JSX.Element {
   return (
-    <AuthLayout routeName={getTranslation('addUpdateUserView.add.title')}>
+    <AuthLayout
+      routeName={getTranslation('addUpdateUserView.add.title')}
+      version={version}
+    >
       {page}
     </AuthLayout>
   )

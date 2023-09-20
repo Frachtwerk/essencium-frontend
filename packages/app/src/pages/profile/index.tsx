@@ -18,6 +18,7 @@
  */
 
 import {
+  AuthLayout,
   getTranslation,
   logout,
   Profile,
@@ -32,7 +33,6 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { ReactElement } from 'react'
 
-import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/next'
 
 function ProfileView(): JSX.Element {
@@ -98,9 +98,15 @@ function ProfileView(): JSX.Element {
   )
 }
 
-ProfileView.getLayout = function getLayout(page: ReactElement) {
+ProfileView.getLayout = function getLayout(
+  page: ReactElement,
+  version?: string,
+) {
   return (
-    <AuthLayout routeName={getTranslation('profileView.title')}>
+    <AuthLayout
+      routeName={getTranslation('profileView.title')}
+      version={version}
+    >
       {page}
     </AuthLayout>
   )

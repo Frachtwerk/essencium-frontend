@@ -18,6 +18,7 @@
  */
 
 import {
+  AuthLayout,
   Contact,
   getTranslation,
   useSendContactMessage,
@@ -25,7 +26,6 @@ import {
 } from '@frachtwerk/essencium-lib'
 import { contactFormSchema, ContactFormType } from '@frachtwerk/essencium-types'
 
-import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/next'
 
 function ContactView(): JSX.Element {
@@ -52,9 +52,15 @@ function ContactView(): JSX.Element {
   )
 }
 
-ContactView.getLayout = function getLayout(page: React.ReactNode): JSX.Element {
+ContactView.getLayout = function getLayout(
+  page: React.ReactNode,
+  version?: string,
+): JSX.Element {
   return (
-    <AuthLayout routeName={getTranslation('contactView.contactForm.title')}>
+    <AuthLayout
+      routeName={getTranslation('contactView.contactForm.title')}
+      version={version}
+    >
       {page}
     </AuthLayout>
   )

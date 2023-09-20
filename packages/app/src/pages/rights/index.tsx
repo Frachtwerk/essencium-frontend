@@ -19,6 +19,7 @@
 
 /* eslint-disable react/no-unstable-nested-components */
 import {
+  AuthLayout,
   getTranslation,
   hasRequiredRights,
   HttpNotification,
@@ -56,7 +57,6 @@ import { useAtomValue } from 'jotai'
 import { useTranslation } from 'next-i18next'
 import { useCallback, useMemo, useState } from 'react'
 
-import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/next'
 
 const DEFAULT_SORTING: SortingState = [{ id: 'authority', desc: false }]
@@ -271,9 +271,15 @@ function RightsView(): JSX.Element {
   )
 }
 
-RightsView.getLayout = function getLayout(page: React.ReactNode): JSX.Element {
+RightsView.getLayout = function getLayout(
+  page: React.ReactNode,
+  version?: string,
+): JSX.Element {
   return (
-    <AuthLayout routeName={getTranslation('rightsView.title')}>
+    <AuthLayout
+      routeName={getTranslation('rightsView.title')}
+      version={version}
+    >
       {page}
     </AuthLayout>
   )

@@ -21,6 +21,7 @@ import {
   getTranslation,
   Login,
   LoginForm,
+  PublicLayout,
   useCreateToken,
   useResetPassword,
   withBaseStylingShowNotification,
@@ -30,7 +31,6 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 
-import PublicLayout from '@/components/layouts/PublicLayout'
 import { baseGetStaticProps } from '@/utils/next'
 
 function LoginView(): JSX.Element {

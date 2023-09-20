@@ -17,6 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { PublicLayout } from '@frachtwerk/essencium-lib'
 import { UserOutput } from '@frachtwerk/essencium-types'
 import {
   ColorScheme,
@@ -37,7 +38,7 @@ import { useRouter } from 'next/router'
 import { appWithTranslation } from 'next-i18next'
 import React, { ReactElement, ReactNode, useEffect, useState } from 'react'
 
-import PublicLayout from '@/components/layouts/PublicLayout'
+import packageJson from '../../package.json'
 
 const firaSans = Fira_Sans({
   subsets: ['latin'],
@@ -49,7 +50,7 @@ const firaCode = Fira_Code({
 })
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode
+  getLayout?: (page: ReactElement, version?: string) => ReactNode
 }
 
 type AppPropsWithLayout = AppProps & {
@@ -168,7 +169,14 @@ function App({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
           <Hydrate state={pageProps.dehydratedState}>
             <Notifications limit={3} />
 
-            {getLayout(<Component {...pageProps} />)}
+            {getLayout(
+              <Component {...pageProps} />,
+              packageJson.version &&
+                process.env.NEXT_PUBLIC_SHOW_VERSION &&
+                process.env.NEXT_PUBLIC_SHOW_VERSION === '1'
+                ? packageJson.version
+                : undefined,
+            )}
           </Hydrate>
         </QueryClientProvider>
       </MantineProvider>

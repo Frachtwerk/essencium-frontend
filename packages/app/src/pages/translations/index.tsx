@@ -18,6 +18,7 @@
  */
 
 import {
+  AuthLayout,
   getTranslation,
   Translations,
   useDeleteTranslation,
@@ -33,7 +34,6 @@ import { i18n, useTranslation } from 'next-i18next'
 
 import De from '@/../public/locales/de/common.json'
 import En from '@/../public/locales/en/common.json'
-import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/next'
 
 interface TTranslations {
@@ -134,9 +134,13 @@ function TranslationsView(): JSX.Element {
 
 TranslationsView.getLayout = function getLayout(
   page: React.ReactNode,
+  version?: string,
 ): JSX.Element {
   return (
-    <AuthLayout routeName={getTranslation('translationsView.title')}>
+    <AuthLayout
+      routeName={getTranslation('translationsView.title')}
+      version={version}
+    >
       {page}
     </AuthLayout>
   )

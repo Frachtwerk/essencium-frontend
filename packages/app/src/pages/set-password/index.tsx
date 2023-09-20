@@ -19,6 +19,7 @@
 
 import {
   getTranslation,
+  PublicLayout,
   SetPasswordForm,
   SetPasswordSuccessMessage,
   useSetPassword,
@@ -29,7 +30,6 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 
-import PublicLayout from '@/components/layouts/PublicLayout'
 import { baseGetStaticProps } from '@/utils/next'
 
 function SetPasswordView(): JSX.Element {

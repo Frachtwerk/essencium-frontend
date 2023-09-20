@@ -17,15 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {
-  Footer,
-  Header,
-  logout,
-  NavBar,
-  useGetMe,
-  useGetTranslations,
-  userRightsAtom,
-} from '@frachtwerk/essencium-lib'
 import { FooterLink, NavLink, RIGHTS } from '@frachtwerk/essencium-types'
 import { AppShell, Box, useMantineTheme } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
@@ -50,11 +41,16 @@ import { useRouter } from 'next/router'
 import { i18n, useTranslation } from 'next-i18next'
 import React, { useEffect, useState } from 'react'
 
-import packageJson from '../../../package.json'
+import { useGetMe, useGetTranslations, userRightsAtom } from '../../api'
+import { logout } from '../../utils'
+import { Footer } from '../Footer'
+import { Header } from '../Header'
+import { NavBar } from '../NavBar'
 
 type Props = {
   children: React.ReactNode
   routeName?: string
+  version?: string
 }
 
 type SearchItems = {
@@ -144,7 +140,11 @@ export const SEARCH_ITEMS: SearchItems[] = [
 const isFixedNavAtom = atomWithStorage('isFixedNav', false)
 const isFoldedNavAtom = atomWithStorage('isFoldedNav', true)
 
-function AuthLayout({ children, routeName }: Props): JSX.Element | null {
+export function AuthLayout({
+  children,
+  routeName,
+  version,
+}: Props): JSX.Element | null {
   const router = useRouter()
 
   const theme = useMantineTheme()
@@ -195,6 +195,14 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
     if (!authToken) router.push('/login')
   }, [user, router])
 
+  useEffect(() => {
+    router.replace(router.asPath, undefined, {
+      locale: user?.locale,
+    })
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.asPath, user])
+
   function handleLogout(): void {
     logout()
 
@@ -237,13 +245,7 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
             links={NAV_LINKS}
             userRights={userRights}
             handleLogout={handleLogout}
-            version={
-              packageJson.version &&
-              process.env.NEXT_PUBLIC_SHOW_VERSION &&
-              process.env.NEXT_PUBLIC_SHOW_VERSION === '1'
-                ? packageJson.version
-                : undefined
-            }
+            version={version}
             foldedNav={isFoldedNav}
             setFoldedNav={setIsFoldedNav}
             fixedNav={isFixedNav}
@@ -288,5 +290,3 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
     </SpotlightProvider>
   )
 }
-
-export default AuthLayout

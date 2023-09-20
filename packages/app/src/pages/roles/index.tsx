@@ -20,6 +20,7 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {
   AddRole,
+  AuthLayout,
   DeleteDialog,
   EditRole,
   getTranslation,
@@ -64,7 +65,6 @@ import { useAtomValue } from 'jotai'
 import { useTranslation } from 'next-i18next'
 import { useCallback, useMemo, useState } from 'react'
 
-import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/next'
 
 const DEFAULT_SORTING: SortingState = [{ id: 'name', desc: false }]
@@ -382,9 +382,12 @@ function RolesView(): JSX.Element {
   )
 }
 
-RolesView.getLayout = function getLayout(page: React.ReactNode): JSX.Element {
+RolesView.getLayout = function getLayout(
+  page: React.ReactNode,
+  version?: string,
+): JSX.Element {
   return (
-    <AuthLayout routeName={getTranslation('rolesView.title')}>
+    <AuthLayout routeName={getTranslation('rolesView.title')} version={version}>
       {page}
     </AuthLayout>
   )

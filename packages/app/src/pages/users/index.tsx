@@ -19,6 +19,7 @@
 
 /* eslint-disable react/no-unstable-nested-components */
 import {
+  AuthLayout,
   DeleteDialog,
   getTranslation,
   hasRequiredRights,
@@ -72,7 +73,6 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useCallback, useMemo, useState } from 'react'
 
-import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/next'
 
 export const FORM_DEFAULTS = {
@@ -448,9 +448,15 @@ function UsersView(): JSX.Element {
   )
 }
 
-UsersView.getLayout = function getLayout(page: React.ReactNode): JSX.Element {
+UsersView.getLayout = function getLayout(
+  page: React.ReactNode,
+  version?: string,
+): JSX.Element {
   return (
-    <AuthLayout routeName={getTranslation('navigation.users.label')}>
+    <AuthLayout
+      routeName={getTranslation('navigation.users.label')}
+      version={version}
+    >
       {page}
     </AuthLayout>
   )
