@@ -17,27 +17,13 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { ContactFormType } from '@frachtwerk/essencium-types'
-import { Grid } from '@mantine/core'
-import { Control, FormState } from 'react-hook-form'
+import { z } from 'zod'
 
-import { ContactForm, ContactPersonCard } from './components'
+export const contactFormSchema = z.object({
+  mailAddress: z.string().email('validation.email.notValid'),
+  name: z.string().min(2, 'validation.contact.name'),
+  subject: z.string().min(2, 'validation.contact.subject'),
+  message: z.string().min(10, 'validation.contact.message'),
+})
 
-type Props = {
-  control: Control<ContactFormType>
-  formState: FormState<ContactFormType>
-}
-
-export function Contact({ control, formState }: Props): JSX.Element {
-  return (
-    <Grid role="grid">
-      <Grid.Col md={4} role="gridcell">
-        <ContactPersonCard />
-      </Grid.Col>
-
-      <Grid.Col md={8} role="gridcell">
-        <ContactForm control={control} formState={formState} />
-      </Grid.Col>
-    </Grid>
-  )
-}
+export type ContactFormType = z.infer<typeof contactFormSchema>

@@ -17,85 +17,164 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { ContactFormType } from '@frachtwerk/essencium-types'
 import {
+  Box,
   Button,
   Card,
   Container,
   Grid,
   Group,
+  Stack,
+  Text,
   Textarea,
   TextInput,
   Title,
 } from '@mantine/core'
 import { IconSend } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
+import { Control, Controller, FormState } from 'react-hook-form'
 
-export function ContactForm(): JSX.Element {
+type Props = {
+  control: Control<ContactFormType>
+  formState: FormState<ContactFormType>
+}
+
+export function ContactForm({ formState, control }: Props): JSX.Element {
   const { t } = useTranslation()
 
   return (
     <Card shadow="sm" p="lg" radius="md" withBorder>
-      <form data-testid="form">
-        <Title order={3} mb="md">
-          {t('contactView.contactForm.title')}
-        </Title>
+      <Title order={3} mb="md">
+        {t('contactView.contactForm.title')}
+      </Title>
 
-        <Grid gutter={30}>
-          <Grid.Col md={6}>
-            <Container p={0} m={0}>
-              <TextInput
-                mb="md"
-                label={t('contactView.contactForm.form.email')}
-                withAsterisk
-                size="sm"
-                radius="md"
+      <Grid gutter={30}>
+        <Grid.Col md={6}>
+          <Container p={0} m={0}>
+            <Stack>
+              <Controller
+                name="mailAddress"
+                control={control}
+                render={({ field }) => (
+                  <TextInput
+                    {...field}
+                    mb="md"
+                    label={t('contactView.contactForm.form.email')}
+                    withAsterisk
+                    size="sm"
+                    radius="md"
+                  />
+                )}
               />
 
-              <TextInput
-                mb="md"
-                label={t('contactView.contactForm.form.name')}
-                size="sm"
-                radius="md"
+              <Box mt="-1.5rem" h="0.8rem">
+                {formState.errors.mailAddress && (
+                  <Text ml={5} fz="xs" color="red">
+                    {formState.errors.mailAddress?.message
+                      ? String(t(formState.errors.mailAddress.message))
+                      : null}
+                  </Text>
+                )}
+              </Box>
+            </Stack>
+
+            <Stack mt="md">
+              <Controller
+                name="name"
+                control={control}
+                render={({ field }) => (
+                  <TextInput
+                    {...field}
+                    mb="md"
+                    label={t('contactView.contactForm.form.name')}
+                    size="sm"
+                    radius="md"
+                    withAsterisk
+                  />
+                )}
               />
 
-              <TextInput
-                mb="md"
-                label={t('contactView.contactForm.form.number')}
-                size="sm"
-                radius="md"
-              />
-            </Container>
-          </Grid.Col>
+              <Box mt="-1.5rem" h="0.8rem">
+                {formState.errors.name && (
+                  <Text ml={5} fz="xs" color="red">
+                    {formState.errors.name?.message
+                      ? String(t(formState.errors.name.message))
+                      : null}
+                  </Text>
+                )}
+              </Box>
+            </Stack>
+          </Container>
+        </Grid.Col>
 
-          <Grid.Col md={6}>
-            <TextInput
-              mb="md"
-              label={t('contactView.contactForm.form.subject')}
-              size="sm"
-              radius="md"
-              variant="filled"
-            />
-
-            <Textarea
-              placeholder={String(
-                t('contactView.contactForm.form.messagePlaceholder'),
+        <Grid.Col md={6}>
+          <Stack>
+            <Controller
+              name="subject"
+              control={control}
+              render={({ field }) => (
+                <TextInput
+                  {...field}
+                  mb="md"
+                  label={t('contactView.contactForm.form.subject')}
+                  size="sm"
+                  radius="md"
+                  variant="filled"
+                  withAsterisk
+                />
               )}
-              label={t('contactView.contactForm.form.message')}
-              withAsterisk
-              minRows={8}
-              maxRows={15}
-              miw="45%"
-              variant="filled"
             />
-          </Grid.Col>
-        </Grid>
 
-        <Group position="right" mt="md">
-          <Button leftIcon={<IconSend size={20} />}>
-            {t('contactView.contactForm.form.sendMessage')}
-          </Button>
-        </Group>
-      </form>
+            <Box mt="-1.5rem" h="0.8rem">
+              {formState.errors.subject && (
+                <Text ml={5} fz="xs" color="red">
+                  {formState.errors.subject?.message
+                    ? String(t(formState.errors.subject.message))
+                    : null}
+                </Text>
+              )}
+            </Box>
+          </Stack>
+
+          <Stack mt="md">
+            <Controller
+              name="message"
+              control={control}
+              render={({ field }) => (
+                <Textarea
+                  {...field}
+                  placeholder={String(
+                    t('contactView.contactForm.form.messagePlaceholder'),
+                  )}
+                  label={t('contactView.contactForm.form.message')}
+                  withAsterisk
+                  minRows={8}
+                  maxRows={15}
+                  miw="45%"
+                  variant="filled"
+                />
+              )}
+            />
+
+            <Box mt="-0.6em" h="0.8rem">
+              {formState.errors.message && (
+                <Text ml={5} fz="xs" color="red">
+                  {formState.errors.message?.message
+                    ? String(t(formState.errors.message?.message))
+                    : null}
+                </Text>
+              )}
+            </Box>
+          </Stack>
+        </Grid.Col>
+      </Grid>
+
+      <Group position="right" mt="md">
+        <Button type="submit" leftIcon={<IconSend size={20} />}>
+          {t('contactView.contactForm.form.sendMessage')}
+        </Button>
+      </Group>
     </Card>
   )
 }

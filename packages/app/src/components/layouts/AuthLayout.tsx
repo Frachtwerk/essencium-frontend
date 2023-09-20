@@ -163,7 +163,7 @@ function AuthLayout({ children, routeName }: Props): JSX.Element | null {
   const actions: SpotlightAction[] | null = SEARCH_ITEMS.filter(link =>
     !link.rights || link.rights?.some(right => userRights?.includes(right))
       ? link
-      : null
+      : null,
   ).map(link => {
     return {
       title: t(link.label),

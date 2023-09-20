@@ -328,6 +328,11 @@
     },
     "roleName": {
       "minLength": "Role name must be at least 2 characters long."
+    },
+    "contact": {
+      "name": "Name must be at least 2 characters long.",
+      "subject": "Subject must be at least 2 characters long.",
+      "message": "Message must be at least 10 characters long."
     }
   },
   "notifications": {
@@ -378,6 +383,14 @@
     "invalidateUserError": {
       "title": "Error",
       "message": "The use can not be logged out."
+    },
+    "sendMessageSuccess": {
+      "title": "Success",
+      "message": "Your email has been sent."
+    },
+    "sendMessageError": {
+      "title": "Error",
+      "message": "Could not send your email."
     }
   },
   "table": {

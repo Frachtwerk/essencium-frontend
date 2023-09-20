@@ -259,7 +259,7 @@ export function Translations({
 
                       {hasRequiredRights(
                         userRights,
-                        RIGHTS.TRANSLATION_UPDATE
+                        RIGHTS.TRANSLATION_UPDATE,
                       ) ? (
                         <Tooltip
                           label={t('translationsView.save')}
@@ -297,7 +297,7 @@ export function Translations({
 
                       {hasRequiredRights(
                         userRights,
-                        RIGHTS.TRANSLATION_DELETE
+                        RIGHTS.TRANSLATION_DELETE,
                       ) ? (
                         <Tooltip
                           label={t('translationsView.reset')}
@@ -326,7 +326,7 @@ export function Translations({
                       cursor:
                         hasRequiredRights(
                           userRights,
-                          RIGHTS.TRANSLATION_UPDATE
+                          RIGHTS.TRANSLATION_UPDATE,
                         ) ||
                         hasRequiredRights(userRights, RIGHTS.TRANSLATION_DELETE)
                           ? 'pointer'

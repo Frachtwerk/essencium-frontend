@@ -18,6 +18,7 @@
  */
 
 export * from './base'
+export * from './contact'
 export * from './filter'
 export * from './footer'
 export * from './navbar'
