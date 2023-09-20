@@ -17,8 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { z } from "zod"
-
+import { z } from 'zod'
 
 export const contactFormSchema = z.object({
   mailAddress: z.string().email('validation.email.notValid'),

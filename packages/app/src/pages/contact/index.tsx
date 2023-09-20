@@ -18,18 +18,14 @@
  */
 
 import { Contact, getTranslation, useZodForm } from '@frachtwerk/essencium-lib'
+import { contactFormSchema, ContactFormType } from '@frachtwerk/essencium-types'
 
 import { useSendContactMessage } from '@/api/contact'
 import AuthLayout from '@/components/layouts/AuthLayout'
 import { baseGetStaticProps } from '@/utils/next'
-import { ContactFormType, contactFormSchema } from '@frachtwerk/essencium-types'
-
-
 
 function ContactView(): JSX.Element {
   const { mutate: sendMessage } = useSendContactMessage()
-
- 
 
   const { handleSubmit, control, formState, reset } = useZodForm({
     schema: contactFormSchema,
@@ -42,13 +38,13 @@ function ContactView(): JSX.Element {
   })
 
   function onSubmit(form: ContactFormType): void {
-    sendMessage(form, {onSuccess: () => reset()})
-  
+    sendMessage(form, { onSuccess: () => reset() })
   }
+
   return (
-  <form data-testid="form" onSubmit={handleSubmit(onSubmit)}>
-  <Contact control={control} formState={formState} />
-  </form>
+    <form data-testid="form" onSubmit={handleSubmit(onSubmit)}>
+      <Contact control={control} formState={formState} />
+    </form>
   )
 }
 
