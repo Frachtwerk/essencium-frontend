@@ -1,5 +1,26 @@
 # Changelog
 
+## [3.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v2.4.0...essencium-lib-v3.0.0) (2023-09-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* move api folder from app into lib
+
+### Features
+
+* add functionality to contact form ([fcc5406](https://github.com/Frachtwerk/essencium-frontend/commit/fcc5406effa4df244953fc2a029ea02da2eee61c))
+
+
+### Bug Fixes
+
+* load JSONTree only on client-side to prevent SSR issues ([268af06](https://github.com/Frachtwerk/essencium-frontend/commit/268af0632fd9b08ca084ce6f5968a717a3f30ca5))
+
+
+### Code Refactoring
+
+* move api folder from app into lib ([2dca446](https://github.com/Frachtwerk/essencium-frontend/commit/2dca446671cafd906c3f026da664dad5037c0392))
+
 ## [2.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v2.3.0...essencium-lib-v2.4.0) (2023-09-18)
 
 

@@ -1,5 +1,26 @@
 # Changelog
 
+## [3.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v2.4.1...essencium-app-v3.0.0) (2023-09-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* move api folder from app into lib
+
+### Features
+
+* add functionality to contact form ([fcc5406](https://github.com/Frachtwerk/essencium-frontend/commit/fcc5406effa4df244953fc2a029ea02da2eee61c))
+
+
+### Bug Fixes
+
+* set page number to zero when fetching roles ([81b7590](https://github.com/Frachtwerk/essencium-frontend/commit/81b7590dba2f7536fd6c4408e4330920b04c8e55))
+
+
+### Code Refactoring
+
+* move api folder from app into lib ([2dca446](https://github.com/Frachtwerk/essencium-frontend/commit/2dca446671cafd906c3f026da664dad5037c0392))
+
 ## [2.4.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v2.4.0...essencium-app-v2.4.1) (2023-09-20)
 
 
