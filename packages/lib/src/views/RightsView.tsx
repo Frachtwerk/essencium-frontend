@@ -82,7 +82,7 @@ export function RightsView(): JSX.Element {
   })
 
   const { data: roles, refetch: refetchRoles } = useGetRoles({
-    page: activePage - 1,
+    page: 0,
     size: 9999,
     sort: 'name,asc',
   })
