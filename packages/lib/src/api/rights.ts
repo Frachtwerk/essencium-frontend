@@ -22,9 +22,8 @@ import { useQuery, UseQueryResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useAtomValue } from 'jotai'
 
-import { authTokenAtom } from '@/api/auth'
-
 import { api } from './api'
+import { authTokenAtom } from './auth'
 
 export type RightsResponse = PaginatedResponse<RightOutput>
 

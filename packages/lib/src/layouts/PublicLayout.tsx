@@ -17,18 +17,26 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { TranslationsView } from '@frachtwerk/essencium-lib'
+import { Center } from '@mantine/core'
+import Head from 'next/head'
 
-import De from '@/../public/locales/de/common.json'
-import En from '@/../public/locales/en/common.json'
-import { baseGetStaticProps } from '@/utils/next'
-
-function TranslationsViewWithProps(): JSX.Element {
-  return <TranslationsView localTranslations={{ De, En }} />
+type Props = {
+  children: React.ReactNode
+  routeName?: string
 }
 
-TranslationsViewWithProps.getLayout = TranslationsView.getLayout
+export function PublicLayout({
+  children,
+  routeName,
+}: Props): JSX.Element | null {
+  const pageTitle = `${routeName ? `${routeName} -` : ''} Essencium`
 
-export const getStaticProps = baseGetStaticProps()
-
-export default TranslationsViewWithProps
+  return (
+    <Center>
+      <Head>
+        <title>{pageTitle}</title>
+      </Head>
+      {children}
+    </Center>
+  )
+}

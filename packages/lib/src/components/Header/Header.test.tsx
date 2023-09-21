@@ -22,8 +22,7 @@ import * as mantine from '@mantine/core'
 import { render, RenderResult, screen } from '@testing-library/react'
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 
-import { SearchBar, UserMenu } from './components'
-import { ThemeSelector } from './components/ThemeSelector'
+import { SearchBar, ThemeSelector, UserMenu } from './components'
 import { Header } from './Header'
 
 describe('Header', () => {

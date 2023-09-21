@@ -17,7 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { withBaseStylingShowNotification } from '@frachtwerk/essencium-lib'
 import {
   ResetPassword,
   SetPasswordInput,
@@ -29,6 +28,7 @@ import { useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 import { useTranslation } from 'next-i18next'
 
+import { withBaseStylingShowNotification } from '../utils'
 import { api } from './api'
 
 type TokenResponse = {

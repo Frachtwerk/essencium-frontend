@@ -17,25 +17,14 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Center } from '@mantine/core'
-import Head from 'next/head'
-
-type Props = {
-  children: React.ReactNode
-  routeName?: string
-}
-
-function PublicLayout({ children, routeName }: Props): JSX.Element | null {
-  const pageTitle = `${routeName ? `${routeName} -` : ''} Essencium`
-
-  return (
-    <Center>
-      <Head>
-        <title>{pageTitle}</title>
-      </Head>
-      {children}
-    </Center>
-  )
-}
-
-export default PublicLayout
+export * from './AddUserView'
+export * from './ContactView'
+export * from './HomeView'
+export * from './LoginView'
+export * from './ProfileView'
+export * from './RightsView'
+export * from './RolesView'
+export * from './SetPasswordView'
+export * from './TranslationsView'
+export * from './UpdateUserView'
+export * from './UsersView'

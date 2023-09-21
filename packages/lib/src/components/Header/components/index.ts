@@ -18,4 +18,5 @@
  */
 
 export * from './SearchBar'
+export * from './ThemeSelector'
 export * from './UserMenu'

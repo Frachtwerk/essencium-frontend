@@ -27,9 +27,7 @@ import {
   useMantineTheme,
 } from '@mantine/core'
 
-import { SearchBar } from './components/SearchBar'
-import { ThemeSelector } from './components/ThemeSelector'
-import { UserMenu } from './components/UserMenu'
+import { SearchBar, ThemeSelector, UserMenu } from './components'
 
 type Props = {
   user: UserOutput | undefined

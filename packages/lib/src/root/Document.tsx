@@ -17,18 +17,28 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { TranslationsView } from '@frachtwerk/essencium-lib'
+import { createGetInitialProps } from '@mantine/next'
+import _Document, { Head, Html, Main, NextScript } from 'next/document'
 
-import De from '@/../public/locales/de/common.json'
-import En from '@/../public/locales/en/common.json'
-import { baseGetStaticProps } from '@/utils/next'
+const getInitialProps = createGetInitialProps()
 
-function TranslationsViewWithProps(): JSX.Element {
-  return <TranslationsView localTranslations={{ De, En }} />
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export class Document extends _Document {
+  static getInitialProps = getInitialProps
+
+  render(): JSX.Element {
+    return (
+      <Html lang="en">
+        <Head>
+          <link rel="icon" href="/img/web/favicon.ico" sizes="any" />
+          <link rel="apple-touch-icon" href="/img/web/apple-touch-icon.png" />
+        </Head>
+        <body>
+          <div id="notification" />
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
+  }
 }
-
-TranslationsViewWithProps.getLayout = TranslationsView.getLayout
-
-export const getStaticProps = baseGetStaticProps()
-
-export default TranslationsViewWithProps

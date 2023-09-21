@@ -1,6 +1,6 @@
 {
   "root": true,
-  "extends": ["next/core-web-vitals", "@frachtwerk/eslint-config-essencium"],
+  "extends": ["@frachtwerk/eslint-config-essencium"],
   "parserOptions": {
     "project": ["./tsconfig.json"]
   }

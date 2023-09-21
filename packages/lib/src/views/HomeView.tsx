@@ -17,10 +17,26 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './api'
-export * from './auth'
-export * from './me'
-export * from './rights'
-export * from './roles'
-export * from './translations'
-export * from './user'
+import { ReactElement } from 'react'
+
+import { Home } from '../components/Home'
+import { AuthLayout } from '../layouts'
+import { getTranslation } from '../utils'
+
+export function HomeView(): JSX.Element {
+  return <Home />
+}
+
+HomeView.getLayout = function getLayout(
+  page: ReactElement,
+  version?: string,
+): JSX.Element {
+  return (
+    <AuthLayout
+      routeName={getTranslation('navigation.home.label')}
+      version={version}
+    >
+      {page}
+    </AuthLayout>
+  )
+}

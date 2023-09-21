@@ -14,7 +14,7 @@
     "test": {
       "dependsOn": ["^build"]
     },
-    "test:watch": {
+    "test:unit:watch": {
       "dependsOn": ["^build"]
     }
   }

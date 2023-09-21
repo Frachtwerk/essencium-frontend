@@ -5,12 +5,12 @@
       "path": "../"
     },
     {
-      "name": "lib",
-      "path": "../packages/lib"
-    },
-    {
       "name": "app",
       "path": "../packages/app"
+    },
+    {
+      "name": "lib",
+      "path": "../packages/lib"
     },
     {
       "name": "docs",
