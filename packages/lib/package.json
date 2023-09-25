@@ -38,7 +38,7 @@
     "test:unit:watch": "vitest watch"
   },
   "devDependencies": {
-    "@babel/core": "7.21.0",
+    "@babel/core": "7.23.0",
     "@emotion/react": "11.10.6",
     "@emotion/server": "11.11.0",
     "@fortawesome/fontawesome-svg-core": "6.3.0",
