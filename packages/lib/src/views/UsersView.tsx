@@ -28,8 +28,10 @@ import {
   ActionIcon,
   Badge,
   Button,
+  Center,
   Flex,
   Group,
+  Loader,
   Popover,
   Switch,
   Text,
@@ -136,6 +138,7 @@ export function UsersView(): JSX.Element {
 
   const {
     data: users,
+    isLoading: isLoadingUsers,
     isError,
     isFetching,
     error,
@@ -423,23 +426,31 @@ export function UsersView(): JSX.Element {
           text={t('usersView.deleteDialog.text')}
         />
 
-        <Table
-          tableModel={table}
-          onFilterChange={handleFilterChange}
-          showFilter={showFilter}
-          filterData={getFilterData()}
-          filterValue={columnFilters}
-          setFilterValue={setColumnFilters}
-        />
+        {isLoadingUsers ? (
+          <Center h="100%">
+            <Loader size="xl" name="loader" />
+          </Center>
+        ) : (
+          <>
+            <Table
+              tableModel={table}
+              onFilterChange={handleFilterChange}
+              showFilter={showFilter}
+              filterData={getFilterData()}
+              filterValue={columnFilters}
+              setFilterValue={setColumnFilters}
+            />
 
-        <TablePagination
-          table={table}
-          activePage={activePage}
-          pageSize={pageSize}
-          setActivePage={setActivePage}
-          setPageSize={setPageSize}
-          handleRefetch={handleRefetch}
-        />
+            <TablePagination
+              table={table}
+              activePage={activePage}
+              pageSize={pageSize}
+              setActivePage={setActivePage}
+              setPageSize={setPageSize}
+              handleRefetch={handleRefetch}
+            />
+          </>
+        )}
       </>
     </>
   )
