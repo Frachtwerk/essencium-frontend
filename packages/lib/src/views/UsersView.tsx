@@ -28,8 +28,10 @@ import {
   ActionIcon,
   Badge,
   Button,
+  Center,
   Flex,
   Group,
+  Loader,
   Popover,
   Switch,
   Text,
@@ -136,10 +138,11 @@ export function UsersView(): JSX.Element {
 
   const {
     data: users,
-    isError,
-    isFetching,
-    error,
-    isInitialLoading,
+    isLoading: isLoadingUsers,
+    isError: isErrorUsers,
+    isFetching: isFetchingUsers,
+    error: errorUsers,
+    isInitialLoading: isInitialLoadingUsers,
     refetch: refetchUsers,
   } = useGetUsers({
     page: activePage - 1,
@@ -363,12 +366,14 @@ export function UsersView(): JSX.Element {
   return (
     <>
       <HttpNotification
-        isLoading={isFetching && !isInitialLoading}
-        isError={isError}
+        isLoading={isFetchingUsers && !isInitialLoadingUsers}
+        isError={isErrorUsers}
         errorTitle={`Error ${
-          error?.response?.status ? `(${error?.response?.status})` : ''
+          errorUsers?.response?.status
+            ? `(${errorUsers?.response?.status})`
+            : ''
         }`}
-        errorMessage={error?.message}
+        errorMessage={errorUsers?.message}
         loadingTitle={t('notifications.loadingAsyncData.title') as string}
         loadingMessage={t('notifications.loadingAsyncData.message') as string}
       />
@@ -423,23 +428,31 @@ export function UsersView(): JSX.Element {
           text={t('usersView.deleteDialog.text')}
         />
 
-        <Table
-          tableModel={table}
-          onFilterChange={handleFilterChange}
-          showFilter={showFilter}
-          filterData={getFilterData()}
-          filterValue={columnFilters}
-          setFilterValue={setColumnFilters}
-        />
+        {isLoadingUsers ? (
+          <Center h="100%">
+            <Loader size="xl" name="loader" />
+          </Center>
+        ) : (
+          <>
+            <Table
+              tableModel={table}
+              onFilterChange={handleFilterChange}
+              showFilter={showFilter}
+              filterData={getFilterData()}
+              filterValue={columnFilters}
+              setFilterValue={setColumnFilters}
+            />
 
-        <TablePagination
-          table={table}
-          activePage={activePage}
-          pageSize={pageSize}
-          setActivePage={setActivePage}
-          setPageSize={setPageSize}
-          handleRefetch={handleRefetch}
-        />
+            <TablePagination
+              table={table}
+              activePage={activePage}
+              pageSize={pageSize}
+              setActivePage={setActivePage}
+              setPageSize={setPageSize}
+              handleRefetch={handleRefetch}
+            />
+          </>
+        )}
       </>
     </>
   )
