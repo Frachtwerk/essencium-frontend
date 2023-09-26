@@ -139,10 +139,10 @@ export function UsersView(): JSX.Element {
   const {
     data: users,
     isLoading: isLoadingUsers,
-    isError,
-    isFetching,
-    error,
-    isInitialLoading,
+    isError: isErrorUsers,
+    isFetching: isFetchingUsers,
+    error: errorUsers,
+    isInitialLoading: isInitialLoadingUsers,
     refetch: refetchUsers,
   } = useGetUsers({
     page: activePage - 1,
@@ -366,12 +366,14 @@ export function UsersView(): JSX.Element {
   return (
     <>
       <HttpNotification
-        isLoading={isFetching && !isInitialLoading}
-        isError={isError}
+        isLoading={isFetchingUsers && !isInitialLoadingUsers}
+        isError={isErrorUsers}
         errorTitle={`Error ${
-          error?.response?.status ? `(${error?.response?.status})` : ''
+          errorUsers?.response?.status
+            ? `(${errorUsers?.response?.status})`
+            : ''
         }`}
-        errorMessage={error?.message}
+        errorMessage={errorUsers?.message}
         loadingTitle={t('notifications.loadingAsyncData.title') as string}
         loadingMessage={t('notifications.loadingAsyncData.message') as string}
       />
