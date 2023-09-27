@@ -42,6 +42,8 @@ type Props = {
     oldPassword: PasswordChange['password'],
     newPassword: PasswordChange['password'],
   ) => void
+  isLoadingUpdateUser: boolean
+  isLoadingUpdatePassword: boolean
 }
 
 export function ProfileDataCard({
@@ -49,6 +51,8 @@ export function ProfileDataCard({
   roles,
   handleUpdate,
   handlePasswordUpdate,
+  isLoadingUpdatePassword,
+  isLoadingUpdateUser,
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
@@ -74,11 +78,18 @@ export function ProfileDataCard({
         </Tabs.List>
 
         <Tabs.Panel value="personalDataForm" pt="lg">
-          <PersonalDataForm user={user} handleUpdate={handleUpdate} />
+          <PersonalDataForm
+            user={user}
+            handleUpdate={handleUpdate}
+            isLoading={isLoadingUpdateUser}
+          />
         </Tabs.Panel>
 
         <Tabs.Panel value="passwordChange" pt="lg">
-          <PasswordChangeForm handlePasswordUpdate={handlePasswordUpdate} />
+          <PasswordChangeForm
+            handlePasswordUpdate={handlePasswordUpdate}
+            isLoading={isLoadingUpdatePassword}
+          />
         </Tabs.Panel>
 
         {router.pathname !== 'profile' ? (
@@ -87,6 +98,7 @@ export function ProfileDataCard({
               user={user}
               handleUpdate={handleUpdate}
               roles={roles}
+              isLoading={isLoadingUpdateUser}
             />
           </Tabs.Panel>
         ) : null}
