@@ -18,7 +18,7 @@
  */
 
 import { FooterLink, NavLink, RIGHTS } from '@frachtwerk/essencium-types'
-import { AppShell, Box, Center, Loader, useMantineTheme } from '@mantine/core'
+import { AppShell, Box, useMantineTheme } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 import type { SpotlightAction } from '@mantine/spotlight'
 import { SpotlightProvider } from '@mantine/spotlight'
@@ -215,7 +215,7 @@ export function AuthLayout({
     setShowChildren(false)
   }
 
-  function moin(route: string): void {
+  function checkIfUserIsAuthorized(route: string): void {
     const path = route.replace(/^\/[^/]+/, '')
 
     const currentRoute = NAV_LINKS.find(link => link.to === path)
@@ -231,15 +231,15 @@ export function AuthLayout({
 
   useEffect(() => {
     router.events.on('routeChangeStart', onRouteChangeStart)
-    router.events.on('routeChangeComplete', moin)
+    router.events.on('routeChangeComplete', checkIfUserIsAuthorized)
 
     return () => {
       router.events.off('routeChangeStart', onRouteChangeStart)
-      router.events.off('routeChangeComplete', moin)
+      router.events.off('routeChangeComplete', checkIfUserIsAuthorized)
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router, userRights])
+  }, [router.events, userRights])
 
   function handleLogout(): void {
     logout()
@@ -322,13 +322,7 @@ export function AuthLayout({
             marginLeft: getSidebarMargin(),
           }}
         >
-          {showChildren ? (
-            children
-          ) : (
-            <Center h="100%">
-              <Loader size="xl" name="loader" />
-            </Center>
-          )}
+          {showChildren ? children : null}
         </Box>
       </AppShell>
     </SpotlightProvider>
