@@ -110,9 +110,9 @@ export function RolesView(): JSX.Element {
 
   const { data: rights } = useGetRights({ page: 0, size: 9999 })
 
-  const { mutate: createRole } = useCreateRole()
+  const { mutate: createRole, isLoading: isLoadingCreateRole } = useCreateRole()
 
-  const { mutate: updateRole } = useUpdateRole()
+  const { mutate: updateRole, isLoading: isLoadingUpdateRole } = useUpdateRole()
 
   const { mutate: deleteRole } = useDeleteRole()
 
@@ -323,6 +323,7 @@ export function RolesView(): JSX.Element {
         createRole={handleCreateRole}
         toggleRight={toggleRight}
         formDefaults={FORM_DEFAULTS_ROLES_VIEW}
+        isLoading={isLoadingCreateRole}
       />
 
       <EditRole
@@ -341,6 +342,7 @@ export function RolesView(): JSX.Element {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         role={roleToEditOrDelete!}
         setSelectedRights={setSelectedRights}
+        isLoading={isLoadingUpdateRole}
       />
 
       <DeleteDialog

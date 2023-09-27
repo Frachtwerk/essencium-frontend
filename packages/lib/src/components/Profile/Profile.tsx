@@ -27,6 +27,8 @@ type Props = {
   roles: RoleOutput[]
   handleUpdate: (data: UserUpdate) => void
   handlePasswordUpdate: (oldPassword: string, newPassword: string) => void
+  isLoadingUpdateUser: boolean
+  isLoadingUpdatePassword: boolean
 }
 
 export function Profile({
@@ -34,6 +36,8 @@ export function Profile({
   roles,
   handleUpdate,
   handlePasswordUpdate,
+  isLoadingUpdatePassword,
+  isLoadingUpdateUser,
 }: Props): JSX.Element {
   return (
     <Grid>
@@ -47,6 +51,8 @@ export function Profile({
           roles={roles}
           handleUpdate={handleUpdate}
           handlePasswordUpdate={handlePasswordUpdate}
+          isLoadingUpdatePassword={isLoadingUpdatePassword}
+          isLoadingUpdateUser={isLoadingUpdateUser}
         />
       </Grid.Col>
     </Grid>
