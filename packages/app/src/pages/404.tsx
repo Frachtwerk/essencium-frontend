@@ -5,7 +5,7 @@ export default function Custom404(): null {
   const router = useRouter()
 
   function sendHome(): void {
-    router.replace('/')
+    router.replace(router.asPath, undefined)
   }
 
   useEffect(() => {
