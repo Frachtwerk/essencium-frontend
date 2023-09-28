@@ -15,10 +15,6 @@ const nextConfig = {
         source: '/healthcheck',
         destination: '/api/healthcheck',
       },
-      {
-        source: '/:path*',
-        destination: '/',
-      },
     ]
   },
 }

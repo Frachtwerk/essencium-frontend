@@ -211,8 +211,16 @@ export function AuthLayout({
     )
   }
 
-  function onRouteChangeStart(): void {
-    setShowChildren(false)
+  function onRouteChangeStart(route: string): void {
+    const path = route.replace(/^\/[^/]+/, '')
+
+    const currentRoute = NAV_LINKS.find(link => link.to === path)
+
+    if (currentRoute && !isAuthorized(currentRoute)) {
+      setShowChildren(false)
+    } else {
+      setShowChildren(true)
+    }
   }
 
   function checkIfUserIsAuthorized(route: string): void {
@@ -224,8 +232,6 @@ export function AuthLayout({
       router.replace('/', undefined, {
         locale: user?.locale,
       })
-    } else {
-      setShowChildren(true)
     }
   }
 
