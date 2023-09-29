@@ -6,8 +6,8 @@ export default function Custom404(): null {
 
   useEffect(() => {
     // router.back()
-    router.push('')
-    // router.replace('/')
+    router.push('/')
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
