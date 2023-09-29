@@ -10,15 +10,15 @@ export default function Custom404(): null {
 
   useEffect(() => {
     // router.back()
-    router.events.on('routeChangeComplete', sendHome)
+    // router.events.on('routeChangeComplete', sendHome)
 
-    // router.push('/')
+    router.push('/')
     // router.replace('/')
-    return () => {
+    /* return () => {
       router.events.off('routeChangeComplete', sendHome)
-    }
+    } */
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.events])
+  }, [])
 
   return null
 }
