@@ -40,10 +40,12 @@ type Props = {
     oldPassword: PasswordChange['password'],
     newPassword: PasswordChange['password'],
   ) => void
+  isLoading: boolean
 }
 
 export function PasswordChangeForm({
   handlePasswordUpdate,
+  isLoading,
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
@@ -153,7 +155,7 @@ export function PasswordChangeForm({
           </Stack>
         </MediaQuery>
 
-        <Button type="submit" mt="md">
+        <Button type="submit" mt="md" loading={isLoading}>
           {t('profileView.dataCard.tabs.passwordChange.content.savePassword')}
         </Button>
       </Flex>
