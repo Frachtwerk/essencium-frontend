@@ -40,7 +40,7 @@ export function AddUserView(): JSX.Element {
     defaultValues: FORM_DEFAULTS_USERS_VIEW,
   })
 
-  const { mutate: addUser, isLoading } = useCreateUser()
+  const { mutate: addUser } = useCreateUser()
 
   const { data: rolesResponse } = useGetRoles({
     page: 0,
@@ -77,7 +77,6 @@ export function AddUserView(): JSX.Element {
           control={control}
           formState={formState}
           setValue={setValue}
-          isLoading={isLoading}
         />
       </Card>
     </>

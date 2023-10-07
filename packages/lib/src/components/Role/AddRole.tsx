@@ -37,7 +37,6 @@ type Props = {
   createRole: (data: RoleInput) => void
   formDefaults: RoleInput
   toggleRight: (right: RightOutput) => void
-  isLoading: boolean
 }
 
 export function AddRole({
@@ -50,7 +49,6 @@ export function AddRole({
   createRole,
   formDefaults,
   toggleRight,
-  isLoading,
 }: Props): JSX.Element {
   const { handleSubmit, control, formState, reset } = useZodForm({
     schema: roleInputSchema,
@@ -77,7 +75,6 @@ export function AddRole({
         formState={formState}
         reset={reset}
         onClose={onClose}
-        isLoading={isLoading}
       />
     </Modal>
   )

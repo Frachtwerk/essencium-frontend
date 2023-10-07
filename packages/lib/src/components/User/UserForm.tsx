@@ -45,7 +45,6 @@ type Props = {
   formState: FormState<UserInput | UserUpdate>
   setValue: UseFormSetValue<UserInput | UserUpdate>
   onSubmit: () => void
-  isLoading: boolean
 }
 
 export function UserForm({
@@ -54,7 +53,6 @@ export function UserForm({
   control,
   formState,
   onSubmit,
-  isLoading,
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
@@ -345,7 +343,7 @@ export function UserForm({
         </Stack>
       </Flex>
 
-      <Button type="submit" mt="md" loading={isLoading}>
+      <Button type="submit" mt="md">
         {t('addUpdateUserView.form.save')}
       </Button>
     </form>

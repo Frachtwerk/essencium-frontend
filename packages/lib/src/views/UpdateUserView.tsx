@@ -62,7 +62,7 @@ export function UpdateUserView(): JSX.Element {
     }
   }, [user, prefillForm])
 
-  const { mutate: updateUser, isLoading } = useUpdateUser()
+  const { mutate: updateUser } = useUpdateUser()
 
   const { data: rolesResponse } = useGetRoles({
     page: 0,
@@ -99,7 +99,6 @@ export function UpdateUserView(): JSX.Element {
           control={control}
           formState={formState}
           setValue={setValue}
-          isLoading={isLoading}
         />
       </Card>
     </>

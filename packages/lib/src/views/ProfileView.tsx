@@ -35,10 +35,9 @@ export function ProfileView(): JSX.Element {
 
   const { data: user, isLoading: isLoadingUser } = useGetMe()
 
-  const { mutate: updateUser, isLoading: isUpdatingUser } = useUpdateMe()
+  const { mutate: updateUser } = useUpdateMe()
 
-  const { mutate: updatePassword, isLoading: isUpdatingPassword } =
-    useUpdatePassword()
+  const { mutate: updatePassword } = useUpdatePassword()
 
   const { data: rolesRequest } = useGetRoles({ page: 0, size: 9999 })
 
@@ -73,8 +72,6 @@ export function ProfileView(): JSX.Element {
         roles={roles}
         handleUpdate={handleUpdate}
         handlePasswordUpdate={handlePasswordUpdate}
-        isUpdatingUser={isUpdatingUser}
-        isUpdatingPassword={isUpdatingPassword}
       />
     )
   }

@@ -42,7 +42,6 @@ type Props = {
   updateRole: (data: RoleUpdate) => void
   toggleRight: (right: RightOutput) => void
   setSelectedRights: Dispatch<SetStateAction<RightOutput[]>>
-  isLoading: boolean
 }
 
 export function EditRole({
@@ -57,7 +56,6 @@ export function EditRole({
   updateRole,
   toggleRight,
   setSelectedRights,
-  isLoading,
 }: Props): JSX.Element {
   useEffect(() => {
     if (!role) return
@@ -111,7 +109,6 @@ export function EditRole({
           onClose()
           setSelectedRights([])
         }}
-        isLoading={isLoading}
       />
     </Modal>
   )

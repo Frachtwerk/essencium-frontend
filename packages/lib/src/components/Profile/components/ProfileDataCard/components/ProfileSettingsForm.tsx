@@ -42,14 +42,12 @@ type Props = {
   user: UserOutput
   roles: RoleOutput[]
   handleUpdate: (data: UserUpdate) => void
-  isLoading: boolean
 }
 
 export function ProfileSettingsForm({
   user,
   roles,
   handleUpdate,
-  isLoading,
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
@@ -127,7 +125,7 @@ export function ProfileSettingsForm({
         </Box>
       </Flex>
 
-      <Button type="submit" mt="md" loading={isLoading}>
+      <Button type="submit" mt="md">
         {t('profileView.dataCard.tabs.settings.content.saveSettings')}
       </Button>
     </form>
