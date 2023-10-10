@@ -203,50 +203,6 @@ export function AuthLayout({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.asPath, user])
 
-  const [showChildren, setShowChildren] = useState(false)
-
-  function isAuthorized(route: NavLink): boolean {
-    return (
-      !route.rights || route.rights.every(right => userRights?.includes(right))
-    )
-  }
-
-  function onRouteChangeStart(route: string): void {
-    const path = route.replace(/^\/[^/]+/, '')
-
-    const currentRoute = NAV_LINKS.find(link => link.to === path)
-
-    if (currentRoute && !isAuthorized(currentRoute)) {
-      setShowChildren(false)
-    } else {
-      setShowChildren(true)
-    }
-  }
-
-  function checkIfUserIsAuthorized(route: string): void {
-    const path = route.replace(/^\/[^/]+/, '')
-
-    const currentRoute = NAV_LINKS.find(link => link.to === path)
-
-    if (currentRoute && !isAuthorized(currentRoute)) {
-      router.replace('/', undefined, {
-        locale: user?.locale,
-      })
-    }
-  }
-
-  useEffect(() => {
-    router.events.on('routeChangeStart', onRouteChangeStart)
-    router.events.on('routeChangeComplete', checkIfUserIsAuthorized)
-
-    return () => {
-      router.events.off('routeChangeStart', onRouteChangeStart)
-      router.events.off('routeChangeComplete', checkIfUserIsAuthorized)
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.events, userRights])
-
   function handleLogout(): void {
     logout()
 
@@ -328,7 +284,7 @@ export function AuthLayout({
             marginLeft: getSidebarMargin(),
           }}
         >
-          {showChildren ? children : null}
+          {children}
         </Box>
       </AppShell>
     </SpotlightProvider>
