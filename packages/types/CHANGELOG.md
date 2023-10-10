@@ -1,6 +1,5 @@
 # Changelog
 
-
 ## [2.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v2.1.0...essencium-types-v2.1.1) (2023-09-19)
 
 
