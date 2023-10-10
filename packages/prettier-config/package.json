@@ -1,6 +1,6 @@
 {
   "name": "@frachtwerk/prettier-config-essencium",
-  "version": "3.0.1",
+  "version": "1.0.0",
   "description": "This is the shared Prettier config for Essencium.",
   "keywords": [
     "prettier-config",
