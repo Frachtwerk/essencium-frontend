@@ -1,8 +1,8 @@
 {
-  "packages/types": "3.0.1",
+  "packages/types": "2.1.1",
   "packages/lib": "3.0.1",
   "packages/app": "3.0.1",
-  "packages/docs": "3.0.1",
-  "packages/prettier-config": "3.0.1",
-  "packages/eslint-config": "3.0.1"
+  "packages/docs": "1.3.0",
+  "packages/prettier-config": "1.0.0",
+  "packages/eslint-config": "1.0.0"
 }
