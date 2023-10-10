@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v3.0.0...essencium-lib-v3.0.1) (2023-10-10)
+
+
+### Features
+
+* add loading state to buttons ([b5549da](https://github.com/Frachtwerk/essencium-frontend/commit/b5549da4bd41a8caa7e43427e1aeb2caa5fe169a))
+* add routeguard ([f9ceacd](https://github.com/Frachtwerk/essencium-frontend/commit/f9ceacdc5fb8741ba909d620e8ae81154017ce0f))
+
+
+### Bug Fixes
+
+* **lib:** add loading state ([eed03e2](https://github.com/Frachtwerk/essencium-frontend/commit/eed03e298b23ef6679cd90e325ddd485a93c6dc5))
+
+
+### Miscellaneous Chores
+
+* release 3.0.1 ([485e08e](https://github.com/Frachtwerk/essencium-frontend/commit/485e08e411130c8e37190755af0f8bac5749c56f))
+
 ## [3.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v2.4.0...essencium-lib-v3.0.0) (2023-09-21)
 
 
