@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v2.1.1...essencium-types-v3.0.1) (2023-10-11)
+
+
+### Miscellaneous Chores
+
+* release 3.0.1 ([485e08e](https://github.com/Frachtwerk/essencium-frontend/commit/485e08e411130c8e37190755af0f8bac5749c56f))
+
 ## [2.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v2.1.0...essencium-types-v2.1.1) (2023-09-19)
 
 
