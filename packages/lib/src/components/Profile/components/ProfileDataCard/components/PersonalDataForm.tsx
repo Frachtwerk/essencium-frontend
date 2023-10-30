@@ -40,9 +40,14 @@ import { useZodForm } from '../../../../../hooks'
 type Props = {
   user: UserOutput
   handleUpdate: (data: UserUpdate) => void
+  isLoading: boolean
 }
 
-export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
+export function PersonalDataForm({
+  user,
+  handleUpdate,
+  isLoading,
+}: Props): JSX.Element {
   const { t } = useTranslation()
 
   const {
@@ -292,7 +297,7 @@ export function PersonalDataForm({ user, handleUpdate }: Props): JSX.Element {
         </Stack>
       </Flex>
 
-      <Button type="submit" mt="md">
+      <Button type="submit" mt="md" loading={isLoading}>
         {t('profileView.dataCard.tabs.personalData.saveChanges')}
       </Button>
     </form>

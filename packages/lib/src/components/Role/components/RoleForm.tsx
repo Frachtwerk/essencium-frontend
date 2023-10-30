@@ -47,6 +47,7 @@ type Props = {
   reset?: () => void
   onClose: () => void
   role?: RoleOutput
+  isLoading: boolean
 }
 
 export function RoleForm({
@@ -58,6 +59,7 @@ export function RoleForm({
   onClose,
   role,
   reset,
+  isLoading,
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
@@ -200,7 +202,7 @@ export function RoleForm({
       <Space h="lg" />
 
       <Flex justify="space-around" gap="lg">
-        <Button type="submit" fullWidth mt="md">
+        <Button type="submit" fullWidth mt="md" loading={isLoading}>
           {role ? t('rolesView.modal.update') : t('rolesView.modal.submit')}
         </Button>
 
