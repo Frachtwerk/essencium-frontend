@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v3.0.1...essencium-lib-v3.0.1) (2023-10-30)
+
+
+### Miscellaneous Chores
+
+* release 3.0.1 ([6410352](https://github.com/Frachtwerk/essencium-frontend/commit/641035260d6fe070945fde2f348a43db6625e28e))
+
 ## [3.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v3.0.0...essencium-lib-v3.0.1) (2023-10-10)
 
 
