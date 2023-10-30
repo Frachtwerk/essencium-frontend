@@ -1,5 +1,59 @@
 # Changelog
 
+## [4.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v3.0.1...essencium-lib-v4.0.0) (2023-10-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* move api folder from app into lib
+* refactor code to match backend version
+
+### Features
+
+* add edit & delete functionality to rolesView on nextBranch ([3449b89](https://github.com/Frachtwerk/essencium-frontend/commit/3449b899e607c9f62ca9ec0a285e67c86c42711a))
+* add eslint config package ([87943a9](https://github.com/Frachtwerk/essencium-frontend/commit/87943a9e7e887d5c964d45b222046a4979362e43))
+* add Essencium logo ([f64b087](https://github.com/Frachtwerk/essencium-frontend/commit/f64b0871e76f144a429463886069bd82f8d04f44))
+* add functionality to contact form ([fcc5406](https://github.com/Frachtwerk/essencium-frontend/commit/fcc5406effa4df244953fc2a029ea02da2eee61c))
+* add functionality to setPassword component ([e08dccf](https://github.com/Frachtwerk/essencium-frontend/commit/e08dccfe5825579e31057a785b41d7cfdff5f084))
+* add loader animation ([24a598e](https://github.com/Frachtwerk/essencium-frontend/commit/24a598e2673d94b8e56453470bf290709d730f7b))
+* add loading spinner with delay option ([146bcba](https://github.com/Frachtwerk/essencium-frontend/commit/146bcba10b4d321449e9e147fbfb5ddab07de245))
+* add loading state to buttons ([b5549da](https://github.com/Frachtwerk/essencium-frontend/commit/b5549da4bd41a8caa7e43427e1aeb2caa5fe169a))
+* add routeguard ([f9ceacd](https://github.com/Frachtwerk/essencium-frontend/commit/f9ceacdc5fb8741ba909d620e8ae81154017ce0f))
+* add search functionality to translation view ([b233016](https://github.com/Frachtwerk/essencium-frontend/commit/b233016c261b452fdb3c643f407885e2c7d8d6d6))
+* add searchable drop-down for filtering tables ([22cc447](https://github.com/Frachtwerk/essencium-frontend/commit/22cc4471a2b8e7ab4e457acd0581f9858e20d104))
+* add success message to setPassword flow ([0b61e7c](https://github.com/Frachtwerk/essencium-frontend/commit/0b61e7c38d1c4087d06dbd363b8afb40d60b091d))
+* implement basic filter functionality for users table ([7bc3a2a](https://github.com/Frachtwerk/essencium-frontend/commit/7bc3a2a2ec2e1a1ed3c9666ab06d02f18b729ace))
+* **lib:** set optional functionality firstColSticky ([b68ae1b](https://github.com/Frachtwerk/essencium-frontend/commit/b68ae1b3d852304d08ffbcb06ee16aa838c8896d))
+* release commit for topbar and sidebar refactoring ([#370](https://github.com/Frachtwerk/essencium-frontend/issues/370)) ([e96dddb](https://github.com/Frachtwerk/essencium-frontend/commit/e96dddb745e59be1b3ecb214cfc10b030e89a472))
+* set user's language to default language ([a88d450](https://github.com/Frachtwerk/essencium-frontend/commit/a88d450ec772c2d15443e5d41b4546c1c0efcdf3))
+* show text if no translations found ([1858f11](https://github.com/Frachtwerk/essencium-frontend/commit/1858f11a40dab400650b7be0f111dc674f268d22))
+* toggle version indicator via env var ([63a43e5](https://github.com/Frachtwerk/essencium-frontend/commit/63a43e59be76633f192e755914ee34116831a2e9))
+
+
+### Bug Fixes
+
+* adjust logic to listen to the 'NEXT_PUBLIC_ENV' variable ([433d8da](https://github.com/Frachtwerk/essencium-frontend/commit/433d8dab7d2239169962e963c50c7367843dc14d))
+* apply translation updates reactively ([db895e0](https://github.com/Frachtwerk/essencium-frontend/commit/db895e0010f1b29a3248225c8fb7976ccbb941f7))
+* downgrade i18n and its deps for react and next ([7fed0e3](https://github.com/Frachtwerk/essencium-frontend/commit/7fed0e34d5f0f3ac73e9aa9fc66f747e833027b2))
+* **lib:** add loading state ([eed03e2](https://github.com/Frachtwerk/essencium-frontend/commit/eed03e298b23ef6679cd90e325ddd485a93c6dc5))
+* load JSONTree only on client-side to prevent SSR issues ([268af06](https://github.com/Frachtwerk/essencium-frontend/commit/268af0632fd9b08ca084ce6f5968a717a3f30ca5))
+* prefill form with default values ([dc9e089](https://github.com/Frachtwerk/essencium-frontend/commit/dc9e089f148eee155b015b6a4fe33f973ba55b7c))
+* prefix import ([81eea04](https://github.com/Frachtwerk/essencium-frontend/commit/81eea046a17cfd8132bf057202fb3e9a0e13ecff))
+* release commit for prevent line break when coll. nav bar ([4eb4886](https://github.com/Frachtwerk/essencium-frontend/commit/4eb4886ebf70585a88d71bec298a471e5d491bff))
+* remove duplicate imports ([a63f6ed](https://github.com/Frachtwerk/essencium-frontend/commit/a63f6edf29764ee92959f9e786c7e5b19e43318e))
+* remove unused imports ([7374546](https://github.com/Frachtwerk/essencium-frontend/commit/7374546125a1997858cce5cb5a7c267c2f43f717))
+* set filter change callback as optional ([b3cdf9e](https://github.com/Frachtwerk/essencium-frontend/commit/b3cdf9e1fb5e5def8dec0205ad6f1e2fe5986846))
+* type error ([93f88b8](https://github.com/Frachtwerk/essencium-frontend/commit/93f88b84f27cfc7527cb7be2681ea849f4b20d00))
+* use correct import ([f5d9380](https://github.com/Frachtwerk/essencium-frontend/commit/f5d9380dab3f8d22bf0739340056336f96d12ec3))
+* use i18n to parse form error messages ([ef9795c](https://github.com/Frachtwerk/essencium-frontend/commit/ef9795c0ee723485eed7d9929c1ffc4af5bbc52b))
+* use same margins as in other views ([2e086b7](https://github.com/Frachtwerk/essencium-frontend/commit/2e086b7379c713fb04f717f1c87f2a5707977628))
+
+
+### Code Refactoring
+
+* move api folder from app into lib ([2dca446](https://github.com/Frachtwerk/essencium-frontend/commit/2dca446671cafd906c3f026da664dad5037c0392))
+* refactor code to match backend version ([57d47bf](https://github.com/Frachtwerk/essencium-frontend/commit/57d47bf0eac6a3411acd6d35c12852c056b4b94a))
+
 ## [3.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v3.0.0...essencium-lib-v3.0.1) (2023-10-10)
 
 

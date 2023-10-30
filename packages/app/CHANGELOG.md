@@ -1,5 +1,67 @@
 # Changelog
 
+## [4.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v3.0.1...essencium-app-v4.0.0) (2023-10-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* move api folder from app into lib
+* refactor code to match backend version
+
+### Features
+
+* add edit & delete functionality to rolesView on nextBranch ([3449b89](https://github.com/Frachtwerk/essencium-frontend/commit/3449b899e607c9f62ca9ec0a285e67c86c42711a))
+* add end2end tests for views ([31520f8](https://github.com/Frachtwerk/essencium-frontend/commit/31520f89d68e1e9b0909127f57c0202c72b06c38))
+* add eslint config package ([87943a9](https://github.com/Frachtwerk/essencium-frontend/commit/87943a9e7e887d5c964d45b222046a4979362e43))
+* add Essencium logo ([f64b087](https://github.com/Frachtwerk/essencium-frontend/commit/f64b0871e76f144a429463886069bd82f8d04f44))
+* add functionality to contact form ([fcc5406](https://github.com/Frachtwerk/essencium-frontend/commit/fcc5406effa4df244953fc2a029ea02da2eee61c))
+* add functionality to invalidate a user's authToken ([35cfe60](https://github.com/Frachtwerk/essencium-frontend/commit/35cfe60d59da158b72b92f84dcd5d1ba767bd602))
+* add functionality to setPassword component ([e08dccf](https://github.com/Frachtwerk/essencium-frontend/commit/e08dccfe5825579e31057a785b41d7cfdff5f084))
+* add healthcheck endpoint ([26ef301](https://github.com/Frachtwerk/essencium-frontend/commit/26ef301697a06c53c69858662a746947a323b0f1))
+* add loader animation ([24a598e](https://github.com/Frachtwerk/essencium-frontend/commit/24a598e2673d94b8e56453470bf290709d730f7b))
+* add searchable drop-down for filtering tables ([22cc447](https://github.com/Frachtwerk/essencium-frontend/commit/22cc4471a2b8e7ab4e457acd0581f9858e20d104))
+* **frontend:** add delete confirmation dialog to usersView ([5d6b6f6](https://github.com/Frachtwerk/essencium-frontend/commit/5d6b6f600e8c58d21246595f70438f872061c966))
+* **frontend:** add right check for actions ([4ddb0f9](https://github.com/Frachtwerk/essencium-frontend/commit/4ddb0f999a6444d181264783e6e32405f5fd5fcc))
+* implement basic filter functionality for users table ([7bc3a2a](https://github.com/Frachtwerk/essencium-frontend/commit/7bc3a2a2ec2e1a1ed3c9666ab06d02f18b729ace))
+* persist sidebar state in local storage ([01cea19](https://github.com/Frachtwerk/essencium-frontend/commit/01cea19e68ee08b8f4dac4ce7fbb4b5585e986ed))
+* release commit for topbar and sidebar refactoring ([#370](https://github.com/Frachtwerk/essencium-frontend/issues/370)) ([e96dddb](https://github.com/Frachtwerk/essencium-frontend/commit/e96dddb745e59be1b3ecb214cfc10b030e89a472))
+* set dynamic title ([54d154a](https://github.com/Frachtwerk/essencium-frontend/commit/54d154a0c7500c0fc908d453f6b5ca948f491956))
+* set user's language to default language ([a88d450](https://github.com/Frachtwerk/essencium-frontend/commit/a88d450ec772c2d15443e5d41b4546c1c0efcdf3))
+* toggle version indicator via env var ([63a43e5](https://github.com/Frachtwerk/essencium-frontend/commit/63a43e59be76633f192e755914ee34116831a2e9))
+
+
+### Bug Fixes
+
+* add variable to rolesView test ([227c68e](https://github.com/Frachtwerk/essencium-frontend/commit/227c68e3a27d41161fda71628529e5e6ad9f5356))
+* adjust e2e test for UsersView ([9e45e1e](https://github.com/Frachtwerk/essencium-frontend/commit/9e45e1e546dab221f23badfdbf4b498efb459b35))
+* adjust test for NavBar ([65172af](https://github.com/Frachtwerk/essencium-frontend/commit/65172afdfe197acfd759421c21f2181aeaa8c668))
+* adjust test for rolesView ([dd2ee3f](https://github.com/Frachtwerk/essencium-frontend/commit/dd2ee3f43315dac8bc54d1752b980117e31d57dd))
+* apply translation updates reactively ([db895e0](https://github.com/Frachtwerk/essencium-frontend/commit/db895e0010f1b29a3248225c8fb7976ccbb941f7))
+* **app:** remove blocking await keyword ([7c07a8e](https://github.com/Frachtwerk/essencium-frontend/commit/7c07a8ee884c4424f418f85d2d83869f5d617a1d))
+* **app:** set user Admin as default user ([b038fb9](https://github.com/Frachtwerk/essencium-frontend/commit/b038fb91b5063e86b45bfa1c74b2fc5edb1c027f))
+* change press action to click action in RolesView test ([227c68e](https://github.com/Frachtwerk/essencium-frontend/commit/227c68e3a27d41161fda71628529e5e6ad9f5356))
+* downgrade i18n and its deps for react and next ([7fed0e3](https://github.com/Frachtwerk/essencium-frontend/commit/7fed0e34d5f0f3ac73e9aa9fc66f747e833027b2))
+* fix layout flickering by using mantine ssr package ([ef70a28](https://github.com/Frachtwerk/essencium-frontend/commit/ef70a28f0484170ffcc3ae363e312b1dd74b3b1d))
+* linting error ([f0961d6](https://github.com/Frachtwerk/essencium-frontend/commit/f0961d6a9bf430125eed05361c5d436085845a91))
+* load german if user locale is english ([b5a16f2](https://github.com/Frachtwerk/essencium-frontend/commit/b5a16f2aae95ad2ba7777029008a33c545872968))
+* load german translation ([3045e5f](https://github.com/Frachtwerk/essencium-frontend/commit/3045e5f674cacc0da76315bfa40ee2dee4656342))
+* make boolean env var consistent with 0 or 1 ([179d5bf](https://github.com/Frachtwerk/essencium-frontend/commit/179d5bf4cbfc3d4cce1aa7ab4d75130b36ff1ef2))
+* remove client-side pagination ([48ab76c](https://github.com/Frachtwerk/essencium-frontend/commit/48ab76cc8594408b0a6760513f65b3b8a8fc40e5))
+* remove duplicate import ([11957c9](https://github.com/Frachtwerk/essencium-frontend/commit/11957c925eedf58027c2e18929a6dd9ad7aa2914))
+* remove only ([227c68e](https://github.com/Frachtwerk/essencium-frontend/commit/227c68e3a27d41161fda71628529e5e6ad9f5356))
+* remove request to terminate endpoint in logout function ([f2d698b](https://github.com/Frachtwerk/essencium-frontend/commit/f2d698b010f58c1290d709bfa413889986cee85a))
+* replace new Set with filter method ([25c8bf9](https://github.com/Frachtwerk/essencium-frontend/commit/25c8bf93f8daddc118747045e04d07b6b80fc3cd))
+* set assertion timeout for RolesView test ([227c68e](https://github.com/Frachtwerk/essencium-frontend/commit/227c68e3a27d41161fda71628529e5e6ad9f5356))
+* set page number to zero when fetching roles ([81b7590](https://github.com/Frachtwerk/essencium-frontend/commit/81b7590dba2f7536fd6c4408e4330920b04c8e55))
+* setTimeout in RolesView test ([227c68e](https://github.com/Frachtwerk/essencium-frontend/commit/227c68e3a27d41161fda71628529e5e6ad9f5356))
+* use same margins as in other views ([2e086b7](https://github.com/Frachtwerk/essencium-frontend/commit/2e086b7379c713fb04f717f1c87f2a5707977628))
+
+
+### Code Refactoring
+
+* move api folder from app into lib ([2dca446](https://github.com/Frachtwerk/essencium-frontend/commit/2dca446671cafd906c3f026da664dad5037c0392))
+* refactor code to match backend version ([57d47bf](https://github.com/Frachtwerk/essencium-frontend/commit/57d47bf0eac6a3411acd6d35c12852c056b4b94a))
+
 ## [3.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v3.0.0...essencium-app-v3.0.1) (2023-10-10)
 
 
