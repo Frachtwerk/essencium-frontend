@@ -8,8 +8,7 @@
 |
 [Docs](https://docs.essencium.dev)
 
-<img src="./packages/app/public/img/web/logotype_400x100px.svg" alt="Essencium Logo" width="300"/>
-
+![Essencium Logo](./packages/app/public/img/web/logotype_400x100px.svg)
 React based starter monorepo consisting of a component library, docs and a boilerplate application.
 
 [Report an issue](https://github.com/Frachtwerk/essencium-frontend/issues)
