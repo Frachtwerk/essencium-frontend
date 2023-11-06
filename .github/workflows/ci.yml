@@ -37,8 +37,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # - name: Set base and head SHAs for nx
-      #   uses: nrwl/nx-set-shas@v3
+      - name: Set base and head SHAs for nx
+        uses: nrwl/nx-set-shas@v3
 
       - name: Run linting
         run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx affected --target=lint --parallel=10
