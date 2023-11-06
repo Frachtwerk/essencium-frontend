@@ -2,7 +2,7 @@
 
 # Essencium
 
-[Build](https://github.com/Frachtwerk/essencium-frontend/actions/workflows/build.yml)
+[![Build](https://github.com/Frachtwerk/essencium-frontend/actions/workflows/build.yml/badge.svg)]
 
 [Preview](https://staging.essencium.dev)
 |
