@@ -258,7 +258,7 @@ export function AuthLayout({
   const isNoPhone = useMediaQuery('(min-width: 48em)')
 
   function getSidebarMargin(): string {
-    if (isFixedNav) {
+    if (isFixedNav && isNoPhone) {
       return '250px'
     }
     if (isNoPhone) {
