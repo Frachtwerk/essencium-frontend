@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v3.1.0...essencium-lib-v3.1.1) (2023-11-08)
+
+
+### Bug Fixes
+
+* adjust margin in AuthLayout for mobile screens ([19c707d](https://github.com/Frachtwerk/essencium-frontend/commit/19c707df03d628883332206d8e5185573de7aa80))
+
 ## [3.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v3.0.0...essencium-lib-v3.1.0) (2023-10-30)
 
 
