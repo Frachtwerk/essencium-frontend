@@ -18,6 +18,7 @@
  */
 
 import { ResetPassword } from '@frachtwerk/essencium-types'
+import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
@@ -32,6 +33,8 @@ export function LoginView(): JSX.Element {
 
   const router = useRouter()
 
+  const searchParams = useSearchParams()
+
   const { mutate: resetPassword, isLoading: isResettingPassword } =
     useResetPassword()
   const [isResetPasswordSent, setIsResetPasswordSent] = useState(false)
@@ -44,7 +47,7 @@ export function LoginView(): JSX.Element {
     createToken(
       { username, password },
       {
-        onSuccess: () => router.push('/'),
+        onSuccess: () => router.push(searchParams.get('redirect') || '/'),
         onError: () => {
           withBaseStylingShowNotification({
             title: t('loginView.errorMessage.title'),

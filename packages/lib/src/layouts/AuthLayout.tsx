@@ -192,7 +192,12 @@ export function AuthLayout({
   useEffect(() => {
     const authToken = localStorage.getItem('authToken')
 
-    if (!authToken) router.push('/login')
+    if (!authToken) {
+      router.push({
+        pathname: '/login',
+        query: { redirect: router.asPath },
+      })
+    }
   }, [user, router])
 
   useEffect(() => {
