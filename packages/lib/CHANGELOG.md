@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v3.1.1...essencium-lib-v3.2.0) (2023-11-21)
+
+
+### Features
+
+* use params to redirect after login ([#441](https://github.com/Frachtwerk/essencium-frontend/issues/441)) ([562ed55](https://github.com/Frachtwerk/essencium-frontend/commit/562ed554f8e8c6a0f532dba642b24bba0187bf6d))
+
 ## [3.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v3.1.0...essencium-lib-v3.1.1) (2023-11-08)
 
 
