@@ -17,30 +17,11 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { createGetInitialProps } from '@mantine/next'
-import _Document, { Head, Html, Main, NextScript } from 'next/document'
+export function hasRequiredRights(
+  userRights: string[] | null,
+  requiredRight: string,
+): boolean {
+  if (!userRights) return false
 
-const getInitialProps = createGetInitialProps()
-
-// eslint-disable-next-line @typescript-eslint/naming-convention
-class Document extends _Document {
-  static getInitialProps = getInitialProps
-
-  render(): JSX.Element {
-    return (
-      <Html lang="en">
-        <Head>
-          <link rel="icon" href="/img/web/favicon.ico" sizes="any" />
-          <link rel="apple-touch-icon" href="/img/web/apple-touch-icon.png" />
-        </Head>
-        <body>
-          <div id="notification" />
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
-  }
+  return userRights.includes(requiredRight)
 }
-
-export default Document
