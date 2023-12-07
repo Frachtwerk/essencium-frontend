@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v4.0.0...essencium-lib-v4.1.0) (2023-12-07)
+
+
+### Features
+
+* add and edit READMEs ([#453](https://github.com/Frachtwerk/essencium-frontend/issues/453)) ([ace03ca](https://github.com/Frachtwerk/essencium-frontend/commit/ace03cab63e0cfe8a39d0f4322b1ba60b6e225ba))
+
 ## [4.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v3.2.0...essencium-lib-v4.0.0) (2023-12-07)
 
 
