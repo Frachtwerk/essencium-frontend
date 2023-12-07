@@ -8,7 +8,7 @@
 
 ### [Check out the docs](https://docs.essencium.dev)
 
-For enforcing code style and utilizing static code analyzing we use ESLint along with a bunch of rulesets. The most noteworthy ruleset is the Airbnb JavaScript Style Guide.
+For enforcing code style and utilizing static code analyzing we use ESLint along with a bunch of rulesets. The most noteworthy ruleset is the Airbnb JavaScript Style Guide
 
 [Report an issue](https://github.com/Frachtwerk/essencium-frontend/issues)
 </div>
