@@ -8,7 +8,7 @@
 
 ### [Check out the docs](https://docs.essencium.dev)
 
-Essencium consists of a core library (called lib inside the monorepo and @frachtwerk/essencium-lib on npm).
+Essencium consists of a core library (called `lib` inside the monorepo and `@frachtwerk/essencium-lib` on npm).
 
 [Report an issue](https://github.com/Frachtwerk/essencium-frontend/issues)
 </div>
