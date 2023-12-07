@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v4.0.0...essencium-app-v4.0.1) (2023-12-07)
+
+
+### Bug Fixes
+
+* wrap app cmp export into appWithTranslation HOC ([a1bbd41](https://github.com/Frachtwerk/essencium-frontend/commit/a1bbd41be292cb32b203f2614e31e6b96fd4f19b))
+
 ## [4.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v3.0.0...essencium-app-v4.0.0) (2023-12-07)
 
 
