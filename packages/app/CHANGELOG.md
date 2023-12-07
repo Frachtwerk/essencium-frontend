@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v3.0.0...essencium-app-v4.0.0) (2023-12-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* put generic logic/cmps into lib and specific into app pkg
+
+### Code Refactoring
+
+* put generic logic/cmps into lib and specific into app pkg ([cf7bdda](https://github.com/Frachtwerk/essencium-frontend/commit/cf7bdda943074ad7631370add1150c69e99114d1))
+
 ## [3.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v2.4.1...essencium-app-v3.0.0) (2023-09-21)
 
 ### ⚠ BREAKING CHANGES
