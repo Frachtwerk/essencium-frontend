@@ -28,13 +28,36 @@ import {
 import axios, { AxiosError, AxiosResponse } from 'axios'
 
 const CONFIG = {
-  NUM_ENTITIES: 50,
+  NUM_ENTITIES: 20,
   AVAILABLE_LOCALES: ['en', 'de'],
   ADMIN_USERNAME: '',
   ADMIN_PASSWORD: '',
   BASE_URL: 'https://backend.staging.essencium.dev',
   ROLES_TO_KEEP: ['ADMIN', 'USER'],
 }
+
+const ROLES_TO_CREATE = [
+  'HR',
+  'ORCHESTRATOR',
+  'REPRESENTATIVE',
+  'FACILITATOR',
+  'TECHNICIAN',
+  'COORDINATOR',
+  'ARCHITECT',
+  'PLANNER',
+  'STRATEGIST',
+  'PRODUCER',
+  'DIRECTOR',
+  'SPECIALIST',
+  'ENGINEER',
+  'EXECUTIVE',
+  'MANAGER',
+  'CONSULTANT',
+  'LIAISON',
+  'OFFICER',
+  'DEVELOPER',
+  'AGENT',
+] as const
 
 async function seedDatabase(): Promise<void> {
   console.log('🌱 Started seeding database')
@@ -90,7 +113,7 @@ async function seedDatabase(): Promise<void> {
     roles.content
       .filter((role: RoleOutput) => !CONFIG.ROLES_TO_KEEP.includes(role.name))
       .map((role: RoleOutput) => {
-        return axiosInstance.delete(`/v1/roles/${role.id}`)
+        return axiosInstance.delete(`/v1/roles/${role.name}`)
       }),
   )
 
@@ -102,15 +125,15 @@ async function seedDatabase(): Promise<void> {
   const createdRolesResponse = await Promise.all(
     Array(CONFIG.NUM_ENTITIES)
       .fill(null)
-      .map(() => {
+      .map((_, index) => {
         return axiosInstance
           .post<RoleOutput>('/v1/roles', {
             description: faker.name.jobTitle(),
             editable: faker.datatype.boolean(),
-            name: faker.name.jobType().toUpperCase(),
+            name: ROLES_TO_CREATE[index],
             protected: faker.datatype.boolean(),
             rights: faker.helpers.arrayElements(
-              rights.content.map((right: RightOutput) => right.id),
+              rights.content.map((right: RightOutput) => right.authority),
             ),
           })
           .catch((error: AxiosError) => {
@@ -142,7 +165,7 @@ async function seedDatabase(): Promise<void> {
             locale: faker.helpers.arrayElement(CONFIG.AVAILABLE_LOCALES),
             mobile: faker.phone.number(),
             role: faker.helpers.arrayElement(
-              createdRoles.map((role: RoleOutput) => role.id),
+              createdRoles.map((role: RoleOutput) => role.name),
             ),
           })
           .catch((error: AxiosError) => {

@@ -265,14 +265,10 @@
       "EXECUTIVE": "Führungskraft",
       "MANAGER": "Manager",
       "CONSULTANT": "Berater",
-      "ADMINISTRATOR": "Administrator",
       "LIAISON": "Verbindung",
       "OFFICER": "Beamter",
       "DEVELOPER": "Entwickler",
-      "AGENT": "Agent",
-      "SUPERVISOR": "Aufseher",
-      "ANALYST": "Analyst",
-      "DESIGNER": "Designer"
+      "AGENT": "Agent"
     }
   },
   "rolesView": {
