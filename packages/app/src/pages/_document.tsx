@@ -23,7 +23,7 @@ import _Document, { Head, Html, Main, NextScript } from 'next/document'
 const getInitialProps = createGetInitialProps()
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-class Document extends _Document {
+export class Document extends _Document {
   static getInitialProps = getInitialProps
 
   render(): JSX.Element {
@@ -42,5 +42,3 @@ class Document extends _Document {
     )
   }
 }
-
-export default Document

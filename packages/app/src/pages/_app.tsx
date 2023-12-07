@@ -17,13 +17,26 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { App } from '@frachtwerk/essencium-lib'
-import { appWithTranslation } from 'next-i18next'
+import { UserOutput } from '@frachtwerk/essencium-types'
+import {
+  ColorScheme,
+  ColorSchemeProvider,
+  MantineProvider,
+} from '@mantine/core'
+import { useHotkeys, useLocalStorage } from '@mantine/hooks'
+import { Notifications } from '@mantine/notifications'
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import { NextPage } from 'next'
+import type { AppProps } from 'next/app'
+import { Fira_Code, Fira_Sans } from 'next/font/google'
+import { useRouter } from 'next/router'
 import { ReactElement, ReactNode, useEffect, useState } from 'react'
 
 import { PublicLayout } from '@/components/layouts/PublicLayout'
-
-import packageJson from '../../package.json'
 
 const firaSans = Fira_Sans({
   subsets: ['latin'],
@@ -40,9 +53,14 @@ export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
+  version?: string
 }
 
-function App({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
+export function App({
+  Component,
+  pageProps,
+  version,
+}: AppPropsWithLayout): JSX.Element {
   const router = useRouter()
 
   const getLayout =
@@ -156,10 +174,10 @@ function App({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
 
             {getLayout(
               <Component {...pageProps} />,
-              packageJson?.version &&
+              version &&
                 process.env.NEXT_PUBLIC_SHOW_VERSION &&
                 process.env.NEXT_PUBLIC_SHOW_VERSION === '1'
-                ? packageJson.version
+                ? version
                 : undefined,
             )}
           </Hydrate>
@@ -168,5 +186,3 @@ function App({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
     </ColorSchemeProvider>
   )
 }
-
-export default appWithTranslation(App)

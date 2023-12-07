@@ -36,8 +36,8 @@ import { AuthLayout } from '@/components/layouts'
 import { getTranslation } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
-function TranslationsViewWithProps(): JSX.Element {
-  return <TranslationsView localTranslations={{ De, En }} />
+interface TTranslations {
+  [key: string]: string | TTranslations
 }
 
 function getTranslationsByLanguage(
@@ -148,4 +148,4 @@ TranslationsView.getLayout = function getLayout(
 
 export const getServerSideProps = baseGetServerSideProps()
 
-export default TranslationsViewWithProps
+export default TranslationsView
