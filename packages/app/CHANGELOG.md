@@ -2,7 +2,6 @@
 
 ## [3.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v2.4.1...essencium-app-v3.0.0) (2023-09-21)
 
-
 ### ⚠ BREAKING CHANGES
 
 * move api folder from app into lib

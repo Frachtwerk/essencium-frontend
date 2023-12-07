@@ -17,49 +17,111 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {
-  axiosInstance,
-  UpdateUserView,
-  UsersResponse,
-} from '@frachtwerk/essencium-lib'
-import { GetStaticPaths } from 'next'
+import { UserForm } from '@frachtwerk/essencium-lib'
+import { UserUpdate, userUpdateSchema } from '@frachtwerk/essencium-types'
+import { Card, Flex, Text, Title } from '@mantine/core'
+import { IconUserEdit } from '@tabler/icons-react'
+import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
+import { useEffect } from 'react'
 
-import { baseGetStaticProps } from '@/utils/next'
+import { useGetRoles, useGetUser, useUpdateUser } from '@/api'
+import { AuthLayout } from '@/components/layouts'
+import { useZodForm } from '@/hooks'
+import { getTranslation } from '@/utils'
+import { baseGetServerSideProps } from '@/utils/next'
 
-export const getStaticProps = baseGetStaticProps()
+import { FORM_DEFAULTS_USERS_VIEW } from '.'
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const { data: tokenData } = await axiosInstance.post(
-    '/auth/token',
-    {
-      username: process.env.ADMIN_USERNAME,
-      password: process.env.ADMIN_PASSWORD,
-    },
-    {
-      baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-    },
-  )
+function UpdateUserView(): JSX.Element {
+  const router = useRouter()
 
-  const { data: usersData } = await axiosInstance.get<UsersResponse>('/users', {
-    params: {
-      page: 0,
-      size: 9999,
-    },
-    headers: {
-      Authorization: `Bearer ${tokenData.token}`,
-    },
+  const { t } = useTranslation()
+
+  const userIdParameter = router.query?.id
+
+  const { data: user } = useGetUser(Number(userIdParameter))
+
+  const {
+    handleSubmit,
+    control,
+    formState,
+    setValue,
+    reset: prefillForm,
+  } = useZodForm({
+    schema: userUpdateSchema,
+    defaultValues: FORM_DEFAULTS_USERS_VIEW,
   })
 
-  const users = usersData?.content || []
+  useEffect(() => {
+    if (user) {
+      const parsedUser = userUpdateSchema.parse({
+        ...user,
+        role: user.role.name,
+      })
 
-  return {
-    paths: users.map(user => ({
-      params: {
-        id: String(user.id),
+      prefillForm({ ...parsedUser })
+    }
+  }, [user, prefillForm])
+
+  const { mutate: updateUser, isLoading } = useUpdateUser()
+
+  const { data: rolesResponse } = useGetRoles({
+    page: 0,
+    size: 9999,
+  })
+
+  const roles = rolesResponse?.content || []
+
+  function handleUpdateUser(updatedUser: UserUpdate): void {
+    updateUser(updatedUser, {
+      onSuccess: () => {
+        router.push('/users')
       },
-    })),
-    fallback: true,
+    })
   }
+
+  const onSubmit = handleSubmit(handleUpdateUser)
+
+  return (
+    <>
+      <Title py="md" order={2}>
+        <Flex>
+          <IconUserEdit size="32" />
+
+          <Text ml="xs">{t('addUpdateUserView.update.title')}</Text>
+        </Flex>
+      </Title>
+
+      <Card shadow="sm" p="lg" radius="sm" withBorder maw="81.25rem">
+        <UserForm
+          title={t('addUpdateUserView.form.userDataHeading')}
+          roles={roles}
+          onSubmit={onSubmit}
+          control={control}
+          formState={formState}
+          setValue={setValue}
+          isLoading={isLoading}
+        />
+      </Card>
+    </>
+  )
 }
+
+UpdateUserView.getLayout = function getLayout(
+  page: React.ReactNode,
+  version?: string,
+): JSX.Element {
+  return (
+    <AuthLayout
+      routeName={getTranslation('addUpdateUserView.update.title')}
+      version={version}
+    >
+      {page}
+    </AuthLayout>
+  )
+}
+
+export const getServerSideProps = baseGetServerSideProps()
 
 export default UpdateUserView

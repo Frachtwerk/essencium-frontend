@@ -17,6 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { Footer, Header, NavBar } from '@frachtwerk/essencium-lib'
 import { FooterLink, NavLink, RIGHTS } from '@frachtwerk/essencium-types'
 import { AppShell, Box, useMantineTheme } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
@@ -41,11 +42,8 @@ import { useRouter } from 'next/router'
 import { i18n, useTranslation } from 'next-i18next'
 import React, { useEffect, useState } from 'react'
 
-import { useGetMe, useGetTranslations, userRightsAtom } from '../api'
-import { Footer } from '../components/Footer'
-import { Header } from '../components/Header'
-import { NavBar } from '../components/NavBar'
-import { logout } from '../utils'
+import { useGetMe, useGetTranslations, userRightsAtom } from '@/api'
+import { logout } from '@/utils'
 
 type Props = {
   children: React.ReactNode
