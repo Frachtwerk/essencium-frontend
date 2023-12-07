@@ -17,7 +17,7 @@ The package called app is acting as boilerplate and consumes all the other packa
 
 ## [App documentation](https://docs.essencium.dev/devguide/packageResponsibilities)
 
-- the main application that consumes the lib & types package
+- the main application that consumes the lib, types, eslint-config and prettier-config packages
 - Next.js pages that import components from lib
 - API implementation
 - application state

@@ -8,7 +8,7 @@
 
 ### [Check out the docs](https://docs.essencium.dev)
 
-For enforcing code style and utilizing static code analyzing we use ESLint along with a bunch of rulesets. The most noteworthy ruleset is the Airbnb JavaScript Style Guide.
+The Prettier configuration enforces consistent code formatting across the project using rules specified in the `index.json` file. The package ensure a uniform and visually appealing codebase.
 
 [Report an issue](https://github.com/Frachtwerk/essencium-frontend/issues)
 </div>
