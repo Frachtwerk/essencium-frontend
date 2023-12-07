@@ -8,7 +8,7 @@
 
 ### [Check out the docs](https://docs.essencium.dev)
 
-The package called app is acting as boilerplate and conumes all the other packages.
+The package called app is acting as boilerplate and consumes all the other packages
 
 [Report an issue](https://github.com/Frachtwerk/essencium-frontend/issues)
 </div>
