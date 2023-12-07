@@ -56,7 +56,7 @@ type AppPropsWithLayout = AppProps & {
   version?: string
 }
 
-export function App({
+function App({
   Component,
   pageProps,
   version,
@@ -186,3 +186,5 @@ export function App({
     </ColorSchemeProvider>
   )
 }
+
+export default App
