@@ -17,5 +17,5 @@ The package called types has clear rules which types are included in the monorep
 
 ## [Types documentation](https://docs.essencium.dev/devguide/types)
 
-- shared types ('shared' means types that are used in app and lib together)
+- shared types ('shared' means types that are used in `app` and `lib` together)
 - zod schemas
