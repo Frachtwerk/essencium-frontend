@@ -62,8 +62,6 @@ const ROLES_TO_CREATE = [
 async function seedDatabase(): Promise<void> {
   console.log('🌱 Started seeding database')
 
-  console.log(`➡ Creating ${CONFIG.NUM_ENTITIES} users and roles`)
-
   let accessToken = ''
 
   // Setup axios instance
