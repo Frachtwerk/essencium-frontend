@@ -20,11 +20,7 @@
 /* eslint-disable no-console */
 
 import { faker } from '@faker-js/faker'
-import {
-  RightOutput,
-  RoleOutput,
-  UserOutput,
-} from '@frachtwerk/essencium-types'
+import { RoleOutput, UserOutput } from '@frachtwerk/essencium-types'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 
 const CONFIG = {
@@ -61,6 +57,10 @@ const ROLES_TO_CREATE = [
 
 async function seedDatabase(): Promise<void> {
   console.log('🌱 Started seeding database')
+
+  if (!CONFIG.ADMIN_USERNAME || !CONFIG.ADMIN_PASSWORD) {
+    throw new Error('❌ Please configure username and password')
+  }
 
   let accessToken = ''
 
@@ -118,8 +118,6 @@ async function seedDatabase(): Promise<void> {
   // Create new roles and users
   console.log('➡ Creating new roles and users')
 
-  const { data: rights } = await axiosInstance.get('/v1/rights')
-
   const createdRolesResponse = await Promise.all(
     Array(CONFIG.NUM_ENTITIES)
       .fill(null)
@@ -129,10 +127,8 @@ async function seedDatabase(): Promise<void> {
             description: faker.name.jobTitle(),
             editable: faker.datatype.boolean(),
             name: ROLES_TO_CREATE[index],
-            protected: faker.datatype.boolean(),
-            rights: faker.helpers.arrayElements(
-              rights.content.map((right: RightOutput) => right.authority),
-            ),
+            protected: false,
+            rights: [],
           })
           .catch((error: AxiosError) => {
             if (error?.response?.status !== 409) {
