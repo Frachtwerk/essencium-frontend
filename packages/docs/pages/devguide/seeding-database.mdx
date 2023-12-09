@@ -1,7 +1,7 @@
 # Seeding database
 
 You can find a seeding script (`seed-db.ts`) on the root level of the monorepo to seed the Postgres database that is used by the Essencium backend. The seeding script only works out of the box with the Essencium Backend. When using a different backend, it must be adjusted accordingly.
-You also need to pass the admin username and password into the `CONFIG` constant (in `seed-db.ts`) to authenticate.
+You also need to pass the admin username and password into the `CONFIG` constant (in `seed-db.ts`) to authenticate. To run the script, just execute `pnpm seed-db` on root level.
 
 The script creates by default 20 new users and roles and deletes existing roles and users beforehand except the admin user. The number of users and roles, the script should create, can be adjusted by changing the value in `CONFIG.NUM_ENTITIES`.
 
