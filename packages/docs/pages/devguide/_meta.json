@@ -8,5 +8,6 @@
   "pull-requests": "Pull Requests",
   "commits": "Commits",
   "releases": "Releases",
-  "types": "Types"
+  "types": "Types",
+  "seeding-database": "Seeding Database"
 }
