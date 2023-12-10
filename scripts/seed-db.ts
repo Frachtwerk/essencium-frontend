@@ -24,7 +24,7 @@ import { RoleOutput, UserOutput } from '@frachtwerk/essencium-types'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 
 const CONFIG = {
-  NUM_ENTITIES: 20,
+  NUM_ENTITIES: 15,
   AVAILABLE_LOCALES: ['en', 'de'],
   ADMIN_USERNAME: '',
   ADMIN_PASSWORD: '',
