@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v2.1.0...essencium-docs-v2.1.1) (2023-12-10)
+
+
+### Bug Fixes
+
+* fix seeding script ([5887bea](https://github.com/Frachtwerk/essencium-frontend/commit/5887bea1bb7d4900087c4e6854fd3862c505ad96))
+
 ## [2.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v2.0.0...essencium-docs-v2.1.0) (2023-12-07)
 
 
