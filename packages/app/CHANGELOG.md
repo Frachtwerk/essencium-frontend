@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v4.1.0...essencium-app-v4.1.1) (2023-12-10)
+
+
+### Bug Fixes
+
+* fix seeding script ([5887bea](https://github.com/Frachtwerk/essencium-frontend/commit/5887bea1bb7d4900087c4e6854fd3862c505ad96))
+
 ## [4.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v4.0.1...essencium-app-v4.1.0) (2023-12-07)
 
 
