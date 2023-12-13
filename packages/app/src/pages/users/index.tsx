@@ -20,6 +20,7 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {
   DeleteDialog,
+  FeedBackWidget,
   HttpNotification,
   Table,
   TablePagination,
@@ -457,6 +458,7 @@ function UsersView(): JSX.Element {
           </>
         )}
       </>
+      <FeedBackWidget />
     </>
   )
 }

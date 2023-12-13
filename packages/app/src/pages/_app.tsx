@@ -34,6 +34,7 @@ import { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import { Fira_Code, Fira_Sans } from 'next/font/google'
 import { useRouter } from 'next/router'
+import Script from 'next/script'
 import { appWithTranslation } from 'next-i18next'
 import { ReactElement, ReactNode, useEffect, useState } from 'react'
 
@@ -172,7 +173,6 @@ function App({
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
             <Notifications limit={3} />
-
             {getLayout(
               <Component {...pageProps} />,
               version &&
@@ -181,6 +181,17 @@ function App({
                 ? version
                 : undefined,
             )}
+
+            <Script src="https://unpkg.com/feedbackfin@^1" defer />
+
+            <Script
+              dangerouslySetInnerHTML={{
+                __html: `
+              window.feedbackfin = { config: {}, ...window.feedbackfin };
+              window.feedbackfin.config.url = "http://localhost:3000/api/feedback";
+            `,
+              }}
+            />
           </Hydrate>
         </QueryClientProvider>
       </MantineProvider>

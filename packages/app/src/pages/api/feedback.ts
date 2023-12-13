@@ -17,20 +17,19 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './Contact'
-export * from './DeleteDialog'
-export * from './FeedbackWidget'
-export * from './Footer'
-export * from './Header'
-export * from './Home'
-export * from './LoadingSpinner'
-export * from './Login'
-export * from './NavBar'
-export * from './Notification'
-export * from './Profile'
-export * from './Role'
-export * from './SetPassword'
-export * from './Table'
-export * from './TablePagination'
-export * from './Translations'
-export * from './User'
+import { NextApiRequest, NextApiResponse } from 'next'
+
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+): void {
+  if (req.method === 'POST') {
+    const data = req.body
+    res.status(200).json({
+      message: 'data received successfully',
+      receivedData: data,
+    })
+  } else {
+    res.status(405).end()
+  }
+}

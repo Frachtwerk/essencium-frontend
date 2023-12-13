@@ -17,20 +17,27 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './Contact'
-export * from './DeleteDialog'
-export * from './FeedbackWidget'
-export * from './Footer'
-export * from './Header'
-export * from './Home'
-export * from './LoadingSpinner'
-export * from './Login'
-export * from './NavBar'
-export * from './Notification'
-export * from './Profile'
-export * from './Role'
-export * from './SetPassword'
-export * from './Table'
-export * from './TablePagination'
-export * from './Translations'
-export * from './User'
+import { ActionIcon, rem, useMantineTheme } from '@mantine/core'
+import { IconMessageDots } from '@tabler/icons-react'
+
+export function FeedBackWidget(): JSX.Element {
+  const theme = useMantineTheme()
+
+  return (
+    <ActionIcon
+      data-feedbackfin-button
+      variant="filled"
+      color={theme.colors.blue[6]}
+      size="xl"
+      radius="xl"
+      style={{
+        position: 'fixed',
+        bottom: rem(80),
+        right: rem(10),
+        zIndex: '20',
+      }}
+    >
+      <IconMessageDots size={30} />
+    </ActionIcon>
+  )
+}
