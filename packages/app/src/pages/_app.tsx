@@ -182,7 +182,7 @@ function App({
                 : undefined,
             )}
 
-            <Script src="https://unpkg.com/feedbackfin@^1" defer />
+            {/*     <Script src="https://unpkg.com/feedbackfin@^1" defer />
 
             <Script
               dangerouslySetInnerHTML={{
@@ -190,8 +190,8 @@ function App({
               window.feedbackfin = { config: {}, ...window.feedbackfin };
               window.feedbackfin.config.url = "http://localhost:3000/api/feedback";
             `,
-              }}
-            />
+              }} 
+            /> */}
           </Hydrate>
         </QueryClientProvider>
       </MantineProvider>

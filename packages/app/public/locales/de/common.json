@@ -410,5 +410,13 @@
     "save": "Speichern",
     "cancel": "Abbrechen",
     "reset": "Zurücksetzen"
+  },
+  "feedbackWidget": {
+    "title": "Feedback geben",
+    "issue": "Problem",
+    "idea": "Idee",
+    "other": "Sonstiges",
+    "button": "Feedback senden",
+    "placeholder": "Beschreiben Sie Ihr Anliegen"
   }
 }

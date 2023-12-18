@@ -74,6 +74,7 @@ import {
   userAtom,
   userRightsAtom,
 } from '@/api'
+import { useCreateFeedback } from '@/api/feedback'
 import { AuthLayout } from '@/components/layouts'
 import { getTranslation, hasRequiredRights, parseSorting } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
@@ -109,6 +110,8 @@ function UsersView(): JSX.Element {
   const { t } = useTranslation()
 
   const theme = useMantineTheme()
+
+  const { mutate: createFeedback } = useCreateFeedback()
 
   const [deleteModalOpened, deleteModalHandlers] = useDisclosure(false)
   const [userToBeDeleted, setUserToBeDeleted] = useState<UserOutput | null>(
@@ -458,7 +461,8 @@ function UsersView(): JSX.Element {
           </>
         )}
       </>
-      <FeedBackWidget />
+
+      <FeedBackWidget currentUser={user} createFeedback={createFeedback} />
     </>
   )
 }
