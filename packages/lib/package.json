@@ -37,6 +37,9 @@
     "test:unit:coverage": "vitest run --coverage",
     "test:unit:watch": "vitest watch"
   },
+  "dependencies": {
+    "html2canvas": "1.4.1"
+  },
   "devDependencies": {
     "@babel/core": "7.23.2",
     "@emotion/react": "11.10.6",

@@ -17,7 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Contact, FeedBackWidget } from '@frachtwerk/essencium-lib'
+import { Contact } from '@frachtwerk/essencium-lib'
 import { contactFormSchema, ContactFormType } from '@frachtwerk/essencium-types'
 
 import { useSendContactMessage } from '@/api'
@@ -44,13 +44,9 @@ function ContactView(): JSX.Element {
   }
 
   return (
-    <>
-      <form data-testid="form" onSubmit={handleSubmit(onSubmit)}>
-        <Contact control={control} formState={formState} />
-      </form>
-
-      <FeedBackWidget />
-    </>
+    <form data-testid="form" onSubmit={handleSubmit(onSubmit)}>
+      <Contact control={control} formState={formState} />
+    </form>
   )
 }
 

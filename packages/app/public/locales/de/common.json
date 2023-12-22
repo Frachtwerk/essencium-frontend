@@ -417,6 +417,9 @@
     "idea": "Idee",
     "other": "Sonstiges",
     "button": "Feedback senden",
-    "placeholder": "Beschreiben Sie Ihr Anliegen"
+    "placeholder": "Beschreiben Sie Ihr Anliegen",
+    "successMessage": "Vielen Dank für Ihr Feedback!",
+    "errorMessage": "Leider ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+    "requiredError": "Bitte geben Sie eine Nachricht ein."
   }
 }

@@ -19,6 +19,7 @@
 
 export * from './base'
 export * from './contact'
+export * from './feedback'
 export * from './filter'
 export * from './footer'
 export * from './navbar'
