@@ -132,9 +132,23 @@ export function NavBar({
                       sx={{ cursor: 'pointer' }}
                     >
                       {fixedNav ? (
-                        <IconPinFilled size={20} color="black" />
+                        <IconPinFilled
+                          size={20}
+                          color={
+                            theme.colorScheme === 'dark'
+                              ? theme.colors.gray[3]
+                              : theme.colors.dark[9]
+                          }
+                        />
                       ) : (
-                        <IconPinnedOff size={20} color="black" />
+                        <IconPinnedOff
+                          size={20}
+                          color={
+                            theme.colorScheme === 'dark'
+                              ? theme.colors.gray[3]
+                              : theme.colors.dark[9]
+                          }
+                        />
                       )}
                     </Box>
                   ) : null}

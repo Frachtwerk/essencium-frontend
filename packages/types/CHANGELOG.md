@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v3.0.0...essencium-types-v3.1.0) (2023-12-07)
+
+
+### Features
+
+* add and edit READMEs ([#453](https://github.com/Frachtwerk/essencium-frontend/issues/453)) ([ace03ca](https://github.com/Frachtwerk/essencium-frontend/commit/ace03cab63e0cfe8a39d0f4322b1ba60b6e225ba))
+
+## [3.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v2.1.1...essencium-types-v3.0.0) (2023-12-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* put generic logic/cmps into lib and specific into app pkg
+
+### Code Refactoring
+
+* put generic logic/cmps into lib and specific into app pkg ([cf7bdda](https://github.com/Frachtwerk/essencium-frontend/commit/cf7bdda943074ad7631370add1150c69e99114d1))
+
 ## [2.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v2.1.0...essencium-types-v2.1.1) (2023-09-19)
 
 

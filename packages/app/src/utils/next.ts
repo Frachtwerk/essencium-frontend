@@ -21,11 +21,27 @@
  * this file is not located in @essencium/lib because the return
  * value must be exported from a Next.js page via getStaticProps
  */
-import { GetStaticProps, GetStaticPropsContext } from 'next'
+
+import {
+  GetServerSideProps,
+  GetServerSidePropsContext,
+  GetStaticProps,
+  GetStaticPropsContext,
+} from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export function baseGetStaticProps(): GetStaticProps {
   return async ({ locale }: GetStaticPropsContext) => {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale ?? 'en', ['common'])),
+      },
+    }
+  }
+}
+
+export function baseGetServerSideProps(): GetServerSideProps {
+  return async ({ locale }: GetServerSidePropsContext) => {
     return {
       props: {
         ...(await serverSideTranslations(locale ?? 'en', ['common'])),

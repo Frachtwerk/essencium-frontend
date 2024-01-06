@@ -17,14 +17,11 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './AddUserView'
-export * from './ContactView'
-export * from './HomeView'
-export * from './LoginView'
-export * from './ProfileView'
-export * from './RightsView'
-export * from './RolesView'
-export * from './SetPasswordView'
-export * from './TranslationsView'
-export * from './UpdateUserView'
-export * from './UsersView'
+export function hasRequiredRights(
+  userRights: string[] | null,
+  requiredRight: string,
+): boolean {
+  if (!userRights) return false
+
+  return userRights.includes(requiredRight)
+}

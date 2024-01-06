@@ -1,5 +1,71 @@
 # Changelog
 
+## [4.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v4.0.0...essencium-lib-v4.1.0) (2023-12-07)
+
+
+### Features
+
+* add and edit READMEs ([#453](https://github.com/Frachtwerk/essencium-frontend/issues/453)) ([ace03ca](https://github.com/Frachtwerk/essencium-frontend/commit/ace03cab63e0cfe8a39d0f4322b1ba60b6e225ba))
+
+## [4.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v3.2.0...essencium-lib-v4.0.0) (2023-12-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* put generic logic/cmps into lib and specific into app pkg
+
+### Code Refactoring
+
+* put generic logic/cmps into lib and specific into app pkg ([cf7bdda](https://github.com/Frachtwerk/essencium-frontend/commit/cf7bdda943074ad7631370add1150c69e99114d1))
+
+## [3.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v3.1.1...essencium-lib-v3.2.0) (2023-11-21)
+
+
+### Features
+
+* use params to redirect after login ([#441](https://github.com/Frachtwerk/essencium-frontend/issues/441)) ([562ed55](https://github.com/Frachtwerk/essencium-frontend/commit/562ed554f8e8c6a0f532dba642b24bba0187bf6d))
+
+## [3.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v3.1.0...essencium-lib-v3.1.1) (2023-11-08)
+
+
+### Bug Fixes
+
+* adjust margin in AuthLayout for mobile screens ([19c707d](https://github.com/Frachtwerk/essencium-frontend/commit/19c707df03d628883332206d8e5185573de7aa80))
+
+## [3.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v3.0.0...essencium-lib-v3.1.0) (2023-10-30)
+
+
+### Features
+
+* add loading state to buttons ([1d8e411](https://github.com/Frachtwerk/essencium-frontend/commit/1d8e411a10ada64524430969ff48fefff5a93a3e))
+* add routeguard ([f9ceacd](https://github.com/Frachtwerk/essencium-frontend/commit/f9ceacdc5fb8741ba909d620e8ae81154017ce0f))
+
+
+### Bug Fixes
+
+* **lib:** add loading state ([eed03e2](https://github.com/Frachtwerk/essencium-frontend/commit/eed03e298b23ef6679cd90e325ddd485a93c6dc5))
+
+## [3.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v2.4.0...essencium-lib-v3.0.0) (2023-09-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* move api folder from app into lib
+
+### Features
+
+* add functionality to contact form ([fcc5406](https://github.com/Frachtwerk/essencium-frontend/commit/fcc5406effa4df244953fc2a029ea02da2eee61c))
+
+
+### Bug Fixes
+
+* load JSONTree only on client-side to prevent SSR issues ([268af06](https://github.com/Frachtwerk/essencium-frontend/commit/268af0632fd9b08ca084ce6f5968a717a3f30ca5))
+
+
+### Code Refactoring
+
+* move api folder from app into lib ([2dca446](https://github.com/Frachtwerk/essencium-frontend/commit/2dca446671cafd906c3f026da664dad5037c0392))
+
 ## [2.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v2.3.0...essencium-lib-v2.4.0) (2023-09-18)
 
 
