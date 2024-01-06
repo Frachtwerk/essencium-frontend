@@ -17,18 +17,135 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { TranslationsView } from '@frachtwerk/essencium-lib'
+import { Translations } from '@frachtwerk/essencium-lib'
+import { TranslationInput } from '@frachtwerk/essencium-types'
+import { Flex, Text, Title } from '@mantine/core'
+import { IconLanguage } from '@tabler/icons-react'
+import { useAtomValue } from 'jotai'
+import { i18n, useTranslation } from 'next-i18next'
 
 import De from '@/../public/locales/de/common.json'
 import En from '@/../public/locales/en/common.json'
-import { baseGetStaticProps } from '@/utils/next'
+import {
+  useDeleteTranslation,
+  useGetTranslations,
+  userRightsAtom,
+  useUpdateTranslation,
+} from '@/api'
+import { AuthLayout } from '@/components/layouts'
+import { getTranslation } from '@/utils'
+import { baseGetServerSideProps } from '@/utils/next'
 
-function TranslationsViewWithProps(): JSX.Element {
-  return <TranslationsView localTranslations={{ De, En }} />
+interface TTranslations {
+  [key: string]: string | TTranslations
 }
 
-TranslationsViewWithProps.getLayout = TranslationsView.getLayout
+function getTranslationsByLanguage(
+  lang: string,
+): Record<string, string> | undefined {
+  const translations = i18n?.getResourceBundle(lang, 'common')
 
-export const getStaticProps = baseGetStaticProps()
+  return translations
+}
 
-export default TranslationsViewWithProps
+function TranslationsView(): JSX.Element {
+  const { t } = useTranslation()
+
+  const userRights = useAtomValue(userRightsAtom)
+
+  const { mutate: updateTranslation } = useUpdateTranslation()
+  const { mutate: deleteTranslation } = useDeleteTranslation()
+
+  const { refetch: refetchServerTranslationsDe, data: backendTranslationsDe } =
+    useGetTranslations('de')
+  const { refetch: refetchServerTranslationsEn, data: backendTranslationsEn } =
+    useGetTranslations('en')
+
+  function onUpdateTranslation(translationInput: TranslationInput): void {
+    updateTranslation(translationInput, {
+      onSuccess: async () => {
+        await refetchServerTranslationsDe()
+        await refetchServerTranslationsEn()
+
+        i18n?.addResourceBundle(
+          i18n.language,
+          'common',
+          i18n.language === 'de'
+            ? backendTranslationsDe
+            : backendTranslationsEn,
+          true,
+          true,
+        )
+      },
+    })
+  }
+
+  function onDeleteTranslation(translationKey: TranslationInput['key']): void {
+    deleteTranslation(translationKey, {
+      onSuccess: async () => {
+        await refetchServerTranslationsDe()
+        await refetchServerTranslationsEn()
+
+        const keyPath = translationKey.split('.')
+
+        const valueByKeyPath: string = keyPath.reduce(
+          (obj: TTranslations | string, key: string) => {
+            if (typeof obj === 'string') {
+              return obj
+            }
+
+            return obj[key]
+          },
+          i18n?.language === 'de'
+            ? (De as TTranslations)
+            : (En as TTranslations),
+        ) as string
+
+        i18n?.addResource(
+          i18n.language,
+          'common',
+          translationKey,
+          valueByKeyPath,
+        )
+
+        i18n?.init()
+      },
+    })
+  }
+
+  return (
+    <>
+      <Title py="md" size="h2">
+        <Flex align="center" gap={10}>
+          <IconLanguage size="32" />
+          <Text>{t('translationsView.title')}</Text>
+        </Flex>
+      </Title>
+
+      <Translations
+        userRights={userRights}
+        getTranslations={getTranslationsByLanguage}
+        updateTranslation={onUpdateTranslation}
+        deleteTranslation={onDeleteTranslation}
+      />
+    </>
+  )
+}
+
+TranslationsView.getLayout = function getLayout(
+  page: React.ReactNode,
+  version?: string,
+): JSX.Element {
+  return (
+    <AuthLayout
+      routeName={getTranslation('translationsView.title')}
+      version={version}
+    >
+      {page}
+    </AuthLayout>
+  )
+}
+
+export const getServerSideProps = baseGetServerSideProps()
+
+export default TranslationsView

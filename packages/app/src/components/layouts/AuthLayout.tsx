@@ -17,6 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { Footer, Header, NavBar } from '@frachtwerk/essencium-lib'
 import { FooterLink, NavLink, RIGHTS } from '@frachtwerk/essencium-types'
 import { AppShell, Box, useMantineTheme } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
@@ -41,11 +42,8 @@ import { useRouter } from 'next/router'
 import { i18n, useTranslation } from 'next-i18next'
 import React, { useEffect, useState } from 'react'
 
-import { useGetMe, useGetTranslations, userRightsAtom } from '../api'
-import { Footer } from '../components/Footer'
-import { Header } from '../components/Header'
-import { NavBar } from '../components/NavBar'
-import { logout } from '../utils'
+import { useGetMe, useGetTranslations, userRightsAtom } from '@/api'
+import { logout } from '@/utils'
 
 type Props = {
   children: React.ReactNode
@@ -192,7 +190,12 @@ export function AuthLayout({
   useEffect(() => {
     const authToken = localStorage.getItem('authToken')
 
-    if (!authToken) router.push('/login')
+    if (!authToken) {
+      router.push({
+        pathname: '/login',
+        query: { redirect: router.asPath },
+      })
+    }
   }, [user, router])
 
   useEffect(() => {
@@ -202,6 +205,50 @@ export function AuthLayout({
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.asPath, user])
+
+  const [showChildren, setShowChildren] = useState(false)
+
+  function isAuthorized(route: NavLink): boolean {
+    return (
+      !route.rights || route.rights.every(right => userRights?.includes(right))
+    )
+  }
+
+  function onRouteChangeStart(route: string): void {
+    const path = route.replace(/^\/[^/]+/, '')
+
+    const currentRoute = NAV_LINKS.find(link => link.to === path)
+
+    if (currentRoute && !isAuthorized(currentRoute)) {
+      setShowChildren(false)
+    } else {
+      setShowChildren(true)
+    }
+  }
+
+  function checkIfUserIsAuthorized(route: string): void {
+    const path = route.replace(/^\/[^/]+/, '')
+
+    const currentRoute = NAV_LINKS.find(link => link.to === path)
+
+    if (currentRoute && !isAuthorized(currentRoute)) {
+      router.replace('/', undefined, {
+        locale: user?.locale,
+      })
+    }
+  }
+
+  useEffect(() => {
+    router.events.on('routeChangeStart', onRouteChangeStart)
+    router.events.on('routeChangeComplete', checkIfUserIsAuthorized)
+
+    return () => {
+      router.events.off('routeChangeStart', onRouteChangeStart)
+      router.events.off('routeChangeComplete', checkIfUserIsAuthorized)
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.events, userRights])
 
   function handleLogout(): void {
     logout()
@@ -214,7 +261,7 @@ export function AuthLayout({
   const isNoPhone = useMediaQuery('(min-width: 48em)')
 
   function getSidebarMargin(): string {
-    if (isFixedNav) {
+    if (isFixedNav && isNoPhone) {
       return '250px'
     }
     if (isNoPhone) {
@@ -284,7 +331,7 @@ export function AuthLayout({
             marginLeft: getSidebarMargin(),
           }}
         >
-          {children}
+          {showChildren ? children : null}
         </Box>
       </AppShell>
     </SpotlightProvider>

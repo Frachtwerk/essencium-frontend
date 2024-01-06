@@ -20,15 +20,11 @@
 /* eslint-disable no-console */
 
 import { faker } from '@faker-js/faker'
-import {
-  RightOutput,
-  RoleOutput,
-  UserOutput,
-} from '@frachtwerk/essencium-types'
+import { RoleOutput, UserOutput } from '@frachtwerk/essencium-types'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 
 const CONFIG = {
-  NUM_ENTITIES: 50,
+  NUM_ENTITIES: 15,
   AVAILABLE_LOCALES: ['en', 'de'],
   ADMIN_USERNAME: '',
   ADMIN_PASSWORD: '',
@@ -36,10 +32,35 @@ const CONFIG = {
   ROLES_TO_KEEP: ['ADMIN', 'USER'],
 }
 
+const ROLES_TO_CREATE = [
+  'HR',
+  'ORCHESTRATOR',
+  'REPRESENTATIVE',
+  'FACILITATOR',
+  'TECHNICIAN',
+  'COORDINATOR',
+  'ARCHITECT',
+  'PLANNER',
+  'STRATEGIST',
+  'PRODUCER',
+  'DIRECTOR',
+  'SPECIALIST',
+  'ENGINEER',
+  'EXECUTIVE',
+  'MANAGER',
+  'CONSULTANT',
+  'LIAISON',
+  'OFFICER',
+  'DEVELOPER',
+  'AGENT',
+] as const
+
 async function seedDatabase(): Promise<void> {
   console.log('🌱 Started seeding database')
 
-  console.log(`➡ Creating ${CONFIG.NUM_ENTITIES} users and roles`)
+  if (!CONFIG.ADMIN_USERNAME || !CONFIG.ADMIN_PASSWORD) {
+    throw new Error('❌ Please configure username and password')
+  }
 
   let accessToken = ''
 
@@ -90,28 +111,24 @@ async function seedDatabase(): Promise<void> {
     roles.content
       .filter((role: RoleOutput) => !CONFIG.ROLES_TO_KEEP.includes(role.name))
       .map((role: RoleOutput) => {
-        return axiosInstance.delete(`/v1/roles/${role.id}`)
+        return axiosInstance.delete(`/v1/roles/${role.name}`)
       }),
   )
 
   // Create new roles and users
   console.log('➡ Creating new roles and users')
 
-  const { data: rights } = await axiosInstance.get('/v1/rights')
-
   const createdRolesResponse = await Promise.all(
     Array(CONFIG.NUM_ENTITIES)
       .fill(null)
-      .map(() => {
+      .map((_, index) => {
         return axiosInstance
           .post<RoleOutput>('/v1/roles', {
             description: faker.name.jobTitle(),
             editable: faker.datatype.boolean(),
-            name: faker.name.jobType().toUpperCase(),
-            protected: faker.datatype.boolean(),
-            rights: faker.helpers.arrayElements(
-              rights.content.map((right: RightOutput) => right.id),
-            ),
+            name: ROLES_TO_CREATE[index],
+            protected: false,
+            rights: [],
           })
           .catch((error: AxiosError) => {
             if (error?.response?.status !== 409) {
@@ -142,7 +159,7 @@ async function seedDatabase(): Promise<void> {
             locale: faker.helpers.arrayElement(CONFIG.AVAILABLE_LOCALES),
             mobile: faker.phone.number(),
             role: faker.helpers.arrayElement(
-              createdRoles.map((role: RoleOutput) => role.id),
+              createdRoles.map((role: RoleOutput) => role.name),
             ),
           })
           .catch((error: AxiosError) => {

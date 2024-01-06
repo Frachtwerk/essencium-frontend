@@ -1,6 +1,6 @@
 {
   "setup": "Setup",
-  "codestyle-and-linting": "Code style and linting 📝",
+  "codestyle-and-linting": "Code style and linting",
   "packageResponsibilities": "Package responsibilities",
   "dependencies": "Dependencies",
   "new-page": "New Page",
@@ -8,5 +8,6 @@
   "pull-requests": "Pull Requests",
   "commits": "Commits",
   "releases": "Releases",
-  "types": "Types"
+  "types": "Types",
+  "seeding-database": "Seeding Database"
 }

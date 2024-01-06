@@ -1,5 +1,57 @@
 # Changelog
 
+## [4.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v4.1.0...essencium-app-v4.1.1) (2023-12-10)
+
+
+### Bug Fixes
+
+* fix seeding script ([5887bea](https://github.com/Frachtwerk/essencium-frontend/commit/5887bea1bb7d4900087c4e6854fd3862c505ad96))
+
+## [4.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v4.0.1...essencium-app-v4.1.0) (2023-12-07)
+
+
+### Features
+
+* add and edit READMEs ([#453](https://github.com/Frachtwerk/essencium-frontend/issues/453)) ([ace03ca](https://github.com/Frachtwerk/essencium-frontend/commit/ace03cab63e0cfe8a39d0f4322b1ba60b6e225ba))
+
+## [4.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v4.0.0...essencium-app-v4.0.1) (2023-12-07)
+
+
+### Bug Fixes
+
+* wrap app cmp export into appWithTranslation HOC ([a1bbd41](https://github.com/Frachtwerk/essencium-frontend/commit/a1bbd41be292cb32b203f2614e31e6b96fd4f19b))
+
+## [4.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v3.0.0...essencium-app-v4.0.0) (2023-12-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* put generic logic/cmps into lib and specific into app pkg
+
+### Code Refactoring
+
+* put generic logic/cmps into lib and specific into app pkg ([cf7bdda](https://github.com/Frachtwerk/essencium-frontend/commit/cf7bdda943074ad7631370add1150c69e99114d1))
+
+## [3.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v2.4.1...essencium-app-v3.0.0) (2023-09-21)
+
+### ⚠ BREAKING CHANGES
+
+* move api folder from app into lib
+
+### Features
+
+* add functionality to contact form ([fcc5406](https://github.com/Frachtwerk/essencium-frontend/commit/fcc5406effa4df244953fc2a029ea02da2eee61c))
+
+
+### Bug Fixes
+
+* set page number to zero when fetching roles ([81b7590](https://github.com/Frachtwerk/essencium-frontend/commit/81b7590dba2f7536fd6c4408e4330920b04c8e55))
+
+
+### Code Refactoring
+
+* move api folder from app into lib ([2dca446](https://github.com/Frachtwerk/essencium-frontend/commit/2dca446671cafd906c3f026da664dad5037c0392))
+
 ## [2.4.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v2.4.0...essencium-app-v2.4.1) (2023-09-20)
 
 
