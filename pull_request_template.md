@@ -8,7 +8,7 @@ _loom link if applicable_
 
 - [ ] implement and update tests
 - [ ] update docs
-- [ ] pull main & resolve merge conflicts
+- [ ] pull `main` & resolve merge conflicts
 
 ### CLOSES
 
