@@ -86,7 +86,7 @@
     "jotai": "2.0.3",
     "next": "13.4.11",
     "next-i18next": "13.3.0",
-    "postcss": "8.4.28",
+    "postcss": "8.4.33",
     "prettier": "3.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
