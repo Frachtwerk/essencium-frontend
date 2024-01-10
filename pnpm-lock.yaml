@@ -127,7 +127,7 @@ importers:
       typescript: 4.9.5
       vite: 4.5.1
       vitest: 0.29.2
-      zod: 3.20.6
+      zod: 3.22.4
     dependencies:
       '@emotion/react': 11.10.6_pmekkgnqduwlme35zpnqhenc34
       '@emotion/server': 11.11.0
@@ -163,7 +163,7 @@ importers:
       react-i18next: 12.3.1_spyi3zqm3bqfobczid2f6jym6y
       react-json-tree: 0.18.0_pmekkgnqduwlme35zpnqhenc34
       typescript: 4.9.5
-      zod: 3.20.6
+      zod: 3.22.4
     devDependencies:
       '@frachtwerk/eslint-config-essencium': link:../eslint-config
       '@frachtwerk/prettier-config-essencium': link:../prettier-config
@@ -313,7 +313,7 @@ importers:
       typescript: 4.9.5
       vite: 4.5.1
       vitest: 0.34.6
-      zod: 3.20.6
+      zod: 3.22.4
     devDependencies:
       '@babel/core': 7.23.2
       '@emotion/react': 11.10.6_pmekkgnqduwlme35zpnqhenc34
@@ -379,7 +379,7 @@ importers:
       typescript: 4.9.5
       vite: 4.5.1
       vitest: 0.34.6_happy-dom@8.9.0
-      zod: 3.20.6
+      zod: 3.22.4
 
   packages/prettier-config:
     specifiers: {}
@@ -412,7 +412,7 @@ importers:
       rollup-plugin-peer-deps-external: 2.2.4
       tslib: 2.5.0
       typescript: 4.9.5
-      zod: 3.20.6
+      zod: 3.22.4
     devDependencies:
       '@frachtwerk/eslint-config-essencium': link:../eslint-config
       '@frachtwerk/prettier-config-essencium': link:../prettier-config
@@ -440,7 +440,7 @@ importers:
       rollup-plugin-peer-deps-external: 2.2.4_rollup@3.18.0
       tslib: 2.5.0
       typescript: 4.9.5
-      zod: 3.20.6
+      zod: 3.22.4
 
 packages:
 
@@ -11007,12 +11007,8 @@ packages:
     engines: {node: '>=12.20'}
     dev: true
 
-  /zod/3.20.6:
-    resolution: {integrity: sha512-oyu0m54SGCtzh6EClBVqDDlAYRz4jrVtKwQ7ZnsEmMI9HnzuZFj8QFwAY1M5uniIYACdGvv0PBWPF2kO0aNofA==}
-
   /zod/3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
-    dev: false
 
   /zwitch/2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
