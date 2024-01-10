@@ -68,7 +68,7 @@ export function NavBar({
 
   const { t } = useTranslation()
 
-  const { start, clear } = useTimeout(() => setFoldedNav(false), 270)
+  const { start, clear } = useTimeout(() => setFoldedNav(true), 270)
 
   function toggleFixedNav(): void {
     setFixedNav(fixed => !fixed)
