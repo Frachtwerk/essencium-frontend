@@ -14,13 +14,15 @@ The challenge is to maintain separation of concerns for each package. The follow
 
 ## `app`
 
-- the main application that consumes the `lib` & `types` package
-- Next.js pages that import components from `lib`
+- the main application that consumes the `lib`, `eslint-config`, `prettier-config` & `types` package
+- Next.js pages that import components from `lib` and types from `types`
+- ESLint and Prettier apply the shared configuration from `eslint-config` and `prettier-config`
 - API implementation
 - application state
 - routing (via [Next.js pages router](https://nextjs.org/docs/pages))
 - error logging (via [Sentry](https://sentry.io/))
 - E2E tests (via [Playwright](https://playwright.dev/))
+- unit tests (via [Vitest](https://vitest.dev/))
 
 ## `docs` (this)
 
