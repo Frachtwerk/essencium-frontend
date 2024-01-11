@@ -4,14 +4,9 @@
   "parserOptions": {
     "project": ["./tsconfig.json"]
   },
-  "plugins": [
-    "@typescript-eslint",
-    "prettier",
-    "@nrwl/nx",
-    "simple-import-sort"
-  ],
+  "plugins": ["@typescript-eslint", "prettier", "@nx", "simple-import-sort"],
   "rules": {
-    "@nrwl/nx/enforce-module-boundaries": [
+    "@nx/enforce-module-boundaries": [
       "error",
       {
         "allow": [],
