@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v4.1.0...essencium-lib-v4.1.1) (2024-01-12)
+
+
+### Bug Fixes
+
+* fix axios vulnerability ([b186b72](https://github.com/Frachtwerk/essencium-frontend/commit/b186b7225635c77ae8a92dbe5f7c77fb564a06bf))
+* fix babel vulnerability ([#462](https://github.com/Frachtwerk/essencium-frontend/issues/462)) ([a94234e](https://github.com/Frachtwerk/essencium-frontend/commit/a94234ee94b5da8a105b1d7294b5808b2f98db3f))
+* fix postcss vulnerability ([c67b199](https://github.com/Frachtwerk/essencium-frontend/commit/c67b19919600427f09a17995b787518dcda308c1))
+* fix vite vulnerability in package app ([b80f788](https://github.com/Frachtwerk/essencium-frontend/commit/b80f788e436e797ffc94908f673be3baa1dee8fb))
+* fix zod vulnerability ([d963ef3](https://github.com/Frachtwerk/essencium-frontend/commit/d963ef3bd8f5a3e74bf868ff3229adde3e0feeee))
+* fix next vulnerability ([298b6b8](https://github.com/Frachtwerk/essencium-frontend/commit/298b6b80e1bb9d6c288146d734ee617c6ce97602))
+* update nx ([#471](https://github.com/Frachtwerk/essencium-frontend/issues/471)) ([c2de52f](https://github.com/Frachtwerk/essencium-frontend/commit/c2de52f0d6e232a8f0c31788e8c2398d582576a9))
+
 ## [4.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v4.0.0...essencium-lib-v4.1.0) (2023-12-07)
 
 
