@@ -9,7 +9,7 @@
 * fix chaijs vulnerability ([#465](https://github.com/Frachtwerk/essencium-frontend/issues/465)) ([2b36a8f](https://github.com/Frachtwerk/essencium-frontend/commit/2b36a8f10e11e2b9693a3e75cd3fdccc37cff137))
 * fix vite vulnerability in package app ([b80f788](https://github.com/Frachtwerk/essencium-frontend/commit/b80f788e436e797ffc94908f673be3baa1dee8fb))
 * fix zod vulnerability ([d963ef3](https://github.com/Frachtwerk/essencium-frontend/commit/d963ef3bd8f5a3e74bf868ff3229adde3e0feeee))
-* **frontend:** fix next vulnerability ([298b6b8](https://github.com/Frachtwerk/essencium-frontend/commit/298b6b80e1bb9d6c288146d734ee617c6ce97602))
+* fix next vulnerability ([298b6b8](https://github.com/Frachtwerk/essencium-frontend/commit/298b6b80e1bb9d6c288146d734ee617c6ce97602))
 * update nx ([#471](https://github.com/Frachtwerk/essencium-frontend/issues/471)) ([c2de52f](https://github.com/Frachtwerk/essencium-frontend/commit/c2de52f0d6e232a8f0c31788e8c2398d582576a9))
 
 ## [4.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v4.1.0...essencium-app-v4.1.1) (2023-12-10)
@@ -156,7 +156,7 @@
 * create page for adding a new user ([4c1f089](https://github.com/Frachtwerk/essencium-frontend/commit/4c1f089c659ac9c44723ba8b32d22c9d16ff2ec9))
 * display translation for locale property ([545eaec](https://github.com/Frachtwerk/essencium-frontend/commit/545eaecddc2bfa971d9670847dfc9b8dd27b1875))
 * enable server-side sorting for the existing table views ([b000896](https://github.com/Frachtwerk/essencium-frontend/commit/b0008967f03057eb211a7bc1d8916de40fdebe19))
-* **frontend:** add delete confirmation dialog to usersView ([5d6b6f6](https://github.com/Frachtwerk/essencium-frontend/commit/5d6b6f600e8c58d21246595f70438f872061c966))
+* add delete confirmation dialog to usersView ([5d6b6f6](https://github.com/Frachtwerk/essencium-frontend/commit/5d6b6f600e8c58d21246595f70438f872061c966))
 * implement basic filter functionality for users table ([7bc3a2a](https://github.com/Frachtwerk/essencium-frontend/commit/7bc3a2a2ec2e1a1ed3c9666ab06d02f18b729ace))
 * protect routes and render navlinks conditionally ([c6dc83b](https://github.com/Frachtwerk/essencium-frontend/commit/c6dc83b28873063d6799fbaeac853f1ce0d06f6b))
 * set dynamic title ([54d154a](https://github.com/Frachtwerk/essencium-frontend/commit/54d154a0c7500c0fc908d453f6b5ca948f491956))

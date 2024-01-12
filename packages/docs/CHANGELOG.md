@@ -5,7 +5,7 @@
 
 ### Bug Fixes
 
-* **frontend:** fix next vulnerability ([298b6b8](https://github.com/Frachtwerk/essencium-frontend/commit/298b6b80e1bb9d6c288146d734ee617c6ce97602))
+* fix next vulnerability ([298b6b8](https://github.com/Frachtwerk/essencium-frontend/commit/298b6b80e1bb9d6c288146d734ee617c6ce97602))
 * update nx ([#471](https://github.com/Frachtwerk/essencium-frontend/issues/471)) ([c2de52f](https://github.com/Frachtwerk/essencium-frontend/commit/c2de52f0d6e232a8f0c31788e8c2398d582576a9))
 
 ## [2.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v2.1.0...essencium-docs-v2.1.1) (2023-12-10)
