@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v4.1.1...essencium-lib-v4.1.2) (2024-01-13)
+
+
+### Bug Fixes
+
+* fix Vercel deployment with lower version of Next.js ([#473](https://github.com/Frachtwerk/essencium-frontend/issues/473)) ([025eacf](https://github.com/Frachtwerk/essencium-frontend/commit/025eacf697bbb3e9b3652ef351c43efe34e1faa8))
+
 ## [4.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v4.1.0...essencium-lib-v4.1.1) (2024-01-12)
 
 
