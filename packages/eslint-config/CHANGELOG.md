@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/eslint-config-essencium-v2.1.0...eslint-config-essencium-v2.1.1) (2024-01-12)
+
+
+### Bug Fixes
+
+* update nx ([#471](https://github.com/Frachtwerk/essencium-frontend/issues/471)) ([c2de52f](https://github.com/Frachtwerk/essencium-frontend/commit/c2de52f0d6e232a8f0c31788e8c2398d582576a9))
+
 ## [2.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/eslint-config-essencium-v2.0.0...eslint-config-essencium-v2.1.0) (2023-12-07)
 
 
