@@ -49,6 +49,16 @@ export function Table<T>({
 }: Props<T>): JSX.Element {
   const theme = useMantineTheme()
 
+  function getTableColStickyStyle(): string | undefined {
+    if (firstColSticky && theme.colorScheme === 'dark') {
+      return styles.tableColStickyDarkmode
+    }
+    if (firstColSticky) {
+      return styles.tableColSticky
+    }
+    return undefined
+  }
+
   return (
     <Flex direction="column" align="end">
       <div style={{ overflowX: 'auto', width: '100%' }}>
@@ -60,9 +70,7 @@ export function Table<T>({
                   <th
                     key={header.id}
                     style={{ verticalAlign: 'top' }}
-                    className={
-                      firstColSticky ? styles.tableColSticky : undefined
-                    }
+                    className={getTableColStickyStyle()}
                   >
                     <Flex
                       align="center"
@@ -132,9 +140,7 @@ export function Table<T>({
                   <td
                     key={cell.id}
                     width={cell.column.getSize()}
-                    className={
-                      firstColSticky ? styles.tableColSticky : undefined
-                    }
+                    className={getTableColStickyStyle()}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
