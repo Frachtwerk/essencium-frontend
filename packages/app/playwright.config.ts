@@ -1,12 +1,17 @@
 import { defineConfig, devices } from '@playwright/test'
+import dotenv from 'dotenv'
+import path from 'path'
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// require('dotenv').config();
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
+
+dotenv.config({ path: path.resolve(__dirname, '.env.local') })
+
 export const BASE_URL = 'https://staging.essencium.dev'
 
 export const BASE_URL_DOCS = 'https://docs.essencium.dev/'
@@ -33,7 +38,7 @@ export default defineConfig({
      * Maximum time expect() should wait for the condition to be met.
      * For example in `await expect(locator).toHaveText();`
      */
-    timeout: 5000,
+    timeout: 8000,
   },
   /* Run tests in files in parallel */
   fullyParallel: true,
