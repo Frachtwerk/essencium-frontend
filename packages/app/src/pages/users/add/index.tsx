@@ -17,14 +17,16 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { UserForm } from '@frachtwerk/essencium-lib'
+import { FeedBackWidget, UserForm } from '@frachtwerk/essencium-lib'
 import { UserInput, userInputSchema } from '@frachtwerk/essencium-types'
 import { Card, Flex, Text, Title } from '@mantine/core'
 import { IconUserPlus } from '@tabler/icons-react'
+import { useAtomValue } from 'jotai'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
-import { useCreateUser, useGetRoles } from '@/api'
+import { useCreateUser, useGetRoles, userAtom } from '@/api'
+import { useCreateFeedback } from '@/api/feedback'
 import { AuthLayout } from '@/components/layouts'
 import { useZodForm } from '@/hooks'
 import { getTranslation } from '@/utils'
@@ -37,6 +39,8 @@ function AddUserView(): JSX.Element {
 
   const { t } = useTranslation()
 
+  const currentUser = useAtomValue(userAtom)
+
   const { handleSubmit, control, formState, setValue } = useZodForm({
     schema: userInputSchema,
     defaultValues: FORM_DEFAULTS_USERS_VIEW,
@@ -48,6 +52,13 @@ function AddUserView(): JSX.Element {
     page: 0,
     size: 9999,
   })
+
+  const {
+    mutate: createFeedback,
+    isSuccess: feedbackCreated,
+    isError: feedbackFailed,
+    isLoading: feedbackSending,
+  } = useCreateFeedback()
 
   const roles = rolesResponse?.content || []
 
@@ -82,6 +93,14 @@ function AddUserView(): JSX.Element {
           isLoading={isLoading}
         />
       </Card>
+
+      <FeedBackWidget
+        currentUser={currentUser}
+        createFeedback={createFeedback}
+        feedbackCreated={feedbackCreated}
+        feedbackFailed={feedbackFailed}
+        feedbackSending={feedbackSending}
+      />
     </>
   )
 }

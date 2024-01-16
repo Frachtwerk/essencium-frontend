@@ -39,6 +39,7 @@ import {
   Text,
   Textarea,
   Title,
+  Tooltip,
   Transition,
   UnstyledButton,
   useMantineTheme,
@@ -46,12 +47,15 @@ import {
 import { useDisclosure } from '@mantine/hooks'
 import {
   IconBulb,
+  IconCameraCheck,
+  IconCameraPlus,
   IconCircleCheck,
   IconCircleX,
   IconExclamationCircle,
   IconMessageDots,
 } from '@tabler/icons-react'
 import html2canvas from 'html2canvas'
+import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 import { Controller } from 'react-hook-form'
@@ -77,6 +81,8 @@ export function FeedBackWidget({
 
   const { t } = useTranslation()
 
+  const router = useRouter()
+
   const [opened, { toggle, close }] = useDisclosure(false)
 
   const [openInput, setOpenInput] = useState<OpenInputTypeValues | null>(null)
@@ -88,8 +94,6 @@ export function FeedBackWidget({
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const [screenshot, setScreenshot] = useState<string | null>(null)
-
-  console.log(screenshot)
 
   const { handleSubmit, control, formState, reset } = useZodForm({
     schema: feedbackFormSchema,
@@ -138,6 +142,7 @@ export function FeedBackWidget({
     setShowSuccessMessage(false)
     setShowErrorMessage(false)
     setIsLoading(false)
+    setScreenshot(null)
   }
 
   setTimeout(() => {
@@ -155,23 +160,15 @@ export function FeedBackWidget({
       email: currentUser?.email,
       feedbackType: openInput || OpenInput.Other,
       message: form.message,
+      screenshot: screenshot || '',
+      path: router.asPath,
     })
   }
 
-  // TODO: add button for Screenshot in Widget
-  // TODO: add file to feedbackInput and send it with email
-
-  function handleScreebshot(): void {
-    html2canvas(document.body).then(function (canvas) {
-      /*   const dataUrl = canvas.toDataURL()
-      const newTab = window.open()
-      if (newTab) newTab.document.body.innerHTML = `<img src="${dataUrl}">`
-       */
-      canvas.toBlob(function (blob) {
-        if (blob) {
-          setScreenshot(URL.createObjectURL(blob))
-        }
-      })
+  function captureScreenshot(): void {
+    html2canvas(document.body).then(canvas => {
+      const screenshotData = canvas.toDataURL('image/png')
+      setScreenshot(screenshotData)
     })
   }
 
@@ -340,9 +337,26 @@ export function FeedBackWidget({
                         )}
                       </Box>
 
-                      <Button type="submit" size="xs" fullWidth>
-                        {t('feedbackWidget.button')}
-                      </Button>
+                      <Flex gap="xs">
+                        <Tooltip label={t('feedbackWidget.screenshot.label')}>
+                          <ActionIcon
+                            variant={screenshot ? 'filled' : 'outline'}
+                            size="md"
+                            color="blue"
+                            onClick={() => captureScreenshot()}
+                          >
+                            {screenshot ? (
+                              <IconCameraCheck size={rem(20)} />
+                            ) : (
+                              <IconCameraPlus size={rem(20)} />
+                            )}
+                          </ActionIcon>
+                        </Tooltip>
+
+                        <Button type="submit" size="xs" fullWidth>
+                          {t('feedbackWidget.button')}
+                        </Button>
+                      </Flex>
                     </form>
                   </Box>
                 ) : null}

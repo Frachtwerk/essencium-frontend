@@ -420,6 +420,9 @@
     "placeholder": "I am having an issue with...",
     "successMessage": "Thank you for submitting your feedback!",
     "errorMessage": "Submitting your feedback was not successful. Please try again.",
-    "requiredError": "Please enter a message."
+    "requiredError": "Please enter a message.",
+    "screenshot": {
+      "label": "Capture Screenshot"
+    }
   }
 }

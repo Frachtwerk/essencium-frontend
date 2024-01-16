@@ -23,6 +23,7 @@ import {
   AddRole,
   DeleteDialog,
   EditRole,
+  FeedBackWidget,
   HttpNotification,
   Table,
   TablePagination,
@@ -61,9 +62,11 @@ import {
   useDeleteRole,
   useGetRights,
   useGetRoles,
+  userAtom,
   userRightsAtom,
   useUpdateRole,
 } from '@/api'
+import { useCreateFeedback } from '@/api/feedback'
 import { AuthLayout } from '@/components/layouts'
 import { getTranslation, hasRequiredRights, parseSorting } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
@@ -84,6 +87,8 @@ function RolesView(): JSX.Element {
   const theme = useMantineTheme()
 
   const userRights = useAtomValue(userRightsAtom)
+
+  const user = useAtomValue(userAtom)
 
   const [addModalOpened, addModalHandlers] = useDisclosure(false)
   const [editModalOpened, editModalHandlers] = useDisclosure(false)
@@ -113,6 +118,13 @@ function RolesView(): JSX.Element {
   })
 
   const { data: rights } = useGetRights({ page: 0, size: 9999 })
+
+  const {
+    mutate: createFeedback,
+    isSuccess: feedbackCreated,
+    isError: feedbackFailed,
+    isLoading: feedbackSending,
+  } = useCreateFeedback()
 
   const { mutate: createRole, isLoading: isCreatingRole } = useCreateRole()
 
@@ -381,6 +393,14 @@ function RolesView(): JSX.Element {
           />
         </>
       )}
+
+      <FeedBackWidget
+        currentUser={user}
+        createFeedback={createFeedback}
+        feedbackCreated={feedbackCreated}
+        feedbackFailed={feedbackFailed}
+        feedbackSending={feedbackSending}
+      />
     </>
   )
 }

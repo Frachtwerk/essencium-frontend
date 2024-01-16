@@ -17,15 +17,39 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Home } from '@frachtwerk/essencium-lib'
+import { FeedBackWidget, Home } from '@frachtwerk/essencium-lib'
+import { useAtomValue } from 'jotai'
 import { ReactElement } from 'react'
 
+import { userAtom } from '@/api'
+import { useCreateFeedback } from '@/api/feedback'
 import { AuthLayout } from '@/components/layouts/AuthLayout'
 import { getTranslation } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
 function HomeView(): JSX.Element {
-  return <Home />
+  const user = useAtomValue(userAtom)
+
+  const {
+    mutate: createFeedback,
+    isSuccess: feedbackCreated,
+    isError: feedbackFailed,
+    isLoading: feedbackSending,
+  } = useCreateFeedback()
+
+  return (
+    <>
+      <Home />
+
+      <FeedBackWidget
+        currentUser={user}
+        createFeedback={createFeedback}
+        feedbackCreated={feedbackCreated}
+        feedbackFailed={feedbackFailed}
+        feedbackSending={feedbackSending}
+      />
+    </>
+  )
 }
 
 HomeView.getLayout = function getLayout(

@@ -20,6 +20,8 @@ export type FeedbackInput = {
   email: string
   feedbackType: OpenInputTypeValues
   message: string
+  screenshot: string
+  path: string
 }
 
 export type FeedbackOutput = FeedbackInput

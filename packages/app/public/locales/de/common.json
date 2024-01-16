@@ -420,6 +420,9 @@
     "placeholder": "Beschreiben Sie Ihr Anliegen",
     "successMessage": "Vielen Dank für Ihr Feedback!",
     "errorMessage": "Leider ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
-    "requiredError": "Bitte geben Sie eine Nachricht ein."
+    "requiredError": "Bitte geben Sie eine Nachricht ein.",
+    "screenshot": {
+      "label": "Screenshot aufnehmen"
+    }
   }
 }

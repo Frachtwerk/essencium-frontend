@@ -17,7 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Profile } from '@frachtwerk/essencium-lib'
+import { FeedBackWidget, Profile } from '@frachtwerk/essencium-lib'
 import { PasswordChange, UserUpdate } from '@frachtwerk/essencium-types'
 import { Center, Loader } from '@mantine/core'
 import { useRouter } from 'next/router'
@@ -25,6 +25,7 @@ import { useTranslation } from 'next-i18next'
 import { ReactElement } from 'react'
 
 import { useGetMe, useGetRoles, useUpdateMe, useUpdatePassword } from '@/api'
+import { useCreateFeedback } from '@/api/feedback'
 import { AuthLayout } from '@/components/layouts'
 import { getTranslation, logout } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
@@ -42,6 +43,13 @@ function ProfileView(): JSX.Element {
     useUpdatePassword()
 
   const { data: rolesRequest } = useGetRoles({ page: 0, size: 9999 })
+
+  const {
+    mutate: createFeedback,
+    isSuccess: feedbackCreated,
+    isError: feedbackFailed,
+    isLoading: feedbackSending,
+  } = useCreateFeedback()
 
   const roles = rolesRequest?.content || []
 
@@ -69,14 +77,24 @@ function ProfileView(): JSX.Element {
 
   if (user) {
     return (
-      <Profile
-        user={user}
-        roles={roles}
-        handleUpdate={handleUpdate}
-        handlePasswordUpdate={handlePasswordUpdate}
-        isUpdatingUser={isUpdatingUser}
-        isUpdatingPassword={isUpdatingPassword}
-      />
+      <>
+        <Profile
+          user={user}
+          roles={roles}
+          handleUpdate={handleUpdate}
+          handlePasswordUpdate={handlePasswordUpdate}
+          isUpdatingUser={isUpdatingUser}
+          isUpdatingPassword={isUpdatingPassword}
+        />
+
+        <FeedBackWidget
+          currentUser={user}
+          createFeedback={createFeedback}
+          feedbackCreated={feedbackCreated}
+          feedbackFailed={feedbackFailed}
+          feedbackSending={feedbackSending}
+        />
+      </>
     )
   }
 

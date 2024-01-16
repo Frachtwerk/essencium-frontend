@@ -28,20 +28,28 @@ export async function sendFeedbackEmail(
     host: 'smtp.ethereal.email',
     port: 587,
     auth: {
-      user: 'rusty.yost13@ethereal.email',
-      pass: 'pUvWGKuQVHEWAwx7Y3',
+      user: 'eduardo23@ethereal.email',
+      pass: 'F4McAHa7kvNXbz7P5f',
     },
   })
 
   const mailOptions = {
-    from: 'rusty.yost13@ethereal.email',
-    to: 'rusty.yost13@ethereal.email',
+    from: 'eduardo23@ethereal.email',
+    to: 'eduardo23@ethereal.email',
+    attachments: [
+      {
+        filename: 'screenshot.png',
+        content: feedback.screenshot.split('base64,')[1],
+        encoding: 'base64',
+      },
+    ],
     subject: 'New Feedback Submission',
     text: `The following feedback was submitted:
     User: ${feedback.firstName} ${feedback.lastName}
     Email: ${feedback.email}
     Type: ${feedback.feedbackType}
-    Message: ${feedback.message}
+    Path: ${feedback.path}
+    Message: ${feedback.message}  
     `,
   }
 
