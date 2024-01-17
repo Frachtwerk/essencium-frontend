@@ -7,6 +7,8 @@ test.describe('NavBar', () => {
     await page.goto(BASE_URL)
   })
   test('click through navigation', async ({ page }) => {
+    await page.getByRole('button', { name: 'Home' }).click()
+    await expect(page).toHaveURL(`${BASE_URL}/`)
     await page.getByRole('button', { name: 'Users', exact: true }).click()
     await expect(page).toHaveURL(`${BASE_URL}/users`)
     await page.getByRole('button', { name: 'Roles' }).click()
