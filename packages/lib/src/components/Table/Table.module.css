@@ -25,6 +25,19 @@
   background: white;
 }
 
+.tableColStickyDarkmode:first-child {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  z-index: 10;
+  color: #c1c2c5;
+  background: #1a1b1e;
+}
+
 .tableRowBg:nth-of-type(2n + 1) .tableColSticky:first-child {
   background: #f8f9fa;
+}
+
+.tableRowBg:nth-of-type(2n + 1) .tableColStickyDarkmode:first-child {
+  background: #25262b;
 }
