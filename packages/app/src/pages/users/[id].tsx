@@ -17,17 +17,15 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { FeedBackWidget, UserForm } from '@frachtwerk/essencium-lib'
+import { UserForm } from '@frachtwerk/essencium-lib'
 import { UserUpdate, userUpdateSchema } from '@frachtwerk/essencium-types'
 import { Card, Flex, Text, Title } from '@mantine/core'
 import { IconUserEdit } from '@tabler/icons-react'
-import { useAtomValue } from 'jotai'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useEffect } from 'react'
 
-import { useGetRoles, useGetUser, userAtom, useUpdateUser } from '@/api'
-import { useCreateFeedback } from '@/api/feedback'
+import { useGetRoles, useGetUser, useUpdateUser } from '@/api'
 import { AuthLayout } from '@/components/layouts'
 import { useZodForm } from '@/hooks'
 import { getTranslation } from '@/utils'
@@ -43,15 +41,6 @@ function UpdateUserView(): JSX.Element {
   const userIdParameter = router.query?.id
 
   const { data: user } = useGetUser(Number(userIdParameter))
-
-  const currentUser = useAtomValue(userAtom)
-
-  const {
-    mutate: createFeedback,
-    isSuccess: feedbackCreated,
-    isError: feedbackFailed,
-    isLoading: feedbackSending,
-  } = useCreateFeedback()
 
   const {
     handleSubmit,
@@ -115,14 +104,6 @@ function UpdateUserView(): JSX.Element {
           isLoading={isLoading}
         />
       </Card>
-
-      <FeedBackWidget
-        currentUser={currentUser}
-        createFeedback={createFeedback}
-        feedbackCreated={feedbackCreated}
-        feedbackFailed={feedbackFailed}
-        feedbackSending={feedbackSending}
-      />
     </>
   )
 }

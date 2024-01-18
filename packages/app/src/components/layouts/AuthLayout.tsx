@@ -17,7 +17,12 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Footer, Header, NavBar } from '@frachtwerk/essencium-lib'
+import {
+  FeedbackWidget,
+  Footer,
+  Header,
+  NavBar,
+} from '@frachtwerk/essencium-lib'
 import { FooterLink, NavLink, RIGHTS } from '@frachtwerk/essencium-types'
 import { AppShell, Box, useMantineTheme } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
@@ -42,8 +47,9 @@ import { useRouter } from 'next/router'
 import { i18n, useTranslation } from 'next-i18next'
 import React, { useEffect, useState } from 'react'
 
-import { useGetMe, useGetTranslations, userRightsAtom } from '@/api'
-import { logout } from '@/utils'
+import { useGetMe, useGetTranslations, userAtom, userRightsAtom } from '@/api'
+import { useCreateFeedback } from '@/api/feedback'
+import { logout, withBaseStylingShowNotification } from '@/utils'
 
 type Props = {
   children: React.ReactNode
@@ -162,6 +168,15 @@ export function AuthLayout({
   const { data: user } = useGetMe()
 
   const userRights = useAtomValue(userRightsAtom)
+
+  const currentUser = useAtomValue(userAtom)
+
+  const {
+    mutate: createFeedback,
+    isSuccess: feedbackCreated,
+    isError: feedbackFailed,
+    isLoading: feedbackSending,
+  } = useCreateFeedback()
 
   const actions: SpotlightAction[] | null = SEARCH_ITEMS.filter(link =>
     !link.rights || link.rights?.some(right => userRights?.includes(right))
@@ -333,6 +348,15 @@ export function AuthLayout({
         >
           {showChildren ? children : null}
         </Box>
+
+        <FeedbackWidget
+          currentUser={currentUser}
+          createFeedback={createFeedback}
+          feedbackCreated={feedbackCreated}
+          feedbackFailed={feedbackFailed}
+          feedbackSending={feedbackSending}
+          createNotification={withBaseStylingShowNotification}
+        />
       </AppShell>
     </SpotlightProvider>
   )

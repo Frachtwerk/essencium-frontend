@@ -17,12 +17,10 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Contact, FeedBackWidget } from '@frachtwerk/essencium-lib'
+import { Contact } from '@frachtwerk/essencium-lib'
 import { contactFormSchema, ContactFormType } from '@frachtwerk/essencium-types'
-import { useAtomValue } from 'jotai'
 
-import { userAtom, useSendContactMessage } from '@/api'
-import { useCreateFeedback } from '@/api/feedback'
+import { useSendContactMessage } from '@/api'
 import { AuthLayout } from '@/components/layouts'
 import { useZodForm } from '@/hooks'
 import { getTranslation } from '@/utils'
@@ -30,15 +28,6 @@ import { baseGetServerSideProps } from '@/utils/next'
 
 function ContactView(): JSX.Element {
   const { mutate: sendMessage } = useSendContactMessage()
-
-  const user = useAtomValue(userAtom)
-
-  const {
-    mutate: createFeedback,
-    isSuccess: feedbackCreated,
-    isError: feedbackFailed,
-    isLoading: feedbackSending,
-  } = useCreateFeedback()
 
   const { handleSubmit, control, formState, reset } = useZodForm({
     schema: contactFormSchema,
@@ -57,14 +46,6 @@ function ContactView(): JSX.Element {
   return (
     <form data-testid="form" onSubmit={handleSubmit(onSubmit)}>
       <Contact control={control} formState={formState} />
-
-      <FeedBackWidget
-        currentUser={user}
-        createFeedback={createFeedback}
-        feedbackCreated={feedbackCreated}
-        feedbackFailed={feedbackFailed}
-        feedbackSending={feedbackSending}
-      />
     </form>
   )
 }

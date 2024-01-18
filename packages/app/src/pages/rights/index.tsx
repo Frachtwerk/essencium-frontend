@@ -19,7 +19,6 @@
 
 /* eslint-disable react/no-unstable-nested-components */
 import {
-  FeedBackWidget,
   HttpNotification,
   Table,
   TablePagination,
@@ -50,14 +49,7 @@ import { useAtomValue } from 'jotai'
 import { useTranslation } from 'next-i18next'
 import { useCallback, useMemo, useState } from 'react'
 
-import {
-  useGetRights,
-  useGetRoles,
-  userAtom,
-  userRightsAtom,
-  useUpdateRole,
-} from '@/api'
-import { useCreateFeedback } from '@/api/feedback'
+import { useGetRights, useGetRoles, userRightsAtom, useUpdateRole } from '@/api'
 import { AuthLayout } from '@/components/layouts'
 import { getTranslation, hasRequiredRights, parseSorting } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
@@ -68,8 +60,6 @@ function RightsView(): JSX.Element {
   const { t } = useTranslation()
 
   const userRights = useAtomValue(userRightsAtom)
-
-  const user = useAtomValue(userAtom)
 
   const [activePage, setActivePage] = useState(1)
   const [pageSize, setPageSize] = useState(20)
@@ -94,13 +84,6 @@ function RightsView(): JSX.Element {
     size: 9999,
     sort: 'name,asc',
   })
-
-  const {
-    mutate: createFeedback,
-    isSuccess: feedbackCreated,
-    isError: feedbackFailed,
-    isLoading: feedbackSending,
-  } = useCreateFeedback()
 
   const handleRefetch = useCallback((): void => {
     refetchRights()
@@ -279,14 +262,6 @@ function RightsView(): JSX.Element {
           />
         </>
       )}
-
-      <FeedBackWidget
-        currentUser={user}
-        createFeedback={createFeedback}
-        feedbackCreated={feedbackCreated}
-        feedbackFailed={feedbackFailed}
-        feedbackSending={feedbackSending}
-      />
     </>
   )
 }

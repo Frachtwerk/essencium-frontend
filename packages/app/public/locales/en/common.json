@@ -422,7 +422,8 @@
     "errorMessage": "Submitting your feedback was not successful. Please try again.",
     "requiredError": "Please enter a message.",
     "screenshot": {
-      "label": "Capture Screenshot"
+      "label": "Capture Screenshot",
+      "created": "Screenshot captured"
     }
   }
 }

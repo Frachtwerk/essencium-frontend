@@ -57,10 +57,16 @@ import {
 import html2canvas from 'html2canvas'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import { useEffect, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../hooks'
+
+type NotificationParams = {
+  notificationType: 'created' | 'updated' | 'deleted'
+  color: 'success' | 'error'
+  message: ReactNode
+}
 
 type Props = {
   createFeedback: (feedback: FeedbackInput) => void
@@ -68,14 +74,16 @@ type Props = {
   feedbackCreated: boolean
   feedbackFailed: boolean
   feedbackSending: boolean
+  createNotification: (params: NotificationParams) => void
 }
 
-export function FeedBackWidget({
+export function FeedbackWidget({
   createFeedback,
   currentUser,
   feedbackCreated,
   feedbackFailed,
   feedbackSending,
+  createNotification,
 }: Props): JSX.Element {
   const theme = useMantineTheme()
 
@@ -145,12 +153,6 @@ export function FeedBackWidget({
     setScreenshot(null)
   }
 
-  setTimeout(() => {
-    if (showSuccessMessage || showErrorMessage) {
-      onCloseWidget()
-    }
-  }, 3500)
-
   function onSubmit(form: FeedbackFormType): void {
     if (!currentUser) return
 
@@ -172,6 +174,16 @@ export function FeedBackWidget({
     })
   }
 
+  useEffect(() => {
+    if (screenshot) {
+      createNotification({
+        notificationType: 'created',
+        color: 'success',
+        message: t('feedbackWidget.screenshot.created'),
+      })
+    }
+  }, [screenshot, createNotification, t])
+
   return (
     <>
       <ActionIcon
@@ -182,7 +194,7 @@ export function FeedBackWidget({
         style={{
           position: 'fixed',
           bottom: rem(80),
-          right: rem(10),
+          right: rem(25),
           zIndex: '20',
         }}
         onClick={toggle}

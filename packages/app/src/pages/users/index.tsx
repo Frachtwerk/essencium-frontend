@@ -20,7 +20,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {
   DeleteDialog,
-  FeedBackWidget,
   HttpNotification,
   Table,
   TablePagination,
@@ -74,7 +73,6 @@ import {
   userAtom,
   userRightsAtom,
 } from '@/api'
-import { useCreateFeedback } from '@/api/feedback'
 import { AuthLayout } from '@/components/layouts'
 import { getTranslation, hasRequiredRights, parseSorting } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
@@ -110,13 +108,6 @@ function UsersView(): JSX.Element {
   const { t } = useTranslation()
 
   const theme = useMantineTheme()
-
-  const {
-    mutate: createFeedback,
-    isSuccess: feedbackCreated,
-    isError: feedbackFailed,
-    isLoading: feedbackSending,
-  } = useCreateFeedback()
 
   const [deleteModalOpened, deleteModalHandlers] = useDisclosure(false)
   const [userToBeDeleted, setUserToBeDeleted] = useState<UserOutput | null>(
@@ -467,14 +458,6 @@ function UsersView(): JSX.Element {
           </>
         )}
       </>
-
-      <FeedBackWidget
-        currentUser={user}
-        createFeedback={createFeedback}
-        feedbackCreated={feedbackCreated}
-        feedbackFailed={feedbackFailed}
-        feedbackSending={feedbackSending}
-      />
     </>
   )
 }

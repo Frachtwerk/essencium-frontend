@@ -17,7 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { FeedBackWidget, Translations } from '@frachtwerk/essencium-lib'
+import { Translations } from '@frachtwerk/essencium-lib'
 import { TranslationInput } from '@frachtwerk/essencium-types'
 import { Flex, Text, Title } from '@mantine/core'
 import { IconLanguage } from '@tabler/icons-react'
@@ -29,11 +29,9 @@ import En from '@/../public/locales/en/common.json'
 import {
   useDeleteTranslation,
   useGetTranslations,
-  userAtom,
   userRightsAtom,
   useUpdateTranslation,
 } from '@/api'
-import { useCreateFeedback } from '@/api/feedback'
 import { AuthLayout } from '@/components/layouts'
 import { getTranslation } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
@@ -54,15 +52,6 @@ function TranslationsView(): JSX.Element {
   const { t } = useTranslation()
 
   const userRights = useAtomValue(userRightsAtom)
-
-  const user = useAtomValue(userAtom)
-
-  const {
-    mutate: createFeedback,
-    isSuccess: feedbackCreated,
-    isError: feedbackFailed,
-    isLoading: feedbackSending,
-  } = useCreateFeedback()
 
   const { mutate: updateTranslation } = useUpdateTranslation()
   const { mutate: deleteTranslation } = useDeleteTranslation()
@@ -138,14 +127,6 @@ function TranslationsView(): JSX.Element {
         getTranslations={getTranslationsByLanguage}
         updateTranslation={onUpdateTranslation}
         deleteTranslation={onDeleteTranslation}
-      />
-
-      <FeedBackWidget
-        currentUser={user}
-        createFeedback={createFeedback}
-        feedbackCreated={feedbackCreated}
-        feedbackFailed={feedbackFailed}
-        feedbackSending={feedbackSending}
       />
     </>
   )

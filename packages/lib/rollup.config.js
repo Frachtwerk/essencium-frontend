@@ -56,6 +56,7 @@ export default [
       'react-hook-form',
       '@hookform/resolvers',
       'react-json-tree',
+      'html2canvas',
     ],
   },
   {

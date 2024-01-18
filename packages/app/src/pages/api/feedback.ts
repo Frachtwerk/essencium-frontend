@@ -66,7 +66,7 @@ export default async function handler(
     await sendFeedbackEmail(feedback)
 
     res.status(200).json({
-      message: 'data received successfully',
+      message: 'Feedback has been sent successfully',
       receivedData: feedback,
     })
   } else {
