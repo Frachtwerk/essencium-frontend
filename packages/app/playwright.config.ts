@@ -63,7 +63,21 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    { name: 'setup', testDir: './playwright', testMatch: /.*\.setup\.ts/ },
+    {
+      name: 'authSetup',
+      testDir: './playwright',
+      testMatch: /auth\.setup\.ts/,
+    },
+
+    {
+      name: 'langSetup',
+      testDir: './playwright',
+      testMatch: /lang\.setup\.ts/,
+      use: {
+        storageState: './playwright/.auth/user.json',
+      },
+      dependencies: ['authSetup'],
+    },
 
     {
       name: 'chromium',
@@ -71,7 +85,7 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
         storageState: './playwright/.auth/user.json',
       },
-      dependencies: ['setup'],
+      dependencies: ['authSetup', 'langSetup'],
     },
 
     {
@@ -80,7 +94,7 @@ export default defineConfig({
         ...devices['Desktop Firefox'],
         storageState: './playwright/.auth/user.json',
       },
-      dependencies: ['setup'],
+      dependencies: ['authSetup', 'langSetup'],
     },
 
     /* exclude because of login error in safari */
