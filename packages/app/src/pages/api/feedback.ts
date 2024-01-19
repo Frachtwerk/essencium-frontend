@@ -25,17 +25,17 @@ export async function sendFeedbackEmail(
   feedback: FeedbackInput,
 ): Promise<void> {
   const transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
+    host: process.env.EMAIL_HOST,
+    port: Number(process.env.EMAIL_PORT),
     auth: {
-      user: 'eduardo23@ethereal.email',
-      pass: 'F4McAHa7kvNXbz7P5f',
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD,
     },
   })
 
   const mailOptions = {
-    from: 'eduardo23@ethereal.email',
-    to: 'eduardo23@ethereal.email',
+    from: process.env.EMAIL_USER,
+    to: process.env.EMAIL_USER,
     attachments: [
       {
         filename: 'screenshot.png',
