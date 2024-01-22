@@ -17,7 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { FeedbackInput } from '@frachtwerk/essencium-types'
+import { feedbackFormSchema, FeedbackInput } from '@frachtwerk/essencium-types'
 import { NextApiRequest, NextApiResponse } from 'next'
 import nodemailer from 'nodemailer'
 
@@ -36,13 +36,15 @@ export async function sendFeedbackEmail(
   const mailOptions = {
     from: process.env.MAIL_FROM,
     to: process.env.MAIL_TO,
-    attachments: [
-      {
-        filename: 'screenshot.png',
-        content: feedback.screenshot.split('base64,')[1],
-        encoding: 'base64',
-      },
-    ],
+    attachments: feedback?.screenshot
+      ? [
+          {
+            filename: 'screenshot.png',
+            content: feedback.screenshot.split('base64,')[1],
+            encoding: 'base64',
+          },
+        ]
+      : [],
     subject: 'New Feedback Submission',
     text: `The following feedback was submitted:
     User: ${feedback.firstName} ${feedback.lastName}
@@ -63,13 +65,23 @@ export default async function handler(
   if (req.method === 'POST') {
     const feedback = req.body
 
+    const isFeedbackValid = feedbackFormSchema.safeParse(feedback)
+
+    if (!isFeedbackValid.success) {
+      return res.status(400).json({
+        message: "Feedback couldn't be sent",
+        receivedData: feedback,
+        errors: isFeedbackValid.error,
+      })
+    }
+
     await sendFeedbackEmail(feedback)
 
-    res.status(200).json({
+    return res.status(200).json({
       message: 'Feedback has been sent successfully',
       receivedData: feedback,
     })
-  } else {
-    res.status(405).end()
   }
+
+  res.status(405).end()
 }
