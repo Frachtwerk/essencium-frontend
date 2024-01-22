@@ -68,7 +68,6 @@ export default defineConfig({
       testDir: './playwright',
       testMatch: /auth\.setup\.ts/,
     },
-
     {
       name: 'langSetup',
       testDir: './playwright',
@@ -78,7 +77,6 @@ export default defineConfig({
       },
       dependencies: ['authSetup'],
     },
-
     {
       name: 'chromium',
       use: {
@@ -87,7 +85,6 @@ export default defineConfig({
       },
       dependencies: ['authSetup', 'langSetup'],
     },
-
     {
       name: 'firefox',
       use: {
@@ -96,7 +93,6 @@ export default defineConfig({
       },
       dependencies: ['authSetup', 'langSetup'],
     },
-
     /* exclude because of login error in safari */
     //   {
     //     name: 'webkit',
