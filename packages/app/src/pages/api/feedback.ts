@@ -25,17 +25,17 @@ export async function sendFeedbackEmail(
   feedback: FeedbackInput,
 ): Promise<void> {
   const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: Number(process.env.EMAIL_PORT),
+    host: process.env.SMTP_HOST,
+    port: Number(process.env.SMTP_PORT),
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASSWORD,
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASSWORD,
     },
   })
 
   const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER,
+    from: process.env.MAIL_FROM,
+    to: process.env.MAIL_TO,
     attachments: [
       {
         filename: 'screenshot.png',
