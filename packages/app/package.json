@@ -76,15 +76,16 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-simple-import-sort": "10.0.0",
     "prettier": "3.0.3",
-    "vite": "4.5.1",
+    "vite": "4.5.2",
     "vitest": "0.29.2"
   },
   "engines": {
     "node": ">=18",
-    "pnpm": "7"
+    "pnpm": "8"
   },
   "volta": {
-    "node": "18.16.0"
+    "node": "18.16.0",
+    "pnpm": "8.14.1"
   },
   "nx": {
     "tags": [

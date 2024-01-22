@@ -100,7 +100,7 @@
     "rollup-plugin-postcss": "4.0.2",
     "tslib": "2.5.0",
     "typescript": "4.9.5",
-    "vite": "4.5.1",
+    "vite": "4.5.2",
     "vitest": "0.34.6",
     "zod": "3.22.4"
   },
@@ -136,10 +136,11 @@
   },
   "engines": {
     "node": ">=18",
-    "pnpm": "7"
+    "pnpm": "8"
   },
   "volta": {
-    "node": "18.16.0"
+    "node": "18.16.0",
+    "pnpm": "8.14.1"
   },
   "nx": {
     "tags": [
