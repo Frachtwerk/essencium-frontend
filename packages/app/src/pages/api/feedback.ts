@@ -21,6 +21,13 @@ import { feedbackFormSchema, FeedbackInput } from '@frachtwerk/essencium-types'
 import { NextApiRequest, NextApiResponse } from 'next'
 import nodemailer from 'nodemailer'
 
+const RequestMethods = {
+  POST: 'POST',
+  GET: 'GET',
+  PUT: 'PUT',
+  DELETE: 'DELETE',
+} as const
+
 export async function sendFeedbackEmail(
   feedback: FeedbackInput,
 ): Promise<void> {
@@ -62,7 +69,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> {
-  if (req.method === 'POST') {
+  if (req.method === RequestMethods.POST) {
     const feedback = req.body
 
     const isFeedbackValid = feedbackFormSchema.safeParse(feedback)

@@ -19,7 +19,6 @@
 
 import {
   feedbackFormSchema,
-  FeedbackFormType,
   FeedbackInput,
   OpenInput,
   OpenInputTypeValues,
@@ -103,9 +102,27 @@ export function FeedbackWidget({
 
   const [screenshot, setScreenshot] = useState<string | null>(null)
 
-  const { handleSubmit, control, formState, reset } = useZodForm({
+  const { handleSubmit, control, formState, reset, setValue } = useZodForm({
     schema: feedbackFormSchema,
+    defaultValues: {
+      message: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      feedbackType: OpenInput.Other,
+      screenshot: '',
+      path: '',
+    },
   })
+
+  useEffect(() => {
+    setValue('firstName', currentUser?.firstName || '')
+    setValue('lastName', currentUser?.lastName || '')
+    setValue('email', currentUser?.email || '')
+    setValue('feedbackType', openInput || OpenInput.Other)
+    setValue('screenshot', screenshot || '')
+    setValue('path', router.asPath || '')
+  }, [currentUser, openInput, screenshot, router.asPath, setValue])
 
   const iconStyling = {
     size: openInput ? 16 : 40,
@@ -153,7 +170,7 @@ export function FeedbackWidget({
     setScreenshot(null)
   }
 
-  function onSubmit(form: FeedbackFormType): void {
+  function onSubmit(form: FeedbackInput): void {
     if (!currentUser) return
 
     createFeedback({
