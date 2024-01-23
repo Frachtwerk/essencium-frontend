@@ -17,13 +17,4 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './base'
-export * from './contact'
-export * from './feedback'
-export * from './filter'
-export * from './footer'
-export * from './navbar'
-export * from './right'
-export * from './role'
-export * from './translation'
-export * from './user'
+export * from './FeedbackWidget'

@@ -19,6 +19,7 @@
 
 export * from './Contact'
 export * from './DeleteDialog'
+export * from './FeedbackWidget'
 export * from './Footer'
 export * from './Header'
 export * from './Home'

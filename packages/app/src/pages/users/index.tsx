@@ -380,6 +380,7 @@ function UsersView(): JSX.Element {
         loadingTitle={t('notifications.loadingAsyncData.title') as string}
         loadingMessage={t('notifications.loadingAsyncData.message') as string}
       />
+
       <Flex py="md" justify="space-between" align="center">
         <Title size="h2">
           <Flex align="center" gap={10}>

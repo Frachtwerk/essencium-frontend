@@ -172,7 +172,6 @@ function App({
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
             <Notifications limit={3} />
-
             {getLayout(
               <Component {...pageProps} />,
               version &&
