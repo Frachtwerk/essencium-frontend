@@ -10,6 +10,11 @@ setup('authenticate', async ({ page }) => {
   await page.getByLabel('E-Mail').fill(ADMIN.username)
   await page.getByLabel('Password').click()
   await page.getByLabel('Password').fill(ADMIN.password)
+  await page
+    .locator('div')
+    .filter({ hasText: /^Password \*$/ })
+    .locator('button')
+    .click()
   await page.getByRole('button', { name: 'Login' }).click()
 
   await page.waitForURL(BASE_URL)

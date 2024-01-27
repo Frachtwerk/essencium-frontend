@@ -16,15 +16,15 @@ export const BASE_URL = 'https://staging.essencium.dev'
 
 export const BASE_URL_DOCS = 'https://docs.essencium.dev/'
 
-if (!process.env.ADMIN_USERNAME || !process.env.ADMIN_PASSWORD) {
+if (!process.env.TEST_ADMIN_USERNAME || !process.env.TEST_ADMIN_PASSWORD) {
   throw new Error(
     'Please provide ADMIN_USERNAME and ADMIN_PASSWORD env variables',
   )
 }
 
 export const ADMIN = {
-  username: process.env.ADMIN_USERNAME,
-  password: process.env.ADMIN_PASSWORD,
+  username: process.env.TEST_ADMIN_USERNAME,
+  password: process.env.TEST_ADMIN_PASSWORD,
   firstName: 'Admin',
   lastName: 'User',
 }
