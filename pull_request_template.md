@@ -9,7 +9,8 @@ _loom link if applicable_
 - [ ] implement and update tests
 - [ ] update docs
 - [ ] pull `main` & resolve merge conflicts
+- [ ] check Vercel deployment
 
 ### CLOSES
 
-_list of issues closed in this PR_
+closes _list of issues closed in this PR_
