@@ -21,6 +21,7 @@
 import {
   DeleteDialog,
   HttpNotification,
+  LoadingSpinner,
   Table,
   TablePagination,
 } from '@frachtwerk/essencium-lib'
@@ -34,10 +35,8 @@ import {
   ActionIcon,
   Badge,
   Button,
-  Center,
   Flex,
   Group,
-  Loader,
   Popover,
   Switch,
   Text,
@@ -433,9 +432,7 @@ function UsersView(): JSX.Element {
         />
 
         {isLoadingUsers ? (
-          <Center h="100%">
-            <Loader size="xl" name="loader" />
-          </Center>
+          <LoadingSpinner show />
         ) : (
           <>
             <Table

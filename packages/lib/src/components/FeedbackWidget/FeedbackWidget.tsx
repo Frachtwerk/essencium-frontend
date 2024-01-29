@@ -32,7 +32,6 @@ import {
   Dialog,
   Flex,
   Group,
-  Loader,
   rem,
   Stack,
   Text,
@@ -60,6 +59,7 @@ import { ReactNode, useEffect, useState } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../hooks'
+import { LoadingSpinner } from '../LoadingSpinner'
 
 type NotificationParams = {
   notificationType: 'created' | 'updated' | 'deleted'
@@ -276,9 +276,7 @@ export function FeedbackWidget({
               <Box>
                 {isLoading ? (
                   <Box h={rem(100)}>
-                    <Center>
-                      <Loader mt="xl" />
-                    </Center>
+                    <LoadingSpinner show size="lg" />
                   </Box>
                 ) : null}
 
