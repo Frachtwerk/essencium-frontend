@@ -16,15 +16,15 @@ export const BASE_URL = 'https://staging.essencium.dev'
 
 export const BASE_URL_DOCS = 'https://docs.essencium.dev/'
 
-if (!process.env.ADMIN_USERNAME || !process.env.ADMIN_PASSWORD) {
+if (!process.env.TEST_ADMIN_USERNAME || !process.env.TEST_ADMIN_PASSWORD) {
   throw new Error(
     'Please provide ADMIN_USERNAME and ADMIN_PASSWORD env variables',
   )
 }
 
 export const ADMIN = {
-  username: process.env.ADMIN_USERNAME,
-  password: process.env.ADMIN_PASSWORD,
+  username: process.env.TEST_ADMIN_USERNAME,
+  password: process.env.TEST_ADMIN_PASSWORD,
   firstName: 'Admin',
   lastName: 'User',
 }
@@ -63,26 +63,36 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    { name: 'setup', testDir: './playwright', testMatch: /.*\.setup\.ts/ },
-
+    {
+      name: 'authSetup',
+      testDir: './playwright',
+      testMatch: /auth\.setup\.ts/,
+    },
+    {
+      name: 'langSetup',
+      testDir: './playwright',
+      testMatch: /lang\.setup\.ts/,
+      use: {
+        storageState: './playwright/.auth/user.json',
+      },
+      dependencies: ['authSetup'],
+    },
     {
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
         storageState: './playwright/.auth/user.json',
       },
-      dependencies: ['setup'],
+      dependencies: ['authSetup', 'langSetup'],
     },
-
     {
       name: 'firefox',
       use: {
         ...devices['Desktop Firefox'],
         storageState: './playwright/.auth/user.json',
       },
-      dependencies: ['setup'],
+      dependencies: ['authSetup', 'langSetup'],
     },
-
     /* exclude because of login error in safari */
     //   {
     //     name: 'webkit',
