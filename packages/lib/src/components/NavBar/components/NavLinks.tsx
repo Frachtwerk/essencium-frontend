@@ -44,7 +44,7 @@ export function NavLinks({ links, userRights }: Props): JSX.Element {
   }
 
   return (
-    <Stack spacing="md">
+    <Stack gap="md">
       {links.map(link =>
         !link.rights.length ||
         (link.rights && hasRequiredRights(link.rights)) ? (

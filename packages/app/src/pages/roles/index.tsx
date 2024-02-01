@@ -42,7 +42,6 @@ import {
   Loader,
   Text,
   Title,
-  useMantineTheme,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { IconPencil, IconTrash, IconUserStar } from '@tabler/icons-react'
@@ -67,6 +66,7 @@ import {
 import { AuthLayout } from '@/components/layouts'
 import { getTranslation, hasRequiredRights, parseSorting } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
+import classes from '@/views/roles/roles.module.scss'
 
 const DEFAULT_SORTING: SortingState = [{ id: 'name', desc: false }]
 
@@ -80,8 +80,6 @@ export const FORM_DEFAULTS_ROLES_VIEW = {
 
 function RolesView(): JSX.Element {
   const { t } = useTranslation()
-
-  const theme = useMantineTheme()
 
   const userRights = useAtomValue(userRightsAtom)
 
@@ -203,16 +201,7 @@ function RolesView(): JSX.Element {
         cell: info => (
           <>
             {(info.getValue() as RightOutput[]).map((right: RightOutput) => (
-              <Badge
-                key={right.authority}
-                sx={{
-                  backgroundColor: theme.colors.gray[2],
-                  color: theme.colors.gray[8],
-                  border: 'none',
-                  fontWeight: 'normal',
-                }}
-                style={{ margin: 3 }}
-              >
+              <Badge key={right.authority} className={classes.badge}>
                 {right.authority}
               </Badge>
             ))}
@@ -259,7 +248,7 @@ function RolesView(): JSX.Element {
         size: 120,
       },
     ]
-  }, [t, theme.colors.gray, userRights, editModalHandlers, deleteModalHandlers])
+  }, [t, userRights, editModalHandlers, deleteModalHandlers])
 
   const table = useReactTable({
     data: roles?.content || [],

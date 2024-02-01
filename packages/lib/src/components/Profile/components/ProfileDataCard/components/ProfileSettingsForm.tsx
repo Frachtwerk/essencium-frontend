@@ -26,10 +26,10 @@ import {
   Box,
   Button,
   Flex,
-  MediaQuery,
   Select,
   Switch,
   Text,
+  useMantineColorScheme,
   useMantineTheme,
 } from '@mantine/core'
 import { IconCheck, IconX } from '@tabler/icons-react'
@@ -37,6 +37,7 @@ import { useTranslation } from 'next-i18next'
 import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../../../../hooks'
+import classes from './ProfileSettingsForm.module.css'
 
 type Props = {
   user: UserOutput
@@ -54,6 +55,8 @@ export function ProfileSettingsForm({
   const { t } = useTranslation()
 
   const theme = useMantineTheme()
+
+  const { colorScheme } = useMantineColorScheme()
 
   const { handleSubmit, control, formState } = useZodForm({
     schema: userUpdateSchema,
@@ -83,13 +86,21 @@ export function ProfileSettingsForm({
                 user.enabled ? (
                   <IconCheck
                     size={12}
-                    color={theme.colors.teal[theme.fn.primaryShade()]}
+                    color={
+                      colorScheme === 'dark'
+                        ? theme.colors.teal[7]
+                        : theme.colors.teal[6]
+                    }
                     stroke={3}
                   />
                 ) : (
                   <IconX
                     size={12}
-                    color={theme.colors.gray[theme.fn.primaryShade()]}
+                    color={
+                      colorScheme === 'dark'
+                        ? theme.colors.gray[7]
+                        : theme.colors.gray[6]
+                    }
                     stroke={3}
                   />
                 )
@@ -98,25 +109,24 @@ export function ProfileSettingsForm({
           )}
         />
 
-        <MediaQuery query="(max-width: 600px)" styles={{ minWidth: '100%' }}>
-          <Controller
-            name="role"
-            control={control}
-            render={({ field }) => (
-              <Select
-                {...field}
-                mb="md"
-                maw="60%"
-                radius="sm"
-                label={t('profileView.dataCard.tabs.settings.content.role')}
-                placeholder={String(
-                  t('profileView.dataCard.tabs.settings.content.role'),
-                )}
-                data={(roles || []).map(role => role.name)}
-              />
-            )}
-          />
-        </MediaQuery>
+        <Controller
+          name="role"
+          control={control}
+          render={({ field }) => (
+            <Select
+              {...field}
+              mb="md"
+              maw="60%"
+              radius="sm"
+              label={t('profileView.dataCard.tabs.settings.content.role')}
+              placeholder={String(
+                t('profileView.dataCard.tabs.settings.content.role'),
+              )}
+              data={(roles || []).map(role => role.name)}
+              className={classes.select}
+            />
+          )}
+        />
 
         <Box mt="-0.6rem" h="0.8rem">
           {formState.errors.role && (

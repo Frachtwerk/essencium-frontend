@@ -42,6 +42,7 @@ import {
   Switch,
   Text,
   Title,
+  useMantineColorScheme,
   useMantineTheme,
 } from '@mantine/core'
 import { useDebouncedValue, useDisclosure } from '@mantine/hooks'
@@ -77,6 +78,8 @@ import { AuthLayout } from '@/components/layouts'
 import { getTranslation, hasRequiredRights, parseSorting } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
+import classes from './users.module.css'
+
 export const FORM_DEFAULTS_USERS_VIEW = {
   firstName: '',
   lastName: '',
@@ -108,6 +111,7 @@ function UsersView(): JSX.Element {
   const { t } = useTranslation()
 
   const theme = useMantineTheme()
+  const { colorScheme } = useMantineColorScheme()
 
   const [deleteModalOpened, deleteModalHandlers] = useDisclosure(false)
   const [userToBeDeleted, setUserToBeDeleted] = useState<UserOutput | null>(
@@ -310,22 +314,13 @@ function UsersView(): JSX.Element {
                   <Popover.Dropdown p={0}>
                     <Group
                       onClick={() => handleInvalidateToken(user)}
-                      spacing="xs"
-                      sx={{
-                        padding: '0.7rem 0 0.5rem 1rem',
-                        cursor: 'pointer',
-                        '&:hover': {
-                          backgroundColor:
-                            theme.colorScheme === 'dark'
-                              ? theme.colors.gray[9]
-                              : theme.colors.gray[0],
-                        },
-                      }}
+                      gap="xs"
+                      className={classes.group}
                     >
                       <IconLogout
                         size={16}
                         color={
-                          theme.colorScheme === 'dark'
+                          colorScheme === 'dark'
                             ? theme.colors.gray[3]
                             : theme.colors.gray[7]
                         }
@@ -348,9 +343,9 @@ function UsersView(): JSX.Element {
       user,
       userRights,
       theme.colors.gray,
-      theme.colorScheme,
       handleInvalidateToken,
       deleteModalHandlers,
+      colorScheme,
     ],
   )
 

@@ -41,3 +41,13 @@
 .tableRowBg:nth-of-type(2n + 1) .tableColStickyDarkmode:first-child {
   background: #25262b;
 }
+
+.flex {
+  cursor: default;
+  color: var(--mantine-color-dark-4);
+}
+
+.flexSort {
+  cursor: pointer;
+  color: var(--mantine-color-blue-4);
+}

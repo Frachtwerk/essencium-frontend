@@ -52,10 +52,12 @@ function SetPasswordView(): JSX.Element {
     )
   }
 
+  // Title align="center"
+
   return (
     <Container size={450} my="xl">
       {!showSuccessMessage && (
-        <Title align="center" order={2} fw="bold">
+        <Title ta="center" order={2} fw="bold">
           {t('setPasswordView.title')}
         </Title>
       )}

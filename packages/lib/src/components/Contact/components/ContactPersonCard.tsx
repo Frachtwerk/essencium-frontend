@@ -63,7 +63,7 @@ export function ContactPersonCard(): JSX.Element {
         </Title>
 
         <Flex direction="column" align="flex-start" gap="sm">
-          <Group spacing="xl" aria-label="Contact info">
+          <Group gap="xl" aria-label="Contact info">
             <ThemeIcon radius="md">
               <IconPhoneCall size={16} />
             </ThemeIcon>
@@ -71,7 +71,7 @@ export function ContactPersonCard(): JSX.Element {
             <Text>555 - 5555 5555</Text>
           </Group>
 
-          <Group spacing="xl" aria-label="Contact info">
+          <Group gap="xl" aria-label="Contact info">
             <ThemeIcon radius="md">
               <IconMail size={16} />
             </ThemeIcon>
@@ -79,7 +79,7 @@ export function ContactPersonCard(): JSX.Element {
             <Text>test@email.de</Text>
           </Group>
 
-          <Group spacing="xl" aria-label="Contact info">
+          <Group gap="xl" aria-label="Contact info">
             <ThemeIcon radius="md">
               <IconLocation size={16} />
             </ThemeIcon>

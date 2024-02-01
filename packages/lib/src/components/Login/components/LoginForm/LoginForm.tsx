@@ -146,7 +146,7 @@ export function LoginForm({
                 )}
               </Box>
 
-              <Group position="apart" mt="md">
+              <Group justify="apart" mt="md">
                 <Anchor
                   size="xs"
                   fw="bold"

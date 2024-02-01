@@ -19,8 +19,8 @@
 
 import {
   Button,
-  ColorScheme,
   Group,
+  MantineColorScheme,
   Popover,
   Text,
   useMantineColorScheme,
@@ -30,16 +30,18 @@ import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 
+import classes from './ThemeSelector.module.css'
+
 export function ThemeSelector(): JSX.Element {
   const { t } = useTranslation()
 
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme()
+  const { colorScheme, setColorScheme } = useMantineColorScheme()
   const theme = useMantineTheme()
 
   const [hasSelectedLight, setSelectedLight] = useState(false)
   const [hasSelectedDark, setSelectedDark] = useState(false)
 
-  let systemColorScheme: ColorScheme = 'light'
+  let systemColorScheme: MantineColorScheme = 'light'
 
   if (typeof window !== 'undefined') {
     systemColorScheme = window.matchMedia('(prefers-color-scheme: light)')
@@ -52,7 +54,7 @@ export function ThemeSelector(): JSX.Element {
       <Popover.Target>
         <Button
           aria-label="theme-selector"
-          leftIcon={
+          leftSection={
             colorScheme === 'light' ? (
               <IconSun
                 color={
@@ -85,19 +87,10 @@ export function ThemeSelector(): JSX.Element {
       <Popover.Dropdown p={0}>
         <Group
           onClick={() => {
-            toggleColorScheme('light')
+            setColorScheme('light')
             setSelectedLight(true)
           }}
-          sx={{
-            padding: '0.7rem 0 0.5rem 1rem',
-            cursor: 'pointer',
-            '&:hover': {
-              backgroundColor:
-                theme.colorScheme === 'dark'
-                  ? theme.colors.gray[9]
-                  : theme.colors.gray[0],
-            },
-          }}
+          className={classes.group}
         >
           <IconSun size={20} />
 
@@ -106,19 +99,10 @@ export function ThemeSelector(): JSX.Element {
 
         <Group
           onClick={() => {
-            toggleColorScheme('dark')
+            setColorScheme('dark')
             setSelectedDark(true)
           }}
-          sx={{
-            padding: '0.7rem 0 0.5rem 1rem',
-            cursor: 'pointer',
-            '&:hover': {
-              backgroundColor:
-                theme.colorScheme === 'dark'
-                  ? theme.colors.gray[9]
-                  : theme.colors.gray[0],
-            },
-          }}
+          className={classes.group}
         >
           <IconMoon size={20} />
 
@@ -127,20 +111,11 @@ export function ThemeSelector(): JSX.Element {
 
         <Group
           onClick={() => {
-            toggleColorScheme(systemColorScheme)
+            setColorScheme(systemColorScheme)
             setSelectedLight(false)
             setSelectedDark(false)
           }}
-          sx={{
-            padding: '0.7rem 0 0.7rem 1rem',
-            cursor: 'pointer',
-            '&:hover': {
-              backgroundColor:
-                theme.colorScheme === 'dark'
-                  ? theme.colors.gray[9]
-                  : theme.colors.gray[0],
-            },
-          }}
+          className={classes.group}
         >
           <IconDeviceLaptop size={20} />
 

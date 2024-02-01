@@ -208,7 +208,7 @@ export function Translations({
       >
         <Select
           label={t('translationsView.select')}
-          onChange={handleSelectedLanguage}
+          onChange={() => handleSelectedLanguage}
           defaultValue={selectedLanguage}
           data={[
             { value: 'en', label: t('en') as string },
@@ -219,7 +219,7 @@ export function Translations({
 
         <TextInput
           type="search"
-          icon={<IconSearch size={18} />}
+          leftSection={<IconSearch size={18} />}
           onChange={event => setSearchQuery(event.target.value)}
           w="45%"
           label={t('translationsView.search.label')}

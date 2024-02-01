@@ -1,0 +1,25 @@
+.foldedNavBox {
+  height: 50px;
+}
+
+.unfoldedNavBox {
+  cursor: pointer;
+}
+
+.navbar {
+  width: 80px;
+  transition: width 0.4s ease-in-out;
+}
+
+.navbar:hover {
+  width: 250px;
+}
+
+.fixedNavbar {
+  width: 250px;
+  transition: width 0.4s ease-in-out;
+}
+
+.fixedNavbar:hover {
+  width: 250px;
+}

@@ -29,7 +29,7 @@ export function Login({ form: LoginForm }: Props): JSX.Element {
 
   return (
     <Container mt="150px">
-      <Title align="center" order={2} fw="bold">
+      <Title ta="center" order={2} fw="bold">
         {t('loginView.title')}
       </Title>
 

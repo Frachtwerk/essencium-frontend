@@ -19,14 +19,15 @@
 
 import { NavLink } from '@frachtwerk/essencium-types'
 import {
+  AppShellNavbar,
+  AppShellSection,
   Box,
   Code,
   Flex,
   Group,
-  MediaQuery,
-  Navbar,
   NavLink as MantineNavLink,
   Stack,
+  useMantineColorScheme,
   useMantineTheme,
 } from '@mantine/core'
 import { useTimeout } from '@mantine/hooks'
@@ -36,6 +37,7 @@ import { useTranslation } from 'next-i18next'
 import { Dispatch, SetStateAction } from 'react'
 
 import { NavLinks } from './components'
+import classes from './NavBar.module.css'
 
 type Props = {
   isOpen: boolean
@@ -64,6 +66,7 @@ export function NavBar({
   fixedNav,
   setFixedNav,
 }: Props): JSX.Element {
+  const { colorScheme } = useMantineColorScheme()
   const theme = useMantineTheme()
 
   const { t } = useTranslation()
@@ -74,173 +77,153 @@ export function NavBar({
     setFixedNav(fixed => !fixed)
   }
 
-  const width = fixedNav ? '250px' : '80px'
-
   return (
     <Box>
-      <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-        <Navbar
-          onMouseEnter={() => {
-            if (!fixedNav) {
-              start()
-            }
+      <AppShellNavbar
+        visibleFrom="sm"
+        onMouseEnter={() => {
+          if (!fixedNav) {
+            start()
+          }
+        }}
+        onMouseLeave={() => {
+          if (!fixedNav) {
+            setFoldedNav(true)
+            clear()
+          }
+        }}
+        p="sm"
+        hiddenFrom="sm"
+        className={fixedNav ? classes.fixedNavbar : classes.navbar}
+        zIndex={100}
+        mt={isOpen ? '0' : '-3.6rem'}
+      >
+        <Stack
+          style={{
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
           }}
-          onMouseLeave={() => {
-            if (!fixedNav) {
-              setFoldedNav(true)
-              clear()
-            }
-          }}
-          p="sm"
-          hiddenBreakpoint="sm"
-          sx={{
-            width,
-            transition: 'width 0.4s ease-in-out',
-            '&:hover': {
-              width: '250px',
-            },
-          }}
-          height="100%"
-          zIndex={100}
-          fixed
-          mt={isOpen ? '0' : '-3.6rem'}
         >
-          <Stack
-            style={{
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Navbar.Section mb="xl">
-              <Group spacing="xs" align="center">
-                <Flex justify="space-between" align="center" gap="xl">
-                  <NextLink href="/">
-                    {foldedNav ? (
-                      <Box pr={150}>{icon}</Box>
-                    ) : (
-                      <Box sx={{ height: '50px' }}>{logo}</Box>
-                    )}
-                  </NextLink>
-
-                  {!foldedNav ? (
-                    <Box
-                      onClick={() => toggleFixedNav()}
-                      ml="xl"
-                      mt="xs"
-                      sx={{ cursor: 'pointer' }}
-                    >
-                      {fixedNav ? (
-                        <IconPinFilled
-                          size={20}
-                          color={
-                            theme.colorScheme === 'dark'
-                              ? theme.colors.gray[3]
-                              : theme.colors.dark[9]
-                          }
-                        />
-                      ) : (
-                        <IconPinnedOff
-                          size={20}
-                          color={
-                            theme.colorScheme === 'dark'
-                              ? theme.colors.gray[3]
-                              : theme.colors.dark[9]
-                          }
-                        />
-                      )}
-                    </Box>
-                  ) : null}
-                </Flex>
-
-                {version ? <Code>{version}</Code> : null}
-
-                {process.env.NEXT_PUBLIC_ENV && !foldedNav ? (
-                  <Code>{process.env.NEXT_PUBLIC_ENV}</Code>
-                ) : null}
-              </Group>
-            </Navbar.Section>
-
-            <Navbar.Section grow>
-              <NavLinks links={links} userRights={userRights} />
-            </Navbar.Section>
-
-            <Navbar.Section mt="auto" mb="70px">
-              <MantineNavLink
-                icon={<IconLogout />}
-                label={t('navigation.logout.label')}
-                onClick={() => handleLogout()}
-                styles={{
-                  root: {
-                    borderRadius: theme.radius.sm,
-                  },
-                  label: {
-                    fontSize: theme.fontSizes.sm,
-                  },
-                }}
-              />
-            </Navbar.Section>
-          </Stack>
-        </Navbar>
-      </MediaQuery>
-
-      <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-        <Navbar
-          hidden={!isOpen}
-          p="sm"
-          hiddenBreakpoint="sm"
-          height="100%"
-          zIndex={100}
-          fixed
-        >
-          <Stack
-            style={{
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Navbar.Section mb="xl">
-              <Group spacing="xs" align="center">
+          <AppShellSection mb="xl">
+            <Group gap="xs" align="center">
+              <Flex justify="space-between" align="center" gap="xl">
                 <NextLink href="/">
-                  <Box>{logo}</Box>
+                  {foldedNav ? (
+                    <Box pr={150}>{icon}</Box>
+                  ) : (
+                    <Box className={classes.foldedNavBox}>{logo}</Box>
+                  )}
                 </NextLink>
-                {version ? (
-                  <Box>
-                    <Code>{version}</Code>
 
-                    {process.env.NODE_ENV === 'development' ? (
-                      <Code>{process.env.NODE_ENV}</Code>
-                    ) : null}
+                {!foldedNav ? (
+                  <Box
+                    onClick={() => toggleFixedNav()}
+                    ml="xl"
+                    mt="xs"
+                    className={classes.unfoldedNavBox}
+                  >
+                    {fixedNav ? (
+                      <IconPinFilled
+                        size={20}
+                        color={
+                          colorScheme === 'dark'
+                            ? theme.colors.gray[3]
+                            : theme.colors.dark[9]
+                        }
+                      />
+                    ) : (
+                      <IconPinnedOff
+                        size={20}
+                        color={
+                          colorScheme === 'dark'
+                            ? theme.colors.gray[3]
+                            : theme.colors.dark[9]
+                        }
+                      />
+                    )}
                   </Box>
                 ) : null}
-              </Group>
-            </Navbar.Section>
+              </Flex>
 
-            <Navbar.Section grow>
-              <NavLinks links={links} userRights={userRights} />
-            </Navbar.Section>
+              {version ? <Code>{version}</Code> : null}
 
-            <Navbar.Section mt="auto" grow>
-              <MantineNavLink
-                icon={<IconLogout />}
-                label={t('navigation.logout.label')}
-                onClick={() => handleLogout()}
-                styles={{
-                  root: {
-                    borderRadius: theme.radius.sm,
-                  },
-                  label: {
-                    fontSize: theme.fontSizes.sm,
-                  },
-                }}
-              />
-            </Navbar.Section>
-          </Stack>
-        </Navbar>
-      </MediaQuery>
+              {process.env.NEXT_PUBLIC_ENV && !foldedNav ? (
+                <Code>{process.env.NEXT_PUBLIC_ENV}</Code>
+              ) : null}
+            </Group>
+          </AppShellSection>
+
+          <AppShellSection grow>
+            <NavLinks links={links} userRights={userRights} />
+          </AppShellSection>
+
+          <AppShellSection mt="auto" mb="70px">
+            <MantineNavLink
+              leftSection={<IconLogout />}
+              label={t('navigation.logout.label')}
+              onClick={() => handleLogout()}
+              styles={{
+                root: {
+                  borderRadius: theme.radius.sm,
+                },
+                label: {
+                  fontSize: theme.fontSizes.sm,
+                },
+              }}
+            />
+          </AppShellSection>
+        </Stack>
+      </AppShellNavbar>
+
+      <AppShellNavbar hiddenFrom="sm" hidden={!isOpen} p="sm" zIndex={100}>
+        <Stack
+          style={{
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+          }}
+        >
+          <AppShellSection mb="xl">
+            <Group gap="xs" align="center">
+              <NextLink href="/">
+                <Box>{logo}</Box>
+              </NextLink>
+              {version ? (
+                <Box>
+                  <Code>{version}</Code>
+
+                  {process.env.NODE_ENV === 'development' ? (
+                    <Code>{process.env.NODE_ENV}</Code>
+                  ) : null}
+                </Box>
+              ) : null}
+            </Group>
+          </AppShellSection>
+
+          <AppShellSection grow>
+            <NavLinks links={links} userRights={userRights} />
+          </AppShellSection>
+
+          <AppShellSection mt="auto" grow>
+            <MantineNavLink
+              leftSection={<IconLogout />}
+              label={t('navigation.logout.label')}
+              onClick={() => handleLogout()}
+              styles={{
+                root: {
+                  borderRadius: theme.radius.sm,
+                },
+                label: {
+                  fontSize: theme.fontSizes.sm,
+                },
+              }}
+            />
+          </AppShellSection>
+        </Stack>
+      </AppShellNavbar>
     </Box>
   )
 }

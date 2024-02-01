@@ -21,8 +21,7 @@ import { Footer, Header, NavBar } from '@frachtwerk/essencium-lib'
 import { FooterLink, NavLink, RIGHTS } from '@frachtwerk/essencium-types'
 import { AppShell, Box, useMantineTheme } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
-import type { SpotlightAction } from '@mantine/spotlight'
-import { SpotlightProvider } from '@mantine/spotlight'
+import { Spotlight, SpotlightActionData } from '@mantine/spotlight'
 import {
   IconHome,
   IconLanguage,
@@ -163,16 +162,18 @@ export function AuthLayout({
 
   const userRights = useAtomValue(userRightsAtom)
 
-  const actions: SpotlightAction[] | null = SEARCH_ITEMS.filter(link =>
+  const actions: SpotlightActionData[] | null = SEARCH_ITEMS.filter(link =>
     !link.rights || link.rights?.some(right => userRights?.includes(right))
       ? link
       : null,
   ).map(link => {
     return {
-      title: t(link.label),
+      id: link.label,
+      title: t(link.label) as string,
       description: link.description ? (t(link.description) as string) : '',
-      onTrigger: () => router.push(`${link.to}`),
-      icon: link.icon,
+      onClick: () => router.push(`${link.to}`),
+      leftSection: link.icon,
+      highlightColor: theme.colors.blue[6],
     }
   })
 
@@ -271,61 +272,63 @@ export function AuthLayout({
   }
 
   return (
-    <SpotlightProvider
+    <Spotlight
       actions={actions}
-      searchPlaceholder={t('header.spotlight.placeholder') as string}
-      searchIcon={<IconSearch />}
+      searchProps={{
+        leftSection: <IconSearch />,
+        placeholder: t('header.spotlight.placeholder') as string,
+      }}
       highlightQuery
-      highlightColor={theme.colors.blue[6]}
-      nothingFoundMessage={t('header.spotlight.nothingFound') as string}
+      nothingFound={t('header.spotlight.nothingFound') as string}
     >
       <Head>
         <title>{pageTitle}</title>
       </Head>
 
       <AppShell
-        asideOffsetBreakpoint="sm"
-        navbarOffsetBreakpoint="sm"
-        navbar={
-          <NavBar
-            isOpen={isOpenedNav}
-            links={NAV_LINKS}
-            userRights={userRights}
-            handleLogout={handleLogout}
-            version={version}
-            foldedNav={isFoldedNav}
-            setFoldedNav={setIsFoldedNav}
-            fixedNav={isFixedNav}
-            setFixedNav={setIsFixedNav}
-            logo={
-              <Image
-                src="/img/web/logotype_400x100px.svg"
-                alt={t('header.logo')}
-                width={150}
-                height={50}
-                style={{ verticalAlign: 'initial' }}
-              />
-            }
-            icon={
-              <Image
-                src="/img/web/emblem_400x400px.svg"
-                alt={t('header.logo')}
-                width={50}
-                height={50}
-              />
-            }
-          />
-        }
-        footer={<Footer links={FOOTER_LINKS} />}
-        header={
-          <Header
-            user={user}
-            marginLeft={getSidebarMargin()}
-            isOpen={isOpenedNav}
-            handleOpenNav={handleOpenNav}
-          />
-        }
+        footer={{ height: { base: 58 } }}
+        header={{ height: { base: 60 } }}
+        navbar={{ width: 48, breakpoint: 'sm' }}
+        aside={{ width: 48, breakpoint: 'sm' }}
       >
+        <NavBar
+          isOpen={isOpenedNav}
+          links={NAV_LINKS}
+          userRights={userRights}
+          handleLogout={handleLogout}
+          version={version}
+          foldedNav={isFoldedNav}
+          setFoldedNav={setIsFoldedNav}
+          fixedNav={isFixedNav}
+          setFixedNav={setIsFixedNav}
+          logo={
+            <Image
+              src="/img/web/logotype_400x100px.svg"
+              alt={t('header.logo')}
+              width={150}
+              height={50}
+              style={{ verticalAlign: 'initial' }}
+            />
+          }
+          icon={
+            <Image
+              src="/img/web/emblem_400x400px.svg"
+              alt={t('header.logo')}
+              width={50}
+              height={50}
+            />
+          }
+        />
+
+        <Footer links={FOOTER_LINKS} />
+
+        <Header
+          user={user}
+          marginLeft={getSidebarMargin()}
+          isOpen={isOpenedNav}
+          handleOpenNav={handleOpenNav}
+        />
+
         <Box
           style={{
             marginLeft: getSidebarMargin(),
@@ -334,6 +337,6 @@ export function AuthLayout({
           {showChildren ? children : null}
         </Box>
       </AppShell>
-    </SpotlightProvider>
+    </Spotlight>
   )
 }

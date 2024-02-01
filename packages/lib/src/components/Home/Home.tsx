@@ -24,6 +24,8 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
+import classes from './Home.module.css'
+
 export function Home(): JSX.Element {
   const { t } = useTranslation()
   const router = useRouter()
@@ -34,7 +36,7 @@ export function Home(): JSX.Element {
       gap="lg"
       align="center"
       justify="center"
-      sx={{ height: '80vh' }}
+      className={classes.flex}
     >
       <Center my="xl">
         <Image
@@ -50,7 +52,7 @@ export function Home(): JSX.Element {
           <Button
             onClick={() => openSpotlight()}
             variant="outline"
-            leftIcon={<IconSearch />}
+            leftSection={<IconSearch />}
             fullWidth
           >
             {t('homeView.action.search')}
@@ -58,7 +60,7 @@ export function Home(): JSX.Element {
           <Button
             onClick={() => router.push('/users')}
             variant="outline"
-            leftIcon={<IconUsers />}
+            leftSection={<IconUsers />}
             fullWidth
           >
             {t('homeView.action.users')}
@@ -66,7 +68,7 @@ export function Home(): JSX.Element {
           <Button
             onClick={() => router.push('/profile')}
             variant="outline"
-            leftIcon={<IconUserEdit />}
+            leftSection={<IconUserEdit />}
             fullWidth
           >
             {t('homeView.action.profile')}

@@ -1,0 +1,9 @@
+.flex {
+  height: 100%;
+}
+
+.appShellHeader {
+  @media (max-width: $mantine-breakpoint-sm) {
+    margin-left: 0;
+  }
+}

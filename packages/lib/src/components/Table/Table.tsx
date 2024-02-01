@@ -20,13 +20,13 @@ import {
   Flex,
   Select,
   Table as MantineTable,
-  useMantineTheme,
+  useMantineColorScheme,
 } from '@mantine/core'
 import { IconSortAscending2, IconSortDescending2 } from '@tabler/icons-react'
 import { flexRender, Table as TanstackTable } from '@tanstack/react-table'
 import { Dispatch, SetStateAction } from 'react'
 
-import styles from './Table.module.css'
+import classes from './Table.module.css'
 
 type Props<T> = {
   tableModel: TanstackTable<T>
@@ -47,14 +47,14 @@ export function Table<T>({
   setFilterValue,
   firstColSticky,
 }: Props<T>): JSX.Element {
-  const theme = useMantineTheme()
+  const { colorScheme } = useMantineColorScheme()
 
   function getTableColStickyStyle(): string | undefined {
-    if (firstColSticky && theme.colorScheme === 'dark') {
-      return styles.tableColStickyDarkmode
+    if (firstColSticky && colorScheme === 'dark') {
+      return classes.tableColStickyDarkmode
     }
     if (firstColSticky) {
-      return styles.tableColSticky
+      return classes.tableColSticky
     }
     return undefined
   }
@@ -76,16 +76,11 @@ export function Table<T>({
                       align="center"
                       justify="flex-start"
                       gap="sm"
-                      sx={{
-                        cursor: header.column.getCanSort()
-                          ? 'pointer'
-                          : 'default',
-                        '&:hover': {
-                          color: header.column.getCanSort()
-                            ? theme.colors.blue[6]
-                            : theme.colors.dark[4],
-                        },
-                      }}
+                      className={
+                        header.column.getCanSort()
+                          ? classes.flexSort
+                          : classes.flex
+                      }
                       onClick={header.column.getToggleSortingHandler()}
                       w={header.column.getSize()}
                     >
@@ -134,7 +129,7 @@ export function Table<T>({
                   borderBottom: '2px solid white',
                   borderTop: '2px solid white',
                 }}
-                className={firstColSticky ? styles.tableRowBg : undefined}
+                className={firstColSticky ? classes.tableRowBg : undefined}
               >
                 {row.getVisibleCells().map(cell => (
                   <td
