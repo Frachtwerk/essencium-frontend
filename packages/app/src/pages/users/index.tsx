@@ -27,7 +27,6 @@ import {
 import {
   FilterObjectUser,
   RIGHTS,
-  RoleOutput,
   UserOutput,
 } from '@frachtwerk/essencium-types'
 import {
@@ -86,7 +85,7 @@ export const FORM_DEFAULTS_USERS_VIEW = {
   password: '',
   enabled: true,
   locale: 'de',
-  role: undefined,
+  roles: [],
 }
 
 const DEFAULT_SORTING: SortingState = [{ id: 'firstName', desc: false }]
@@ -172,12 +171,14 @@ function UsersView(): JSX.Element {
       userItem => `${userItem.firstName} ${userItem.lastName}`,
     )
     const email = usersContent?.map(userItem => userItem.email)
-    const role = usersContent?.map(userItem => userItem.role.name)
+    const roles = usersContent
+      ?.map(userItem => userItem.roles.map(role => role.name))
+      .flat()
 
     return {
       name: removeDuplicates(name),
       email: removeDuplicates(email),
-      role: removeDuplicates(role),
+      roles: removeDuplicates(roles),
     }
   }
 
@@ -249,13 +250,18 @@ function UsersView(): JSX.Element {
         enableColumnFilter: false,
       },
       {
-        accessorKey: 'role',
-        header: () => <Text>{t('usersView.table.role')}</Text>,
-        cell: info => (
-          <Badge variant="outline">
-            {(info.getValue() as RoleOutput).name}
-          </Badge>
-        ),
+        accessorKey: 'roles',
+        header: () => <Text>{t('usersView.table.roles')}</Text>,
+        cell: info => {
+          const rowRoles = info.row.original.roles
+          return rowRoles.map(role => {
+            return (
+              <Badge variant="outline" key={role.name} mr="xs">
+                {role.name}
+              </Badge>
+            )
+          })
+        },
         size: 120,
       },
       {
