@@ -203,7 +203,7 @@
       "phone": "Telefon",
       "email": "E-Mail",
       "locale": "Sprache",
-      "role": "Rolle",
+      "roles": "Rollen",
       "actions": "Aktionen",
       "invalidate": "Nutzer ausloggen"
     },

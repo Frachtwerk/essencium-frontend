@@ -39,10 +39,12 @@ const sharedPropertiesSchema = z.object({
     .transform(value => (value === null ? '' : value)),
 })
 
+const rolesArray = z.array(roleOutputSchema)
+
 export const userOutputSchema = basePropertiesSchema
   .merge(
     z.object({
-      role: roleOutputSchema,
+      roles: rolesArray,
     }),
   )
   .merge(sharedPropertiesSchema)
@@ -52,14 +54,16 @@ export type UserOutput = z.infer<typeof userOutputSchema>
 export const userInputSchema = sharedPropertiesSchema.merge(
   z.object({
     password: z.string().optional(),
-    role: roleOutputSchema.shape.name.refine(
-      role =>
-        role !== undefined &&
-        roleOutputSchema.shape.name.safeParse(role).success,
-      {
-        message: 'validation.role.isRequired',
-      },
-    ),
+    roles: roleOutputSchema.shape.name
+      .refine(
+        role =>
+          role !== undefined &&
+          roleOutputSchema.shape.name.safeParse(role).success,
+        {
+          message: 'validation.role.isRequired',
+        },
+      )
+      .array(),
   }),
 )
 
@@ -68,14 +72,16 @@ export type UserInput = z.infer<typeof userInputSchema>
 export const userUpdateSchema = userOutputSchema.merge(
   z.object({
     password: z.string().optional(),
-    role: roleOutputSchema.shape.name.refine(
-      role =>
-        role !== undefined &&
-        roleOutputSchema.shape.name.safeParse(role).success,
-      {
-        message: 'validation.role.isRequired',
-      },
-    ),
+    roles: roleOutputSchema.shape.name
+      .refine(
+        role =>
+          role !== undefined &&
+          roleOutputSchema.shape.name.safeParse(role).success,
+        {
+          message: 'validation.role.isRequired',
+        },
+      )
+      .array(),
   }),
 )
 
