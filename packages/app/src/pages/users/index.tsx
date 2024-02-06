@@ -171,9 +171,9 @@ function UsersView(): JSX.Element {
       userItem => `${userItem.firstName} ${userItem.lastName}`,
     )
     const email = usersContent?.map(userItem => userItem.email)
-    const roles = usersContent
-      ?.map(userItem => userItem.roles.map(role => role.name))
-      .flat()
+    const roles = usersContent?.flatMap(userItem =>
+      userItem.roles.map(role => role.name),
+    )
 
     return {
       name: removeDuplicates(name),
