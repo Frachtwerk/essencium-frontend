@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/eslint-config-essencium-v2.1.1...eslint-config-essencium-v2.2.0) (2024-02-06)
+
+
+### Features
+
+* add pnpm v8 support ([c01d9d0](https://github.com/Frachtwerk/essencium-frontend/commit/c01d9d09890eb512c7de933ce417e636ccb68b07))
+
 ## [2.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/eslint-config-essencium-v2.1.0...eslint-config-essencium-v2.1.1) (2024-01-12)
 
 

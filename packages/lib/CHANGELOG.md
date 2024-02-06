@@ -1,5 +1,28 @@
 # Changelog
 
+## [5.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v4.1.2...essencium-lib-v5.0.0) (2024-02-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* change role object of user to list of role objects ([#505](https://github.com/Frachtwerk/essencium-frontend/issues/505))
+
+### Features
+
+* add feedback widget ([e55062d](https://github.com/Frachtwerk/essencium-frontend/commit/e55062dc55051f3e188b2e118b9fdf4a1f59b71f))
+* add pnpm v8 support ([c01d9d0](https://github.com/Frachtwerk/essencium-frontend/commit/c01d9d09890eb512c7de933ce417e636ccb68b07))
+
+
+### Bug Fixes
+
+* fix darkmode for rights ([#475](https://github.com/Frachtwerk/essencium-frontend/issues/475)) ([5045ff6](https://github.com/Frachtwerk/essencium-frontend/commit/5045ff6cdf817fa1bb2b29d6d60858b0ad2086f1))
+* set inital state of foldedNav to true ([#470](https://github.com/Frachtwerk/essencium-frontend/issues/470)) ([e1f4fa8](https://github.com/Frachtwerk/essencium-frontend/commit/e1f4fa8e8ad97f52695ec3cc58c96550d52e8ff2))
+
+
+### Code Refactoring
+
+* change role object of user to list of role objects ([#505](https://github.com/Frachtwerk/essencium-frontend/issues/505)) ([8dc8080](https://github.com/Frachtwerk/essencium-frontend/commit/8dc8080c157a6a33d164a809e181b30d8c010cb6))
+
 ## [4.1.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v4.1.1...essencium-lib-v4.1.2) (2024-01-13)
 
 
