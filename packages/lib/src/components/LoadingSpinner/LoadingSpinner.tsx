@@ -17,43 +17,23 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Container, DefaultMantineColor, Loader } from '@mantine/core'
+import { Container, Loader, LoaderProps } from '@mantine/core'
 import { useEffect, useState } from 'react'
 
-const LoaderVariants = {
-  Bars: 'bars',
-  Oval: 'oval',
-  Dots: 'dots',
-} as const
-
-export type LoaderVariantTypeValues =
-  (typeof LoaderVariants)[keyof typeof LoaderVariants]
-
-const LoaderSizes = {
-  Xs: 'xs',
-  Sm: 'sm',
-  Md: 'md',
-  Lg: 'lg',
-  Xl: 'xl',
-} as const
-
-export type LoaderSizeTypeValues =
-  (typeof LoaderSizes)[keyof typeof LoaderSizes]
-
-interface Props {
+type Props = {
   show: boolean
   delay?: number
-  color?: DefaultMantineColor
-  size?: LoaderSizeTypeValues | number
-  variant?: LoaderVariantTypeValues
+  color?: LoaderProps['color']
+  size?: LoaderProps['size']
+  variant?: LoaderProps['variant']
 }
 
 export function LoadingSpinner({
   show = false,
   delay = 0,
   color = 'blue',
-  size = LoaderSizes.Xl,
-  variant = LoaderVariants.Dots,
+  size = 'xl',
+  variant = 'dots',
 }: Props): JSX.Element | null {
   const [showSpinner, setShowSpinner] = useState(false)
 
