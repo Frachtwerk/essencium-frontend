@@ -66,7 +66,7 @@ export function PersonalDataForm({
       password: '',
       enabled: true,
       locale: 'de',
-      role: undefined,
+      roles: [],
     },
   })
 
@@ -74,7 +74,7 @@ export function PersonalDataForm({
     if (user) {
       const parsedUser = userUpdateSchema.parse({
         ...user,
-        role: user.role.name,
+        roles: user.roles.map(role => role.name),
         enabled: true,
       })
 

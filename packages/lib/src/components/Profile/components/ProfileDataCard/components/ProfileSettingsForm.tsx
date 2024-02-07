@@ -26,7 +26,7 @@ import {
   Box,
   Button,
   Flex,
-  Select,
+  MultiSelect,
   Switch,
   Text,
   useMantineColorScheme,
@@ -60,7 +60,11 @@ export function ProfileSettingsForm({
 
   const { handleSubmit, control, formState } = useZodForm({
     schema: userUpdateSchema,
-    defaultValues: { ...user, role: user.role.name },
+    defaultValues: { ...user, roles: user.roles.map(role => role.name) },
+  })
+
+  const rolesData = roles.map(role => {
+    return { value: role.name, label: role.name }
   })
 
   function onSubmit(data: UserUpdate): void {
@@ -110,10 +114,10 @@ export function ProfileSettingsForm({
         />
 
         <Controller
-          name="role"
+          name="roles"
           control={control}
           render={({ field }) => (
-            <Select
+            <MultiSelect
               {...field}
               mb="md"
               maw="60%"
@@ -122,16 +126,16 @@ export function ProfileSettingsForm({
               placeholder={String(
                 t('profileView.dataCard.tabs.settings.content.role'),
               )}
-              data={(roles || []).map(role => role.name)}
+              data={rolesData}
               className={classes.select}
             />
           )}
         />
 
         <Box mt="-0.6rem" h="0.8rem">
-          {formState.errors.role && (
+          {formState.errors.roles && (
             <Text ml={5} fz="xs" color="red">
-              {formState.errors.role?.message}
+              {formState.errors.roles?.message}
             </Text>
           )}
         </Box>

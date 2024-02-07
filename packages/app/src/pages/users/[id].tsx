@@ -57,7 +57,7 @@ function UpdateUserView(): JSX.Element {
     if (user) {
       const parsedUser = userUpdateSchema.parse({
         ...user,
-        role: user.role.name,
+        roles: user.roles.flatMap(role => role.name),
       })
 
       prefillForm({ ...parsedUser })

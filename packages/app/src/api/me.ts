@@ -55,7 +55,9 @@ export function useGetMe(): UseQueryResult<UserOutput, unknown> {
       setUser(data)
       store.set(userAtom, data)
 
-      setUserRights(data?.role.rights.map(right => right.authority))
+      setUserRights(
+        data?.roles.flatMap(role => role.rights.map(right => right.authority)),
+      )
     },
   })
 

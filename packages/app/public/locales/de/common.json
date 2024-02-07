@@ -203,7 +203,7 @@
       "phone": "Telefon",
       "email": "E-Mail",
       "locale": "Sprache",
-      "role": "Rolle",
+      "roles": "Rollen",
       "actions": "Aktionen",
       "invalidate": "Nutzer ausloggen"
     },
@@ -410,5 +410,20 @@
     "save": "Speichern",
     "cancel": "Abbrechen",
     "reset": "Zurücksetzen"
+  },
+  "feedbackWidget": {
+    "title": "Feedback geben",
+    "issue": "Problem",
+    "idea": "Idee",
+    "other": "Sonstiges",
+    "button": "Feedback senden",
+    "placeholder": "Beschreiben Sie Ihr Anliegen",
+    "successMessage": "Vielen Dank für Ihr Feedback!",
+    "errorMessage": "Leider ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+    "requiredError": "Bitte geben Sie eine Nachricht ein.",
+    "screenshot": {
+      "label": "Screenshot aufnehmen",
+      "created": "Screenshot erstellt"
+    }
   }
 }

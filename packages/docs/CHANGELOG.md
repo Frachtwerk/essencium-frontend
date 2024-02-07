@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v2.1.2...essencium-docs-v2.2.0) (2024-02-06)
+
+
+### Features
+
+* add pnpm v8 support ([c01d9d0](https://github.com/Frachtwerk/essencium-frontend/commit/c01d9d09890eb512c7de933ce417e636ccb68b07))
+
 ## [2.1.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v2.1.1...essencium-docs-v2.1.2) (2024-01-12)
 
 

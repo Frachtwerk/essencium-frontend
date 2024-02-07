@@ -22,6 +22,7 @@ import {
   Box,
   Button,
   Flex,
+  MultiSelect,
   PasswordInput,
   Select,
   Stack,
@@ -57,6 +58,10 @@ export function UserForm({
   isLoading,
 }: Props): JSX.Element {
   const { t } = useTranslation()
+
+  const rolesData = roles.map(role => {
+    return { value: role.name, label: role.name }
+  })
 
   return (
     <form onSubmit={onSubmit}>
@@ -319,25 +324,25 @@ export function UserForm({
 
         <Stack miw="45%">
           <Controller
-            name="role"
+            name="roles"
             control={control}
             render={({ field }) => (
-              <Select
+              <MultiSelect
                 {...field}
                 radius="sm"
                 label={t('addUpdateUserView.form.role')}
                 placeholder={String(t('addUpdateUserView.form.role'))}
-                data={(roles || []).map(role => role.name)}
+                data={rolesData}
                 withAsterisk
               />
             )}
           />
 
           <Box mt="-0.6rem" h="0.8rem">
-            {formState.errors.role && (
+            {formState.errors.roles && (
               <Text ml={5} fz="xs" color="red">
-                {formState.errors.role?.message
-                  ? String(t(formState.errors.role.message))
+                {formState.errors.roles?.message
+                  ? String(t(formState.errors.roles.message))
                   : null}
               </Text>
             )}

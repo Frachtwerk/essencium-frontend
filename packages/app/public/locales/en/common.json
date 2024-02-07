@@ -203,7 +203,7 @@
       "phone": "Phone",
       "email": "E-Mail",
       "locale": "Language",
-      "role": "Role",
+      "roles": "Roles",
       "actions": "Actions",
       "invalidate": "Logout User"
     },
@@ -410,5 +410,20 @@
     "save": "Save",
     "cancel": "Cancel",
     "reset": "Reset"
+  },
+  "feedbackWidget": {
+    "title": "Send Feedback",
+    "issue": "Issue",
+    "idea": "Idea",
+    "other": "Other",
+    "button": "Send",
+    "placeholder": "I am having an issue with...",
+    "successMessage": "Thank you for submitting your feedback!",
+    "errorMessage": "Submitting your feedback was not successful. Please try again.",
+    "requiredError": "Please enter a message.",
+    "screenshot": {
+      "label": "Capture Screenshot",
+      "created": "Screenshot captured"
+    }
   }
 }
