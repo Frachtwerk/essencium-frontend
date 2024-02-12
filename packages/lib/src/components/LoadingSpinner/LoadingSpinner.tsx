@@ -20,20 +20,15 @@
 import { Container, Loader, LoaderProps } from '@mantine/core'
 import { useEffect, useState } from 'react'
 
-type Props = {
-  show: boolean
-  delay?: number
-  color?: LoaderProps['color']
-  size?: LoaderProps['size']
-  variant?: LoaderProps['variant']
-}
+type Props = LoaderProps & { show: boolean; delay?: number }
 
 export function LoadingSpinner({
   show = false,
   delay = 0,
-  color = 'blue',
+  color,
   size = 'xl',
   variant = 'dots',
+  ...props
 }: Props): JSX.Element | null {
   const [showSpinner, setShowSpinner] = useState(false)
 
@@ -65,7 +60,13 @@ export function LoadingSpinner({
         transform: 'translate(-50%, -50%)',
       }}
     >
-      <Loader size={size} color={color} variant={variant} name="loader" />
+      <Loader
+        size={size}
+        color={color}
+        variant={variant}
+        name="loader"
+        {...props}
+      />
     </Container>
   ) : null
 }
