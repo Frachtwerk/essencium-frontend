@@ -242,7 +242,7 @@ export function FeedbackWidget({
               return (
                 <Stack key={key}>
                   <ActionIcon
-                    color="blue"
+                    color={theme.colors.blue[6]}
                     variant="filled"
                     size={70}
                     style={{ borderRadius: '20px' }}
@@ -371,7 +371,7 @@ export function FeedbackWidget({
                           <ActionIcon
                             variant={screenshot ? 'filled' : 'outline'}
                             size="md"
-                            color="blue"
+                            color={theme.colors.blue[6]}
                             onClick={() => captureScreenshot()}
                           >
                             {screenshot ? (
