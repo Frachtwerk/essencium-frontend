@@ -25,9 +25,7 @@ type Props = LoaderProps & { show: boolean; delay?: number }
 export function LoadingSpinner({
   show = false,
   delay = 0,
-  color,
   size = 'xl',
-  variant = 'dots',
   ...props
 }: Props): JSX.Element | null {
   const [showSpinner, setShowSpinner] = useState(false)
@@ -60,13 +58,7 @@ export function LoadingSpinner({
         transform: 'translate(-50%, -50%)',
       }}
     >
-      <Loader
-        size={size}
-        color={color}
-        variant={variant}
-        name="loader"
-        {...props}
-      />
+      <Loader name="loader" size={size} {...props} />
     </Container>
   ) : null
 }
