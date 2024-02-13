@@ -37,6 +37,7 @@ import {
   Stack,
   Text,
   Textarea,
+  ThemeIcon,
   Title,
   Tooltip,
   Transition,
@@ -205,7 +206,7 @@ export function FeedbackWidget({
     <>
       <ActionIcon
         variant="filled"
-        color={theme.colors.blue[6]}
+        color={theme.primaryColor}
         size="xl"
         radius="xl"
         style={{
@@ -242,7 +243,7 @@ export function FeedbackWidget({
               return (
                 <Stack key={key}>
                   <ActionIcon
-                    color={theme.colors.blue[6]}
+                    color={theme.primaryColor}
                     variant="filled"
                     size={70}
                     style={{ borderRadius: '20px' }}
@@ -286,11 +287,14 @@ export function FeedbackWidget({
                   <Stack>
                     <Center>
                       {showSuccessMessage ? (
-                        <IconCircleCheck
+                        <ThemeIcon
+                          variant="outline"
+                          color={theme.primaryColor}
+                          style={{ border: 'none' }}
                           size={60}
-                          stroke={1.5}
-                          color={theme.colors.blue[6]}
-                        />
+                        >
+                          <IconCircleCheck size={60} stroke={1.5} />
+                        </ThemeIcon>
                       ) : (
                         <IconCircleX
                           size={60}
@@ -371,7 +375,7 @@ export function FeedbackWidget({
                           <ActionIcon
                             variant={screenshot ? 'filled' : 'outline'}
                             size="md"
-                            color={theme.colors.blue[6]}
+                            color={theme.primaryColor}
                             onClick={() => captureScreenshot()}
                           >
                             {screenshot ? (
