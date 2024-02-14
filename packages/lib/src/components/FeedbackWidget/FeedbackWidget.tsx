@@ -206,7 +206,6 @@ export function FeedbackWidget({
     <>
       <ActionIcon
         variant="filled"
-        color={theme.primaryColor}
         size="xl"
         radius="xl"
         style={{
@@ -243,7 +242,6 @@ export function FeedbackWidget({
               return (
                 <Stack key={key}>
                   <ActionIcon
-                    color={theme.primaryColor}
                     variant="filled"
                     size={70}
                     style={{ borderRadius: '20px' }}
@@ -289,7 +287,6 @@ export function FeedbackWidget({
                       {showSuccessMessage ? (
                         <ThemeIcon
                           variant="outline"
-                          color={theme.primaryColor}
                           style={{ border: 'none' }}
                           size={60}
                         >
@@ -375,7 +372,6 @@ export function FeedbackWidget({
                           <ActionIcon
                             variant={screenshot ? 'filled' : 'outline'}
                             size="md"
-                            color={theme.primaryColor}
                             onClick={() => captureScreenshot()}
                           >
                             {screenshot ? (
