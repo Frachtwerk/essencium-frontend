@@ -17,9 +17,9 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Profile } from '@frachtwerk/essencium-lib'
+import { LoadingSpinner, Profile } from '@frachtwerk/essencium-lib'
 import { PasswordChange, UserUpdate } from '@frachtwerk/essencium-types'
-import { Center, Loader } from '@mantine/core'
+import { Center } from '@mantine/core'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { ReactElement } from 'react'
@@ -81,11 +81,7 @@ function ProfileView(): JSX.Element {
   }
 
   if (isLoadingUser) {
-    return (
-      <Center h="100%">
-        <Loader size="xl" name="loader" />
-      </Center>
-    )
+    return <LoadingSpinner show />
   }
 
   return (
