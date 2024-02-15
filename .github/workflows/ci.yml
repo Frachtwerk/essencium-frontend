@@ -197,7 +197,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: app-next
-          path: packages/app/.next
+          path: packages/app/.next/standalone
 
       - name: Cache dist folder for 'app' package
         id: cache-dist
