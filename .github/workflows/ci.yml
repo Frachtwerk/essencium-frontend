@@ -198,7 +198,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: app-next
-          path: packages/app/.next/standalone
+          path: packages/app/.next
 
       - name: Cache dist folder for 'app' package
         id: cache-dist
@@ -222,7 +222,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: app-next
-          path: packages/app/.next/standalone
+          path: packages/app/.next
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
