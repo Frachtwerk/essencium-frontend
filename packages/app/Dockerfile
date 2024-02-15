@@ -10,11 +10,11 @@ RUN mkdir .next
 
 RUN chown nextjs:nodejs .next
 
-COPY --chown=nextjs:nodejs /app/public ./public
+COPY --chown=nextjs:nodejs ./public ./packages/app/public
 
-COPY --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --chown=nextjs:nodejs ./.next/standalone ./
 
-COPY --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --chown=nextjs:nodejs ./.next/static ./packages/app/.next/static
 
 USER nextjs
 
@@ -30,10 +30,13 @@ ENV SMTP_PASSWORD=
 ENV MAIL_FROM=
 ENV MAIL_TO=
 ENV ADMIN_USERNAME=
+ENV ADMIN_PASSWORD=
+ENV TEST_ADMIN_USERNAME=
+ENV TEST_ADMIN_PASSWORD=
 ENV VITE_SENTRY_DSN=
 ENV SENTRY_URL=
 ENV SENTRY_ORG=
 ENV SENTRY_PROJECT=
 ENV SENTRY_AUTH_TOKEN=
 
-CMD ["node", "server.js"]
+CMD ["node", "./packages/app/server.js"]
