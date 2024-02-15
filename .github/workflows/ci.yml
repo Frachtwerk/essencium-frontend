@@ -176,7 +176,8 @@ jobs:
 
       - name: Build
         # if: steps.cache-dist.outputs.cache-hit != 'true'
-        run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx build @frachtwerk/essencium-app
+        # run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx build @frachtwerk/essencium-app
+        run: pnpm --filter @frachtwerk/essencium-app build
         env:
           ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
