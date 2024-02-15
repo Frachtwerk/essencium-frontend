@@ -10,11 +10,11 @@ RUN mkdir .next
 
 RUN chown nextjs:nodejs .next
 
-COPY --chown=nextjs:nodejs ./public ./packages/app/public
+COPY --chown=nextjs:nodejs ./public ./public
 
 COPY --chown=nextjs:nodejs ./.next/standalone ./
 
-COPY --chown=nextjs:nodejs ./.next/static ./packages/app/.next/static
+COPY --chown=nextjs:nodejs ./.next/static ./.next/static
 
 USER nextjs
 
@@ -39,4 +39,4 @@ ENV SENTRY_ORG=
 ENV SENTRY_PROJECT=
 ENV SENTRY_AUTH_TOKEN=
 
-CMD ["node", "./packages/app/server.js"]
+CMD ["node", "/packages/app/server.js"]
