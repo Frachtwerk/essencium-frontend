@@ -175,7 +175,7 @@ jobs:
         uses: nrwl/nx-set-shas@v3
 
       - name: Build
-        if: steps.cache-dist.outputs.cache-hit != 'true'
+        # if: steps.cache-dist.outputs.cache-hit != 'true'
         run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx build @frachtwerk/essencium-app
         env:
           ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
