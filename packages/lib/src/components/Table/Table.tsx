@@ -62,7 +62,7 @@ export function Table<T>({
   return (
     <Flex direction="column" align="end">
       <div style={{ overflowX: 'auto', width: '100%' }}>
-        <MantineTable striped highlightOnHover>
+        <MantineTable striped highlightOnHover withRowBorders={false}>
           <MantineTable.Thead role="rowheader">
             {tableModel.getHeaderGroups().map(headerGroup => (
               <MantineTable.Tr key={headerGroup.id}>
@@ -84,12 +84,10 @@ export function Table<T>({
                       onClick={header.column.getToggleSortingHandler()}
                       w={header.column.getSize()}
                     >
-                      {
-                        flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        ) as string
-                      }
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
                       {
                         {
                           asc: <IconSortAscending2 />,
@@ -145,7 +143,10 @@ export function Table<T>({
             ))}
           </MantineTable.Tbody>
 
-          <MantineTable.Tfoot aria-label="footer-row">
+          <MantineTable.Tfoot
+            aria-label="footer-row"
+            className={classes.footer}
+          >
             {tableModel.getFooterGroups().map(footerGroup => (
               <MantineTable.Tr key={footerGroup.id}>
                 {footerGroup.headers.map(header => (

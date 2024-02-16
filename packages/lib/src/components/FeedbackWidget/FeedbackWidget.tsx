@@ -60,8 +60,8 @@ import { ReactNode, useEffect, useState } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../hooks'
-import classes from './FeedbackWidget.module.css'
 import { LoadingSpinner } from '../LoadingSpinner'
+import classes from './FeedbackWidget.module.css'
 
 type NotificationParams = {
   notificationType: 'created' | 'updated' | 'deleted'
@@ -357,7 +357,7 @@ export function FeedbackWidget({
 
                       <Box h="0.8rem" mt="-0.8rem" mb="0.6em">
                         {formState.errors.message && (
-                          <Text ml={5} fz="xs" color="red">
+                          <Text ml={5} fz="xs" c="red">
                             {formState.errors.message?.message
                               ? String(t(formState.errors.message.message))
                               : null}

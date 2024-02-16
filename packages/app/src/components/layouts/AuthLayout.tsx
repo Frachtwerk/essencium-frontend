@@ -305,6 +305,11 @@ export function AuthLayout({
       <AppShell
         header={{ height: { base: 60 } }}
         footer={{ height: { base: 58 } }}
+        navbar={{
+          collapsed: { mobile: !isOpenedNav },
+          breakpoint: 'sm',
+          width: 0,
+        }}
         padding={16}
       >
         <Header

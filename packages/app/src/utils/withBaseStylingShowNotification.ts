@@ -17,21 +17,21 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { NotificationProps, showNotification } from '@mantine/notifications'
+import { NotificationData, showNotification } from '@mantine/notifications'
 import { i18n } from 'next-i18next'
 
 export function withBaseStylingShowNotification(
-  props: Omit<NotificationProps, 'message'> & {
+  props: Omit<NotificationData, 'message'> & {
     notificationType: 'created' | 'updated' | 'deleted'
     color: 'success' | 'error'
-    message?: NotificationProps['message']
+    message?: NotificationData['message']
   },
-): void {
+): string {
   const t = i18n?.t ?? ((key: string) => key)
 
   function getTitleOrMessage(
     type: 'title' | 'message',
-  ): NotificationProps[typeof type] {
+  ): NotificationData[typeof type] {
     if (props[type]) return props[type]
 
     return t(

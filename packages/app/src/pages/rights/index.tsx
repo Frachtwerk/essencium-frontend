@@ -139,7 +139,7 @@ function RightsView(): JSX.Element {
         accessorKey: `${role.name}`,
         size: 100,
         header: () => (
-          <Text color={role.protected ? 'grey' : 'primary'}>
+          <Text inherit c={role.protected ? 'grey' : 'primary'}>
             {t(`rightsView.table.${role.name}`)}
           </Text>
         ),
@@ -184,7 +184,7 @@ function RightsView(): JSX.Element {
     return [
       {
         accessorKey: 'authority',
-        header: () => <Text>{t('rightsView.table.name')}</Text>,
+        header: () => <Text inherit>{t('rightsView.table.name')}</Text>,
         cell: info => info.getValue(),
         size: 150,
       },
@@ -223,7 +223,7 @@ function RightsView(): JSX.Element {
         <Title size="h2">
           <Flex align="center" gap={10}>
             <IconShieldHalf size="32" />
-            <Text> {t('rightsView.title')}</Text>
+            <Text inherit> {t('rightsView.title')}</Text>
           </Flex>
         </Title>
 

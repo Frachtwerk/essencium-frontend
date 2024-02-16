@@ -212,18 +212,18 @@ function UsersView(): JSX.Element {
     () => [
       {
         accessorKey: 'enabled',
-        header: () => <Text>{t('usersView.table.active')}</Text>,
+        header: () => <Text inherit>{t('usersView.table.active')}</Text>,
         cell: info => (info.getValue() ? <IconCheck /> : <IconX />),
         size: 80,
         enableColumnFilter: false,
       },
       {
         accessorKey: 'name',
-        header: () => <Text>{t('usersView.table.name')}</Text>,
+        header: () => <Text inherit>{t('usersView.table.name')}</Text>,
         cell: info => {
           const rowUser = info.row.original
           return (
-            <Text>
+            <Text inherit>
               {rowUser.firstName} {rowUser.lastName}
             </Text>
           )
@@ -233,28 +233,28 @@ function UsersView(): JSX.Element {
 
       {
         accessorKey: 'phone',
-        header: () => <Text>{t('usersView.table.phone')}</Text>,
+        header: () => <Text inherit>{t('usersView.table.phone')}</Text>,
         cell: info => info.getValue(),
         size: 180,
         enableColumnFilter: false,
       },
       {
         accessorKey: 'email',
-        header: () => <Text>{t('usersView.table.email')}</Text>,
+        header: () => <Text inherit>{t('usersView.table.email')}</Text>,
         cell: info => info.getValue(),
         size: 230,
         maxSize: 250,
       },
       {
         accessorKey: 'locale',
-        header: () => <Text>{t('usersView.table.locale')}</Text>,
+        header: () => <Text inherit>{t('usersView.table.locale')}</Text>,
         cell: info => t(`${info.getValue()}`),
         size: 120,
         enableColumnFilter: false,
       },
       {
         accessorKey: 'roles',
-        header: () => <Text>{t('usersView.table.roles')}</Text>,
+        header: () => <Text inherit>{t('usersView.table.roles')}</Text>,
         cell: info => {
           const rowRoles = info.row.original.roles
           return rowRoles.map(role => {
@@ -269,7 +269,7 @@ function UsersView(): JSX.Element {
       },
       {
         accessorKey: 'actions',
-        header: () => <Text>{t('usersView.table.actions')}</Text>,
+        header: () => <Text inherit>{t('usersView.table.actions')}</Text>,
         enableSorting: false,
         enableColumnFilter: false,
         cell: info => {
@@ -382,11 +382,13 @@ function UsersView(): JSX.Element {
       />
 
       <Flex py="md" justify="space-between" align="center">
-        <Flex align="center" gap={10}>
-          <IconUsers size="32" />
+        <Title size="h2">
+          <Flex align="center" gap={10}>
+            <IconUsers size="32" />
 
-          <Title size="h2">{t('usersView.title')}</Title>
-        </Flex>
+            <Text inherit>{t('usersView.title')}</Text>
+          </Flex>
+        </Title>
 
         <Switch
           label={t('table.misc.showFilter')}

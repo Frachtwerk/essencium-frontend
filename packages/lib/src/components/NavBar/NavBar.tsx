@@ -182,6 +182,7 @@ export function NavBar({
         hidden={!isOpen}
         hiddenFrom="sm"
         p="sm"
+        w="100%"
         zIndex={100}
         className={classes.navbar}
       >
