@@ -17,17 +17,16 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Loader } from '@mantine/core'
+import { Container, Loader, LoaderProps } from '@mantine/core'
 import { useEffect, useState } from 'react'
 
-interface Props {
-  show: boolean
-  delay?: number
-}
+type Props = LoaderProps & { show: boolean; delay?: number }
 
 export function LoadingSpinner({
   show = false,
   delay = 0,
+  size = 'xl',
+  ...props
 }: Props): JSX.Element | null {
   const [showSpinner, setShowSpinner] = useState(false)
 
@@ -50,5 +49,16 @@ export function LoadingSpinner({
     }
   }, [show, delay])
 
-  return showSpinner ? <Loader size="xl" name="loader" /> : null
+  return showSpinner ? (
+    <Container
+      style={{
+        top: '50%',
+        left: '50%',
+        position: 'absolute',
+        transform: 'translate(-50%, -50%)',
+      }}
+    >
+      <Loader name="loader" size={size} {...props} />
+    </Container>
+  ) : null
 }

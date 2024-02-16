@@ -20,6 +20,7 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {
   HttpNotification,
+  LoadingSpinner,
   Table,
   TablePagination,
 } from '@frachtwerk/essencium-lib'
@@ -29,15 +30,7 @@ import {
   RoleOutput,
   RoleUpdate,
 } from '@frachtwerk/essencium-types'
-import {
-  Button,
-  Center,
-  Checkbox,
-  Flex,
-  Loader,
-  Text,
-  Title,
-} from '@mantine/core'
+import { Button, Checkbox, Flex, Text, Title } from '@mantine/core'
 import { IconShieldHalf } from '@tabler/icons-react'
 import {
   ColumnDef,
@@ -245,9 +238,7 @@ function RightsView(): JSX.Element {
       </Flex>
 
       {isLoadingRights ? (
-        <Center h="100%">
-          <Loader size="xl" name="loader" />
-        </Center>
+        <LoadingSpinner show />
       ) : (
         <>
           <Table tableModel={table} firstColSticky />

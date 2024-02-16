@@ -26,9 +26,7 @@ import {
   Anchor,
   Box,
   Button,
-  Center,
   Group,
-  Loader,
   Paper,
   PasswordInput,
   Text,
@@ -40,6 +38,7 @@ import { Dispatch, SetStateAction } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../../../hooks'
+import { LoadingSpinner } from '../../../LoadingSpinner'
 import { ResetPasswordForm, ResetPasswordSuccessMessage } from './components'
 
 type Props = {
@@ -181,11 +180,7 @@ export function LoginForm({
         )}
       </Transition>
 
-      {isResettingPassword && (
-        <Center h="100%">
-          <Loader size="lg" name="loader" />
-        </Center>
-      )}
+      {isResettingPassword && <LoadingSpinner show size="lg" />}
 
       <Transition
         mounted={isResetPasswordSent}

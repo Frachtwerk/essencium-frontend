@@ -24,6 +24,7 @@ import {
   DeleteDialog,
   EditRole,
   HttpNotification,
+  LoadingSpinner,
   Table,
   TablePagination,
 } from '@frachtwerk/essencium-lib'
@@ -37,9 +38,7 @@ import {
   ActionIcon,
   Badge,
   Button,
-  Center,
   Flex,
-  Loader,
   Text,
   Title,
 } from '@mantine/core'
@@ -358,9 +357,7 @@ function RolesView(): JSX.Element {
       />
 
       {isLoadingRoles ? (
-        <Center h="100%">
-          <Loader size="xl" name="loader" />
-        </Center>
+        <LoadingSpinner show />
       ) : (
         <>
           <Table tableModel={table} />
