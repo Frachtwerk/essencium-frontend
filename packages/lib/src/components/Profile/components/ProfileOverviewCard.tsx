@@ -62,7 +62,7 @@ export function ProfileOverviewCard({ user }: Props): JSX.Element {
           </Text>
         ))}
 
-        <Badge size="lg">
+        <Badge variant="light" size="lg">
           {user.enabled
             ? t('profileView.overviewCard.active')
             : t('profileView.overviewCard.inactive')}

@@ -38,7 +38,7 @@ export function Home(): JSX.Element {
       justify="center"
       className={classes.flex}
     >
-      <Center my="xl">
+      <Center my="lg">
         <Image
           src="/img/web/emblem_400x400px.svg"
           alt={t('header.logo')}

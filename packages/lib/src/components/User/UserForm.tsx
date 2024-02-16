@@ -331,9 +331,10 @@ export function UserForm({
                 {...field}
                 radius="sm"
                 label={t('addUpdateUserView.form.role')}
-                placeholder={String(t('addUpdateUserView.form.role'))}
                 data={rolesData}
                 withAsterisk
+                searchable
+                hidePickedOptions
               />
             )}
           />

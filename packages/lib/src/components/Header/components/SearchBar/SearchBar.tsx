@@ -30,10 +30,10 @@ export function SearchBar(): JSX.Element {
   return (
     <UnstyledButton visibleFrom="md" onClick={() => openSpotlight()}>
       <Group justify="apart">
-        <Group gap="xs">
+        <Group gap="sm">
           <IconSearch size="16" color={theme.colors.gray[4]} />
 
-          <Text color={theme.colors.gray[5]} size="sm">
+          <Text c={theme.colors.gray[5]} size="sm">
             {t('header.spotlight.placeholder')}
           </Text>
         </Group>

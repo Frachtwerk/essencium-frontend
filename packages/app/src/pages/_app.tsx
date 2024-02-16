@@ -18,6 +18,7 @@
  */
 
 import '@mantine/core/styles.css'
+import '@mantine/spotlight/styles.css'
 
 import { UserOutput } from '@frachtwerk/essencium-types'
 import {
@@ -166,7 +167,6 @@ function App({
         },
       }),
     },
-    // transitionTimingFunction: 'ease-in-out',
   })
 
   return (

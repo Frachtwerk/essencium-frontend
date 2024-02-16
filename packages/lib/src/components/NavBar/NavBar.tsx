@@ -93,7 +93,6 @@ export function NavBar({
           }
         }}
         p="sm"
-        hiddenFrom="sm"
         className={fixedNav ? classes.fixedNavbar : classes.navbar}
         zIndex={100}
         mt={isOpen ? '0' : '-3.6rem'}
@@ -106,14 +105,16 @@ export function NavBar({
             justifyContent: 'space-between',
           }}
         >
-          <AppShellSection mb="xl">
+          <AppShellSection mb="lg">
             <Group gap="xs" align="center">
               <Flex justify="space-between" align="center" gap="xl">
                 <NextLink href="/">
                   {foldedNav ? (
-                    <Box pr={150}>{icon}</Box>
+                    <Box className={classes.navBox} pr={150}>
+                      {icon}
+                    </Box>
                   ) : (
-                    <Box className={classes.foldedNavBox}>{logo}</Box>
+                    <Box className={classes.navBox}>{logo}</Box>
                   )}
                 </NextLink>
 
@@ -177,7 +178,13 @@ export function NavBar({
         </Stack>
       </AppShellNavbar>
 
-      <AppShellNavbar hiddenFrom="sm" hidden={!isOpen} p="sm" zIndex={100}>
+      <AppShellNavbar
+        hidden={!isOpen}
+        hiddenFrom="sm"
+        p="sm"
+        zIndex={100}
+        className={classes.navbar}
+      >
         <Stack
           style={{
             height: '100%',

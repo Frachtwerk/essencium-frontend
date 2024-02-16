@@ -24,7 +24,7 @@ import {
   NavBar,
 } from '@frachtwerk/essencium-lib'
 import { FooterLink, NavLink, RIGHTS } from '@frachtwerk/essencium-types'
-import { AppShell, Box, useMantineTheme } from '@mantine/core'
+import { AppShell, AppShellMain, Box, useMantineTheme } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 import { Spotlight, SpotlightActionData } from '@mantine/spotlight'
 import {
@@ -177,14 +177,14 @@ export function AuthLayout({
     isLoading: feedbackSending,
   } = useCreateFeedback()
 
-  const actions: SpotlightAction[] | null = SEARCH_ITEMS.filter(link =>
+  const actions: SpotlightActionData[] = SEARCH_ITEMS.filter(link =>
     !link.rights || link.rights?.some(right => userRights?.includes(right))
       ? link
       : null,
   ).map(link => {
     return {
       id: link.label,
-      title: t(link.label) as string,
+      label: t(link.label) as string,
       description: link.description ? (t(link.description) as string) : '',
       onClick: () => router.push(`${link.to}`),
       leftSection: link.icon,
@@ -287,25 +287,33 @@ export function AuthLayout({
   }
 
   return (
-    <Spotlight
-      actions={actions}
-      searchProps={{
-        leftSection: <IconSearch />,
-        placeholder: t('header.spotlight.placeholder') as string,
-      }}
-      highlightQuery
-      nothingFound={t('header.spotlight.nothingFound') as string}
-    >
+    <>
+      <Spotlight
+        actions={actions}
+        searchProps={{
+          leftSection: <IconSearch />,
+          placeholder: t('header.spotlight.placeholder') as string,
+        }}
+        highlightQuery
+        nothingFound={t('header.spotlight.nothingFound') as string}
+      />
+
       <Head>
         <title>{pageTitle}</title>
       </Head>
 
       <AppShell
-        footer={{ height: { base: 58 } }}
         header={{ height: { base: 60 } }}
-        navbar={{ width: 48, breakpoint: 'sm' }}
-        aside={{ width: 48, breakpoint: 'sm' }}
+        footer={{ height: { base: 58 } }}
+        padding={16}
       >
+        <Header
+          user={user}
+          marginLeft={getSidebarMargin()}
+          isOpen={isOpenedNav}
+          handleOpenNav={handleOpenNav}
+        />
+
         <NavBar
           isOpen={isOpenedNav}
           links={NAV_LINKS}
@@ -337,20 +345,15 @@ export function AuthLayout({
 
         <Footer links={FOOTER_LINKS} />
 
-        <Header
-          user={user}
-          marginLeft={getSidebarMargin()}
-          isOpen={isOpenedNav}
-          handleOpenNav={handleOpenNav}
-        />
-
-        <Box
-          style={{
-            marginLeft: getSidebarMargin(),
-          }}
-        >
-          {showChildren ? children : null}
-        </Box>
+        <AppShellMain>
+          <Box
+            style={{
+              marginLeft: getSidebarMargin(),
+            }}
+          >
+            {showChildren ? children : null}
+          </Box>
+        </AppShellMain>
 
         <FeedbackWidget
           currentUser={currentUser}
@@ -361,6 +364,6 @@ export function AuthLayout({
           createNotification={withBaseStylingShowNotification}
         />
       </AppShell>
-    </Spotlight>
+    </>
   )
 }

@@ -60,6 +60,7 @@ import { ReactNode, useEffect, useState } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../hooks'
+import classes from './FeedbackWidget.module.css'
 
 type NotificationParams = {
   notificationType: 'created' | 'updated' | 'deleted'
@@ -225,12 +226,13 @@ export function FeedbackWidget({
         onClose={() => {
           onCloseWidget()
         }}
-        sx={{ width: '390px', height: openInput ? 'auto' : '180px' }}
         radius="md"
+        w="390px"
+        h={openInput ? 'auto' : '180px'}
         position={{ bottom: 100, right: 80 }}
       >
         {!showSuccessMessage || !showErrorMessage ? (
-          <Title order={4} align="center" size="sm" mb="sm" weight={500}>
+          <Title order={4} ta="center" size="sm" mb="sm" fw={500}>
             {t('feedbackWidget.title')}
           </Title>
         ) : null}
@@ -312,7 +314,7 @@ export function FeedbackWidget({
 
                 {!isLoading && !showSuccessMessage && !showErrorMessage ? (
                   <Box>
-                    <Group position="apart" spacing="xs" mb="md">
+                    <Group justify="apart" gap="xs" mb="md">
                       {Object.keys(OpenInput).map(key => {
                         const inputKey = key as keyof typeof OpenInput
 
@@ -320,7 +322,8 @@ export function FeedbackWidget({
                           <Button
                             key={key}
                             p="5px"
-                            sx={{ width: '110px', height: '32px' }}
+                            w="110px"
+                            h="32px"
                             variant={
                               openInput === OpenInput[inputKey]
                                 ? 'filled'
@@ -330,7 +333,7 @@ export function FeedbackWidget({
                               setOpenInput(OpenInput[inputKey])
                               reset()
                             }}
-                            leftIcon={icons[inputKey]}
+                            leftSection={icons[inputKey]}
                           >
                             {t(`feedbackWidget.${key.toLowerCase()}`)}
                           </Button>
@@ -345,10 +348,7 @@ export function FeedbackWidget({
                         render={({ field }) => (
                           <Textarea
                             {...field}
-                            sx={{
-                              borderRadius: '50px',
-                              marginBottom: '15px',
-                            }}
+                            className={classes.textarea}
                             placeholder={
                               t('feedbackWidget.placeholder') as string
                             }

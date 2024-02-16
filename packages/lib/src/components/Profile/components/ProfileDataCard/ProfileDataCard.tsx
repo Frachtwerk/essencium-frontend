@@ -62,16 +62,19 @@ export function ProfileDataCard({
     <Card shadow="sm" p="lg" radius="sm" withBorder>
       <Tabs defaultValue="personalDataForm">
         <Tabs.List>
-          <Tabs.Tab value="personalDataForm" icon={<IconUser size={14} />}>
+          <Tabs.Tab
+            value="personalDataForm"
+            leftSection={<IconUser size={14} />}
+          >
             {t('profileView.dataCard.tabs.personalData.title')}
           </Tabs.Tab>
 
-          <Tabs.Tab value="passwordChange" icon={<IconLock size={14} />}>
+          <Tabs.Tab value="passwordChange" leftSection={<IconLock size={14} />}>
             {t('profileView.dataCard.tabs.passwordChange.title')}
           </Tabs.Tab>
 
           {router.pathname !== 'profile' ? (
-            <Tabs.Tab value="settings" icon={<IconSettings size={14} />}>
+            <Tabs.Tab value="settings" leftSection={<IconSettings size={14} />}>
               {t('profileView.dataCard.tabs.settings.title')}
             </Tabs.Tab>
           ) : null}

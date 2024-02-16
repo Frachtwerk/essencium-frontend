@@ -44,8 +44,6 @@ export function Header({
 }: Props): JSX.Element {
   const theme = useMantineTheme()
 
-  //   AppShellHeader height={{ base: 60 }}
-
   return (
     <AppShellHeader
       p="md"
@@ -61,8 +59,8 @@ export function Header({
           }}
           size="sm"
           color={theme.colors.gray[5]}
-          style={{ zIndex: 200 }}
           hiddenFrom="sm"
+          className={classes.burger}
         />
 
         <SearchBar />

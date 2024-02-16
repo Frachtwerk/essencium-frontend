@@ -383,13 +383,11 @@ function UsersView(): JSX.Element {
       />
 
       <Flex py="md" justify="space-between" align="center">
-        <Title size="h2">
-          <Flex align="center" gap={10}>
-            <IconUsers size="32" />
+        <Flex align="center" gap={10}>
+          <IconUsers size="32" />
 
-            <Text>{t('usersView.title')}</Text>
-          </Flex>
-        </Title>
+          <Title size="h2">{t('usersView.title')}</Title>
+        </Flex>
 
         <Switch
           label={t('table.misc.showFilter')}

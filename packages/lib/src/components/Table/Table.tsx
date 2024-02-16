@@ -63,11 +63,11 @@ export function Table<T>({
     <Flex direction="column" align="end">
       <div style={{ overflowX: 'auto', width: '100%' }}>
         <MantineTable striped highlightOnHover>
-          <thead aria-label="header-row">
+          <MantineTable.Thead role="rowheader">
             {tableModel.getHeaderGroups().map(headerGroup => (
-              <tr key={headerGroup.id}>
+              <MantineTable.Tr key={headerGroup.id}>
                 {headerGroup.headers.map(header => (
-                  <th
+                  <MantineTable.Th
                     key={header.id}
                     style={{ verticalAlign: 'top' }}
                     className={getTableColStickyStyle()}
@@ -84,10 +84,12 @@ export function Table<T>({
                       onClick={header.column.getToggleSortingHandler()}
                       w={header.column.getSize()}
                     >
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext(),
-                      )}
+                      {
+                        flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        ) as string
+                      }
                       {
                         {
                           asc: <IconSortAscending2 />,
@@ -95,7 +97,6 @@ export function Table<T>({
                         }[(header.column.getIsSorted() as string) ?? null]
                       }
                     </Flex>
-
                     {showFilter && header.column.getCanFilter() ? (
                       <Select
                         size="xs"
@@ -115,15 +116,15 @@ export function Table<T>({
                         }}
                       />
                     ) : null}
-                  </th>
+                  </MantineTable.Th>
                 ))}
-              </tr>
+              </MantineTable.Tr>
             ))}
-          </thead>
+          </MantineTable.Thead>
 
-          <tbody aria-label="table-body">
+          <MantineTable.Tbody aria-label="table-body">
             {tableModel.getRowModel().rows.map(row => (
-              <tr
+              <MantineTable.Tr
                 key={row.id}
                 style={{
                   borderBottom: '2px solid white',
@@ -132,32 +133,32 @@ export function Table<T>({
                 className={firstColSticky ? classes.tableRowBg : undefined}
               >
                 {row.getVisibleCells().map(cell => (
-                  <td
+                  <MantineTable.Td
                     key={cell.id}
                     width={cell.column.getSize()}
                     className={getTableColStickyStyle()}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
+                  </MantineTable.Td>
                 ))}
-              </tr>
+              </MantineTable.Tr>
             ))}
-          </tbody>
+          </MantineTable.Tbody>
 
-          <tfoot aria-label="footer-row">
+          <MantineTable.Tfoot aria-label="footer-row">
             {tableModel.getFooterGroups().map(footerGroup => (
-              <tr key={footerGroup.id}>
+              <MantineTable.Tr key={footerGroup.id}>
                 {footerGroup.headers.map(header => (
-                  <th key={header.id}>
+                  <MantineTable.Th key={header.id}>
                     {flexRender(
                       header.column.columnDef.footer,
                       header.getContext(),
                     )}
-                  </th>
+                  </MantineTable.Th>
                 ))}
-              </tr>
+              </MantineTable.Tr>
             ))}
-          </tfoot>
+          </MantineTable.Tfoot>
         </MantineTable>
       </div>
     </Flex>

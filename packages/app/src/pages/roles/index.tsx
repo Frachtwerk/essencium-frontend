@@ -66,7 +66,8 @@ import {
 import { AuthLayout } from '@/components/layouts'
 import { getTranslation, hasRequiredRights, parseSorting } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
-import classes from '@/views/roles/roles.module.scss'
+
+import classes from './roles.module.css'
 
 const DEFAULT_SORTING: SortingState = [{ id: 'name', desc: false }]
 
@@ -201,7 +202,11 @@ function RolesView(): JSX.Element {
         cell: info => (
           <>
             {(info.getValue() as RightOutput[]).map((right: RightOutput) => (
-              <Badge key={right.authority} className={classes.badge}>
+              <Badge
+                variant="light"
+                key={right.authority}
+                className={classes.badge}
+              >
                 {right.authority}
               </Badge>
             ))}

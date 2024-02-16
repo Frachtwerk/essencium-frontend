@@ -123,18 +123,17 @@ export function ProfileSettingsForm({
               maw="60%"
               radius="sm"
               label={t('profileView.dataCard.tabs.settings.content.role')}
-              placeholder={String(
-                t('profileView.dataCard.tabs.settings.content.role'),
-              )}
               data={rolesData}
               className={classes.select}
+              searchable
+              hidePickedOptions
             />
           )}
         />
 
         <Box mt="-0.6rem" h="0.8rem">
           {formState.errors.roles && (
-            <Text ml={5} fz="xs" color="red">
+            <Text ml={5} fz="xs" c="red">
               {formState.errors.roles?.message}
             </Text>
           )}

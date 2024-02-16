@@ -42,7 +42,7 @@ export function Footer({ links }: Props): JSX.Element {
   // AppShellFooter height={{ base: 58 }}
 
   return (
-    <AppShellFooter p="md">
+    <AppShellFooter p="md" zIndex={200}>
       <Flex
         justify={{ base: 'center', xs: 'space-between' }}
         direction="row"
@@ -54,7 +54,7 @@ export function Footer({ links }: Props): JSX.Element {
           <Text> {t('footer.license')} </Text>
         </Flex>
 
-        <Flex direction="row" gap="xl">
+        <Flex direction="row" gap="lg">
           {links.map(link => (
             <NextLink
               key={link.label}

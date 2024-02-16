@@ -48,6 +48,8 @@
 }
 
 .flexSort {
-  cursor: pointer;
-  color: var(--mantine-color-blue-4);
+  &:hover {
+    cursor: pointer;
+    color: var(--mantine-color-blue-4);
+  }
 }

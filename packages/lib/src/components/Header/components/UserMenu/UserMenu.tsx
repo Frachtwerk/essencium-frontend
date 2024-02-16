@@ -31,25 +31,28 @@ type Props = {
 export function UserMenu({ user }: Props): JSX.Element {
   return (
     <Box>
-      <NextLink href="/profile" style={{ textDecoration: 'none' }}>
-        <UnstyledButton className={classes.unstyledButton}>
-          <Group p="sm" className={classes.group} wrap="nowrap">
-            <IconUser size="28" />
+      <UnstyledButton
+        component={NextLink}
+        href="/profile"
+        style={{ textDecoration: 'none' }}
+        className={classes.unstyledButton}
+      >
+        <Group p="sm" className={classes.group} wrap="nowrap">
+          <IconUser size="28" />
 
-            <Box className={classes.box}>
-              <Text size="sm" weight="500">
-                {user.firstName} {user.lastName}
-              </Text>
+          <Box className={classes.box}>
+            <Text size="sm" fw={500}>
+              {user.firstName} {user.lastName}
+            </Text>
 
-              <Text color="dimmed" size="xs">
-                {user.email}
-              </Text>
-            </Box>
+            <Text color="dimmed" size="xs">
+              {user.email}
+            </Text>
+          </Box>
 
-            <IconChevronRight size={18} />
-          </Group>
-        </UnstyledButton>
-      </NextLink>
+          <IconChevronRight size={18} />
+        </Group>
+      </UnstyledButton>
     </Box>
   )
 }

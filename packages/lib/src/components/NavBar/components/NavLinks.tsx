@@ -48,26 +48,23 @@ export function NavLinks({ links, userRights }: Props): JSX.Element {
       {links.map(link =>
         !link.rights.length ||
         (link.rights && hasRequiredRights(link.rights)) ? (
-          <NextLink
+          <MantineNavLink
+            component={NextLink}
             key={link.label}
             href={link.to}
-            style={{ textDecoration: 'none' }}
-          >
-            <MantineNavLink
-              icon={link.icon}
-              label={t(link.label)}
-              active={link.to === router.pathname}
-              styles={{
-                root: {
-                  borderRadius: theme.radius.sm,
-                },
-                label: {
-                  fontSize: theme.fontSizes.sm,
-                  whiteSpace: 'nowrap',
-                },
-              }}
-            />
-          </NextLink>
+            leftSection={link.icon}
+            label={t(link.label)}
+            active={link.to === router.pathname}
+            styles={{
+              root: {
+                borderRadius: theme.radius.sm,
+              },
+              label: {
+                fontSize: theme.fontSizes.sm,
+                whiteSpace: 'nowrap',
+              },
+            }}
+          />
         ) : null,
       )}
     </Stack>
