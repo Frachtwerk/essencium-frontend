@@ -3,6 +3,7 @@
   "architecture": "Architecture",
   "devguide": "Development Guide",
   "styleguide": "Style Guide",
+  "migrationguide": "Migration Guide",
   "contact": {
     "title": "Contact ↗",
     "type": "page",
