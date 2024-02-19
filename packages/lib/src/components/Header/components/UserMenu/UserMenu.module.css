@@ -2,10 +2,13 @@
   padding: 0.7rem 0 0.5rem 1rem;
   cursor: pointer;
   &:hover {
-    background-color: light-dark(
-      var(--mantine-color-gray-0),
-      var(--mantine-color-gray-9)
-    );
+    @mixin light {
+      background-color: var(--mantine-color-gray-0);
+    }
+
+    @mixin dark {
+      background-color: var(--mantine-color-gray-9);
+    }
   }
 }
 

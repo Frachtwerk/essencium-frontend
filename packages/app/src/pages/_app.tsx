@@ -170,7 +170,7 @@ function App({
   })
 
   return (
-    <MantineProvider defaultColorScheme="light" theme={theme}>
+    <MantineProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <Notifications limit={3} />

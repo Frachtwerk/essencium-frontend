@@ -22,6 +22,8 @@ import {
   Group,
   MantineColorScheme,
   Popover,
+  PopoverDropdown,
+  PopoverTarget,
   Text,
   useMantineColorScheme,
   useMantineTheme,
@@ -35,7 +37,7 @@ import classes from './ThemeSelector.module.css'
 export function ThemeSelector(): JSX.Element {
   const { t } = useTranslation()
 
-  const { colorScheme, setColorScheme } = useMantineColorScheme()
+  const { setColorScheme } = useMantineColorScheme()
   const theme = useMantineTheme()
 
   const [hasSelectedLight, setSelectedLight] = useState(false)
@@ -51,40 +53,32 @@ export function ThemeSelector(): JSX.Element {
   }
   return (
     <Popover width={130} position="bottom" withArrow shadow="sm">
-      <Popover.Target>
+      <PopoverTarget>
         <Button
           aria-label="theme-selector"
+          p={0}
+          bg="transparent"
+          className={classes.button}
           leftSection={
-            colorScheme === 'light' ? (
+            <>
               <IconSun
+                className={classes.iconLight}
                 color={
-                  colorScheme === 'light' && hasSelectedLight
-                    ? theme.colors.blue[6]
-                    : theme.colors.gray[9]
+                  hasSelectedLight ? theme.colors.blue[6] : theme.colors.gray[9]
                 }
               />
-            ) : (
               <IconMoon
+                className={classes.iconDark}
                 color={
-                  colorScheme === 'dark' && hasSelectedDark
-                    ? theme.colors.blue[6]
-                    : theme.colors.gray[5]
+                  hasSelectedDark ? theme.colors.blue[6] : theme.colors.gray[5]
                 }
               />
-            )
+            </>
           }
-          style={{
-            backgroundColor: 'transparent',
-            color:
-              colorScheme === 'light'
-                ? theme.colors.gray[9]
-                : theme.colors.gray[5],
-            padding: 0,
-          }}
         />
-      </Popover.Target>
+      </PopoverTarget>
 
-      <Popover.Dropdown p={0}>
+      <PopoverDropdown p={0}>
         <Group
           onClick={() => {
             setColorScheme('light')
@@ -121,7 +115,7 @@ export function ThemeSelector(): JSX.Element {
 
           <Text size="sm">{t('header.themeToggle.systemMode')}</Text>
         </Group>
-      </Popover.Dropdown>
+      </PopoverDropdown>
     </Popover>
   )
 }

@@ -18,16 +18,12 @@
  */
 
 import { FooterLink } from '@frachtwerk/essencium-types'
-import {
-  AppShellFooter,
-  Flex,
-  Text,
-  useMantineColorScheme,
-  useMantineTheme,
-} from '@mantine/core'
+import { AppShellFooter, Flex, Text } from '@mantine/core'
 import { IconCopyright } from '@tabler/icons-react'
 import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
+
+import classes from './Footer.module.css'
 
 type Props = {
   links: FooterLink[]
@@ -35,11 +31,6 @@ type Props = {
 
 export function Footer({ links }: Props): JSX.Element {
   const { t } = useTranslation()
-
-  const theme = useMantineTheme()
-  const { colorScheme } = useMantineColorScheme()
-
-  // AppShellFooter height={{ base: 58 }}
 
   return (
     <AppShellFooter p="md" zIndex={200}>
@@ -56,19 +47,14 @@ export function Footer({ links }: Props): JSX.Element {
 
         <Flex direction="row" gap="lg">
           {links.map(link => (
-            <NextLink
+            <Text
+              component={NextLink}
               key={link.label}
               href={link.to}
-              style={{
-                textDecoration: 'none',
-                color:
-                  colorScheme === 'dark'
-                    ? theme.colors.gray[4]
-                    : theme.colors.dark[9],
-              }}
+              className={classes.text}
             >
-              <Text>{t(link.label)}</Text>
-            </NextLink>
+              {t(link.label)}
+            </Text>
           ))}
         </Flex>
       </Flex>
