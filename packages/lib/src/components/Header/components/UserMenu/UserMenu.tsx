@@ -27,17 +27,25 @@ import {
 } from '@mantine/core'
 import { IconChevronRight, IconUser } from '@tabler/icons-react'
 import NextLink from 'next/link'
+import { useTranslation } from 'next-i18next'
 
 type Props = {
   user: UserOutput
 }
 
 export function UserMenu({ user }: Props): JSX.Element {
+  const { t } = useTranslation()
+
   const theme = useMantineTheme()
 
   return (
     <Box>
-      <NextLink href="/profile" style={{ textDecoration: 'none' }}>
+      <NextLink
+        href="/profile"
+        style={{ textDecoration: 'none' }}
+        role="link"
+        aria-label={t('header.profile.arialLabel') as string}
+      >
         <UnstyledButton
           sx={{
             display: 'block',

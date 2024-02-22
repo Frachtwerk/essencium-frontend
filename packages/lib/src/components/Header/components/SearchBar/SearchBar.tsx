@@ -46,7 +46,7 @@ export function SearchBar(): JSX.Element {
           <Group spacing="xs">
             <IconSearch size="16" color={theme.colors.gray[4]} />
 
-            <Text color={theme.colors.gray[5]} size="sm">
+            <Text color={theme.colors.gray[5]} size="sm" role="searchbox">
               {t('header.spotlight.placeholder')}
             </Text>
           </Group>
