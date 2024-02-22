@@ -20,27 +20,27 @@
 import { FooterLink } from '@frachtwerk/essencium-types'
 import { render, RenderResult, screen } from '@testing-library/react'
 import { CSSProperties } from 'react'
-import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
+import { beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { Footer } from './Footer'
 
+const FOOTER_LINKS: FooterLink[] = [
+  {
+    label: 'footer.privacy.label',
+    to: 'privacy',
+  },
+  {
+    label: 'footer.imprint.label',
+    to: 'imprint',
+  },
+  {
+    label: 'footer.contact.label',
+    to: 'contact',
+  },
+]
+
 describe('Footer', () => {
   let FooterMounted: RenderResult
-
-  const FOOTER_LINKS: FooterLink[] = [
-    {
-      label: 'footer.privacy.label',
-      to: 'privacy',
-    },
-    {
-      label: 'footer.imprint.label',
-      to: 'imprint',
-    },
-    {
-      label: 'footer.contact.label',
-      to: 'contact',
-    },
-  ]
 
   beforeAll(() => {
     vi.mock('@tanstack/react-router', () => ({
@@ -62,21 +62,30 @@ describe('Footer', () => {
     FooterMounted = render(<Footer links={FOOTER_LINKS} />)
   })
 
-  afterAll(() => {
-    FooterMounted.unmount()
+  it('should render all footer links with their target', () => {
+    expect(
+      screen
+        .getByText('footer.privacy.label')
+        .closest('a')
+        ?.getAttribute('href'),
+    ).toBe('privacy')
+
+    expect(
+      screen
+        .getByText('footer.imprint.label')
+        .closest('a')
+        ?.getAttribute('href'),
+    ).toBe('imprint')
+
+    expect(
+      screen
+        .getByText('footer.contact.label')
+        .closest('a')
+        ?.getAttribute('href'),
+    ).toBe('contact')
   })
 
-  it('should contain the correct content', () => {
-    expect(
-      screen.getByText('footer.privacy.label').closest('a'),
-    ).toHaveProperty('href', 'privacy')
-
-    expect(
-      screen.getByText('footer.imprint.label').closest('a'),
-    ).toHaveProperty('href', 'imprint')
-
-    expect(
-      screen.getByText('footer.contact.label').closest('a'),
-    ).toHaveProperty('href', 'contact')
+  it('should render the copyright', () => {
+    expect(FooterMounted.getByText('footer.license')).toBeDefined()
   })
 })
