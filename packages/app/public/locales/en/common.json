@@ -13,10 +13,12 @@
       "darkMode": "Dark",
       "systemMode": "System"
     },
-    "languageDropdown": {
-      "language": {
-        "de": "German",
-        "en": "English"
+    "profile": {
+      "arialLabel": "View profile"
+    },
+    "mobile": {
+      "menu": {
+        "ariaLabel": "Open navigation"
       }
     }
   },

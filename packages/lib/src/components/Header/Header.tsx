@@ -26,6 +26,7 @@ import {
   MediaQuery,
   useMantineTheme,
 } from '@mantine/core'
+import { useTranslation } from 'next-i18next'
 
 import { SearchBar, ThemeSelector, UserMenu } from './components'
 
@@ -42,6 +43,8 @@ export function Header({
   isOpen,
   handleOpenNav,
 }: Props): JSX.Element {
+  const { t } = useTranslation()
+
   const theme = useMantineTheme()
 
   return (
@@ -62,6 +65,8 @@ export function Header({
         >
           <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
             <Burger
+              role="button"
+              aria-label={t('header.mobile.menu.ariaLabel') as string}
               opened={isOpen}
               onClick={() => {
                 handleOpenNav()
