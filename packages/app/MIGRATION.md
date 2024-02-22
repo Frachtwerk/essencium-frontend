@@ -1,7 +1,7 @@
 # Migrations
 
 ## 6.0.0 (27.02.2024)
- 
+
 - [Essencium migration PR](https://github.com/Frachtwerk/essencium-frontend/pull/496/files#top)
 - [Mantine v7](https://mantine.dev/changelog/7-0-0/)
 
