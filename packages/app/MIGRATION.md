@@ -16,7 +16,7 @@
 - Adjust [`theme` object](https://mantine.dev/theming/theme-object/)
 - Remove `ColorSchemeProvider` in template
 - Remove `withGlobalStyles` and `withNormalizeCSS` in `MantineProvider`
- 
+
 ### `packages/app/src/pages/_document.tsx`
 
 - Add `ColorSchemeScript` for [usage with next](https://mantine.dev/guides/next/)
@@ -24,12 +24,12 @@
 ### `packages/app/src/components/layouts/AuthLayout.tsx`
 
 - New structure of the [Appshell](https://mantine.dev/core/app-shell/) and [Spotlight](https://mantine.dev/x/spotlight/)
- 
+
 ### `packages/app/src/pages/rights/index.tsx`
 
 - Use `inherit` prop of [`Text`](https://mantine.dev/core/text/) for table content
 - Replace `color` with `c` [style prop](https://mantine.dev/styles/style-props/)
- 
+
 ### `packages/app/src/pages/roles/index.tsx`
 
 - Use `inherit` prop of [`Text`](https://mantine.dev/core/text/) for table content
@@ -37,24 +37,58 @@
 - Replace `sx` styles with [style props](https://mantine.dev/styles/style-props/)
 - Add `color` prop for [`ActionIcon`](https://mantine.dev/core/action-icon/)
 - Replace values in dependency array
- 
+
 ### `packages/app/src/pages/set-password/index.tsx`
 
 - Replace `align` with `ta` [style prop](https://mantine.dev/styles/style-props/)
- 
+
 ### `packages/app/src/pages/translations/index.tsx`
 
 - Use `inherit` prop of [`Text`](https://mantine.dev/core/text/) for table content
- 
+
 ### `packages/app/src/pages/users/index.tsx`
 
 - Use `inherit` prop of [`Text`](https://mantine.dev/core/text/) for table content
 - Replace `sx` styles with [CSS module](https://mantine.dev/styles/css-modules/) styles of `./users.module.css`
- 
+
 ### `packages/app/src/pages/users/users.module.css`
 
 - Create [CSS module](https://mantine.dev/styles/css-modules/) styles
- 
+
 ### `packages/app/src/utils/withBaseStylingShowNotification.ts`
 
 - Change type `NotificationProps` to `NotificationData`
+
+### `public/locales/de/common.json`
+
+- remove unused languages and add new ones in German
+
+```diff
+-    "languageDropdown": {
+-      "language": {
+-        "de": "Deutsch",
+-        "en": "Englisch"
++    "profile": {
++      "arialLabel": "Profil ansehen"
++    },
++    "mobile": {
++      "menu": {
++        "ariaLabel": "Navigation öffnen"
+```
+
+### `public/locales/en/common.json`
+
+- remove unused languages and add new ones in English
+
+```diff
+-    "languageDropdown": {
+-      "language": {
+-        "de": "German",
+-        "en": "English"
++    "profile": {
++      "arialLabel": "View profile"
++    },
++    "mobile": {
++      "menu": {
++        "ariaLabel": "Open navigation"
+```
