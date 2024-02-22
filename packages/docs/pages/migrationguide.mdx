@@ -8,8 +8,6 @@ Since developers eventually must manually update their own codebase, we are part
 The `MIGRATION.md` file follows this schema:
 
 ````markdown copy
-# Migrations
-
 ## x.y.z (DD.MM.YYYY)
 
 ### `path/to/file_1.extension`
@@ -17,17 +15,18 @@ The `MIGRATION.md` file follows this schema:
 - logic that needs to be changed is described here
 
 ```diff
-+ added line
 - removed line
++ added line
 ```
 ````
 
 <Callout emoji="⚠️" type="warning">
-  Since the version under which the changes are made is not known at the time of
-  the PR, the version needs to be set when
+  Since the version and date under which the changes are made are not known at
+  the time of the PR, those need to be set when
   [release-please](https://github.com/googleapis/release-please) creates the
   release PR. That means editing the `MIGRATION.md` file during the review of
-  the release PR. Instead of the version you can use `x.y.z` as a placeholder.
+  the release PR. Instead of the version you can use `x.y.z` and `DD.MM.YYYY` as
+  a placeholder.
 </Callout>
 
 <Callout emoji="ℹ️" type="info">
