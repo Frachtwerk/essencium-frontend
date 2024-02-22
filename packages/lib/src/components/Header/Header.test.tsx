@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /*
  * Copyright (C) 2023 Frachtwerk GmbH, Leopoldstraße 7C, 76133 Karlsruhe.
  *
@@ -23,7 +22,6 @@ import * as mantine from '@mantine/core'
 import { render, RenderResult } from '@testing-library/react'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 
-// import { ThemeSelector, UserMenu } from './components'
 import { Header } from './Header'
 
 const MOCK_USER: UserOutput = {
