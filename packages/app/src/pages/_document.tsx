@@ -17,6 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { ColorSchemeScript } from '@mantine/core'
 import { createGetInitialProps } from '@mantine/next'
 import _Document, { Head, Html, Main, NextScript } from 'next/document'
 
@@ -32,6 +33,7 @@ class Document extends _Document {
         <Head>
           <link rel="icon" href="/img/web/favicon.ico" sizes="any" />
           <link rel="apple-touch-icon" href="/img/web/apple-touch-icon.png" />
+          <ColorSchemeScript defaultColorScheme="auto" />
         </Head>
         <body>
           <div id="notification" />
