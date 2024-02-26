@@ -272,7 +272,7 @@ importers:
         specifier: 10.0.0
         version: 10.0.0(eslint@8.35.0)
       postcss-preset-mantine:
-        specifier: ^1.12.3
+        specifier: 1.12.3
         version: 1.12.3(postcss@8.4.33)
       prettier:
         specifier: 3.0.3
@@ -559,7 +559,7 @@ importers:
         specifier: 8.4.33
         version: 8.4.33
       postcss-preset-mantine:
-        specifier: ^1.12.3
+        specifier: 1.12.3
         version: 1.12.3(postcss@8.4.33)
       prettier:
         specifier: 3.0.3

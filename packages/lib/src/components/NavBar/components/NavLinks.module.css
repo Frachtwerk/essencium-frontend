@@ -1,0 +1,8 @@
+.navlinkRoot {
+  border-radius: var(--mantine-radius-sm);
+}
+
+.navlinkLabel {
+  font-size: var(--mantine-font-size-sm);
+  white-space: nowrap;
+}

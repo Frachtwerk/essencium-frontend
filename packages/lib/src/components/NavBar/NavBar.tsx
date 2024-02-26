@@ -97,14 +97,7 @@ export function NavBar({
         zIndex={100}
         mt={isOpen ? '0' : '-3.6rem'}
       >
-        <Stack
-          style={{
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-          }}
-        >
+        <Stack h="100%" display="flex" dir="column" justify="space-between">
           <AppShellSection mb="lg">
             <Group gap="xs" align="center">
               <Flex justify="space-between" align="center" gap="xl">
@@ -165,13 +158,9 @@ export function NavBar({
               leftSection={<IconLogout />}
               label={t('navigation.logout.label')}
               onClick={() => handleLogout()}
-              styles={{
-                root: {
-                  borderRadius: theme.radius.sm,
-                },
-                label: {
-                  fontSize: theme.fontSizes.sm,
-                },
+              classNames={{
+                root: classes.navlinkRoot,
+                label: classes.navlinkLabel,
               }}
             />
           </AppShellSection>
@@ -220,13 +209,9 @@ export function NavBar({
               leftSection={<IconLogout />}
               label={t('navigation.logout.label')}
               onClick={() => handleLogout()}
-              styles={{
-                root: {
-                  borderRadius: theme.radius.sm,
-                },
-                label: {
-                  fontSize: theme.fontSizes.sm,
-                },
+              classNames={{
+                root: classes.navlinkRoot,
+                label: classes.navlinkLabel,
               }}
             />
           </AppShellSection>

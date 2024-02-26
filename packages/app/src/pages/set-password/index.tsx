@@ -52,8 +52,6 @@ function SetPasswordView(): JSX.Element {
     )
   }
 
-  // Title align="center"
-
   return (
     <Container size={450} my="xl">
       {!showSuccessMessage && (

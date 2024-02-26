@@ -23,7 +23,6 @@ import {
   Badge,
   Card,
   Flex,
-  rem,
   Text,
   Title,
   useMantineTheme,
@@ -57,7 +56,7 @@ export function ProfileOverviewCard({ user }: Props): JSX.Element {
         </Title>
 
         {user.roles.map(role => (
-          <Text key={role.name} size="sm" mt={rem(-8)}>
+          <Text key={role.name} size="sm" mt={-8}>
             {role.name}
           </Text>
         ))}

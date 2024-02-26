@@ -19,9 +19,27 @@
 .fixedNavbar {
   width: 250px;
   height: 100%;
+  -webkit-transition: width 0.4s ease-in-out;
+  -o-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
 }
 
 .fixedNavbar:hover {
   width: 250px;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.navlinkRoot {
+  border-radius: var(--mantine-radius-sm);
+}
+
+.navlinkLabel {
+  font-size: var(--mantine-font-size-sm);
 }

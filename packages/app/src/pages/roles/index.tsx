@@ -235,6 +235,7 @@ function RolesView(): JSX.Element {
                       setRoleToEditOrDelete(rowRole)
                       editModalHandlers.open()
                     }}
+                    color={theme.colors.blue[6]}
                   />
                 </ActionIcon>
               ) : null}
@@ -247,6 +248,7 @@ function RolesView(): JSX.Element {
                       setRoleToEditOrDelete(rowRole)
                       deleteModalHandlers.open()
                     }}
+                    color={theme.colors.blue[6]}
                   />
                 </ActionIcon>
               ) : null}

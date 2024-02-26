@@ -32,7 +32,6 @@ import {
   Dialog,
   Flex,
   Group,
-  rem,
   Stack,
   Text,
   Textarea,
@@ -211,8 +210,8 @@ export function FeedbackWidget({
         radius="xl"
         style={{
           position: 'fixed',
-          bottom: rem(80),
-          right: rem(25),
+          bottom: 80,
+          right: 25,
           zIndex: '20',
         }}
         onClick={toggle}
@@ -246,7 +245,7 @@ export function FeedbackWidget({
                   <ActionIcon
                     variant="filled"
                     size={70}
-                    style={{ borderRadius: '20px' }}
+                    className={classes.actionIcon}
                     onClick={() => {
                       setOpenInput(OpenInput[inputKey])
                     }}
@@ -276,7 +275,7 @@ export function FeedbackWidget({
             <div style={styles}>
               <Box>
                 {isLoading ? (
-                  <Box h={rem(100)}>
+                  <Box h={100}>
                     <LoadingSpinner show size="lg" />
                   </Box>
                 ) : null}
@@ -287,7 +286,7 @@ export function FeedbackWidget({
                       {showSuccessMessage ? (
                         <ThemeIcon
                           variant="outline"
-                          style={{ border: 'none' }}
+                          className={classes.themeIcon}
                           size={60}
                         >
                           <IconCircleCheck size={60} stroke={1.5} />
@@ -373,9 +372,9 @@ export function FeedbackWidget({
                             onClick={() => captureScreenshot()}
                           >
                             {screenshot ? (
-                              <IconCameraCheck size={rem(20)} />
+                              <IconCameraCheck size={20} />
                             ) : (
-                              <IconCameraPlus size={rem(20)} />
+                              <IconCameraPlus size={20} />
                             )}
                           </ActionIcon>
                         </Tooltip>

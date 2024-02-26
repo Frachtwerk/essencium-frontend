@@ -16,12 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
-import {
-  Flex,
-  Select,
-  Table as MantineTable,
-  useMantineColorScheme,
-} from '@mantine/core'
+import { Flex, Select, Table as MantineTable } from '@mantine/core'
 import { IconSortAscending2, IconSortDescending2 } from '@tabler/icons-react'
 import { flexRender, Table as TanstackTable } from '@tanstack/react-table'
 import { Dispatch, SetStateAction } from 'react'
@@ -47,18 +42,6 @@ export function Table<T>({
   setFilterValue,
   firstColSticky,
 }: Props<T>): JSX.Element {
-  const { colorScheme } = useMantineColorScheme()
-
-  function getTableColStickyStyle(): string | undefined {
-    if (firstColSticky && colorScheme === 'dark') {
-      return classes.tableColStickyDarkmode
-    }
-    if (firstColSticky) {
-      return classes.tableColSticky
-    }
-    return undefined
-  }
-
   return (
     <Flex direction="column" align="end">
       <div style={{ overflowX: 'auto', width: '100%' }}>
@@ -70,7 +53,7 @@ export function Table<T>({
                   <MantineTable.Th
                     key={header.id}
                     style={{ verticalAlign: 'top' }}
-                    className={getTableColStickyStyle()}
+                    className={classes.tableColSticky}
                   >
                     <Flex
                       align="center"
@@ -134,7 +117,7 @@ export function Table<T>({
                   <MantineTable.Td
                     key={cell.id}
                     width={cell.column.getSize()}
-                    className={getTableColStickyStyle()}
+                    className={classes.tableColSticky}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </MantineTable.Td>
