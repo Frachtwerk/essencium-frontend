@@ -31,11 +31,11 @@ type Props = {
 export function Contact({ control, formState }: Props): JSX.Element {
   return (
     <Grid role="grid">
-      <Grid.Col md={4} role="gridcell">
+      <Grid.Col span={{ md: 4 }} role="gridcell">
         <ContactPersonCard />
       </Grid.Col>
 
-      <Grid.Col md={8} role="gridcell">
+      <Grid.Col span={{ md: 8 }} role="gridcell">
         <ContactForm control={control} formState={formState} />
       </Grid.Col>
     </Grid>

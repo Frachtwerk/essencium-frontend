@@ -18,14 +18,12 @@
  */
 
 import { NavLink } from '@frachtwerk/essencium-types'
-import {
-  NavLink as MantineNavLink,
-  Stack,
-  useMantineTheme,
-} from '@mantine/core'
+import { NavLink as MantineNavLink, Stack } from '@mantine/core'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
+
+import classes from './NavLinks.module.css'
 
 type Props = {
   links: NavLink[]
@@ -37,37 +35,27 @@ export function NavLinks({ links, userRights }: Props): JSX.Element {
 
   const router = useRouter()
 
-  const theme = useMantineTheme()
-
   function hasRequiredRights(rights: string[]): boolean {
     return Boolean(rights.every(right => userRights?.includes(right)))
   }
 
   return (
-    <Stack spacing="md">
+    <Stack gap="md">
       {links.map(link =>
         !link.rights.length ||
         (link.rights && hasRequiredRights(link.rights)) ? (
-          <NextLink
+          <MantineNavLink
+            component={NextLink}
             key={link.label}
             href={link.to}
-            style={{ textDecoration: 'none' }}
-          >
-            <MantineNavLink
-              icon={link.icon}
-              label={t(link.label)}
-              active={link.to === router.pathname}
-              styles={{
-                root: {
-                  borderRadius: theme.radius.sm,
-                },
-                label: {
-                  fontSize: theme.fontSizes.sm,
-                  whiteSpace: 'nowrap',
-                },
-              }}
-            />
-          </NextLink>
+            leftSection={link.icon}
+            label={t(link.label)}
+            active={link.to === router.pathname}
+            classNames={{
+              root: classes.navlinkRoot,
+              label: classes.navlinkLabel,
+            }}
+          />
         ) : null,
       )}
     </Stack>

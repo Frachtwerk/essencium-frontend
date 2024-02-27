@@ -40,6 +40,7 @@ import {
   Switch,
   Text,
   Title,
+  useMantineColorScheme,
   useMantineTheme,
 } from '@mantine/core'
 import { useDebouncedValue, useDisclosure } from '@mantine/hooks'
@@ -75,6 +76,8 @@ import { AuthLayout } from '@/components/layouts'
 import { getTranslation, hasRequiredRights, parseSorting } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
+import classes from './users.module.css'
+
 export const FORM_DEFAULTS_USERS_VIEW = {
   firstName: '',
   lastName: '',
@@ -106,6 +109,7 @@ function UsersView(): JSX.Element {
   const { t } = useTranslation()
 
   const theme = useMantineTheme()
+  const { colorScheme } = useMantineColorScheme()
 
   const [deleteModalOpened, deleteModalHandlers] = useDisclosure(false)
   const [userToBeDeleted, setUserToBeDeleted] = useState<UserOutput | null>(
@@ -208,18 +212,18 @@ function UsersView(): JSX.Element {
     () => [
       {
         accessorKey: 'enabled',
-        header: () => <Text>{t('usersView.table.active')}</Text>,
+        header: () => <Text inherit>{t('usersView.table.active')}</Text>,
         cell: info => (info.getValue() ? <IconCheck /> : <IconX />),
         size: 80,
         enableColumnFilter: false,
       },
       {
         accessorKey: 'name',
-        header: () => <Text>{t('usersView.table.name')}</Text>,
+        header: () => <Text inherit>{t('usersView.table.name')}</Text>,
         cell: info => {
           const rowUser = info.row.original
           return (
-            <Text>
+            <Text inherit>
               {rowUser.firstName} {rowUser.lastName}
             </Text>
           )
@@ -229,28 +233,28 @@ function UsersView(): JSX.Element {
 
       {
         accessorKey: 'phone',
-        header: () => <Text>{t('usersView.table.phone')}</Text>,
+        header: () => <Text inherit>{t('usersView.table.phone')}</Text>,
         cell: info => info.getValue(),
         size: 180,
         enableColumnFilter: false,
       },
       {
         accessorKey: 'email',
-        header: () => <Text>{t('usersView.table.email')}</Text>,
+        header: () => <Text inherit>{t('usersView.table.email')}</Text>,
         cell: info => info.getValue(),
         size: 230,
         maxSize: 250,
       },
       {
         accessorKey: 'locale',
-        header: () => <Text>{t('usersView.table.locale')}</Text>,
+        header: () => <Text inherit>{t('usersView.table.locale')}</Text>,
         cell: info => t(`${info.getValue()}`),
         size: 120,
         enableColumnFilter: false,
       },
       {
         accessorKey: 'roles',
-        header: () => <Text>{t('usersView.table.roles')}</Text>,
+        header: () => <Text inherit>{t('usersView.table.roles')}</Text>,
         cell: info => {
           const rowRoles = info.row.original.roles
           return rowRoles.map(role => {
@@ -265,7 +269,7 @@ function UsersView(): JSX.Element {
       },
       {
         accessorKey: 'actions',
-        header: () => <Text>{t('usersView.table.actions')}</Text>,
+        header: () => <Text inherit>{t('usersView.table.actions')}</Text>,
         enableSorting: false,
         enableColumnFilter: false,
         cell: info => {
@@ -315,22 +319,13 @@ function UsersView(): JSX.Element {
                   <Popover.Dropdown p={0}>
                     <Group
                       onClick={() => handleInvalidateToken(user)}
-                      spacing="xs"
-                      sx={{
-                        padding: '0.7rem 0 0.5rem 1rem',
-                        cursor: 'pointer',
-                        '&:hover': {
-                          backgroundColor:
-                            theme.colorScheme === 'dark'
-                              ? theme.colors.gray[9]
-                              : theme.colors.gray[0],
-                        },
-                      }}
+                      gap="xs"
+                      className={classes.group}
                     >
                       <IconLogout
                         size={16}
                         color={
-                          theme.colorScheme === 'dark'
+                          colorScheme === 'dark'
                             ? theme.colors.gray[3]
                             : theme.colors.gray[7]
                         }
@@ -353,9 +348,9 @@ function UsersView(): JSX.Element {
       user,
       userRights,
       theme.colors.gray,
-      theme.colorScheme,
       handleInvalidateToken,
       deleteModalHandlers,
+      colorScheme,
     ],
   )
 
@@ -391,7 +386,7 @@ function UsersView(): JSX.Element {
           <Flex align="center" gap={10}>
             <IconUsers size="32" />
 
-            <Text>{t('usersView.title')}</Text>
+            <Text inherit>{t('usersView.title')}</Text>
           </Flex>
         </Title>
 

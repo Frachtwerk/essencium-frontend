@@ -32,7 +32,6 @@ import {
   Dialog,
   Flex,
   Group,
-  rem,
   Stack,
   Text,
   Textarea,
@@ -61,6 +60,7 @@ import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../hooks'
 import { LoadingSpinner } from '../LoadingSpinner'
+import classes from './FeedbackWidget.module.css'
 
 type NotificationParams = {
   notificationType: 'created' | 'updated' | 'deleted'
@@ -210,8 +210,8 @@ export function FeedbackWidget({
         radius="xl"
         style={{
           position: 'fixed',
-          bottom: rem(80),
-          right: rem(25),
+          bottom: 80,
+          right: 25,
           zIndex: '20',
         }}
         onClick={toggle}
@@ -225,12 +225,13 @@ export function FeedbackWidget({
         onClose={() => {
           onCloseWidget()
         }}
-        sx={{ width: '390px', height: openInput ? 'auto' : '180px' }}
         radius="md"
+        w="390px"
+        h={openInput ? 'auto' : '180px'}
         position={{ bottom: 100, right: 80 }}
       >
         {!showSuccessMessage || !showErrorMessage ? (
-          <Title order={4} align="center" size="sm" mb="sm" weight={500}>
+          <Title order={4} ta="center" size="sm" mb="sm" fw={500}>
             {t('feedbackWidget.title')}
           </Title>
         ) : null}
@@ -244,7 +245,7 @@ export function FeedbackWidget({
                   <ActionIcon
                     variant="filled"
                     size={70}
-                    style={{ borderRadius: '20px' }}
+                    className={classes.actionIcon}
                     onClick={() => {
                       setOpenInput(OpenInput[inputKey])
                     }}
@@ -274,7 +275,7 @@ export function FeedbackWidget({
             <div style={styles}>
               <Box>
                 {isLoading ? (
-                  <Box h={rem(100)}>
+                  <Box h={100}>
                     <LoadingSpinner show size="lg" />
                   </Box>
                 ) : null}
@@ -285,7 +286,7 @@ export function FeedbackWidget({
                       {showSuccessMessage ? (
                         <ThemeIcon
                           variant="outline"
-                          style={{ border: 'none' }}
+                          className={classes.themeIcon}
                           size={60}
                         >
                           <IconCircleCheck size={60} stroke={1.5} />
@@ -311,7 +312,7 @@ export function FeedbackWidget({
 
                 {!isLoading && !showSuccessMessage && !showErrorMessage ? (
                   <Box>
-                    <Group position="apart" spacing="xs" mb="md">
+                    <Group justify="apart" gap="xs" mb="md">
                       {Object.keys(OpenInput).map(key => {
                         const inputKey = key as keyof typeof OpenInput
 
@@ -319,7 +320,8 @@ export function FeedbackWidget({
                           <Button
                             key={key}
                             p="5px"
-                            sx={{ width: '110px', height: '32px' }}
+                            w="110px"
+                            h="32px"
                             variant={
                               openInput === OpenInput[inputKey]
                                 ? 'filled'
@@ -329,7 +331,7 @@ export function FeedbackWidget({
                               setOpenInput(OpenInput[inputKey])
                               reset()
                             }}
-                            leftIcon={icons[inputKey]}
+                            leftSection={icons[inputKey]}
                           >
                             {t(`feedbackWidget.${key.toLowerCase()}`)}
                           </Button>
@@ -344,10 +346,7 @@ export function FeedbackWidget({
                         render={({ field }) => (
                           <Textarea
                             {...field}
-                            sx={{
-                              borderRadius: '50px',
-                              marginBottom: '15px',
-                            }}
+                            className={classes.textarea}
                             placeholder={
                               t('feedbackWidget.placeholder') as string
                             }
@@ -357,7 +356,7 @@ export function FeedbackWidget({
 
                       <Box h="0.8rem" mt="-0.8rem" mb="0.6em">
                         {formState.errors.message && (
-                          <Text ml={5} fz="xs" color="red">
+                          <Text ml={5} fz="xs" c="red">
                             {formState.errors.message?.message
                               ? String(t(formState.errors.message.message))
                               : null}
@@ -373,9 +372,9 @@ export function FeedbackWidget({
                             onClick={() => captureScreenshot()}
                           >
                             {screenshot ? (
-                              <IconCameraCheck size={rem(20)} />
+                              <IconCameraCheck size={20} />
                             ) : (
-                              <IconCameraPlus size={rem(20)} />
+                              <IconCameraPlus size={20} />
                             )}
                           </ActionIcon>
                         </Tooltip>

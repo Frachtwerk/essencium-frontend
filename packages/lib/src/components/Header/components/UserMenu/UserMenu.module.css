@@ -1,0 +1,24 @@
+.group {
+  padding: 0.7rem 0 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: var(--mantine-radius-sm);
+
+  &:hover {
+    @mixin light {
+      background-color: var(--mantine-color-gray-0);
+    }
+
+    @mixin dark {
+      background-color: var(--mantine-color-gray-9);
+    }
+  }
+}
+
+.unstyledButton {
+  display: block;
+  width: 100%;
+}
+
+.box {
+  flex: 1;
+}

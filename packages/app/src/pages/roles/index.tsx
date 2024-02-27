@@ -185,32 +185,30 @@ function RolesView(): JSX.Element {
     return [
       {
         accessorKey: 'name',
-        header: () => <Text>{t('rolesView.table.name')}</Text>,
+        header: () => <Text inherit>{t('rolesView.table.name')}</Text>,
         cell: info => info.getValue(),
         size: 120,
       },
       {
         accessorKey: 'description',
-        header: () => <Text>{t('rolesView.table.description')}</Text>,
+        header: () => <Text inherit>{t('rolesView.table.description')}</Text>,
         cell: info => info.getValue(),
         size: 200,
       },
       {
         accessorKey: 'rights',
-        header: () => <Text>{t('rolesView.table.rights')}</Text>,
+        header: () => <Text inherit>{t('rolesView.table.rights')}</Text>,
         size: 600,
         cell: info => (
           <>
             {(info.getValue() as RightOutput[]).map((right: RightOutput) => (
               <Badge
+                variant="light"
                 key={right.authority}
-                sx={{
-                  backgroundColor: theme.colors.gray[2],
-                  color: theme.colors.gray[8],
-                  border: 'none',
-                  fontWeight: 'normal',
-                }}
-                style={{ margin: 3 }}
+                bg={theme.colors.gray[2]}
+                c={theme.colors.gray[8]}
+                fw="normal"
+                m={3}
               >
                 {right.authority}
               </Badge>
@@ -221,7 +219,7 @@ function RolesView(): JSX.Element {
 
       {
         accessorKey: 'actions',
-        header: () => <Text>{t('usersView.table.actions')}</Text>,
+        header: () => <Text inherit>{t('usersView.table.actions')}</Text>,
         enableSorting: false,
         enableColumnFilter: false,
         cell: info => {
@@ -237,6 +235,7 @@ function RolesView(): JSX.Element {
                       setRoleToEditOrDelete(rowRole)
                       editModalHandlers.open()
                     }}
+                    color={theme.colors.blue[6]}
                   />
                 </ActionIcon>
               ) : null}
@@ -249,6 +248,7 @@ function RolesView(): JSX.Element {
                       setRoleToEditOrDelete(rowRole)
                       deleteModalHandlers.open()
                     }}
+                    color={theme.colors.blue[6]}
                   />
                 </ActionIcon>
               ) : null}
@@ -258,7 +258,7 @@ function RolesView(): JSX.Element {
         size: 120,
       },
     ]
-  }, [t, theme.colors.gray, userRights, editModalHandlers, deleteModalHandlers])
+  }, [t, userRights, editModalHandlers, deleteModalHandlers, theme])
 
   const table = useReactTable({
     data: roles?.content || [],
@@ -292,7 +292,7 @@ function RolesView(): JSX.Element {
           <Flex align="center" gap={10}>
             <IconUserStar size="32" />
 
-            <Text>{t('rolesView.title')}</Text>
+            <Text inherit>{t('rolesView.title')}</Text>
           </Flex>
         </Title>
 

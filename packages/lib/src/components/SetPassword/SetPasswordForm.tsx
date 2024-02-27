@@ -45,7 +45,7 @@ export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Stack spacing="xs">
+      <Stack gap="xs">
         <Controller
           name="password"
           control={control}
@@ -77,7 +77,7 @@ export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
         </Box>
       </Stack>
 
-      <Stack spacing="xs" mt="sm">
+      <Stack gap="xs" mt="sm">
         <Controller
           name="confirmPassword"
           control={control}

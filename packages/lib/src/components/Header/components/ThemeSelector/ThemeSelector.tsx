@@ -19,9 +19,11 @@
 
 import {
   Button,
-  ColorScheme,
   Group,
+  MantineColorScheme,
   Popover,
+  PopoverDropdown,
+  PopoverTarget,
   Text,
   useMantineColorScheme,
   useMantineTheme,
@@ -30,16 +32,18 @@ import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 
+import classes from './ThemeSelector.module.css'
+
 export function ThemeSelector(): JSX.Element {
   const { t } = useTranslation()
 
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme()
+  const { setColorScheme } = useMantineColorScheme()
   const theme = useMantineTheme()
 
   const [hasSelectedLight, setSelectedLight] = useState(false)
   const [hasSelectedDark, setSelectedDark] = useState(false)
 
-  let systemColorScheme: ColorScheme = 'light'
+  let systemColorScheme: MantineColorScheme = 'light'
 
   if (typeof window !== 'undefined') {
     systemColorScheme = window.matchMedia('(prefers-color-scheme: light)')
@@ -49,55 +53,38 @@ export function ThemeSelector(): JSX.Element {
   }
   return (
     <Popover width={130} position="bottom" withArrow shadow="sm">
-      <Popover.Target>
+      <PopoverTarget>
         <Button
           aria-label="theme-selector"
-          leftIcon={
-            colorScheme === 'light' ? (
+          p={0}
+          bg="transparent"
+          className={classes.button}
+          leftSection={
+            <>
               <IconSun
+                className={classes.iconLight}
                 color={
-                  colorScheme === 'light' && hasSelectedLight
-                    ? theme.colors.blue[6]
-                    : theme.colors.gray[9]
+                  hasSelectedLight ? theme.colors.blue[6] : theme.colors.gray[9]
                 }
               />
-            ) : (
               <IconMoon
+                className={classes.iconDark}
                 color={
-                  colorScheme === 'dark' && hasSelectedDark
-                    ? theme.colors.blue[6]
-                    : theme.colors.gray[5]
+                  hasSelectedDark ? theme.colors.blue[6] : theme.colors.gray[5]
                 }
               />
-            )
+            </>
           }
-          style={{
-            backgroundColor: 'transparent',
-            color:
-              colorScheme === 'light'
-                ? theme.colors.gray[9]
-                : theme.colors.gray[5],
-            padding: 0,
-          }}
         />
-      </Popover.Target>
+      </PopoverTarget>
 
-      <Popover.Dropdown p={0}>
+      <PopoverDropdown p={0}>
         <Group
           onClick={() => {
-            toggleColorScheme('light')
+            setColorScheme('light')
             setSelectedLight(true)
           }}
-          sx={{
-            padding: '0.7rem 0 0.5rem 1rem',
-            cursor: 'pointer',
-            '&:hover': {
-              backgroundColor:
-                theme.colorScheme === 'dark'
-                  ? theme.colors.gray[9]
-                  : theme.colors.gray[0],
-            },
-          }}
+          className={classes.group}
         >
           <IconSun size={20} />
 
@@ -106,19 +93,10 @@ export function ThemeSelector(): JSX.Element {
 
         <Group
           onClick={() => {
-            toggleColorScheme('dark')
+            setColorScheme('dark')
             setSelectedDark(true)
           }}
-          sx={{
-            padding: '0.7rem 0 0.5rem 1rem',
-            cursor: 'pointer',
-            '&:hover': {
-              backgroundColor:
-                theme.colorScheme === 'dark'
-                  ? theme.colors.gray[9]
-                  : theme.colors.gray[0],
-            },
-          }}
+          className={classes.group}
         >
           <IconMoon size={20} />
 
@@ -127,26 +105,17 @@ export function ThemeSelector(): JSX.Element {
 
         <Group
           onClick={() => {
-            toggleColorScheme(systemColorScheme)
+            setColorScheme(systemColorScheme)
             setSelectedLight(false)
             setSelectedDark(false)
           }}
-          sx={{
-            padding: '0.7rem 0 0.7rem 1rem',
-            cursor: 'pointer',
-            '&:hover': {
-              backgroundColor:
-                theme.colorScheme === 'dark'
-                  ? theme.colors.gray[9]
-                  : theme.colors.gray[0],
-            },
-          }}
+          className={classes.group}
         >
           <IconDeviceLaptop size={20} />
 
           <Text size="sm">{t('header.themeToggle.systemMode')}</Text>
         </Group>
-      </Popover.Dropdown>
+      </PopoverDropdown>
     </Popover>
   )
 }

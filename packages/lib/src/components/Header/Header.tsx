@@ -19,15 +19,15 @@
 
 import { UserOutput } from '@frachtwerk/essencium-types'
 import {
+  AppShellHeader,
   Burger,
   Flex,
   Group,
-  Header as MantineHeader,
-  MediaQuery,
   useMantineTheme,
 } from '@mantine/core'
 
 import { SearchBar, ThemeSelector, UserMenu } from './components'
+import classes from './Header.module.css'
 
 type Props = {
   user: UserOutput | undefined
@@ -45,44 +45,34 @@ export function Header({
   const theme = useMantineTheme()
 
   return (
-    <MediaQuery smallerThan="sm" styles={{ marginLeft: '0' }}>
-      <MantineHeader
-        height={{ base: 60 }}
-        p="md"
-        fixed
-        withBorder={false}
-        ml={marginLeft}
-      >
-        <Flex
-          sx={{
-            height: '100%',
+    <AppShellHeader
+      p="md"
+      withBorder={false}
+      ml={marginLeft}
+      className={classes.appShellHeader}
+    >
+      <Flex className={classes.flex} justify="space-between" align="center">
+        <Burger
+          opened={isOpen}
+          onClick={() => {
+            handleOpenNav()
           }}
-          justify="space-between"
-          align="center"
-        >
-          <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-            <Burger
-              opened={isOpen}
-              onClick={() => {
-                handleOpenNav()
-              }}
-              size="sm"
-              color={theme.colors.gray[5]}
-              style={{ zIndex: 200 }}
-            />
-          </MediaQuery>
+          size="sm"
+          color={theme.colors.gray[5]}
+          hiddenFrom="sm"
+          className={classes.burger}
+        />
 
-          <SearchBar />
+        <SearchBar />
 
-          <Group noWrap>
-            <Group noWrap>
-              <ThemeSelector />
-            </Group>
-
-            {user ? <UserMenu user={user} /> : null}
+        <Group wrap="nowrap">
+          <Group wrap="nowrap">
+            <ThemeSelector />
           </Group>
-        </Flex>
-      </MantineHeader>
-    </MediaQuery>
+
+          {user ? <UserMenu user={user} /> : null}
+        </Group>
+      </Flex>
+    </AppShellHeader>
   )
 }

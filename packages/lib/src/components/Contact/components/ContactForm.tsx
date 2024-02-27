@@ -50,7 +50,7 @@ export function ContactForm({ formState, control }: Props): JSX.Element {
       </Title>
 
       <Grid gutter={30}>
-        <Grid.Col md={6}>
+        <Grid.Col span={{ md: 6 }}>
           <Container p={0} m={0}>
             <Stack>
               <Controller
@@ -108,7 +108,7 @@ export function ContactForm({ formState, control }: Props): JSX.Element {
           </Container>
         </Grid.Col>
 
-        <Grid.Col md={6}>
+        <Grid.Col span={{ md: 6 }}>
           <Stack>
             <Controller
               name="subject"
@@ -170,8 +170,8 @@ export function ContactForm({ formState, control }: Props): JSX.Element {
         </Grid.Col>
       </Grid>
 
-      <Group position="right" mt="md">
-        <Button type="submit" leftIcon={<IconSend size={20} />}>
+      <Group justify="right" mt="md">
+        <Button type="submit" leftSection={<IconSend size={20} />}>
           {t('contactView.contactForm.form.sendMessage')}
         </Button>
       </Group>

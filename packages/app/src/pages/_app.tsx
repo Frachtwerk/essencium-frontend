@@ -17,10 +17,14 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import '@mantine/core/styles.css'
+import '@mantine/spotlight/styles.css'
+
 import { UserOutput } from '@frachtwerk/essencium-types'
 import {
-  ColorScheme,
-  ColorSchemeProvider,
+  createTheme,
+  Loader,
+  MantineColorScheme,
   MantineProvider,
 } from '@mantine/core'
 import { useHotkeys, useLocalStorage } from '@mantine/hooks'
@@ -69,9 +73,9 @@ function App({
 
   const [queryClient] = useState(() => new QueryClient())
 
-  let systemColorScheme: ColorScheme = 'light'
+  let systemColorScheme: MantineColorScheme = 'light'
 
-  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+  const [colorScheme, setColorScheme] = useLocalStorage<MantineColorScheme>({
     key: 'mantine-color-scheme',
     defaultValue: systemColorScheme,
     getInitialValueInEffect: true,
@@ -90,7 +94,7 @@ function App({
       })
   }
 
-  function toggleColorScheme(value?: ColorScheme): void {
+  function toggleColorScheme(value?: MantineColorScheme): void {
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
   }
 
@@ -111,79 +115,77 @@ function App({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const theme = createTheme({
+    focusRing: 'auto',
+    respectReducedMotion: true,
+    defaultRadius: 'sm',
+    cursorType: 'pointer',
+    colors: {
+      blue: [
+        '#E5FBFF',
+        '#B8F4FF',
+        '#8AEDFF',
+        '#5CE6FF',
+        '#2EDFFF',
+        '#00D8FF',
+        '#00ADCC',
+        '#008199',
+        '#005666',
+        '#002B33',
+      ],
+      orange: [
+        '#FFF3E5',
+        '#FFDDB8',
+        '#FFC78A',
+        '#FFB15C',
+        '#FF9B2E',
+        '#FF8500',
+        '#CC6A00',
+        '#995000',
+        '#663500',
+        '#331B00',
+      ],
+    },
+    white: '#ffffff',
+    black: '#131313',
+    primaryColor: 'blue',
+    primaryShade: { light: 6, dark: 7 },
+    defaultGradient: {
+      from: 'blue',
+      to: 'orange',
+      deg: 135,
+    },
+    fontFamily: firaSans.style.fontFamily,
+    fontFamilyMonospace: firaCode.style.fontFamily,
+    headings: {
+      fontFamily: firaSans.style.fontFamily,
+    },
+    components: {
+      Loader: Loader.extend({
+        defaultProps: {
+          type: 'dots',
+        },
+      }),
+    },
+  })
+
   return (
-    <ColorSchemeProvider
-      colorScheme={colorScheme}
-      toggleColorScheme={toggleColorScheme}
-    >
-      <MantineProvider
-        withGlobalStyles
-        withNormalizeCSS
-        theme={{
-          colorScheme,
-          focusRing: 'auto',
-          respectReducedMotion: true,
-          defaultRadius: 'sm',
-          cursorType: 'pointer',
-          colors: {
-            blue: [
-              '#E5FBFF',
-              '#B8F4FF',
-              '#8AEDFF',
-              '#5CE6FF',
-              '#2EDFFF',
-              '#00D8FF',
-              '#00ADCC',
-              '#008199',
-              '#005666',
-              '#002B33',
-            ],
-            orange: [
-              '#FFF3E5',
-              '#FFDDB8',
-              '#FFC78A',
-              '#FFB15C',
-              '#FF9B2E',
-              '#FF8500',
-              '#CC6A00',
-              '#995000',
-              '#663500',
-              '#331B00',
-            ],
-          },
-          white: '#ffffff',
-          black: '#131313',
-          primaryColor: 'blue',
-          primaryShade: { light: 6, dark: 7 },
-          defaultGradient: {
-            from: 'blue',
-            to: 'orange',
-            deg: 135,
-          },
-          fontFamily: firaSans.style.fontFamily,
-          fontFamilyMonospace: firaCode.style.fontFamily,
-          headings: {
-            fontFamily: firaSans.style.fontFamily,
-          },
-          loader: 'dots',
-          transitionTimingFunction: 'ease-in-out',
-        }}
-      >
-        <QueryClientProvider client={queryClient}>
-          <Hydrate state={pageProps.dehydratedState}>
-            <Notifications limit={3} />
-            {getLayout(
-              <Component {...pageProps} />,
-              version &&
-                process.env.NEXT_PUBLIC_SHOW_VERSION &&
-                process.env.NEXT_PUBLIC_SHOW_VERSION === '1'
-                ? version
-                : undefined,
-            )}
-          </Hydrate>
-        </QueryClientProvider>
-      </MantineProvider>
-    </ColorSchemeProvider>
+    <MantineProvider theme={theme}>
+      <QueryClientProvider client={queryClient}>
+        <Hydrate state={pageProps.dehydratedState}>
+          <Notifications limit={3} />
+
+          {getLayout(
+            <Component {...pageProps} />,
+            version &&
+              process.env.NEXT_PUBLIC_SHOW_VERSION &&
+              process.env.NEXT_PUBLIC_SHOW_VERSION === '1'
+              ? version
+              : undefined,
+          )}
+        </Hydrate>
+      </QueryClientProvider>
+    </MantineProvider>
   )
 }
 

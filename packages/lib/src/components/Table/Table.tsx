@@ -16,17 +16,12 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
-import {
-  Flex,
-  Select,
-  Table as MantineTable,
-  useMantineTheme,
-} from '@mantine/core'
+import { Flex, Select, Table as MantineTable } from '@mantine/core'
 import { IconSortAscending2, IconSortDescending2 } from '@tabler/icons-react'
 import { flexRender, Table as TanstackTable } from '@tanstack/react-table'
 import { Dispatch, SetStateAction } from 'react'
 
-import styles from './Table.module.css'
+import classes from './Table.module.css'
 
 type Props<T> = {
   tableModel: TanstackTable<T>
@@ -47,45 +42,28 @@ export function Table<T>({
   setFilterValue,
   firstColSticky,
 }: Props<T>): JSX.Element {
-  const theme = useMantineTheme()
-
-  function getTableColStickyStyle(): string | undefined {
-    if (firstColSticky && theme.colorScheme === 'dark') {
-      return styles.tableColStickyDarkmode
-    }
-    if (firstColSticky) {
-      return styles.tableColSticky
-    }
-    return undefined
-  }
-
   return (
     <Flex direction="column" align="end">
       <div style={{ overflowX: 'auto', width: '100%' }}>
-        <MantineTable striped highlightOnHover>
-          <thead aria-label="header-row">
+        <MantineTable striped highlightOnHover withRowBorders={false}>
+          <MantineTable.Thead role="rowheader">
             {tableModel.getHeaderGroups().map(headerGroup => (
-              <tr key={headerGroup.id}>
+              <MantineTable.Tr key={headerGroup.id}>
                 {headerGroup.headers.map(header => (
-                  <th
+                  <MantineTable.Th
                     key={header.id}
                     style={{ verticalAlign: 'top' }}
-                    className={getTableColStickyStyle()}
+                    className={classes.tableColSticky}
                   >
                     <Flex
                       align="center"
                       justify="flex-start"
                       gap="sm"
-                      sx={{
-                        cursor: header.column.getCanSort()
-                          ? 'pointer'
-                          : 'default',
-                        '&:hover': {
-                          color: header.column.getCanSort()
-                            ? theme.colors.blue[6]
-                            : theme.colors.dark[4],
-                        },
-                      }}
+                      className={
+                        header.column.getCanSort()
+                          ? classes.flexSort
+                          : classes.flex
+                      }
                       onClick={header.column.getToggleSortingHandler()}
                       w={header.column.getSize()}
                     >
@@ -100,7 +78,6 @@ export function Table<T>({
                         }[(header.column.getIsSorted() as string) ?? null]
                       }
                     </Flex>
-
                     {showFilter && header.column.getCanFilter() ? (
                       <Select
                         size="xs"
@@ -120,49 +97,52 @@ export function Table<T>({
                         }}
                       />
                     ) : null}
-                  </th>
+                  </MantineTable.Th>
                 ))}
-              </tr>
+              </MantineTable.Tr>
             ))}
-          </thead>
+          </MantineTable.Thead>
 
-          <tbody aria-label="table-body">
+          <MantineTable.Tbody aria-label="table-body">
             {tableModel.getRowModel().rows.map(row => (
-              <tr
+              <MantineTable.Tr
                 key={row.id}
                 style={{
                   borderBottom: '2px solid white',
                   borderTop: '2px solid white',
                 }}
-                className={firstColSticky ? styles.tableRowBg : undefined}
+                className={firstColSticky ? classes.tableRowBg : undefined}
               >
                 {row.getVisibleCells().map(cell => (
-                  <td
+                  <MantineTable.Td
                     key={cell.id}
                     width={cell.column.getSize()}
-                    className={getTableColStickyStyle()}
+                    className={classes.tableColSticky}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
+                  </MantineTable.Td>
                 ))}
-              </tr>
+              </MantineTable.Tr>
             ))}
-          </tbody>
+          </MantineTable.Tbody>
 
-          <tfoot aria-label="footer-row">
+          <MantineTable.Tfoot
+            aria-label="footer-row"
+            className={classes.footer}
+          >
             {tableModel.getFooterGroups().map(footerGroup => (
-              <tr key={footerGroup.id}>
+              <MantineTable.Tr key={footerGroup.id}>
                 {footerGroup.headers.map(header => (
-                  <th key={header.id}>
+                  <MantineTable.Th key={header.id}>
                     {flexRender(
                       header.column.columnDef.footer,
                       header.getContext(),
                     )}
-                  </th>
+                  </MantineTable.Th>
                 ))}
-              </tr>
+              </MantineTable.Tr>
             ))}
-          </tfoot>
+          </MantineTable.Tfoot>
         </MantineTable>
       </div>
     </Flex>

@@ -1,0 +1,13 @@
+.flex {
+  height: 100%;
+}
+
+.burger {
+  z-index: 200;
+}
+
+.appShellHeader {
+  @media (max-width: $mantine-breakpoint-sm) {
+    margin-left: 0;
+  }
+}

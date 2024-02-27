@@ -1,0 +1,12 @@
+.textarea {
+  border-radius: '50px';
+  margin-bottom: '15px';
+}
+
+.actionIcon {
+  border-radius: '20px';
+}
+
+.themeIcon {
+  border: none;
+}

@@ -1,0 +1,9 @@
+.text {
+  @mixin dark {
+    color: var(--mantine-color-gray-0);
+  }
+
+  @mixin light {
+    color: var(--mantine-color-gray-9);
+  }
+}

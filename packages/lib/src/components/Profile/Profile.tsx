@@ -41,11 +41,11 @@ export function Profile({
 }: Props): JSX.Element {
   return (
     <Grid>
-      <Grid.Col md={3}>
+      <Grid.Col span={{ md: 3 }}>
         <ProfileOverviewCard user={user} />
       </Grid.Col>
 
-      <Grid.Col md={9}>
+      <Grid.Col span={{ md: 9 }}>
         <ProfileDataCard
           user={user}
           roles={roles}

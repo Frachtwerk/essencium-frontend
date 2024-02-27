@@ -18,16 +18,12 @@
  */
 
 import { FooterLink } from '@frachtwerk/essencium-types'
-import {
-  Flex,
-  Footer as MantineFooter,
-  MediaQuery,
-  Text,
-  useMantineTheme,
-} from '@mantine/core'
+import { AppShellFooter, Flex, Text } from '@mantine/core'
 import { IconCopyright } from '@tabler/icons-react'
 import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
+
+import classes from './Footer.module.css'
 
 type Props = {
   links: FooterLink[]
@@ -36,41 +32,32 @@ type Props = {
 export function Footer({ links }: Props): JSX.Element {
   const { t } = useTranslation()
 
-  const theme = useMantineTheme()
-
   return (
-    <MantineFooter height={{ base: 58 }} p="md" fixed>
+    <AppShellFooter p="md" zIndex={200}>
       <Flex
         justify={{ base: 'center', xs: 'space-between' }}
         direction="row"
         wrap="wrap"
       >
-        <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-          <Flex gap="xs" align="center" ml="xs">
-            <IconCopyright size="16" />
+        <Flex gap="xs" align="center" ml="xs" visibleFrom="sm">
+          <IconCopyright size="16" />
 
-            <Text> {t('footer.license')} </Text>
-          </Flex>
-        </MediaQuery>
+          <Text> {t('footer.license')} </Text>
+        </Flex>
 
-        <Flex direction="row" gap="xl">
+        <Flex direction="row" gap="lg">
           {links.map(link => (
-            <NextLink
+            <Text
+              component={NextLink}
               key={link.label}
               href={link.to}
-              style={{
-                textDecoration: 'none',
-                color:
-                  theme.colorScheme === 'dark'
-                    ? theme.colors.gray[4]
-                    : theme.colors.dark[9],
-              }}
+              className={classes.text}
             >
-              <Text>{t(link.label)}</Text>
-            </NextLink>
+              {t(link.label)}
+            </Text>
           ))}
         </Flex>
       </Flex>
-    </MantineFooter>
+    </AppShellFooter>
   )
 }

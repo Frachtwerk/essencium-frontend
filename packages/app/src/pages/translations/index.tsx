@@ -118,7 +118,7 @@ function TranslationsView(): JSX.Element {
       <Title py="md" size="h2">
         <Flex align="center" gap={10}>
           <IconLanguage size="32" />
-          <Text>{t('translationsView.title')}</Text>
+          <Text inherit>{t('translationsView.title')}</Text>
         </Flex>
       </Title>
 

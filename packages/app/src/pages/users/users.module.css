@@ -1,0 +1,13 @@
+.group {
+  padding: 0.7rem 0 0.5rem 1rem;
+  cursor: pointer;
+  &:hover {
+    @mixin light {
+      background-color: var(--mantine-color-gray-0);
+    }
+
+    @mixin dark {
+      background-color: var(--mantine-color-gray-9);
+    }
+  }
+}
