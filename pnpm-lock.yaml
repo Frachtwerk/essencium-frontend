@@ -554,6 +554,9 @@ importers:
       next-i18next:
         specifier: 13.3.0
         version: 13.3.0(i18next@22.5.1)(next@13.4.19)(react-i18next@12.3.1)(react@18.2.0)
+      next-router-mock:
+        specifier: ^0.9.12
+        version: 0.9.12(next@13.4.19)(react@18.2.0)
       postcss:
         specifier: 8.4.34
         version: 8.4.34
@@ -12969,6 +12972,16 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: false
+
+  /next-router-mock@0.9.12(next@13.4.19)(react@18.2.0):
+    resolution: {integrity: sha512-PzKn70RSqO50GHyYyhd4WJb9I526Abfq2VDP+YPV8yqlaR38OKtQAcWr3njR75UG+Ik6HououZHm7ucxl6LSnA==}
+    peerDependencies:
+      next: '>=10.0.0'
+      react: '>=17.0.0'
+    dependencies:
+      next: 13.4.19(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+    dev: true
 
   /next-seo@6.1.0(next@13.5.6)(react-dom@18.2.0)(react@18.2.0):
     resolution:
