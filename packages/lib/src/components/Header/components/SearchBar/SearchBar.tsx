@@ -28,12 +28,16 @@ export function SearchBar(): JSX.Element {
   const theme = useMantineTheme()
 
   return (
-    <UnstyledButton visibleFrom="md" onClick={() => openSpotlight()}>
+    <UnstyledButton
+      visibleFrom="md"
+      onClick={() => openSpotlight()}
+      role="search"
+    >
       <Group justify="apart">
         <Group gap="sm">
           <IconSearch size="16" color={theme.colors.gray[4]} />
 
-          <Text c={theme.colors.gray[5]} size="sm">
+          <Text c={theme.colors.gray[5]} size="sm" role="searchbox">
             {t('header.spotlight.placeholder')}
           </Text>
         </Group>

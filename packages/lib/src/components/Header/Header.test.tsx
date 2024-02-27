@@ -18,7 +18,7 @@
  */
 
 import { UserOutput } from '@frachtwerk/essencium-types'
-import * as mantine from '@mantine/core'
+import { AppShell, MantineProvider } from '@mantine/core'
 import { render, RenderResult } from '@testing-library/react'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 
@@ -35,22 +35,35 @@ const MOCK_USER: UserOutput = {
   roles: [],
 } as const
 
+vi.mock('@mantine/core', async () => {
+  const mantineCore = (await vi.importActual('@mantine/core')) as Record<
+    string,
+    unknown
+  >
+
+  return {
+    ...mantineCore,
+    useMantineTheme: () => ({
+      colors: { gray: [] },
+    }),
+  }
+})
+
 describe('Header.tsx', () => {
   let HeaderMounted: RenderResult
 
   beforeAll(() => {
-    vi.spyOn(mantine, 'useMantineColorScheme').mockImplementation(() => ({
-      colorScheme: 'light',
-      toggleColorScheme: () => {},
-    }))
-
     HeaderMounted = render(
-      <Header
-        isOpen
-        handleOpenNav={() => {}}
-        user={MOCK_USER}
-        marginLeft="0"
-      />,
+      <MantineProvider>
+        <AppShell>
+          <Header
+            isOpen
+            handleOpenNav={() => {}}
+            user={MOCK_USER}
+            marginLeft="0"
+          />
+        </AppShell>
+      </MantineProvider>,
     )
   })
 
