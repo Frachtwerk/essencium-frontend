@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v5.0.0...essencium-app-v6.0.0) (2024-02-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* migration to mantine v7
+
+### Code Refactoring
+
+* migration to mantine v7 ([b140cf8](https://github.com/Frachtwerk/essencium-frontend/commit/b140cf8c7428e43d314ff3e459b9d0f72352eef5))
+
 ## [5.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v4.1.3...essencium-app-v5.0.0) (2024-02-06)
 
 

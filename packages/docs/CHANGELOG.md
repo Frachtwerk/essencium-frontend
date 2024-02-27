@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v2.2.0...essencium-docs-v3.0.0) (2024-02-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* migration to mantine v7
+
+### Code Refactoring
+
+* migration to mantine v7 ([b140cf8](https://github.com/Frachtwerk/essencium-frontend/commit/b140cf8c7428e43d314ff3e459b9d0f72352eef5))
+
 ## [2.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v2.1.2...essencium-docs-v2.2.0) (2024-02-06)
 
 
