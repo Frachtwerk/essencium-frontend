@@ -555,7 +555,7 @@ importers:
         specifier: 13.3.0
         version: 13.3.0(i18next@22.5.1)(next@13.4.19)(react-i18next@12.3.1)(react@18.2.0)
       next-router-mock:
-        specifier: ^0.9.12
+        specifier: 0.9.12
         version: 0.9.12(next@13.4.19)(react@18.2.0)
       postcss:
         specifier: 8.4.34
@@ -12949,7 +12949,7 @@ packages:
       hoist-non-react-statics: 3.3.2
       i18next: 22.5.1
       i18next-fs-backend: 2.1.5
-      next: 13.4.19(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)
+      next: 13.4.19(@babel/core@7.21.0)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-i18next: 12.3.1(i18next@22.5.1)(react-dom@18.2.0)(react@18.2.0)
 
@@ -13054,7 +13054,6 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
-    dev: false
 
   /next@13.4.19(@babel/core@7.24.0)(react-dom@18.2.0)(react@18.2.0):
     resolution:
@@ -13097,6 +13096,7 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
+    dev: true
 
   /next@13.5.6(@babel/core@7.24.0)(react-dom@18.2.0)(react@18.2.0):
     resolution:
@@ -16226,7 +16226,6 @@ packages:
       '@babel/core': 7.21.0
       client-only: 0.0.1
       react: 18.2.0
-    dev: false
 
   /styled-jsx@5.1.1(@babel/core@7.24.0)(react@18.2.0):
     resolution:
