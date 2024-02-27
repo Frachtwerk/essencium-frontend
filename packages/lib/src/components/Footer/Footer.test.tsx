@@ -18,11 +18,26 @@
  */
 
 import { FooterLink } from '@frachtwerk/essencium-types'
+import { AppShell, MantineProvider } from '@mantine/core'
 import { render, RenderResult, screen } from '@testing-library/react'
 import { CSSProperties } from 'react'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { Footer } from './Footer'
+
+vi.mock('@mantine/core', async () => {
+  const mantineCore = (await vi.importActual('@mantine/core')) as Record<
+    string,
+    unknown
+  >
+
+  return {
+    ...mantineCore,
+    useMantineTheme: () => ({
+      colors: { gray: [] },
+    }),
+  }
+})
 
 const FOOTER_LINKS: FooterLink[] = [
   {
@@ -59,7 +74,13 @@ describe('Footer', () => {
       ),
     }))
 
-    FooterMounted = render(<Footer links={FOOTER_LINKS} />)
+    FooterMounted = render(
+      <MantineProvider>
+        <AppShell>
+          <Footer links={FOOTER_LINKS} />)
+        </AppShell>
+      </MantineProvider>,
+    )
   })
 
   it('should render all footer links with their target', () => {
