@@ -1,0 +1,36 @@
+import { Callout } from 'nextra-theme-docs'
+
+# Migration Guide
+
+Sometimes, a new version of a package will introduce changes which _could be breaking_. We made it part of the development process to document these changes inside the `MIGRATION.md` file of the `app` package. This file will contain a list of changes and how to migrate from the old to the new version.
+Since developers eventually must manually update their own codebase, we are particularly careful to document these changes and make it as easy as possible to migrate.
+
+The `MIGRATION.md` file follows this schema:
+
+````markdown copy
+# Migrations
+
+## x.y.z (DD.MM.YYYY)
+
+### `path/to/file_1.extension`
+
+- logic that needs to be changed is described here
+
+```diff
++ added line
+- removed line
+```
+````
+
+<Callout emoji="⚠️" type="warning">
+  Since the version under which the changes are made is not known at the time of
+  the PR, the version needs to be set when
+  [release-please](https://github.com/googleapis/release-please) creates the
+  release PR. That means editing the `MIGRATION.md` file during the review of
+  the release PR. Instead of the version you can use `x.y.z` as a placeholder.
+</Callout>
+
+<Callout emoji="ℹ️" type="info">
+  The migration file can be found here:
+  [MIGRATION.md](https://github.com/Frachtwerk/essencium-frontend/blob/main/packages/app/MIGRATION.md)
+</Callout>
