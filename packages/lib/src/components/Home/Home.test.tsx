@@ -17,6 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { AppShell, MantineProvider } from '@mantine/core'
 import * as MantineSpotlight from '@mantine/spotlight'
 import { fireEvent, render, screen } from '@testing-library/react'
 import mockRouter from 'next-router-mock'
@@ -26,9 +27,40 @@ import { Home } from './Home'
 
 vi.mock('next/router', () => vi.importActual('next-router-mock'))
 
+vi.mock('@mantine/core', async () => {
+  const mantineCore = (await vi.importActual('@mantine/core')) as Record<
+    string,
+    unknown
+  >
+
+  return {
+    ...mantineCore,
+    useMantineTheme: () => ({
+      colors: { gray: [] },
+    }),
+  }
+})
+
+vi.mock('@mantine/spotlight', async () => {
+  const mantineSpotlight = (await vi.importActual(
+    '@mantine/spotlight',
+  )) as Record<string, unknown>
+
+  return {
+    ...mantineSpotlight,
+    openSpotlight: vi.fn(),
+  }
+})
+
 describe('Home', () => {
   beforeAll(() => {
-    render(<Home />)
+    render(
+      <MantineProvider>
+        <AppShell>
+          <Home />
+        </AppShell>
+      </MantineProvider>,
+    )
   })
 
   it('should render the Essencium logo', () => {
