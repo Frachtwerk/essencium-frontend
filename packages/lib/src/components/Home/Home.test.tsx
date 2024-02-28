@@ -17,35 +17,78 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { render, RenderResult, screen } from '@testing-library/react'
-import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
+import { AppShell, MantineProvider } from '@mantine/core'
+import * as MantineSpotlight from '@mantine/spotlight'
+import { fireEvent, render, screen } from '@testing-library/react'
+import mockRouter from 'next-router-mock'
+import { beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { Home } from './Home'
 
+vi.mock('next/router', () => vi.importActual('next-router-mock'))
+
+vi.mock('@mantine/core', async () => {
+  const mantineCore = (await vi.importActual('@mantine/core')) as Record<
+    string,
+    unknown
+  >
+
+  return {
+    ...mantineCore,
+    useMantineTheme: () => ({
+      colors: { gray: [] },
+    }),
+  }
+})
+
+vi.mock('@mantine/spotlight', async () => {
+  const mantineSpotlight = (await vi.importActual(
+    '@mantine/spotlight',
+  )) as Record<string, unknown>
+
+  return {
+    ...mantineSpotlight,
+    openSpotlight: vi.fn(),
+  }
+})
+
 describe('Home', () => {
-  let HomeMounted: RenderResult
-
   beforeAll(() => {
-    vi.mock('@tanstack/react-router', () => ({
-      useRouter: () => ({}),
-    }))
-
-    HomeMounted = render(<Home />)
+    render(
+      <MantineProvider>
+        <AppShell>
+          <Home />
+        </AppShell>
+      </MantineProvider>,
+    )
   })
 
-  afterAll(() => {
-    HomeMounted.unmount()
+  it('should render the Essencium logo', () => {
+    expect(screen.getByAltText('header.logo')).toBeDefined()
   })
 
-  it('should render the correct actions', () => {
+  it('should render all buttons', () => {
     expect(screen.getByText('homeView.action.search')).toBeDefined()
 
-    expect(
-      screen.getByText('homeView.action.users').closest('a'),
-    ).toHaveProperty('href', '/users')
+    expect(screen.getByText('homeView.action.users')).toBeDefined()
 
-    expect(
-      screen.getByText('homeView.action.profile').closest('a'),
-    ).toHaveProperty('href', '/profile')
+    expect(screen.getByText('homeView.action.profile')).toBeDefined()
+  })
+
+  it('should trigger the Mantine spotlight', () => {
+    const openSpotlightSpy = vi.spyOn(MantineSpotlight, 'openSpotlight')
+    const searchButton = screen.getByText('homeView.action.search')
+    fireEvent.click(searchButton)
+    expect(openSpotlightSpy).toHaveBeenCalledOnce()
+  })
+
+  it('should navigate to corresponding routes', () => {
+    const usersButton = screen.getByText('homeView.action.users')
+    fireEvent.click(usersButton)
+    expect(mockRouter.pathname).toEqual('/users')
+
+    const profileButton = screen.getByText('homeView.action.profile')
+    fireEvent.click(profileButton)
+    expect(mockRouter.pathname).toEqual('/profile')
   })
 })
