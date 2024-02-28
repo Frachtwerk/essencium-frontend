@@ -25,7 +25,6 @@ import {
   Group,
   useMantineTheme,
 } from '@mantine/core'
-import { useTranslation } from 'next-i18next'
 
 import { SearchBar, ThemeSelector, UserMenu } from './components'
 import classes from './Header.module.css'
@@ -43,8 +42,6 @@ export function Header({
   isOpen,
   handleOpenNav,
 }: Props): JSX.Element {
-  const { t } = useTranslation()
-
   const theme = useMantineTheme()
 
   return (
