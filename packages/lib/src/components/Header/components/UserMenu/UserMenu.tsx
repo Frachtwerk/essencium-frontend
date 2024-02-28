@@ -21,6 +21,7 @@ import { UserOutput } from '@frachtwerk/essencium-types'
 import { Box, Group, Text, UnstyledButton } from '@mantine/core'
 import { IconChevronRight, IconUser } from '@tabler/icons-react'
 import NextLink from 'next/link'
+import { useTranslation } from 'next-i18next'
 
 import classes from './UserMenu.module.css'
 
@@ -29,11 +30,14 @@ type Props = {
 }
 
 export function UserMenu({ user }: Props): JSX.Element {
+  const { t } = useTranslation()
+
   return (
     <UnstyledButton
       component={NextLink}
       href="/profile"
       className={classes.unstyledButton}
+      aria-label={t('header.profile.arialLabel') as string}
     >
       <Group p="sm" className={classes.group} wrap="nowrap">
         <IconUser size="28" />

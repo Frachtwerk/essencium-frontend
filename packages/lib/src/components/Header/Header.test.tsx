@@ -18,52 +18,72 @@
  */
 
 import { UserOutput } from '@frachtwerk/essencium-types'
-import * as mantine from '@mantine/core'
-import { render, RenderResult, screen } from '@testing-library/react'
-import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
+import { AppShell, MantineProvider } from '@mantine/core'
+import { render, RenderResult } from '@testing-library/react'
+import { beforeAll, describe, expect, it, vi } from 'vitest'
 
-import { SearchBar, ThemeSelector, UserMenu } from './components'
 import { Header } from './Header'
 
-describe('Header', () => {
+const MOCK_USER: UserOutput = {
+  firstName: 'John',
+  lastName: 'Doe',
+  email: 'johndoe@email.com',
+  enabled: true,
+  locale: 'de',
+  mobile: '0123456789',
+  phone: '0123456789',
+  roles: [],
+} as const
+
+vi.mock('@mantine/core', async () => {
+  const mantineCore = (await vi.importActual('@mantine/core')) as Record<
+    string,
+    unknown
+  >
+
+  return {
+    ...mantineCore,
+    useMantineTheme: () => ({
+      colors: { gray: [] },
+    }),
+  }
+})
+
+describe('Header.tsx', () => {
   let HeaderMounted: RenderResult
-  const applicationLogo = <img alt="Application Logo" />
-  const mockUser = {
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'johndoe@email.com',
-  } as UserOutput
 
   beforeAll(() => {
-    vi.mock('@tanstack/react-router', () => ({
-      useRouter: () => ({}),
-    }))
-
-    vi.spyOn(mantine, 'useMantineColorScheme').mockImplementation(() => ({
-      colorScheme: 'light',
-      toggleColorScheme: () => {},
-    }))
-
     HeaderMounted = render(
-      <Header
-        isOpen
-        handleOpenNav={() => {}}
-        logo={applicationLogo}
-        user={mockUser}
-      />,
+      <MantineProvider>
+        <AppShell>
+          <Header
+            isOpen
+            handleOpenNav={() => {}}
+            user={MOCK_USER}
+            marginLeft="0"
+          />
+        </AppShell>
+      </MantineProvider>,
     )
   })
 
-  afterAll(() => {
-    HeaderMounted.unmount()
+  it('should render the spotlight search bar', () => {
+    expect(HeaderMounted.getByRole('searchbox')).toBeDefined()
   })
 
-  it('should contain the correct header items', () => {
-    expect(screen.getByText('header.title')).toBeDefined()
-    expect(screen.getByRole('img')).toBeDefined()
+  it('should render the theme selector', () => {
+    expect(
+      HeaderMounted.getByRole('button', {
+        name: 'theme-selector',
+      }),
+    ).toBeDefined()
+  })
 
-    render(<SearchBar />)
-    render(<UserMenu user={mockUser} />)
-    render(<ThemeSelector />)
+  it('should render the logged in user menu', () => {
+    expect(
+      HeaderMounted.getByRole('link', {
+        name: 'header.profile.arialLabel',
+      }),
+    ).toBeDefined()
   })
 })
