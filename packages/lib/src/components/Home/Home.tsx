@@ -44,6 +44,7 @@ export function Home(): JSX.Element {
           alt={t('header.logo')}
           width={200}
           height={200}
+          priority
         />
       </Center>
 
