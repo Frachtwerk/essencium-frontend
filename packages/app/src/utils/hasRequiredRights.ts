@@ -18,7 +18,7 @@
  */
 
 export function hasRequiredRights(
-  userRights: string[] | null,
+  userRights: string[] | null | undefined,
   requiredRight: string,
 ): boolean {
   if (!userRights) return false
