@@ -9,6 +9,15 @@ const nextConfig = {
     '@frachtwerk/essencium-types',
   ],
   i18n,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.frachtwerk.de',
+        port: '',
+      },
+    ],
+  },
   rewrites: async () => {
     return [
       {
