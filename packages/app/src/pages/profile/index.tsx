@@ -20,11 +20,12 @@
 import { LoadingSpinner, Profile } from '@frachtwerk/essencium-lib'
 import { PasswordChange, UserUpdate } from '@frachtwerk/essencium-types'
 import { Center } from '@mantine/core'
+import { useAtomValue } from 'jotai'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { ReactElement } from 'react'
 
-import { useGetMe, useUpdateMe, useUpdatePassword } from '@/api'
+import { isSsoAtom, useGetMe, useUpdateMe, useUpdatePassword } from '@/api'
 import { AuthLayout } from '@/components/layouts'
 import { getTranslation, logout } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
@@ -33,6 +34,8 @@ function ProfileView(): JSX.Element {
   const { t } = useTranslation()
 
   const router = useRouter()
+
+  const isSso = Boolean(useAtomValue(isSsoAtom))
 
   const { data: user, isLoading: isLoadingUser } = useGetMe()
 
@@ -66,6 +69,7 @@ function ProfileView(): JSX.Element {
   if (user) {
     return (
       <Profile
+        isSso={isSso}
         user={user}
         handleUpdate={handleUpdate}
         handlePasswordUpdate={handlePasswordUpdate}

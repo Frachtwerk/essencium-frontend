@@ -158,6 +158,8 @@ export function useSetPassword(): UseMutationResult<
   return mutation
 }
 
+export const isSsoAtom = atomWithStorage<boolean | null>('isSso', null)
+
 type SsoApplications = {
   [key: string]: {
     imageUrl: string

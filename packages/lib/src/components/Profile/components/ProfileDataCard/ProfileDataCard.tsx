@@ -29,6 +29,7 @@ import { useTranslation } from 'next-i18next'
 import { PasswordChangeForm, PersonalDataForm } from './components'
 
 type Props = {
+  isSso: boolean
   user: UserOutput
   handleUpdate: (data: UserUpdate) => void
   handlePasswordUpdate: (
@@ -40,6 +41,7 @@ type Props = {
 }
 
 export function ProfileDataCard({
+  isSso,
   user,
   handleUpdate,
   handlePasswordUpdate,
@@ -59,25 +61,33 @@ export function ProfileDataCard({
             {t('profileView.dataCard.tabs.personalData.title')}
           </Tabs.Tab>
 
-          <Tabs.Tab value="passwordChange" leftSection={<IconLock size={14} />}>
-            {t('profileView.dataCard.tabs.passwordChange.title')}
-          </Tabs.Tab>
+          {isSso ? null : (
+            <Tabs.Tab
+              value="passwordChange"
+              leftSection={<IconLock size={14} />}
+            >
+              {t('profileView.dataCard.tabs.passwordChange.title')}
+            </Tabs.Tab>
+          )}
         </Tabs.List>
 
         <Tabs.Panel value="personalDataForm" pt="lg">
           <PersonalDataForm
+            isSso={isSso}
             user={user}
             handleUpdate={handleUpdate}
             isLoading={isUpdatingUser}
           />
         </Tabs.Panel>
 
-        <Tabs.Panel value="passwordChange" pt="lg">
-          <PasswordChangeForm
-            handlePasswordUpdate={handlePasswordUpdate}
-            isLoading={isUpdatingPassword}
-          />
-        </Tabs.Panel>
+        {isSso ? null : (
+          <Tabs.Panel value="passwordChange" pt="lg">
+            <PasswordChangeForm
+              handlePasswordUpdate={handlePasswordUpdate}
+              isLoading={isUpdatingPassword}
+            />
+          </Tabs.Panel>
+        )}
       </Tabs>
     </Card>
   )

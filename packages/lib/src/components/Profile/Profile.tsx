@@ -23,6 +23,7 @@ import { Grid } from '@mantine/core'
 import { ProfileDataCard, ProfileOverviewCard } from './components'
 
 type Props = {
+  isSso: boolean
   user: UserOutput
   handleUpdate: (data: UserUpdate) => void
   handlePasswordUpdate: (oldPassword: string, newPassword: string) => void
@@ -31,6 +32,7 @@ type Props = {
 }
 
 export function Profile({
+  isSso,
   user,
   handleUpdate,
   handlePasswordUpdate,
@@ -45,6 +47,7 @@ export function Profile({
 
       <Grid.Col span={{ md: 9 }}>
         <ProfileDataCard
+          isSso={isSso}
           user={user}
           handleUpdate={handleUpdate}
           handlePasswordUpdate={handlePasswordUpdate}

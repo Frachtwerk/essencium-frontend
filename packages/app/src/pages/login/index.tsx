@@ -39,6 +39,7 @@ import { useEffect, useState } from 'react'
 
 import {
   authTokenAtom,
+  isSsoAtom,
   useCreateToken,
   useGetSsoApplications,
   useResetPassword,
@@ -62,15 +63,18 @@ function LoginView(): JSX.Element {
 
   const oauthToken = searchParams.get('token')
 
-  const setToken = useSetAtom(authTokenAtom)
+  const setAuthToken = useSetAtom(authTokenAtom)
+
+  const setIsSsoAtom = useSetAtom(isSsoAtom)
 
   useEffect(() => {
     if (oauthToken) {
-      setToken(oauthToken)
+      setAuthToken(oauthToken)
+      setIsSsoAtom(true)
 
       router.push(searchParams.get('redirect') || '/')
     }
-  }, [oauthToken, router, searchParams, setToken])
+  }, [oauthToken, router, searchParams, setAuthToken, setIsSsoAtom])
 
   const { mutate: resetPassword, isLoading: isResettingPassword } =
     useResetPassword()

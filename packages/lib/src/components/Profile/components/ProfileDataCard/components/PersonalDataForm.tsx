@@ -38,12 +38,14 @@ import { Controller } from 'react-hook-form'
 import { useZodForm } from '../../../../../hooks'
 
 type Props = {
+  isSso: boolean
   user: UserOutput
   handleUpdate: (data: UserUpdate) => void
   isLoading: boolean
 }
 
 export function PersonalDataForm({
+  isSso,
   user,
   handleUpdate,
   isLoading,
@@ -240,6 +242,7 @@ export function PersonalDataForm({
             render={({ field }) => (
               <TextInput
                 {...field}
+                disabled={isSso}
                 placeholder={String(
                   t('profileView.dataCard.tabs.personalData.placeholder.email'),
                 )}
