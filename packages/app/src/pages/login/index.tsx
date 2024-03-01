@@ -17,17 +17,37 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Login, LoginForm } from '@frachtwerk/essencium-lib'
+import { LoginForm } from '@frachtwerk/essencium-lib'
 import { ResetPassword } from '@frachtwerk/essencium-types'
+import {
+  Box,
+  Button,
+  Card,
+  Container,
+  Divider,
+  Flex,
+  Text,
+  Title,
+} from '@mantine/core'
+import { useSetAtom } from 'jotai'
+import Image from 'next/image'
+import NextLink from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import { useCreateToken, useResetPassword } from '@/api'
+import {
+  authTokenAtom,
+  useCreateToken,
+  useGetSsoApplications,
+  useResetPassword,
+} from '@/api'
 import { PublicLayout } from '@/components/layouts'
 import { getTranslation, withBaseStylingShowNotification } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
+
+const OAUTH_REDIRECT_URI = `${process.env.NEXT_PUBLIC_APP_URL}/login`
 
 function LoginView(): JSX.Element {
   const { t } = useTranslation()
@@ -35,6 +55,22 @@ function LoginView(): JSX.Element {
   const router = useRouter()
 
   const searchParams = useSearchParams()
+
+  const { data: ssoApplications } = useGetSsoApplications()
+
+  const hasSsoApplications = ssoApplications && Object.keys(ssoApplications)
+
+  const oauthToken = searchParams.get('token')
+
+  const setToken = useSetAtom(authTokenAtom)
+
+  useEffect(() => {
+    if (oauthToken) {
+      setToken(oauthToken)
+
+      router.push(searchParams.get('redirect') || '/')
+    }
+  }, [oauthToken, router, searchParams, setToken])
 
   const { mutate: resetPassword, isLoading: isResettingPassword } =
     useResetPassword()
@@ -70,18 +106,65 @@ function LoginView(): JSX.Element {
   }
 
   return (
-    <Login
-      form={
-        <LoginForm
-          handleLogin={handleLogin}
-          handlePasswordReset={handlePasswordReset}
-          setIsPasswordResetFormOpened={setIsPasswordResetFormOpened}
-          isResetPasswordSent={isResetPasswordSent}
-          isPasswordResetFormOpened={isPasswordResetFormOpened}
-          isResettingPassword={isResettingPassword}
-        />
-      }
-    />
+    <Container mt="150px">
+      {!oauthToken ? (
+        <Card shadow="sm" radius="sm">
+          <Flex direction="column">
+            <Title ta="center" order={2} fw="bold">
+              {t('loginView.title')}
+            </Title>
+
+            {hasSsoApplications ? (
+              <>
+                <Box mt="md">
+                  {Object.keys(ssoApplications).map(application => (
+                    <NextLink
+                      style={{ textDecoration: 'none', color: 'white' }}
+                      key={application}
+                      href={`${process.env.NEXT_PUBLIC_API_BASE_URL}${ssoApplications[application].url}?redirect_uri=${OAUTH_REDIRECT_URI}`}
+                    >
+                      <Flex justify="center" align="center" my="sm">
+                        <Button
+                          variant="outline"
+                          fullWidth
+                          leftSection={
+                            <Image
+                              src={ssoApplications[application].imageUrl}
+                              alt={ssoApplications[application].name}
+                              width={45}
+                              height={20}
+                            />
+                          }
+                        >
+                          <Box mx="xs" />
+
+                          <Text>{ssoApplications[application].name}</Text>
+                        </Button>
+                      </Flex>
+                    </NextLink>
+                  ))}
+                </Box>
+
+                <Divider
+                  my="xl"
+                  label={t('loginView.sso.or')}
+                  labelPosition="center"
+                />
+              </>
+            ) : null}
+
+            <LoginForm
+              handleLogin={handleLogin}
+              handlePasswordReset={handlePasswordReset}
+              setIsPasswordResetFormOpened={setIsPasswordResetFormOpened}
+              isResetPasswordSent={isResetPasswordSent}
+              isPasswordResetFormOpened={isPasswordResetFormOpened}
+              isResettingPassword={isResettingPassword}
+            />
+          </Flex>
+        </Card>
+      ) : null}
+    </Container>
   )
 }
 

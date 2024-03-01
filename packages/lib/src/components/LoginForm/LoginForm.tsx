@@ -26,8 +26,9 @@ import {
   Anchor,
   Box,
   Button,
+  Center,
   Group,
-  Paper,
+  Loader,
   PasswordInput,
   Text,
   TextInput,
@@ -37,8 +38,7 @@ import { useTranslation } from 'next-i18next'
 import { Dispatch, SetStateAction } from 'react'
 import { Controller } from 'react-hook-form'
 
-import { useZodForm } from '../../../../hooks'
-import { LoadingSpinner } from '../../../LoadingSpinner'
+import { useZodForm } from '../../hooks'
 import { ResetPasswordForm, ResetPasswordSuccessMessage } from './components'
 
 type Props = {
@@ -73,7 +73,7 @@ export function LoginForm({
   }
 
   return (
-    <Paper shadow="sm" p="lg" mt="md" w={400} h={300} radius="sm">
+    <Box w={400}>
       <Transition
         mounted={!isPasswordResetFormOpened && !isResetPasswordSent}
         transition="fade"
@@ -145,7 +145,7 @@ export function LoginForm({
                 )}
               </Box>
 
-              <Group justify="apart" mt="md">
+              <Group position="apart" mt="md">
                 <Anchor
                   size="xs"
                   fw="bold"
@@ -181,7 +181,11 @@ export function LoginForm({
         )}
       </Transition>
 
-      {isResettingPassword && <LoadingSpinner show size="lg" />}
+      {isResettingPassword && (
+        <Center h="100%">
+          <Loader size="lg" name="loader" />
+        </Center>
+      )}
 
       <Transition
         mounted={isResetPasswordSent}
@@ -195,6 +199,6 @@ export function LoginForm({
           </div>
         )}
       </Transition>
-    </Paper>
+    </Box>
   )
 }

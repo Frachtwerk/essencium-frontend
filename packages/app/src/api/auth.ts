@@ -22,7 +22,12 @@ import {
   SetPasswordInput,
   UserOutput,
 } from '@frachtwerk/essencium-types'
-import { useMutation, UseMutationResult } from '@tanstack/react-query'
+import {
+  useMutation,
+  UseMutationResult,
+  useQuery,
+  UseQueryResult,
+} from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
@@ -151,4 +156,24 @@ export function useSetPassword(): UseMutationResult<
   })
 
   return mutation
+}
+
+type SsoApplications = {
+  [key: string]: {
+    imageUrl: string
+    name: string
+    url: string
+  }
+}
+
+export function useGetSsoApplications(): UseQueryResult<SsoApplications> {
+  return useQuery({
+    queryKey: ['useGetSsoApplications'],
+    queryFn: () =>
+      api
+        .get<SsoApplications>('/auth/oauth-registrations', {
+          baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+        })
+        .then(response => response.data),
+  })
 }

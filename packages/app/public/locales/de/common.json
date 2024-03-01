@@ -139,6 +139,9 @@
   },
   "loginView": {
     "title": "Anmeldung",
+    "sso": {
+      "or": "oder"
+    },
     "form": {
       "email": "E-Mail",
       "password": "Passwort",

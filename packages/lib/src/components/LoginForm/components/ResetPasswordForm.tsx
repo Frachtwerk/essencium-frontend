@@ -23,7 +23,7 @@ import { useTranslation } from 'next-i18next'
 import { Dispatch, SetStateAction } from 'react'
 import { Controller } from 'react-hook-form'
 
-import { useZodForm } from '../../../../../hooks'
+import { useZodForm } from '../../../hooks'
 
 type Props = {
   setIsPasswordResetFormOpened: Dispatch<SetStateAction<boolean>>
