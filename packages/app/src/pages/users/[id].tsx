@@ -67,8 +67,10 @@ function UpdateUserView(): JSX.Element {
   const { mutate: updateUser, isLoading } = useUpdateUser()
 
   const { data: rolesResponse } = useGetRoles({
-    page: 0,
-    size: 9999,
+    requestConfig: {
+      page: 0,
+      size: 9999,
+    },
   })
 
   const roles = rolesResponse?.content || []

@@ -106,9 +106,11 @@ function RolesView(): JSX.Element {
     error: errorRoles,
     refetch: refetchRoles,
   } = useGetRoles({
-    page: activePage - 1,
-    size: pageSize,
-    sort: parseSorting(sorting, DEFAULT_SORTING),
+    requestConfig: {
+      page: activePage - 1,
+      size: pageSize,
+      sort: parseSorting(sorting, DEFAULT_SORTING),
+    },
   })
 
   const { data: rights } = useGetRights({ page: 0, size: 9999 })

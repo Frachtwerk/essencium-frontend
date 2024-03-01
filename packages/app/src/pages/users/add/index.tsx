@@ -45,8 +45,10 @@ function AddUserView(): JSX.Element {
   const { mutate: addUser, isLoading } = useCreateUser()
 
   const { data: rolesResponse } = useGetRoles({
-    page: 0,
-    size: 9999,
+    requestConfig: {
+      page: 0,
+      size: 9999,
+    },
   })
 
   const roles = rolesResponse?.content || []
