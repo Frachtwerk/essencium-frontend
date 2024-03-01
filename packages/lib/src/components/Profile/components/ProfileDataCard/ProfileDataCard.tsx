@@ -19,24 +19,17 @@
 
 import {
   PasswordChange,
-  RoleOutput,
   UserOutput,
   UserUpdate,
 } from '@frachtwerk/essencium-types'
 import { Card, Tabs } from '@mantine/core'
-import { IconLock, IconSettings, IconUser } from '@tabler/icons-react'
-import { useRouter } from 'next/router'
+import { IconLock, IconUser } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
 
-import {
-  PasswordChangeForm,
-  PersonalDataForm,
-  ProfileSettingsForm,
-} from './components'
+import { PasswordChangeForm, PersonalDataForm } from './components'
 
 type Props = {
   user: UserOutput
-  roles: RoleOutput[]
   handleUpdate: (data: UserUpdate) => void
   handlePasswordUpdate: (
     oldPassword: PasswordChange['password'],
@@ -48,15 +41,12 @@ type Props = {
 
 export function ProfileDataCard({
   user,
-  roles,
   handleUpdate,
   handlePasswordUpdate,
   isUpdatingPassword,
   isUpdatingUser,
 }: Props): JSX.Element {
   const { t } = useTranslation()
-
-  const router = useRouter()
 
   return (
     <Card shadow="sm" p="lg" radius="sm" withBorder>
@@ -72,12 +62,6 @@ export function ProfileDataCard({
           <Tabs.Tab value="passwordChange" leftSection={<IconLock size={14} />}>
             {t('profileView.dataCard.tabs.passwordChange.title')}
           </Tabs.Tab>
-
-          {router.pathname !== 'profile' ? (
-            <Tabs.Tab value="settings" leftSection={<IconSettings size={14} />}>
-              {t('profileView.dataCard.tabs.settings.title')}
-            </Tabs.Tab>
-          ) : null}
         </Tabs.List>
 
         <Tabs.Panel value="personalDataForm" pt="lg">
@@ -94,17 +78,6 @@ export function ProfileDataCard({
             isLoading={isUpdatingPassword}
           />
         </Tabs.Panel>
-
-        {router.pathname !== 'profile' ? (
-          <Tabs.Panel value="settings" pt="lg">
-            <ProfileSettingsForm
-              user={user}
-              handleUpdate={handleUpdate}
-              roles={roles}
-              isLoading={isUpdatingUser}
-            />
-          </Tabs.Panel>
-        ) : null}
       </Tabs>
     </Card>
   )

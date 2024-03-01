@@ -104,14 +104,6 @@
             "confirmNewPassword": "Confirm New Password",
             "savePassword": "Save Password"
           }
-        },
-        "settings": {
-          "title": "Settings",
-          "content": {
-            "status": "Status",
-            "role": "Role",
-            "saveSettings": "Save Settings"
-          }
         }
       }
     },

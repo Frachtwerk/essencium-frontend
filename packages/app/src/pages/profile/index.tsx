@@ -24,7 +24,7 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { ReactElement } from 'react'
 
-import { useGetMe, useGetRoles, useUpdateMe, useUpdatePassword } from '@/api'
+import { useGetMe, useUpdateMe, useUpdatePassword } from '@/api'
 import { AuthLayout } from '@/components/layouts'
 import { getTranslation, logout } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
@@ -40,10 +40,6 @@ function ProfileView(): JSX.Element {
 
   const { mutate: updatePassword, isLoading: isUpdatingPassword } =
     useUpdatePassword()
-
-  const { data: rolesRequest } = useGetRoles({ page: 0, size: 9999 })
-
-  const roles = rolesRequest?.content || []
 
   function handleUpdate(updatedUser: UserUpdate): void {
     updateUser(updatedUser)
@@ -71,7 +67,6 @@ function ProfileView(): JSX.Element {
     return (
       <Profile
         user={user}
-        roles={roles}
         handleUpdate={handleUpdate}
         handlePasswordUpdate={handlePasswordUpdate}
         isUpdatingUser={isUpdatingUser}
