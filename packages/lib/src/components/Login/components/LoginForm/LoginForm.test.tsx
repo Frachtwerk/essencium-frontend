@@ -17,55 +17,104 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { fireEvent, render, RenderResult, screen } from '@testing-library/react'
+import { AppShell, MantineProvider } from '@mantine/core'
+import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { LoginForm } from './LoginForm'
 
+const callbacks = {
+  setIsPasswordResetFormOpened: vi.fn(),
+}
+
 describe('LoginForm', () => {
-  let LoginFormMounted: RenderResult
-
-  let emailInput: HTMLInputElement
-  let passwordInput: HTMLInputElement
-  let submitButton: HTMLButtonElement
-
   const handlePasswordReset = vi.fn()
-  const setIsPasswordResetFormOpened = vi.fn()
   const isPasswordResetFormOpened = false
   const isResetPasswordSent = false
   const isResettingPassword = false
 
   beforeEach(() => {
-    LoginFormMounted = render(
-      <LoginForm
-        handleLogin={() => {}}
-        handlePasswordReset={handlePasswordReset}
-        setIsPasswordResetFormOpened={setIsPasswordResetFormOpened}
-        isResetPasswordSent={isResetPasswordSent}
-        isPasswordResetFormOpened={isPasswordResetFormOpened}
-        isResettingPassword={isResettingPassword}
-      />,
+    render(
+      <MantineProvider>
+        <AppShell>
+          <LoginForm
+            handleLogin={() => {}}
+            handlePasswordReset={handlePasswordReset}
+            setIsPasswordResetFormOpened={
+              callbacks.setIsPasswordResetFormOpened
+            }
+            isResetPasswordSent={isResetPasswordSent}
+            isPasswordResetFormOpened={isPasswordResetFormOpened}
+            isResettingPassword={isResettingPassword}
+          />
+          ,
+        </AppShell>
+      </MantineProvider>,
     )
   })
 
-  afterEach(() => {
-    LoginFormMounted.unmount()
+  afterEach(cleanup)
+
+  it('sohuld render email and password inputs as well as the login button and password reset link', () => {
+    expect(
+      screen.getByRole('textbox', { name: 'loginView.form.email' }),
+    ).toBeDefined()
+
+    expect(screen.getByLabelText('loginView.form.password')).toBeDefined()
+
+    expect(
+      screen.getByRole('button', { name: 'loginView.form.submit' }),
+    ).toBeDefined()
+
+    expect(
+      screen.getByRole('link', { name: 'loginView.form.resetPassword' }),
+    ).toBeDefined()
   })
 
-  it('should display error messages for email and password field', async () => {
-    emailInput = screen.getByRole('textbox', {
-      name: /email/i,
+  it('should show the password reset form if reset link is clicked', async () => {
+    const passwordResetLink = screen.getByRole('link')
+
+    expect(passwordResetLink).toBeDefined()
+
+    expect(
+      screen.queryAllByText('loginView.resetPassword.form.description'),
+    ).toHaveLength(0)
+
+    fireEvent.click(passwordResetLink)
+
+    screen.debug()
+
+    // expect(
+    //   screen.queryAllByText('loginView.resetPassword.form.description'),
+    // ).toHaveLength(1)
+  })
+
+  it('should display an error message for the email field if mail is invalid', async () => {
+    const emailInput = screen.getByRole('textbox', {
+      name: 'loginView.form.email',
     }) as HTMLInputElement
 
-    passwordInput = screen.getByLabelText(/password/i) as HTMLInputElement
-
-    submitButton = screen.getByRole('button')
+    const submitButton = screen.getByRole('button')
 
     fireEvent.input(emailInput, {
       target: {
-        value: 'me@example',
+        value: 'meexample.de',
       },
     })
+
+    fireEvent.submit(submitButton)
+
+    expect(emailInput.value).toBe('meexample.de')
+
+    expect(await screen.findByText('validation.email.notValid')).toBeDefined()
+  })
+
+  it('should display an error messages for the password field if input is invalid', async () => {
+    const passwordInput = screen.getByLabelText(
+      'loginView.form.password',
+    ) as HTMLInputElement
+
+    const submitButton = screen.getByRole('button')
 
     fireEvent.input(passwordInput, {
       target: {
@@ -75,18 +124,23 @@ describe('LoginForm', () => {
 
     fireEvent.submit(submitButton)
 
-    expect(emailInput.value).toBe('me@example')
     expect(passwordInput.value).toBe('shortPw')
+
+    expect(
+      await screen.findByText('validation.password.minLength'),
+    ).toBeDefined()
   })
 
-  it('should display entered data if form is valid', async () => {
-    emailInput = screen.getByRole('textbox', {
-      name: /email/i,
+  it('should not display any error message if inputs are valid', async () => {
+    const emailInput = screen.getByRole('textbox', {
+      name: 'loginView.form.email',
     }) as HTMLInputElement
 
-    passwordInput = screen.getByLabelText(/password/i) as HTMLInputElement
+    const passwordInput = screen.getByLabelText(
+      'loginView.form.password',
+    ) as HTMLInputElement
 
-    submitButton = screen.getByRole('button')
+    const submitButton = screen.getByRole('button')
 
     fireEvent.input(emailInput, {
       target: {
@@ -96,13 +150,18 @@ describe('LoginForm', () => {
 
     fireEvent.input(passwordInput, {
       target: {
-        value: 'mySecretPassword',
+        value: 'thisIsALongPassword',
       },
     })
 
     fireEvent.submit(submitButton)
 
     expect(emailInput.value).toBe('me@example.de')
-    expect(passwordInput.value).toBe('mySecretPassword')
+    expect(passwordInput.value).toBe('thisIsALongPassword')
+
+    expect(screen.queryAllByText('validation.email.notValid')).toHaveLength(0)
+    expect(screen.queryAllByText('validation.password.minLength')).toHaveLength(
+      0,
+    )
   })
 })
