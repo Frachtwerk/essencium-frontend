@@ -39,4 +39,4 @@ ENV SENTRY_ORG=
 ENV SENTRY_PROJECT=
 ENV SENTRY_AUTH_TOKEN=
 
-CMD ["node", "/packages/app/server.js"]
+CMD ["node", "./packages/app/server.js"]
