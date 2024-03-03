@@ -117,7 +117,7 @@ jobs:
 
   # Not active as long as repo is private, because otherwise the Artifact storage quota will be exceeded.
   # - name: Upload E2E test results
-  #   uses: actions/upload-artifact@v3
+  #   uses: actions/upload-artifact@v4
   #   if: always()
   #   with:
   #     name: e2e-test-results
@@ -183,19 +183,19 @@ jobs:
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
 
       - name: Upload 'lib' dist folder
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: lib-dist
           path: packages/lib/dist
 
       - name: Upload 'types' dist folder
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: types-dist
           path: packages/types/dist
 
       - name: Upload 'app' .next folder
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: app-next
           path: packages/app/.next
@@ -273,13 +273,13 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Download 'lib' dist folder
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: lib-dist
           path: packages/lib/dist
 
       - name: Download 'types' dist folder
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: types-dist
           path: packages/types/dist
