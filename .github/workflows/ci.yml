@@ -100,7 +100,7 @@ jobs:
   #       run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./packages/app/package.json').dependencies['@playwright/test'])")" >> $GITHUB_ENV
 
   #     - name: Cache Playwright
-  #       uses: actions/cache@v3
+  #       uses: actions/cache@v4
   #       id: playwright-cache
   #       with:
   #         path: ~/.cache/ms-playwright
@@ -202,7 +202,7 @@ jobs:
 
       - name: Cache dist folder for 'app' package
         id: cache-dist
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-dist
         with:
