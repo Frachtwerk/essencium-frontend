@@ -32,7 +32,6 @@
     "@mantine/dates": "7.5.2",
     "@mantine/hooks": "7.5.2",
     "@mantine/modals": "7.5.2",
-    "@mantine/next": "6.0.21",
     "@mantine/notifications": "7.5.2",
     "@mantine/spotlight": "7.5.2",
     "@playwright/test": "^1.40.1",
