@@ -203,6 +203,8 @@ export function AuthLayout({
     true,
   )
 
+  // const URL_UPDATE_DELAY = 750
+
   useEffect(() => {
     const authToken = localStorage.getItem('authToken')
 
@@ -217,6 +219,7 @@ export function AuthLayout({
   useEffect(() => {
     router.replace(router.asPath, undefined, {
       locale: user?.locale,
+      shallow: true,
     })
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

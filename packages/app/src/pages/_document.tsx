@@ -18,15 +18,10 @@
  */
 
 import { ColorSchemeScript } from '@mantine/core'
-import { createGetInitialProps } from '@mantine/next'
 import _Document, { Head, Html, Main, NextScript } from 'next/document'
-
-const getInitialProps = createGetInitialProps()
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 class Document extends _Document {
-  static getInitialProps = getInitialProps
-
   render(): JSX.Element {
     return (
       <Html lang="en">
