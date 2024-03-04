@@ -48,6 +48,8 @@ import { PublicLayout } from '@/components/layouts'
 import { getTranslation, withBaseStylingShowNotification } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
+import classes from './Login.module.css'
+
 const OAUTH_REDIRECT_URI = `${process.env.NEXT_PUBLIC_APP_URL}/login`
 
 function LoginView(): JSX.Element {
@@ -123,7 +125,7 @@ function LoginView(): JSX.Element {
                 <Box mt="md">
                   {Object.keys(ssoApplications).map(application => (
                     <NextLink
-                      style={{ textDecoration: 'none', color: 'white' }}
+                      className={classes['ssoSection--link']}
                       key={application}
                       href={`${process.env.NEXT_PUBLIC_API_BASE_URL}${ssoApplications[application].url}?redirect_uri=${OAUTH_REDIRECT_URI}`}
                     >
