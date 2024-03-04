@@ -205,8 +205,6 @@ export function AuthLayout({
     true,
   )
 
-  // const URL_UPDATE_DELAY = 750
-
   useEffect(() => {
     const authToken = localStorage.getItem('authToken')
 
