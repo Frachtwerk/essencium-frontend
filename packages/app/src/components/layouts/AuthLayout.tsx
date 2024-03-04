@@ -160,6 +160,8 @@ export function AuthLayout({
 
   const [isFixedNav, setIsFixedNav] = useAtom(isFixedNavAtom)
 
+  const [userHasBeenForwarded, setUserHasBeenForwarded] = useState(false)
+
   function handleOpenNav(): void {
     setIsOpenedNav(opened => !opened)
   }
@@ -209,12 +211,16 @@ export function AuthLayout({
     const authToken = localStorage.getItem('authToken')
 
     if (!authToken) {
+      if (userHasBeenForwarded) return
+
       router.push({
         pathname: '/login',
         query: { redirect: router.asPath },
       })
+
+      setUserHasBeenForwarded(true)
     }
-  }, [user, router])
+  }, [user, router, userHasBeenForwarded])
 
   useEffect(() => {
     router.replace(router.asPath, undefined, {
