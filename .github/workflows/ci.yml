@@ -218,11 +218,17 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
+      - name: Repo checkout state
+        run: ls -la
+
       - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
           name: app-next
-          path: packages/app/.next
+          path: ./packages/app/.next
+
+      - name: Artifact downloaded state
+        run: ls -la          
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
