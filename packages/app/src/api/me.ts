@@ -30,14 +30,10 @@ import {
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useAtomValue, useSetAtom, useStore } from 'jotai'
-import { atomWithStorage } from 'jotai/utils'
 
 import { withBaseStylingShowNotification } from '../utils'
 import { api } from './api'
-import { authTokenAtom } from './auth'
-
-export const userAtom = atomWithStorage<UserOutput | null>('user', null)
-export const userRightsAtom = atomWithStorage<string[] | null>('rights', null)
+import { authTokenAtom, userAtom, userRightsAtom } from './auth'
 
 export function useGetMe(): UseQueryResult<UserOutput, unknown> {
   const store = useStore()

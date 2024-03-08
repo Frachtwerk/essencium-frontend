@@ -35,7 +35,7 @@ function ProfileView(): JSX.Element {
 
   const router = useRouter()
 
-  const isSso = Boolean(useAtomValue(isSsoAtom))
+  const isSso = useAtomValue(isSsoAtom)
 
   const { data: user, isLoading: isLoadingUser } = useGetMe()
 

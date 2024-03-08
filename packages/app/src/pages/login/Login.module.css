@@ -1,4 +1,29 @@
+.ssoSection {
+  margin-top: var(--mantine-spacing-md);
+}
+
 .ssoSection--link {
   text-decoration: none;
   color: white;
+}
+
+.ssoSection--button {
+  margin: var(--mantine-spacing-xs) 0;
+}
+
+.ssoSection--button {
+  margin: var(--mantine-spacing-xs) 0;
+}
+
+.ssoSection--spacer {
+  margin: 0 var(--mantine-spacing-xs);
+}
+
+.ssoSection--divider {
+  margin: var(--mantine-spacing-xl) 0;
+}
+
+.loginCard--title {
+  text-align: center;
+  font-weight: bold;
 }

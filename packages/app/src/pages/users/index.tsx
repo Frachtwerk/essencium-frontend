@@ -29,6 +29,7 @@ import {
   FilterObjectUser,
   RIGHTS,
   UserOutput,
+  UserSource,
 } from '@frachtwerk/essencium-types'
 import {
   ActionIcon,
@@ -40,8 +41,6 @@ import {
   Switch,
   Text,
   Title,
-  useMantineColorScheme,
-  useMantineTheme,
 } from '@mantine/core'
 import { useDebouncedValue, useDisclosure } from '@mantine/hooks'
 import {
@@ -69,7 +68,6 @@ import {
   useDeleteUser,
   useGetUsers,
   useInvalidateToken,
-  userAtom,
   userRightsAtom,
 } from '@/api'
 import { AuthLayout } from '@/components/layouts'
@@ -102,14 +100,9 @@ export function removeDuplicates(array: string[] | undefined): string[] {
 function UsersView(): JSX.Element {
   const router = useRouter()
 
-  const user = useAtomValue(userAtom)
-
   const userRights = useAtomValue(userRightsAtom)
 
   const { t } = useTranslation()
-
-  const theme = useMantineTheme()
-  const { colorScheme } = useMantineColorScheme()
 
   const [deleteModalOpened, deleteModalHandlers] = useDisclosure(false)
   const [userToBeDeleted, setUserToBeDeleted] = useState<UserOutput | null>(
@@ -222,15 +215,31 @@ function UsersView(): JSX.Element {
         header: () => <Text inherit>{t('usersView.table.name')}</Text>,
         cell: info => {
           const rowUser = info.row.original
+
+          const isSso = rowUser.source !== UserSource.LOCAL
+
+          const ssoProvider = rowUser.source
+
           return (
-            <Text inherit>
-              {rowUser.firstName} {rowUser.lastName}
-            </Text>
+            <Flex align="center">
+              <Text inherit>
+                {rowUser.firstName} {rowUser.lastName}
+              </Text>
+
+              {isSso ? (
+                <Badge
+                  variant="light"
+                  size="xs"
+                  className={classes['userView__nameCol--badge']}
+                >
+                  {ssoProvider}
+                </Badge>
+              ) : null}
+            </Flex>
           )
         },
         size: 180,
       },
-
       {
         accessorKey: 'phone',
         header: () => <Text inherit>{t('usersView.table.phone')}</Text>,
@@ -259,7 +268,11 @@ function UsersView(): JSX.Element {
           const rowRoles = info.row.original.roles
           return rowRoles.map(role => {
             return (
-              <Badge variant="outline" key={role.name} mr="xs">
+              <Badge
+                variant="outline"
+                key={role.name}
+                className={classes['userView__rolesCol--badge']}
+              >
                 {role.name}
               </Badge>
             )
@@ -281,6 +294,7 @@ function UsersView(): JSX.Element {
             <Flex direction="row" gap="xs">
               {hasRequiredRights(userRights, RIGHTS.USER_UPDATE) ? (
                 <ActionIcon
+                  className={classes['userView__actionsCellIcon--disabled']}
                   size="sm"
                   disabled={isDefaultUser}
                   variant="transparent"
@@ -291,6 +305,7 @@ function UsersView(): JSX.Element {
 
               {hasRequiredRights(userRights, RIGHTS.USER_DELETE) ? (
                 <ActionIcon
+                  className={classes['userView__actionsCellIcon--disabled']}
                   size="sm"
                   disabled={isDefaultUser}
                   variant="transparent"
@@ -308,6 +323,7 @@ function UsersView(): JSX.Element {
                 <Popover width={130} position="bottom" withArrow shadow="sm">
                   <Popover.Target>
                     <ActionIcon
+                      className={classes['userView__actionsCellIcon--disabled']}
                       size="sm"
                       disabled={isDefaultUser}
                       variant="transparent"
@@ -318,17 +334,13 @@ function UsersView(): JSX.Element {
 
                   <Popover.Dropdown p={0}>
                     <Group
-                      onClick={() => handleInvalidateToken(user)}
+                      onClick={() => handleInvalidateToken(rowUser)}
                       gap="xs"
-                      className={classes.group}
+                      className={classes.userView__invalidateTokenGroup}
                     >
                       <IconLogout
                         size={16}
-                        color={
-                          colorScheme === 'dark'
-                            ? theme.colors.gray[3]
-                            : theme.colors.gray[7]
-                        }
+                        className={classes.userView__logoutIcon}
                       />
 
                       {t('usersView.table.invalidate')}
@@ -342,16 +354,7 @@ function UsersView(): JSX.Element {
         size: 120,
       },
     ],
-    [
-      t,
-      handleEditUser,
-      user,
-      userRights,
-      theme.colors.gray,
-      handleInvalidateToken,
-      deleteModalHandlers,
-      colorScheme,
-    ],
+    [t, handleEditUser, userRights, handleInvalidateToken, deleteModalHandlers],
   )
 
   const table = useReactTable({
@@ -381,7 +384,11 @@ function UsersView(): JSX.Element {
         loadingMessage={t('notifications.loadingAsyncData.message') as string}
       />
 
-      <Flex py="md" justify="space-between" align="center">
+      <Flex
+        className={classes.userView__header}
+        justify="space-between"
+        align="center"
+      >
         <Title size="h2">
           <Flex align="center" gap={10}>
             <IconUsers size="32" />
@@ -394,15 +401,16 @@ function UsersView(): JSX.Element {
           label={t('table.misc.showFilter')}
           checked={showFilter}
           onChange={() => setShowFilter(!showFilter)}
-          ml="auto"
+          className={classes.userView__showFilterSwitch}
         />
 
-        <Flex ml="xl" align="center" gap="xs">
+        <Flex
+          className={classes.userView__buttonsSection}
+          align="center"
+          gap="xs"
+        >
           {hasRequiredRights(userRights, RIGHTS.USER_CREATE) ? (
-            <NextLink
-              style={{ textDecoration: 'none', color: 'white' }}
-              href="/users/add"
-            >
+            <NextLink href="/users/add">
               <Button>{t('usersView.action.add')}</Button>
             </NextLink>
           ) : null}

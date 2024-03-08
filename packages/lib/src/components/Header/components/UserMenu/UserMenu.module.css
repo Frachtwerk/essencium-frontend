@@ -1,5 +1,5 @@
-.group {
-  padding: 0.7rem 0 0.5rem 1rem;
+.userMenuGroup {
+  padding: var(--mantine-spacing-sm);
   cursor: pointer;
   border-radius: var(--mantine-radius-sm);
 
@@ -14,11 +14,23 @@
   }
 }
 
-.unstyledButton {
+.userMenuButton {
   display: block;
   width: 100%;
 }
 
-.box {
+.userMenuBox {
   flex: 1;
+}
+
+.userMenuBox__name {
+  font-weight: 500;
+}
+
+.userMenuBox__mail {
+  color: var(--mantine-color-dimmed);
+}
+
+.userMenuBox__ssoBadge {
+  margin-left: 12px;
 }

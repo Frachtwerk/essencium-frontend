@@ -39,7 +39,6 @@ import { useEffect, useState } from 'react'
 
 import {
   authTokenAtom,
-  isSsoAtom,
   useCreateToken,
   useGetSsoApplications,
   useResetPassword,
@@ -67,16 +66,13 @@ function LoginView(): JSX.Element {
 
   const setAuthToken = useSetAtom(authTokenAtom)
 
-  const setIsSsoAtom = useSetAtom(isSsoAtom)
-
   useEffect(() => {
     if (oauthToken) {
       setAuthToken(oauthToken)
-      setIsSsoAtom(true)
 
       router.push(searchParams.get('redirect') || '/')
     }
-  }, [oauthToken, router, searchParams, setAuthToken, setIsSsoAtom])
+  }, [oauthToken, router, searchParams, setAuthToken])
 
   const { mutate: resetPassword, isLoading: isResettingPassword } =
     useResetPassword()
@@ -116,20 +112,24 @@ function LoginView(): JSX.Element {
       {!oauthToken ? (
         <Card shadow="sm" radius="sm">
           <Flex direction="column">
-            <Title ta="center" order={2} fw="bold">
+            <Title order={2} className={classes['loginCard--title']}>
               {t('loginView.title')}
             </Title>
 
             {hasSsoApplications ? (
               <>
-                <Box mt="md">
+                <Box className={classes.ssoSection}>
                   {Object.keys(ssoApplications).map(application => (
                     <NextLink
                       className={classes['ssoSection--link']}
                       key={application}
                       href={`${process.env.NEXT_PUBLIC_API_BASE_URL}${ssoApplications[application].url}?redirect_uri=${OAUTH_REDIRECT_URI}`}
                     >
-                      <Flex justify="center" align="center" my="sm">
+                      <Flex
+                        justify="center"
+                        align="center"
+                        className={classes['ssoSection--button']}
+                      >
                         <Button
                           variant="outline"
                           fullWidth
@@ -142,7 +142,7 @@ function LoginView(): JSX.Element {
                             />
                           }
                         >
-                          <Box mx="xs" />
+                          <Box className={classes['ssoSection--spacer']} />
 
                           <Text>{ssoApplications[application].name}</Text>
                         </Button>
@@ -152,7 +152,7 @@ function LoginView(): JSX.Element {
                 </Box>
 
                 <Divider
-                  my="xl"
+                  className={classes['ssoSection--divider']}
                   label={t('loginView.sso.or')}
                   labelPosition="center"
                 />

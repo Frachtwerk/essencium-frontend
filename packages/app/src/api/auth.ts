@@ -21,6 +21,7 @@ import {
   ResetPassword,
   SetPasswordInput,
   UserOutput,
+  UserSource,
 } from '@frachtwerk/essencium-types'
 import {
   useMutation,
@@ -29,7 +30,7 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { useSetAtom } from 'jotai'
+import { atom, useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 import { useTranslation } from 'next-i18next'
 
@@ -46,6 +47,10 @@ type LoginCredentials = {
 }
 
 export const authTokenAtom = atomWithStorage<string | null>('authToken', null)
+
+export const userAtom = atomWithStorage<UserOutput | null>('user', null)
+
+export const userRightsAtom = atomWithStorage<string[] | null>('rights', null)
 
 export function useCreateToken(): UseMutationResult<
   TokenResponse,
@@ -158,7 +163,11 @@ export function useSetPassword(): UseMutationResult<
   return mutation
 }
 
-export const isSsoAtom = atomWithStorage<boolean | null>('isSso', null)
+export const isSsoAtom = atom(get =>
+  Boolean(get(userAtom)?.source !== UserSource.LOCAL),
+)
+
+export const ssoProviderAtom = atom(get => get(userAtom)?.source)
 
 type SsoApplications = {
   [key: string]: {

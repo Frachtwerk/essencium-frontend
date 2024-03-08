@@ -102,6 +102,7 @@ export function PersonalDataForm({
             render={({ field }) => (
               <TextInput
                 {...field}
+                disabled={isSso}
                 placeholder={String(
                   t(
                     'profileView.dataCard.tabs.personalData.placeholder.firstName',
@@ -135,6 +136,7 @@ export function PersonalDataForm({
             render={({ field }) => (
               <TextInput
                 {...field}
+                disabled={isSso}
                 placeholder={String(
                   t(
                     'profileView.dataCard.tabs.personalData.placeholder.lastName',

@@ -17,8 +17,14 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { RoleOutput, UserInput, UserUpdate } from '@frachtwerk/essencium-types'
 import {
+  RoleOutput,
+  UserInput,
+  UserSource,
+  UserUpdate,
+} from '@frachtwerk/essencium-types'
+import {
+  Badge,
   Box,
   Button,
   Flex,
@@ -39,7 +45,10 @@ import {
   UseFormSetValue,
 } from 'react-hook-form'
 
+import classes from './UserForm.module.css'
+
 type Props = {
+  ssoProvider?: UserSource | string | undefined
   title: string
   roles: RoleOutput[]
   control: Control<UserInput | UserUpdate>
@@ -50,6 +59,7 @@ type Props = {
 }
 
 export function UserForm({
+  ssoProvider,
   title,
   roles,
   control,
@@ -57,6 +67,8 @@ export function UserForm({
   onSubmit,
   isLoading,
 }: Props): JSX.Element {
+  const isSso = Boolean(ssoProvider && ssoProvider !== UserSource.LOCAL)
+
   const { t } = useTranslation()
 
   const rolesData = roles.map(role => {
@@ -65,22 +77,29 @@ export function UserForm({
 
   return (
     <form onSubmit={onSubmit}>
-      <Title order={3} mb="lg">
-        {title}
-      </Title>
+      <Flex align="center" className={classes.userForm__header}>
+        <Title order={3}>{title}</Title>
+
+        {isSso ? (
+          <Badge className={classes.userForm__ssoBadge} variant="light">
+            {ssoProvider}
+          </Badge>
+        ) : null}
+      </Flex>
 
       <Flex
         direction={{ base: 'column', sm: 'row' }}
         gap={{ base: 'sm', sm: 'md' }}
         justify={{ sm: 'space-between' }}
       >
-        <Stack miw="45%">
+        <Stack className={classes.userForm__inputContainer}>
           <Controller
             name="firstName"
             control={control}
             render={({ field }) => (
               <TextInput
                 {...field}
+                disabled={isSso}
                 placeholder={String(
                   t('addUpdateUserView.form.placeholder.firstName'),
                 )}
@@ -93,9 +112,9 @@ export function UserForm({
             )}
           />
 
-          <Box mt="-0.6rem" h="0.8rem">
+          <Box className={classes.userForm__errorContainer}>
             {formState.errors.firstName && (
-              <Text ml={5} fz="xs" color="red">
+              <Text className={classes.userForm__errorText}>
                 {formState.errors.firstName?.message
                   ? String(t(formState.errors.firstName.message))
                   : null}
@@ -104,13 +123,14 @@ export function UserForm({
           </Box>
         </Stack>
 
-        <Stack miw="45%">
+        <Stack className={classes.userForm__inputContainer}>
           <Controller
             name="lastName"
             control={control}
             render={({ field }) => (
               <TextInput
                 {...field}
+                disabled={isSso}
                 placeholder={String(
                   t('addUpdateUserView.form.placeholder.lastName'),
                 )}
@@ -123,9 +143,9 @@ export function UserForm({
             )}
           />
 
-          <Box mt="-0.6rem" h="0.8rem">
+          <Box className={classes.userForm__errorContainer}>
             {formState.errors.lastName && (
-              <Text ml={5} fz="xs" color="red">
+              <Text className={classes.userForm__errorText}>
                 {formState.errors.lastName?.message
                   ? String(t(formState.errors.lastName.message))
                   : null}
@@ -139,15 +159,16 @@ export function UserForm({
         direction={{ base: 'column', sm: 'row' }}
         gap={{ base: 'sm', sm: 'md' }}
         justify={{ sm: 'space-between' }}
-        mt="xs"
+        className={classes['userForm__newSection--margin-xs']}
       >
-        <Stack miw="45%">
+        <Stack className={classes.userForm__inputContainer}>
           <Controller
             name="email"
             control={control}
             render={({ field }) => (
               <TextInput
                 {...field}
+                disabled={isSso}
                 placeholder={String(
                   t('addUpdateUserView.form.placeholder.email'),
                 )}
@@ -160,9 +181,9 @@ export function UserForm({
             )}
           />
 
-          <Box mt="-0.6rem" h="0.8rem">
+          <Box className={classes.userForm__errorContainer}>
             {formState.errors.email && (
-              <Text ml={5} fz="xs" color="red">
+              <Text className={classes.userForm__errorText}>
                 {formState.errors.email?.message
                   ? String(t(formState.errors.email.message))
                   : null}
@@ -171,13 +192,14 @@ export function UserForm({
           </Box>
         </Stack>
 
-        <Stack miw="45%">
+        <Stack className={classes.userForm__inputContainer}>
           <Controller
             name="password"
             control={control}
             render={({ field }) => (
               <PasswordInput
                 {...field}
+                disabled={isSso}
                 placeholder={String(
                   t('addUpdateUserView.form.placeholder.password'),
                 )}
@@ -189,9 +211,9 @@ export function UserForm({
             )}
           />
 
-          <Box mt="-0.6rem" h="0.8rem">
+          <Box className={classes.userForm__errorContainer}>
             {formState.errors.password && (
-              <Text ml={5} fz="xs" color="red">
+              <Text className={classes.userForm__errorText}>
                 {formState.errors.password?.message
                   ? String(t(formState.errors.password.message))
                   : null}
@@ -205,9 +227,9 @@ export function UserForm({
         direction={{ base: 'column', sm: 'row' }}
         gap={{ base: 'sm', sm: 'md' }}
         justify={{ sm: 'space-between' }}
-        mt="xs"
+        className={classes['userForm__newSection--margin-xs']}
       >
-        <Stack miw="45%">
+        <Stack className={classes.userForm__inputContainer}>
           <Controller
             name="phone"
             control={control}
@@ -225,9 +247,9 @@ export function UserForm({
             )}
           />
 
-          <Box mt="-0.6rem" h="0.8rem">
+          <Box className={classes.userForm__errorContainer}>
             {formState.errors.phone && (
-              <Text ml={5} fz="xs" color="red">
+              <Text className={classes.userForm__errorText}>
                 {formState.errors.phone?.message
                   ? String(t(formState.errors.phone.message))
                   : null}
@@ -236,7 +258,7 @@ export function UserForm({
           </Box>
         </Stack>
 
-        <Stack miw="45%">
+        <Stack className={classes.userForm__inputContainer}>
           <Controller
             name="mobile"
             control={control}
@@ -254,9 +276,9 @@ export function UserForm({
             )}
           />
 
-          <Box mt="-0.6rem" h="0.8rem">
+          <Box className={classes.userForm__errorContainer}>
             {formState.errors.mobile && (
-              <Text ml={5} fz="xs" color="red">
+              <Text className={classes.userForm__errorText}>
                 {formState.errors.mobile?.message
                   ? String(t(formState.errors.mobile.message))
                   : null}
@@ -266,7 +288,7 @@ export function UserForm({
         </Stack>
       </Flex>
 
-      <Title mt="lg" order={3}>
+      <Title className={classes['userForm__newSection--margin-lg']} order={3}>
         {t('addUpdateUserView.form.userSettingsHeading')}
       </Title>
 
@@ -280,7 +302,7 @@ export function UserForm({
             value={String(field.value)}
             color="blue"
             size="md"
-            mt="sm"
+            className={classes.userForm__enableToggle}
             label={t('addUpdateUserView.form.status')}
           />
         )}
@@ -290,9 +312,9 @@ export function UserForm({
         direction={{ base: 'column', sm: 'row' }}
         gap={{ base: 'sm', sm: 'md' }}
         justify={{ sm: 'space-between' }}
-        mt="sm"
+        className={classes['userForm__newSection--margin-sm']}
       >
-        <Stack miw="45%">
+        <Stack className={classes.userForm__inputContainer}>
           <Controller
             name="locale"
             control={control}
@@ -311,9 +333,9 @@ export function UserForm({
             )}
           />
 
-          <Box mt="-0.6rem" h="0.8rem">
+          <Box className={classes.userForm__errorContainer}>
             {formState.errors.locale && (
-              <Text ml={5} fz="xs" color="red">
+              <Text className={classes.userForm__errorText}>
                 {formState.errors.locale?.message
                   ? String(t(formState.errors.locale.message))
                   : null}
@@ -322,13 +344,14 @@ export function UserForm({
           </Box>
         </Stack>
 
-        <Stack miw="45%">
+        <Stack className={classes.userForm__inputContainer}>
           <Controller
             name="roles"
             control={control}
             render={({ field }) => (
               <MultiSelect
                 {...field}
+                disabled={isSso}
                 radius="sm"
                 label={t('addUpdateUserView.form.role')}
                 data={rolesData}
@@ -339,9 +362,9 @@ export function UserForm({
             )}
           />
 
-          <Box mt="-0.6rem" h="0.8rem">
+          <Box className={classes.userForm__errorContainer}>
             {formState.errors.roles && (
-              <Text ml={5} fz="xs" color="red">
+              <Text className={classes.userForm__errorText}>
                 {formState.errors.roles?.message
                   ? String(t(formState.errors.roles.message))
                   : null}
@@ -351,7 +374,11 @@ export function UserForm({
         </Stack>
       </Flex>
 
-      <Button type="submit" mt="md" loading={isLoading}>
+      <Button
+        type="submit"
+        className={classes.userForm__saveButton}
+        loading={isLoading}
+      >
         {t('addUpdateUserView.form.save')}
       </Button>
     </form>

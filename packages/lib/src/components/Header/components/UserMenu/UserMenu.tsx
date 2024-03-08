@@ -17,8 +17,8 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { UserOutput } from '@frachtwerk/essencium-types'
-import { Box, Group, Text, UnstyledButton } from '@mantine/core'
+import { UserOutput, UserSource } from '@frachtwerk/essencium-types'
+import { Badge, Box, Flex, Group, Text, UnstyledButton } from '@mantine/core'
 import { IconChevronRight, IconUser } from '@tabler/icons-react'
 import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
@@ -26,28 +26,42 @@ import { useTranslation } from 'next-i18next'
 import classes from './UserMenu.module.css'
 
 type Props = {
+  isSso: boolean
+  ssoProvider?: UserSource | string | undefined
   user: UserOutput
 }
 
-export function UserMenu({ user }: Props): JSX.Element {
+export function UserMenu({ isSso, ssoProvider, user }: Props): JSX.Element {
   const { t } = useTranslation()
 
   return (
     <UnstyledButton
       component={NextLink}
       href="/profile"
-      className={classes.unstyledButton}
+      className={classes.userMenuButton}
       aria-label={t('header.profile.arialLabel') as string}
     >
-      <Group p="sm" className={classes.group} wrap="nowrap">
+      <Group className={classes.userMenuGroup} wrap="nowrap">
         <IconUser size="28" />
 
-        <Box className={classes.box}>
-          <Text size="sm" fw={500}>
-            {user.firstName} {user.lastName}
-          </Text>
+        <Box className={classes.userMenuBox}>
+          <Flex align="center" justify="space-between">
+            <Text size="sm" className={classes.userMenuBox__name}>
+              {user.firstName} {user.lastName}
+            </Text>
 
-          <Text color="dimmed" size="xs">
+            {isSso ? (
+              <Badge
+                variant="light"
+                size="xs"
+                className={classes.userMenuBox__ssoBadge}
+              >
+                {ssoProvider}
+              </Badge>
+            ) : null}
+          </Flex>
+
+          <Text className={classes.userMenuBox__mail} size="xs">
             {user.email}
           </Text>
         </Box>

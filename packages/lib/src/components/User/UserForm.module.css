@@ -17,21 +17,45 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-.tableColSticky:first-child {
-  position: -webkit-sticky;
-  position: sticky;
-  left: 0;
-  z-index: 10;
+.userForm__header {
+  margin-bottom: var(--mantine-spacing-lg);
 }
 
-.table__colHeader {
-  cursor: progress;
+.userForm__ssoBadge {
+  margin-left: 10px;
+}
 
-  @mixin light {
-    color: var(--mantine-color-dark-4);
-  }
+.userForm__inputContainer {
+  min-width: 45%;
+}
 
-  @mixin dark {
-    color: var(--mantine-color-dark-1);
-  }
+.userForm__errorContainer {
+  margin-top: -0.6rem;
+  height: 0.8rem;
+}
+
+.userForm__errorText {
+  margin-left: 5px;
+  font-size: var(--mantine-font-size-xs);
+  color: red;
+}
+
+.userForm__newSection--margin-xs {
+  margin-top: var(--mantine-spacing-xs);
+}
+
+.userForm__newSection--margin-sm {
+  margin-top: var(--mantine-spacing-sm);
+}
+
+.userForm__newSection--margin-lg {
+  margin-top: var(--mantine-spacing-lg);
+}
+
+.userForm__enableToggle {
+  margin-top: var(--mantine-spacing-sm);
+}
+
+.userForm__saveButton {
+  margin-top: var(--mantine-spacing-md);
 }

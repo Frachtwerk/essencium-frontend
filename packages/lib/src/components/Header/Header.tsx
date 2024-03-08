@@ -17,7 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { UserOutput } from '@frachtwerk/essencium-types'
+import { UserOutput, UserSource } from '@frachtwerk/essencium-types'
 import {
   AppShellHeader,
   Burger,
@@ -44,6 +44,10 @@ export function Header({
 }: Props): JSX.Element {
   const theme = useMantineTheme()
 
+  const ssoProvider = user?.source
+
+  const isSso = Boolean(ssoProvider && ssoProvider !== UserSource.LOCAL)
+
   return (
     <AppShellHeader
       p="md"
@@ -51,16 +55,21 @@ export function Header({
       ml={marginLeft}
       className={classes.appShellHeader}
     >
-      <Flex className={classes.flex} justify="space-between" align="center">
+      <Flex
+        className={classes.appShellHeader__content}
+        justify="space-between"
+        align="center"
+      >
         <Burger
           opened={isOpen}
           onClick={() => {
             handleOpenNav()
           }}
           size="sm"
+          // not in CSS module because it's not applied there with CSS 'color' prop
           color={theme.colors.gray[5]}
           hiddenFrom="sm"
-          className={classes.burger}
+          className={classes.appShellHeader__burger}
         />
 
         <SearchBar />
@@ -70,7 +79,9 @@ export function Header({
             <ThemeSelector />
           </Group>
 
-          {user ? <UserMenu user={user} /> : null}
+          {user ? (
+            <UserMenu isSso={isSso} ssoProvider={ssoProvider} user={user} />
+          ) : null}
         </Group>
       </Flex>
     </AppShellHeader>
