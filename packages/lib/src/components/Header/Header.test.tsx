@@ -33,6 +33,7 @@ const MOCK_USER: UserOutput = {
   mobile: '0123456789',
   phone: '0123456789',
   roles: [],
+  source: 'local',
 } as const
 
 vi.mock('@mantine/core', async () => {
@@ -79,11 +80,40 @@ describe('Header.tsx', () => {
     ).toBeDefined()
   })
 
-  it('should render the logged in user menu', () => {
+  it('should render the logged in user menu as local login', () => {
     expect(
       HeaderMounted.getByRole('link', {
         name: 'header.profile.arialLabel',
       }),
     ).toBeDefined()
+  })
+
+  it('should render the logged in user menu as SSO login via GitLab', () => {
+    HeaderMounted.unmount()
+
+    const HeaderMountedSso = render(
+      <MantineProvider>
+        <AppShell>
+          <Header
+            isOpen
+            handleOpenNav={() => {}}
+            user={{ ...MOCK_USER, source: 'gitlab' }}
+            marginLeft="0"
+          />
+        </AppShell>
+      </MantineProvider>,
+    )
+
+    expect(
+      HeaderMountedSso.getByRole('link', {
+        name: 'header.profile.arialLabel',
+      }),
+    ).toBeDefined()
+
+    const ssoBadge = HeaderMountedSso.getByRole('status')
+
+    expect(ssoBadge.innerText).toBe('gitlab')
+
+    expect(ssoBadge).toBeDefined()
   })
 })

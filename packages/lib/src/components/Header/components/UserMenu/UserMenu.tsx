@@ -52,6 +52,7 @@ export function UserMenu({ isSso, ssoProvider, user }: Props): JSX.Element {
 
             {isSso ? (
               <Badge
+                role="status"
                 variant="light"
                 size="xs"
                 className={classes.userMenuBox__ssoBadge}
