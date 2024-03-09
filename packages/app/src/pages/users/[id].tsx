@@ -32,7 +32,7 @@ import { getTranslation } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
 import { FORM_DEFAULTS_USERS_VIEW } from '.'
-import classes from './Users.module.css'
+import classes from './users.module.css'
 
 function UpdateUserView(): JSX.Element {
   const router = useRouter()
