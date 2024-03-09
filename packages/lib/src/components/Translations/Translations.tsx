@@ -23,7 +23,6 @@ import {
   ActionIcon,
   Box,
   Card,
-  Divider,
   Flex,
   Group,
   Input,
@@ -47,6 +46,7 @@ import { FormEvent, useState } from 'react'
 import { KeyPath } from 'react-json-tree'
 
 import { hasRequiredRights } from '../../utils/hasRequiredRights'
+import classes from './Translations.module.css'
 
 // dynamically load the JSONTree component to avoid SSR errors
 const JSONTree = dynamic(
@@ -131,7 +131,7 @@ export function Translations({
 
   const TREE_THEME_DARK = {
     // background-color:
-    base00: theme.colors.dark[6],
+    base00: theme.colors.dark[7],
     // font-color value:
     base0B: theme.colors.blue[2],
     // font-color key:
@@ -227,9 +227,18 @@ export function Translations({
         />
       </Flex>
 
-      <Card shadow="sm" pl="lg" pt="lg" radius="sm" withBorder>
+      <Card
+        shadow="sm"
+        radius="sm"
+        withBorder
+        className={classes['translations-tree-container']}
+      >
         {!Object.keys(filteredTranslations).length ? (
-          <Text fz="sm" color="gray">
+          <Text
+            className={
+              classes['translations-tree-container__no-translations-text']
+            }
+          >
             {t('translationsView.search.noResults')}
           </Text>
         ) : (
@@ -238,7 +247,13 @@ export function Translations({
             data={filteredTranslations}
             theme={colorScheme === 'light' ? TREE_THEME : TREE_THEME_DARK}
             getItemString={() => null}
-            labelRenderer={([key]) => <Text fz="sm">{key}</Text>}
+            labelRenderer={([key]) => (
+              <Text
+                className={classes['translations-tree-container__label-text']}
+              >
+                {key}
+              </Text>
+            )}
             valueRenderer={(_, value, ...keyPath) => (
               <Box
                 onClick={event => {
@@ -272,24 +287,17 @@ export function Translations({
                       ) ? (
                         <Tooltip
                           label={t('translationsView.save')}
-                          color={theme.colors.gray[6]}
-                          pl="md"
                           position="bottom"
                           withArrow
                         >
                           <ActionIcon type="submit" name="save">
-                            <IconCheck
-                              size="1.125rem"
-                              color={theme.colors.blue[4]}
-                            />
+                            <IconCheck size="1.125rem" />
                           </ActionIcon>
                         </Tooltip>
                       ) : null}
 
                       <Tooltip
                         label={t('translationsView.cancel')}
-                        color={theme.colors.gray[6]}
-                        pl="md"
                         position="bottom"
                         withArrow
                       >
@@ -310,8 +318,6 @@ export function Translations({
                       ) ? (
                         <Tooltip
                           label={t('translationsView.reset')}
-                          color={theme.colors.gray[6]}
-                          pl="md"
                           position="bottom"
                           withArrow
                         >
@@ -321,29 +327,24 @@ export function Translations({
                         </Tooltip>
                       ) : null}
                     </Group>
-
-                    <Divider
-                      label={t('translationsView.divider')}
-                      m="sm"
-                      w="80%"
-                    />
                   </form>
                 ) : (
                   <Text
-                    fz="sm"
-                    style={{
-                      cursor:
-                        hasRequiredRights(
-                          userRights,
-                          RIGHTS.TRANSLATION_UPDATE,
-                        ) ||
-                        hasRequiredRights(userRights, RIGHTS.TRANSLATION_DELETE)
-                          ? 'pointer'
-                          : '',
-                    }}
+                    className={`${
+                      classes['translations-tree-container__translation-text']
+                    } ${
+                      hasRequiredRights(
+                        userRights,
+                        RIGHTS.TRANSLATION_UPDATE,
+                      ) ||
+                      hasRequiredRights(userRights, RIGHTS.TRANSLATION_DELETE)
+                        ? classes[
+                            'translations-tree-container__translation-text--cursor-pointer'
+                          ]
+                        : null
+                    }`}
                   >
                     {value as string}
-                    <Divider my="sm" w="60%" />
                   </Text>
                 )}
               </Box>

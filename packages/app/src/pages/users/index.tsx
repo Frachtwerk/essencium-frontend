@@ -74,7 +74,7 @@ import { AuthLayout } from '@/components/layouts'
 import { getTranslation, hasRequiredRights, parseSorting } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
-import classes from './users.module.css'
+import classes from './Users.module.css'
 
 export const FORM_DEFAULTS_USERS_VIEW = {
   firstName: '',

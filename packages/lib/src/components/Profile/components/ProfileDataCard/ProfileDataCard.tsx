@@ -27,6 +27,7 @@ import { IconLock, IconUser } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
 
 import { PasswordChangeForm, PersonalDataForm } from './components'
+import classes from './ProfileDataCard.module.css'
 
 type Props = {
   isSso: boolean
@@ -51,7 +52,12 @@ export function ProfileDataCard({
   const { t } = useTranslation()
 
   return (
-    <Card shadow="sm" p="lg" radius="sm" withBorder>
+    <Card
+      shadow="sm"
+      radius="sm"
+      withBorder
+      className={classes['profile-data-card']}
+    >
       <Tabs defaultValue="personalDataForm">
         <Tabs.List>
           <Tabs.Tab

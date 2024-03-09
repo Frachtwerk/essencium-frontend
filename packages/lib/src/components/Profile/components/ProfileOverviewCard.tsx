@@ -30,6 +30,8 @@ import {
 import { IconUser } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
 
+import classes from './ProfileOverviewCard.module.css'
+
 type Props = {
   user: UserOutput
 }
@@ -39,14 +41,19 @@ export function ProfileOverviewCard({ user }: Props): JSX.Element {
   const theme = useMantineTheme()
 
   return (
-    <Card shadow="sm" p="lg" radius="sm" withBorder>
+    <Card
+      shadow="sm"
+      radius="sm"
+      withBorder
+      className={classes['profile-overview-card']}
+    >
       <Flex gap="md" justify="center" align="center" direction="column">
         <Avatar
           size="xl"
           radius="xl"
           src={null}
           alt={`${user.firstName} ${user.lastName} avatar`}
-          color={theme.colors.blue[6]}
+          color={theme.primaryColor}
         >
           <IconUser size={50} />
         </Avatar>
@@ -56,7 +63,11 @@ export function ProfileOverviewCard({ user }: Props): JSX.Element {
         </Title>
 
         {user.roles.map(role => (
-          <Text key={role.name} size="sm" mt={-8}>
+          <Text
+            key={role.name}
+            size="sm"
+            className={classes['profile-overview-card__user-role']}
+          >
             {role.name}
           </Text>
         ))}

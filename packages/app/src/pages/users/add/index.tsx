@@ -31,6 +31,7 @@ import { getTranslation } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
 import { FORM_DEFAULTS_USERS_VIEW } from '..'
+import classes from './AddUserView.module.css'
 
 function AddUserView(): JSX.Element {
   const router = useRouter()
@@ -73,7 +74,12 @@ function AddUserView(): JSX.Element {
         </Flex>
       </Title>
 
-      <Card shadow="sm" p="lg" radius="sm" withBorder maw="81.25rem">
+      <Card
+        shadow="sm"
+        radius="sm"
+        withBorder
+        className={classes['add-user-view']}
+      >
         <UserForm
           title={t('addUpdateUserView.form.userDataHeading')}
           roles={roles}

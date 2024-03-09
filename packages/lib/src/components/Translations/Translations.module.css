@@ -17,15 +17,28 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-.textarea {
-  border-radius: '50px';
-  margin-bottom: '15px';
+.translations-tree-container {
+  padding-left: var(--mantine-spacing-lg);
+  padding-top: var(--mantine-spacing-lg);
+
+  @mixin dark {
+    background-color: var(--mantine-color-dark-7);
+  }
 }
 
-.actionIcon {
-  border-radius: '20px';
+.translations-tree-container__no-translations-text {
+  font-size: var(--mantine-font-size-sm);
+  color: var(--mantine-color-gray-4);
 }
 
-.themeIcon {
-  border: none;
+.translations-tree-container__label-text {
+  font-size: var(--mantine-font-size-sm);
+}
+
+.translations-tree-container__translation-text {
+  font-size: var(--mantine-font-size-sm);
+}
+
+.translations-tree-container__translation-text--cursor-pointer {
+  cursor: pointer;
 }

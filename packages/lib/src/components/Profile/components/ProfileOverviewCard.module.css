@@ -17,15 +17,14 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-.textarea {
-  border-radius: '50px';
-  margin-bottom: '15px';
+.profile-overview-card {
+  padding: var(--mantine-spacing-lg);
+
+  @mixin dark {
+    background-color: var(--mantine-color-dark-7);
+  }
 }
 
-.actionIcon {
-  border-radius: '20px';
-}
-
-.themeIcon {
-  border: none;
+.profile-overview-card__user-role {
+  margin-top: -8px;
 }
