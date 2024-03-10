@@ -121,7 +121,7 @@ function App({
         withNormalizeCSS
         theme={{
           colorScheme,
-          focusRing: 'auto',
+          focusRing: 'always',
           respectReducedMotion: true,
           defaultRadius: 'sm',
           cursorType: 'pointer',
