@@ -10,9 +10,9 @@ RUN mkdir .next
 
 RUN chown nextjs:nodejs .next
 
-COPY --chown=nextjs:nodejs ./.next/standalone ./
-COPY --chown=nextjs:nodejs ./public ./packages/app/public
-COPY --chown=nextjs:nodejs ./.next/static ./packages/app/.next/static
+COPY ./.next/standalone ./
+COPY ./public ./packages/app/public
+COPY ./.next/static ./packages/app/.next/static
 
 USER nextjs
 
