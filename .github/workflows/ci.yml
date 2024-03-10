@@ -224,12 +224,6 @@ jobs:
           name: app-next
           path: ./packages/app/.next
 
-      - name: Artifact downloaded state
-        run: ls -la ./packages/app
-
-      - name: Artifact downloaded state in .next
-        run: ls -la ./packages/app/.next
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
