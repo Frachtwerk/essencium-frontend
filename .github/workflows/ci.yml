@@ -171,13 +171,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # - name: Set base and head SHAs for nx
-      #   uses: nrwl/nx-set-shas@v3
+      - name: Set base and head SHAs for nx
+        uses: nrwl/nx-set-shas@v3
 
       - name: Build
         # if: steps.cache-dist.outputs.cache-hit != 'true'
-        # run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx build @frachtwerk/essencium-app
-        run: pnpm --filter @frachtwerk/essencium-app build
+        run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx build @frachtwerk/essencium-app
+        # run: pnpm --filter @frachtwerk/essencium-app build
         env:
           ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
@@ -241,6 +241,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./packages/app
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: ghcr.io/frachtwerk/essencium-frontend:latest
 
