@@ -171,8 +171,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Set base and head SHAs for nx
-        uses: nrwl/nx-set-shas@v3
+      # - name: Set base and head SHAs for nx
+      #   uses: nrwl/nx-set-shas@v3
 
       - name: Build
         # if: steps.cache-dist.outputs.cache-hit != 'true'
