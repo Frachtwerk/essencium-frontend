@@ -17,20 +17,37 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { render, RenderResult, screen, within } from '@testing-library/react'
-import { afterAll, beforeAll, describe, expect, it } from 'vitest'
+import { contactFormSchema } from '@frachtwerk/essencium-types'
+import { AppShell, MantineProvider } from '@mantine/core'
+import { render, renderHook, screen, within } from '@testing-library/react'
+import { beforeAll, describe, expect, it } from 'vitest'
 
+import { useZodForm } from '../../hooks'
 import { Contact } from './Contact'
 
 describe('Contact', () => {
-  let ContactMounted: RenderResult
-
   beforeAll(() => {
-    ContactMounted = render(<Contact />)
-  })
+    const { result } = renderHook(() =>
+      useZodForm({
+        schema: contactFormSchema,
+        defaultValues: {
+          mailAddress: '',
+          name: '',
+          subject: '',
+          message: '',
+        },
+      }),
+    )
 
-  afterAll(() => {
-    ContactMounted.unmount()
+    const { control, formState } = result.current
+
+    render(
+      <MantineProvider>
+        <AppShell>
+          <Contact control={control} formState={formState} />,
+        </AppShell>
+      </MantineProvider>,
+    )
   })
 
   it('renders Contact component with correct layout', () => {
@@ -55,7 +72,9 @@ describe('Contact', () => {
       const title = within(card).getByRole('heading', { level: 3 })
       expect(title).toBeDefined()
 
-      const avatar = within(card).getByTitle('User avatar')
+      const avatar = within(card).getByTitle(
+        'contactView.contactPersonCard.avatar.alt',
+      )
       expect(avatar).toBeDefined()
 
       const name = within(card).getByRole('heading', { level: 5 })
@@ -82,7 +101,7 @@ describe('Contact', () => {
 
   describe('ContactForm', () => {
     it('renders correctly with all form elements', () => {
-      const form = screen.getByTestId('form')
+      const form = screen.getByRole('form')
       expect(form).toBeDefined()
 
       const title = within(form).getByRole('heading', { level: 3 })
@@ -93,9 +112,6 @@ describe('Contact', () => {
 
       const nameInput = within(form).getByLabelText(/name/i)
       expect(nameInput).toBeDefined()
-
-      const numberInput = within(form).getByLabelText(/number/i)
-      expect(numberInput).toBeDefined()
 
       const subjectInput = within(form).getByLabelText(/subject/i)
       expect(subjectInput).toBeDefined()

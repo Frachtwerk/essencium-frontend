@@ -44,7 +44,7 @@ export function ContactForm({ formState, control }: Props): JSX.Element {
   const { t } = useTranslation()
 
   return (
-    <Card shadow="sm" p="lg" radius="md" withBorder>
+    <Card shadow="sm" p="lg" radius="md" withBorder role="form">
       <Title order={3} mb="md">
         {t('contactView.contactForm.title')}
       </Title>
