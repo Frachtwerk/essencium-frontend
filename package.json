@@ -25,6 +25,7 @@
     "clean": "nx run-many --target=clean && rimraf dist node_modules",
     "clean:install": "pnpm i -w && pnpm clean && pnpm install",
     "dev": "nx dev @frachtwerk/essencium-app",
+    "dev:docs": "nx dev @frachtwerk/essencium-docs",
     "format:check": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=format:check --parallel=10",
     "format:write": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=format:write --parallel=10",
     "lint": "NX_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=lint --parallel=10",
