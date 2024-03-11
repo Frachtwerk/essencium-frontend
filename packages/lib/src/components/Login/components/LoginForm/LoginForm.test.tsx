@@ -18,31 +18,37 @@
  */
 
 import { AppShell, MantineProvider } from '@mantine/core'
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import {
+  cleanup,
+  fireEvent,
+  render,
+  RenderResult,
+  screen,
+} from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { LoginForm } from './LoginForm'
 
-const callbacks = {
-  setIsPasswordResetFormOpened: vi.fn(),
-}
-
 describe('LoginForm', () => {
+  let LoginFormMounted: RenderResult
+
+  const setIsPasswordResetFormOpened = vi.fn()
   const handlePasswordReset = vi.fn()
-  const isPasswordResetFormOpened = false
+  const handleLogin = vi.fn()
+
   const isResetPasswordSent = false
   const isResettingPassword = false
 
   beforeEach(() => {
-    render(
+    const isPasswordResetFormOpened = false
+
+    LoginFormMounted = render(
       <MantineProvider>
         <AppShell>
           <LoginForm
-            handleLogin={() => {}}
+            handleLogin={handleLogin}
             handlePasswordReset={handlePasswordReset}
-            setIsPasswordResetFormOpened={
-              callbacks.setIsPasswordResetFormOpened
-            }
+            setIsPasswordResetFormOpened={setIsPasswordResetFormOpened}
             isResetPasswordSent={isResetPasswordSent}
             isPasswordResetFormOpened={isPasswordResetFormOpened}
             isResettingPassword={isResettingPassword}
@@ -71,22 +77,30 @@ describe('LoginForm', () => {
     ).toBeDefined()
   })
 
-  it('should show the password reset form if reset link is clicked', async () => {
-    const passwordResetLink = screen.getByRole('link')
+  it('should show the password reset form', async () => {
+    LoginFormMounted.unmount()
 
-    expect(passwordResetLink).toBeDefined()
+    const isPasswordResetFormOpened = true
+
+    LoginFormMounted = render(
+      <MantineProvider>
+        <AppShell>
+          <LoginForm
+            handleLogin={handleLogin}
+            handlePasswordReset={handlePasswordReset}
+            setIsPasswordResetFormOpened={setIsPasswordResetFormOpened}
+            isResetPasswordSent={isResetPasswordSent}
+            isPasswordResetFormOpened={isPasswordResetFormOpened}
+            isResettingPassword={isResettingPassword}
+          />
+          ,
+        </AppShell>
+      </MantineProvider>,
+    )
 
     expect(
-      screen.queryAllByText('loginView.resetPassword.form.description'),
-    ).toHaveLength(0)
-
-    fireEvent.click(passwordResetLink)
-
-    screen.debug()
-
-    // expect(
-    //   screen.queryAllByText('loginView.resetPassword.form.description'),
-    // ).toHaveLength(1)
+      LoginFormMounted.getByText('loginView.resetPassword.form.description'),
+    ).toBeDefined()
   })
 
   it('should display an error message for the email field if mail is invalid', async () => {
