@@ -40,7 +40,7 @@ export function ContactPersonCard(): JSX.Element {
   const { t } = useTranslation()
 
   return (
-    <Card shadow="sm" p="lg" radius="md" withBorder data-testid="card">
+    <Card shadow="sm" p="lg" radius="md" withBorder role="complementary">
       <Flex
         direction={{ base: 'column', sm: 'column' }}
         gap={{ base: 'sm', sm: 'md' }}
