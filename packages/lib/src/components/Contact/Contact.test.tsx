@@ -66,7 +66,7 @@ describe('Contact', () => {
 
   describe('ContactPersonCard', () => {
     it('renders correctly with all details', () => {
-      const card = screen.getByTestId('card')
+      const card = screen.getByRole('complementary')
       expect(card).toBeDefined()
 
       const title = within(card).getByRole('heading', { level: 3 })
