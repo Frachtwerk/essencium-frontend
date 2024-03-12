@@ -67,7 +67,9 @@ describe('LoginForm', () => {
     ).toBeDefined()
 
     // a password does not have a 'role' property so it needs to be queried by its label, see: https://github.com/testing-library/dom-testing-library/issues/567#issue-616906804
-    expect(screen.getByLabelText('loginView.form.password')).toBeDefined()
+    expect(
+      screen.getByPlaceholderText('loginView.form.passwordPlaceholder'),
+    ).toBeDefined()
 
     expect(
       screen.getByRole('button', { name: 'loginView.form.submit' }),
@@ -125,8 +127,8 @@ describe('LoginForm', () => {
   })
 
   it('should display an error messages for the password field if input is invalid', async () => {
-    const passwordInput = screen.getByLabelText(
-      'loginView.form.password',
+    const passwordInput = screen.getByPlaceholderText(
+      'loginView.form.passwordPlaceholder',
     ) as HTMLInputElement
 
     const submitButton = screen.getByRole('button')
@@ -151,8 +153,8 @@ describe('LoginForm', () => {
       name: 'loginView.form.email',
     }) as HTMLInputElement
 
-    const passwordInput = screen.getByLabelText(
-      'loginView.form.password',
+    const passwordInput = screen.getByPlaceholderText(
+      'loginView.form.passwordPlaceholder',
     ) as HTMLInputElement
 
     const submitButton = screen.getByRole('button')

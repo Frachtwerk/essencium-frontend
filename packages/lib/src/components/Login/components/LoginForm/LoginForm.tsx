@@ -90,7 +90,6 @@ export function LoginForm({
                 render={({ field }) => (
                   <TextInput
                     {...field}
-                    aria-label={t('loginView.form.email') as string}
                     placeholder={String(t('loginView.form.emailPlaceholder'))}
                     label={t('loginView.form.email')}
                     required
@@ -120,7 +119,6 @@ export function LoginForm({
                 render={({ field }) => (
                   <PasswordInput
                     {...field}
-                    aria-label={t('loginView.form.password') as string}
                     placeholder={String(
                       t('loginView.form.passwordPlaceholder'),
                     )}
