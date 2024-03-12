@@ -150,6 +150,7 @@ export function LoginForm({
                   size="xs"
                   fw="bold"
                   onClick={() => setIsPasswordResetFormOpened(true)}
+                  role="link"
                 >
                   {t('loginView.form.resetPassword')}
                 </Anchor>
