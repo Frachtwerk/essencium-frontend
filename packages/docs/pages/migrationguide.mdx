@@ -7,18 +7,15 @@ Since developers eventually must manually update their own codebase, we are part
 
 The `MIGRATION.md` file follows this schema:
 
-````markdown copy
-## x.y.z (DD.MM.YYYY)
+```markdown copy
+## [x.y.z (DD.MM.YYYY)](#link-to-diff-between-this-and-previous-version)
 
 ### `path/to/file_1.extension`
 
 - logic that needs to be changed is described here
-
-```diff
-- removed line
-+ added line
 ```
-````
+
+First comes the version and date of the release, followed by a link to the diff between this and the previous version. Then, a list of changes is documented, each with a link to the file that needs to be changed and a concise description of the change.
 
 <Callout emoji="⚠️" type="warning">
   Since the version and date under which the changes are made are not known at
