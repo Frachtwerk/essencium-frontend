@@ -61,11 +61,12 @@ describe('LoginForm', () => {
 
   afterEach(cleanup)
 
-  it('sohuld render email and password inputs as well as the login button and password reset link', () => {
+  it('should render email and password inputs as well as the login button and password reset link', () => {
     expect(
       screen.getByRole('textbox', { name: 'loginView.form.email' }),
     ).toBeDefined()
 
+    // a password does not have a 'role' property so it needs to be queried by its label, see: https://github.com/testing-library/dom-testing-library/issues/567#issue-616906804
     expect(screen.getByLabelText('loginView.form.password')).toBeDefined()
 
     expect(
