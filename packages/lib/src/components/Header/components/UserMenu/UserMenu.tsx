@@ -38,15 +38,15 @@ export function UserMenu({ isSso, ssoProvider, user }: Props): JSX.Element {
     <UnstyledButton
       component={NextLink}
       href="/profile"
-      className={classes.userMenuButton}
+      className={classes['userMenuButton']}
       aria-label={t('header.profile.arialLabel') as string}
     >
-      <Group className={classes.userMenuGroup} wrap="nowrap">
+      <Group className={classes['userMenuGroup']} wrap="nowrap">
         <IconUser size="28" />
 
-        <Box className={classes.userMenuBox}>
+        <Box className={classes['userMenuBox']}>
           <Flex align="center" justify="space-between">
-            <Text size="sm" className={classes.userMenuBox__name}>
+            <Text size="sm" className={classes['userMenuBox__name']}>
               {user.firstName} {user.lastName}
             </Text>
 
@@ -55,14 +55,14 @@ export function UserMenu({ isSso, ssoProvider, user }: Props): JSX.Element {
                 role="status"
                 variant="light"
                 size="xs"
-                className={classes.userMenuBox__ssoBadge}
+                className={classes['userMenuBox__ssoBadge']}
               >
                 {ssoProvider}
               </Badge>
             ) : null}
           </Flex>
 
-          <Text className={classes.userMenuBox__mail} size="xs">
+          <Text className={classes['userMenuBox__mail']} size="xs">
             {user.email}
           </Text>
         </Box>

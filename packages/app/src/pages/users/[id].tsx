@@ -90,11 +90,11 @@ function UpdateUserView(): JSX.Element {
 
   return (
     <>
-      <Title className={classes.userDetailTitle} order={2}>
+      <Title className={classes['userDetailTitle']} order={2}>
         <Flex>
           <IconUserEdit size="32" />
 
-          <Text className={classes.userDetailTitle__subtitle}>
+          <Text className={classes['userDetailTitle__subtitle']}>
             {t('addUpdateUserView.update.title')}
           </Text>
         </Flex>
@@ -104,7 +104,7 @@ function UpdateUserView(): JSX.Element {
         shadow="sm"
         radius="sm"
         withBorder
-        className={classes.userDetailCard}
+        className={classes['userDetailCard']}
       >
         <UserForm
           ssoProvider={ssoProvider}

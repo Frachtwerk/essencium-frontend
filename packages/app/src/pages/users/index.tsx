@@ -336,11 +336,11 @@ function UsersView(): JSX.Element {
                     <Group
                       onClick={() => handleInvalidateToken(rowUser)}
                       gap="xs"
-                      className={classes.userView__invalidateTokenGroup}
+                      className={classes['userView__invalidateTokenGroup']}
                     >
                       <IconLogout
                         size={16}
-                        className={classes.userView__logoutIcon}
+                        className={classes['userView__logoutIcon']}
                       />
 
                       {t('usersView.table.invalidate')}
@@ -385,7 +385,7 @@ function UsersView(): JSX.Element {
       />
 
       <Flex
-        className={classes.userView__header}
+        className={classes['userView__header']}
         justify="space-between"
         align="center"
       >
@@ -401,11 +401,11 @@ function UsersView(): JSX.Element {
           label={t('table.misc.showFilter')}
           checked={showFilter}
           onChange={() => setShowFilter(!showFilter)}
-          className={classes.userView__showFilterSwitch}
+          className={classes['userView__showFilterSwitch']}
         />
 
         <Flex
-          className={classes.userView__buttonsSection}
+          className={classes['userView__buttonsSection']}
           align="center"
           gap="xs"
         >

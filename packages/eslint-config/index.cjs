@@ -78,5 +78,8 @@ module.exports = {
       },
     ],
     'consistent-return': 'off',
+    // Note: you must disable the base rule as it can report incorrect errors
+    'dot-notation': 'off',
+    '@typescript-eslint/dot-notation': ['off'],
   },
 }

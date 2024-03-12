@@ -245,7 +245,7 @@ export function FeedbackWidget({
                   <ActionIcon
                     variant="filled"
                     size={70}
-                    className={classes.actionIcon}
+                    className={classes['actionIcon']}
                     onClick={() => {
                       setOpenInput(OpenInput[inputKey])
                     }}
@@ -286,7 +286,7 @@ export function FeedbackWidget({
                       {showSuccessMessage ? (
                         <ThemeIcon
                           variant="outline"
-                          className={classes.themeIcon}
+                          className={classes['themeIcon']}
                           size={60}
                         >
                           <IconCircleCheck size={60} stroke={1.5} />
@@ -346,7 +346,7 @@ export function FeedbackWidget({
                         render={({ field }) => (
                           <Textarea
                             {...field}
-                            className={classes.textarea}
+                            className={classes['textarea']}
                             placeholder={
                               t('feedbackWidget.placeholder') as string
                             }

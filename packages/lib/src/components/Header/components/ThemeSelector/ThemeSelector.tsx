@@ -58,17 +58,17 @@ export function ThemeSelector(): JSX.Element {
           aria-label="theme-selector"
           p={0}
           bg="transparent"
-          className={classes.button}
+          className={classes['button']}
           leftSection={
             <>
               <IconSun
-                className={classes.iconLight}
+                className={classes['iconLight']}
                 color={
                   hasSelectedLight ? theme.colors.blue[6] : theme.colors.gray[9]
                 }
               />
               <IconMoon
-                className={classes.iconDark}
+                className={classes['iconDark']}
                 color={
                   hasSelectedDark ? theme.colors.blue[6] : theme.colors.gray[5]
                 }
@@ -84,7 +84,7 @@ export function ThemeSelector(): JSX.Element {
             setColorScheme('light')
             setSelectedLight(true)
           }}
-          className={classes.group}
+          className={classes['group']}
         >
           <IconSun size={20} />
 
@@ -96,7 +96,7 @@ export function ThemeSelector(): JSX.Element {
             setColorScheme('dark')
             setSelectedDark(true)
           }}
-          className={classes.group}
+          className={classes['group']}
         >
           <IconMoon size={20} />
 
@@ -109,7 +109,7 @@ export function ThemeSelector(): JSX.Element {
             setSelectedLight(false)
             setSelectedDark(false)
           }}
-          className={classes.group}
+          className={classes['group']}
         >
           <IconDeviceLaptop size={20} />
 
