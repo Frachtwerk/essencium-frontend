@@ -163,9 +163,7 @@ export function useSetPassword(): UseMutationResult<
   return mutation
 }
 
-export const isSsoAtom = atom(get =>
-  Boolean(get(userAtom)?.source !== UserSource.LOCAL),
-)
+export const isSsoAtom = atom(get => get(userAtom)?.source !== UserSource.LOCAL)
 
 export const ssoProviderAtom = atom(get => get(userAtom)?.source)
 
