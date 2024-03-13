@@ -30,11 +30,10 @@ import {
   useMantineColorScheme,
   useMantineTheme,
 } from '@mantine/core'
-import { useTimeout } from '@mantine/hooks'
 import { IconLogout, IconPinFilled, IconPinnedOff } from '@tabler/icons-react'
 import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
 import { NavLinks } from './components'
 import classes from './NavBar.module.css'
@@ -71,11 +70,33 @@ export function NavBar({
 
   const { t } = useTranslation()
 
-  const { start, clear } = useTimeout(() => setFoldedNav(true), 270)
+  const [currentTimeOutId, setCurrentTimeOutId] = useState<
+    string | number | NodeJS.Timeout | undefined
+  >(undefined)
 
   function toggleFixedNav(): void {
     setFixedNav(fixed => !fixed)
   }
+
+  function handleMouseEnter(): void {
+    const timeoutId = setTimeout(() => {
+      setFoldedNav(false)
+    }, 350)
+
+    setCurrentTimeOutId(timeoutId)
+  }
+
+  function handleMouseLeave(): void {
+    setFoldedNav(true)
+
+    clearTimeout(currentTimeOutId)
+  }
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(currentTimeOutId)
+    }
+  }, [currentTimeOutId])
 
   return (
     <Box>
@@ -83,13 +104,12 @@ export function NavBar({
         visibleFrom="sm"
         onMouseEnter={() => {
           if (!fixedNav) {
-            start()
+            handleMouseEnter()
           }
         }}
         onMouseLeave={() => {
           if (!fixedNav) {
-            setFoldedNav(true)
-            clear()
+            handleMouseLeave()
           }
         }}
         p="sm"
@@ -114,7 +134,7 @@ export function NavBar({
                 {!foldedNav ? (
                   <Box
                     onClick={() => toggleFixedNav()}
-                    ml="xl"
+                    ml="lg"
                     mt="xs"
                     className={classes.unfoldedNavBox}
                   >
