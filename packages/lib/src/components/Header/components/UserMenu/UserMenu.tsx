@@ -17,8 +17,8 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { UserOutput, UserSource } from '@frachtwerk/essencium-types'
-import { Badge, Box, Flex, Group, Text, UnstyledButton } from '@mantine/core'
+import { UserOutput } from '@frachtwerk/essencium-types'
+import { Box, Flex, Group, Text, UnstyledButton } from '@mantine/core'
 import { IconChevronRight, IconUser } from '@tabler/icons-react'
 import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
@@ -26,12 +26,10 @@ import { useTranslation } from 'next-i18next'
 import classes from './UserMenu.module.css'
 
 type Props = {
-  isSso: boolean
-  ssoProvider?: UserSource | string | undefined
   user: UserOutput
 }
 
-export function UserMenu({ isSso, ssoProvider, user }: Props): JSX.Element {
+export function UserMenu({ user }: Props): JSX.Element {
   const { t } = useTranslation()
 
   return (
@@ -49,17 +47,6 @@ export function UserMenu({ isSso, ssoProvider, user }: Props): JSX.Element {
             <Text size="sm" className={classes['userMenuBox__name']}>
               {user.firstName} {user.lastName}
             </Text>
-
-            {isSso ? (
-              <Badge
-                role="status"
-                variant="light"
-                size="xs"
-                className={classes['userMenuBox__ssoBadge']}
-              >
-                {ssoProvider}
-              </Badge>
-            ) : null}
           </Flex>
 
           <Text className={classes['userMenuBox__mail']} size="xs">

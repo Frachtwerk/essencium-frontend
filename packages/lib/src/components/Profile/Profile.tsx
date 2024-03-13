@@ -40,12 +40,12 @@ export function Profile({
   isUpdatingUser,
 }: Props): JSX.Element {
   return (
-    <Grid>
-      <Grid.Col span={{ md: 3 }}>
+    <Grid role="grid">
+      <Grid.Col span={{ md: 3 }} role="gridcell">
         <ProfileOverviewCard user={user} />
       </Grid.Col>
 
-      <Grid.Col span={{ md: 9 }}>
+      <Grid.Col span={{ md: 9 }} role="gridcell">
         <ProfileDataCard
           isSso={isSso}
           user={user}

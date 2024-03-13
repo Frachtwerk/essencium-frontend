@@ -17,7 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { UserOutput, UserSource } from '@frachtwerk/essencium-types'
+import { UserOutput } from '@frachtwerk/essencium-types'
 import {
   AppShellHeader,
   Burger,
@@ -43,10 +43,6 @@ export function Header({
   handleOpenNav,
 }: Props): JSX.Element {
   const theme = useMantineTheme()
-
-  const ssoProvider = user?.source
-
-  const isSso = Boolean(ssoProvider && ssoProvider !== UserSource.LOCAL)
 
   return (
     <AppShellHeader
@@ -79,9 +75,7 @@ export function Header({
             <ThemeSelector />
           </Group>
 
-          {user ? (
-            <UserMenu isSso={isSso} ssoProvider={ssoProvider} user={user} />
-          ) : null}
+          {user ? <UserMenu user={user} /> : null}
         </Group>
       </Flex>
     </AppShellHeader>

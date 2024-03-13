@@ -17,18 +17,18 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { UserOutput } from '@frachtwerk/essencium-types'
+import { UserOutput, UserSource } from '@frachtwerk/essencium-types'
 import {
   Avatar,
   Badge,
   Card,
   Flex,
+  Indicator,
   Text,
   Title,
   useMantineTheme,
 } from '@mantine/core'
 import { IconUser } from '@tabler/icons-react'
-import { useTranslation } from 'next-i18next'
 
 import classes from './ProfileOverviewCard.module.css'
 
@@ -37,8 +37,11 @@ type Props = {
 }
 
 export function ProfileOverviewCard({ user }: Props): JSX.Element {
-  const { t } = useTranslation()
   const theme = useMantineTheme()
+
+  const ssoProvider = user?.source
+
+  const isSso = Boolean(ssoProvider && ssoProvider !== UserSource.LOCAL)
 
   return (
     <Card
@@ -48,35 +51,41 @@ export function ProfileOverviewCard({ user }: Props): JSX.Element {
       className={classes['profile-overview-card']}
     >
       <Flex gap="md" justify="center" align="center" direction="column">
-        <Avatar
-          size="xl"
-          radius="xl"
-          src={null}
-          alt={`${user.firstName} ${user.lastName} avatar`}
-          color={theme.primaryColor}
+        <Indicator
+          role="note"
+          inline
+          size={16}
+          offset={7}
+          position="bottom-end"
+          color={user.enabled ? 'green' : 'red'}
+          withBorder
         >
-          <IconUser size={50} />
-        </Avatar>
+          <Avatar
+            size="xl"
+            radius="xl"
+            src={null}
+            alt={`${user.firstName} ${user.lastName} avatar`}
+            color={theme.primaryColor}
+          >
+            <IconUser size={50} />
+          </Avatar>
+        </Indicator>
 
         <Title order={2}>
           {user.firstName} {user.lastName}
         </Title>
 
+        {isSso ? (
+          <Badge role="status" variant="light" size="xs">
+            {ssoProvider}
+          </Badge>
+        ) : null}
+
         {user.roles.map(role => (
-          <Text
-            key={role.name}
-            size="sm"
-            className={classes['profile-overview-card__user-role']}
-          >
+          <Text key={role.name} size="sm">
             {role.name}
           </Text>
         ))}
-
-        <Badge variant="light" size="lg">
-          {user.enabled
-            ? t('profileView.overviewCard.active')
-            : t('profileView.overviewCard.inactive')}
-        </Badge>
       </Flex>
     </Card>
   )

@@ -49,7 +49,3 @@
 .userMenuBox__mail {
   color: var(--mantine-color-dimmed);
 }
-
-.userMenuBox__ssoBadge {
-  margin-left: 12px;
-}
