@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/eslint-config-essencium-v2.2.0...eslint-config-essencium-v2.3.0) (2024-03-14)
+
+
+### Features
+
+* add sso support ([bc9d82b](https://github.com/Frachtwerk/essencium-frontend/commit/bc9d82b28c5ee77bb840d01d388a5f6fbf17f626))
+
 ## [2.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/eslint-config-essencium-v2.1.1...eslint-config-essencium-v2.2.0) (2024-02-06)
 
 

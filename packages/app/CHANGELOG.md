@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v6.0.0...essencium-app-v6.1.0) (2024-03-14)
+
+
+### Features
+
+* add sso support ([bc9d82b](https://github.com/Frachtwerk/essencium-frontend/commit/bc9d82b28c5ee77bb840d01d388a5f6fbf17f626))
+
 ## [6.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v5.0.0...essencium-app-v6.0.0) (2024-02-27)
 
 
