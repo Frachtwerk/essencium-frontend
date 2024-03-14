@@ -1,5 +1,11 @@
 # Migrations
 
+## [6.1.1 (14.03.2024)](https://github.com/Frachtwerk/essencium-frontend/pull/539/files)
+
+### `.env`
+
+- fix how the API URL is constructed
+
 ## [6.1.0 (14.03.2024)](https://github.com/Frachtwerk/essencium-frontend/pull/528/files)
 
 ### `.env`
