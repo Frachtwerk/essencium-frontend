@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v6.1.0...essencium-app-v6.1.1) (2024-03-14)
+
+
+### Bug Fixes
+
+* construct api url correctly ([01adf28](https://github.com/Frachtwerk/essencium-frontend/commit/01adf28abece4d9d52cf7716b1639d040f4aa0f2))
+
 ## [6.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v6.0.0...essencium-app-v6.1.0) (2024-03-14)
 
 
