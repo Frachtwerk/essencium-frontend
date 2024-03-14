@@ -17,5 +17,11 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './components'
-export * from './Login'
+.add-user-view {
+  padding: var(--mantine-spacing-lg);
+  max-width: 81.25rem;
+
+  @mixin dark {
+    background-color: var(--mantine-color-dark-7);
+  }
+}

@@ -33,6 +33,7 @@ const MOCK_USER: UserOutput = {
   mobile: '0123456789',
   phone: '0123456789',
   roles: [],
+  source: 'local',
 } as const
 
 vi.mock('@mantine/core', async () => {
@@ -79,7 +80,7 @@ describe('Header.tsx', () => {
     ).toBeDefined()
   })
 
-  it('should render the logged in user menu', () => {
+  it('should render the logged in user menu as local login', () => {
     expect(
       HeaderMounted.getByRole('link', {
         name: 'header.profile.arialLabel',

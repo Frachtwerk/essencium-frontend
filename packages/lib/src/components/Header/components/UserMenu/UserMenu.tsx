@@ -18,7 +18,7 @@
  */
 
 import { UserOutput } from '@frachtwerk/essencium-types'
-import { Box, Group, Text, UnstyledButton } from '@mantine/core'
+import { Box, Flex, Group, Text, UnstyledButton } from '@mantine/core'
 import { IconChevronRight, IconUser } from '@tabler/icons-react'
 import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
@@ -36,18 +36,20 @@ export function UserMenu({ user }: Props): JSX.Element {
     <UnstyledButton
       component={NextLink}
       href="/profile"
-      className={classes.unstyledButton}
+      className={classes['userMenuButton']}
       aria-label={t('header.profile.arialLabel') as string}
     >
-      <Group p="sm" className={classes.group} wrap="nowrap">
+      <Group className={classes['userMenuGroup']} wrap="nowrap">
         <IconUser size="28" />
 
-        <Box className={classes.box}>
-          <Text size="sm" fw={500}>
-            {user.firstName} {user.lastName}
-          </Text>
+        <Box className={classes['userMenuBox']}>
+          <Flex align="center" justify="space-between">
+            <Text size="sm" className={classes['userMenuBox__name']}>
+              {user.firstName} {user.lastName}
+            </Text>
+          </Flex>
 
-          <Text color="dimmed" size="xs">
+          <Text className={classes['userMenuBox__mail']} size="xs">
             {user.email}
           </Text>
         </Box>

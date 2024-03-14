@@ -51,7 +51,7 @@ export function Footer({ links }: Props): JSX.Element {
               component={NextLink}
               key={link.label}
               href={link.to}
-              className={classes.text}
+              className={classes['text']}
             >
               {t(link.label)}
             </Text>

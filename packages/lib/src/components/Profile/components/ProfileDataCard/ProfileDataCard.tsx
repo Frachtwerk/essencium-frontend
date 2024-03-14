@@ -19,24 +19,19 @@
 
 import {
   PasswordChange,
-  RoleOutput,
   UserOutput,
   UserUpdate,
 } from '@frachtwerk/essencium-types'
 import { Card, Tabs } from '@mantine/core'
-import { IconLock, IconSettings, IconUser } from '@tabler/icons-react'
-import { useRouter } from 'next/router'
+import { IconLock, IconUser } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
 
-import {
-  PasswordChangeForm,
-  PersonalDataForm,
-  ProfileSettingsForm,
-} from './components'
+import { PasswordChangeForm, PersonalDataForm } from './components'
+import classes from './ProfileDataCard.module.css'
 
 type Props = {
+  isSso: boolean
   user: UserOutput
-  roles: RoleOutput[]
   handleUpdate: (data: UserUpdate) => void
   handlePasswordUpdate: (
     oldPassword: PasswordChange['password'],
@@ -47,8 +42,8 @@ type Props = {
 }
 
 export function ProfileDataCard({
+  isSso,
   user,
-  roles,
   handleUpdate,
   handlePasswordUpdate,
   isUpdatingPassword,
@@ -56,10 +51,13 @@ export function ProfileDataCard({
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
-  const router = useRouter()
-
   return (
-    <Card shadow="sm" p="lg" radius="sm" withBorder>
+    <Card
+      shadow="sm"
+      radius="sm"
+      withBorder
+      className={classes['profile-data-card']}
+    >
       <Tabs defaultValue="personalDataForm">
         <Tabs.List>
           <Tabs.Tab
@@ -69,42 +67,33 @@ export function ProfileDataCard({
             {t('profileView.dataCard.tabs.personalData.title')}
           </Tabs.Tab>
 
-          <Tabs.Tab value="passwordChange" leftSection={<IconLock size={14} />}>
-            {t('profileView.dataCard.tabs.passwordChange.title')}
-          </Tabs.Tab>
-
-          {router.pathname !== 'profile' ? (
-            <Tabs.Tab value="settings" leftSection={<IconSettings size={14} />}>
-              {t('profileView.dataCard.tabs.settings.title')}
+          {isSso ? null : (
+            <Tabs.Tab
+              value="passwordChange"
+              leftSection={<IconLock size={14} />}
+            >
+              {t('profileView.dataCard.tabs.passwordChange.title')}
             </Tabs.Tab>
-          ) : null}
+          )}
         </Tabs.List>
 
         <Tabs.Panel value="personalDataForm" pt="lg">
           <PersonalDataForm
+            isSso={isSso}
             user={user}
             handleUpdate={handleUpdate}
             isLoading={isUpdatingUser}
           />
         </Tabs.Panel>
 
-        <Tabs.Panel value="passwordChange" pt="lg">
-          <PasswordChangeForm
-            handlePasswordUpdate={handlePasswordUpdate}
-            isLoading={isUpdatingPassword}
-          />
-        </Tabs.Panel>
-
-        {router.pathname !== 'profile' ? (
-          <Tabs.Panel value="settings" pt="lg">
-            <ProfileSettingsForm
-              user={user}
-              handleUpdate={handleUpdate}
-              roles={roles}
-              isLoading={isUpdatingUser}
+        {isSso ? null : (
+          <Tabs.Panel value="passwordChange" pt="lg">
+            <PasswordChangeForm
+              handlePasswordUpdate={handlePasswordUpdate}
+              isLoading={isUpdatingPassword}
             />
           </Tabs.Panel>
-        ) : null}
+        )}
       </Tabs>
     </Card>
   )

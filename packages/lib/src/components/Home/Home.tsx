@@ -36,7 +36,7 @@ export function Home(): JSX.Element {
       gap="lg"
       align="center"
       justify="center"
-      className={classes.flex}
+      className={classes['flex']}
     >
       <Center my="lg">
         <Image
@@ -44,6 +44,7 @@ export function Home(): JSX.Element {
           alt={t('header.logo')}
           width={200}
           height={200}
+          priority
         />
       </Center>
 

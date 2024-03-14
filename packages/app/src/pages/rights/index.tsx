@@ -73,9 +73,11 @@ function RightsView(): JSX.Element {
   })
 
   const { data: roles, refetch: refetchRoles } = useGetRoles({
-    page: 0,
-    size: 9999,
-    sort: 'name,asc',
+    requestConfig: {
+      page: 0,
+      size: 9999,
+      sort: 'name,asc',
+    },
   })
 
   const handleRefetch = useCallback((): void => {

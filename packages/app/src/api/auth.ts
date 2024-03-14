@@ -21,10 +21,16 @@ import {
   ResetPassword,
   SetPasswordInput,
   UserOutput,
+  UserSource,
 } from '@frachtwerk/essencium-types'
-import { useMutation, UseMutationResult } from '@tanstack/react-query'
+import {
+  useMutation,
+  UseMutationResult,
+  useQuery,
+  UseQueryResult,
+} from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { useSetAtom } from 'jotai'
+import { atom, useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 import { useTranslation } from 'next-i18next'
 
@@ -41,6 +47,10 @@ type LoginCredentials = {
 }
 
 export const authTokenAtom = atomWithStorage<string | null>('authToken', null)
+
+export const userAtom = atomWithStorage<UserOutput | null>('user', null)
+
+export const userRightsAtom = atomWithStorage<string[] | null>('rights', null)
 
 export function useCreateToken(): UseMutationResult<
   TokenResponse,
@@ -151,4 +161,28 @@ export function useSetPassword(): UseMutationResult<
   })
 
   return mutation
+}
+
+export const isSsoAtom = atom(get => get(userAtom)?.source !== UserSource.LOCAL)
+
+export const ssoProviderAtom = atom(get => get(userAtom)?.source)
+
+type SsoApplications = {
+  [key: string]: {
+    imageUrl: string
+    name: string
+    url: string
+  }
+}
+
+export function useGetSsoApplications(): UseQueryResult<SsoApplications> {
+  return useQuery({
+    queryKey: ['useGetSsoApplications'],
+    queryFn: () =>
+      api
+        .get<SsoApplications>('/auth/oauth-registrations', {
+          baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+        })
+        .then(response => response.data),
+  })
 }

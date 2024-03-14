@@ -22,29 +22,10 @@
   position: sticky;
   left: 0;
   z-index: 10;
-
-  @mixin light {
-    background: white;
-  }
-
-  @mixin dark {
-    color: #c1c2c5;
-    background: #1a1b1e;
-  }
 }
 
-.tableRowBg:nth-of-type(2n + 1) .tableColSticky:first-child {
-  @mixin light {
-    background: #f8f9fa;
-  }
-
-  @mixin dark {
-    background: #25262b;
-  }
-}
-
-.flex {
-  cursor: default;
+.table__colHeader {
+  cursor: progress;
 
   @mixin light {
     color: var(--mantine-color-dark-4);
@@ -52,12 +33,5 @@
 
   @mixin dark {
     color: var(--mantine-color-dark-1);
-  }
-}
-
-.flexSort {
-  &:hover {
-    cursor: pointer;
-    color: var(--mantine-color-blue-6);
   }
 }

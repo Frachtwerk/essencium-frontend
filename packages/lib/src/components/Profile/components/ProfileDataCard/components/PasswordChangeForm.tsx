@@ -58,7 +58,7 @@ export function PasswordChangeForm({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Flex direction="column" align="flex-start">
-        <Stack miw="60%" mb="md" className={classes.stack}>
+        <Stack miw="60%" mb="md" className={classes['stack']}>
           <Controller
             name="verification"
             control={control}
@@ -86,7 +86,7 @@ export function PasswordChangeForm({
           </Box>
         </Stack>
 
-        <Stack miw="60%" mb="md" className={classes.stack}>
+        <Stack miw="60%" mb="md" className={classes['stack']}>
           <Controller
             name="password"
             control={control}
@@ -114,7 +114,7 @@ export function PasswordChangeForm({
           </Box>
         </Stack>
 
-        <Stack miw="60%" mb="md" className={classes.stack}>
+        <Stack miw="60%" mb="md" className={classes['stack']}>
           <Controller
             name="confirmPassword"
             control={control}

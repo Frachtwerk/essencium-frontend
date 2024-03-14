@@ -24,6 +24,7 @@ import {
   RoleUpdate,
 } from '@frachtwerk/essencium-types'
 import {
+  QueryObserverOptions,
   useMutation,
   UseMutationResult,
   useQuery,
@@ -37,12 +38,6 @@ import { api } from './api'
 import { authTokenAtom } from './auth'
 
 export type RolesResponse = PaginatedResponse<RoleOutput>
-
-export type GetRolesParams = {
-  page: RolesResponse['number']
-  size: RolesResponse['size']
-  sort?: string
-}
 
 export function useCreateRole(): UseMutationResult<
   RoleOutput,
@@ -72,15 +67,27 @@ export function useCreateRole(): UseMutationResult<
   return mutation
 }
 
+export type UseGetRolesParams = {
+  requestConfig?: {
+    page: RolesResponse['number']
+    size: RolesResponse['size']
+    sort?: string
+  }
+  queryConfig?: QueryObserverOptions
+}
+
 export function useGetRoles({
-  page,
-  size,
-  sort,
-}: GetRolesParams): UseQueryResult<RolesResponse, AxiosError> {
+  requestConfig,
+  queryConfig,
+}: UseGetRolesParams): UseQueryResult<RolesResponse, AxiosError> {
   const authToken = useAtomValue(authTokenAtom)
 
+  const isDisabled = queryConfig?.enabled === false
+
+  const { page, size, sort } = requestConfig || {}
+
   return useQuery<RolesResponse, AxiosError>({
-    enabled: Boolean(authToken),
+    enabled: Boolean(authToken) && !isDisabled,
     queryKey: ['getRoles', { page, size, sort }],
     queryFn: () =>
       api

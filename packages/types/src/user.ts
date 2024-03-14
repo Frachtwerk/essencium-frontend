@@ -23,6 +23,10 @@ import { z } from 'zod'
 import { basePropertiesSchema } from './base'
 import { roleOutputSchema } from './role'
 
+export enum UserSource {
+  LOCAL = 'local',
+}
+
 const sharedPropertiesSchema = z.object({
   email: z.string().email('validation.email.notValid'),
   enabled: z.boolean(),
@@ -45,6 +49,7 @@ export const userOutputSchema = basePropertiesSchema
   .merge(
     z.object({
       roles: rolesArray,
+      source: z.union([z.literal(UserSource.LOCAL), z.string()]),
     }),
   )
   .merge(sharedPropertiesSchema)
@@ -69,21 +74,23 @@ export const userInputSchema = sharedPropertiesSchema.merge(
 
 export type UserInput = z.infer<typeof userInputSchema>
 
-export const userUpdateSchema = userOutputSchema.merge(
-  z.object({
-    password: z.string().optional(),
-    roles: roleOutputSchema.shape.name
-      .refine(
-        role =>
-          role !== undefined &&
-          roleOutputSchema.shape.name.safeParse(role).success,
-        {
-          message: 'validation.role.isRequired',
-        },
-      )
-      .array(),
-  }),
-)
+export const userUpdateSchema = userOutputSchema
+  .merge(
+    z.object({
+      password: z.string().optional(),
+      roles: roleOutputSchema.shape.name
+        .refine(
+          role =>
+            role !== undefined &&
+            roleOutputSchema.shape.name.safeParse(role).success,
+          {
+            message: 'validation.role.isRequired',
+          },
+        )
+        .array(),
+    }),
+  )
+  .omit({ source: true })
 
 export type UserUpdate = z.infer<typeof userUpdateSchema>
 

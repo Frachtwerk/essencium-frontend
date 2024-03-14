@@ -49,18 +49,23 @@ export function Header({
       p="md"
       withBorder={false}
       ml={marginLeft}
-      className={classes.appShellHeader}
+      className={classes['appShellHeader']}
     >
-      <Flex className={classes.flex} justify="space-between" align="center">
+      <Flex
+        className={classes['appShellHeader__content']}
+        justify="space-between"
+        align="center"
+      >
         <Burger
           opened={isOpen}
           onClick={() => {
             handleOpenNav()
           }}
           size="sm"
+          // not in CSS module because it's not applied there with CSS 'color' prop
           color={theme.colors.gray[5]}
           hiddenFrom="sm"
-          className={classes.burger}
+          className={classes['appShellHeader__burger']}
         />
 
         <SearchBar />

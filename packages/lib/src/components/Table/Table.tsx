@@ -53,17 +53,13 @@ export function Table<T>({
                   <MantineTable.Th
                     key={header.id}
                     style={{ verticalAlign: 'top' }}
-                    className={classes.tableColSticky}
+                    className={classes['tableColSticky']}
                   >
                     <Flex
                       align="center"
                       justify="flex-start"
                       gap="sm"
-                      className={
-                        header.column.getCanSort()
-                          ? classes.flexSort
-                          : classes.flex
-                      }
+                      className={classes['table__colHeader']}
                       onClick={header.column.getToggleSortingHandler()}
                       w={header.column.getSize()}
                     >
@@ -111,13 +107,13 @@ export function Table<T>({
                   borderBottom: '2px solid white',
                   borderTop: '2px solid white',
                 }}
-                className={firstColSticky ? classes.tableRowBg : undefined}
+                className={firstColSticky ? classes['tableRowBg'] : undefined}
               >
                 {row.getVisibleCells().map(cell => (
                   <MantineTable.Td
                     key={cell.id}
                     width={cell.column.getSize()}
-                    className={classes.tableColSticky}
+                    className={classes['tableColSticky']}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </MantineTable.Td>
@@ -128,7 +124,7 @@ export function Table<T>({
 
           <MantineTable.Tfoot
             aria-label="footer-row"
-            className={classes.footer}
+            className={classes['footer']}
           >
             {tableModel.getFooterGroups().map(footerGroup => (
               <MantineTable.Tr key={footerGroup.id}>

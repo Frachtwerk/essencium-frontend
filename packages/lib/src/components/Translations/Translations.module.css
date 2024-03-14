@@ -17,23 +17,28 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Container, Title } from '@mantine/core'
-import { useTranslation } from 'next-i18next'
+.translations-tree-container {
+  padding-left: var(--mantine-spacing-lg);
+  padding-top: var(--mantine-spacing-lg);
 
-type Props = {
-  form: JSX.Element
+  @mixin dark {
+    background-color: var(--mantine-color-dark-7);
+  }
 }
 
-export function Login({ form: LoginForm }: Props): JSX.Element {
-  const { t } = useTranslation()
+.translations-tree-container__no-translations-text {
+  font-size: var(--mantine-font-size-sm);
+  color: var(--mantine-color-gray-4);
+}
 
-  return (
-    <Container mt="150px">
-      <Title ta="center" order={2} fw="bold">
-        {t('loginView.title')}
-      </Title>
+.translations-tree-container__label-text {
+  font-size: var(--mantine-font-size-sm);
+}
 
-      {LoginForm}
-    </Container>
-  )
+.translations-tree-container__translation-text {
+  font-size: var(--mantine-font-size-sm);
+}
+
+.translations-tree-container__translation-text--cursor-pointer {
+  cursor: pointer;
 }

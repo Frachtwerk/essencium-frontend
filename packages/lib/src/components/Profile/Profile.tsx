@@ -17,14 +17,14 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { RoleOutput, UserOutput, UserUpdate } from '@frachtwerk/essencium-types'
+import { UserOutput, UserUpdate } from '@frachtwerk/essencium-types'
 import { Grid } from '@mantine/core'
 
 import { ProfileDataCard, ProfileOverviewCard } from './components'
 
 type Props = {
+  isSso: boolean
   user: UserOutput
-  roles: RoleOutput[]
   handleUpdate: (data: UserUpdate) => void
   handlePasswordUpdate: (oldPassword: string, newPassword: string) => void
   isUpdatingUser: boolean
@@ -32,23 +32,23 @@ type Props = {
 }
 
 export function Profile({
+  isSso,
   user,
-  roles,
   handleUpdate,
   handlePasswordUpdate,
   isUpdatingPassword,
   isUpdatingUser,
 }: Props): JSX.Element {
   return (
-    <Grid>
-      <Grid.Col span={{ md: 3 }}>
+    <Grid role="grid">
+      <Grid.Col span={{ md: 3 }} role="gridcell">
         <ProfileOverviewCard user={user} />
       </Grid.Col>
 
-      <Grid.Col span={{ md: 9 }}>
+      <Grid.Col span={{ md: 9 }} role="gridcell">
         <ProfileDataCard
+          isSso={isSso}
           user={user}
-          roles={roles}
           handleUpdate={handleUpdate}
           handlePasswordUpdate={handlePasswordUpdate}
           isUpdatingPassword={isUpdatingPassword}

@@ -113,7 +113,7 @@ export function NavBar({
           }
         }}
         p="sm"
-        className={fixedNav ? classes.fixedNavbar : classes.navbar}
+        className={fixedNav ? classes['fixedNavbar'] : classes['navbar']}
         zIndex={100}
         mt={isOpen ? '0' : '-3.6rem'}
       >
@@ -123,11 +123,11 @@ export function NavBar({
               <Flex justify="space-between" align="center" gap="xl">
                 <NextLink href="/">
                   {foldedNav ? (
-                    <Box className={classes.navBox} pr={150}>
+                    <Box className={classes['navBox']} pr={150}>
                       {icon}
                     </Box>
                   ) : (
-                    <Box className={classes.navBox}>{logo}</Box>
+                    <Box className={classes['navBox']}>{logo}</Box>
                   )}
                 </NextLink>
 
@@ -136,7 +136,7 @@ export function NavBar({
                     onClick={() => toggleFixedNav()}
                     ml="lg"
                     mt="xs"
-                    className={classes.unfoldedNavBox}
+                    className={classes['unfoldedNavBox']}
                   >
                     {fixedNav ? (
                       <IconPinFilled
@@ -179,8 +179,8 @@ export function NavBar({
               label={t('navigation.logout.label')}
               onClick={() => handleLogout()}
               classNames={{
-                root: classes.navlinkRoot,
-                label: classes.navlinkLabel,
+                root: classes['navlinkRoot'],
+                label: classes['navlinkLabel'],
               }}
             />
           </AppShellSection>
@@ -193,7 +193,7 @@ export function NavBar({
         p="sm"
         w="100%"
         zIndex={100}
-        className={classes.navbar}
+        className={classes['navbar']}
       >
         <Stack
           style={{
@@ -230,8 +230,8 @@ export function NavBar({
               label={t('navigation.logout.label')}
               onClick={() => handleLogout()}
               classNames={{
-                root: classes.navlinkRoot,
-                label: classes.navlinkLabel,
+                root: classes['navlinkRoot'],
+                label: classes['navlinkLabel'],
               }}
             />
           </AppShellSection>

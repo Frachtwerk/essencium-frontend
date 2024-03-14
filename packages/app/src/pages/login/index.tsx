@@ -17,17 +17,39 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Login, LoginForm } from '@frachtwerk/essencium-lib'
+import { LoginForm } from '@frachtwerk/essencium-lib'
 import { ResetPassword } from '@frachtwerk/essencium-types'
+import {
+  Box,
+  Button,
+  Card,
+  Container,
+  Divider,
+  Flex,
+  Text,
+  Title,
+} from '@mantine/core'
+import { useSetAtom } from 'jotai'
+import Image from 'next/image'
+import NextLink from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import { useCreateToken, useResetPassword } from '@/api'
+import {
+  authTokenAtom,
+  useCreateToken,
+  useGetSsoApplications,
+  useResetPassword,
+} from '@/api'
 import { PublicLayout } from '@/components/layouts'
 import { getTranslation, withBaseStylingShowNotification } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
+
+import classes from './Login.module.css'
+
+const OAUTH_REDIRECT_URI = `${process.env.NEXT_PUBLIC_APP_URL}/login`
 
 function LoginView(): JSX.Element {
   const { t } = useTranslation()
@@ -35,6 +57,22 @@ function LoginView(): JSX.Element {
   const router = useRouter()
 
   const searchParams = useSearchParams()
+
+  const { data: ssoApplications } = useGetSsoApplications()
+
+  const hasSsoApplications = ssoApplications && Object.keys(ssoApplications)
+
+  const oauthToken = searchParams.get('token')
+
+  const setAuthToken = useSetAtom(authTokenAtom)
+
+  useEffect(() => {
+    if (oauthToken) {
+      setAuthToken(oauthToken)
+
+      router.push(searchParams.get('redirect') || '/')
+    }
+  }, [oauthToken, router, searchParams, setAuthToken])
 
   const { mutate: resetPassword, isLoading: isResettingPassword } =
     useResetPassword()
@@ -70,18 +108,74 @@ function LoginView(): JSX.Element {
   }
 
   return (
-    <Login
-      form={
-        <LoginForm
-          handleLogin={handleLogin}
-          handlePasswordReset={handlePasswordReset}
-          setIsPasswordResetFormOpened={setIsPasswordResetFormOpened}
-          isResetPasswordSent={isResetPasswordSent}
-          isPasswordResetFormOpened={isPasswordResetFormOpened}
-          isResettingPassword={isResettingPassword}
-        />
-      }
-    />
+    <Container mt="150px">
+      {!oauthToken ? (
+        <Card
+          shadow="sm"
+          radius="sm"
+          className={classes['loginCard']}
+          withBorder
+        >
+          <Flex direction="column">
+            <Title order={2} className={classes['loginCard--title']}>
+              {t('loginView.title')}
+            </Title>
+
+            {hasSsoApplications ? (
+              <>
+                <Box className={classes['ssoSection']}>
+                  {Object.keys(ssoApplications).map(application => (
+                    <NextLink
+                      className={classes['ssoSection--link']}
+                      key={application}
+                      href={`${process.env.NEXT_PUBLIC_API_BASE_URL}${ssoApplications[application].url}?redirect_uri=${OAUTH_REDIRECT_URI}`}
+                    >
+                      <Flex
+                        justify="center"
+                        align="center"
+                        className={classes['ssoSection--button']}
+                      >
+                        <Button
+                          variant="outline"
+                          fullWidth
+                          leftSection={
+                            <Image
+                              src={ssoApplications[application].imageUrl}
+                              alt={ssoApplications[application].name}
+                              width={45}
+                              height={20}
+                            />
+                          }
+                        >
+                          <Box className={classes['ssoSection--spacer']} />
+
+                          <Text>{ssoApplications[application].name}</Text>
+                        </Button>
+                      </Flex>
+                    </NextLink>
+                  ))}
+                </Box>
+
+                <Divider
+                  className={classes['ssoSection--divider']}
+                  label={t('loginView.sso.or')}
+                  labelPosition="center"
+                />
+              </>
+            ) : null}
+
+            <LoginForm
+              handleLogin={handleLogin}
+              handlePasswordReset={handlePasswordReset}
+              setIsPasswordResetFormOpened={setIsPasswordResetFormOpened}
+              isResetPasswordSent={isResetPasswordSent}
+              isPasswordResetFormOpened={isPasswordResetFormOpened}
+              isResettingPassword={isResettingPassword}
+            />
+          </Flex>
+        </Card>
+      ) : null}
+    </Container>
   )
 }
 

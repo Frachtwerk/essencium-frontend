@@ -104,14 +104,6 @@
             "confirmNewPassword": "Confirm New Password",
             "savePassword": "Save Password"
           }
-        },
-        "settings": {
-          "title": "Settings",
-          "content": {
-            "status": "Status",
-            "role": "Role",
-            "saveSettings": "Save Settings"
-          }
         }
       }
     },
@@ -139,6 +131,9 @@
   },
   "loginView": {
     "title": "Login",
+    "sso": {
+      "or": "or"
+    },
     "form": {
       "email": "E-Mail",
       "password": "Password",

@@ -32,6 +32,7 @@ import { getTranslation } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
 import { FORM_DEFAULTS_USERS_VIEW } from '.'
+import classes from './users.module.css'
 
 function UpdateUserView(): JSX.Element {
   const router = useRouter()
@@ -41,6 +42,8 @@ function UpdateUserView(): JSX.Element {
   const userIdParameter = router.query?.id
 
   const { data: user } = useGetUser(Number(userIdParameter))
+
+  const ssoProvider = user?.source
 
   const {
     handleSubmit,
@@ -67,8 +70,10 @@ function UpdateUserView(): JSX.Element {
   const { mutate: updateUser, isLoading } = useUpdateUser()
 
   const { data: rolesResponse } = useGetRoles({
-    page: 0,
-    size: 9999,
+    requestConfig: {
+      page: 0,
+      size: 9999,
+    },
   })
 
   const roles = rolesResponse?.content || []
@@ -85,16 +90,24 @@ function UpdateUserView(): JSX.Element {
 
   return (
     <>
-      <Title py="md" order={2}>
+      <Title className={classes['userDetailTitle']} order={2}>
         <Flex>
           <IconUserEdit size="32" />
 
-          <Text ml="xs">{t('addUpdateUserView.update.title')}</Text>
+          <Text className={classes['userDetailTitle__subtitle']}>
+            {t('addUpdateUserView.update.title')}
+          </Text>
         </Flex>
       </Title>
 
-      <Card shadow="sm" p="lg" radius="sm" withBorder maw="81.25rem">
+      <Card
+        shadow="sm"
+        radius="sm"
+        withBorder
+        className={classes['userDetailCard']}
+      >
         <UserForm
+          ssoProvider={ssoProvider}
           title={t('addUpdateUserView.form.userDataHeading')}
           roles={roles}
           onSubmit={onSubmit}

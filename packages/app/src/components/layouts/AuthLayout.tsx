@@ -209,7 +209,7 @@ export function AuthLayout({
     if (!authToken) {
       router.push({
         pathname: '/login',
-        query: { redirect: router.asPath },
+        query: router.asPath === '/' ? null : { redirect: router.asPath },
       })
     }
   }, [user, router])
