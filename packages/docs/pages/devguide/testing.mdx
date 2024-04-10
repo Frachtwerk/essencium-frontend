@@ -1,0 +1,23 @@
+import { Callout } from 'nextra-theme-docs'
+
+# Testing
+
+We use [Vitest](https://vitest.dev) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) for testing our components and functions. For E2E tests, we use [Playwright](https://playwright.dev).
+
+<Callout emoji="ℹ️" type="info">
+  For testing translations, we agreed on validating the translation key **for
+  component tests** instead of the resolved value. For E2E tests, we validate
+  the resolved value in the UI.
+</Callout>
+
+## Component tests
+
+For every new components, it's required to write a corresponding component tests that checks the output dependent on the given inputs like props, state, etc.
+
+## Unit tests
+
+For i.e. utility functions, it's required to write a corresponding unit tests that checks the output dependent on the given inputs of that function.
+
+## E2E tests
+
+For new workflows, it's required to simulate them by implementing an E2E test. For example, the login and logout workflow or the workflow for creating, editing and deleting a user.
