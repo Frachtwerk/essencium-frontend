@@ -68,7 +68,7 @@ export function EditRole({
     handleSubmit,
     control,
     formState,
-    reset: prefillForm,
+    reset: resetAndFillForm,
   } = useZodForm({
     schema: roleUpdateSchema,
     defaultValues: formDefaults,
@@ -81,9 +81,9 @@ export function EditRole({
         rights: role.rights.map(right => right.authority),
       })
 
-      prefillForm({ ...parsedRole })
+      resetAndFillForm({ ...parsedRole })
     }
-  }, [role, prefillForm])
+  }, [role, resetAndFillForm])
 
   const onSubmit = handleSubmit(updateRole)
 

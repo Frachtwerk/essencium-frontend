@@ -56,7 +56,7 @@ export function PersonalDataForm({
     handleSubmit,
     control,
     formState,
-    reset: prefillForm,
+    reset: resetAndFillForm,
   } = useZodForm({
     schema: userUpdateSchema,
     defaultValues: {
@@ -80,9 +80,9 @@ export function PersonalDataForm({
         enabled: true,
       })
 
-      prefillForm({ ...parsedUser })
+      resetAndFillForm({ ...parsedUser })
     }
-  }, [user, prefillForm])
+  }, [user, resetAndFillForm])
 
   function onSubmit(updatedUser: UserUpdate): void {
     handleUpdate(updatedUser)
