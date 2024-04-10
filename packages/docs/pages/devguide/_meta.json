@@ -5,8 +5,8 @@
   "dependencies": "Dependencies",
   "new-page": "New Page",
   "new-component": "New Component",
-  "pull-requests": "Pull Requests",
   "commits": "Commits",
+  "pull-requests": "Pull Requests",
   "releases": "Releases",
   "types": "Types",
   "seeding-database": "Seeding Database"
