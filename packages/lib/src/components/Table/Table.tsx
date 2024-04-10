@@ -46,7 +46,7 @@ export function Table<T>({
     <Flex direction="column" align="end">
       <div style={{ overflowX: 'auto', width: '100%' }}>
         <MantineTable striped highlightOnHover withRowBorders={false}>
-          <MantineTable.Thead role="rowheader">
+          <MantineTable.Thead aria-label="header-row">
             {tableModel.getHeaderGroups().map(headerGroup => (
               <MantineTable.Tr key={headerGroup.id}>
                 {headerGroup.headers.map(header => (
