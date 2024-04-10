@@ -50,7 +50,7 @@ function UpdateUserView(): JSX.Element {
     control,
     formState,
     setValue,
-    reset: prefillForm,
+    reset: resetAndFillForm,
   } = useZodForm({
     schema: userUpdateSchema,
     defaultValues: FORM_DEFAULTS_USERS_VIEW,
@@ -63,9 +63,9 @@ function UpdateUserView(): JSX.Element {
         roles: user.roles.flatMap(role => role.name),
       })
 
-      prefillForm({ ...parsedUser })
+      resetAndFillForm({ ...parsedUser })
     }
-  }, [user, prefillForm])
+  }, [user, resetAndFillForm])
 
   const { mutate: updateUser, isLoading } = useUpdateUser()
 
