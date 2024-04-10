@@ -17,9 +17,10 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { AppShell, MantineProvider } from '@mantine/core'
 import { getCoreRowModel, useReactTable } from '@tanstack/react-table'
-import { render, RenderResult, screen } from '@testing-library/react'
-import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
+import { render, screen } from '@testing-library/react'
+import { beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { Table } from './Table'
 
@@ -147,8 +148,6 @@ const USERS = [
 ]
 
 describe('Table', () => {
-  let TableMounted: RenderResult
-
   beforeAll(() => {
     vi.mock('@tanstack/react-table', async () => {
       return {
@@ -173,22 +172,22 @@ describe('Table', () => {
     })
 
     const table = useReactTable({
-      data: USERS,
+      data: [],
       columns: [],
       getCoreRowModel: getCoreRowModel(),
     })
 
-    TableMounted = render(
-      <Table
-        tableModel={table}
-        onFilterChange={() => ({})}
-        showFilter={false}
-      />,
+    render(
+      <MantineProvider>
+        <AppShell>
+          <Table
+            tableModel={table}
+            onFilterChange={() => ({})}
+            showFilter={false}
+          />
+        </AppShell>
+      </MantineProvider>,
     )
-  })
-
-  afterAll(() => {
-    TableMounted.unmount()
   })
 
   it('renders table headers', () => {
