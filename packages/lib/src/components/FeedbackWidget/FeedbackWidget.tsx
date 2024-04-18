@@ -103,6 +103,9 @@ export function FeedbackWidget({
 
   const [screenshot, setScreenshot] = useState<string | null>(null)
 
+  const [isCapturingScreenshot, setIsCapturingScreenshot] =
+    useState<boolean>(false)
+
   const { handleSubmit, control, formState, reset, setValue } = useZodForm({
     schema: feedbackFormSchema,
     defaultValues: {
@@ -163,12 +166,20 @@ export function FeedbackWidget({
 
   function onCloseWidget(): void {
     close()
+
     reset()
+
     setOpenInput(null)
+
     setShowSuccessMessage(false)
+
     setShowErrorMessage(false)
+
     setIsLoading(false)
+
     setScreenshot(null)
+
+    setIsCapturingScreenshot(false)
   }
 
   function onSubmit(form: FeedbackInput): void {
@@ -188,9 +199,18 @@ export function FeedbackWidget({
   function captureScreenshot(): void {
     html2canvas(document.body).then(canvas => {
       const screenshotData = canvas.toDataURL('image/png')
+
       setScreenshot(screenshotData)
+
+      setIsCapturingScreenshot(false)
     })
   }
+
+  useEffect(() => {
+    if (isCapturingScreenshot) {
+      captureScreenshot()
+    }
+  }, [isCapturingScreenshot])
 
   useEffect(() => {
     if (screenshot) {
@@ -229,6 +249,7 @@ export function FeedbackWidget({
         w="390px"
         h={openInput ? 'auto' : '180px'}
         position={{ bottom: 100, right: 80 }}
+        className={isCapturingScreenshot ? classes.displayNone : ''}
       >
         {!showSuccessMessage || !showErrorMessage ? (
           <Title order={4} ta="center" size="sm" mb="sm" fw={500}>
@@ -365,11 +386,18 @@ export function FeedbackWidget({
                       </Box>
 
                       <Flex gap="xs">
-                        <Tooltip label={t('feedbackWidget.screenshot.label')}>
+                        <Tooltip
+                          label={t('feedbackWidget.screenshot.label')}
+                          className={
+                            isCapturingScreenshot ? classes.displayNone : ''
+                          }
+                        >
                           <ActionIcon
                             variant={screenshot ? 'filled' : 'outline'}
                             size="md"
-                            onClick={() => captureScreenshot()}
+                            onClick={() => {
+                              setIsCapturingScreenshot(true)
+                            }}
                           >
                             {screenshot ? (
                               <IconCameraCheck size={20} />

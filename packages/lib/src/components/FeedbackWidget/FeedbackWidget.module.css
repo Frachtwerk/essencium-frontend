@@ -29,3 +29,7 @@
 .themeIcon {
   border: none;
 }
+
+.displayNone {
+  display: none;
+}
