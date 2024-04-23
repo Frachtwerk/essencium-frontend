@@ -17,15 +17,19 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-.textarea {
+.feedback-widget__textarea {
   border-radius: '50px';
   margin-bottom: '15px';
 }
 
-.actionIcon {
+.feedback-widget__action-icon {
   border-radius: '20px';
 }
 
-.themeIcon {
+.feedback-widget__theme-icon {
   border: none;
+}
+
+.feedback-widget__dialog--display {
+  display: none;
 }
