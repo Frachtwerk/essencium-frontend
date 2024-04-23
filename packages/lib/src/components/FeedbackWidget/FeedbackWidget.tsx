@@ -249,7 +249,11 @@ export function FeedbackWidget({
         w="390px"
         h={openInput ? 'auto' : '180px'}
         position={{ bottom: 100, right: 80 }}
-        className={isCapturingScreenshot ? classes.displayNone : ''}
+        className={
+          isCapturingScreenshot
+            ? classes['feedback-widget__dialog--display']
+            : ''
+        }
       >
         {!showSuccessMessage || !showErrorMessage ? (
           <Title order={4} ta="center" size="sm" mb="sm" fw={500}>
@@ -266,7 +270,7 @@ export function FeedbackWidget({
                   <ActionIcon
                     variant="filled"
                     size={70}
-                    className={classes['actionIcon']}
+                    className={classes['feedback-widget__action-icon']}
                     onClick={() => {
                       setOpenInput(OpenInput[inputKey])
                     }}
@@ -307,7 +311,7 @@ export function FeedbackWidget({
                       {showSuccessMessage ? (
                         <ThemeIcon
                           variant="outline"
-                          className={classes['themeIcon']}
+                          className={classes['feedback-widget__theme-icon']}
                           size={60}
                         >
                           <IconCircleCheck size={60} stroke={1.5} />
@@ -367,7 +371,7 @@ export function FeedbackWidget({
                         render={({ field }) => (
                           <Textarea
                             {...field}
-                            className={classes['textarea']}
+                            className={classes['feedback-widget__textarea']}
                             placeholder={
                               t('feedbackWidget.placeholder') as string
                             }
@@ -389,7 +393,9 @@ export function FeedbackWidget({
                         <Tooltip
                           label={t('feedbackWidget.screenshot.label')}
                           className={
-                            isCapturingScreenshot ? classes.displayNone : ''
+                            isCapturingScreenshot
+                              ? classes['feedback-widget__dialog--display']
+                              : ''
                           }
                         >
                           <ActionIcon
