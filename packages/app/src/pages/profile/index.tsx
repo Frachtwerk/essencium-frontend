@@ -20,12 +20,18 @@
 import { LoadingSpinner, Profile } from '@frachtwerk/essencium-lib'
 import { PasswordChange, UserUpdate } from '@frachtwerk/essencium-types'
 import { Center } from '@mantine/core'
-import { useAtomValue } from 'jotai'
+import { useAtomValue, useSetAtom } from 'jotai'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { ReactElement } from 'react'
 
-import { isSsoAtom, useGetMe, useUpdateMe, useUpdatePassword } from '@/api'
+import {
+  isSsoAtom,
+  useGetMe,
+  userAtom,
+  useUpdateMe,
+  useUpdatePassword,
+} from '@/api'
 import { AuthLayout } from '@/components/layouts'
 import { getTranslation, logout } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
@@ -39,9 +45,19 @@ function ProfileView(): JSX.Element {
 
   const { data: user, isLoading: isLoadingUser } = useGetMe()
 
-  const { mutate: updateUser, isLoading: isUpdatingUser } = useUpdateMe()
+  const {
+    mutate: updateUser,
+    isPending: isUpdatingUser,
+    data: updatedUserData,
+  } = useUpdateMe()
 
-  const { mutate: updatePassword, isLoading: isUpdatingPassword } =
+  const setUser = useSetAtom(userAtom)
+
+  if (updatedUserData) {
+    setUser(updatedUserData)
+  }
+
+  const { mutate: updatePassword, isPending: isUpdatingPassword } =
     useUpdatePassword()
 
   function handleUpdate(updatedUser: UserUpdate): void {

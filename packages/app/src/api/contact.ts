@@ -21,8 +21,6 @@ import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useTranslation } from 'react-i18next'
 
-import { withBaseStylingShowNotification } from '@/utils'
-
 import { api } from './api'
 
 type ContactInput = {
@@ -45,21 +43,15 @@ export function useSendContactMessage(): UseMutationResult<
       api
         .post<void, ContactInput>('/contact', newMessage)
         .then(response => response.data),
-
-    onSuccess: () => {
-      withBaseStylingShowNotification({
+    meta: {
+      errorNotification: {
         notificationType: 'created',
-        color: 'success',
-        message: t('notifications.sendMessageSuccess.message'),
-      })
-    },
-
-    onError: () => {
-      withBaseStylingShowNotification({
-        notificationType: 'created',
-        color: 'error',
         message: t('notifications.sendMessageError.message'),
-      })
+      },
+      successNotification: {
+        notificationType: 'created',
+        message: t('notifications.sendMessageSuccess.message'),
+      },
     },
   })
 

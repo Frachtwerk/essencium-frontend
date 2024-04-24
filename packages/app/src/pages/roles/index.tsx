@@ -101,7 +101,6 @@ function RolesView(): JSX.Element {
     data: roles,
     isLoading: isLoadingRoles,
     isFetching: isFetchingRoles,
-    isInitialLoading: isInitialLoadingRoles,
     isError: isErrorRoles,
     error: errorRoles,
     refetch: refetchRoles,
@@ -115,9 +114,9 @@ function RolesView(): JSX.Element {
 
   const { data: rights } = useGetRights({ page: 0, size: 9999 })
 
-  const { mutate: createRole, isLoading: isCreatingRole } = useCreateRole()
+  const { mutate: createRole, isPending: isCreatingRole } = useCreateRole()
 
-  const { mutate: updateRole, isLoading: isUpdatingRole } = useUpdateRole()
+  const { mutate: updateRole, isPending: isUpdatingRole } = useUpdateRole()
 
   const { mutate: deleteRole } = useDeleteRole()
 
@@ -277,7 +276,7 @@ function RolesView(): JSX.Element {
   return (
     <>
       <HttpNotification
-        isLoading={isFetchingRoles && !isInitialLoadingRoles}
+        isLoading={isFetchingRoles && !isLoadingRoles}
         isError={isErrorRoles}
         errorTitle={`Error ${
           errorRoles?.response?.status

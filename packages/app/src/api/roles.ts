@@ -33,7 +33,6 @@ import {
 import { AxiosError } from 'axios'
 import { useAtomValue } from 'jotai'
 
-import { withBaseStylingShowNotification } from '../utils'
 import { api } from './api'
 import { authTokenAtom } from './auth'
 
@@ -50,17 +49,13 @@ export function useCreateRole(): UseMutationResult<
       api
         .post<RoleOutput, RoleInput>('/roles', role)
         .then(response => response.data),
-    onSuccess: () => {
-      withBaseStylingShowNotification({
+    meta: {
+      errorNotification: {
         notificationType: 'created',
-        color: 'success',
-      })
-    },
-    onError: () => {
-      withBaseStylingShowNotification({
+      },
+      successNotification: {
         notificationType: 'created',
-        color: 'error',
-      })
+      },
     },
   })
 
@@ -113,17 +108,13 @@ export function useUpdateRole(): UseMutationResult<
       api
         .put<RoleOutput, RoleUpdate>(`/roles/${role.name}`, role)
         .then(response => response.data),
-    onSuccess: () => {
-      withBaseStylingShowNotification({
+    meta: {
+      errorNotification: {
         notificationType: 'updated',
-        color: 'success',
-      })
-    },
-    onError: () => {
-      withBaseStylingShowNotification({
+      },
+      successNotification: {
         notificationType: 'updated',
-        color: 'error',
-      })
+      },
     },
   })
 
@@ -139,17 +130,13 @@ export function useDeleteRole(): UseMutationResult<
     mutationKey: ['useDeleteRole'],
     mutationFn: (roleId: RoleOutput['name']) =>
       api.delete<null>(`/roles/${roleId}`).then(response => response.data),
-    onSuccess: () => {
-      withBaseStylingShowNotification({
+    meta: {
+      errorNotification: {
         notificationType: 'deleted',
-        color: 'success',
-      })
-    },
-    onError: () => {
-      withBaseStylingShowNotification({
+      },
+      successNotification: {
         notificationType: 'deleted',
-        color: 'error',
-      })
+      },
     },
   })
 

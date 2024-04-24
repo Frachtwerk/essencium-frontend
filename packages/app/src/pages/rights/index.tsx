@@ -62,7 +62,6 @@ function RightsView(): JSX.Element {
     data: rights,
     isLoading: isLoadingRights,
     isFetching: isFetchingRights,
-    isInitialLoading: isInitialLoadingRights,
     isError: isErrorRights,
     error: errorRights,
     refetch: refetchRights,
@@ -209,7 +208,7 @@ function RightsView(): JSX.Element {
   return (
     <>
       <HttpNotification
-        isLoading={isFetchingRights && !isInitialLoadingRights}
+        isLoading={isFetchingRights && !isLoadingRights}
         isError={isErrorRights}
         errorTitle={`Error ${
           errorRights?.response?.status

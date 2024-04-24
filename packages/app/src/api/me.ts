@@ -29,17 +29,12 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { useAtomValue, useSetAtom, useStore } from 'jotai'
+import { useAtomValue } from 'jotai'
 
-import { withBaseStylingShowNotification } from '../utils'
 import { api } from './api'
-import { authTokenAtom, userAtom, userRightsAtom } from './auth'
+import { authTokenAtom } from './auth'
 
 export function useGetMe(): UseQueryResult<UserOutput, unknown> {
-  const store = useStore()
-
-  const setUser = useSetAtom(userAtom)
-  const setUserRights = useSetAtom(userRightsAtom)
   const authToken = useAtomValue(authTokenAtom)
 
   const query = useQuery({
@@ -47,14 +42,6 @@ export function useGetMe(): UseQueryResult<UserOutput, unknown> {
     queryKey: ['useGetMe'],
     queryFn: () =>
       api.get<UserOutput>('/users/me').then(response => response.data),
-    onSuccess(data: UserOutput) {
-      setUser(data)
-      store.set(userAtom, data)
-
-      setUserRights(
-        data?.roles.flatMap(role => role.rights.map(right => right.authority)),
-      )
-    },
   })
 
   return query
@@ -65,27 +52,19 @@ export function useUpdateMe(): UseMutationResult<
   AxiosError,
   UserUpdate
 > {
-  const setUser = useSetAtom(userAtom)
-
   const mutation = useMutation<UserOutput, AxiosError, UserUpdate>({
     mutationKey: ['useUpdateMe'],
     mutationFn: (user: UserUpdate) =>
       api
         .put<UserOutput, UserUpdate>('/users/me', user)
         .then(response => response.data),
-    onSuccess: (updatedUser: UserOutput) => {
-      setUser(updatedUser)
-
-      withBaseStylingShowNotification({
+    meta: {
+      errorNotification: {
         notificationType: 'updated',
-        color: 'success',
-      })
-    },
-    onError: () => {
-      withBaseStylingShowNotification({
+      },
+      successNotification: {
         notificationType: 'updated',
-        color: 'error',
-      })
+      },
     },
   })
 
@@ -110,17 +89,13 @@ export function useUpdatePassword(): UseMutationResult<
           passwordData,
         )
         .then(response => response.data),
-    onSuccess: () => {
-      withBaseStylingShowNotification({
+    meta: {
+      errorNotification: {
         notificationType: 'updated',
-        color: 'success',
-      })
-    },
-    onError: () => {
-      withBaseStylingShowNotification({
+      },
+      successNotification: {
         notificationType: 'updated',
-        color: 'error',
-      })
+      },
     },
   })
 

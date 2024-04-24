@@ -38,7 +38,7 @@ import {
   IconUsers,
   IconUserStar,
 } from '@tabler/icons-react'
-import { useAtom, useAtomValue } from 'jotai'
+import { useAtom, useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -166,15 +166,24 @@ export function AuthLayout({
 
   const { data: user } = useGetMe()
 
-  const userRights = useAtomValue(userRightsAtom)
+  const setUser = useSetAtom(userAtom)
+  const [userRights, setUserRights] = useAtom(userRightsAtom)
 
-  const currentUser = useAtomValue(userAtom)
+  useEffect(() => {
+    if (user) {
+      setUser(user)
+
+      setUserRights(
+        user.roles.flatMap(role => role.rights.map(right => right.authority)),
+      )
+    }
+  }, [user, setUserRights, setUser])
 
   const {
     mutate: createFeedback,
     isSuccess: feedbackCreated,
     isError: feedbackFailed,
-    isLoading: feedbackSending,
+    isPending: feedbackSending,
   } = useCreateFeedback()
 
   const actions: SpotlightActionData[] = SEARCH_ITEMS.filter(link =>
@@ -266,7 +275,7 @@ export function AuthLayout({
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.events, userRights])
+  }, [router.events])
 
   function handleLogout(): void {
     logout()
@@ -362,14 +371,16 @@ export function AuthLayout({
           </Box>
         </AppShellMain>
 
-        <FeedbackWidget
-          currentUser={currentUser}
-          createFeedback={createFeedback}
-          feedbackCreated={feedbackCreated}
-          feedbackFailed={feedbackFailed}
-          feedbackSending={feedbackSending}
-          createNotification={withBaseStylingShowNotification}
-        />
+        {user ? (
+          <FeedbackWidget
+            currentUser={user}
+            createFeedback={createFeedback}
+            feedbackCreated={feedbackCreated}
+            feedbackFailed={feedbackFailed}
+            feedbackSending={feedbackSending}
+            createNotification={withBaseStylingShowNotification}
+          />
+        ) : null}
       </AppShell>
     </>
   )

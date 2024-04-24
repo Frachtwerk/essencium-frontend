@@ -43,7 +43,7 @@ function AddUserView(): JSX.Element {
     defaultValues: FORM_DEFAULTS_USERS_VIEW,
   })
 
-  const { mutate: addUser, isLoading } = useCreateUser()
+  const { mutate: addUser, isPending } = useCreateUser()
 
   const { data: rolesResponse } = useGetRoles({
     requestConfig: {
@@ -87,7 +87,7 @@ function AddUserView(): JSX.Element {
           control={control}
           formState={formState}
           setValue={setValue}
-          isLoading={isLoading}
+          isLoading={isPending}
         />
       </Card>
     </>
