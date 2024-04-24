@@ -17,6 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { AppShell, MantineProvider } from '@mantine/core'
 import { render, RenderResult, screen } from '@testing-library/react'
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 
@@ -29,7 +30,11 @@ describe('SetPassword', () => {
 
   beforeAll(() => {
     SetPasswordFormMounted = render(
-      <SetPasswordForm handleSetPassword={handleSetPassword} />,
+      <MantineProvider>
+        <AppShell>
+          <SetPasswordForm handleSetPassword={handleSetPassword} />,
+        </AppShell>
+      </MantineProvider>,
     )
   })
 
