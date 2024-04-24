@@ -1,5 +1,11 @@
 # Migrations
 
+## [x.y.z (DD.MM.YYYY)](#)
+
+- Next.js has been updated to latest `14` version
+- `i18next`, `react-i18next` & `next-i18next` have also been updated to latest major
+- no further adjustments are needed except installing the new versions
+
 ## [6.1.1 (14.03.2024)](https://github.com/Frachtwerk/essencium-frontend/pull/539/files)
 
 ### `.env`

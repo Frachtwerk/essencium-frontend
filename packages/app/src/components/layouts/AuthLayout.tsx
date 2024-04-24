@@ -198,7 +198,9 @@ export function AuthLayout({
   i18n?.addResourceBundle(
     i18n.language,
     'common',
-    i18n.language === 'de' ? backendTranslationsDe : backendTranslationsEn,
+    i18n.language === 'de'
+      ? backendTranslationsDe ?? {}
+      : backendTranslationsEn ?? {},
     true,
     true,
   )
