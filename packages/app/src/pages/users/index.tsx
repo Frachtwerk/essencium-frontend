@@ -140,7 +140,6 @@ function UsersView(): JSX.Element {
     isError: isErrorUsers,
     isFetching: isFetchingUsers,
     error: errorUsers,
-    isInitialLoading: isInitialLoadingUsers,
     refetch: refetchUsers,
   } = useGetUsers({
     page: activePage - 1,
@@ -372,7 +371,7 @@ function UsersView(): JSX.Element {
   return (
     <>
       <HttpNotification
-        isLoading={isFetchingUsers && !isInitialLoadingUsers}
+        isLoading={isFetchingUsers && !isLoadingUsers}
         isError={isErrorUsers}
         errorTitle={`Error ${
           errorUsers?.response?.status

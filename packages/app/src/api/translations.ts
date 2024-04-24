@@ -30,7 +30,6 @@ import {
 import { AxiosError } from 'axios'
 import { useAtomValue } from 'jotai'
 
-import { withBaseStylingShowNotification } from '../utils'
 import { api } from './api'
 import { authTokenAtom } from './auth'
 
@@ -70,17 +69,13 @@ export function useUpdateTranslation(): UseMutationResult<
           )
           .then(response => response.data)
       },
-      onSuccess: () => {
-        withBaseStylingShowNotification({
+      meta: {
+        errorNotification: {
           notificationType: 'updated',
-          color: 'success',
-        })
-      },
-      onError: () => {
-        withBaseStylingShowNotification({
+        },
+        successNotification: {
           notificationType: 'updated',
-          color: 'error',
-        })
+        },
       },
     },
   )
@@ -104,17 +99,13 @@ export function useDeleteTranslation(): UseMutationResult<
         })
         .then(response => response.data)
     },
-    onSuccess: () => {
-      withBaseStylingShowNotification({
+    meta: {
+      errorNotification: {
         notificationType: 'deleted',
-        color: 'success',
-      })
-    },
-    onError: () => {
-      withBaseStylingShowNotification({
+      },
+      successNotification: {
         notificationType: 'deleted',
-        color: 'error',
-      })
+      },
     },
   })
 

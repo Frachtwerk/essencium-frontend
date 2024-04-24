@@ -44,7 +44,7 @@ import {
   useResetPassword,
 } from '@/api'
 import { PublicLayout } from '@/components/layouts'
-import { getTranslation, withBaseStylingShowNotification } from '@/utils'
+import { getTranslation } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
 import classes from './Login.module.css'
@@ -74,26 +74,25 @@ function LoginView(): JSX.Element {
     }
   }, [oauthToken, router, searchParams, setAuthToken])
 
-  const { mutate: resetPassword, isLoading: isResettingPassword } =
+  const { mutate: resetPassword, isPending: isResettingPassword } =
     useResetPassword()
   const [isResetPasswordSent, setIsResetPasswordSent] = useState(false)
   const [isPasswordResetFormOpened, setIsPasswordResetFormOpened] =
     useState(false)
 
-  const { mutate: createToken } = useCreateToken()
+  const { mutate: createToken, data: tokenData } = useCreateToken()
+
+  const setToken = useSetAtom(authTokenAtom)
+
+  if (tokenData) {
+    setToken(tokenData.token)
+  }
 
   function handleLogin(username: string, password: string): void {
     createToken(
       { username, password },
       {
         onSuccess: () => router.push(searchParams.get('redirect') || '/'),
-        onError: () => {
-          withBaseStylingShowNotification({
-            title: t('loginView.errorMessage.title'),
-            color: 'error',
-            notificationType: 'created',
-          })
-        },
       },
     )
   }

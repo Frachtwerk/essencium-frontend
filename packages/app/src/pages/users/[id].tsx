@@ -67,7 +67,7 @@ function UpdateUserView(): JSX.Element {
     }
   }, [user, resetAndFillForm])
 
-  const { mutate: updateUser, isLoading } = useUpdateUser()
+  const { mutate: updateUser, isPending } = useUpdateUser()
 
   const { data: rolesResponse } = useGetRoles({
     requestConfig: {
@@ -114,7 +114,7 @@ function UpdateUserView(): JSX.Element {
           control={control}
           formState={formState}
           setValue={setValue}
-          isLoading={isLoading}
+          isLoading={isPending}
         />
       </Card>
     </>

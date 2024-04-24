@@ -28,9 +28,11 @@ import {
   MantineProvider,
 } from '@mantine/core'
 import { useHotkeys, useLocalStorage } from '@mantine/hooks'
-import { Notifications } from '@mantine/notifications'
+import { NotificationData, Notifications } from '@mantine/notifications'
 import {
-  Hydrate,
+  HydrationBoundary,
+  MutationCache,
+  QueryCache,
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
@@ -42,6 +44,7 @@ import { appWithTranslation } from 'next-i18next'
 import { ReactElement, ReactNode, useEffect, useState } from 'react'
 
 import { PublicLayout } from '@/components/layouts/PublicLayout'
+import { withBaseStylingShowNotification } from '@/utils'
 
 const firaSans = Fira_Sans({
   subsets: ['latin'],
@@ -71,7 +74,82 @@ function App({
   const getLayout =
     Component.getLayout ?? (page => <PublicLayout>{page}</PublicLayout>)
 
-  const [queryClient] = useState(() => new QueryClient())
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        queryCache: new QueryCache({
+          onError: (_, query) => {
+            if (query?.meta?.errorNotification) {
+              const {
+                title,
+                message,
+                notificationType,
+              }: Omit<NotificationData, 'message'> =
+                query.meta.errorNotification
+
+              withBaseStylingShowNotification({
+                title,
+                message,
+                color: 'error',
+                notificationType,
+              })
+            }
+          },
+          onSuccess: (_, query) => {
+            if (query?.meta?.successNotification) {
+              const {
+                title,
+                message,
+                notificationType,
+              }: Omit<NotificationData, 'message'> =
+                query.meta.successNotification
+
+              withBaseStylingShowNotification({
+                title,
+                message,
+                color: 'success',
+                notificationType,
+              })
+            }
+          },
+        }),
+        mutationCache: new MutationCache({
+          onError: (error, variables, context, mutation) => {
+            if (mutation?.meta?.errorNotification) {
+              const {
+                title,
+                message,
+                notificationType,
+              }: Omit<NotificationData, 'message'> =
+                mutation.meta.errorNotification
+
+              withBaseStylingShowNotification({
+                title,
+                message,
+                color: 'error',
+                notificationType,
+              })
+            }
+          },
+          onSuccess: (error, variables, context, mutation) => {
+            if (mutation?.meta?.successNotification) {
+              const {
+                title,
+                message,
+                notificationType,
+              }: Omit<NotificationData, 'message'> =
+                mutation.meta.successNotification
+              withBaseStylingShowNotification({
+                title,
+                message,
+                color: 'success',
+                notificationType,
+              })
+            }
+          },
+        }),
+      }),
+  )
 
   let systemColorScheme: MantineColorScheme = 'light'
 
@@ -172,7 +250,7 @@ function App({
   return (
     <MantineProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-        <Hydrate state={pageProps.dehydratedState}>
+        <HydrationBoundary state={pageProps.dehydratedState}>
           <Notifications limit={3} />
 
           {getLayout(
@@ -183,7 +261,7 @@ function App({
               ? version
               : undefined,
           )}
-        </Hydrate>
+        </HydrationBoundary>
       </QueryClientProvider>
     </MantineProvider>
   )

@@ -33,7 +33,6 @@ import {
 import { AxiosError } from 'axios'
 import { useAtomValue } from 'jotai'
 
-import { withBaseStylingShowNotification } from '../utils'
 import { api } from './api'
 import { authTokenAtom } from './auth'
 
@@ -93,17 +92,13 @@ export function useCreateUser(): UseMutationResult<
     mutationKey: ['useCreateUser'],
     mutationFn: (newUser: UserInput) =>
       api.post<UserInput, UserInput>('/users', newUser).then(res => res.data),
-    onSuccess: () => {
-      withBaseStylingShowNotification({
+    meta: {
+      errorNotification: {
         notificationType: 'created',
-        color: 'success',
-      })
-    },
-    onError: () => {
-      withBaseStylingShowNotification({
+      },
+      successNotification: {
         notificationType: 'created',
-        color: 'error',
-      })
+      },
     },
   })
 
@@ -121,17 +116,13 @@ export function useUpdateUser(): UseMutationResult<
       api
         .put<UserOutput, UserUpdate>(`/users/${user.id}`, user)
         .then(response => response.data),
-    onSuccess: () => {
-      withBaseStylingShowNotification({
+    meta: {
+      errorNotification: {
         notificationType: 'updated',
-        color: 'success',
-      })
-    },
-    onError: () => {
-      withBaseStylingShowNotification({
+      },
+      successNotification: {
         notificationType: 'updated',
-        color: 'error',
-      })
+      },
     },
   })
 
@@ -147,17 +138,13 @@ export function useDeleteUser(): UseMutationResult<
     mutationKey: ['useDeleteUser'],
     mutationFn: (userId: UserOutput['id']) =>
       api.delete<null>(`/users/${userId}`).then(response => response.data),
-    onSuccess: () => {
-      withBaseStylingShowNotification({
+    meta: {
+      errorNotification: {
         notificationType: 'deleted',
-        color: 'success',
-      })
-    },
-    onError: () => {
-      withBaseStylingShowNotification({
+      },
+      successNotification: {
         notificationType: 'deleted',
-        color: 'error',
-      })
+      },
     },
   })
 

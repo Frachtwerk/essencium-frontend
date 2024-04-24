@@ -30,11 +30,10 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { atom, useSetAtom } from 'jotai'
+import { atom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 import { useTranslation } from 'next-i18next'
 
-import { withBaseStylingShowNotification } from '../utils'
 import { api } from './api'
 
 type TokenResponse = {
@@ -57,7 +56,7 @@ export function useCreateToken(): UseMutationResult<
   AxiosError,
   LoginCredentials
 > {
-  const setToken = useSetAtom(authTokenAtom)
+  const { t } = useTranslation()
 
   const mutation = useMutation<TokenResponse, AxiosError, LoginCredentials>({
     mutationKey: ['useCreateToken'],
@@ -71,8 +70,11 @@ export function useCreateToken(): UseMutationResult<
           },
         )
         .then(response => response.data),
-    onSuccess: (data: TokenResponse) => {
-      setToken(data.token)
+    meta: {
+      errorNotification: {
+        title: t('loginView.errorMessage.title'),
+        notificationType: 'created',
+      },
     },
   })
 
@@ -93,21 +95,17 @@ export function useInvalidateToken(): UseMutationResult<
       api
         .post<null, null>(`/users/${userId}/terminate`, null)
         .then(response => response.data),
-    onSuccess: () => {
-      withBaseStylingShowNotification({
-        title: t('notifications.invalidateUserSuccess.title'),
-        message: t('notifications.invalidateUserSuccess.message'),
-        color: 'success',
-        notificationType: 'updated',
-      })
-    },
-    onError: () => {
-      withBaseStylingShowNotification({
+    meta: {
+      errorNotification: {
         title: t('notifications.invalidateUserError.title'),
         message: t('notifications.invalidateUserError.message'),
-        color: 'error',
         notificationType: 'updated',
-      })
+      },
+      successNotification: {
+        title: t('notifications.invalidateUserSuccess.title'),
+        message: t('notifications.invalidateUserSuccess.message'),
+        notificationType: 'updated',
+      },
     },
   })
 
@@ -127,11 +125,10 @@ export function useResetPassword(): UseMutationResult<
           headers: { 'content-type': 'text/plain' },
         })
         .then(response => response.data),
-    onError: () => {
-      withBaseStylingShowNotification({
-        color: 'error',
+    meta: {
+      errorNotification: {
         notificationType: 'updated',
-      })
+      },
     },
   })
 
@@ -152,11 +149,10 @@ export function useSetPassword(): UseMutationResult<
           verification,
         })
         .then(response => response.data),
-    onError: () => {
-      withBaseStylingShowNotification({
-        color: 'error',
+    meta: {
+      errorNotification: {
         notificationType: 'updated',
-      })
+      },
     },
   })
 
