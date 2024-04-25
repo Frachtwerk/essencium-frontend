@@ -1,5 +1,23 @@
 # Changelog
 
+## [7.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v6.1.0...essencium-lib-v7.0.0) (2024-04-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* migration to tanstack query 5
+* migration to Next 14
+
+### Features
+
+* close feedback widget on screen capture ([#557](https://github.com/Frachtwerk/essencium-frontend/issues/557)) ([d7781bf](https://github.com/Frachtwerk/essencium-frontend/commit/d7781bf9b5f56f92aa9eea96f314337910772681))
+
+
+### Code Refactoring
+
+* migration to Next 14 ([e11880f](https://github.com/Frachtwerk/essencium-frontend/commit/e11880fbba739b61c4b91391edcb52d825c8eedc))
+* migration to tanstack query 5 ([6b2f659](https://github.com/Frachtwerk/essencium-frontend/commit/6b2f659cb19a71f3254c665efbfe23013da41bdc))
+
 ## [6.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v6.0.0...essencium-lib-v6.1.0) (2024-03-14)
 
 
