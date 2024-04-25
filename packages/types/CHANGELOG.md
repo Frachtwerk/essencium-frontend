@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v4.1.0...essencium-types-v5.0.0) (2024-04-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* migration to Next 14
+
+### Code Refactoring
+
+* migration to Next 14 ([e11880f](https://github.com/Frachtwerk/essencium-frontend/commit/e11880fbba739b61c4b91391edcb52d825c8eedc))
+
 ## [4.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v4.0.0...essencium-types-v4.1.0) (2024-03-14)
 
 
