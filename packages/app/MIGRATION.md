@@ -2,9 +2,14 @@
 
 ## [x.y.z (DD.MM.YYYY)](#)
 
+### Next.js migration
+
 - Next.js has been updated to latest `14` version
 - `i18next`, `react-i18next` & `next-i18next` have also been updated to latest major
 - no further adjustments are needed except installing the new versions
+
+### TanStack Query migration
+
 - TanStack Query has been updated to latest `5` version
 - the breaking changes that affect the codebase are
   - use `isPending` instead of `isLoading` state
