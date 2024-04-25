@@ -1,6 +1,6 @@
 # Migrations
 
-## [x.y.z (DD.MM.YYYY)](#)
+## [7.0.0 (25.04.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v6.1.1...essencium-app-v7.0.0)
 
 ### Next.js migration
 
