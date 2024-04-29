@@ -141,14 +141,16 @@ export const FOOTER_LINKS: FooterLink[] = [
 ]
 
 export const SEARCH_ITEMS: SearchItems[] = [
-  ...NAV_LINKS,
-  ...FOOTER_LINKS,
   {
     icon: <IconSearch />,
     label: 'profileView.title',
     to: '/profile',
     description: 'profileView.description',
+    color: 'blue',
+    rights: [],
   },
+  ...NAV_LINKS,
+  ...FOOTER_LINKS,
 ]
 
 const isFixedNavAtom = atomWithStorage('isFixedNav', false)
