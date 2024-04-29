@@ -33,6 +33,7 @@ import {
   useUpdatePassword,
 } from '@/api'
 import { AuthLayout } from '@/components/layouts'
+import { RouteProtector } from '@/components/RouteProtector'
 import { getTranslation, logout } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
@@ -113,12 +114,14 @@ ProfileView.getLayout = function getLayout(
   version?: string,
 ) {
   return (
-    <AuthLayout
-      routeName={getTranslation('profileView.title')}
-      version={version}
-    >
-      {page}
-    </AuthLayout>
+    <RouteProtector>
+      <AuthLayout
+        routeName={getTranslation('profileView.title')}
+        version={version}
+      >
+        {page}
+      </AuthLayout>
+    </RouteProtector>
   )
 }
 
