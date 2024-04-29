@@ -28,6 +28,7 @@ import {
 import {
   FilterObjectUser,
   RIGHTS,
+  ROLES,
   UserOutput,
   UserSource,
 } from '@frachtwerk/essencium-types'
@@ -85,7 +86,7 @@ export const FORM_DEFAULTS_USERS_VIEW = {
   password: '',
   enabled: true,
   locale: 'de',
-  roles: [],
+  roles: [ROLES.USER],
 }
 
 const DEFAULT_SORTING: SortingState = [{ id: 'firstName', desc: false }]
