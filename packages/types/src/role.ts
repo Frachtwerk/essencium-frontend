@@ -21,6 +21,11 @@ import { z } from 'zod'
 
 import { rightOutputSchema } from './right'
 
+export enum ROLES {
+  USER = 'USER',
+  ADMIN = 'ADMIN',
+}
+
 const sharedPropertiesSchema = z.object({
   description: z.string().min(8, 'validation.roleDescription.minLength'),
   editable: z.boolean(),
