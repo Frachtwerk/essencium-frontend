@@ -197,7 +197,8 @@ export function AuthLayout({
   } = useCreateFeedback()
 
   const actions: SpotlightActionData[] = SEARCH_ITEMS.filter(link =>
-    !link.rights || link.rights?.some(right => userRights?.includes(right))
+    !link.rights?.length ||
+    link.rights?.some(right => userRights?.includes(right))
       ? link
       : null,
   ).map(link => {
