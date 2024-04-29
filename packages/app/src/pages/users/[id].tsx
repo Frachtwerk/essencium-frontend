@@ -27,6 +27,7 @@ import { useEffect } from 'react'
 
 import { useGetRoles, useGetUser, useUpdateUser } from '@/api'
 import { AuthLayout } from '@/components/layouts'
+import { RouteProtector } from '@/components/RouteProtector'
 import { useZodForm } from '@/hooks'
 import { getTranslation } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
@@ -121,12 +122,14 @@ UpdateUserView.getLayout = function getLayout(
   version?: string,
 ): JSX.Element {
   return (
-    <AuthLayout
-      routeName={getTranslation('addUpdateUserView.update.title')}
-      version={version}
-    >
-      {page}
-    </AuthLayout>
+    <RouteProtector>
+      <AuthLayout
+        routeName={getTranslation('addUpdateUserView.update.title')}
+        version={version}
+      >
+        {page}
+      </AuthLayout>
+    </RouteProtector>
   )
 }
 

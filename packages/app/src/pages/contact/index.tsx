@@ -22,6 +22,7 @@ import { contactFormSchema, ContactFormType } from '@frachtwerk/essencium-types'
 
 import { useSendContactMessage } from '@/api'
 import { AuthLayout } from '@/components/layouts'
+import { RouteProtector } from '@/components/RouteProtector'
 import { useZodForm } from '@/hooks'
 import { getTranslation } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
@@ -55,12 +56,14 @@ ContactView.getLayout = function getLayout(
   version?: string,
 ): JSX.Element {
   return (
-    <AuthLayout
-      routeName={getTranslation('contactView.contactForm.title')}
-      version={version}
-    >
-      {page}
-    </AuthLayout>
+    <RouteProtector>
+      <AuthLayout
+        routeName={getTranslation('contactView.contactForm.title')}
+        version={version}
+      >
+        {page}
+      </AuthLayout>
+    </RouteProtector>
   )
 }
 

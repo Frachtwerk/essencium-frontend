@@ -21,6 +21,7 @@ import { Home } from '@frachtwerk/essencium-lib'
 import { ReactElement } from 'react'
 
 import { AuthLayout } from '@/components/layouts/AuthLayout'
+import { RouteProtector } from '@/components/RouteProtector'
 import { getTranslation } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
@@ -33,12 +34,14 @@ HomeView.getLayout = function getLayout(
   version?: string,
 ): JSX.Element {
   return (
-    <AuthLayout
-      routeName={getTranslation('navigation.home.label')}
-      version={version}
-    >
-      {page}
-    </AuthLayout>
+    <RouteProtector>
+      <AuthLayout
+        routeName={getTranslation('navigation.home.label')}
+        version={version}
+      >
+        {page}
+      </AuthLayout>
+    </RouteProtector>
   )
 }
 

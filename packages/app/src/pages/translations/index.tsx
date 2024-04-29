@@ -33,6 +33,7 @@ import {
   useUpdateTranslation,
 } from '@/api'
 import { AuthLayout } from '@/components/layouts'
+import { RouteProtector } from '@/components/RouteProtector'
 import { getTranslation } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
@@ -137,12 +138,14 @@ TranslationsView.getLayout = function getLayout(
   version?: string,
 ): JSX.Element {
   return (
-    <AuthLayout
-      routeName={getTranslation('translationsView.title')}
-      version={version}
-    >
-      {page}
-    </AuthLayout>
+    <RouteProtector>
+      <AuthLayout
+        routeName={getTranslation('translationsView.title')}
+        version={version}
+      >
+        {page}
+      </AuthLayout>
+    </RouteProtector>
   )
 }
 

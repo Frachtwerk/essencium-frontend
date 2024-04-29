@@ -64,6 +64,7 @@ import {
   useUpdateRole,
 } from '@/api'
 import { AuthLayout } from '@/components/layouts'
+import { RouteProtector } from '@/components/RouteProtector'
 import { getTranslation, hasRequiredRights, parseSorting } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
@@ -388,9 +389,14 @@ RolesView.getLayout = function getLayout(
   version?: string,
 ): JSX.Element {
   return (
-    <AuthLayout routeName={getTranslation('rolesView.title')} version={version}>
-      {page}
-    </AuthLayout>
+    <RouteProtector>
+      <AuthLayout
+        routeName={getTranslation('rolesView.title')}
+        version={version}
+      >
+        {page}
+      </AuthLayout>
+    </RouteProtector>
   )
 }
 
