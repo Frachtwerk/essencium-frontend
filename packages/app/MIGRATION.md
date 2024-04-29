@@ -12,7 +12,7 @@
 
 - TanStack Query has been updated to latest `5` version
 - the breaking changes that affect the codebase are
-  - use `isPending` instead of `isLoading` state
+  - use `isPending` instead of `isLoading` state for mutations
   - remove `onSuccess` and `onError` properties in `useQuery` and `useMutation` hooks (see [this](https://tkdodo.eu/blog/breaking-react-querys-api-on-purpose) article why) and move error and success message handling to query client initialisation
 
 ## [6.1.1 (14.03.2024)](https://github.com/Frachtwerk/essencium-frontend/pull/539/files)
