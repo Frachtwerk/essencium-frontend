@@ -19,9 +19,17 @@
 
 export function hasRequiredRights(
   userRights: string[] | null | undefined,
-  requiredRight: string,
+  requiredRights: string | string[],
 ): boolean {
   if (!userRights) return false
 
-  return userRights.includes(requiredRight)
+  if (Array.isArray(requiredRights)) {
+    return (
+      requiredRights.every(requiredRight =>
+        userRights.includes(requiredRight),
+      ) || requiredRights.length === 0
+    )
+  }
+
+  return userRights.includes(requiredRights)
 }
