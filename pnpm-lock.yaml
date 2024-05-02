@@ -46,8 +46,8 @@ importers:
         specifier: 6.9.1
         version: 6.9.1(eslint@8.35.0)(typescript@4.9.5)
       axios:
-        specifier: 1.6.5
-        version: 1.6.5
+        specifier: 1.6.8
+        version: 1.6.8
       eslint:
         specifier: 8.35.0
         version: 8.35.0
@@ -172,8 +172,8 @@ importers:
         specifier: 18.0.11
         version: 18.0.11
       axios:
-        specifier: 1.6.5
-        version: 1.6.5
+        specifier: 1.6.8
+        version: 1.6.8
       dayjs:
         specifier: 1.11.7
         version: 1.11.7
@@ -496,8 +496,8 @@ importers:
         specifier: 0.33.0
         version: 0.33.0(vitest@0.34.6)
       axios:
-        specifier: 1.6.5
-        version: 1.6.5
+        specifier: 1.6.8
+        version: 1.6.8
       dayjs:
         specifier: 1.11.7
         version: 1.11.7
@@ -4646,10 +4646,10 @@ packages:
     resolution: {integrity: sha512-/BQzOX780JhsxDnPpH4ZiyrJAzcd8AfzFPkv+89veFSr1rcMjuq2JDCwypKaPeB6ljHp9KjXhPpjgCvQlWYuqg==}
     engines: {node: '>=4'}
 
-  /axios@1.6.5:
-    resolution: {integrity: sha512-Ii012v05KEVuUoFWmMW/UQv9aRIc3ZwkWDcM+h5Il8izZCtRVpDUfwpoFf7eOtajT3QiGR4yDUx7lPqHJULgbg==}
+  /axios@1.6.8:
+    resolution: {integrity: sha512-v/ZHtJDU39mDpyBoFVkETcd/uNdxrWRrg3bKpOKzXFA6Bvqopts6ALSMU3y6ijYxbw2B+wPrIv46egTzJXCLGQ==}
     dependencies:
-      follow-redirects: 1.15.5
+      follow-redirects: 1.15.6
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -6798,8 +6798,8 @@ packages:
     resolution: {integrity: sha512-Rwix9pBtC1Nuy5wysTmKy+UjbDJpIfg8eHjw0rjZ1mX4GNLz1Bmd16uDpI3Gk1i70Fgcs8Csg2lPm8HULFg9DQ==}
     dev: false
 
-  /follow-redirects@1.15.5:
-    resolution: {integrity: sha512-vSFWUON1B+yAw1VN4xMfxgn5fTUiaOzAJCKBwIIgT/+7CuGy9+r+5gITvP62j3RmaD5Ph65UaERdOSRGUzZtgw==}
+  /follow-redirects@1.15.6:
+    resolution: {integrity: sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
@@ -9351,7 +9351,7 @@ packages:
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.0-rc.46
       '@zkochan/js-yaml': 0.0.6
-      axios: 1.6.5
+      axios: 1.6.8
       chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
