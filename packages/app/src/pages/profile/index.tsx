@@ -36,7 +36,7 @@ import { AuthLayout } from '@/components/layouts'
 import { getTranslation, logout } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
-import classes from './profile.module.css'
+import classes from './Profile.module.css'
 
 function ProfileView(): JSX.Element {
   const { t } = useTranslation()
