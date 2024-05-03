@@ -1,0 +1,17 @@
+.contact-person-card__card {
+  paddig: var(--mantine-spacing-lg);
+}
+
+.contact-person-card__avatar {
+  margin-top: var(--mantine-spacing-xs);
+  color: indigo;
+}
+
+.contact-person-card__title {
+  margin-top: var(--mantine-spacing-sm);
+  margin-bottom: var(--mantine-spacing-sm);
+}
+
+.contact-person-card__group {
+  margin-top: var(--mantine-spacing-xl);
+}

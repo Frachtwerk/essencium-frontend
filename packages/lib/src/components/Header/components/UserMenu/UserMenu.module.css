@@ -17,7 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-.userMenuGroup {
+.user-menu__group {
   padding: var(--mantine-spacing-sm);
   cursor: pointer;
   border-radius: var(--mantine-radius-sm);
@@ -33,19 +33,21 @@
   }
 }
 
-.userMenuButton {
+.user-menu__button {
   display: block;
   width: 100%;
 }
 
-.userMenuBox {
+.user-menu__box {
   flex: 1;
 }
 
-.userMenuBox__name {
+.user_menu__box--name {
   font-weight: 500;
+  font-size: var(--mantine-font-size-sm);
 }
 
-.userMenuBox__mail {
+.user-menu__box--mail {
   color: var(--mantine-color-dimmed);
+  font-size: var(--mantine-font-size-xs);
 }

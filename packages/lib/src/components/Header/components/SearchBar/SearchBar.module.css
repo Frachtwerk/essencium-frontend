@@ -1,0 +1,8 @@
+.search-bar__text {
+  color: var(--mantine-color-gray-5);
+  font-size: var(--mantine-font-size-sm);
+}
+
+.search-bar__icon {
+  color: var(--mantine-color-gray-5);
+}

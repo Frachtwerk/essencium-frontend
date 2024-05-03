@@ -56,19 +56,17 @@ export function ThemeSelector(): JSX.Element {
       <PopoverTarget>
         <Button
           aria-label="theme-selector"
-          p={0}
-          bg="transparent"
-          className={classes['button']}
+          className={classes['theme-selector__button']}
           leftSection={
             <>
               <IconSun
-                className={classes['iconLight']}
+                className={classes['theme-selector__iconLight']}
                 color={
                   hasSelectedLight ? theme.colors.blue[6] : theme.colors.gray[9]
                 }
               />
               <IconMoon
-                className={classes['iconDark']}
+                className={classes['theme-selector__iconDark']}
                 color={
                   hasSelectedDark ? theme.colors.blue[6] : theme.colors.gray[5]
                 }
@@ -78,17 +76,19 @@ export function ThemeSelector(): JSX.Element {
         />
       </PopoverTarget>
 
-      <PopoverDropdown p={0}>
+      <PopoverDropdown className={classes['theme-selector__popover-dropdown']}>
         <Group
           onClick={() => {
             setColorScheme('light')
             setSelectedLight(true)
           }}
-          className={classes['group']}
+          className={classes['theme-selector__group']}
         >
           <IconSun size={20} />
 
-          <Text size="sm">{t('header.themeToggle.lightMode')}</Text>
+          <Text className={classes['theme-selector__text']}>
+            {t('header.themeToggle.lightMode')}
+          </Text>
         </Group>
 
         <Group
@@ -96,11 +96,13 @@ export function ThemeSelector(): JSX.Element {
             setColorScheme('dark')
             setSelectedDark(true)
           }}
-          className={classes['group']}
+          className={classes['theme-selector__group']}
         >
           <IconMoon size={20} />
 
-          <Text size="sm">{t('header.themeToggle.darkMode')}</Text>
+          <Text className={classes['theme-selector__text']}>
+            {t('header.themeToggle.darkMode')}
+          </Text>
         </Group>
 
         <Group
@@ -109,11 +111,13 @@ export function ThemeSelector(): JSX.Element {
             setSelectedLight(false)
             setSelectedDark(false)
           }}
-          className={classes['group']}
+          className={classes['theme-selector__group']}
         >
           <IconDeviceLaptop size={20} />
 
-          <Text size="sm">{t('header.themeToggle.systemMode')}</Text>
+          <Text className={classes['theme-selector__text']}>
+            {t('header.themeToggle.systemMode')}
+          </Text>
         </Group>
       </PopoverDropdown>
     </Popover>

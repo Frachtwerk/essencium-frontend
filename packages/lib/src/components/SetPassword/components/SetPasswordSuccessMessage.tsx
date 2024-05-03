@@ -21,23 +21,33 @@ import { Button, Center, Stack, Text, Title } from '@mantine/core'
 import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
 
+import classes from './SetPasswordSuccessMessage.module.css'
+
 export function SetPasswordSuccessMessage(): JSX.Element {
   const { t } = useTranslation()
 
   return (
     <Center>
       <Stack>
-        <Title order={4} mb="md">
+        <Title
+          order={4}
+          className={classes['set-password-success-message__title']}
+        >
           {t('setPasswordView.successMessage.title')}
         </Title>
 
-        <Text size="sm">{t('setPasswordView.successMessage.text')}</Text>
+        <Text className={classes['set-password-success-message__text']}>
+          {t('setPasswordView.successMessage.text')}
+        </Text>
 
         <NextLink
           href="/login"
-          style={{ textDecoration: 'none', color: 'white' }}
+          className={classes['set-password-success-message__next-link']}
         >
-          <Button mt="md" fullWidth>
+          <Button
+            className={classes['set-password-success-message__button']}
+            fullWidth
+          >
             {t('setPasswordView.successMessage.button')}
           </Button>
         </NextLink>

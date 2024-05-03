@@ -32,6 +32,8 @@ import { PublicLayout } from '@/components/layouts'
 import { getTranslation } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
+import classes from './SetPassword.module.css'
+
 function SetPasswordView(): JSX.Element {
   const { t } = useTranslation()
 
@@ -53,14 +55,14 @@ function SetPasswordView(): JSX.Element {
   }
 
   return (
-    <Container size={450} my="xl">
+    <Container size={450} className={classes['setPassword__container']}>
       {!showSuccessMessage && (
         <Title ta="center" order={2} fw="bold">
           {t('setPasswordView.title')}
         </Title>
       )}
 
-      <Paper shadow="sm" p="lg" mt="md" w={400} h={270} radius="sm">
+      <Paper shadow="sm" className={classes['setPassword__paper']}>
         {!showSuccessMessage && (
           <SetPasswordForm handleSetPassword={handleSetPassword} />
         )}

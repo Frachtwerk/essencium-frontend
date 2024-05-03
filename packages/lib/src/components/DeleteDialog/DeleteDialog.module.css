@@ -1,0 +1,11 @@
+.delete-dialog__title {
+  margin-bottom: var(--mantine-spacing-md);
+}
+
+.delete-dialog__text {
+  margin-bottom: var(--mantine-spacing-md);
+}
+
+.delete-dialog__button {
+  margin-top: var(--mantine-spacing-md);
+}

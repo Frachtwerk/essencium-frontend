@@ -17,15 +17,15 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Group, Text, UnstyledButton, useMantineTheme } from '@mantine/core'
+import { Group, Text, UnstyledButton } from '@mantine/core'
 import { openSpotlight } from '@mantine/spotlight'
 import { IconSearch } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
 
+import classes from './SearchBar.module.css'
+
 export function SearchBar(): JSX.Element {
   const { t } = useTranslation()
-
-  const theme = useMantineTheme()
 
   return (
     <UnstyledButton
@@ -35,9 +35,9 @@ export function SearchBar(): JSX.Element {
     >
       <Group justify="apart">
         <Group gap="sm">
-          <IconSearch size="16" color={theme.colors.gray[4]} />
+          <IconSearch size="16" className={classes['search-bar__icon']} />
 
-          <Text c={theme.colors.gray[5]} size="sm" role="searchbox">
+          <Text className={classes['search-bar__text']} role="searchbox">
             {t('header.spotlight.placeholder')}
           </Text>
         </Group>

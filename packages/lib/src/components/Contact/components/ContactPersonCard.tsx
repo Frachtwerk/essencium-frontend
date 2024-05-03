@@ -36,11 +36,19 @@ import {
 } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
 
+import classes from './ContactPersonCard.module.css'
+
 export function ContactPersonCard(): JSX.Element {
   const { t } = useTranslation()
 
   return (
-    <Card shadow="sm" p="lg" radius="md" withBorder role="complementary">
+    <Card
+      shadow="sm"
+      radius="md"
+      withBorder
+      role="complementary"
+      className={classes['contact-person-card__card']}
+    >
       <Flex
         direction={{ base: 'column', sm: 'column' }}
         gap={{ base: 'sm', sm: 'md' }}
@@ -52,13 +60,12 @@ export function ContactPersonCard(): JSX.Element {
         <Avatar
           size="xl"
           radius="xl"
-          mt="xs"
           src={null}
           alt={String(t('contactView.contactPersonCard.avatar.alt'))}
-          color="indigo"
+          className={classes['contact-person-card__avatar']}
         />
 
-        <Title order={5} mb="sm" mt="sm">
+        <Title order={5} className={classes['contact-person-card__title']}>
           Firstname Lastname
         </Title>
 
@@ -88,7 +95,10 @@ export function ContactPersonCard(): JSX.Element {
           </Group>
         </Flex>
 
-        <Group mt="xl" aria-label="Contact info">
+        <Group
+          className={classes['contact-person-card__group']}
+          aria-label="Contact info"
+        >
           <ThemeIcon variant="light" radius="md">
             <IconBrandLinkedin size={15} aria-label="Social icon" />
           </ThemeIcon>

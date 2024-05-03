@@ -1,0 +1,44 @@
+.contact-form__container {
+  padding: 0;
+  margin: 0;
+}
+
+.contact-form__card {
+  padding: var(--mantine-spacing-lg);
+}
+
+.contact-form__title {
+  margin-bottom: var(--mantine-spacing-md);
+}
+
+.contact-form__error-box {
+  margin-top: -1.5rem;
+  height: 0.8rem;
+}
+
+.contact-form__error-text {
+  margin-left: 5;
+  font-size: var(--mantine-font-size-xs);
+  color: red;
+}
+
+.contact-form__error-box-message {
+  margin-top: -0.6em;
+  height: 0.8rem;
+}
+
+.contact-from__text-input {
+  margin-bottom: var(--mantine-spacing-md);
+}
+
+.contact-form__stack {
+  margin-top: var(--mantine-spacing-md);
+}
+
+.contact-form__text-area {
+  min-width: 45%;
+}
+
+.contact-form__group {
+  margin-top: var(--mantine-spacing-md);
+}

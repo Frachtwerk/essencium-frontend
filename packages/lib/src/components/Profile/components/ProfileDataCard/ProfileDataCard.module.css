@@ -17,10 +17,14 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-.profile-data-card {
+.profile-data-card__card {
   padding: var(--mantine-spacing-lg);
 
   @mixin dark {
     background-color: var(--mantine-color-dark-7);
   }
+}
+
+.profile-data-card__tabs-panel {
+  padding-top: var(--mantine-spacing-lg);
 }

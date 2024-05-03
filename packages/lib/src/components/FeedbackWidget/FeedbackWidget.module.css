@@ -33,3 +33,30 @@
 .feedback-widget__dialog--display {
   display: none;
 }
+
+.feedback-widget__title {
+  margin-bottom: var(--mantine-spacing-sm);
+  font-weight: 500;
+}
+
+.feedback-widget_group {
+  margin-bottom: var(--mantine-spacing-md);
+}
+
+.feedback-widget__button {
+  padding: 5px;
+  width: 110px;
+  height: 32px;
+}
+
+.feedback-widget__error-box {
+  height: 0.8rem;
+  margin-top: -0.8rem;
+  margin-bottom: 0.6em;
+}
+
+.feedback-widget__error-text {
+  margin-left: 5px;
+  font-size: var(--mantine-font-size-xs);
+  color: red;
+}

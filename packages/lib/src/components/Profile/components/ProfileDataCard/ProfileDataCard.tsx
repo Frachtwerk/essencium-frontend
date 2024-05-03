@@ -56,7 +56,7 @@ export function ProfileDataCard({
       shadow="sm"
       radius="sm"
       withBorder
-      className={classes['profile-data-card']}
+      className={classes['profile-data-card__card']}
     >
       <Tabs defaultValue="personalDataForm">
         <Tabs.List>
@@ -77,7 +77,10 @@ export function ProfileDataCard({
           )}
         </Tabs.List>
 
-        <Tabs.Panel value="personalDataForm" pt="lg">
+        <Tabs.Panel
+          value="personalDataForm"
+          className={classes['profile-data-card__tabs-panel']}
+        >
           <PersonalDataForm
             isSso={isSso}
             user={user}
@@ -87,7 +90,10 @@ export function ProfileDataCard({
         </Tabs.Panel>
 
         {isSso ? null : (
-          <Tabs.Panel value="passwordChange" pt="lg">
+          <Tabs.Panel
+            value="passwordChange"
+            className={classes['profile-data-card__tabs-panel']}
+          >
             <PasswordChangeForm
               handlePasswordUpdate={handlePasswordUpdate}
               isLoading={isUpdatingPassword}

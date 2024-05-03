@@ -21,11 +21,13 @@ import { Center, Stack, Text, Title } from '@mantine/core'
 import { IconMailForward } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
 
+import classes from './ResetPasswordSuccessMessage.module.css'
+
 export function ResetPasswordSuccessMessage(): JSX.Element {
   const { t } = useTranslation()
 
   return (
-    <Center h={200} mx="auto">
+    <Center className={classes['reset-password-success-message__center']}>
       <Stack>
         <IconMailForward size={40} stroke={1} />
 
@@ -33,7 +35,7 @@ export function ResetPasswordSuccessMessage(): JSX.Element {
           {t('loginView.resetPassword.successMessage.title')}
         </Title>
 
-        <Text size="xs" mt="xs">
+        <Text className={classes['reset-password-success-message__text']}>
           {t('loginView.resetPassword.successMessage.description')}
         </Text>
       </Stack>

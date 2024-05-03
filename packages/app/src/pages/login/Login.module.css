@@ -27,28 +27,24 @@
   margin-top: var(--mantine-spacing-md);
 }
 
-.ssoSection--link {
+.ssoSection__link {
   text-decoration: none;
   color: white;
 }
 
-.ssoSection--button {
+.ssoSection__button {
   margin: var(--mantine-spacing-xs) 0;
 }
 
-.ssoSection--button {
-  margin: var(--mantine-spacing-xs) 0;
-}
-
-.ssoSection--spacer {
+.ssoSection__spacer {
   margin: 0 var(--mantine-spacing-xs);
 }
 
-.ssoSection--divider {
+.ssoSection__divider {
   margin: var(--mantine-spacing-xl) 0;
 }
 
-.loginCard--title {
+.loginCard__title {
   text-align: center;
   font-weight: bold;
 }

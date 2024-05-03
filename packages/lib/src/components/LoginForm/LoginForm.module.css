@@ -1,0 +1,34 @@
+.login-form__box {
+  width: 400px;
+}
+
+.login-form__input-label {
+  font-weight: var(--mantine-font-weight-bold);
+}
+
+.login-form__input-margin {
+  margin-top: var(--mantine-spacing-xs);
+}
+
+.login-form__error-box {
+  margin-top: 0.2rem;
+  height: 0.8rem;
+}
+
+.login-form__error-text {
+  margin-left: 5px;
+  font-size: var(--mantine-font-size-xs);
+  color: var(--mantine-color-red);
+}
+
+.login-form__button {
+  margin-top: var(--mantine-spacing-md);
+}
+
+.login-form__group {
+  margin-top: var(--mantine-spacing-md);
+}
+
+.login-form__center {
+  height: 100%;
+}

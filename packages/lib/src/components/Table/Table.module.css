@@ -17,14 +17,14 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-.tableColSticky:first-child {
+.table__col-sticky:first-child {
   position: -webkit-sticky;
   position: sticky;
   left: 0;
   z-index: 10;
 }
 
-.table__colHeader {
+.table__col-header {
   cursor: progress;
 
   @mixin light {
@@ -34,4 +34,27 @@
   @mixin dark {
     color: var(--mantine-color-dark-1);
   }
+}
+
+.table__select {
+  margin-top: var(--mantine-spacing-xs);
+  margin-bottom: var(--mantine-spacing-xs);
+}
+
+.table__table-row--sticky {
+  border-bottom: 2px solid white;
+  border-top: 2px solid white;
+
+  @mixin dark {
+    background-color: var(--mantine-color-dark-7);
+  }
+
+  @mixin light {
+    background-color: white;
+  }
+}
+
+.table__table-row {
+  border-bottom: 2px solid white;
+  border-top: 2px solid white;
 }

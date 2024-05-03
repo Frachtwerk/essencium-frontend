@@ -1,0 +1,28 @@
+.role-form__text-input--label {
+  font-weight: var(--mantine-font-weight-bold);
+}
+
+.role-form__error-box {
+  margin-top: -0.6rem;
+  height: 0.8rem;
+}
+
+.role-form__error-text {
+  margin-left: 5px;
+  font-size: var(--mantine-font-size-xs);
+  color: var(--mantine-color-red);
+}
+
+.role-form__divider--margin-xs {
+  margin-top: var(--mantine-spacing-xs);
+  margin-bottom: var(--mantine-spacing-xs);
+}
+
+.role-form__divider--margin-xl {
+  margin-top: var(--mantine-spacing-xl);
+  margin-bottom: var(--mantine-spacing-xl);
+}
+
+.role-form__button {
+  margin-top: var(--mantine-spacing-md);
+}

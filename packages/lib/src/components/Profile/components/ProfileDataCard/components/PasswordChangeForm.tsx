@@ -58,7 +58,7 @@ export function PasswordChangeForm({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Flex direction="column" align="flex-start">
-        <Stack miw="60%" mb="md" className={classes['stack']}>
+        <Stack className={classes['password-change-form__stack']}>
           <Controller
             name="verification"
             control={control}
@@ -75,9 +75,9 @@ export function PasswordChangeForm({
             )}
           />
 
-          <Box mt="-0.6rem" h="0.8rem">
+          <Box className={classes['password-change-form__error-box']}>
             {formState.errors.verification && (
-              <Text ml={5} fz="xs" color="red">
+              <Text className={classes['password-change-form__error-text']}>
                 {formState.errors.verification?.message
                   ? String(t(formState.errors.verification.message))
                   : null}
@@ -86,7 +86,7 @@ export function PasswordChangeForm({
           </Box>
         </Stack>
 
-        <Stack miw="60%" mb="md" className={classes['stack']}>
+        <Stack className={classes['password-change-form__stack']}>
           <Controller
             name="password"
             control={control}
@@ -103,9 +103,9 @@ export function PasswordChangeForm({
             )}
           />
 
-          <Box mt="-0.6rem" h="0.8rem">
+          <Box className={classes['password-change-form__error-box']}>
             {formState.errors.password && (
-              <Text ml={5} fz="xs" color="red">
+              <Text className={classes['password-change-form__error-text']}>
                 {formState.errors.password?.message
                   ? String(t(formState.errors.password.message))
                   : null}
@@ -114,7 +114,7 @@ export function PasswordChangeForm({
           </Box>
         </Stack>
 
-        <Stack miw="60%" mb="md" className={classes['stack']}>
+        <Stack className={classes['password-change-form__stack']}>
           <Controller
             name="confirmPassword"
             control={control}
@@ -131,9 +131,9 @@ export function PasswordChangeForm({
             )}
           />
 
-          <Box mt="-0.6rem" h="0.8rem">
+          <Box className={classes['password-change-form__error-box']}>
             {formState.errors.confirmPassword && (
-              <Text ml={5} fz="xs" color="red">
+              <Text className={classes['password-change-form__error-text']}>
                 {formState.errors.confirmPassword?.message
                   ? String(t(formState.errors.confirmPassword.message))
                   : null}
@@ -142,7 +142,11 @@ export function PasswordChangeForm({
           </Box>
         </Stack>
 
-        <Button type="submit" mt="md" loading={isLoading}>
+        <Button
+          type="submit"
+          className={classes['password-change-form__button']}
+          loading={isLoading}
+        >
           {t('profileView.dataCard.tabs.passwordChange.content.savePassword')}
         </Button>
       </Flex>

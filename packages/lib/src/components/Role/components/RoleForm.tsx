@@ -38,6 +38,8 @@ import { IconShieldCheck } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
 import { Control, Controller, FormState } from 'react-hook-form'
 
+import classes from './RoleForm.module.css'
+
 type Props = {
   rights: RightOutput[]
   toggleRight: (right: RightOutput) => void
@@ -76,10 +78,8 @@ export function RoleForm({
               label={t('rolesView.modal.name')}
               required
               variant="filled"
-              styles={{
-                label: {
-                  fontWeight: 'bold',
-                },
+              classNames={{
+                label: classes['role-form__text-input--label'],
               }}
               withAsterisk
               disabled={Boolean(role)}
@@ -87,9 +87,9 @@ export function RoleForm({
           )}
         />
 
-        <Box mt="-0.6rem" h="0.8rem">
+        <Box className={classes['role-form__error-box']}>
           {formState.errors.name && (
-            <Text ml={5} fz="xs" color="red">
+            <Text className={classes['role-form__error-text']}>
               {formState.errors.name?.message
                 ? String(t(formState.errors.name.message))
                 : null}
@@ -109,19 +109,17 @@ export function RoleForm({
               label={t('rolesView.modal.description')}
               required
               variant="filled"
-              styles={{
-                label: {
-                  fontWeight: 'bold',
-                },
+              classNames={{
+                label: classes['role-form__text-input--label'],
               }}
               withAsterisk
             />
           )}
         />
 
-        <Box mt="-0.6rem" h="0.8rem">
+        <Box className={classes['role-form__error-box']}>
           {formState.errors.description && (
-            <Text ml={5} fz="xs" color="red">
+            <Text className={classes['role-form__error-text']}>
               {formState.errors.description?.message
                 ? String(t(formState.errors.description.message))
                 : null}
@@ -130,7 +128,7 @@ export function RoleForm({
         </Box>
 
         <Divider
-          my="xs"
+          className={classes['role-form__divider--margin-xs']}
           label={
             <Flex align="start">
               <IconShieldCheck size={16} />
@@ -167,7 +165,7 @@ export function RoleForm({
         />
       </Flex>
 
-      <Divider my="xl" />
+      <Divider className={classes['role-form__divider--margin-xl']} />
 
       <Flex gap="lg" justify="start">
         <Controller
@@ -202,14 +200,19 @@ export function RoleForm({
       <Space h="lg" />
 
       <Flex justify="space-around" gap="lg">
-        <Button type="submit" fullWidth mt="md" loading={isLoading}>
+        <Button
+          type="submit"
+          fullWidth
+          className={classes['role-form__button']}
+          loading={isLoading}
+        >
           {role ? t('rolesView.modal.update') : t('rolesView.modal.submit')}
         </Button>
 
         <Button
           variant="subtle"
           fullWidth
-          mt="md"
+          className={classes['role-form__button']}
           onClick={() => {
             if (reset) reset()
             onClose()

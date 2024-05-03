@@ -256,7 +256,12 @@ export function FeedbackWidget({
         }
       >
         {!showSuccessMessage || !showErrorMessage ? (
-          <Title order={4} ta="center" size="sm" mb="sm" fw={500}>
+          <Title
+            order={4}
+            ta="center"
+            size="sm"
+            className={classes['feedback-widget__title']}
+          >
             {t('feedbackWidget.title')}
           </Title>
         ) : null}
@@ -337,16 +342,18 @@ export function FeedbackWidget({
 
                 {!isLoading && !showSuccessMessage && !showErrorMessage ? (
                   <Box>
-                    <Group justify="apart" gap="xs" mb="md">
+                    <Group
+                      justify="apart"
+                      gap="xs"
+                      className={classes['feedback-widget_group']}
+                    >
                       {Object.keys(OpenInput).map(key => {
                         const inputKey = key as keyof typeof OpenInput
 
                         return (
                           <Button
                             key={key}
-                            p="5px"
-                            w="110px"
-                            h="32px"
+                            className={classes['feedback-widget__button']}
                             variant={
                               openInput === OpenInput[inputKey]
                                 ? 'filled'
@@ -379,9 +386,11 @@ export function FeedbackWidget({
                         )}
                       />
 
-                      <Box h="0.8rem" mt="-0.8rem" mb="0.6em">
+                      <Box className={classes['feedback-widget__error-box']}>
                         {formState.errors.message && (
-                          <Text ml={5} fz="xs" c="red">
+                          <Text
+                            className={classes['feedback-widget__error-text']}
+                          >
                             {formState.errors.message?.message
                               ? String(t(formState.errors.message.message))
                               : null}

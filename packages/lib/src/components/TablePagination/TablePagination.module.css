@@ -1,0 +1,16 @@
+.table-pagination__flex--margin-top {
+  margin-top: var(--mantine-spacing-xs);
+}
+
+.table-pagination__flex--margin-right {
+  margin-right: var(--mantine-spacing-xl);
+}
+
+.table-pagination__text {
+  font-size: var(--mantine-font-size-sm);
+  margin-right: var(--mantine-spacing-xs);
+}
+
+.table-pagination__select {
+  width: 70;
+}

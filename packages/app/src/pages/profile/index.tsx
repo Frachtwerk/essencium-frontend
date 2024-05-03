@@ -36,6 +36,8 @@ import { AuthLayout } from '@/components/layouts'
 import { getTranslation, logout } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
+import classes from './profile.module.css'
+
 function ProfileView(): JSX.Element {
   const { t } = useTranslation()
 
@@ -100,7 +102,7 @@ function ProfileView(): JSX.Element {
   }
 
   return (
-    <Center w="100%" h="100%">
+    <Center className={classes['profile__center']}>
       {t('profileView.userNotFound')}
     </Center>
   )
