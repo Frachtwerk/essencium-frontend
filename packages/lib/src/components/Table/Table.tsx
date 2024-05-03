@@ -59,7 +59,11 @@ export function Table<T>({
                       align="center"
                       justify="flex-start"
                       gap="sm"
-                      className={classes['table__col-header']}
+                      className={
+                        header.column.getCanSort()
+                          ? `${classes['table__col-header']} ${classes['table__col-header--cursor-pointer']}`
+                          : classes['table__col-header']
+                      }
                       onClick={header.column.getToggleSortingHandler()}
                       w={header.column.getSize()}
                     >

@@ -25,8 +25,6 @@
 }
 
 .table__col-header {
-  cursor: progress;
-
   @mixin light {
     color: var(--mantine-color-dark-4);
   }
@@ -34,6 +32,10 @@
   @mixin dark {
     color: var(--mantine-color-dark-1);
   }
+}
+
+.table__col-header--cursor-pointer {
+  cursor: pointer;
 }
 
 .table__select {
