@@ -300,7 +300,7 @@ export function UserForm({
             {...field}
             checked={field.value}
             value={String(field.value)}
-            color="blue"
+            color="var(--mantine-primary-color-filled)"
             size="md"
             className={classes['userForm__enableToggle']}
             label={t('addUpdateUserView.form.status')}
