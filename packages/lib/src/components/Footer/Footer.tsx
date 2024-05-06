@@ -33,7 +33,7 @@ export function Footer({ links }: Props): JSX.Element {
   const { t } = useTranslation()
 
   return (
-    <AppShellFooter p="md" zIndex={200}>
+    <AppShellFooter p="md">
       <Flex
         justify={{ base: 'center', xs: 'space-between' }}
         direction="row"

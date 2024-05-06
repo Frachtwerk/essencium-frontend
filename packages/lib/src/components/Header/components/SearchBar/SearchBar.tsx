@@ -29,7 +29,7 @@ export function SearchBar(): JSX.Element {
 
   return (
     <UnstyledButton
-      visibleFrom="md"
+      visibleFrom="sm"
       onClick={() => openSpotlight()}
       role="search"
     >

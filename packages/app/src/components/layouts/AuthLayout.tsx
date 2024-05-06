@@ -24,8 +24,8 @@ import {
   NavBar,
 } from '@frachtwerk/essencium-lib'
 import { FooterLink, NavLink, RIGHTS } from '@frachtwerk/essencium-types'
-import { AppShell, AppShellMain, Box, useMantineTheme } from '@mantine/core'
-import { useMediaQuery } from '@mantine/hooks'
+import { AppShell, AppShellMain, useMantineTheme } from '@mantine/core'
+import { useDisclosure, useMediaQuery } from '@mantine/hooks'
 import { Spotlight, SpotlightActionData } from '@mantine/spotlight'
 import {
   IconHome,
@@ -154,15 +154,11 @@ export function AuthLayout({
 
   const { t } = useTranslation()
 
-  const [isOpenedNav, setIsOpenedNav] = useState(false)
+  const [mobileNavBarOpened, { toggle: toggleMobileNavBar }] = useDisclosure()
 
   const [isFoldedNav, setIsFoldedNav] = useAtom(isFoldedNavAtom)
 
   const [isFixedNav, setIsFixedNav] = useAtom(isFixedNavAtom)
-
-  function handleOpenNav(): void {
-    setIsOpenedNav(opened => !opened)
-  }
 
   const { data: user } = useGetMe()
 
@@ -285,17 +281,7 @@ export function AuthLayout({
 
   const pageTitle = `${routeName ? `${routeName} -` : ''} Essencium`
 
-  const isNoPhone = useMediaQuery('(min-width: 48em)')
-
-  function getSidebarMargin(): string {
-    if (isFixedNav && isNoPhone) {
-      return '250px'
-    }
-    if (isNoPhone) {
-      return '90px'
-    }
-    return '0px'
-  }
+  const isNotMobile = useMediaQuery('(min-width: 48em)') // equals mantine breakpoint sm
 
   return (
     <>
@@ -314,24 +300,23 @@ export function AuthLayout({
       </Head>
 
       <AppShell
+        layout={isNotMobile ? 'alt' : 'default'}
         header={{ height: { base: 60 } }}
         footer={{ height: { base: 58 } }}
         navbar={{
-          collapsed: { mobile: !isOpenedNav },
+          width: isFixedNav ? 250 : 80,
           breakpoint: 'sm',
-          width: 0,
+          collapsed: { mobile: !mobileNavBarOpened },
         }}
         padding={16}
       >
         <Header
           user={user}
-          marginLeft={getSidebarMargin()}
-          isOpen={isOpenedNav}
-          handleOpenNav={handleOpenNav}
+          isOpen={mobileNavBarOpened}
+          handleOpenNav={toggleMobileNavBar}
         />
 
         <NavBar
-          isOpen={isOpenedNav}
           links={NAV_LINKS}
           userRights={userRights}
           handleLogout={handleLogout}
@@ -346,7 +331,6 @@ export function AuthLayout({
               alt={t('header.logo')}
               width={150}
               height={50}
-              style={{ verticalAlign: 'initial' }}
             />
           }
           icon={
@@ -361,15 +345,7 @@ export function AuthLayout({
 
         <Footer links={FOOTER_LINKS} />
 
-        <AppShellMain>
-          <Box
-            style={{
-              marginLeft: getSidebarMargin(),
-            }}
-          >
-            {showChildren ? children : null}
-          </Box>
-        </AppShellMain>
+        <AppShellMain>{showChildren ? children : null}</AppShellMain>
 
         {user ? (
           <FeedbackWidget

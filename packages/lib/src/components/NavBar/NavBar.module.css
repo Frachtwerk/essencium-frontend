@@ -17,17 +17,18 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-.navBox {
-  height: 50px;
-}
-
 .unfoldedNavBox {
+  margin-left: var(--mantine-spacing-xl);
+  margin-top: var(--mantine-spacing-xs);
   cursor: pointer;
 }
 
 .navbar {
-  width: 80px;
-  height: 100%;
+  padding: var(--mantine-spacing-sm);
+  display: flex;
+  flex-direction: column;
+  -webkit-transition: width 0.4s ease-in-out;
+  -o-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
 }
 
@@ -35,28 +36,16 @@
   width: 250px;
 }
 
-.fixedNavbar {
-  width: 250px;
-  height: 100%;
-  -webkit-transition: width 0.4s ease-in-out;
-  -o-transition: width 0.4s ease-in-out;
-  transition: width 0.4s ease-in-out;
-}
-
-.fixedNavbar:hover {
-  width: 250px;
-}
-
-.stack {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+.navBox{
+  margin-bottom: var(--mantine-spacing-xl);
 }
 
 .navlinkRoot {
   border-radius: var(--mantine-radius-sm);
+}
+
+.versionContainer {
+  margin-bottom: var(--mantine-spacing-md);
 }
 
 .navlinkLabel {
