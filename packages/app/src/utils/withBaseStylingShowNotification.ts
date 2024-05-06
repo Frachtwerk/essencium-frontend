@@ -52,6 +52,11 @@ export function withBaseStylingShowNotification(
         : props.color === 'error'
         ? 'red'
         : 'blue',
-    style: props.style ?? { position: 'fixed', top: '20px', right: '10px' },
+    style: props.style ?? {
+      position: 'fixed',
+      top: '20px',
+      right: '10px',
+      zIndex: 100,
+    },
   })
 }
