@@ -61,11 +61,11 @@
   "devDependencies": {
     "@frachtwerk/eslint-config-essencium": "workspace:*",
     "@frachtwerk/prettier-config-essencium": "workspace:*",
-    "@testing-library/react": "14.0.0",
+    "@testing-library/react": "14.3.1",
     "@types/nodemailer": "6.4.14",
     "@typescript-eslint/eslint-plugin": "6.9.1",
     "@typescript-eslint/parser": "6.9.1",
-    "@vitejs/plugin-react": "3.1.0",
+    "@vitejs/plugin-react": "4.2.1",
     "eslint": "8.35.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.1.0",
@@ -78,8 +78,8 @@
     "eslint-plugin-simple-import-sort": "10.0.0",
     "postcss-preset-mantine": "1.12.3",
     "prettier": "3.0.3",
-    "vite": "4.5.2",
-    "vitest": "0.29.2"
+    "vite": "5.0.12",
+    "vitest": "1.5.3"
   },
   "engines": {
     "node": ">=20",
