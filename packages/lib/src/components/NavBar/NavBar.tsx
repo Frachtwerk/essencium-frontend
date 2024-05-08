@@ -37,6 +37,7 @@ import { NavLinks } from './components'
 import classes from './NavBar.module.css'
 
 type Props = {
+  isMobile: boolean
   links: NavLink[]
   userRights?: string[] | null
   handleLogout: () => void
@@ -50,6 +51,7 @@ type Props = {
 }
 
 export function NavBar({
+  isMobile,
   links,
   userRights,
   logo,
@@ -97,29 +99,29 @@ export function NavBar({
   return (
     <AppShellNavbar
       onMouseEnter={() => {
-        if (!fixedNav) {
+        if (!fixedNav && !isMobile) {
           handleMouseEnter()
         }
       }}
       onMouseLeave={() => {
-        if (!fixedNav) {
+        if (!fixedNav && !isMobile) {
           handleMouseLeave()
         }
       }}
-      className={classes['navbar']}
+      className={isMobile ? classes['mobileNavbar'] : classes['navbar']}
       zIndex={100}
     >
       <AppShellSection className={classes['versionContainer']}>
         <Group gap="xs" align="center">
           <NextLink href="/">
-            {foldedNav ? (
+            {foldedNav || isMobile ? (
               <Box className={classes['navBox']}>{icon}</Box>
             ) : (
               <Box>{logo}</Box>
             )}
           </NextLink>
 
-          {!foldedNav ? (
+          {!foldedNav && !isMobile ? (
             <Box
               onClick={() => toggleFixedNav()}
               className={classes['unfoldedNavBox']}
@@ -148,7 +150,7 @@ export function NavBar({
 
           {version ? <Code>{version}</Code> : null}
 
-          {process.env.NEXT_PUBLIC_ENV && !foldedNav ? (
+          {process.env.NEXT_PUBLIC_ENV && !foldedNav && !isMobile ? (
             <Code>{process.env.NEXT_PUBLIC_ENV}</Code>
           ) : null}
         </Group>

@@ -317,6 +317,7 @@ export function AuthLayout({
         />
 
         <NavBar
+          isMobile={!isNotMobile}
           links={NAV_LINKS}
           userRights={userRights}
           handleLogout={handleLogout}
