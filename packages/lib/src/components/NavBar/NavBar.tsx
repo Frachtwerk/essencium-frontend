@@ -108,14 +108,18 @@ export function NavBar({
           handleMouseLeave()
         }
       }}
-      className={isMobile ? classes['mobileNavbar'] : classes['navbar']}
+      className={
+        isMobile
+          ? classes['navBar__container-mobile']
+          : classes['navBar__container']
+      }
       zIndex={100}
     >
-      <AppShellSection className={classes['versionContainer']}>
+      <AppShellSection className={classes['navBar__versionContainer']}>
         <Group gap="xs" align="center">
           <NextLink href="/">
             {foldedNav || isMobile ? (
-              <Box className={classes['navBox']}>{icon}</Box>
+              <Box className={classes['navBar__logo']}>{icon}</Box>
             ) : (
               <Box>{logo}</Box>
             )}
@@ -124,7 +128,7 @@ export function NavBar({
           {!foldedNav && !isMobile ? (
             <Box
               onClick={() => toggleFixedNav()}
-              className={classes['unfoldedNavBox']}
+              className={classes['navBar__pinIcon']}
             >
               {fixedNav ? (
                 <IconPinFilled
@@ -166,8 +170,8 @@ export function NavBar({
           label={t('navigation.logout.label')}
           onClick={() => handleLogout()}
           classNames={{
-            root: classes['navlinkRoot'],
-            label: classes['navlinkLabel'],
+            root: classes['navBar__navLink--root'],
+            label: classes['navBar__navLink--label'],
           }}
         />
       </AppShellSection>
