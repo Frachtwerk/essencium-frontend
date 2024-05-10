@@ -23,10 +23,8 @@ import {
   AppShellSection,
   Box,
   Code,
-  Flex,
   Group,
   NavLink as MantineNavLink,
-  Stack,
   useMantineColorScheme,
   useMantineTheme,
 } from '@mantine/core'
@@ -39,7 +37,7 @@ import { NavLinks } from './components'
 import classes from './NavBar.module.css'
 
 type Props = {
-  isOpen: boolean
+  isMobile: boolean
   links: NavLink[]
   userRights?: string[] | null
   handleLogout: () => void
@@ -53,7 +51,7 @@ type Props = {
 }
 
 export function NavBar({
-  isOpen,
+  isMobile,
   links,
   userRights,
   logo,
@@ -99,144 +97,84 @@ export function NavBar({
   }, [currentTimeOutId])
 
   return (
-    <Box>
-      <AppShellNavbar
-        visibleFrom="sm"
-        onMouseEnter={() => {
-          if (!fixedNav) {
-            handleMouseEnter()
-          }
-        }}
-        onMouseLeave={() => {
-          if (!fixedNav) {
-            handleMouseLeave()
-          }
-        }}
-        p="sm"
-        className={fixedNav ? classes['fixedNavbar'] : classes['navbar']}
-        zIndex={100}
-        mt={isOpen ? '0' : '-3.6rem'}
-      >
-        <Stack h="100%" display="flex" dir="column" justify="space-between">
-          <AppShellSection mb="lg">
-            <Group gap="xs" align="center">
-              <Flex justify="space-between" align="center" gap="xl">
-                <NextLink href="/">
-                  {foldedNav ? (
-                    <Box className={classes['navBox']} pr={150}>
-                      {icon}
-                    </Box>
-                  ) : (
-                    <Box className={classes['navBox']}>{logo}</Box>
-                  )}
-                </NextLink>
+    <AppShellNavbar
+      onMouseEnter={() => {
+        if (!fixedNav && !isMobile) {
+          handleMouseEnter()
+        }
+      }}
+      onMouseLeave={() => {
+        if (!fixedNav && !isMobile) {
+          handleMouseLeave()
+        }
+      }}
+      className={
+        isMobile
+          ? classes['navBar__container-mobile']
+          : classes['navBar__container']
+      }
+      zIndex={100}
+    >
+      <AppShellSection className={classes['navBar__versionContainer']}>
+        <Group gap="xs" align="center">
+          <NextLink href="/">
+            {foldedNav || isMobile ? (
+              <Box className={classes['navBar__logo']}>{icon}</Box>
+            ) : (
+              <Box>{logo}</Box>
+            )}
+          </NextLink>
 
-                {!foldedNav ? (
-                  <Box
-                    onClick={() => toggleFixedNav()}
-                    ml="lg"
-                    mt="xs"
-                    className={classes['unfoldedNavBox']}
-                  >
-                    {fixedNav ? (
-                      <IconPinFilled
-                        size={20}
-                        color={
-                          colorScheme === 'dark'
-                            ? theme.colors.gray[3]
-                            : theme.colors.dark[9]
-                        }
-                      />
-                    ) : (
-                      <IconPinnedOff
-                        size={20}
-                        color={
-                          colorScheme === 'dark'
-                            ? theme.colors.gray[3]
-                            : theme.colors.dark[9]
-                        }
-                      />
-                    )}
-                  </Box>
-                ) : null}
-              </Flex>
+          {!foldedNav && !isMobile ? (
+            <Box
+              onClick={() => toggleFixedNav()}
+              className={classes['navBar__pinIcon']}
+            >
+              {fixedNav ? (
+                <IconPinFilled
+                  size={20}
+                  color={
+                    colorScheme === 'dark'
+                      ? theme.colors.gray[3]
+                      : theme.colors.dark[9]
+                  }
+                />
+              ) : (
+                <IconPinnedOff
+                  size={20}
+                  color={
+                    colorScheme === 'dark'
+                      ? theme.colors.gray[3]
+                      : theme.colors.dark[9]
+                  }
+                />
+              )}
+            </Box>
+          ) : null}
 
-              {version ? <Code>{version}</Code> : null}
+          {version ? <Code>{version}</Code> : null}
 
-              {process.env.NEXT_PUBLIC_ENV && !foldedNav ? (
-                <Code>{process.env.NEXT_PUBLIC_ENV}</Code>
-              ) : null}
-            </Group>
-          </AppShellSection>
+          {process.env.NEXT_PUBLIC_ENV && !foldedNav && !isMobile ? (
+            <Code>{process.env.NEXT_PUBLIC_ENV}</Code>
+          ) : null}
+        </Group>
+      </AppShellSection>
 
-          <AppShellSection grow>
-            <NavLinks links={links} userRights={userRights} />
-          </AppShellSection>
+      <AppShellSection grow>
+        <NavLinks links={links} userRights={userRights} />
+      </AppShellSection>
 
-          <AppShellSection mt="auto" mb="70px">
-            <MantineNavLink
-              leftSection={<IconLogout />}
-              label={t('navigation.logout.label')}
-              onClick={() => handleLogout()}
-              classNames={{
-                root: classes['navlinkRoot'],
-                label: classes['navlinkLabel'],
-              }}
-            />
-          </AppShellSection>
-        </Stack>
-      </AppShellNavbar>
-
-      <AppShellNavbar
-        hidden={!isOpen}
-        hiddenFrom="sm"
-        p="sm"
-        w="100%"
-        zIndex={100}
-        className={classes['navbar']}
-      >
-        <Stack
-          style={{
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
+      <AppShellSection>
+        <MantineNavLink
+          leftSection={<IconLogout />}
+          label={t('navigation.logout.label')}
+          onClick={() => handleLogout()}
+          classNames={{
+            root: classes['navBar__navLink--root'],
+            label: classes['navBar__navLink--label'],
           }}
-        >
-          <AppShellSection mb="xl">
-            <Group gap="xs" align="center">
-              <NextLink href="/">
-                <Box>{logo}</Box>
-              </NextLink>
-              {version ? (
-                <Box>
-                  <Code>{version}</Code>
-
-                  {process.env.NODE_ENV === 'development' ? (
-                    <Code>{process.env.NODE_ENV}</Code>
-                  ) : null}
-                </Box>
-              ) : null}
-            </Group>
-          </AppShellSection>
-
-          <AppShellSection grow>
-            <NavLinks links={links} userRights={userRights} />
-          </AppShellSection>
-
-          <AppShellSection mt="auto" grow>
-            <MantineNavLink
-              leftSection={<IconLogout />}
-              label={t('navigation.logout.label')}
-              onClick={() => handleLogout()}
-              classNames={{
-                root: classes['navlinkRoot'],
-                label: classes['navlinkLabel'],
-              }}
-            />
-          </AppShellSection>
-        </Stack>
-      </AppShellNavbar>
-    </Box>
+        />
+      </AppShellSection>
+    </AppShellNavbar>
   )
 }

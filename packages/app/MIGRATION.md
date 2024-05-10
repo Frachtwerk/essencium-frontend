@@ -1,5 +1,18 @@
 # Migrations
 
+## [?.?.? (dd.mm.yyyy)]()
+
+### Mantine `AppShell` refactoring
+
+- Mantines `AppShell` and linked components were refactored
+  - use `useDisclosure` to toggle mobile navbar
+  - Appshell uses layout concerning to the `useMediaQuery` hook
+  - the `NavBar` width is now set in `AppShell`
+  - margin is no longer set as prop in `Header`
+  - `Header` does not need the `marginLeft` prop anymore
+  - `NavBar` does not need the `isOpen` prop anymore
+  - The `Box` wrapper in `AppShellMain` is not longer needed
+
 ## [7.0.0 (25.04.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v6.1.1...essencium-app-v7.0.0)
 
 ### Next.js migration

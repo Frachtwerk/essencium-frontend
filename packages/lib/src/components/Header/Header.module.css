@@ -18,15 +18,9 @@
  */
 
 .appShellHeader {
-  @media (max-width: $mantine-breakpoint-sm) {
-    margin-left: 0;
-  }
+  padding: var(--mantine-spacing-md);
 }
 
 .appShellHeader__content {
   height: 100%;
-}
-
-.appShellHeader__burger {
-  z-index: 200;
 }

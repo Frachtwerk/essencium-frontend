@@ -31,26 +31,15 @@ import classes from './Header.module.css'
 
 type Props = {
   user: UserOutput | undefined
-  marginLeft: string
   isOpen: boolean
   handleOpenNav: () => void
 }
 
-export function Header({
-  user,
-  marginLeft,
-  isOpen,
-  handleOpenNav,
-}: Props): JSX.Element {
+export function Header({ user, isOpen, handleOpenNav }: Props): JSX.Element {
   const theme = useMantineTheme()
 
   return (
-    <AppShellHeader
-      p="md"
-      withBorder={false}
-      ml={marginLeft}
-      className={classes['appShellHeader']}
-    >
+    <AppShellHeader withBorder={false} className={classes['appShellHeader']}>
       <Flex
         className={classes['appShellHeader__content']}
         justify="space-between"
@@ -65,7 +54,6 @@ export function Header({
           // not in CSS module because it's not applied there with CSS 'color' prop
           color={theme.colors.gray[5]}
           hiddenFrom="sm"
-          className={classes['appShellHeader__burger']}
         />
 
         <SearchBar />

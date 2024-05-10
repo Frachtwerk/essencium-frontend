@@ -18,6 +18,7 @@
  */
 
 import { NavLink } from '@frachtwerk/essencium-types'
+import { AppShell, MantineProvider } from '@mantine/core'
 import {
   IconHome2,
   IconLanguage,
@@ -25,14 +26,15 @@ import {
   IconUserCheck,
   IconUsers,
 } from '@tabler/icons-react'
-import { render, RenderResult, screen } from '@testing-library/react'
-import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
+import { render, screen } from '@testing-library/react'
+import { ReactNode } from 'react'
+import { beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { NavBar } from './NavBar'
 
-describe('NavBar', () => {
-  let NavBarMounted: RenderResult
+const BASE_PATH = 'http://localhost:3000'
 
+describe('NavBar', () => {
   const NAV_LINKS: NavLink[] = [
     {
       icon: <IconHome2 size={20} />,
@@ -71,35 +73,46 @@ describe('NavBar', () => {
     },
   ]
 
+  const props = {
+    links: NAV_LINKS,
+    userRights: [],
+    handleLogout: () => {},
+    logo: <div>Logo</div>,
+    icon: <div>Icon</div>,
+    foldedNav: false,
+    setFoldedNav: () => {},
+    fixedNav: false,
+    setFixedNav: () => {},
+  }
   beforeAll(() => {
+    const wrapper = ({ children }: { children: ReactNode }): JSX.Element => (
+      <MantineProvider>
+        <AppShell>{children}</AppShell>
+      </MantineProvider>
+    )
+
+    render(<NavBar {...props} />, { wrapper })
+
     vi.mock('next/router', () => ({
       useRouter: () => ({}),
     }))
-
-    NavBarMounted = render(
-      <NavBar isOpen links={NAV_LINKS} handleLogout={() => {}} />,
-    )
-  })
-
-  afterAll(() => {
-    NavBarMounted.unmount()
   })
 
   it('should contain the correct navigation links', () => {
     expect(
       screen.getByText('navigation.home.label').closest('a'),
-    ).toHaveProperty('href', '/home')
+    ).toHaveProperty('href', `${BASE_PATH}/home`)
     expect(
       screen.getByText('navigation.users.label').closest('a'),
-    ).toHaveProperty('href', '/users')
+    ).toHaveProperty('href', `${BASE_PATH}/users`)
     expect(
       screen.getByText('navigation.roles.label').closest('a'),
-    ).toHaveProperty('href', '/roles')
+    ).toHaveProperty('href', `${BASE_PATH}/roles`)
     expect(
       screen.getByText('navigation.rights.label').closest('a'),
-    ).toHaveProperty('href', '/rights')
+    ).toHaveProperty('href', `${BASE_PATH}/rights`)
     expect(
       screen.getByText('navigation.translations.label').closest('a'),
-    ).toHaveProperty('href', '/translations')
+    ).toHaveProperty('href', `${BASE_PATH}/translations`)
   })
 })
