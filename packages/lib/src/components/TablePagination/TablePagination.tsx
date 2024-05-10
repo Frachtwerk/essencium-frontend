@@ -18,19 +18,23 @@
  */
 
 import { PaginatedResponse } from '@frachtwerk/essencium-types'
-import { Flex, Pagination, Select, Text } from '@mantine/core'
+import { Flex, Pagination, PaginationProps, Select, Text } from '@mantine/core'
 import { Table as TanstackTable } from '@tanstack/react-table'
 import { useTranslation } from 'next-i18next'
+import { useCallback, useEffect } from 'react'
 
 import classes from './TablePagination.module.css'
 
-type Props<T> = {
+type CustomPaginationProps = Omit<PaginationProps, 'total'>
+
+type Props<T> = CustomPaginationProps & {
   table: TanstackTable<T>
   pageSize: PaginatedResponse<T>['size']
   activePage: PaginatedResponse<T>['number']
   setPageSize: (pageSize: PaginatedResponse<T>['size']) => void
   setActivePage: (activePage: PaginatedResponse<T>['number']) => void
   handleRefetch: () => void
+  fixedTablePageSize?: number
 }
 
 export function TablePagination<T>({
@@ -40,8 +44,22 @@ export function TablePagination<T>({
   setPageSize,
   setActivePage,
   handleRefetch,
+  fixedTablePageSize,
+  ...props
 }: Props<T>): JSX.Element {
   const { t } = useTranslation()
+
+  const handleSetFixedTablePageSize = useCallback(() => {
+    if (!fixedTablePageSize) return
+
+    table.setPageSize(fixedTablePageSize)
+
+    setPageSize(fixedTablePageSize)
+  }, [fixedTablePageSize, setPageSize, table])
+
+  useEffect(() => {
+    handleSetFixedTablePageSize()
+  }, [handleSetFixedTablePageSize])
 
   return (
     <Flex
@@ -76,6 +94,7 @@ export function TablePagination<T>({
           setActivePage(e)
           handleRefetch()
         }}
+        {...props}
       />
     </Flex>
   )
