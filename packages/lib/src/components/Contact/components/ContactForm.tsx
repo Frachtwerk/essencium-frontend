@@ -46,13 +46,7 @@ export function ContactForm({ formState, control }: Props): JSX.Element {
   const { t } = useTranslation()
 
   return (
-    <Card
-      shadow="sm"
-      radius="md"
-      withBorder
-      role="form"
-      className={classes['contact-form__card']}
-    >
+    <Card withBorder role="form" className={classes['contact-form__card']}>
       <Title order={3} className={classes['contact-form__title']}>
         {t('contactView.contactForm.title')}
       </Title>
@@ -71,7 +65,6 @@ export function ContactForm({ formState, control }: Props): JSX.Element {
                     label={t('contactView.contactForm.form.email')}
                     withAsterisk
                     size="sm"
-                    radius="md"
                   />
                 )}
               />
@@ -97,7 +90,6 @@ export function ContactForm({ formState, control }: Props): JSX.Element {
                     className={classes['contact-from__text-input']}
                     label={t('contactView.contactForm.form.name')}
                     size="sm"
-                    radius="md"
                     withAsterisk
                   />
                 )}
@@ -127,7 +119,6 @@ export function ContactForm({ formState, control }: Props): JSX.Element {
                   className={classes['contact-from__text-input']}
                   label={t('contactView.contactForm.form.subject')}
                   size="sm"
-                  radius="md"
                   variant="filled"
                   withAsterisk
                 />

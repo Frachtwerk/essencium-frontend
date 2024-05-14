@@ -68,7 +68,6 @@ export function PasswordChangeForm({
                 label={t(
                   'profileView.dataCard.tabs.passwordChange.content.currentPassword',
                 )}
-                radius="sm"
                 withAsterisk
                 variant="filled"
               />
@@ -96,7 +95,6 @@ export function PasswordChangeForm({
                 label={t(
                   'profileView.dataCard.tabs.passwordChange.content.newPassword',
                 )}
-                radius="sm"
                 withAsterisk
                 variant="filled"
               />
@@ -124,7 +122,6 @@ export function PasswordChangeForm({
                 label={t(
                   'profileView.dataCard.tabs.passwordChange.content.confirmNewPassword',
                 )}
-                radius="sm"
                 withAsterisk
                 variant="filled"
               />

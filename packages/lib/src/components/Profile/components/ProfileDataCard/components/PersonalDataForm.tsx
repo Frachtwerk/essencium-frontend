@@ -114,7 +114,6 @@ export function PersonalDataForm({
                 )}
                 size="sm"
                 variant="filled"
-                radius="sm"
               />
             )}
           />
@@ -148,7 +147,6 @@ export function PersonalDataForm({
                 )}
                 size="sm"
                 variant="filled"
-                radius="sm"
               />
             )}
           />
@@ -169,7 +167,7 @@ export function PersonalDataForm({
         direction={{ base: 'column', sm: 'row' }}
         gap={{ base: 'sm', sm: 'md' }}
         justify={{ sm: 'space-between' }}
-        mt="xs"
+        className={classes['personal-data-form__flex--margin-top']}
       >
         <Stack className={classes['personal-data-form__stack']}>
           <Controller
@@ -184,7 +182,6 @@ export function PersonalDataForm({
                 label={t('profileView.dataCard.tabs.personalData.label.phone')}
                 size="sm"
                 variant="filled"
-                radius="sm"
               />
             )}
           />
@@ -215,7 +212,6 @@ export function PersonalDataForm({
                 label={t('profileView.dataCard.tabs.personalData.label.mobile')}
                 size="sm"
                 variant="filled"
-                radius="sm"
               />
             )}
           />
@@ -236,7 +232,7 @@ export function PersonalDataForm({
         direction={{ base: 'column', sm: 'row' }}
         gap={{ base: 'sm', sm: 'md' }}
         justify={{ sm: 'space-between' }}
-        mt="xs"
+        className={classes['personal-data-form__flex--margin-top']}
       >
         <Stack className={classes['personal-data-form__stack']}>
           <Controller
@@ -253,7 +249,6 @@ export function PersonalDataForm({
                 withAsterisk
                 size="sm"
                 variant="filled"
-                radius="sm"
               />
             )}
           />
@@ -276,7 +271,6 @@ export function PersonalDataForm({
             render={({ field }) => (
               <Select
                 {...field}
-                radius="sm"
                 label={t(
                   'profileView.dataCard.tabs.personalData.label.language',
                 )}

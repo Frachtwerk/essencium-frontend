@@ -74,7 +74,7 @@ export function LoginForm({
   }
 
   return (
-    <Box className={classes['login-form__box']}>
+    <Box className={classes['login-form__container']}>
       <Transition
         mounted={!isPasswordResetFormOpened && !isResetPasswordSent}
         transition="fade"

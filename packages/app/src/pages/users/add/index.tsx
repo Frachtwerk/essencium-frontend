@@ -74,12 +74,7 @@ function AddUserView(): JSX.Element {
         </Flex>
       </Title>
 
-      <Card
-        shadow="sm"
-        radius="sm"
-        withBorder
-        className={classes['add-user-view']}
-      >
+      <Card withBorder className={classes['add-user-view__card']}>
         <UserForm
           title={t('addUpdateUserView.form.userDataHeading')}
           roles={roles}

@@ -43,8 +43,6 @@ export function ContactPersonCard(): JSX.Element {
 
   return (
     <Card
-      shadow="sm"
-      radius="md"
       withBorder
       role="complementary"
       className={classes['contact-person-card__card']}
@@ -59,7 +57,8 @@ export function ContactPersonCard(): JSX.Element {
 
         <Avatar
           size="xl"
-          radius="xl"
+          // color gets not applied when outsourced to module.css
+          color="var(--mantine-color-blue-6)"
           src={null}
           alt={String(t('contactView.contactPersonCard.avatar.alt'))}
           className={classes['contact-person-card__avatar']}
@@ -70,25 +69,44 @@ export function ContactPersonCard(): JSX.Element {
         </Title>
 
         <Flex direction="column" align="flex-start" gap="sm">
-          <Group gap="xl" aria-label="Contact info">
-            <ThemeIcon radius="md">
-              <IconPhoneCall size={16} />
+          <Group
+            gap="xl"
+            aria-label={
+              t(
+                'contactView.contactPersonCard.contactPerson.ariaLabel',
+              ) as string
+            }
+          >
+            <ThemeIcon
+              className={classes['contact-person-card__theme-icon--radius']}
+            >
+              <IconPhoneCall
+                className={classes['contact-person-card__icon--size']}
+              />
             </ThemeIcon>
 
             <Text>555 - 5555 5555</Text>
           </Group>
 
           <Group gap="xl" aria-label="Contact info">
-            <ThemeIcon radius="md">
-              <IconMail size={16} />
+            <ThemeIcon
+              className={classes['contact-person-card__theme-icon--radius']}
+            >
+              <IconMail
+                className={classes['contact-person-card__icon--size']}
+              />
             </ThemeIcon>
 
             <Text>test@email.de</Text>
           </Group>
 
           <Group gap="xl" aria-label="Contact info">
-            <ThemeIcon radius="md">
-              <IconLocation size={16} />
+            <ThemeIcon
+              className={classes['contact-person-card__theme-icon--radius']}
+            >
+              <IconLocation
+                className={classes['contact-person-card__icon--size']}
+              />
             </ThemeIcon>
 
             <Text>Teststreet 1, 12345 Testcity</Text>
@@ -99,16 +117,34 @@ export function ContactPersonCard(): JSX.Element {
           className={classes['contact-person-card__group']}
           aria-label="Contact info"
         >
-          <ThemeIcon variant="light" radius="md">
-            <IconBrandLinkedin size={15} aria-label="Social icon" />
+          <ThemeIcon
+            variant="light"
+            className={classes['contact-person-card__theme-icon--radius']}
+          >
+            <IconBrandLinkedin
+              className={classes['contact-person-card__icon--size']}
+              aria-label="Social icon"
+            />
           </ThemeIcon>
 
-          <ThemeIcon variant="light" radius="md">
-            <IconBrandFacebook size={15} aria-label="Social icon" />
+          <ThemeIcon
+            variant="light"
+            className={classes['contact-person-card__theme-icon--radius']}
+          >
+            <IconBrandFacebook
+              className={classes['contact-person-card__icon--size']}
+              aria-label="Social icon"
+            />
           </ThemeIcon>
 
-          <ThemeIcon variant="light" radius="md">
-            <IconBrandInstagram size={15} aria-label="Social icon" />
+          <ThemeIcon
+            variant="light"
+            className={classes['contact-person-card__theme-icon--radius']}
+          >
+            <IconBrandInstagram
+              className={classes['contact-person-card__icon--size']}
+              aria-label="Social icon"
+            />
           </ThemeIcon>
         </Group>
       </Flex>

@@ -18,6 +18,9 @@
  */
 
 .loginCard {
+  box-shadow: var(--mantine-shadow-sm);
+  border-radius: var(--mantine-radius-sm);
+
   @mixin dark {
     background-color: var(--mantine-color-dark-7);
   }

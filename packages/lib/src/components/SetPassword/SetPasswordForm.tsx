@@ -56,7 +56,6 @@ export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
               placeholder={String(t('setPasswordView.form.newPassword'))}
               label={t('setPasswordView.form.newPassword')}
               withAsterisk
-              radius="sm"
               classNames={{
                 root: classes['set-password-form__text-input--root'],
                 label: classes['set-password-form__text-input--label'],
@@ -86,7 +85,6 @@ export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
               placeholder={String(t('setPasswordView.form.confirmPassword'))}
               label={t('setPasswordView.form.confirmPassword')}
               withAsterisk
-              radius="sm"
               classNames={{
                 label: classes['set-password-form__text-input--label'],
                 root: classes['set-password-form__text-input--root'],

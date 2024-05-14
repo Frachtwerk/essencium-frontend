@@ -52,12 +52,7 @@ export function ProfileDataCard({
   const { t } = useTranslation()
 
   return (
-    <Card
-      shadow="sm"
-      radius="sm"
-      withBorder
-      className={classes['profile-data-card__card']}
-    >
+    <Card withBorder className={classes['profile-data-card__card']}>
       <Tabs defaultValue="personalDataForm">
         <Tabs.List>
           <Tabs.Tab

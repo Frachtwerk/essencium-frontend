@@ -55,14 +55,14 @@ function SetPasswordView(): JSX.Element {
   }
 
   return (
-    <Container size={450} className={classes['setPassword__container']}>
+    <Container className={classes['setPassword__container']}>
       {!showSuccessMessage && (
         <Title ta="center" order={2} fw="bold">
           {t('setPasswordView.title')}
         </Title>
       )}
 
-      <Paper shadow="sm" className={classes['setPassword__paper']}>
+      <Paper className={classes['setPassword__paper']}>
         {!showSuccessMessage && (
           <SetPasswordForm handleSetPassword={handleSetPassword} />
         )}

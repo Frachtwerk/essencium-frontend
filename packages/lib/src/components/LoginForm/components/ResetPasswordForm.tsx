@@ -65,7 +65,6 @@ export function ResetPasswordForm({
               )}
               label={String(t('loginView.resetPassword.form.label'))}
               withAsterisk
-              radius="sm"
               className={classes['reset-password-form__text-input']}
             />
           )}

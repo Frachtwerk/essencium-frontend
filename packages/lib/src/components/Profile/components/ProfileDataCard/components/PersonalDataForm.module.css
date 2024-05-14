@@ -41,3 +41,7 @@
 .personal-data-form__button {
   margin-top: var(--mantine-spacing-md);
 }
+
+.personal-data-form__flex--margin-top {
+  margin-top: var(--mantine-spacing-xs);
+}

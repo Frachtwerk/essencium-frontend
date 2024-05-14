@@ -109,12 +109,7 @@ function LoginView(): JSX.Element {
   return (
     <Container mt="150px">
       {!oauthToken ? (
-        <Card
-          shadow="sm"
-          radius="sm"
-          className={classes['loginCard']}
-          withBorder
-        >
+        <Card className={classes['loginCard']} withBorder>
           <Flex direction="column">
             <Title order={2} className={classes['loginCard__title']}>
               {t('loginView.title')}
