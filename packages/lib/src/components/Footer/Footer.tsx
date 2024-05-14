@@ -34,7 +34,6 @@ export function Footer({ links }: Props): JSX.Element {
 
   return (
     <AppShellFooter className={classes['footer__app-shell']}>
-    <AppShellFooter p="md">
       <Flex
         justify={{ base: 'center', xs: 'space-between' }}
         direction="row"

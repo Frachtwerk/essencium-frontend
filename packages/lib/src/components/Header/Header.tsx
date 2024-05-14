@@ -39,7 +39,7 @@ export function Header({ user, isOpen, handleOpenNav }: Props): JSX.Element {
   const theme = useMantineTheme()
 
   return (
-    <AppShellHeader withBorder={false} className={classes['appShellHeader']}>
+    <AppShellHeader withBorder={false} className={classes['header__app-shell']}>
       <Flex
         className={classes.header__content}
         justify="space-between"
