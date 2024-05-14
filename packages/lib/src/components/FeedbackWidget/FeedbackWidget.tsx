@@ -40,7 +40,6 @@ import {
   Tooltip,
   Transition,
   UnstyledButton,
-  useMantineTheme,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import {
@@ -85,8 +84,6 @@ export function FeedbackWidget({
   feedbackSending,
   createNotification,
 }: Props): JSX.Element {
-  const theme = useMantineTheme()
-
   const { t } = useTranslation()
 
   const router = useRouter()
@@ -232,7 +229,7 @@ export function FeedbackWidget({
           position: 'fixed',
           bottom: 80,
           right: 25,
-          zIndex: '20',
+          zIndex: 20,
         }}
         onClick={toggle}
       >
@@ -245,18 +242,16 @@ export function FeedbackWidget({
         onClose={() => {
           onCloseWidget()
         }}
-        radius="md"
-        w="390px"
         h={openInput ? 'auto' : '180px'}
         position={{ bottom: 100, right: 80 }}
         className={
           isCapturingScreenshot
             ? classes['feedback-widget__dialog--display']
-            : ''
+            : classes['feedback-widget__dialog']
         }
       >
         {!showSuccessMessage || !showErrorMessage ? (
-          <Title order={4} ta="center" size="sm" mb="sm" fw={500}>
+          <Title className={classes['feedback-widget__title']}>
             {t('feedbackWidget.title')}
           </Title>
         ) : null}
@@ -269,7 +264,6 @@ export function FeedbackWidget({
                 <Stack key={key}>
                   <ActionIcon
                     variant="filled"
-                    size={70}
                     className={classes['feedback-widget__action-icon']}
                     onClick={() => {
                       setOpenInput(OpenInput[inputKey])
@@ -300,7 +294,11 @@ export function FeedbackWidget({
             <div style={styles}>
               <Box>
                 {isLoading ? (
-                  <Box h={100}>
+                  <Box
+                    className={
+                      classes['feedback-widget__loading-spinner--container']
+                    }
+                  >
                     <LoadingSpinner show size="lg" />
                   </Box>
                 ) : null}
@@ -312,15 +310,14 @@ export function FeedbackWidget({
                         <ThemeIcon
                           variant="outline"
                           className={classes['feedback-widget__theme-icon']}
-                          size={60}
                         >
-                          <IconCircleCheck size={60} stroke={1.5} />
+                          <IconCircleCheck
+                            className={classes['feedback-widget__icon--check']}
+                          />
                         </ThemeIcon>
                       ) : (
                         <IconCircleX
-                          size={60}
-                          stroke={1.5}
-                          color={theme.colors.red[6]}
+                          className={classes['feedback-widget__icon--x']}
                         />
                       )}
                     </Center>
@@ -337,16 +334,18 @@ export function FeedbackWidget({
 
                 {!isLoading && !showSuccessMessage && !showErrorMessage ? (
                   <Box>
-                    <Group justify="apart" gap="xs" mb="md">
+                    <Group
+                      justify="apart"
+                      gap="xs"
+                      className={classes['feedback-widget__group']}
+                    >
                       {Object.keys(OpenInput).map(key => {
                         const inputKey = key as keyof typeof OpenInput
 
                         return (
                           <Button
                             key={key}
-                            p="5px"
-                            w="110px"
-                            h="32px"
+                            className={classes['feedback-widget__button']}
                             variant={
                               openInput === OpenInput[inputKey]
                                 ? 'filled'
@@ -379,9 +378,11 @@ export function FeedbackWidget({
                         )}
                       />
 
-                      <Box h="0.8rem" mt="-0.8rem" mb="0.6em">
+                      <Box className={classes['feedback-widget__error-box']}>
                         {formState.errors.message && (
-                          <Text ml={5} fz="xs" c="red">
+                          <Text
+                            className={classes['feedback-widget__error-text']}
+                          >
                             {formState.errors.message?.message
                               ? String(t(formState.errors.message.message))
                               : null}

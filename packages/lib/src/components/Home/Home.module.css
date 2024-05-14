@@ -17,6 +17,10 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-.flex {
+.home__flex {
   height: 80vh;
+}
+
+.home__container {
+  width: 300px;
 }

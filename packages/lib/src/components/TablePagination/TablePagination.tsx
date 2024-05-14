@@ -22,6 +22,8 @@ import { Flex, Pagination, Select, Text } from '@mantine/core'
 import { Table as TanstackTable } from '@tanstack/react-table'
 import { useTranslation } from 'next-i18next'
 
+import classes from './TablePagination.module.css'
+
 type Props<T> = {
   table: TanstackTable<T>
   pageSize: PaginatedResponse<T>['size']
@@ -42,16 +44,22 @@ export function TablePagination<T>({
   const { t } = useTranslation()
 
   return (
-    <Flex align="center" mt="xs">
-      <Flex align="center" mr="xl">
-        <Text size="sm" mr="xs">
+    <Flex
+      align="center"
+      className={classes['table-pagination__flex--margin-top']}
+    >
+      <Flex
+        align="center"
+        className={classes['table-pagination__flex--margin-right']}
+      >
+        <Text className={classes['table-pagination__text']}>
           {t('table.footer.pageSize')}
         </Text>
 
         <Select
           defaultValue={String(pageSize)}
           data={['10', '20', '30', '40', '50', '100']}
-          w={70}
+          className={classes['table-pagination__select']}
           onChange={e => {
             table.setPageSize(Number(e))
             setPageSize(Number(e))

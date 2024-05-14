@@ -109,14 +109,9 @@ function LoginView(): JSX.Element {
   return (
     <Container mt="150px">
       {!oauthToken ? (
-        <Card
-          shadow="sm"
-          radius="sm"
-          className={classes['loginCard']}
-          withBorder
-        >
+        <Card className={classes['loginCard']} withBorder>
           <Flex direction="column">
-            <Title order={2} className={classes['loginCard--title']}>
+            <Title order={2} className={classes['loginCard__title']}>
               {t('loginView.title')}
             </Title>
 
@@ -125,14 +120,14 @@ function LoginView(): JSX.Element {
                 <Box className={classes['ssoSection']}>
                   {Object.keys(ssoApplications).map(application => (
                     <NextLink
-                      className={classes['ssoSection--link']}
+                      className={classes['ssoSection__link']}
                       key={application}
                       href={`${process.env.NEXT_PUBLIC_API_BASE_URL}${ssoApplications[application].url}?redirect_uri=${OAUTH_REDIRECT_URI}`}
                     >
                       <Flex
                         justify="center"
                         align="center"
-                        className={classes['ssoSection--button']}
+                        className={classes['ssoSection__button']}
                       >
                         <Button
                           variant="outline"
@@ -146,7 +141,7 @@ function LoginView(): JSX.Element {
                             />
                           }
                         >
-                          <Box className={classes['ssoSection--spacer']} />
+                          <Box className={classes['ssoSection__spacer']} />
 
                           <Text>{ssoApplications[application].name}</Text>
                         </Button>
@@ -156,7 +151,7 @@ function LoginView(): JSX.Element {
                 </Box>
 
                 <Divider
-                  className={classes['ssoSection--divider']}
+                  className={classes['ssoSection__divider']}
                   label={t('loginView.sso.or')}
                   labelPosition="center"
                 />

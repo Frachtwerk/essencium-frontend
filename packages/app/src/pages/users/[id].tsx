@@ -100,12 +100,7 @@ function UpdateUserView(): JSX.Element {
         </Flex>
       </Title>
 
-      <Card
-        shadow="sm"
-        radius="sm"
-        withBorder
-        className={classes['userDetailCard']}
-      >
+      <Card withBorder className={classes['userDetailCard']}>
         <UserForm
           ssoProvider={ssoProvider}
           title={t('addUpdateUserView.form.userDataHeading')}

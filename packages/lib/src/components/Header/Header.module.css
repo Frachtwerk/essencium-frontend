@@ -17,10 +17,18 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-.appShellHeader {
+.header__app-shell {
   padding: var(--mantine-spacing-md);
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    margin-left: 0;
+  }
 }
 
-.appShellHeader__content {
+.header__content {
   height: 100%;
+}
+
+.header__burger {
+  z-index: 200;
 }

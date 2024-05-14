@@ -271,7 +271,7 @@ export function AuthLayout({
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.events])
+  }, [router.events, userRights])
 
   function handleLogout(): void {
     logout()

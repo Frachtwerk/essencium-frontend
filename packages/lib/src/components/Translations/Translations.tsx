@@ -227,12 +227,7 @@ export function Translations({
         />
       </Flex>
 
-      <Card
-        shadow="sm"
-        radius="sm"
-        withBorder
-        className={classes['translations-tree-container']}
-      >
+      <Card withBorder className={classes['translations-tree-container']}>
         {!Object.keys(filteredTranslations).length ? (
           <Text
             className={

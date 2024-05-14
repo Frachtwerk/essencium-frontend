@@ -20,6 +20,8 @@
 import { Button, Flex, Modal, Text, Title } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
 
+import classes from './DeleteDialog.module.css'
+
 type Props = {
   deleteFunction: () => void
   title: string
@@ -46,18 +48,27 @@ export function DeleteDialog({
       padding="lg"
       centered
     >
-      <Title order={4} mb="md">
+      <Title order={4} className={classes['delete-dialog__title']}>
         {title}
       </Title>
 
-      <Text mb="md">{text}</Text>
+      <Text className={classes['delete-dialog__text']}>{text}</Text>
 
       <Flex justify="space-around" gap="lg">
-        <Button fullWidth mt="md" onClick={deleteFunction}>
+        <Button
+          fullWidth
+          className={classes['delete-dialog__button']}
+          onClick={deleteFunction}
+        >
           {t('actions.delete')}
         </Button>
 
-        <Button variant="subtle" fullWidth mt="md" onClick={onClose}>
+        <Button
+          variant="subtle"
+          fullWidth
+          className={classes['delete-dialog__button']}
+          onClick={onClose}
+        >
           {t('actions.cancel')}
         </Button>
       </Flex>

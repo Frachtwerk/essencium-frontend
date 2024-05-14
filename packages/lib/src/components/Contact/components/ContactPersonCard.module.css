@@ -17,31 +17,32 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Group, Text, UnstyledButton } from '@mantine/core'
-import { openSpotlight } from '@mantine/spotlight'
-import { IconSearch } from '@tabler/icons-react'
-import { useTranslation } from 'next-i18next'
+.contact-person-card__card {
+  padding: var(--mantine-spacing-lg);
+  box-shadow: var(--mantine-shadow-sm);
+  border-radius: var(--mantine-radius-md);
+}
 
-import classes from './SearchBar.module.css'
+.contact-person-card__avatar {
+  margin-top: var(--mantine-spacing-xs);
 
-export function SearchBar(): JSX.Element {
-  const { t } = useTranslation()
+  border-radius: var(--mantine-radius-xl);
+}
 
-  return (
-    <UnstyledButton
-      visibleFrom="sm"
-      onClick={() => openSpotlight()}
-      role="search"
-    >
-      <Group justify="apart">
-        <Group gap="sm">
-          <IconSearch size="16" className={classes['search-bar__icon']} />
+.contact-person-card__title {
+  margin-top: var(--mantine-spacing-sm);
+  margin-bottom: var(--mantine-spacing-sm);
+}
 
-          <Text className={classes['search-bar__text']} role="searchbox">
-            {t('header.spotlight.placeholder')}
-          </Text>
-        </Group>
-      </Group>
-    </UnstyledButton>
-  )
+.contact-person-card__group {
+  margin-top: var(--mantine-spacing-xl);
+}
+
+.contact-person-card__theme-icon--radius {
+  border-radius: var(--mantine-radius-md);
+}
+
+.contact-person-card__icon--size {
+  width: 15px;
+  height: 15px;
 }

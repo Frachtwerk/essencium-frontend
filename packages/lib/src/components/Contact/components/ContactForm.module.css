@@ -17,30 +17,50 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-.translations-tree-container {
-  padding-left: var(--mantine-spacing-lg);
-  padding-top: var(--mantine-spacing-lg);
+.contact-form__container {
+  padding: 0;
+  margin: 0;
+}
+
+.contact-form__card {
+  padding: var(--mantine-spacing-lg);
   box-shadow: var(--mantine-shadow-sm);
-  border-radius: var(--mantine-radius-sm);
-
-  @mixin dark {
-    background-color: var(--mantine-color-dark-7);
-  }
+  border-radius: var(--mantine-radius-md);
 }
 
-.translations-tree-container__no-translations-text {
-  font-size: var(--mantine-font-size-sm);
-  color: var(--mantine-color-gray-4);
+.contact-form__title {
+  margin-bottom: var(--mantine-spacing-md);
 }
 
-.translations-tree-container__label-text {
-  font-size: var(--mantine-font-size-sm);
+.contact-form__error-box {
+  margin-top: -1.5rem;
+  height: 0.8rem;
 }
 
-.translations-tree-container__translation-text {
-  font-size: var(--mantine-font-size-sm);
+.contact-form__error-text {
+  margin-left: 5;
+  font-size: var(--mantine-font-size-xs);
+  color: red;
 }
 
-.translations-tree-container__translation-text--cursor-pointer {
-  cursor: pointer;
+.contact-form__error-box-message {
+  margin-top: -0.6em;
+  height: 0.8rem;
+}
+
+.contact-from__text-input {
+  margin-bottom: var(--mantine-spacing-md);
+  border-radius: var(--mantine-radius-md);
+}
+
+.contact-form__stack {
+  margin-top: var(--mantine-spacing-md);
+}
+
+.contact-form__text-area {
+  min-width: 45%;
+}
+
+.contact-form__group {
+  margin-top: var(--mantine-spacing-md);
 }

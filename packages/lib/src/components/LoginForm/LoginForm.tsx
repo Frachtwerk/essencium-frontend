@@ -40,6 +40,7 @@ import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../hooks'
 import { ResetPasswordForm, ResetPasswordSuccessMessage } from './components'
+import classes from './LoginForm.module.css'
 
 type Props = {
   handleLogin: (name: string, pw: string) => void
@@ -73,7 +74,7 @@ export function LoginForm({
   }
 
   return (
-    <Box w={400}>
+    <Box className={classes['login-form__container']}>
       <Transition
         mounted={!isPasswordResetFormOpened && !isResetPasswordSent}
         transition="fade"
@@ -93,19 +94,17 @@ export function LoginForm({
                     placeholder={String(t('loginView.form.emailPlaceholder'))}
                     label={t('loginView.form.email')}
                     required
-                    styles={{
-                      label: {
-                        fontWeight: 'bold',
-                      },
+                    classNames={{
+                      label: classes['login-form__input-label'],
                     }}
                     withAsterisk
                   />
                 )}
               />
 
-              <Box mt="0.2rem" h="0.8rem">
+              <Box className={classes['login-form__error-box']}>
                 {formState.errors.email && (
-                  <Text ml={5} fz="xs" color="red">
+                  <Text className={classes['login-form__error-text']}>
                     {formState.errors.email?.message
                       ? String(t(formState.errors.email.message))
                       : null}
@@ -124,20 +123,18 @@ export function LoginForm({
                     )}
                     label={t('loginView.form.password')}
                     required
-                    styles={{
-                      label: {
-                        fontWeight: 'bold',
-                      },
+                    classNames={{
+                      label: classes['login-form__input-label'],
+                      root: classes['login-form__input-margin'],
                     }}
                     withAsterisk
-                    mt="xs"
                   />
                 )}
               />
 
-              <Box mt="0.2rem" h="0.8rem">
+              <Box className={classes['login-form__error-box']}>
                 {formState.errors.password && (
-                  <Text ml={5} fz="xs" color="red">
+                  <Text className={classes['login-form__error-text']}>
                     {formState.errors.password?.message
                       ? String(t(formState.errors.password.message))
                       : null}
@@ -145,7 +142,7 @@ export function LoginForm({
                 )}
               </Box>
 
-              <Group justify="apart" mt="md">
+              <Group justify="apart" className={classes['login-form__group']}>
                 <Anchor
                   size="xs"
                   fw="bold"
@@ -156,7 +153,11 @@ export function LoginForm({
                 </Anchor>
               </Group>
 
-              <Button type="submit" fullWidth mt="md">
+              <Button
+                type="submit"
+                fullWidth
+                className={classes['login-form__button']}
+              >
                 {t('loginView.form.submit')}
               </Button>
             </form>
@@ -182,7 +183,7 @@ export function LoginForm({
       </Transition>
 
       {isResettingPassword && (
-        <Center h="100%">
+        <Center className={classes['login-form__center']}>
           <Loader size="lg" name="loader" />
         </Center>
       )}

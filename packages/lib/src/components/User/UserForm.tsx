@@ -106,7 +106,6 @@ export function UserForm({
                 label={t('addUpdateUserView.form.firstName')}
                 size="sm"
                 variant="filled"
-                radius="sm"
                 withAsterisk
               />
             )}
@@ -137,7 +136,6 @@ export function UserForm({
                 label={t('addUpdateUserView.form.lastName')}
                 size="sm"
                 variant="filled"
-                radius="sm"
                 withAsterisk
               />
             )}
@@ -176,7 +174,6 @@ export function UserForm({
                 withAsterisk
                 size="sm"
                 variant="filled"
-                radius="sm"
               />
             )}
           />
@@ -206,7 +203,6 @@ export function UserForm({
                 label={t('addUpdateUserView.form.password')}
                 size="sm"
                 variant="filled"
-                radius="sm"
               />
             )}
           />
@@ -242,7 +238,6 @@ export function UserForm({
                 label={t('addUpdateUserView.form.phone')}
                 size="sm"
                 variant="filled"
-                radius="sm"
               />
             )}
           />
@@ -271,7 +266,6 @@ export function UserForm({
                 label={t('addUpdateUserView.form.mobile')}
                 size="sm"
                 variant="filled"
-                radius="sm"
               />
             )}
           />
@@ -300,7 +294,7 @@ export function UserForm({
             {...field}
             checked={field.value}
             value={String(field.value)}
-            color="blue"
+            color="var(--mantine-primary-color-filled)"
             size="md"
             className={classes['userForm__enableToggle']}
             label={t('addUpdateUserView.form.status')}
@@ -321,7 +315,6 @@ export function UserForm({
             render={({ field }) => (
               <Select
                 {...field}
-                radius="sm"
                 withAsterisk
                 label={t('addUpdateUserView.form.language')}
                 placeholder={String(t('addUpdateUserView.form.language'))}
@@ -352,7 +345,6 @@ export function UserForm({
               <MultiSelect
                 {...field}
                 disabled={isSso}
-                radius="sm"
                 label={t('addUpdateUserView.form.role')}
                 data={rolesData}
                 withAsterisk

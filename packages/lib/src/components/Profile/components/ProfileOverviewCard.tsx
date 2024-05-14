@@ -44,12 +44,7 @@ export function ProfileOverviewCard({ user }: Props): JSX.Element {
   const isSso = Boolean(ssoProvider && ssoProvider !== UserSource.LOCAL)
 
   return (
-    <Card
-      shadow="sm"
-      radius="sm"
-      withBorder
-      className={classes['profile-overview-card']}
-    >
+    <Card withBorder className={classes['profile-overview-card']}>
       <Flex gap="md" justify="center" align="center" direction="column">
         <Indicator
           role="note"

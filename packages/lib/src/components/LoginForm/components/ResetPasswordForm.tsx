@@ -24,6 +24,7 @@ import { Dispatch, SetStateAction } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../../hooks'
+import classes from './ResetPasswordForm.module.css'
 
 type Props = {
   setIsPasswordResetFormOpened: Dispatch<SetStateAction<boolean>>
@@ -47,9 +48,9 @@ export function ResetPasswordForm({
     handlePasswordReset(email)
   }
   return (
-    <Container p={0} m={0}>
+    <Container className={classes['reset-password-form__container']}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Text size="sm" fw="bold" my="md">
+        <Text className={classes['reset-password-form__text']}>
           {t('loginView.resetPassword.form.description')}
         </Text>
 
@@ -64,15 +65,14 @@ export function ResetPasswordForm({
               )}
               label={String(t('loginView.resetPassword.form.label'))}
               withAsterisk
-              radius="sm"
-              mb="md"
+              className={classes['reset-password-form__text-input']}
             />
           )}
         />
 
-        <Box mt="-0.6rem" h="0.8rem">
+        <Box className={classes['reset-password-form__error-box']}>
           {formState.errors.email && (
-            <Text ml={5} fz="xs" color="red">
+            <Text className={classes['reset-password-form__error-text']}>
               {formState.errors.email?.message
                 ? String(t(formState.errors.email.message))
                 : null}
@@ -81,12 +81,15 @@ export function ResetPasswordForm({
         </Box>
 
         <Group>
-          <Button mt="lg" type="submit">
+          <Button
+            className={classes['reset-password-form__button']}
+            type="submit"
+          >
             {t('loginView.resetPassword.form.submitButton')}
           </Button>
 
           <Button
-            mt="md"
+            className={classes['reset-password-form__button']}
             variant="light"
             onClick={() => {
               setIsPasswordResetFormOpened(false)

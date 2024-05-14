@@ -17,11 +17,11 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-.navlinkRoot {
+.nav-bar__navlink--root {
   border-radius: var(--mantine-radius-sm);
 }
 
-.navlinkLabel {
+.nav-bar__navlink--label {
   font-size: var(--mantine-font-size-sm);
   white-space: nowrap;
 }

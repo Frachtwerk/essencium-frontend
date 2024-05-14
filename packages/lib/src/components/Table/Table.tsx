@@ -53,13 +53,17 @@ export function Table<T>({
                   <MantineTable.Th
                     key={header.id}
                     style={{ verticalAlign: 'top' }}
-                    className={classes['tableColSticky']}
+                    className={classes['table__col-sticky']}
                   >
                     <Flex
                       align="center"
                       justify="flex-start"
                       gap="sm"
-                      className={classes['table__colHeader']}
+                      className={
+                        header.column.getCanSort()
+                          ? `${classes['table__col-header']} ${classes['table__col-header--cursor-pointer']}`
+                          : classes['table__col-header']
+                      }
                       onClick={header.column.getToggleSortingHandler()}
                       w={header.column.getSize()}
                     >
@@ -77,7 +81,7 @@ export function Table<T>({
                     {showFilter && header.column.getCanFilter() ? (
                       <Select
                         size="xs"
-                        my="xs"
+                        className={classes.table__select}
                         data={filterData ? filterData[header.column.id] : []}
                         searchable
                         clearable
@@ -103,17 +107,17 @@ export function Table<T>({
             {tableModel.getRowModel().rows.map(row => (
               <MantineTable.Tr
                 key={row.id}
-                style={{
-                  borderBottom: '2px solid white',
-                  borderTop: '2px solid white',
-                }}
-                className={firstColSticky ? classes['tableRowBg'] : undefined}
+                className={
+                  firstColSticky
+                    ? classes['table__table-row--sticky']
+                    : classes['table__table-row']
+                }
               >
                 {row.getVisibleCells().map(cell => (
                   <MantineTable.Td
                     key={cell.id}
                     width={cell.column.getSize()}
-                    className={classes['tableColSticky']}
+                    className={classes['table__col-sticky']}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </MantineTable.Td>

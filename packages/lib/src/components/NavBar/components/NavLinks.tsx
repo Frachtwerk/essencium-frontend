@@ -52,8 +52,8 @@ export function NavLinks({ links, userRights }: Props): JSX.Element {
             label={t(link.label)}
             active={link.to === router.pathname}
             classNames={{
-              root: classes['navlinkRoot'],
-              label: classes['navlinkLabel'],
+              root: classes['nav-bar__navlink--root'],
+              label: classes['nav-bar__navlink--label'],
             }}
           />
         ) : null,

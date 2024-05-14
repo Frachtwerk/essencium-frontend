@@ -17,31 +17,19 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Group, Text, UnstyledButton } from '@mantine/core'
-import { openSpotlight } from '@mantine/spotlight'
-import { IconSearch } from '@tabler/icons-react'
-import { useTranslation } from 'next-i18next'
+.table-pagination__flex--margin-top {
+  margin-top: var(--mantine-spacing-xs);
+}
 
-import classes from './SearchBar.module.css'
+.table-pagination__flex--margin-right {
+  margin-right: var(--mantine-spacing-xl);
+}
 
-export function SearchBar(): JSX.Element {
-  const { t } = useTranslation()
+.table-pagination__text {
+  font-size: var(--mantine-font-size-sm);
+  margin-right: var(--mantine-spacing-xs);
+}
 
-  return (
-    <UnstyledButton
-      visibleFrom="sm"
-      onClick={() => openSpotlight()}
-      role="search"
-    >
-      <Group justify="apart">
-        <Group gap="sm">
-          <IconSearch size="16" className={classes['search-bar__icon']} />
-
-          <Text className={classes['search-bar__text']} role="searchbox">
-            {t('header.spotlight.placeholder')}
-          </Text>
-        </Group>
-      </Group>
-    </UnstyledButton>
-  )
+.table-pagination__select {
+  width: 70;
 }

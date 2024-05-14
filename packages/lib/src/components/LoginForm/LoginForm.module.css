@@ -17,31 +17,37 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Group, Text, UnstyledButton } from '@mantine/core'
-import { openSpotlight } from '@mantine/spotlight'
-import { IconSearch } from '@tabler/icons-react'
-import { useTranslation } from 'next-i18next'
+.login-form__container {
+  width: 400px;
+}
 
-import classes from './SearchBar.module.css'
+.login-form__input-label {
+  font-weight: var(--mantine-font-weight-bold);
+}
 
-export function SearchBar(): JSX.Element {
-  const { t } = useTranslation()
+.login-form__input-margin {
+  margin-top: var(--mantine-spacing-xs);
+}
 
-  return (
-    <UnstyledButton
-      visibleFrom="sm"
-      onClick={() => openSpotlight()}
-      role="search"
-    >
-      <Group justify="apart">
-        <Group gap="sm">
-          <IconSearch size="16" className={classes['search-bar__icon']} />
+.login-form__error-box {
+  margin-top: 0.2rem;
+  height: 0.8rem;
+}
 
-          <Text className={classes['search-bar__text']} role="searchbox">
-            {t('header.spotlight.placeholder')}
-          </Text>
-        </Group>
-      </Group>
-    </UnstyledButton>
-  )
+.login-form__error-text {
+  margin-left: 5px;
+  font-size: var(--mantine-font-size-xs);
+  color: var(--mantine-color-red);
+}
+
+.login-form__button {
+  margin-top: var(--mantine-spacing-md);
+}
+
+.login-form__group {
+  margin-top: var(--mantine-spacing-md);
+}
+
+.login-form__center {
+  height: 100%;
 }

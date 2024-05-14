@@ -33,13 +33,18 @@ export function Footer({ links }: Props): JSX.Element {
   const { t } = useTranslation()
 
   return (
-    <AppShellFooter p="md">
+    <AppShellFooter className={classes['footer__app-shell']}>
       <Flex
         justify={{ base: 'center', xs: 'space-between' }}
         direction="row"
         wrap="wrap"
       >
-        <Flex gap="xs" align="center" ml="xs" visibleFrom="sm">
+        <Flex
+          gap="xs"
+          align="center"
+          className={classes.footer__flex}
+          visibleFrom="sm"
+        >
           <IconCopyright size="16" />
 
           <Text> {t('footer.license')} </Text>
@@ -51,7 +56,7 @@ export function Footer({ links }: Props): JSX.Element {
               component={NextLink}
               key={link.label}
               href={link.to}
-              className={classes['text']}
+              className={classes.footer__text}
             >
               {t(link.label)}
             </Text>

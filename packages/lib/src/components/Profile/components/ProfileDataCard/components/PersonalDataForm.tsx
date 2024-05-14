@@ -36,6 +36,7 @@ import { useEffect } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../../../../hooks'
+import classes from './PersonalDataForm.module.css'
 
 type Props = {
   isSso: boolean
@@ -95,7 +96,7 @@ export function PersonalDataForm({
         gap={{ base: 'xs', sm: 'md' }}
         justify={{ sm: 'space-between' }}
       >
-        <Stack miw="45%">
+        <Stack className={classes['personal-data-form__stack']}>
           <Controller
             name="firstName"
             control={control}
@@ -113,14 +114,13 @@ export function PersonalDataForm({
                 )}
                 size="sm"
                 variant="filled"
-                radius="sm"
               />
             )}
           />
 
-          <Box mt="-0.6rem" h="0.8rem">
+          <Box className={classes['personal-data-form__error-box']}>
             {formState.errors.firstName && (
-              <Text ml={5} fz="xs" color="red">
+              <Text className={classes['personal-data-form__error-text']}>
                 {formState.errors.firstName?.message
                   ? String(t(formState.errors.firstName.message))
                   : null}
@@ -129,7 +129,7 @@ export function PersonalDataForm({
           </Box>
         </Stack>
 
-        <Stack miw="45%">
+        <Stack className={classes['personal-data-form__stack']}>
           <Controller
             name="lastName"
             control={control}
@@ -147,14 +147,13 @@ export function PersonalDataForm({
                 )}
                 size="sm"
                 variant="filled"
-                radius="sm"
               />
             )}
           />
 
-          <Box mt="-0.6rem" h="0.8rem">
+          <Box className={classes['personal-data-form__error-box']}>
             {formState.errors.lastName && (
-              <Text ml={5} fz="xs" color="red">
+              <Text className={classes['personal-data-form__error-text']}>
                 {formState.errors.lastName?.message
                   ? String(t(formState.errors.lastName.message))
                   : null}
@@ -168,9 +167,9 @@ export function PersonalDataForm({
         direction={{ base: 'column', sm: 'row' }}
         gap={{ base: 'sm', sm: 'md' }}
         justify={{ sm: 'space-between' }}
-        mt="xs"
+        className={classes['personal-data-form__flex--margin-top']}
       >
-        <Stack miw="45%">
+        <Stack className={classes['personal-data-form__stack']}>
           <Controller
             name="phone"
             control={control}
@@ -183,14 +182,13 @@ export function PersonalDataForm({
                 label={t('profileView.dataCard.tabs.personalData.label.phone')}
                 size="sm"
                 variant="filled"
-                radius="sm"
               />
             )}
           />
 
-          <Box mt="-0.6rem" h="0.8rem">
+          <Box className={classes['personal-data-form__error-box']}>
             {formState.errors.phone && (
-              <Text ml={5} fz="xs" color="red">
+              <Text className={classes['personal-data-form__error-text']}>
                 {formState.errors.phone?.message
                   ? String(t(formState.errors.phone.message))
                   : null}
@@ -199,7 +197,7 @@ export function PersonalDataForm({
           </Box>
         </Stack>
 
-        <Stack miw="45%">
+        <Stack className={classes['personal-data-form__stack']}>
           <Controller
             name="mobile"
             control={control}
@@ -214,14 +212,13 @@ export function PersonalDataForm({
                 label={t('profileView.dataCard.tabs.personalData.label.mobile')}
                 size="sm"
                 variant="filled"
-                radius="sm"
               />
             )}
           />
 
-          <Box mt="-0.6rem" h="0.8rem">
+          <Box className={classes['personal-data-form__error-box']}>
             {formState.errors.mobile && (
-              <Text ml={5} fz="xs" color="red">
+              <Text className={classes['personal-data-form__error-text']}>
                 {formState.errors.mobile?.message
                   ? String(t(formState.errors.mobile.message))
                   : null}
@@ -235,9 +232,9 @@ export function PersonalDataForm({
         direction={{ base: 'column', sm: 'row' }}
         gap={{ base: 'sm', sm: 'md' }}
         justify={{ sm: 'space-between' }}
-        mt="xs"
+        className={classes['personal-data-form__flex--margin-top']}
       >
-        <Stack miw="45%">
+        <Stack className={classes['personal-data-form__stack']}>
           <Controller
             name="email"
             control={control}
@@ -252,14 +249,13 @@ export function PersonalDataForm({
                 withAsterisk
                 size="sm"
                 variant="filled"
-                radius="sm"
               />
             )}
           />
 
-          <Box mt="-0.6rem" h="0.8rem">
+          <Box className={classes['personal-data-form__error-box']}>
             {formState.errors.email && (
-              <Text ml={5} fz="xs" color="red">
+              <Text className={classes['personal-data-form__error-text']}>
                 {formState.errors.email?.message
                   ? String(t(formState.errors.email.message))
                   : null}
@@ -268,14 +264,13 @@ export function PersonalDataForm({
           </Box>
         </Stack>
 
-        <Stack miw="45%">
+        <Stack className={classes['personal-data-form__stack']}>
           <Controller
             name="locale"
             control={control}
             render={({ field }) => (
               <Select
                 {...field}
-                radius="sm"
                 label={t(
                   'profileView.dataCard.tabs.personalData.label.language',
                 )}
@@ -290,9 +285,9 @@ export function PersonalDataForm({
             )}
           />
 
-          <Box mt="-0.6rem" h="0.8rem">
+          <Box className={classes['personal-data-form__error-box']}>
             {formState.errors.locale && (
-              <Text ml={5} fz="xs" color="red">
+              <Text className={classes['personal-data-form__error-text']}>
                 {formState.errors.locale?.message
                   ? String(t(formState.errors.locale.message))
                   : null}
@@ -302,7 +297,11 @@ export function PersonalDataForm({
         </Stack>
       </Flex>
 
-      <Button type="submit" mt="md" loading={isLoading}>
+      <Button
+        type="submit"
+        className={classes['personal-data-form__button']}
+        loading={isLoading}
+      >
         {t('profileView.dataCard.tabs.personalData.saveChanges')}
       </Button>
     </form>

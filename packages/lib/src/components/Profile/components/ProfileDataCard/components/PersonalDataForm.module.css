@@ -17,8 +17,31 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-.select {
+.personal-data-form__select {
   @media (max-width: 600px) {
     min-width: 100%;
   }
+}
+
+.personal-data-form__stack {
+  min-width: 45%;
+}
+
+.personal-data-form__error-box {
+  margin-top: -0.6rem;
+  height: 0.8rem;
+}
+
+.personal-data-form__error-text {
+  margin-left: 5px;
+  font-size: var(--mantine-font-size-xs);
+  color: var(--mantine-color-red);
+}
+
+.personal-data-form__button {
+  margin-top: var(--mantine-spacing-md);
+}
+
+.personal-data-form__flex--margin-top {
+  margin-top: var(--mantine-spacing-xs);
 }

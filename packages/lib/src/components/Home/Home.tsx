@@ -36,7 +36,7 @@ export function Home(): JSX.Element {
       gap="lg"
       align="center"
       justify="center"
-      className={classes['flex']}
+      className={classes.home__flex}
     >
       <Center my="lg">
         <Image
@@ -48,7 +48,7 @@ export function Home(): JSX.Element {
         />
       </Center>
 
-      <Container w={300}>
+      <Container className={classes.home__container}>
         <Stack>
           <Button
             onClick={() => openSpotlight()}
@@ -58,6 +58,7 @@ export function Home(): JSX.Element {
           >
             {t('homeView.action.search')}
           </Button>
+
           <Button
             onClick={() => router.push('/users')}
             variant="outline"
@@ -66,6 +67,7 @@ export function Home(): JSX.Element {
           >
             {t('homeView.action.users')}
           </Button>
+
           <Button
             onClick={() => router.push('/profile')}
             variant="outline"

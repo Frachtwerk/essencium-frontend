@@ -62,6 +62,8 @@
 .userDetailCard {
   padding: var(--mantine-spacing-lg);
   max-width: 81.25rem;
+  box-shadow: var(--mantine-shadow-sm);
+  radius: var(--mantine-radius-sm);
 
   @mixin dark {
     background-color: var(--mantine-color-dark-7);

@@ -39,9 +39,9 @@ export function Header({ user, isOpen, handleOpenNav }: Props): JSX.Element {
   const theme = useMantineTheme()
 
   return (
-    <AppShellHeader withBorder={false} className={classes['appShellHeader']}>
+    <AppShellHeader withBorder={false} className={classes['header__app-shell']}>
       <Flex
-        className={classes['appShellHeader__content']}
+        className={classes.header__content}
         justify="space-between"
         align="center"
       >
@@ -54,6 +54,7 @@ export function Header({ user, isOpen, handleOpenNav }: Props): JSX.Element {
           // not in CSS module because it's not applied there with CSS 'color' prop
           color={theme.colors.gray[5]}
           hiddenFrom="sm"
+          className={classes.header__burger}
         />
 
         <SearchBar />
