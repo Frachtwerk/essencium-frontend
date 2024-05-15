@@ -66,21 +66,25 @@ export function TablePagination<T>({
         align="center"
         className={classes['table-pagination__flex--margin-right']}
       >
-        <Text className={classes['table-pagination__text']}>
-          {t('table.footer.pageSize')}
-        </Text>
+        {!fixedTablePageSize ? (
+          <>
+            <Text className={classes['table-pagination__text']}>
+              {t('table.footer.pageSize')}
+            </Text>
 
-        <Select
-          defaultValue={String(pageSize)}
-          data={['10', '20', '30', '40', '50', '100']}
-          className={classes['table-pagination__select']}
-          onChange={e => {
-            table.setPageSize(Number(e))
-            setPageSize(Number(e))
-            setActivePage(1)
-            handleRefetch()
-          }}
-        />
+            <Select
+              defaultValue={String(pageSize)}
+              data={['10', '20', '30', '40', '50', '100']}
+              className={classes['table-pagination__select']}
+              onChange={e => {
+                table.setPageSize(Number(e))
+                setPageSize(Number(e))
+                setActivePage(1)
+                handleRefetch()
+              }}
+            />
+          </>
+        ) : null}
       </Flex>
 
       <Pagination
