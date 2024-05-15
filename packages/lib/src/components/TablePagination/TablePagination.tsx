@@ -21,7 +21,7 @@ import { PaginatedResponse } from '@frachtwerk/essencium-types'
 import { Flex, Pagination, PaginationProps, Select, Text } from '@mantine/core'
 import { Table as TanstackTable } from '@tanstack/react-table'
 import { useTranslation } from 'next-i18next'
-import { useCallback, useEffect } from 'react'
+import { useEffect } from 'react'
 
 import classes from './TablePagination.module.css'
 
@@ -49,17 +49,13 @@ export function TablePagination<T>({
 }: Props<T>): JSX.Element {
   const { t } = useTranslation()
 
-  const handleSetFixedTablePageSize = useCallback(() => {
+  useEffect(() => {
     if (!fixedTablePageSize) return
 
     table.setPageSize(fixedTablePageSize)
 
     setPageSize(fixedTablePageSize)
   }, [fixedTablePageSize, setPageSize, table])
-
-  useEffect(() => {
-    handleSetFixedTablePageSize()
-  }, [handleSetFixedTablePageSize])
 
   return (
     <Flex
