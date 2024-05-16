@@ -3,9 +3,10 @@
 ## [?.?.? (dd.mm.yyyy)]()
 
 ### `src/pages/users/index.tsx`
-- add api call to load all users for filter datan in select
 
-### Mantine `AppShell` refactoring
+- add api call to load all users for filter data in select
+
+### `src/components/layouts/AuthLayout.tsx`
 
 - Mantines `AppShell` and linked components were refactored
   - use `useDisclosure` to toggle mobile navbar
