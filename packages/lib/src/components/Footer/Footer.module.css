@@ -19,7 +19,6 @@
 
 .footer__app-shell {
   padding: var(--mantine-spacing-md);
-  z-index: 200;
 }
 
 .footer__flex {
