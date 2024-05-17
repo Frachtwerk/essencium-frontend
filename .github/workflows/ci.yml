@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  NX_CLOUD_ACCESS_TOKEN: ${{secrets.NX_CLOUD_ACCESS_TOKEN}}
+  NX_PUBLIC_CLOUD_ACCESS_TOKEN: ${{secrets.NX_PUBLIC_CLOUD_ACCESS_TOKEN}}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
@@ -41,7 +41,7 @@ jobs:
         uses: nrwl/nx-set-shas@v3
 
       - name: Run linting
-        run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx affected --target=lint --parallel=10
+        run: NX_PUBLIC_BRANCH=$GITHUB_HEAD_REF pnpx nx affected --target=lint --parallel=10
 
   # +++ COMMENTED OUT BECAUSE THIS IS A SEPARATE ISSUE: https://github.com/Frachtwerk/essencium-frontend/issues/221 +++
   # unit-tests:
@@ -71,7 +71,7 @@ jobs:
   #       uses: nrwl/nx-set-shas@v3
 
   #     - name: Run unit tests
-  #       run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx affected --target=test:unit --parallel=10
+  #       run: NX_PUBLIC_BRANCH=$GITHUB_HEAD_REF pnpx nx affected --target=test:unit --parallel=10
 
   # e2e-tests:
   #   name: E2E Tests
@@ -176,7 +176,7 @@ jobs:
 
       - name: Build
         if: steps.cache-dist.outputs.cache-hit != 'true'
-        run: NX_BRANCH=$GITHUB_HEAD_REF pnpx nx build @frachtwerk/essencium-app
+        run: NX_PUBLIC_BRANCH=$GITHUB_HEAD_REF pnpx nx build @frachtwerk/essencium-app
         env:
           ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
