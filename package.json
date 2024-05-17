@@ -42,8 +42,8 @@
     "sort-package-json": "2.5.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.4.4",
-    "@commitlint/config-conventional": "17.4.4",
+    "@commitlint/cli": "19.3.0",
+    "@commitlint/config-conventional": "19.2.2",
     "@faker-js/faker": "7.6.0",
     "@frachtwerk/eslint-config-essencium": "workspace:*",
     "@frachtwerk/essencium-types": "workspace:*",
