@@ -2,6 +2,9 @@
 
 ## [?.?.? (dd.mm.yyyy)]()
 
+### `src/pages/users/index.tsx`
+- add api call to load all users for filter datan in select
+
 ### Mantine `AppShell` refactoring
 
 - Mantines `AppShell` and linked components were refactored

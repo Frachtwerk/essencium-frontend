@@ -159,8 +159,13 @@ function UsersView(): JSX.Element {
     [router],
   )
 
+  const { data: allUsers } = useGetUsers({
+    page: 0,
+    size: 9999,
+  })
+
   function getFilterData(): Record<string, Array<string>> {
-    const { content: usersContent } = users || {}
+    const { content: usersContent } = allUsers || {}
 
     const name = usersContent?.map(
       userItem => `${userItem.firstName} ${userItem.lastName}`,
