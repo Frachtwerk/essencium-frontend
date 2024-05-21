@@ -75,6 +75,7 @@ export function TablePagination<T>({
             <Select
               defaultValue={String(pageSize)}
               data={['10', '20', '30', '40', '50', '100']}
+              aria-label={t('table.footer.pageSize') as string}
               className={classes['table-pagination__select']}
               onChange={e => {
                 table.setPageSize(Number(e))
