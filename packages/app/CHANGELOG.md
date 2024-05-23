@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.0.0...essencium-app-v7.0.1) (2024-05-23)
+
+
+### Bug Fixes
+
+* adjust z-index for notification ([#568](https://github.com/Frachtwerk/essencium-frontend/issues/568)) ([396114b](https://github.com/Frachtwerk/essencium-frontend/commit/396114b22a21a2d6ee882ca76be14f40159a7838))
+* highlight parent navLink on child routes ([6902465](https://github.com/Frachtwerk/essencium-frontend/commit/6902465403790fc54f13cf84569f24171f90257d))
+* load all users for filter ([#578](https://github.com/Frachtwerk/essencium-frontend/issues/578)) ([bf89a6e](https://github.com/Frachtwerk/essencium-frontend/commit/bf89a6effeef01fa3ec3452d912abc5b1de68f9a))
+
 ## [7.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v6.1.1...essencium-app-v7.0.0) (2024-04-25)
 
 
