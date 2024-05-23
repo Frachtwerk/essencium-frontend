@@ -39,6 +39,14 @@ export function NavLinks({ links, userRights }: Props): JSX.Element {
     return Boolean(rights.every(right => userRights?.includes(right)))
   }
 
+  function isLinkActive(path: string): boolean {
+    if (path === '/') {
+      return router.pathname === path
+    }
+
+    return router.pathname.startsWith(path)
+  }
+
   return (
     <Stack gap="md">
       {links.map(link =>
@@ -50,7 +58,7 @@ export function NavLinks({ links, userRights }: Props): JSX.Element {
             href={link.to}
             leftSection={link.icon}
             label={t(link.label)}
-            active={link.to === router.pathname}
+            active={isLinkActive(link.to)}
             classNames={{
               root: classes['nav-bar__navlink--root'],
               label: classes['nav-bar__navlink--label'],
