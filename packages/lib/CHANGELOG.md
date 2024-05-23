@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.0.0...essencium-lib-v7.1.0) (2024-05-23)
+
+
+### Features
+
+* add functionality for fixedTableSize to TablePagination ([2875a9b](https://github.com/Frachtwerk/essencium-frontend/commit/2875a9bd281f3f50b4de19f3367517ab93fe352c))
+
+
+### Bug Fixes
+
+* highlight parent navLink on child routes ([6902465](https://github.com/Frachtwerk/essencium-frontend/commit/6902465403790fc54f13cf84569f24171f90257d))
+
 ## [7.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v6.1.0...essencium-lib-v7.0.0) (2024-04-25)
 
 
