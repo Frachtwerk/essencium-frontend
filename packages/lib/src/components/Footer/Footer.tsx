@@ -29,33 +29,29 @@ type Props = AppShellFooterProps & {
   links: FooterLink[]
 }
 
-export function Footer({ links, ...props }: Props): JSX.Element {
+export function Footer({ links, children, ...props }: Props): JSX.Element {
   const { t } = useTranslation()
 
   return (
     <AppShellFooter
       {...props}
-      className={`${classes['footer__app-shell']} ${
-        props.className ? props.className : ''
-      }`}
+      className={props.className ? props.className : ''}
     >
       <Flex
         justify={{ base: 'center', xs: 'space-between' }}
         direction="row"
         wrap="wrap"
+        align="center"
+        h="100%" // not applied with normal css
+        className={classes.footer__flex}
       >
-        <Flex
-          gap="xs"
-          align="center"
-          className={classes.footer__flex}
-          visibleFrom="sm"
-        >
+        <Flex gap="xs" align="center" visibleFrom="sm">
           <IconCopyright size="16" />
 
           <Text> {t('footer.license')} </Text>
         </Flex>
 
-        <Flex direction="row" gap="lg">
+        <Flex direction="row" gap="lg" align="center">
           {links.map(link => (
             <Text
               component={NextLink}
@@ -66,6 +62,8 @@ export function Footer({ links, ...props }: Props): JSX.Element {
               {t(link.label)}
             </Text>
           ))}
+
+          {children}
         </Flex>
       </Flex>
     </AppShellFooter>

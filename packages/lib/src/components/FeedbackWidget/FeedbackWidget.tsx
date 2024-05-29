@@ -223,17 +223,14 @@ export function FeedbackWidget({
     <>
       <ActionIcon
         variant="filled"
-        size="xl"
+        size="lg"
         radius="xl"
         style={{
-          position: 'fixed',
-          bottom: 80,
-          right: 25,
           zIndex: 20,
         }}
         onClick={toggle}
       >
-        <IconMessageDots size={30} />
+        <IconMessageDots size={24} />
       </ActionIcon>
 
       <Dialog
@@ -243,7 +240,6 @@ export function FeedbackWidget({
           onCloseWidget()
         }}
         h={openInput ? 'auto' : '180px'}
-        position={{ bottom: 100, right: 80 }}
         className={
           isCapturingScreenshot
             ? classes['feedback-widget__dialog--display']
