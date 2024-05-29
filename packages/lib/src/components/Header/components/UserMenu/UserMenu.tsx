@@ -27,9 +27,13 @@ import classes from './UserMenu.module.css'
 
 type Props = {
   user: UserOutput
+  className?: {
+    group?: string
+    mail?: string
+  }
 }
 
-export function UserMenu({ user }: Props): JSX.Element {
+export function UserMenu({ user, className }: Props): JSX.Element {
   const { t } = useTranslation()
 
   return (
@@ -39,7 +43,12 @@ export function UserMenu({ user }: Props): JSX.Element {
       className={classes['user-menu__button']}
       aria-label={t('header.profile.arialLabel') as string}
     >
-      <Group className={classes['user-menu__group']} wrap="nowrap">
+      <Group
+        className={`${classes['user-menu__group']} ${
+          className?.group ? className.group : ''
+        }`}
+        wrap="nowrap"
+      >
         <IconUser size="28" />
 
         <Box className={classes['user-menu__box']}>
@@ -49,7 +58,13 @@ export function UserMenu({ user }: Props): JSX.Element {
             </Text>
           </Flex>
 
-          <Text className={classes['user-menu__box--mail']}>{user.email}</Text>
+          <Text
+            className={`${classes['user-menu__box--mail']} ${
+              className?.mail ? className.mail : ''
+            }`}
+          >
+            {user.email}
+          </Text>
         </Box>
 
         <IconChevronRight size={18} />
