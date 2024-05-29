@@ -24,7 +24,12 @@ import {
   NavBar,
 } from '@frachtwerk/essencium-lib'
 import { FooterLink, NavLink, RIGHTS } from '@frachtwerk/essencium-types'
-import { AppShell, AppShellMain, useMantineTheme } from '@mantine/core'
+import {
+  AppShell,
+  AppShellMain,
+  AppShellProps,
+  useMantineTheme,
+} from '@mantine/core'
 import { useDisclosure, useMediaQuery } from '@mantine/hooks'
 import { Spotlight, SpotlightActionData } from '@mantine/spotlight'
 import {
@@ -50,7 +55,9 @@ import { useGetMe, useGetTranslations, userAtom, userRightsAtom } from '@/api'
 import { useCreateFeedback } from '@/api/feedback'
 import { logout, withBaseStylingShowNotification } from '@/utils'
 
-type Props = {
+import classes from './AuthLayout.module.css'
+
+type Props = AppShellProps & {
   children: React.ReactNode
   routeName?: string
   version?: string
@@ -147,6 +154,7 @@ export function AuthLayout({
   children,
   routeName,
   version,
+  ...props
 }: Props): JSX.Element | null {
   const router = useRouter()
 
@@ -308,7 +316,8 @@ export function AuthLayout({
           breakpoint: 'sm',
           collapsed: { mobile: !mobileNavBarOpened },
         }}
-        padding={16}
+        className={classes['app-shell']}
+        {...props}
       >
         <Header
           user={user}

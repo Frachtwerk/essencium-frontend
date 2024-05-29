@@ -16,14 +16,14 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
-import { Flex, Select, Table as MantineTable } from '@mantine/core'
+import { Flex, Select, Table as MantineTable, TableProps } from '@mantine/core'
 import { IconSortAscending2, IconSortDescending2 } from '@tabler/icons-react'
 import { flexRender, Table as TanstackTable } from '@tanstack/react-table'
 import { Dispatch, SetStateAction } from 'react'
 
 import classes from './Table.module.css'
 
-type Props<T> = {
+type Props<T> = TableProps & {
   tableModel: TanstackTable<T>
   onFilterChange?: (key: string, value: string | null) => void
   showFilter?: boolean
@@ -41,11 +41,17 @@ export function Table<T>({
   filterValue,
   setFilterValue,
   firstColSticky,
+  ...props
 }: Props<T>): JSX.Element {
   return (
     <Flex direction="column" align="end">
       <div style={{ overflowX: 'auto', width: '100%' }}>
-        <MantineTable striped highlightOnHover withRowBorders={false}>
+        <MantineTable
+          striped
+          highlightOnHover
+          withRowBorders={false}
+          {...props}
+        >
           <MantineTable.Thead aria-label="header-row">
             {tableModel.getHeaderGroups().map(headerGroup => (
               <MantineTable.Tr key={headerGroup.id}>

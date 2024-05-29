@@ -20,6 +20,7 @@
 import { NavLink } from '@frachtwerk/essencium-types'
 import {
   AppShellNavbar,
+  AppShellNavbarProps,
   AppShellSection,
   Box,
   Code,
@@ -36,7 +37,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { NavLinks } from './components'
 import classes from './NavBar.module.css'
 
-type Props = {
+type Props = AppShellNavbarProps & {
   isMobile: boolean
   links: NavLink[]
   userRights?: string[] | null
@@ -62,6 +63,7 @@ export function NavBar({
   setFoldedNav,
   fixedNav,
   setFixedNav,
+  ...props
 }: Props): JSX.Element {
   const { colorScheme } = useMantineColorScheme()
   const theme = useMantineTheme()
@@ -108,12 +110,13 @@ export function NavBar({
           handleMouseLeave()
         }
       }}
-      className={
+      zIndex={100}
+      {...props}
+      className={`${
         isMobile
           ? classes['navBar__container-mobile']
           : classes['navBar__container']
-      }
-      zIndex={100}
+      } ${props.className ? props.className : ''}`}
     >
       <AppShellSection className={classes['navBar__versionContainer']}>
         <Group gap="xs" align="center">
