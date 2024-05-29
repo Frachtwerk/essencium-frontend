@@ -17,15 +17,14 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-.footer__app-shell {
-  padding: var(--mantine-spacing-md);
-}
+
 
 .footer__flex {
-  margin-left: var(--mantine-spacing-xs);
+  padding: 0 var(--mantine-spacing-lg);
 }
 
 .footer__text {
+
   @mixin dark {
     color: var(--mantine-color-gray-0);
   }

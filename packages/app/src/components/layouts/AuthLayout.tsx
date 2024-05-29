@@ -353,20 +353,20 @@ export function AuthLayout({
           }
         />
 
-        <Footer links={FOOTER_LINKS} />
+        <Footer links={FOOTER_LINKS}>
+          {user ? (
+            <FeedbackWidget
+              currentUser={user}
+              createFeedback={createFeedback}
+              feedbackCreated={feedbackCreated}
+              feedbackFailed={feedbackFailed}
+              feedbackSending={feedbackSending}
+              createNotification={withBaseStylingShowNotification}
+            />
+          ) : null}
+        </Footer>
 
         <AppShellMain>{showChildren ? children : null}</AppShellMain>
-
-        {user ? (
-          <FeedbackWidget
-            currentUser={user}
-            createFeedback={createFeedback}
-            feedbackCreated={feedbackCreated}
-            feedbackFailed={feedbackFailed}
-            feedbackSending={feedbackSending}
-            createNotification={withBaseStylingShowNotification}
-          />
-        ) : null}
       </AppShell>
     </>
   )
