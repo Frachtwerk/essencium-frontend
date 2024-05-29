@@ -42,8 +42,8 @@ type Props = AppShellNavbarProps & {
   links: NavLink[]
   userRights?: string[] | null
   handleLogout: () => void
-  logo: JSX.Element
-  icon: JSX.Element
+  logo?: JSX.Element
+  icon?: JSX.Element
   version?: string
   foldedNav: boolean
   setFoldedNav: Dispatch<SetStateAction<boolean>>
@@ -98,6 +98,12 @@ export function NavBar({
     }
   }, [currentTimeOutId])
 
+  const Logo = logo ? <Box>{logo}</Box> : null
+
+  const Icon = icon ? (
+    <Box className={classes['navBar__logo']}>{icon}</Box>
+  ) : null
+
   return (
     <AppShellNavbar
       onMouseEnter={() => {
@@ -120,13 +126,7 @@ export function NavBar({
     >
       <AppShellSection className={classes['navBar__versionContainer']}>
         <Group gap="xs" align="center">
-          <NextLink href="/">
-            {foldedNav || isMobile ? (
-              <Box className={classes['navBar__logo']}>{icon}</Box>
-            ) : (
-              <Box>{logo}</Box>
-            )}
-          </NextLink>
+          <NextLink href="/">{foldedNav || isMobile ? Icon : Logo}</NextLink>
 
           {!foldedNav && !isMobile ? (
             <Box
