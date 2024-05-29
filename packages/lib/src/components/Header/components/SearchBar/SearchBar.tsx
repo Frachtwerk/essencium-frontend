@@ -24,7 +24,15 @@ import { useTranslation } from 'next-i18next'
 
 import classes from './SearchBar.module.css'
 
-export function SearchBar(): JSX.Element {
+type Props = {
+  className?: {
+    group?: string
+    icon?: string
+    text?: string
+  }
+}
+
+export function SearchBar({ className }: Props): JSX.Element {
   const { t } = useTranslation()
 
   return (
@@ -33,11 +41,24 @@ export function SearchBar(): JSX.Element {
       onClick={() => openSpotlight()}
       role="search"
     >
-      <Group justify="apart">
+      <Group
+        justify="apart"
+        className={className?.group ? className.group : ''}
+      >
         <Group gap="sm">
-          <IconSearch size="16" className={classes['search-bar__icon']} />
+          <IconSearch
+            size="16"
+            className={`${classes['search-bar__icon']} ${
+              className?.icon ? className.icon : ''
+            }`}
+          />
 
-          <Text className={classes['search-bar__text']} role="searchbox">
+          <Text
+            className={`${classes['search-bar__text']} ${
+              className?.text ? className.text : ''
+            }`}
+            role="searchbox"
+          >
             {t('header.spotlight.placeholder')}
           </Text>
         </Group>
