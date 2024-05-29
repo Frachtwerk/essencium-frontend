@@ -26,22 +26,23 @@ import {
   PopoverTarget,
   Text,
   useMantineColorScheme,
-  useMantineTheme,
 } from '@mantine/core'
 import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
-import { useState } from 'react'
 
 import classes from './ThemeSelector.module.css'
 
-export function ThemeSelector(): JSX.Element {
+type Props = {
+  className?: {
+    iconSun?: string
+    iconMoon?: string
+  }
+}
+
+export function ThemeSelector({ className }: Props): JSX.Element {
   const { t } = useTranslation()
 
   const { setColorScheme } = useMantineColorScheme()
-  const theme = useMantineTheme()
-
-  const [hasSelectedLight, setSelectedLight] = useState(false)
-  const [hasSelectedDark, setSelectedDark] = useState(false)
 
   let systemColorScheme: MantineColorScheme = 'light'
 
@@ -60,16 +61,15 @@ export function ThemeSelector(): JSX.Element {
           leftSection={
             <>
               <IconSun
-                className={classes['theme-selector__iconLight']}
-                color={
-                  hasSelectedLight ? theme.colors.blue[6] : theme.colors.gray[9]
-                }
+                className={`${classes['theme-selector__iconLight']} ${
+                  className?.iconSun ? className.iconSun : ''
+                } `}
               />
+
               <IconMoon
-                className={classes['theme-selector__iconDark']}
-                color={
-                  hasSelectedDark ? theme.colors.blue[6] : theme.colors.gray[5]
-                }
+                className={`${classes['theme-selector__iconDark']} ${
+                  className?.iconMoon ? className.iconMoon : ''
+                }`}
               />
             </>
           }
@@ -80,7 +80,6 @@ export function ThemeSelector(): JSX.Element {
         <Group
           onClick={() => {
             setColorScheme('light')
-            setSelectedLight(true)
           }}
           className={classes['theme-selector__group']}
         >
@@ -94,7 +93,6 @@ export function ThemeSelector(): JSX.Element {
         <Group
           onClick={() => {
             setColorScheme('dark')
-            setSelectedDark(true)
           }}
           className={classes['theme-selector__group']}
         >
@@ -108,8 +106,6 @@ export function ThemeSelector(): JSX.Element {
         <Group
           onClick={() => {
             setColorScheme(systemColorScheme)
-            setSelectedLight(false)
-            setSelectedDark(false)
           }}
           className={classes['theme-selector__group']}
         >
