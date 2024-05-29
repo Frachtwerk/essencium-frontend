@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.2.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.2.0...essencium-lib-v7.2.1) (2024-05-29)
+
+
+### Bug Fixes
+
+* accept null for logo and icon ([eba046e](https://github.com/Frachtwerk/essencium-frontend/commit/eba046eaf48ec717cf3334ba334b2ebabc125859))
+* move feedbackWidget to footer ([#585](https://github.com/Frachtwerk/essencium-frontend/issues/585)) ([3b771dd](https://github.com/Frachtwerk/essencium-frontend/commit/3b771dd05cac498672f1cb414bc6cd19efc5d2ad))
+
 ## [7.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.1.0...essencium-lib-v7.2.0) (2024-05-29)
 
 
