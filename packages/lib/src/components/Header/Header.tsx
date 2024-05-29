@@ -20,6 +20,7 @@
 import { UserOutput } from '@frachtwerk/essencium-types'
 import {
   AppShellHeader,
+  AppShellHeaderProps,
   Burger,
   Flex,
   Group,
@@ -29,17 +30,28 @@ import {
 import { SearchBar, ThemeSelector, UserMenu } from './components'
 import classes from './Header.module.css'
 
-type Props = {
+type Props = AppShellHeaderProps & {
   user: UserOutput | undefined
   isOpen: boolean
   handleOpenNav: () => void
 }
 
-export function Header({ user, isOpen, handleOpenNav }: Props): JSX.Element {
+export function Header({
+  user,
+  isOpen,
+  handleOpenNav,
+  ...props
+}: Props): JSX.Element {
   const theme = useMantineTheme()
 
   return (
-    <AppShellHeader withBorder={false} className={classes['header__app-shell']}>
+    <AppShellHeader
+      withBorder={false}
+      {...props}
+      className={`${classes['header__app-shell']} ${
+        props.className ? props.className : ''
+      }`}
+    >
       <Flex
         className={classes.header__content}
         justify="space-between"

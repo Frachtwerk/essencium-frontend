@@ -18,22 +18,27 @@
  */
 
 import { FooterLink } from '@frachtwerk/essencium-types'
-import { AppShellFooter, Flex, Text } from '@mantine/core'
+import { AppShellFooter, AppShellFooterProps, Flex, Text } from '@mantine/core'
 import { IconCopyright } from '@tabler/icons-react'
 import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
 
 import classes from './Footer.module.css'
 
-type Props = {
+type Props = AppShellFooterProps & {
   links: FooterLink[]
 }
 
-export function Footer({ links }: Props): JSX.Element {
+export function Footer({ links, ...props }: Props): JSX.Element {
   const { t } = useTranslation()
 
   return (
-    <AppShellFooter className={classes['footer__app-shell']}>
+    <AppShellFooter
+      {...props}
+      className={`${classes['footer__app-shell']} ${
+        props.className ? props.className : ''
+      }`}
+    >
       <Flex
         justify={{ base: 'center', xs: 'space-between' }}
         direction="row"

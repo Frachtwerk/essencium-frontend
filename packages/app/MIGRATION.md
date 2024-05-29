@@ -1,5 +1,15 @@
 # Migrations
 
+## [x.y.z (DD.MM.YYYY)](#)
+
+### `src/components/layouts/AuthLayout.module.css`
+
+- add file
+
+### `src/components/layouts/AuthLayout.tsx`
+
+- add built-in Mantine props forwarding for `AppShell`
+
 ## [7.0.1 (23.05.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.0.0...essencium-app-v7.0.1)
 
 ### `src/utils/withBaseStylingShowNotification.ts`
