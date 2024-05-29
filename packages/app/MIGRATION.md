@@ -1,6 +1,6 @@
 # Migrations
 
-## [?.?.? (DD.MM.YYYY)]()
+## [7.1.1 (29.05.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.1.0...essencium-app-v7.1.1)
 
 ### `src/components/layouts/AuthLayout.tsx`
 
