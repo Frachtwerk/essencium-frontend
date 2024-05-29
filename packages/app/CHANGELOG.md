@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.0.1...essencium-app-v7.1.0) (2024-05-29)
+
+
+### Features
+
+* enable props forwarding for appshell mantine components ([#582](https://github.com/Frachtwerk/essencium-frontend/issues/582)) ([d50ed6e](https://github.com/Frachtwerk/essencium-frontend/commit/d50ed6edb3d86002491975f6e90b202552fb2605))
+
 ## [7.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.0.0...essencium-app-v7.0.1) (2024-05-23)
 
 
