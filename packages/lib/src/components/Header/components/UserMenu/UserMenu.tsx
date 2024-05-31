@@ -28,6 +28,7 @@ import classes from './UserMenu.module.css'
 type Props = {
   user: UserOutput
   className?: {
+    button?: string
     group?: string
     mail?: string
   }
@@ -40,7 +41,9 @@ export function UserMenu({ user, className }: Props): JSX.Element {
     <UnstyledButton
       component={NextLink}
       href="/profile"
-      className={classes['user-menu__button']}
+      className={`${classes['user-menu__button']} ${
+        className?.button ? className.button : ''
+      }`}
       aria-label={t('header.profile.arialLabel') as string}
     >
       <Group
