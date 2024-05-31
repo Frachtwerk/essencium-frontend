@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.2.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.2.1...essencium-lib-v7.2.2) (2024-05-31)
+
+
+### Bug Fixes
+
+* allow passing classes to button component ([2f3db35](https://github.com/Frachtwerk/essencium-frontend/commit/2f3db35251387c56c02ca1603183b9e7122880ef))
+
 ## [7.2.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.2.0...essencium-lib-v7.2.1) (2024-05-29)
 
 
