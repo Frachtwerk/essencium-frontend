@@ -316,6 +316,7 @@ export function UserForm({
               <Select
                 {...field}
                 withAsterisk
+                allowDeselect={false}
                 label={t('addUpdateUserView.form.language')}
                 placeholder={String(t('addUpdateUserView.form.language'))}
                 data={[

@@ -271,6 +271,8 @@ export function PersonalDataForm({
             render={({ field }) => (
               <Select
                 {...field}
+                radius="sm"
+                allowDeselect={false}
                 label={t(
                   'profileView.dataCard.tabs.personalData.label.language',
                 )}
