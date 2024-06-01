@@ -39,7 +39,7 @@ import {
 import { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import { Fira_Code, Fira_Sans } from 'next/font/google'
-import { useRouter } from 'next/router'
+import { usePathname, useRouter } from 'next/navigation'
 import { appWithTranslation } from 'next-i18next'
 import { ReactElement, ReactNode, useEffect, useState } from 'react'
 
@@ -69,8 +69,6 @@ function App({
   pageProps,
   version,
 }: AppPropsWithLayout): JSX.Element {
-  const router = useRouter()
-
   const getLayout =
     Component.getLayout ?? (page => <PublicLayout>{page}</PublicLayout>)
 
@@ -178,6 +176,9 @@ function App({
 
   useHotkeys([['mod+J', () => toggleColorScheme()]])
 
+  const router = useRouter()
+  const pathname = usePathname()
+
   useEffect(() => {
     // useAtom
     let user: UserOutput | string | null = localStorage.getItem('user')
@@ -186,12 +187,12 @@ function App({
 
     user = JSON.parse(user) as UserOutput
 
-    router.replace(router.asPath, undefined, {
-      locale: user?.locale,
-    })
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    if (user.locale === 'en') {
+      router.push(`${pathname}`)
+    } else {
+      router.push(`/${user.locale}${pathname}`)
+    }
+  }, [pathname, router])
 
   const theme = createTheme({
     focusRing: 'auto',

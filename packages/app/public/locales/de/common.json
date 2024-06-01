@@ -25,7 +25,8 @@
   "actions": {
     "refresh": "Daten aktualisieren",
     "delete": "Löschen",
-    "cancel": "Abbrechen"
+    "cancel": "Abbrechen",
+    "backToHome": "zu Home zurück"
   },
   "navigation": {
     "home": {
@@ -67,6 +68,9 @@
       "label": "Kontakt",
       "description": "Kontaktformular"
     }
+  },
+  "routeProtector": {
+    "message": "Sie besitzen nicht die notwendigen Rechte um diese Seite aufzurufen."
   },
   "profileView": {
     "title": "Profil",

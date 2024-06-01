@@ -25,7 +25,8 @@
   "actions": {
     "refresh": "Refresh data",
     "delete": "Delete",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "backToHome": "back to home"
   },
   "navigation": {
     "home": {
@@ -67,6 +68,9 @@
       "label": "Contact",
       "description": "Contact Form"
     }
+  },
+  "routeProtector": {
+    "message": "You are not authorized to view this page."
   },
   "profileView": {
     "title": "Profile",
