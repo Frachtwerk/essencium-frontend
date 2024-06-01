@@ -1,11 +1,13 @@
-import { Box } from '@mantine/core'
+import { Box, Button, Flex, Title } from '@mantine/core'
 import { useAtomValue } from 'jotai'
 import { usePathname, useRouter } from 'next/navigation'
+import { useTranslation } from 'next-i18next'
 
 import { userRightsAtom } from '@/api'
-import { hasRequiredRights } from '@/utils'
+import { getTranslation, hasRequiredRights } from '@/utils'
 
-import { NAV_LINKS } from './layouts'
+import { AuthLayout, NAV_LINKS } from './layouts'
+import classes from './RouteProtector.module.css'
 
 export function RouteProtector({
   children,
@@ -16,17 +18,33 @@ export function RouteProtector({
 
   const router = useRouter()
 
+  const { t } = useTranslation()
+
   const route = NAV_LINKS.find(navLink => navLink.to === `${pathname}`)
 
   const userRights = useAtomValue(userRightsAtom)
 
-  if (hasRequiredRights(userRights ?? [], route?.rights ?? [])) {
+  const isAuthorized = hasRequiredRights(userRights ?? [], route?.rights ?? [])
+
+  if (isAuthorized) {
     return <Box>{children}</Box>
   }
 
-  if (typeof window !== 'undefined') {
-    router.push('/')
-  }
+  return (
+    <AuthLayout routeName={getTranslation('profileView.title')}>
+      <Flex className={classes['routeProtector']}>
+        <Title order={3} className={classes['routeProtector__title']}>
+          {t('routeProtector.message')}
+        </Title>
 
-  return null
+        <Button
+          variant="light"
+          className={classes['routeProtector__backButton']}
+          onClick={() => router.push('/')}
+        >
+          {t('actions.backToHome')}
+        </Button>
+      </Flex>
+    </AuthLayout>
+  )
 }

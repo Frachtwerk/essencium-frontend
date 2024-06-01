@@ -21,6 +21,7 @@ import {
   FeedbackWidget,
   Footer,
   Header,
+  LoadingSpinner,
   NavBar,
 } from '@frachtwerk/essencium-lib'
 import { FooterLink, NavLink, RIGHTS } from '@frachtwerk/essencium-types'
@@ -48,10 +49,10 @@ import { atomWithStorage } from 'jotai/utils'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { i18n, useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next'
 import React, { useEffect, useState } from 'react'
 
-import { useGetMe, useGetTranslations, userAtom, userRightsAtom } from '@/api'
+import { useGetMe, userAtom, userRightsAtom } from '@/api'
 import { useCreateFeedback } from '@/api/feedback'
 import {
   getTranslation,
@@ -212,18 +213,7 @@ export function AuthLayout({
     }
   })
 
-  const { data: backendTranslationsEn } = useGetTranslations('en')
-  const { data: backendTranslationsDe } = useGetTranslations('de')
-
-  i18n?.addResourceBundle(
-    i18n.language,
-    'common',
-    i18n.language === 'de'
-      ? backendTranslationsDe ?? {}
-      : backendTranslationsEn ?? {},
-    true,
-    true,
-  )
+  const [isLoadingAuthToken, setIsLoadingAuthToken] = useState(true)
 
   useEffect(() => {
     const authToken = localStorage.getItem('authToken')
@@ -233,60 +223,10 @@ export function AuthLayout({
         pathname: '/login',
         query: router.asPath === '/' ? null : { redirect: router.asPath },
       })
+    } else {
+      setIsLoadingAuthToken(false)
     }
   }, [user, router])
-
-  useEffect(() => {
-    router.replace(router.asPath, undefined, {
-      locale: user?.locale,
-    })
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.asPath, user])
-
-  const [showChildren, setShowChildren] = useState(false)
-
-  function isAuthorized(route: NavLink): boolean {
-    return (
-      !route.rights || route.rights.every(right => userRights?.includes(right))
-    )
-  }
-
-  function onRouteChangeStart(route: string): void {
-    const path = route.replace(/^\/[^/]+/, '')
-
-    const currentRoute = NAV_LINKS.find(link => link.to === path)
-
-    if (currentRoute && !isAuthorized(currentRoute)) {
-      setShowChildren(false)
-    } else {
-      setShowChildren(true)
-    }
-  }
-
-  function checkIfUserIsAuthorized(route: string): void {
-    const path = route.replace(/^\/[^/]+/, '')
-
-    const currentRoute = NAV_LINKS.find(link => link.to === path)
-
-    if (currentRoute && !isAuthorized(currentRoute)) {
-      router.replace('/', undefined, {
-        locale: user?.locale,
-      })
-    }
-  }
-
-  useEffect(() => {
-    router.events.on('routeChangeStart', onRouteChangeStart)
-    router.events.on('routeChangeComplete', checkIfUserIsAuthorized)
-
-    return () => {
-      router.events.off('routeChangeStart', onRouteChangeStart)
-      router.events.off('routeChangeComplete', checkIfUserIsAuthorized)
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.events, userRights])
 
   function handleLogout(): void {
     logout()
@@ -316,53 +256,69 @@ export function AuthLayout({
         <title>{pageTitle}</title>
       </Head>
 
-      <AppShell
-        layout={isNotMobile ? 'alt' : 'default'}
-        header={{ height: { base: 60 } }}
-        footer={{ height: { base: 58 } }}
-        navbar={{
-          width: isFixedNav ? 250 : 80,
-          breakpoint: 'sm',
-          collapsed: { mobile: !mobileNavBarOpened },
-        }}
-        className={classes['app-shell']}
-        {...props}
-      >
-        <Header
-          user={user}
-          isOpen={mobileNavBarOpened}
-          handleOpenNav={toggleMobileNavBar}
-        />
+      {!isLoadingAuthToken ? (
+        <AppShell
+          layout={isNotMobile ? 'alt' : 'default'}
+          header={{ height: { base: 60 } }}
+          footer={{ height: { base: 58 } }}
+          navbar={{
+            width: isFixedNav ? 250 : 80,
+            breakpoint: 'sm',
+            collapsed: { mobile: !mobileNavBarOpened },
+          }}
+          className={classes['app-shell']}
+          {...props}
+        >
+          <Header
+            user={user}
+            isOpen={mobileNavBarOpened}
+            handleOpenNav={toggleMobileNavBar}
+          />
 
-        <NavBar
-          isMobile={!isNotMobile}
-          links={NAV_LINKS}
-          userRights={userRights}
-          handleLogout={handleLogout}
-          version={version}
-          foldedNav={isFoldedNav}
-          setFoldedNav={setIsFoldedNav}
-          fixedNav={isFixedNav}
-          setFixedNav={setIsFixedNav}
-          logo={
-            <Image
-              src="/img/web/logotype_400x100px.svg"
-              alt={t('header.logo')}
-              width={150}
-              height={50}
-            />
-          }
-          icon={
-            <Image
-              src="/img/web/emblem_400x400px.svg"
-              alt={t('header.logo')}
-              width={50}
-              height={50}
-            />
-          }
-        />
+          <NavBar
+            isMobile={!isNotMobile}
+            links={NAV_LINKS}
+            userRights={userRights}
+            handleLogout={handleLogout}
+            version={version}
+            foldedNav={isFoldedNav}
+            setFoldedNav={setIsFoldedNav}
+            fixedNav={isFixedNav}
+            setFixedNav={setIsFixedNav}
+            logo={
+              <Image
+                src="/img/web/logotype_400x100px.svg"
+                alt={t('header.logo')}
+                width={150}
+                height={50}
+                style={{ verticalAlign: 'initial' }}
+              />
+            }
+            icon={
+              <Image
+                src="/img/web/emblem_400x400px.svg"
+                alt={t('header.logo')}
+                width={50}
+                height={50}
+              />
+            }
+          />
 
-        <Footer links={FOOTER_LINKS}>
+          <Footer links={FOOTER_LINKS}>
+            {user ? (
+              <FeedbackWidget
+                currentUser={user}
+                createFeedback={createFeedback}
+                feedbackCreated={feedbackCreated}
+                feedbackFailed={feedbackFailed}
+                feedbackSending={feedbackSending}
+                createNotification={withBaseStylingShowNotification}
+              />
+            ) : null}
+          </Footer>
+
+          <AppShellMain>{children}</AppShellMain>
+
           {user ? (
             <FeedbackWidget
               currentUser={user}
@@ -373,10 +329,10 @@ export function AuthLayout({
               createNotification={withBaseStylingShowNotification}
             />
           ) : null}
-        </Footer>
-
-        <AppShellMain>{showChildren ? children : null}</AppShellMain>
-      </AppShell>
+        </AppShell>
+      ) : (
+        <LoadingSpinner show />
+      )}
     </>
   )
 }
