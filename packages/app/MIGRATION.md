@@ -1,5 +1,11 @@
 # Migrations
 
+## [x.y.z (dd.mm.yyyy)](#)
+
+### E2E test fixes
+
+- all E2E tests have been fixed and pass now (see those files inside `e2e` folder)
+
 ## [7.1.1 (29.05.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.1.0...essencium-app-v7.1.1)
 
 ### `src/components/layouts/AuthLayout.tsx`
