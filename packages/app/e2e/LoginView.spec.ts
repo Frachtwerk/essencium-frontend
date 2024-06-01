@@ -2,8 +2,6 @@ import { expect, test } from '@playwright/test'
 
 import { ADMIN, BASE_URL } from '../playwright.config'
 
-test.use({ storageState: './playwright/.auth/noAuth.json' })
-
 test('LoginView > redirect to login page', async ({ page }) => {
   await page.goto(BASE_URL)
   await expect(page).toHaveURL(`${BASE_URL}/login`)
