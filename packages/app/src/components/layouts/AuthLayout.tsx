@@ -53,7 +53,11 @@ import React, { useEffect, useState } from 'react'
 
 import { useGetMe, useGetTranslations, userAtom, userRightsAtom } from '@/api'
 import { useCreateFeedback } from '@/api/feedback'
-import { logout, withBaseStylingShowNotification } from '@/utils'
+import {
+  getTranslation,
+  logout,
+  withBaseStylingShowNotification,
+} from '@/utils'
 
 import classes from './AuthLayout.module.css'
 
@@ -287,7 +291,9 @@ export function AuthLayout({
     router.push('/login')
   }
 
-  const pageTitle = `${routeName ? `${routeName} -` : ''} Essencium`
+  const pageTitle = `${routeName ? `${routeName} -` : ''} ${getTranslation(
+    'header.title',
+  )}`
 
   const isNotMobile = useMediaQuery('(min-width: 48em)') // equals mantine breakpoint sm
 
