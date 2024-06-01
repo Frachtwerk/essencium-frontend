@@ -14,7 +14,7 @@ dotenv.config({ path: path.resolve(__dirname, '.env.local') })
 
 export const BASE_URL = 'https://staging.essencium.dev'
 
-export const BASE_URL_DOCS = 'https://docs.essencium.dev/'
+export const BASE_URL_DOCS = 'https://docs.essencium.dev'
 
 if (!process.env.TEST_ADMIN_USERNAME || !process.env.TEST_ADMIN_PASSWORD) {
   throw new Error(

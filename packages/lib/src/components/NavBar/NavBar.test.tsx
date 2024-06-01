@@ -17,14 +17,14 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { NavLink } from '@frachtwerk/essencium-types'
+import { NavLink, RIGHTS } from '@frachtwerk/essencium-types'
 import { AppShell, MantineProvider } from '@mantine/core'
 import {
-  IconHome2,
+  IconHome,
   IconLanguage,
-  IconShieldCheck,
-  IconUserCheck,
+  IconShieldHalf,
   IconUsers,
+  IconUserStar,
 } from '@tabler/icons-react'
 import { render, screen } from '@testing-library/react'
 import { ReactNode } from 'react'
@@ -37,39 +37,44 @@ const BASE_PATH = 'http://localhost:3000'
 describe('NavBar', () => {
   const NAV_LINKS: NavLink[] = [
     {
-      icon: <IconHome2 size={20} />,
+      icon: <IconHome />,
       color: 'blue',
       label: 'navigation.home.label',
-      to: '/home',
+      to: '/',
+      description: 'navigation.home.description',
       rights: [],
     },
     {
-      icon: <IconUsers size={20} />,
+      icon: <IconUsers />,
       color: 'blue',
       label: 'navigation.users.label',
       to: '/users',
-      rights: [],
+      description: 'navigation.users.description',
+      rights: [RIGHTS.USER_READ],
     },
     {
-      icon: <IconUserCheck size={20} />,
+      icon: <IconUserStar />,
       color: 'blue',
       label: 'navigation.roles.label',
       to: '/roles',
-      rights: [],
+      description: 'navigation.roles.description',
+      rights: [RIGHTS.ROLE_READ, RIGHTS.RIGHT_READ],
     },
     {
-      icon: <IconShieldCheck size={20} />,
+      icon: <IconShieldHalf />,
       color: 'blue',
       label: 'navigation.rights.label',
       to: '/rights',
-      rights: [],
+      description: 'navigation.rights.description',
+      rights: [RIGHTS.ROLE_READ, RIGHTS.RIGHT_READ],
     },
     {
-      icon: <IconLanguage size={20} />,
+      icon: <IconLanguage />,
       color: 'blue',
       label: 'navigation.translations.label',
       to: '/translations',
-      rights: [],
+      description: 'navigation.translations.description',
+      rights: [RIGHTS.TRANSLATION_READ],
     },
   ]
 
@@ -83,6 +88,7 @@ describe('NavBar', () => {
     setFoldedNav: () => {},
     fixedNav: false,
     setFixedNav: () => {},
+    isMobile: false,
   }
   beforeAll(() => {
     const wrapper = ({ children }: { children: ReactNode }): JSX.Element => (
