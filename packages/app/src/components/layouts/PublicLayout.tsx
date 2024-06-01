@@ -20,6 +20,8 @@
 import { Center } from '@mantine/core'
 import Head from 'next/head'
 
+import { getTranslation } from '@/utils'
+
 type Props = {
   children: React.ReactNode
   routeName?: string
@@ -29,7 +31,9 @@ export function PublicLayout({
   children,
   routeName,
 }: Props): JSX.Element | null {
-  const pageTitle = `${routeName ? `${routeName} -` : ''} Essencium`
+  const pageTitle = `${routeName ? `${routeName} -` : ''} ${getTranslation(
+    'header.title',
+  )}`
 
   return (
     <Center>
