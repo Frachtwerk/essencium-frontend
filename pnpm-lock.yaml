@@ -151,8 +151,8 @@ importers:
         specifier: 7.5.2
         version: 7.5.2(@mantine/core@7.5.2)(@mantine/hooks@7.5.2)(react-dom@18.2.0)(react@18.2.0)
       '@playwright/test':
-        specifier: ^1.44.0
-        version: 1.44.0
+        specifier: ^1.44.1
+        version: 1.44.1
       '@tabler/icons-react':
         specifier: 2.11.0
         version: 2.11.0(react@18.2.0)
@@ -188,7 +188,7 @@ importers:
         version: 2.0.3(react@18.2.0)
       next:
         specifier: 14.2.2
-        version: 14.2.2(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.2.0)(react@18.2.0)
+        version: 14.2.2(@babel/core@7.24.5)(@playwright/test@1.44.1)(react-dom@18.2.0)(react@18.2.0)
       next-i18next:
         specifier: 15.3.0
         version: 15.3.0(i18next@23.11.2)(next@14.2.2)(react-i18next@14.1.1)(react@18.2.0)
@@ -288,7 +288,7 @@ importers:
         version: 2.1.0
       next:
         specifier: 14.2.2
-        version: 14.2.2(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.2.0)(react@18.2.0)
+        version: 14.2.2(@babel/core@7.24.5)(@playwright/test@1.44.1)(react-dom@18.2.0)(react@18.2.0)
       nextra:
         specifier: 2.13.3
         version: 2.13.3(next@14.2.2)(react-dom@18.2.0)(react@18.2.0)
@@ -2720,7 +2720,7 @@ packages:
     dependencies:
       '@mantine/ssr': 6.0.21(@emotion/react@11.10.6)(@emotion/server@11.11.0)(react-dom@18.2.0)(react@18.2.0)
       '@mantine/styles': 6.0.21(@emotion/react@11.10.6)(react-dom@18.2.0)(react@18.2.0)
-      next: 14.2.2(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.2.0)(react@18.2.0)
+      next: 14.2.2(@babel/core@7.24.5)(@playwright/test@1.44.1)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
@@ -3312,12 +3312,12 @@ packages:
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  /@playwright/test@1.44.0:
-    resolution: {integrity: sha512-rNX5lbNidamSUorBhB4XZ9SQTjAqfe5M+p37Z8ic0jPFBMo5iCtQz1kRWkEMg+rYOKSlVycpQmpqjSFq7LXOfg==}
+  /@playwright/test@1.44.1:
+    resolution: {integrity: sha512-1hZ4TNvD5z9VuhNJ/walIjvMVvYkZKf71axoF/uiAqpntQJXpG64dlXhoDXE3OczPuTuvjf/M5KWFg5VAVUS3Q==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      playwright: 1.44.0
+      playwright: 1.44.1
 
   /@popperjs/core@2.11.8:
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
@@ -8621,7 +8621,7 @@ packages:
       hoist-non-react-statics: 3.3.2
       i18next: 23.11.2
       i18next-fs-backend: 2.3.1
-      next: 14.2.2(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.2.0)(react@18.2.0)
+      next: 14.2.2(@babel/core@7.24.5)(@playwright/test@1.44.1)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-i18next: 14.1.1(i18next@23.11.2)(react-dom@18.2.0)(react@18.2.0)
 
@@ -8659,7 +8659,7 @@ packages:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
     dependencies:
-      next: 14.2.2(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.2.0)(react@18.2.0)
+      next: 14.2.2(@babel/core@7.24.5)(@playwright/test@1.44.1)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -8671,7 +8671,7 @@ packages:
       react: '*'
       react-dom: '*'
     dependencies:
-      next: 14.2.2(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.2.0)(react@18.2.0)
+      next: 14.2.2(@babel/core@7.24.5)(@playwright/test@1.44.1)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -8718,7 +8718,7 @@ packages:
       - babel-plugin-macros
     dev: true
 
-  /next@14.2.2(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.2.0)(react@18.2.0):
+  /next@14.2.2(@babel/core@7.24.5)(@playwright/test@1.44.1)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-oGwUaa2bCs47FbuxWMpOoXtBMPYpvTPgdZr3UAo+pu7Ns00z9otmYpoeV1HEiYL06AlRQQIA/ypK526KjJfaxg==}
     engines: {node: '>=18.17.0'}
     hasBin: true
@@ -8737,7 +8737,7 @@ packages:
         optional: true
     dependencies:
       '@next/env': 14.2.2
-      '@playwright/test': 1.44.0
+      '@playwright/test': 1.44.1
       '@swc/helpers': 0.5.5
       busboy: 1.6.0
       caniuse-lite: 1.0.30001620
@@ -8777,7 +8777,7 @@ packages:
       git-url-parse: 13.1.1
       intersection-observer: 0.12.2
       match-sorter: 6.3.4
-      next: 14.2.2(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.2.0)(react@18.2.0)
+      next: 14.2.2(@babel/core@7.24.5)(@playwright/test@1.44.1)(react-dom@18.2.0)(react@18.2.0)
       next-seo: 6.5.0(next@14.2.2)(react-dom@18.2.0)(react@18.2.0)
       next-themes: 0.2.1(next@14.2.2)(react-dom@18.2.0)(react@18.2.0)
       nextra: 2.13.3(next@14.2.2)(react-dom@18.2.0)(react@18.2.0)
@@ -8807,7 +8807,7 @@ packages:
       gray-matter: 4.0.3
       katex: 0.16.10
       lodash.get: 4.4.2
-      next: 14.2.2(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.2.0)(react@18.2.0)
+      next: 14.2.2(@babel/core@7.24.5)(@playwright/test@1.44.1)(react-dom@18.2.0)(react@18.2.0)
       next-mdx-remote: 4.4.1(react-dom@18.2.0)(react@18.2.0)
       p-limit: 3.1.0
       react: 18.2.0
@@ -9276,17 +9276,17 @@ packages:
       pathe: 1.1.2
     dev: true
 
-  /playwright-core@1.44.0:
-    resolution: {integrity: sha512-ZTbkNpFfYcGWohvTTl+xewITm7EOuqIqex0c7dNZ+aXsbrLj0qI8XlGKfPpipjm0Wny/4Lt4CJsWJk1stVS5qQ==}
+  /playwright-core@1.44.1:
+    resolution: {integrity: sha512-wh0JWtYTrhv1+OSsLPgFzGzt67Y7BE/ZS3jEqgGBlp2ppp1ZDj8c+9IARNW4dwf1poq5MgHreEM2KV/GuR4cFA==}
     engines: {node: '>=16'}
     hasBin: true
 
-  /playwright@1.44.0:
-    resolution: {integrity: sha512-F9b3GUCLQ3Nffrfb6dunPOkE5Mh68tR7zN32L4jCk4FjQamgesGay7/dAAe1WaMEGV04DkdJfcJzjoCKygUaRQ==}
+  /playwright@1.44.1:
+    resolution: {integrity: sha512-qr/0UJ5CFAtloI3avF95Y0L1xQo6r3LQArLIg/z/PoGJ6xa+EwzrwO5lpNr/09STxdHuUoP2mvuELJS+hLdtgg==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      playwright-core: 1.44.0
+      playwright-core: 1.44.1
     optionalDependencies:
       fsevents: 2.3.2
 
