@@ -1,0 +1,67 @@
+import { Steps } from 'nextra/components'
+import { Tabs } from 'nextra/components'
+
+# Getting Started
+
+If you want to create a new project based on Essencium you can easily do so by running the following command. This will create a new project with the latest version of Essencium utilizing the [`create-essencium-app`](https://github.com/Frachtwerk/create-essencium-app) package.
+
+<Steps>
+### Create project
+
+<Tabs items={['pnpm', 'npm', 'yarn']} defaultIndex="0">
+  <Tabs.Tab>
+    ```bash copy
+    pnpm create essencium-app@latest <app-name>
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```bash copy
+    npx create-essencium-app@latest <app-name>
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```bash copy
+    yarn create essencium-app@latest <app-name>
+    ```  
+  </Tabs.Tab>
+</Tabs>
+
+### Install dependencies
+
+<Tabs items={['pnpm', 'npm', 'yarn']} defaultIndex="0">
+  <Tabs.Tab>
+    ```bash copy
+    pnpm install
+    ```
+  </Tabs.Tab>
+
+<Tabs.Tab>```bash copy npm install ```</Tabs.Tab>
+
+  <Tabs.Tab>
+    ```bash copy
+    yarn install
+    ```  
+  </Tabs.Tab>
+</Tabs>
+
+### Start development server
+
+<Tabs items={['pnpm', 'npm', 'yarn']} defaultIndex="0">
+  <Tabs.Tab>
+    ```bash copy
+    pnpm dev
+    ```
+  </Tabs.Tab>
+
+<Tabs.Tab>```bash copy npm run dev ```</Tabs.Tab>
+
+  <Tabs.Tab>
+    ```bash copy
+    yarn dev
+    ```  
+  </Tabs.Tab>
+</Tabs>
+
+</Steps>
