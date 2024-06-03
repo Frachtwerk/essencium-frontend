@@ -25,12 +25,7 @@ import {
   NavBar,
 } from '@frachtwerk/essencium-lib'
 import { FooterLink, NavLink, RIGHTS } from '@frachtwerk/essencium-types'
-import {
-  AppShell,
-  AppShellMain,
-  AppShellProps,
-  useMantineTheme,
-} from '@mantine/core'
+import { AppShell, AppShellMain, AppShellProps } from '@mantine/core'
 import { useDisclosure, useMediaQuery } from '@mantine/hooks'
 import { Spotlight, SpotlightActionData } from '@mantine/spotlight'
 import {
@@ -71,7 +66,6 @@ type Props = AppShellProps & {
 type SearchItems = {
   icon?: JSX.Element
   label: string
-  color?: string
   to: string
   description?: string
   rights?: string[]
@@ -147,7 +141,6 @@ export const SEARCH_ITEMS: SearchItems[] = [
     label: 'profileView.title',
     to: '/profile',
     description: 'profileView.description',
-    color: 'blue',
     rights: [],
   },
   ...NAV_LINKS,
@@ -164,8 +157,6 @@ export function AuthLayout({
   ...props
 }: Props): JSX.Element | null {
   const router = useRouter()
-
-  const theme = useMantineTheme()
 
   const { t } = useTranslation()
 
@@ -209,7 +200,6 @@ export function AuthLayout({
       description: link.description ? (t(link.description) as string) : '',
       onClick: () => router.push(`${link.to}`),
       leftSection: link.icon,
-      highlightColor: theme.colors.blue[6],
     }
   })
 
