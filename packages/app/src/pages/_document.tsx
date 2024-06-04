@@ -18,31 +18,22 @@
  */
 
 import { ColorSchemeScript } from '@mantine/core'
-import { createGetInitialProps } from '@mantine/next'
-import _Document, { Head, Html, Main, NextScript } from 'next/document'
+import { Head, Html, Main, NextScript } from 'next/document'
 
-const getInitialProps = createGetInitialProps()
+export default function Document(): JSX.Element {
+  return (
+    <Html lang="en">
+      <Head>
+        <link rel="icon" href="/img/web/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/img/web/apple-touch-icon.png" />
+        <ColorSchemeScript defaultColorScheme="auto" />
+      </Head>
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-class Document extends _Document {
-  static getInitialProps = getInitialProps
-
-  render(): JSX.Element {
-    return (
-      <Html lang="en">
-        <Head>
-          <link rel="icon" href="/img/web/favicon.ico" sizes="any" />
-          <link rel="apple-touch-icon" href="/img/web/apple-touch-icon.png" />
-          <ColorSchemeScript defaultColorScheme="auto" />
-        </Head>
-        <body>
-          <div id="notification" />
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
-  }
+      <body>
+        <div id="notification" />
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  )
 }
-
-export default Document
