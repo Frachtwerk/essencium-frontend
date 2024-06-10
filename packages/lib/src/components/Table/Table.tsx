@@ -59,7 +59,9 @@ export function Table<T>({
                   <MantineTable.Th
                     key={header.id}
                     style={{ verticalAlign: 'top' }}
-                    className={classes['table__col-sticky']}
+                    className={
+                      firstColSticky ? classes['table__col-sticky'] : ''
+                    }
                   >
                     <Flex
                       align="center"
@@ -67,8 +69,8 @@ export function Table<T>({
                       gap="sm"
                       className={
                         header.column.getCanSort()
-                          ? `${classes['table__col-header']} ${classes['table__col-header--cursor-pointer']}`
-                          : classes['table__col-header']
+                          ? classes['table__col-header--cursor-pointer']
+                          : ''
                       }
                       onClick={header.column.getToggleSortingHandler()}
                       w={header.column.getSize()}
@@ -123,7 +125,9 @@ export function Table<T>({
                   <MantineTable.Td
                     key={cell.id}
                     width={cell.column.getSize()}
-                    className={classes['table__col-sticky']}
+                    className={
+                      firstColSticky ? classes['table__col-sticky'] : ''
+                    }
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </MantineTable.Td>
