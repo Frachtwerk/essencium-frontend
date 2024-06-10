@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v5.0.0...essencium-types-v5.1.0) (2024-06-10)
+
+
+### Features
+
+* implement roles enum like rights ([89303d3](https://github.com/Frachtwerk/essencium-frontend/commit/89303d36c8fd32912de33838fb0e51e64fda7c87))
+
 ## [5.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v4.1.0...essencium-types-v5.0.0) (2024-04-25)
 
 
