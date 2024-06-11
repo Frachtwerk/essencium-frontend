@@ -12,7 +12,9 @@ test.describe('UsersView', () => {
   test('go to usersView and render table', async ({ page }) => {
     await expect(page.getByRole('heading', { name: 'Users' })).toBeVisible()
     await expect(page.getByRole('cell', { name: 'Active' })).toBeVisible()
-    await expect(page.getByRole('cell', { name: 'Name' })).toBeVisible()
+    await expect(
+      page.getByRole('cell', { name: 'Name', exact: true }),
+    ).toBeVisible()
     await expect(page.getByRole('cell', { name: 'Phone' })).toBeVisible()
     await expect(page.getByRole('cell', { name: 'E-Mail' })).toBeVisible()
     await expect(page.getByRole('cell', { name: 'Language' })).toBeVisible()
@@ -47,7 +49,9 @@ test.describe('UsersView', () => {
     ).toBeVisible()
 
     const editIcon = page
-      .getByRole('row', { name: 'Test Person test@person.de German ADMIN' })
+      .getByRole('row', {
+        name: 'Test Person test@person.de German USER ADMIN',
+      })
       .getByRole('button')
       .first()
     await editIcon.click()
@@ -69,7 +73,7 @@ test.describe('UsersView', () => {
 
     const deleteIcon = page
       .getByRole('row', {
-        name: 'Test Person 12345 test@person.de German ADMIN',
+        name: 'Test Person 12345 test@person.de German USER ADMIN',
       })
       .getByRole('button')
       .nth(1)
@@ -80,7 +84,7 @@ test.describe('UsersView', () => {
 
     await expect(
       page.getByRole('row', {
-        name: 'Test Person 12345 test@person.de German ADMIN',
+        name: 'Test Person 12345 test@person.de German USER ADMIN',
         exact: true,
       }),
     ).not.toBeVisible()
