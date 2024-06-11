@@ -6,7 +6,7 @@
 ### Bug Fixes
 
 * dont allow to deselect a language ([57345a4](https://github.com/Frachtwerk/essencium-frontend/commit/57345a4a3bd3c00d0772673f9495cf25196058aa))
-* **frontend:** set first table col only sticky on concerning prop ([#595](https://github.com/Frachtwerk/essencium-frontend/issues/595)) ([8319c09](https://github.com/Frachtwerk/essencium-frontend/commit/8319c09fad049d7daf71458cd4695e2e100697c1))
+* set first table col only sticky on concerning prop ([#595](https://github.com/Frachtwerk/essencium-frontend/issues/595)) ([8319c09](https://github.com/Frachtwerk/essencium-frontend/commit/8319c09fad049d7daf71458cd4695e2e100697c1))
 * set package to latest version instead of not available one ([6b41ae0](https://github.com/Frachtwerk/essencium-frontend/commit/6b41ae0f7abea77307af5999dcc7fba3bd452180))
 
 ## [7.2.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.2.1...essencium-lib-v7.2.2) (2024-05-31)

@@ -13,7 +13,7 @@
 ### Bug Fixes
 
 * also list items that do not require rights in spotlight search ([9096b77](https://github.com/Frachtwerk/essencium-frontend/commit/9096b7796a4c879ef91778b9af199d4fe3e0e321))
-* **frontend:** use next-i18next instead of react-i18next ([d51e0eb](https://github.com/Frachtwerk/essencium-frontend/commit/d51e0eb9ab7e1fd73db1f5439110080c0b40895b))
+* use next-i18next instead of react-i18next ([d51e0eb](https://github.com/Frachtwerk/essencium-frontend/commit/d51e0eb9ab7e1fd73db1f5439110080c0b40895b))
 * implement route protector and fix language abnormalities ([5e5ef89](https://github.com/Frachtwerk/essencium-frontend/commit/5e5ef89a5ca49bbca6c520fb325baa3828caf00e))
 * remove buggy no auth storage stage ([4d5b4b3](https://github.com/Frachtwerk/essencium-frontend/commit/4d5b4b3b922defc8e4ae802b19ff30664267d380))
 * replace hard-coded app name with i18n variable ([cb1c5d8](https://github.com/Frachtwerk/essencium-frontend/commit/cb1c5d897417653e0f25397ff978f5c1d0600b7b))
