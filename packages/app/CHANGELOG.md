@@ -1,5 +1,23 @@
 # Changelog
 
+## [7.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.1.1...essencium-app-v7.2.0) (2024-06-10)
+
+
+### Features
+
+* add route protector component ([31b7be8](https://github.com/Frachtwerk/essencium-frontend/commit/31b7be804dce1d640940f0eaa347d4d9da7a1f09))
+* extend function to also accepted an array of rights ([7ffba3e](https://github.com/Frachtwerk/essencium-frontend/commit/7ffba3ec3a37524e1a9cee2a97e3ffa9a3a63fad))
+* implement roles enum like rights ([89303d3](https://github.com/Frachtwerk/essencium-frontend/commit/89303d36c8fd32912de33838fb0e51e64fda7c87))
+
+
+### Bug Fixes
+
+* also list items that do not require rights in spotlight search ([9096b77](https://github.com/Frachtwerk/essencium-frontend/commit/9096b7796a4c879ef91778b9af199d4fe3e0e321))
+* use next-i18next instead of react-i18next ([d51e0eb](https://github.com/Frachtwerk/essencium-frontend/commit/d51e0eb9ab7e1fd73db1f5439110080c0b40895b))
+* implement route protector and fix language abnormalities ([5e5ef89](https://github.com/Frachtwerk/essencium-frontend/commit/5e5ef89a5ca49bbca6c520fb325baa3828caf00e))
+* remove buggy no auth storage stage ([4d5b4b3](https://github.com/Frachtwerk/essencium-frontend/commit/4d5b4b3b922defc8e4ae802b19ff30664267d380))
+* replace hard-coded app name with i18n variable ([cb1c5d8](https://github.com/Frachtwerk/essencium-frontend/commit/cb1c5d897417653e0f25397ff978f5c1d0600b7b))
+
 ## [7.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.1.0...essencium-app-v7.1.1) (2024-05-29)
 
 

@@ -1,6 +1,6 @@
 # Migrations
 
-## [x.y.z (dd.mm.yyyy)](#)
+## [7.2.0 (11.06.2024)](#)
 
 ### E2E test fixes
 
