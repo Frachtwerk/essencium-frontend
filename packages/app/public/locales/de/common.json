@@ -138,6 +138,7 @@
   },
   "loginView": {
     "title": "Anmeldung",
+    "toolName":"Essencium",
     "sso": {
       "or": "oder"
     },
