@@ -17,11 +17,34 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export function hasRequiredRights(
-  userRights: string[] | null,
-  requiredRight: string,
-): boolean {
-  if (!userRights) return false
+import { RightOutput } from '@frachtwerk/essencium-types'
 
-  return userRights.includes(requiredRight)
+/**
+ * This function checks if a user has the required rights.
+ *
+ * @param userRights - The rights of the user.
+ * @param requiredRights - The rights required to access a certain part of the application. Can be a single right or an array of rights. If it is a one-dimensional array, the user must have all rights listed in the array. If it is a two-dimensional array, the user must have all rights listed in the outer array and at least one of the rights in the inner array(s). 
+ *
+
+ *
+ * @returns True if the user has the required rights, false otherwise.
+ */
+
+export function hasRequiredRights(
+  userRights: RightOutput['authority'][] | null | undefined,
+  requiredRights:
+    | (RightOutput['authority'] | RightOutput['authority'][])[]
+    | RightOutput['authority'],
+): boolean {
+  if (!requiredRights || !userRights) return false
+
+  if (!Array.isArray(requiredRights)) {
+    return userRights.includes(requiredRights)
+  }
+
+  return requiredRights.every(rightSet =>
+    Array.isArray(rightSet)
+      ? rightSet.some(right => userRights?.includes(right))
+      : userRights?.includes(rightSet),
+  )
 }

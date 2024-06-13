@@ -107,7 +107,7 @@ describe('NavBar', () => {
   it('should contain the correct navigation links', () => {
     expect(
       screen.getByText('navigation.home.label').closest('a'),
-    ).toHaveProperty('href', `${BASE_PATH}/home`)
+    ).toHaveProperty('href', `${BASE_PATH}/`)
     expect(
       screen.getByText('navigation.users.label').closest('a'),
     ).toHaveProperty('href', `${BASE_PATH}/users`)

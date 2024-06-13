@@ -18,7 +18,6 @@
  */
 
 export * from './getTranslation'
-export * from './hasRequiredRights'
 export * from './logout'
 export * from './parseSorting'
 export * from './withBaseStylingShowNotification'

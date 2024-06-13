@@ -28,6 +28,7 @@ import {
   Table,
   TablePagination,
 } from '@frachtwerk/essencium-lib'
+import { hasRequiredRights } from '@frachtwerk/essencium-lib/src/utils/hasRequiredRights'
 import {
   RightOutput,
   RIGHTS,
@@ -65,7 +66,7 @@ import {
 } from '@/api'
 import { AuthLayout } from '@/components/layouts'
 import { RouteProtector } from '@/components/RouteProtector'
-import { getTranslation, hasRequiredRights, parseSorting } from '@/utils'
+import { getTranslation, parseSorting } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
 const DEFAULT_SORTING: SortingState = [{ id: 'name', desc: false }]

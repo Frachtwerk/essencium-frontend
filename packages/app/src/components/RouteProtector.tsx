@@ -1,10 +1,11 @@
+import { hasRequiredRights } from '@frachtwerk/essencium-lib/src/utils/hasRequiredRights'
 import { Box, Button, Flex, Title } from '@mantine/core'
 import { useAtomValue } from 'jotai'
 import { usePathname, useRouter } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 
 import { userRightsAtom } from '@/api'
-import { getTranslation, hasRequiredRights } from '@/utils'
+import { getTranslation } from '@/utils'
 
 import { AuthLayout, NAV_LINKS } from './layouts'
 import classes from './RouteProtector.module.css'
