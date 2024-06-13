@@ -1,10 +1,45 @@
 # Migrations
 
-## [7.2.0 (11.06.2024)](#)
+## [7.2.0 (12.06.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.1.1...essencium-app-v7.2.0)
 
 ### E2E test fixes
 
 - all E2E tests have been fixed and pass now (see those files inside `e2e` folder)
+
+### Add route protector component
+
+- add route protector to only navigate to routes the user has the appropriate rights for, otherwise show an access denied message
+
+### `src/pages/_document.tsx`
+
+- page has been refactored due to Mantine v7 (`@mantine/next` is no longer necessary)
+
+### `src/components/layouts/AuthLayout.tsx`
+
+- clean up
+- also list items that do not require rights in spotlight search
+- move profile item on top
+- replace hard-coded app name with i18n variable
+
+### `src/components/layouts/PublicLayout.tsx`
+
+- replace hard-coded app name with i18n variable
+
+### `public/locales/(de|en)/common.json`
+
+- refactor some translations
+
+### `src/utils/hasRequiredRights.ts`
+
+- extend function to also accepted an array of rights
+
+### `src/pages/users/index.tsx`
+
+- implement roles enum like rights
+
+### `src/api/contact.ts`
+
+- use next-i18next instead of react-i18next
 
 ## [7.1.1 (29.05.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.1.0...essencium-app-v7.1.1)
 
