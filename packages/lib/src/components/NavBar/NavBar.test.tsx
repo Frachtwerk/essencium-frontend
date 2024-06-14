@@ -80,7 +80,12 @@ describe('NavBar', () => {
 
   const props = {
     links: NAV_LINKS,
-    userRights: [],
+    userRights: [
+      RIGHTS.USER_READ,
+      RIGHTS.ROLE_READ,
+      RIGHTS.RIGHT_READ,
+      RIGHTS.TRANSLATION_READ,
+    ],
     handleLogout: () => {},
     logo: <div>Logo</div>,
     icon: <div>Icon</div>,

@@ -36,28 +36,12 @@ export function NavLinks({ links, userRights }: Props): JSX.Element {
 
   const router = useRouter()
 
-  /*   function hasRequiredRights(rights: string[]): boolean {
-    return Boolean(rights.every(right => userRights?.includes(right)))
-  }
- */
-
-  /* function hasRequiredRights(
-    userRightsInput: string[] | undefined | null,
-    requiredRights: (string | string[])[],
-  ): boolean {
-    return requiredRights.every(rightSet =>
-      Array.isArray(rightSet)
-        ? rightSet.some(right => userRightsInput?.includes(right))
-        : userRightsInput?.includes(rightSet),
-    )
-  }
- */
   function isLinkActive(path: string): boolean {
     if (path === '/') {
       return router.pathname === path
     }
 
-    return router.pathname.startsWith(path)
+    return router.pathname?.startsWith(path)
   }
 
   return (
