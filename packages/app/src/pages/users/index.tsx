@@ -20,12 +20,12 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {
   DeleteDialog,
+  hasRequiredRights,
   HttpNotification,
   LoadingSpinner,
   Table,
   TablePagination,
 } from '@frachtwerk/essencium-lib'
-import { hasRequiredRights } from '@frachtwerk/essencium-lib/src/utils/hasRequiredRights'
 import {
   FilterObjectUser,
   RIGHTS,

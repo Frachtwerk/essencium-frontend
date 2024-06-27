@@ -1,4 +1,4 @@
-import { hasRequiredRights } from '@frachtwerk/essencium-lib/src/utils/hasRequiredRights'
+import { hasRequiredRights } from '@frachtwerk/essencium-lib'
 import { Box, Button, Flex, Title } from '@mantine/core'
 import { useAtomValue } from 'jotai'
 import { usePathname, useRouter } from 'next/navigation'

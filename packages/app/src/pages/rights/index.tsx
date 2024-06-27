@@ -19,12 +19,12 @@
 
 /* eslint-disable react/no-unstable-nested-components */
 import {
+  hasRequiredRights,
   HttpNotification,
   LoadingSpinner,
   Table,
   TablePagination,
 } from '@frachtwerk/essencium-lib'
-import { hasRequiredRights } from '@frachtwerk/essencium-lib/src/utils/hasRequiredRights'
 import {
   RightOutput,
   RIGHTS,

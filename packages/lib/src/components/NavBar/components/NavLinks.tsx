@@ -23,7 +23,7 @@ import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
-import { hasRequiredRights } from '../../../utils/hasRequiredRights'
+import { hasRequiredRights } from '../../../utils'
 import classes from './NavLinks.module.css'
 
 type Props = {
