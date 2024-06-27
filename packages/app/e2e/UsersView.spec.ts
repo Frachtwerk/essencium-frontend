@@ -59,9 +59,6 @@ test.describe('UsersView', () => {
 
     editIcon.click()
 
-    await page.waitForTimeout(4000)
-    await page.goto(`${BASE_URL}/users/64`)
-
     await expect(page.getByText('Update a user')).toBeVisible()
 
     await expect(page.getByLabel('First Name')).toHaveValue('Test')
