@@ -19,6 +19,7 @@
 
 /* eslint-disable react/no-unstable-nested-components */
 import {
+  hasRequiredRights,
   HttpNotification,
   LoadingSpinner,
   Table,
@@ -45,7 +46,7 @@ import { useCallback, useMemo, useState } from 'react'
 import { useGetRights, useGetRoles, userRightsAtom, useUpdateRole } from '@/api'
 import { AuthLayout } from '@/components/layouts'
 import { RouteProtector } from '@/components/RouteProtector'
-import { getTranslation, hasRequiredRights, parseSorting } from '@/utils'
+import { getTranslation, parseSorting } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
 const DEFAULT_SORTING: SortingState = [{ id: 'authority', desc: false }]
@@ -157,8 +158,10 @@ function RightsView(): JSX.Element {
           if (
             role.name === 'ADMIN' ||
             role.protected ||
-            !hasRequiredRights(userRights, RIGHTS.ROLE_UPDATE) ||
-            !hasRequiredRights(userRights, RIGHTS.RIGHT_UPDATE)
+            !hasRequiredRights(userRights, [
+              RIGHTS.ROLE_UPDATE,
+              RIGHTS.RIGHT_UPDATE,
+            ])
           ) {
             return (
               <Checkbox

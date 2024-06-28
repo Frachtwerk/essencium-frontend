@@ -23,6 +23,7 @@ import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
+import { hasRequiredRights } from '../../../utils'
 import classes from './NavLinks.module.css'
 
 type Props = {
@@ -35,23 +36,19 @@ export function NavLinks({ links, userRights }: Props): JSX.Element {
 
   const router = useRouter()
 
-  function hasRequiredRights(rights: string[]): boolean {
-    return Boolean(rights.every(right => userRights?.includes(right)))
-  }
-
   function isLinkActive(path: string): boolean {
     if (path === '/') {
       return router.pathname === path
     }
 
-    return router.pathname.startsWith(path)
+    return router.pathname?.startsWith(path)
   }
 
   return (
     <Stack gap="md">
       {links.map(link =>
         !link.rights.length ||
-        (link.rights && hasRequiredRights(link.rights)) ? (
+        (link.rights && hasRequiredRights(userRights, link.rights)) ? (
           <MantineNavLink
             component={NextLink}
             key={link.label}

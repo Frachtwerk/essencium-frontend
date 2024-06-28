@@ -256,8 +256,10 @@ export function Translations({
                 }}
               >
                 {formatKeyPathToString(keyPath) === keyPathString &&
-                (hasRequiredRights(userRights, RIGHTS.TRANSLATION_UPDATE) ||
-                  hasRequiredRights(userRights, RIGHTS.TRANSLATION_DELETE)) ? (
+                hasRequiredRights(userRights, [
+                  RIGHTS.TRANSLATION_UPDATE,
+                  RIGHTS.TRANSLATION_DELETE,
+                ]) ? (
                   <form
                     onSubmit={(event: FormEventWithTranslation) => {
                       handleSubmit(
@@ -328,11 +330,10 @@ export function Translations({
                     className={`${
                       classes['translations-tree-container__translation-text']
                     } ${
-                      hasRequiredRights(
-                        userRights,
+                      hasRequiredRights(userRights, [
                         RIGHTS.TRANSLATION_UPDATE,
-                      ) ||
-                      hasRequiredRights(userRights, RIGHTS.TRANSLATION_DELETE)
+                        RIGHTS.TRANSLATION_DELETE,
+                      ])
                         ? classes[
                             'translations-tree-container__translation-text--cursor-pointer'
                           ]
