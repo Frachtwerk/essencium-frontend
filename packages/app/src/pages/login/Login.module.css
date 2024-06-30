@@ -19,7 +19,10 @@
 
 .loginCard {
   box-shadow: var(--mantine-shadow-sm);
-  border-radius: var(--mantine-radius-sm);
+  border-top-left-radius: var(--mantine-radius-sm) ;
+  border-bottom-left-radius: var(--mantine-radius-sm);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 
   @mixin dark {
     background-color: var(--mantine-color-dark-7);
@@ -50,4 +53,23 @@
 .loginCard__title {
   text-align: center;
   font-weight: bold;
+}
+
+.backgroundImage{
+  width: '500px';
+  box-shadow: var(--mantine-shadow-xl);
+  border-top-right-radius: var(--mantine-radius-sm) ;
+  border-bottom-right-radius: var(--mantine-radius-sm);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;  
+}
+
+.backgroundImage_content {
+  backdrop-filter:  blur(2px);
+  filter: drop-shadow(0px 5px 15px black);
+  transition: backdrop-filter 0.5s ease-in-out;
+}
+.backgroundImage_content:hover {
+  backdrop-filter: blur(10px); 
+  transition: backdrop-filter 0.5s ease-in-out;
 }

@@ -138,6 +138,7 @@
   },
   "loginView": {
     "title": "Login",
+    "toolName":"Essencium",
     "sso": {
       "or": "or"
     },

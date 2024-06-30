@@ -17,10 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-.login-form__container {
-  width: 400px;
-}
-
 .login-form__input-label {
   font-weight: var(--mantine-font-weight-bold);
 }
