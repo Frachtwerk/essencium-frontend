@@ -60,11 +60,7 @@
       },
       {
         "file": ".gitignore",
-        "hash": "4520143655435683458"
-      },
-      {
-        "file": ".husky/_/husky.sh",
-        "hash": "17708014289578791027"
+        "hash": "17925549687590285031"
       },
       {
         "file": ".husky/commit-msg",
@@ -120,11 +116,11 @@
       },
       {
         "file": "package.json",
-        "hash": "6673346816030302367"
+        "hash": "15205323547429863943"
       },
       {
         "file": "pnpm-lock.yaml",
-        "hash": "12241239547482149873"
+        "hash": "15884914274803880922"
       },
       {
         "file": "pnpm-workspace.yaml",
@@ -148,218 +144,6 @@
       }
     ],
     "projectFileMap": {
-      "@frachtwerk/prettier-config-essencium": [
-        {
-          "file": "packages/prettier-config/CHANGELOG.md",
-          "hash": "16003969714120536925"
-        },
-        {
-          "file": "packages/prettier-config/README.md",
-          "hash": "2498026064496481980"
-        },
-        {
-          "file": "packages/prettier-config/index.json",
-          "hash": "9125974023268058773"
-        },
-        {
-          "file": "packages/prettier-config/package.json",
-          "hash": "11288160486679978071",
-          "deps": [
-            "npm:prettier"
-          ]
-        }
-      ],
-      "@frachtwerk/essencium-docs": [
-        {
-          "file": "packages/docs/.eslintignore",
-          "hash": "6478667235016243744"
-        },
-        {
-          "file": "packages/docs/.eslintrc.json",
-          "hash": "896285076998379445"
-        },
-        {
-          "file": "packages/docs/.gitignore",
-          "hash": "7912137755009292367"
-        },
-        {
-          "file": "packages/docs/.prettierignore",
-          "hash": "449381328394623447"
-        },
-        {
-          "file": "packages/docs/.prettierrc",
-          "hash": "14901094139262635652"
-        },
-        {
-          "file": "packages/docs/CHANGELOG.md",
-          "hash": "18063159753583628053"
-        },
-        {
-          "file": "packages/docs/README.md",
-          "hash": "8879267744784048032"
-        },
-        {
-          "file": "packages/docs/next-env.d.ts",
-          "hash": "5909181270615354023"
-        },
-        {
-          "file": "packages/docs/next.config.js",
-          "hash": "11590879529474104382"
-        },
-        {
-          "file": "packages/docs/package.json",
-          "hash": "6187548540031715987",
-          "deps": [
-            "@frachtwerk/eslint-config-essencium",
-            "@frachtwerk/prettier-config-essencium",
-            "npm:@types/node",
-            "npm:@typescript-eslint/eslint-plugin@7.8.0",
-            "npm:@typescript-eslint/parser@7.8.0",
-            "npm:eslint",
-            "npm:eslint-config-airbnb",
-            "npm:eslint-config-airbnb-typescript",
-            "npm:eslint-config-prettier",
-            "npm:eslint-plugin-import",
-            "npm:eslint-plugin-jsx-a11y",
-            "npm:eslint-plugin-prettier",
-            "npm:eslint-plugin-react",
-            "npm:eslint-plugin-react-hooks",
-            "npm:eslint-plugin-simple-import-sort",
-            "npm:prettier",
-            "npm:typescript@5.1.6",
-            "npm:clsx",
-            "npm:next",
-            "npm:nextra",
-            "npm:nextra-theme-docs",
-            "npm:react",
-            "npm:react-dom"
-          ]
-        },
-        {
-          "file": "packages/docs/pages/_meta.json",
-          "hash": "9683435486514998849"
-        },
-        {
-          "file": "packages/docs/pages/architecture.mdx",
-          "hash": "10094604902827015180"
-        },
-        {
-          "file": "packages/docs/pages/devguide.mdx",
-          "hash": "14655592209664796953"
-        },
-        {
-          "file": "packages/docs/pages/devguide/_meta.json",
-          "hash": "5668056458268738290"
-        },
-        {
-          "file": "packages/docs/pages/devguide/codestyle-and-linting.mdx",
-          "hash": "12925754901147262494"
-        },
-        {
-          "file": "packages/docs/pages/devguide/commits.mdx",
-          "hash": "4412370327794654215"
-        },
-        {
-          "file": "packages/docs/pages/devguide/dependencies.mdx",
-          "hash": "2003481996293386549"
-        },
-        {
-          "file": "packages/docs/pages/devguide/new-component.mdx",
-          "hash": "14924626518110561872"
-        },
-        {
-          "file": "packages/docs/pages/devguide/new-page.mdx",
-          "hash": "11543713514449588583"
-        },
-        {
-          "file": "packages/docs/pages/devguide/packageResponsibilities.mdx",
-          "hash": "16446144923192720785"
-        },
-        {
-          "file": "packages/docs/pages/devguide/pull-requests.mdx",
-          "hash": "13808931061323003870"
-        },
-        {
-          "file": "packages/docs/pages/devguide/releases.mdx",
-          "hash": "11710831940080237641"
-        },
-        {
-          "file": "packages/docs/pages/devguide/seeding-database.mdx",
-          "hash": "13797842203194253346"
-        },
-        {
-          "file": "packages/docs/pages/devguide/setup.mdx",
-          "hash": "16578427925189522580"
-        },
-        {
-          "file": "packages/docs/pages/devguide/testing.mdx",
-          "hash": "1224776339228845162"
-        },
-        {
-          "file": "packages/docs/pages/devguide/types.mdx",
-          "hash": "14329612836273741294"
-        },
-        {
-          "file": "packages/docs/pages/getting-started.mdx",
-          "hash": "14950142296289257607"
-        },
-        {
-          "file": "packages/docs/pages/index.mdx",
-          "hash": "16961962832664006228"
-        },
-        {
-          "file": "packages/docs/pages/migrationguide.mdx",
-          "hash": "5005723996508444562"
-        },
-        {
-          "file": "packages/docs/pages/styleguide.mdx",
-          "hash": "5297238396783186344"
-        },
-        {
-          "file": "packages/docs/pages/styleguide/_meta.json",
-          "hash": "13468919191501974969"
-        },
-        {
-          "file": "packages/docs/pages/styleguide/overview.mdx",
-          "hash": "3952744628143630523"
-        },
-        {
-          "file": "packages/docs/pages/styleguide/styling-conventions.mdx",
-          "hash": "2367090830519107318"
-        },
-        {
-          "file": "packages/docs/public/emblem_400x400px.svg",
-          "hash": "1298865303279032530"
-        },
-        {
-          "file": "packages/docs/public/favicon.ico",
-          "hash": "259792916811497837"
-        },
-        {
-          "file": "packages/docs/public/images/import-cost-green.png",
-          "hash": "5479596024946638568"
-        },
-        {
-          "file": "packages/docs/public/images/new-component-structure.png",
-          "hash": "106332160854882888"
-        },
-        {
-          "file": "packages/docs/public/images/new-page-structure.png",
-          "hash": "5473173096564068859"
-        },
-        {
-          "file": "packages/docs/public/logotype_400x100px.svg",
-          "hash": "16486070270558344756"
-        },
-        {
-          "file": "packages/docs/theme.config.tsx",
-          "hash": "1261493189181083895"
-        },
-        {
-          "file": "packages/docs/tsconfig.json",
-          "hash": "6750596576875068421"
-        }
-      ],
       "@frachtwerk/essencium-types": [
         {
           "file": "packages/types/.eslintignore",
@@ -391,7 +175,7 @@
         },
         {
           "file": "packages/types/package.json",
-          "hash": "11310610745364154615",
+          "hash": "15545298903160973990",
           "deps": [
             "npm:zod",
             "@frachtwerk/eslint-config-essencium",
@@ -451,7 +235,7 @@
         },
         {
           "file": "packages/types/src/navbar.ts",
-          "hash": "8331125016875490853"
+          "hash": "10665293531550977099"
         },
         {
           "file": "packages/types/src/right.ts",
@@ -472,6 +256,44 @@
         {
           "file": "packages/types/tsconfig.json",
           "hash": "6530985682165486948"
+        }
+      ],
+      "@frachtwerk/eslint-config-essencium": [
+        {
+          "file": "packages/eslint-config/.prettierrc",
+          "hash": "14901094139262635652"
+        },
+        {
+          "file": "packages/eslint-config/CHANGELOG.md",
+          "hash": "3343474465475064071"
+        },
+        {
+          "file": "packages/eslint-config/README.md",
+          "hash": "6857362588497578581"
+        },
+        {
+          "file": "packages/eslint-config/index.cjs",
+          "hash": "17924550360354741305"
+        },
+        {
+          "file": "packages/eslint-config/package.json",
+          "hash": "3957705947389671424",
+          "deps": [
+            "npm:@typescript-eslint/eslint-plugin@7.8.0",
+            "npm:@typescript-eslint/parser@7.8.0",
+            "npm:eslint",
+            "npm:eslint-config-airbnb",
+            "npm:eslint-config-airbnb-typescript",
+            "npm:eslint-config-prettier",
+            "npm:eslint-plugin-import",
+            "npm:eslint-plugin-jsx-a11y",
+            "npm:eslint-plugin-prettier",
+            "npm:eslint-plugin-react",
+            "npm:eslint-plugin-react-hooks",
+            "npm:eslint-plugin-simple-import-sort",
+            "@frachtwerk/prettier-config-essencium",
+            "npm:prettier"
+          ]
         }
       ],
       "@frachtwerk/essencium-lib": [
@@ -513,7 +335,7 @@
         },
         {
           "file": "packages/lib/package.json",
-          "hash": "10045560705264711211",
+          "hash": "14009480043363165919",
           "deps": [
             "npm:@emotion/react",
             "npm:@emotion/server",
@@ -789,7 +611,7 @@
         },
         {
           "file": "packages/lib/src/components/NavBar/NavBar.test.tsx",
-          "hash": "3995152067809357422"
+          "hash": "6459068068173223905"
         },
         {
           "file": "packages/lib/src/components/NavBar/NavBar.tsx",
@@ -801,7 +623,7 @@
         },
         {
           "file": "packages/lib/src/components/NavBar/components/NavLinks.tsx",
-          "hash": "6251869737137608999"
+          "hash": "13681406237414042727"
         },
         {
           "file": "packages/lib/src/components/NavBar/components/index.ts",
@@ -985,7 +807,7 @@
         },
         {
           "file": "packages/lib/src/components/Translations/Translations.tsx",
-          "hash": "2302424763169686940"
+          "hash": "15843284748584621913"
         },
         {
           "file": "packages/lib/src/components/Translations/index.ts",
@@ -1017,11 +839,15 @@
         },
         {
           "file": "packages/lib/src/index.ts",
-          "hash": "15839812440966070563"
+          "hash": "9593257184198951439"
+        },
+        {
+          "file": "packages/lib/src/utils/hasRequiredRights.test.ts",
+          "hash": "3476023490494924902"
         },
         {
           "file": "packages/lib/src/utils/hasRequiredRights.ts",
-          "hash": "2905185554051849461"
+          "hash": "6901402025794544621"
         },
         {
           "file": "packages/lib/src/utils/index.ts",
@@ -1044,27 +870,71 @@
           "hash": "16994459034078759388"
         }
       ],
-      "@frachtwerk/eslint-config-essencium": [
+      "@frachtwerk/prettier-config-essencium": [
         {
-          "file": "packages/eslint-config/.prettierrc",
+          "file": "packages/prettier-config/CHANGELOG.md",
+          "hash": "16003969714120536925"
+        },
+        {
+          "file": "packages/prettier-config/README.md",
+          "hash": "2498026064496481980"
+        },
+        {
+          "file": "packages/prettier-config/index.json",
+          "hash": "9125974023268058773"
+        },
+        {
+          "file": "packages/prettier-config/package.json",
+          "hash": "7769704644991307211",
+          "deps": [
+            "npm:prettier"
+          ]
+        }
+      ],
+      "@frachtwerk/essencium-docs": [
+        {
+          "file": "packages/docs/.eslintignore",
+          "hash": "6478667235016243744"
+        },
+        {
+          "file": "packages/docs/.eslintrc.json",
+          "hash": "896285076998379445"
+        },
+        {
+          "file": "packages/docs/.gitignore",
+          "hash": "7912137755009292367"
+        },
+        {
+          "file": "packages/docs/.prettierignore",
+          "hash": "449381328394623447"
+        },
+        {
+          "file": "packages/docs/.prettierrc",
           "hash": "14901094139262635652"
         },
         {
-          "file": "packages/eslint-config/CHANGELOG.md",
-          "hash": "3343474465475064071"
+          "file": "packages/docs/CHANGELOG.md",
+          "hash": "18063159753583628053"
         },
         {
-          "file": "packages/eslint-config/README.md",
-          "hash": "6857362588497578581"
+          "file": "packages/docs/README.md",
+          "hash": "8879267744784048032"
         },
         {
-          "file": "packages/eslint-config/index.cjs",
-          "hash": "17924550360354741305"
+          "file": "packages/docs/next-env.d.ts",
+          "hash": "5909181270615354023"
         },
         {
-          "file": "packages/eslint-config/package.json",
-          "hash": "17691893903512640848",
+          "file": "packages/docs/next.config.js",
+          "hash": "11590879529474104382"
+        },
+        {
+          "file": "packages/docs/package.json",
+          "hash": "4322074403144246180",
           "deps": [
+            "@frachtwerk/eslint-config-essencium",
+            "@frachtwerk/prettier-config-essencium",
+            "npm:@types/node",
             "npm:@typescript-eslint/eslint-plugin@7.8.0",
             "npm:@typescript-eslint/parser@7.8.0",
             "npm:eslint",
@@ -1077,9 +947,139 @@
             "npm:eslint-plugin-react",
             "npm:eslint-plugin-react-hooks",
             "npm:eslint-plugin-simple-import-sort",
-            "@frachtwerk/prettier-config-essencium",
-            "npm:prettier"
+            "npm:prettier",
+            "npm:typescript@5.1.6",
+            "npm:clsx",
+            "npm:next",
+            "npm:nextra",
+            "npm:nextra-theme-docs",
+            "npm:react",
+            "npm:react-dom"
           ]
+        },
+        {
+          "file": "packages/docs/pages/_meta.json",
+          "hash": "9683435486514998849"
+        },
+        {
+          "file": "packages/docs/pages/architecture.mdx",
+          "hash": "10094604902827015180"
+        },
+        {
+          "file": "packages/docs/pages/devguide.mdx",
+          "hash": "14655592209664796953"
+        },
+        {
+          "file": "packages/docs/pages/devguide/_meta.json",
+          "hash": "5668056458268738290"
+        },
+        {
+          "file": "packages/docs/pages/devguide/codestyle-and-linting.mdx",
+          "hash": "12925754901147262494"
+        },
+        {
+          "file": "packages/docs/pages/devguide/commits.mdx",
+          "hash": "4412370327794654215"
+        },
+        {
+          "file": "packages/docs/pages/devguide/dependencies.mdx",
+          "hash": "2003481996293386549"
+        },
+        {
+          "file": "packages/docs/pages/devguide/new-component.mdx",
+          "hash": "14924626518110561872"
+        },
+        {
+          "file": "packages/docs/pages/devguide/new-page.mdx",
+          "hash": "11543713514449588583"
+        },
+        {
+          "file": "packages/docs/pages/devguide/packageResponsibilities.mdx",
+          "hash": "16446144923192720785"
+        },
+        {
+          "file": "packages/docs/pages/devguide/pull-requests.mdx",
+          "hash": "13808931061323003870"
+        },
+        {
+          "file": "packages/docs/pages/devguide/releases.mdx",
+          "hash": "11710831940080237641"
+        },
+        {
+          "file": "packages/docs/pages/devguide/seeding-database.mdx",
+          "hash": "13797842203194253346"
+        },
+        {
+          "file": "packages/docs/pages/devguide/setup.mdx",
+          "hash": "16578427925189522580"
+        },
+        {
+          "file": "packages/docs/pages/devguide/testing.mdx",
+          "hash": "1224776339228845162"
+        },
+        {
+          "file": "packages/docs/pages/devguide/types.mdx",
+          "hash": "14329612836273741294"
+        },
+        {
+          "file": "packages/docs/pages/getting-started.mdx",
+          "hash": "14950142296289257607"
+        },
+        {
+          "file": "packages/docs/pages/index.mdx",
+          "hash": "16961962832664006228"
+        },
+        {
+          "file": "packages/docs/pages/migrationguide.mdx",
+          "hash": "5005723996508444562"
+        },
+        {
+          "file": "packages/docs/pages/styleguide.mdx",
+          "hash": "5297238396783186344"
+        },
+        {
+          "file": "packages/docs/pages/styleguide/_meta.json",
+          "hash": "13468919191501974969"
+        },
+        {
+          "file": "packages/docs/pages/styleguide/overview.mdx",
+          "hash": "3952744628143630523"
+        },
+        {
+          "file": "packages/docs/pages/styleguide/styling-conventions.mdx",
+          "hash": "2367090830519107318"
+        },
+        {
+          "file": "packages/docs/public/emblem_400x400px.svg",
+          "hash": "1298865303279032530"
+        },
+        {
+          "file": "packages/docs/public/favicon.ico",
+          "hash": "259792916811497837"
+        },
+        {
+          "file": "packages/docs/public/images/import-cost-green.png",
+          "hash": "5479596024946638568"
+        },
+        {
+          "file": "packages/docs/public/images/new-component-structure.png",
+          "hash": "106332160854882888"
+        },
+        {
+          "file": "packages/docs/public/images/new-page-structure.png",
+          "hash": "5473173096564068859"
+        },
+        {
+          "file": "packages/docs/public/logotype_400x100px.svg",
+          "hash": "16486070270558344756"
+        },
+        {
+          "file": "packages/docs/theme.config.tsx",
+          "hash": "1261493189181083895"
+        },
+        {
+          "file": "packages/docs/tsconfig.json",
+          "hash": "6750596576875068421"
         }
       ],
       "@frachtwerk/essencium-app": [
@@ -1141,7 +1141,7 @@
         },
         {
           "file": "packages/app/e2e/RolesView.spec.ts",
-          "hash": "12816338568298204764"
+          "hash": "2719836867573098110"
         },
         {
           "file": "packages/app/e2e/TranslationsView.spec.ts",
@@ -1149,7 +1149,7 @@
         },
         {
           "file": "packages/app/e2e/UsersView.spec.ts",
-          "hash": "8880713586142217637"
+          "hash": "10953457631607394575"
         },
         {
           "file": "packages/app/e2e/title.spec.ts",
@@ -1173,7 +1173,7 @@
         },
         {
           "file": "packages/app/package.json",
-          "hash": "16593413148119097231",
+          "hash": "13999273914126037611",
           "deps": [
             "@frachtwerk/eslint-config-essencium",
             "@frachtwerk/prettier-config-essencium",
@@ -1320,7 +1320,7 @@
         },
         {
           "file": "packages/app/src/components/RouteProtector.tsx",
-          "hash": "6487664706229544639"
+          "hash": "1811619714513537248"
         },
         {
           "file": "packages/app/src/components/layouts/AuthLayout.module.css",
@@ -1348,7 +1348,7 @@
         },
         {
           "file": "packages/app/src/pages/_app.tsx",
-          "hash": "11835043167383315843"
+          "hash": "2273991019591523148"
         },
         {
           "file": "packages/app/src/pages/_document.tsx",
@@ -1384,15 +1384,15 @@
         },
         {
           "file": "packages/app/src/pages/profile/index.tsx",
-          "hash": "2901628836667754178"
+          "hash": "549258737634196435"
         },
         {
           "file": "packages/app/src/pages/rights/index.tsx",
-          "hash": "4643149541188706236"
+          "hash": "5657022748553878369"
         },
         {
           "file": "packages/app/src/pages/roles/index.tsx",
-          "hash": "14453356422267363746"
+          "hash": "609073559747384559"
         },
         {
           "file": "packages/app/src/pages/set-password/SetPassword.module.css",
@@ -1420,7 +1420,7 @@
         },
         {
           "file": "packages/app/src/pages/users/index.tsx",
-          "hash": "12486595994863045432"
+          "hash": "8894029981228935704"
         },
         {
           "file": "packages/app/src/pages/users/users.module.css",
@@ -1431,12 +1431,8 @@
           "hash": "8679671426969937369"
         },
         {
-          "file": "packages/app/src/utils/hasRequiredRights.ts",
-          "hash": "7194349154912779365"
-        },
-        {
           "file": "packages/app/src/utils/index.ts",
-          "hash": "7764585995896479328"
+          "hash": "17832034740975310640"
         },
         {
           "file": "packages/app/src/utils/logout.ts",
