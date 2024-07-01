@@ -20,7 +20,6 @@
 import '@mantine/core/styles.css'
 import '@mantine/spotlight/styles.css'
 
-import { UserOutput } from '@frachtwerk/essencium-types'
 import {
   createTheme,
   Loader,
@@ -36,13 +35,16 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import { useAtomValue } from 'jotai'
 import { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import { Fira_Code, Fira_Sans } from 'next/font/google'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/router'
 import { appWithTranslation } from 'next-i18next'
 import { ReactElement, ReactNode, useEffect, useState } from 'react'
 
+import { userAtom } from '@/api'
 import { PublicLayout } from '@/components/layouts/PublicLayout'
 import { withBaseStylingShowNotification } from '@/utils'
 
@@ -179,20 +181,15 @@ function App({
   const router = useRouter()
   const pathname = usePathname()
 
+  const user = useAtomValue(userAtom)
+
   useEffect(() => {
-    // useAtom
-    let user: UserOutput | string | null = localStorage.getItem('user')
-
-    if (!user || typeof user !== 'string') return
-
-    user = JSON.parse(user) as UserOutput
-
-    if (user.locale === 'en') {
-      router.push(`${pathname}`)
-    } else {
-      router.push(`/${user.locale}${pathname}`)
+    // Check if the user's locale is different from the current locale
+    if (user?.locale && router.locale !== user.locale) {
+      router.push(pathname, pathname, { locale: user.locale })
     }
-  }, [pathname, router])
+    // Depend on pathname and userLocale to avoid unnecessary redirects
+  }, [pathname, user, router])
 
   const theme = createTheme({
     focusRing: 'auto',

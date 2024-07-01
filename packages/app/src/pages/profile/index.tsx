@@ -23,7 +23,7 @@ import { Center } from '@mantine/core'
 import { useAtomValue, useSetAtom } from 'jotai'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import { ReactElement } from 'react'
+import { ReactElement, useEffect } from 'react'
 
 import {
   isSsoAtom,
@@ -56,17 +56,17 @@ function ProfileView(): JSX.Element {
 
   const setUser = useSetAtom(userAtom)
 
-  if (updatedUserData) {
-    setUser(updatedUserData)
-  }
+  useEffect(() => {
+    if (updatedUserData) {
+      setUser(updatedUserData)
+    }
+  }, [updatedUserData, setUser])
 
   const { mutate: updatePassword, isPending: isUpdatingPassword } =
     useUpdatePassword()
 
   function handleUpdate(updatedUser: UserUpdate): void {
     updateUser(updatedUser)
-
-    router.push('/profile', undefined, { locale: updatedUser.locale })
   }
 
   function handlePasswordUpdate(
