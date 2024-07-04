@@ -80,7 +80,12 @@ describe('NavBar', () => {
 
   const props = {
     links: NAV_LINKS,
-    userRights: [],
+    userRights: [
+      RIGHTS.USER_READ,
+      RIGHTS.ROLE_READ,
+      RIGHTS.RIGHT_READ,
+      RIGHTS.TRANSLATION_READ,
+    ],
     handleLogout: () => {},
     logo: <div>Logo</div>,
     icon: <div>Icon</div>,
@@ -107,7 +112,7 @@ describe('NavBar', () => {
   it('should contain the correct navigation links', () => {
     expect(
       screen.getByText('navigation.home.label').closest('a'),
-    ).toHaveProperty('href', `${BASE_PATH}/home`)
+    ).toHaveProperty('href', `${BASE_PATH}/`)
     expect(
       screen.getByText('navigation.users.label').closest('a'),
     ).toHaveProperty('href', `${BASE_PATH}/users`)

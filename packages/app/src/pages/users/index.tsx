@@ -20,6 +20,7 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {
   DeleteDialog,
+  hasRequiredRights,
   HttpNotification,
   LoadingSpinner,
   Table,
@@ -73,7 +74,7 @@ import {
 } from '@/api'
 import { AuthLayout } from '@/components/layouts'
 import { RouteProtector } from '@/components/RouteProtector'
-import { getTranslation, hasRequiredRights, parseSorting } from '@/utils'
+import { getTranslation, parseSorting } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
 import classes from './users.module.css'
