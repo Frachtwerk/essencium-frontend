@@ -138,7 +138,7 @@
   },
   "loginView": {
     "title": "Anmeldung",
-    "toolName":"Essencium",
+    "slogan": "Dein skalierbares, leicht zu wartendes und anpassungsfähiges Boilerplate",
     "sso": {
       "or": "oder"
     },

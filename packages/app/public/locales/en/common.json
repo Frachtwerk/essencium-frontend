@@ -138,7 +138,7 @@
   },
   "loginView": {
     "title": "Login",
-    "toolName":"Essencium",
+    "slogan": "Your scalable, easy-to-maintain, and adaptable boilerplate",
     "sso": {
       "or": "or"
     },

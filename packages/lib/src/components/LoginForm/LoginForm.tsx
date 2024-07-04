@@ -34,7 +34,6 @@ import {
   TextInput,
   Transition,
 } from '@mantine/core'
-import { useMediaQuery } from '@mantine/hooks'
 import { useTranslation } from 'next-i18next'
 import { Dispatch, SetStateAction } from 'react'
 import { Controller } from 'react-hook-form'
@@ -62,8 +61,6 @@ export function LoginForm({
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
-  const matches = useMediaQuery('(min-width: 900px)')
-
   const { handleSubmit, control, formState } = useZodForm({
     schema: loginFormSchema,
     defaultValues: {
@@ -77,7 +74,7 @@ export function LoginForm({
   }
 
   return (
-    <Box style={{ width: matches ? '300px' : '400px' }}>
+    <Box className={classes['login-form__container']}>
       <Transition
         mounted={!isPasswordResetFormOpened && !isResetPasswordSent}
         transition="fade"

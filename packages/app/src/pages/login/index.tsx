@@ -60,7 +60,7 @@ function LoginView(): JSX.Element {
 
   const searchParams = useSearchParams()
 
-  const matches = useMediaQuery('(min-width: 900px)')
+  const matches = useMediaQuery('(min-width: 950px)')
 
   const { data: ssoApplications } = useGetSsoApplications()
 
@@ -111,89 +111,110 @@ function LoginView(): JSX.Element {
   }
 
   return (
-    <Container mt="150px">
+    <Container
+      fluid
+      style={{
+        all: 'unset',
+        width: '100%',
+        display: 'block',
+      }}
+      data-fluid="true"
+    >
       {!oauthToken ? (
-        <Flex justify="center" direction="row" wrap="wrap">
-          <Card className={classes['loginCard']} withBorder>
-            <Flex direction="column">
-              <Title order={2} className={classes['loginCard__title']}>
-                {t('loginView.title')}
-              </Title>
+        <Flex
+          direction="row"
+          className={!matches ? classes['background'] : ' '}
+        >
+          <Flex
+            justify="center"
+            align="center"
+            h="100vh"
+            w={matches ? '50%' : '100%'}
+          >
+            <Card className={classes['loginCard']} withBorder>
+              <Flex direction="column">
+                <Title order={2} className={classes['loginCard__title']}>
+                  {t('loginView.title')}
+                </Title>
 
-              {hasSsoApplications ? (
-                <>
-                  <Box className={classes['ssoSection']}>
-                    {Object.keys(ssoApplications).map(application => (
-                      <NextLink
-                        className={classes['ssoSection__link']}
-                        key={application}
-                        href={`${process.env.NEXT_PUBLIC_API_BASE_URL}${ssoApplications[application].url}?redirect_uri=${OAUTH_REDIRECT_URI}`}
-                      >
-                        <Flex
-                          justify="center"
-                          align="center"
-                          className={classes['ssoSection__button']}
+                {hasSsoApplications ? (
+                  <>
+                    <Box className={classes['ssoSection']}>
+                      {Object.keys(ssoApplications).map(application => (
+                        <NextLink
+                          className={classes['ssoSection__link']}
+                          key={application}
+                          href={`${process.env.NEXT_PUBLIC_API_BASE_URL}${ssoApplications[application].url}?redirect_uri=${OAUTH_REDIRECT_URI}`}
                         >
-                          <Button
-                            variant="outline"
-                            fullWidth
-                            leftSection={
-                              <Image
-                                src={ssoApplications[application].imageUrl}
-                                alt={ssoApplications[application].name}
-                                width={45}
-                                height={20}
-                              />
-                            }
+                          <Flex
+                            justify="center"
+                            align="center"
+                            className={classes['ssoSection__button']}
                           >
-                            <Box className={classes['ssoSection__spacer']} />
+                            <Button
+                              variant="outline"
+                              fullWidth
+                              leftSection={
+                                <Image
+                                  src={ssoApplications[application].imageUrl}
+                                  alt={ssoApplications[application].name}
+                                  width={45}
+                                  height={20}
+                                />
+                              }
+                            >
+                              <Box className={classes['ssoSection__spacer']} />
 
-                            <Text>{ssoApplications[application].name}</Text>
-                          </Button>
-                        </Flex>
-                      </NextLink>
-                    ))}
-                  </Box>
+                              <Text>{ssoApplications[application].name}</Text>
+                            </Button>
+                          </Flex>
+                        </NextLink>
+                      ))}
+                    </Box>
 
-                  <Divider
-                    className={classes['ssoSection__divider']}
-                    label={t('loginView.sso.or')}
-                    labelPosition="center"
-                  />
-                </>
-              ) : null}
+                    <Divider
+                      className={classes['ssoSection__divider']}
+                      label={t('loginView.sso.or')}
+                      labelPosition="center"
+                    />
+                  </>
+                ) : null}
 
-              <LoginForm
-                handleLogin={handleLogin}
-                handlePasswordReset={handlePasswordReset}
-                setIsPasswordResetFormOpened={setIsPasswordResetFormOpened}
-                isResetPasswordSent={isResetPasswordSent}
-                isPasswordResetFormOpened={isPasswordResetFormOpened}
-                isResettingPassword={isResettingPassword}
-              />
-            </Flex>
-          </Card>
-
-          <Box w={500} hidden={!matches}>
-            <BackgroundImage
-              src="/img/web/background.png"
-              className={classes['backgroundImage']}
-              h="100%"
-            >
-              <Flex
-                h="100%"
-                gap="md"
-                direction="column"
-                justify="center"
-                align="center"
-                className={classes['backgroundImage_content']}
-              >
-                <Image w={200} h={200} src="/img/web/emblem_400x400px.svg" />
-
-                <Text c="white"> {t('loginView.toolName')}</Text>
+                <LoginForm
+                  handleLogin={handleLogin}
+                  handlePasswordReset={handlePasswordReset}
+                  setIsPasswordResetFormOpened={setIsPasswordResetFormOpened}
+                  isResetPasswordSent={isResetPasswordSent}
+                  isPasswordResetFormOpened={isPasswordResetFormOpened}
+                  isResettingPassword={isResettingPassword}
+                />
               </Flex>
-            </BackgroundImage>
-          </Box>
+            </Card>
+          </Flex>
+
+          {matches ? (
+            <Flex
+              justify="center"
+              align="center"
+              h="100vh"
+              w="50%"
+              className={classes['background']}
+              direction="column"
+              gap="md"
+            >
+              <Image
+                src="/img/web/logotype_400x100px.svg"
+                alt={t('header.logo')}
+                w="40%"
+                height="100%"
+                style={{ verticalAlign: 'initial' }}
+              />
+
+              <Text c="white" w="80%" size="lg" ta="center" fw={450}>
+                {t('loginView.slogan')}
+              </Text>
+            </Flex>
+          ) : null}
         </Flex>
       ) : null}
     </Container>
