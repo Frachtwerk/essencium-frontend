@@ -25,42 +25,14 @@ import axios, {
   InternalAxiosRequestConfig,
 } from 'axios'
 
-import { logout } from '../utils'
+import { logout } from '@/utils'
 
-export const axiosInstance: AxiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
-})
-
-axiosInstance.interceptors.request.use(
-  (request: InternalAxiosRequestConfig<AxiosRequestConfig>) => {
-    // Need to check if window is defined because this code is also used on server side
-    if (typeof window === 'undefined') return request
-
-    const authToken = JSON.parse(localStorage.getItem('authToken') as string)
-
-    if (authToken) {
-      request.headers.Authorization = `Bearer ${authToken}`
-    }
-
-    return request
-  },
-  (error: AxiosError) => {
-    throw error
-  },
-)
-
-axiosInstance.interceptors.response.use(
-  response => response,
-  (error: AxiosError) => {
-    if (error?.response?.status === 401) {
-      logout()
-
-      if (window.location.pathname !== '/login') window.location.href = '/login'
-    }
-
-    throw error
-  },
-)
+export type GetFilterParams = {
+  page: number
+  size: number
+  sort?: string
+  filter?: { [key: string]: string | boolean | undefined }
+}
 
 type CreateApi = {
   get: <TResponse>(
@@ -86,6 +58,7 @@ type CreateApi = {
     url: string,
     config?: AxiosRequestConfig,
   ) => Promise<AxiosResponse<TResponse>>
+  interceptors: AxiosInstance['interceptors']
 }
 
 function createApi(instance: AxiosInstance): CreateApi {
@@ -109,7 +82,46 @@ function createApi(instance: AxiosInstance): CreateApi {
     ) => instance.post<TResponse>(url, body, config),
     delete: <TResponse>(url: string, config: AxiosRequestConfig = {}) =>
       instance.delete<TResponse>(url, config),
+    interceptors: instance.interceptors,
   }
 }
 
-export const api = createApi(axiosInstance)
+export const api = createApi(
+  axios.create({
+    baseURL:
+      typeof window !== 'undefined'
+        ? `${window.runtimeConfig?.required.API_URL}/v1`
+        : '',
+  }),
+)
+
+api.interceptors.request.use(
+  (request: InternalAxiosRequestConfig<AxiosRequestConfig>) => {
+    // Need to check if window is defined because this code is also used on server side
+    if (typeof window === 'undefined') return request
+
+    const authToken = JSON.parse(localStorage.getItem('authToken') as string)
+
+    if (authToken) {
+      request.headers.Authorization = `Bearer ${authToken}`
+    }
+
+    return request
+  },
+  (error: AxiosError) => {
+    throw error
+  },
+)
+
+api.interceptors.response.use(
+  response => response,
+  (error: AxiosError) => {
+    if (error?.response?.status === 401) {
+      logout()
+
+      if (window.location.pathname !== '/login') window.location.href = '/login'
+    }
+
+    throw error
+  },
+)

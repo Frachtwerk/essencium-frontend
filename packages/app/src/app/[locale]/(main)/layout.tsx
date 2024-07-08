@@ -17,18 +17,24 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { AuthLayout } from '@/components/layouts'
-import { RouteProtector } from '@/components/RouteProtector'
+import { ColorSchemeScript } from '@mantine/core'
+import { Head, Html, Main, NextScript } from 'next/document'
 
-type Props = {
-  children: React.ReactNode
-  params: { locale: string }
-}
-
-export default function MainLayout({ children, params }: Props): JSX.Element {
+export default function MainLayout(): JSX.Element {
   return (
-    <RouteProtector params={params}>
-      <AuthLayout>{children}</AuthLayout>
-    </RouteProtector>
+    <Html lang="en">
+      <Head>
+        <link rel="icon" href="/img/web/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/img/web/apple-touch-icon.png" />
+        <ColorSchemeScript defaultColorScheme="auto" />
+      </Head>
+
+      <body>
+        <script src="/runtimeConfig.js" />
+        <div id="notification" />
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
   )
 }
