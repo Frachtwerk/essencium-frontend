@@ -67,6 +67,10 @@ type NotificationParams = {
   message: ReactNode
 }
 
+type AdditionalInformation = {
+  [x: string]: string | string[]
+}
+
 type Props = {
   createFeedback: (feedback: FeedbackInput) => void
   currentUser: UserOutput | null
@@ -74,6 +78,7 @@ type Props = {
   feedbackFailed: boolean
   feedbackSending: boolean
   createNotification: (params: NotificationParams) => void
+  additionalInformation?: AdditionalInformation
 }
 
 export function FeedbackWidget({
@@ -83,6 +88,7 @@ export function FeedbackWidget({
   feedbackFailed,
   feedbackSending,
   createNotification,
+  additionalInformation,
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
@@ -123,7 +129,28 @@ export function FeedbackWidget({
     setValue('feedbackType', openInput || OpenInput.Other)
     setValue('screenshot', screenshot || '')
     setValue('path', router.asPath || '')
-  }, [currentUser, openInput, screenshot, router.asPath, setValue])
+
+    if (additionalInformation) {
+      Object.keys(additionalInformation).forEach(key => {
+        const value = additionalInformation[key]
+
+        if (typeof value === 'string') {
+          setValue(key, value)
+        }
+
+        if (Array.isArray(value)) {
+          setValue(key, value.join(', '))
+        }
+      })
+    }
+  }, [
+    currentUser,
+    openInput,
+    screenshot,
+    router.asPath,
+    setValue,
+    additionalInformation,
+  ])
 
   const iconStyling = {
     size: openInput ? 16 : 40,
@@ -182,6 +209,19 @@ export function FeedbackWidget({
   function onSubmit(form: FeedbackInput): void {
     if (!currentUser) return
 
+    const formattedAdditionalInformation: AdditionalInformation = {}
+
+    if (additionalInformation) {
+      Object.keys(additionalInformation).forEach(key => {
+        const value = additionalInformation[key]
+        if (typeof value === 'string') {
+          formattedAdditionalInformation[key] = value
+        } else if (Array.isArray(value)) {
+          formattedAdditionalInformation[key] = value.join(', ')
+        }
+      })
+    }
+
     createFeedback({
       firstName: currentUser?.firstName,
       lastName: currentUser?.lastName,
@@ -190,6 +230,7 @@ export function FeedbackWidget({
       message: form.message,
       screenshot: screenshot || '',
       path: router.asPath,
+      ...formattedAdditionalInformation,
     })
   }
 

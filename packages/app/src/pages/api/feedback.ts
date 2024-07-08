@@ -54,11 +54,10 @@ export async function sendFeedbackEmail(
       : [],
     subject: 'New Feedback Submission',
     text: `The following feedback was submitted:
-    User: ${feedback.firstName} ${feedback.lastName}
-    Email: ${feedback.email}
-    Type: ${feedback.feedbackType}
-    Path: ${feedback.path}
-    Message: ${feedback.message}  
+     ${Object.keys(feedback)
+       .map(key => `${key}: ${feedback[key]}`)
+       .join('\n')}
+     
     `,
   }
 

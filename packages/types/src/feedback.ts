@@ -8,7 +8,7 @@ export const OpenInput = {
 
 export type OpenInputTypeValues = (typeof OpenInput)[keyof typeof OpenInput]
 
-export const feedbackFormSchema = z.object({
+export const baseFeedbackFormSchema = z.object({
   firstName: z.string(),
   lastName: z.string(),
   email: z.string().email(),
@@ -17,6 +17,12 @@ export const feedbackFormSchema = z.object({
   screenshot: z.string(),
   path: z.string(),
 })
+
+export const additionalPropertiesSchema = z.string()
+
+export const feedbackFormSchema = baseFeedbackFormSchema.catchall(
+  additionalPropertiesSchema,
+)
 
 export type FeedbackInput = z.infer<typeof feedbackFormSchema>
 
