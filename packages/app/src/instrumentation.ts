@@ -3,13 +3,7 @@ export async function register(): Promise<void> {
     const fs = await import('fs')
     const path = await import('path')
 
-    const filePath = path.join(
-      __dirname,
-      '..',
-      '..',
-      'public',
-      'runtimeConfig.js',
-    )
+    const filePath = path.join(process.cwd(), 'public', 'runtimeConfig.js')
 
     const runtimeConfig = fs.readFileSync(filePath, 'utf8')
 
