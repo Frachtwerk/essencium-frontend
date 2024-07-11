@@ -1,5 +1,9 @@
 # Migrations
 
+### `src/components/layouts/AuthLayout.tsx`
+
+- `FeedbackWidget` Component now accepts a new prop "additionalInformation" to pass an arbitrary number of key value pairs to the component
+
 ## [7.2.0 (12.06.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.1.1...essencium-app-v7.2.0)
 
 ### E2E test fixes

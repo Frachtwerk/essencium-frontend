@@ -229,7 +229,7 @@ export function FeedbackWidget({
       feedbackType: openInput || OpenInput.Other,
       message: form.message,
       screenshot: screenshot || '',
-      path: router.asPath,
+      path: router.asPath || '',
       ...formattedAdditionalInformation,
     })
   }
@@ -264,6 +264,7 @@ export function FeedbackWidget({
     <>
       <ActionIcon
         variant="filled"
+        aria-label={t('feedbackWidget.openButton.ariaLabel')}
         size="lg"
         radius="xl"
         style={{
@@ -439,6 +440,7 @@ export function FeedbackWidget({
                           <ActionIcon
                             variant={screenshot ? 'filled' : 'outline'}
                             size="md"
+                            aria-label={t('feedbackWidget.screenshot.label')}
                             onClick={() => {
                               setIsCapturingScreenshot(true)
                             }}

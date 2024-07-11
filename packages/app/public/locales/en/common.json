@@ -428,6 +428,9 @@
     "screenshot": {
       "label": "Capture Screenshot",
       "created": "Screenshot captured"
+    },
+    "openButton": {
+      "ariaLabel": "Open Feedback Widget"
     }
   }
 }
