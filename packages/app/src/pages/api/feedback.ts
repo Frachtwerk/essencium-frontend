@@ -55,6 +55,7 @@ export async function sendFeedbackEmail(
     subject: 'New Feedback Submission',
     text: `The following feedback was submitted:
      ${Object.keys(feedback)
+       .filter(key => key !== 'screenshot')
        .map(key => `${key}: ${feedback[key]}`)
        .join('\n')}
      
