@@ -22,9 +22,7 @@ test.describe('UsersView', () => {
     await expect(page.getByRole('cell', { name: 'Actions' })).toBeVisible()
   })
 
-  // commented out due to unkonwn issues, WIP -> new issue #599
-
-  /*   test('add, edit and delete user', async ({ page }) => {
+  test('add, edit and delete user', async ({ page }) => {
     await page.getByRole('link', { name: 'Add User' }).click()
     await expect(page).toHaveURL(`${BASE_URL}/users/add`)
 
@@ -44,7 +42,8 @@ test.describe('UsersView', () => {
     await page.getByRole('button', { name: 'Save User' }).click()
 
     await page.waitForTimeout(4000)
-    await page.goto(`${BASE_URL}/users`)
+
+    await expect(page).toHaveURL(`${BASE_URL}/users`)
 
     await expect(
       page.getByRole('cell', { name: 'Test Person', exact: true }),
@@ -52,14 +51,14 @@ test.describe('UsersView', () => {
 
     const editIcon = page
       .getByRole('row', {
-        name: 'Test Person test@person.de German USER ADMIN',
+        name: 'Test Person test@person.de',
       })
       .getByRole('button')
       .first()
 
     editIcon.click()
 
-    await expect(page.getByText('Update a user')).toBeVisible()
+    await expect(page.getByText('Update a user').nth(1)).toBeVisible()
 
     await expect(page.getByLabel('First Name')).toHaveValue('Test')
 
@@ -74,7 +73,7 @@ test.describe('UsersView', () => {
 
     const deleteIcon = page
       .getByRole('row', {
-        name: 'Test Person 12345 test@person.de German USER ADMIN',
+        name: 'Test Person 12345 test@person.de',
       })
       .getByRole('button')
       .nth(1)
@@ -85,9 +84,9 @@ test.describe('UsersView', () => {
 
     await expect(
       page.getByRole('row', {
-        name: 'Test Person 12345 test@person.de German USER ADMIN',
+        name: 'Test Person 12345 test@person.de',
         exact: true,
       }),
     ).not.toBeVisible()
-  }) */
+  })
 })
