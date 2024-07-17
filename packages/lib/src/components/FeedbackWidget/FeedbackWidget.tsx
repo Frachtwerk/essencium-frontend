@@ -129,28 +129,7 @@ export function FeedbackWidget({
     setValue('feedbackType', openInput || OpenInput.Other)
     setValue('screenshot', screenshot || '')
     setValue('path', router.asPath || '')
-
-    if (additionalInformation) {
-      Object.keys(additionalInformation).forEach(key => {
-        const value = additionalInformation[key]
-
-        if (typeof value === 'string') {
-          setValue(key, value)
-        }
-
-        if (Array.isArray(value)) {
-          setValue(key, value.join(', '))
-        }
-      })
-    }
-  }, [
-    currentUser,
-    openInput,
-    screenshot,
-    router.asPath,
-    setValue,
-    additionalInformation,
-  ])
+  }, [currentUser, openInput, screenshot, router.asPath, setValue])
 
   const iconStyling = {
     size: openInput ? 16 : 40,
