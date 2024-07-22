@@ -4,4 +4,4 @@ dist
 .rollup.cache
 nx-cloud.env
 .nx/cache
-.nx/d
+.nx/workspace-data
