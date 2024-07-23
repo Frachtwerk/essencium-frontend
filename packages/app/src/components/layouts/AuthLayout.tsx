@@ -308,17 +308,6 @@ export function AuthLayout({
           </Footer>
 
           <AppShellMain>{children}</AppShellMain>
-
-          {user ? (
-            <FeedbackWidget
-              currentUser={user}
-              createFeedback={createFeedback}
-              feedbackCreated={feedbackCreated}
-              feedbackFailed={feedbackFailed}
-              feedbackSending={feedbackSending}
-              createNotification={withBaseStylingShowNotification}
-            />
-          ) : null}
         </AppShell>
       ) : (
         <LoadingSpinner show />

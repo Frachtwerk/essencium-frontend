@@ -21,11 +21,11 @@
   width: 400px;
 }
 
-.login-form__input-label {
-  font-weight: var(--mantine-font-weight-bold);
+.login-form__input-label--email {
 }
 
-.login-form__input-margin {
+.login-form__input-label--password {
+  font-weight: var(--mantine-font-weight-bold);
   margin-top: var(--mantine-spacing-xs);
 }
 

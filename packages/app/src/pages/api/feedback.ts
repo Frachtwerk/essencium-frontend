@@ -17,7 +17,11 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { feedbackFormSchema, FeedbackInput } from '@frachtwerk/essencium-types'
+import {
+  baseFeedbackFormSchema,
+  feedbackFormSchema,
+  FeedbackInput,
+} from '@frachtwerk/essencium-types'
 import { NextApiRequest, NextApiResponse } from 'next'
 import nodemailer from 'nodemailer'
 
@@ -27,6 +31,8 @@ const RequestMethods = {
   PUT: 'PUT',
   DELETE: 'DELETE',
 } as const
+
+const fixedFeedbackProperties = Object.keys(baseFeedbackFormSchema.shape)
 
 export async function sendFeedbackEmail(
   feedback: FeedbackInput,
@@ -39,6 +45,22 @@ export async function sendFeedbackEmail(
       pass: process.env.SMTP_PASSWORD,
     },
   })
+
+  const formattedFeedback = `
+The following feedback was submitted:
+
+  User: ${feedback.firstName} ${feedback.lastName}
+  Email: ${feedback.email}
+  Type: ${feedback.feedbackType}
+  Path: ${feedback.path}
+  Message: ${feedback.message}
+${Object.keys(feedback)
+  .filter(key => !fixedFeedbackProperties.includes(key))
+  .map(
+    key => `  ${key.charAt(0).toUpperCase() + key.slice(1)}: ${feedback[key]}`,
+  )
+  .join('\n')}
+`
 
   const mailOptions = {
     from: process.env.MAIL_FROM,
@@ -53,13 +75,7 @@ export async function sendFeedbackEmail(
         ]
       : [],
     subject: 'New Feedback Submission',
-    text: `The following feedback was submitted:
-    User: ${feedback.firstName} ${feedback.lastName}
-    Email: ${feedback.email}
-    Type: ${feedback.feedbackType}
-    Path: ${feedback.path}
-    Message: ${feedback.message}  
-    `,
+    text: formattedFeedback,
   }
 
   await transporter.sendMail(mailOptions)

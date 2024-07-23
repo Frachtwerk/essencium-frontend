@@ -428,6 +428,9 @@
     "screenshot": {
       "label": "Screenshot aufnehmen",
       "created": "Screenshot erstellt"
+    },
+    "openButton": {
+      "ariaLabel": "Feedback Widget öffnen"
     }
   }
 }

@@ -95,7 +95,7 @@ export function LoginForm({
                     label={t('loginView.form.email')}
                     required
                     classNames={{
-                      label: classes['login-form__input-label'],
+                      root: classes['login-form__input-label--email'],
                     }}
                     withAsterisk
                   />
@@ -124,8 +124,7 @@ export function LoginForm({
                     label={t('loginView.form.password')}
                     required
                     classNames={{
-                      label: classes['login-form__input-label'],
-                      root: classes['login-form__input-margin'],
+                      root: classes['login-form__input-label--password'],
                     }}
                     withAsterisk
                   />

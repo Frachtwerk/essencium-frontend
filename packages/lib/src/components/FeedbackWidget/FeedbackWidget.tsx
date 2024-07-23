@@ -67,6 +67,10 @@ type NotificationParams = {
   message: ReactNode
 }
 
+type AdditionalInformation = {
+  [x: string]: string | string[]
+}
+
 type Props = {
   createFeedback: (feedback: FeedbackInput) => void
   currentUser: UserOutput | null
@@ -74,6 +78,7 @@ type Props = {
   feedbackFailed: boolean
   feedbackSending: boolean
   createNotification: (params: NotificationParams) => void
+  additionalInformation?: AdditionalInformation
 }
 
 export function FeedbackWidget({
@@ -83,6 +88,7 @@ export function FeedbackWidget({
   feedbackFailed,
   feedbackSending,
   createNotification,
+  additionalInformation,
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
@@ -182,6 +188,19 @@ export function FeedbackWidget({
   function onSubmit(form: FeedbackInput): void {
     if (!currentUser) return
 
+    const formattedAdditionalInformation: AdditionalInformation = {}
+
+    if (additionalInformation) {
+      Object.keys(additionalInformation).forEach(key => {
+        const value = additionalInformation[key]
+        if (typeof value === 'string') {
+          formattedAdditionalInformation[key] = value
+        } else if (Array.isArray(value)) {
+          formattedAdditionalInformation[key] = value.join(', ')
+        }
+      })
+    }
+
     createFeedback({
       firstName: currentUser?.firstName,
       lastName: currentUser?.lastName,
@@ -189,7 +208,8 @@ export function FeedbackWidget({
       feedbackType: openInput || OpenInput.Other,
       message: form.message,
       screenshot: screenshot || '',
-      path: router.asPath,
+      path: router.asPath || '',
+      ...formattedAdditionalInformation,
     })
   }
 
@@ -223,6 +243,7 @@ export function FeedbackWidget({
     <>
       <ActionIcon
         variant="filled"
+        aria-label={t('feedbackWidget.openButton.ariaLabel')}
         size="lg"
         radius="xl"
         style={{
@@ -398,6 +419,7 @@ export function FeedbackWidget({
                           <ActionIcon
                             variant={screenshot ? 'filled' : 'outline'}
                             size="md"
+                            aria-label={t('feedbackWidget.screenshot.label')}
                             onClick={() => {
                               setIsCapturingScreenshot(true)
                             }}
