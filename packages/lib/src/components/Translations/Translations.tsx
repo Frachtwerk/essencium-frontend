@@ -40,7 +40,6 @@ import {
   IconX,
 } from '@tabler/icons-react'
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { FormEvent, useState } from 'react'
 import { KeyPath } from 'react-json-tree'
@@ -112,8 +111,6 @@ export function Translations({
   deleteTranslation,
   userRights,
 }: Props): JSX.Element {
-  const router = useRouter()
-
   const { t } = useTranslation()
 
   const theme = useMantineTheme()
@@ -141,7 +138,7 @@ export function Translations({
   const [keyPathString, setKeyPathString] = useState<string | null>(null)
 
   const [selectedLanguage, setSelectedLanguage] = useState(
-    router?.locale || 'en',
+    window.location.pathname.includes('de') ? 'de' : 'en',
   )
   const translations = getTranslations(selectedLanguage)
 
