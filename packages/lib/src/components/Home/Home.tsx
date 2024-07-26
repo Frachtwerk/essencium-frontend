@@ -21,14 +21,20 @@ import { Button, Center, Container, Flex, Stack } from '@mantine/core'
 import { openSpotlight } from '@mantine/spotlight'
 import { IconSearch, IconUserEdit, IconUsers } from '@tabler/icons-react'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
 import classes from './Home.module.css'
 
-export function Home(): JSX.Element {
+type Props = {
+  onClickUserButton: () => void
+  onClickProfileButton: () => void
+}
+
+export function Home({
+  onClickUserButton,
+  onClickProfileButton,
+}: Props): JSX.Element {
   const { t } = useTranslation()
-  const router = useRouter()
 
   return (
     <Flex
@@ -60,7 +66,7 @@ export function Home(): JSX.Element {
           </Button>
 
           <Button
-            onClick={() => router.push('/users')}
+            onClick={() => onClickUserButton()}
             variant="outline"
             leftSection={<IconUsers />}
             fullWidth
@@ -69,7 +75,7 @@ export function Home(): JSX.Element {
           </Button>
 
           <Button
-            onClick={() => router.push('/profile')}
+            onClick={() => onClickProfileButton()}
             variant="outline"
             leftSection={<IconUserEdit />}
             fullWidth

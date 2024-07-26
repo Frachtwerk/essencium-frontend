@@ -18,6 +18,7 @@
  */
 
 import { Home } from '@frachtwerk/essencium-lib'
+import { useRouter } from 'next/router'
 import { ReactElement } from 'react'
 
 import { AuthLayout } from '@/components/layouts/AuthLayout'
@@ -26,7 +27,22 @@ import { getTranslation } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
 function HomeView(): JSX.Element {
-  return <Home />
+  const router = useRouter()
+
+  function handleUserButtonClick(): void {
+    router.push('/users')
+  }
+
+  function handleProfileButtonClick(): void {
+    router.push('/profile')
+  }
+
+  return (
+    <Home
+      onClickUserButton={handleUserButtonClick}
+      onClickProfileButton={handleProfileButtonClick}
+    />
+  )
 }
 
 HomeView.getLayout = function getLayout(
