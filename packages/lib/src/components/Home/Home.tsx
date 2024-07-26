@@ -17,6 +17,8 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+'use client'
+
 import { Button, Center, Container, Flex, Stack } from '@mantine/core'
 import { openSpotlight } from '@mantine/spotlight'
 import { IconSearch, IconUserEdit, IconUsers } from '@tabler/icons-react'

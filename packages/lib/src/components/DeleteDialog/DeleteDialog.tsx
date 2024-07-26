@@ -17,6 +17,8 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+'use client'
+
 import { Button, Flex, Modal, Text, Title } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
 
