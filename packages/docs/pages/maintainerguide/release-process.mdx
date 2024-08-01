@@ -1,0 +1,22 @@
+import { Callout } from 'nextra-theme-docs'
+
+# Release Process
+
+We use [`release-please`](https://github.com/googleapis/release-please) as automation tool for creating new versions and corresponding changelogs. It uses [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) parsing for doing so.
+Release Please creates a new pull request called `chore: release main` if a merged commit contains a conventional commit message. This PR will contain the new version number and the changelog for each changed package of the monorepo.
+Usually, we need to update the `MIGRAION.md` file inside a pull request (see [Migration Guide](/migrationguide)) and as the migration guide says, we need to adjust the file inside the release pull request:
+
+<Callout emoji="⚠️" type="warning">
+  Since the version and date under which the changes are made are not known at
+  the time of the feature PR, those need to be set when
+  [release-please](https://github.com/googleapis/release-please) creates the
+  release PR. That means editing the `MIGRATION.md` file during the review of
+  the release PR. Instead of the version you can use `x.y.z` and `DD.MM.YYYY` as
+  a placeholder.
+</Callout>
+
+That means updating and commiting the new changes to the release branch, review the whole pull request and merge it afterwards.
+
+Release Please will then create new tags for each new version and a new release in GitHub. Furthermore, the packages `lib` and `types` will be published to the `npm` registry.
+
+Dependent projects can then be updated according to the migration guide.
