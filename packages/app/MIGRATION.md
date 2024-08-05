@@ -1,5 +1,11 @@
 # Migrations
 
+## [x.x.x (dd.mm.2024)]()
+
+### `src/pages/index.tsx`
+
+- pass function to `Home` component to handle button click
+
 ### `src/components/layouts/AuthLayout.tsx`
 
 - `FeedbackWidget` Component now accepts a new prop "additionalInformation" to pass an arbitrary number of key value pairs to the component

@@ -17,10 +17,12 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+'use client'
+
 import { NavLink } from '@frachtwerk/essencium-types'
 import { NavLink as MantineNavLink, Stack } from '@mantine/core'
 import NextLink from 'next/link'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 
 import { hasRequiredRights } from '../../../utils'
@@ -34,14 +36,14 @@ type Props = {
 export function NavLinks({ links, userRights }: Props): JSX.Element {
   const { t } = useTranslation()
 
-  const router = useRouter()
+  const pathname = usePathname()
 
   function isLinkActive(path: string): boolean {
     if (path === '/') {
-      return router.pathname === path
+      return pathname === path
     }
 
-    return router.pathname?.startsWith(path)
+    return pathname.startsWith(path)
   }
 
   return (

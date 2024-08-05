@@ -17,6 +17,8 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+'use client'
+
 import {
   feedbackFormSchema,
   FeedbackInput,
@@ -52,7 +54,7 @@ import {
   IconMessageDots,
 } from '@tabler/icons-react'
 import html2canvas from 'html2canvas'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 import { ReactNode, useEffect, useState } from 'react'
 import { Controller } from 'react-hook-form'
@@ -92,8 +94,6 @@ export function FeedbackWidget({
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
-  const router = useRouter()
-
   const [opened, { toggle, close }] = useDisclosure(false)
 
   const [openInput, setOpenInput] = useState<OpenInputTypeValues | null>(null)
@@ -108,6 +108,8 @@ export function FeedbackWidget({
 
   const [isCapturingScreenshot, setIsCapturingScreenshot] =
     useState<boolean>(false)
+
+  const pathname = usePathname()
 
   const { handleSubmit, control, formState, reset, setValue } = useZodForm({
     schema: feedbackFormSchema,
@@ -128,8 +130,8 @@ export function FeedbackWidget({
     setValue('email', currentUser?.email || '')
     setValue('feedbackType', openInput || OpenInput.Other)
     setValue('screenshot', screenshot || '')
-    setValue('path', router.asPath || '')
-  }, [currentUser, openInput, screenshot, router.asPath, setValue])
+    setValue('path', pathname || '')
+  }, [currentUser, openInput, screenshot, setValue, pathname])
 
   const iconStyling = {
     size: openInput ? 16 : 40,
@@ -208,7 +210,7 @@ export function FeedbackWidget({
       feedbackType: openInput || OpenInput.Other,
       message: form.message,
       screenshot: screenshot || '',
-      path: router.asPath || '',
+      path: pathname || '',
       ...formattedAdditionalInformation,
     })
   }
