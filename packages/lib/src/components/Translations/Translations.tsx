@@ -17,6 +17,8 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+'use client'
+
 /* eslint-disable react/no-unstable-nested-components */
 import { RIGHTS, TranslationInput } from '@frachtwerk/essencium-types'
 import {
@@ -40,7 +42,7 @@ import {
   IconX,
 } from '@tabler/icons-react'
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 import { FormEvent, useState } from 'react'
 import { KeyPath } from 'react-json-tree'
@@ -112,9 +114,9 @@ export function Translations({
   deleteTranslation,
   userRights,
 }: Props): JSX.Element {
-  const router = useRouter()
-
   const { t } = useTranslation()
+
+  const pathname = usePathname()
 
   const theme = useMantineTheme()
 
@@ -141,7 +143,7 @@ export function Translations({
   const [keyPathString, setKeyPathString] = useState<string | null>(null)
 
   const [selectedLanguage, setSelectedLanguage] = useState(
-    router?.locale || 'en',
+    pathname.includes('de') ? 'de' : 'en',
   )
   const translations = getTranslations(selectedLanguage)
 

@@ -18,6 +18,7 @@
  */
 
 import { Home } from '@frachtwerk/essencium-lib'
+import { useRouter } from 'next/router'
 import { ReactElement } from 'react'
 
 import { AuthLayout } from '@/components/layouts/AuthLayout'
@@ -26,7 +27,13 @@ import { getTranslation } from '@/utils'
 import { baseGetServerSideProps } from '@/utils/next'
 
 function HomeView(): JSX.Element {
-  return <Home />
+  const router = useRouter()
+
+  function handleButtonClick(path: string): void {
+    router.push(path)
+  }
+
+  return <Home onClickButton={handleButtonClick} />
 }
 
 HomeView.getLayout = function getLayout(

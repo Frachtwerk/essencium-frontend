@@ -21,6 +21,6 @@ The package called app is acting as boilerplate and consumes all the other packa
 - Next.js pages that import components from lib
 - API implementation
 - application state
-- routing (via Next.js pages router)
+- routing (via Next.js App Router)
 - error logging (via Sentry)
 - E2E tests (via Playwright)
