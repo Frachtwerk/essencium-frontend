@@ -17,8 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-'use client'
-
 import {
   Button,
   Group,

@@ -54,6 +54,7 @@ import {
   IconMessageDots,
 } from '@tabler/icons-react'
 import html2canvas from 'html2canvas'
+import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 import { ReactNode, useEffect, useState } from 'react'
 import { Controller } from 'react-hook-form'
@@ -108,6 +109,8 @@ export function FeedbackWidget({
   const [isCapturingScreenshot, setIsCapturingScreenshot] =
     useState<boolean>(false)
 
+  const pathname = usePathname()
+
   const { handleSubmit, control, formState, reset, setValue } = useZodForm({
     schema: feedbackFormSchema,
     defaultValues: {
@@ -127,8 +130,8 @@ export function FeedbackWidget({
     setValue('email', currentUser?.email || '')
     setValue('feedbackType', openInput || OpenInput.Other)
     setValue('screenshot', screenshot || '')
-    setValue('path', window.location.pathname || '')
-  }, [currentUser, openInput, screenshot, setValue])
+    setValue('path', pathname || '')
+  }, [currentUser, openInput, screenshot, setValue, pathname])
 
   const iconStyling = {
     size: openInput ? 16 : 40,
@@ -207,7 +210,7 @@ export function FeedbackWidget({
       feedbackType: openInput || OpenInput.Other,
       message: form.message,
       screenshot: screenshot || '',
-      path: window.location.pathname || '',
+      path: pathname || '',
       ...formattedAdditionalInformation,
     })
   }

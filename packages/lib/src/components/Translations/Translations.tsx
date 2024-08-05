@@ -42,6 +42,7 @@ import {
   IconX,
 } from '@tabler/icons-react'
 import dynamic from 'next/dynamic'
+import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 import { FormEvent, useState } from 'react'
 import { KeyPath } from 'react-json-tree'
@@ -115,6 +116,8 @@ export function Translations({
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
+  const pathname = usePathname()
+
   const theme = useMantineTheme()
 
   const { colorScheme } = useMantineColorScheme()
@@ -140,7 +143,7 @@ export function Translations({
   const [keyPathString, setKeyPathString] = useState<string | null>(null)
 
   const [selectedLanguage, setSelectedLanguage] = useState(
-    window.location.pathname.includes('de') ? 'de' : 'en',
+    pathname.includes('de') ? 'de' : 'en',
   )
   const translations = getTranslations(selectedLanguage)
 

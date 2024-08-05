@@ -17,8 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-'use client'
-
 import { Center, Stack, Text, Title } from '@mantine/core'
 import { IconMailForward } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'

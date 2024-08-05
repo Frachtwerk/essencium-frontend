@@ -17,8 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-'use client'
-
 import { FooterLink } from '@frachtwerk/essencium-types'
 import { AppShellFooter, AppShellFooterProps, Flex, Text } from '@mantine/core'
 import { IconCopyright } from '@tabler/icons-react'

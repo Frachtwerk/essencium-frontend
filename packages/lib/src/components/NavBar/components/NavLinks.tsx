@@ -22,6 +22,7 @@
 import { NavLink } from '@frachtwerk/essencium-types'
 import { NavLink as MantineNavLink, Stack } from '@mantine/core'
 import NextLink from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 
 import { hasRequiredRights } from '../../../utils'
@@ -35,16 +36,14 @@ type Props = {
 export function NavLinks({ links, userRights }: Props): JSX.Element {
   const { t } = useTranslation()
 
-  const pathname = window.location.pathname.includes('de')
-    ? window.location.pathname.replace('de', '')
-    : window.location.pathname
+  const pathname = usePathname()
 
   function isLinkActive(path: string): boolean {
     if (path === '/') {
       return pathname === path
     }
 
-    return pathname.includes(path)
+    return pathname.startsWith(path)
   }
 
   return (

@@ -17,8 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-'use client'
-
 import { Button, Center, Container, Flex, Stack } from '@mantine/core'
 import { openSpotlight } from '@mantine/spotlight'
 import { IconSearch, IconUserEdit, IconUsers } from '@tabler/icons-react'
@@ -28,14 +26,10 @@ import { useTranslation } from 'next-i18next'
 import classes from './Home.module.css'
 
 type Props = {
-  onClickUserButton: () => void
-  onClickProfileButton: () => void
+  onClickButton: (path: string) => void
 }
 
-export function Home({
-  onClickUserButton,
-  onClickProfileButton,
-}: Props): JSX.Element {
+export function Home({ onClickButton }: Props): JSX.Element {
   const { t } = useTranslation()
 
   return (
@@ -68,7 +62,7 @@ export function Home({
           </Button>
 
           <Button
-            onClick={() => onClickUserButton()}
+            onClick={() => onClickButton('/users')}
             variant="outline"
             leftSection={<IconUsers />}
             fullWidth
@@ -77,7 +71,7 @@ export function Home({
           </Button>
 
           <Button
-            onClick={() => onClickProfileButton()}
+            onClick={() => onClickButton('/profile')}
             variant="outline"
             leftSection={<IconUserEdit />}
             fullWidth
