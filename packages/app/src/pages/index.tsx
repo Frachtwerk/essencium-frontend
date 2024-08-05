@@ -29,20 +29,11 @@ import { baseGetServerSideProps } from '@/utils/next'
 function HomeView(): JSX.Element {
   const router = useRouter()
 
-  function handleUserButtonClick(): void {
-    router.push('/users')
+  function handleButtonClick(path: string): void {
+    router.push(path)
   }
 
-  function handleProfileButtonClick(): void {
-    router.push('/profile')
-  }
-
-  return (
-    <Home
-      onClickUserButton={handleUserButtonClick}
-      onClickProfileButton={handleProfileButtonClick}
-    />
-  )
+  return <Home onClickButton={handleButtonClick} />
 }
 
 HomeView.getLayout = function getLayout(
