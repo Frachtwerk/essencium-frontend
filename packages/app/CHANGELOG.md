@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.2.0...essencium-app-v7.3.0) (2024-08-06)
+
+
+### Features
+
+* refactor to app router usage ([e16d186](https://github.com/Frachtwerk/essencium-frontend/commit/e16d186863fadc7d1043bbf65d7b7e6e6f980b96))
+
+
+### Bug Fixes
+
+* apply user locale without re-rendering unnecessarily ([fdbad07](https://github.com/Frachtwerk/essencium-frontend/commit/fdbad07e2acd1d209eda904e5bc16b4d6b22ff2b))
+
 ## [7.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.1.1...essencium-app-v7.2.0) (2024-06-10)
 
 

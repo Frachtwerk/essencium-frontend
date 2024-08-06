@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.0.0...essencium-docs-v4.1.0) (2024-08-06)
+
+
+### Features
+
+* refactor to app router usage ([e16d186](https://github.com/Frachtwerk/essencium-frontend/commit/e16d186863fadc7d1043bbf65d7b7e6e6f980b96))
+
 ## [4.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v3.0.0...essencium-docs-v4.0.0) (2024-04-25)
 
 

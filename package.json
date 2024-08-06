@@ -33,7 +33,7 @@
     "setup-env": "pnpm install && husky install",
     "sort-package-json": "sort-package-json && nx affected --target=sort-package-json",
     "test": "NX_PUBLIC_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=test",
-    "test:e2e": "pnpm --filter @frachtwerk/essencium-app test:e2e",
+    "test:e2e": "pnpm --filter @frachtwerk/essencium-app pnpm exec playwright install --with-deps test:e2e",
     "test:unit": "NX_PUBLIC_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx affected --target=test:unit --parallel=10",
     "test:unit:coverage": "NX_PUBLIC_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx run-many --target=test:unit:coverage --parallel=10",
     "test:unit:watch": "NX_PUBLIC_BRANCH=$(git rev-parse --abbrev-ref HEAD) nx run-many --target=test:unit:watch --parallel=10"
