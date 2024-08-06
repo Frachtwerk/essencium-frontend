@@ -1,6 +1,6 @@
 # Migrations
 
-## [x.x.x (dd.mm.2024)]()
+## [7.3.0 (06.08.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.2.0...essencium-app-v7.3.0)
 
 ### `src/pages/index.tsx`
 
