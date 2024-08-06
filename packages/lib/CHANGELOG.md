@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.2.3...essencium-lib-v7.3.0) (2024-08-06)
+
+
+### Features
+
+* lib and remove usage of pages router instance  ([e16d186](https://github.com/Frachtwerk/essencium-frontend/commit/e16d186863fadc7d1043bbf65d7b7e6e6f980b96))
+
 ## [7.2.3](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.2.2...essencium-lib-v7.2.3) (2024-06-10)
 
 
