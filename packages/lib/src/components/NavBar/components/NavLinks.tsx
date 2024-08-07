@@ -43,7 +43,7 @@ export function NavLinks({ links, userRights }: Props): JSX.Element {
       return pathname === path
     }
 
-    return pathname.startsWith(path)
+    return pathname?.startsWith(path)
   }
 
   return (

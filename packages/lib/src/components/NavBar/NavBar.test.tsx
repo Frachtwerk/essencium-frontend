@@ -26,7 +26,7 @@ import {
   IconUsers,
   IconUserStar,
 } from '@tabler/icons-react'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { ReactNode } from 'react'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 
@@ -78,52 +78,148 @@ describe('NavBar', () => {
     },
   ]
 
-  const props = {
+  const sharedProps = {
     links: NAV_LINKS,
-    userRights: [
-      RIGHTS.USER_READ,
-      RIGHTS.ROLE_READ,
-      RIGHTS.RIGHT_READ,
-      RIGHTS.TRANSLATION_READ,
-    ],
     handleLogout: () => {},
-    logo: <div>Logo</div>,
-    icon: <div>Icon</div>,
-    foldedNav: false,
-    setFoldedNav: () => {},
-    fixedNav: false,
-    setFixedNav: () => {},
     isMobile: false,
+    fixedNav: false,
+    setFixedNav: vi.fn(),
+    setFoldedNav: vi.fn(),
   }
+
+  const allUserRights = [
+    RIGHTS.USER_READ,
+    RIGHTS.ROLE_READ,
+    RIGHTS.RIGHT_READ,
+    RIGHTS.TRANSLATION_READ,
+  ]
+  const someUserRights = [RIGHTS.USER_READ, RIGHTS.ROLE_READ, RIGHTS.RIGHT_READ]
+
+  const propsAllUserRights = {
+    ...sharedProps,
+    userRights: allUserRights,
+    foldedNav: true,
+  }
+
+  const propsSomeUserRights = {
+    ...sharedProps,
+    userRights: someUserRights,
+    foldedNav: true,
+  }
+
+  const propsUnfoldedNav = {
+    ...sharedProps,
+    userRights: allUserRights,
+    foldedNav: false,
+  }
+
+  const wrapper = ({ children }: { children: ReactNode }): JSX.Element => (
+    <MantineProvider>
+      <AppShell>{children}</AppShell>
+    </MantineProvider>
+  )
+
   beforeAll(() => {
-    const wrapper = ({ children }: { children: ReactNode }): JSX.Element => (
-      <MantineProvider>
-        <AppShell>{children}</AppShell>
-      </MantineProvider>
-    )
-
-    render(<NavBar {...props} />, { wrapper })
-
     vi.mock('next/router', () => ({
       useRouter: () => ({}),
     }))
   })
 
-  it('should contain the correct navigation links', () => {
+  it('should render the NavBar', () => {
+    const renderedComponent = render(<NavBar {...propsAllUserRights} />, {
+      wrapper,
+    })
+
+    const navBar = screen.getByRole('navigation')
+
+    expect(navBar).toBeDefined()
+
+    renderedComponent.unmount()
+  })
+
+  it('should contain all navigation links with all rights', () => {
+    const renderedComponent = render(<NavBar {...propsAllUserRights} />, {
+      wrapper,
+    })
+
     expect(
       screen.getByText('navigation.home.label').closest('a'),
     ).toHaveProperty('href', `${BASE_PATH}/`)
+
     expect(
       screen.getByText('navigation.users.label').closest('a'),
     ).toHaveProperty('href', `${BASE_PATH}/users`)
+
     expect(
       screen.getByText('navigation.roles.label').closest('a'),
     ).toHaveProperty('href', `${BASE_PATH}/roles`)
+
     expect(
       screen.getByText('navigation.rights.label').closest('a'),
     ).toHaveProperty('href', `${BASE_PATH}/rights`)
+
     expect(
       screen.getByText('navigation.translations.label').closest('a'),
     ).toHaveProperty('href', `${BASE_PATH}/translations`)
+
+    renderedComponent.unmount()
+  })
+
+  it('should not contain all links with just some rights', () => {
+    const renderedComponent = render(<NavBar {...propsSomeUserRights} />, {
+      wrapper,
+    })
+
+    expect(
+      screen.getByText('navigation.home.label').closest('a'),
+    ).toHaveProperty('href', `${BASE_PATH}/`)
+
+    expect(
+      screen.getByText('navigation.users.label').closest('a'),
+    ).toHaveProperty('href', `${BASE_PATH}/users`)
+
+    expect(
+      screen.getByText('navigation.roles.label').closest('a'),
+    ).toHaveProperty('href', `${BASE_PATH}/roles`)
+
+    expect(
+      screen.getByText('navigation.rights.label').closest('a'),
+    ).toHaveProperty('href', `${BASE_PATH}/rights`)
+
+    expect(screen.queryByText('navigation.translations.label')).toBeNull()
+
+    renderedComponent.unmount()
+  })
+
+  it('should not render the pin icon if NavBar is folded ', () => {
+    const renderedComponent = render(<NavBar {...propsSomeUserRights} />, {
+      wrapper,
+    })
+
+    const pinIcon = screen.queryByLabelText(
+      'navigation.toggleFixedNavIcon.arialabel',
+    )
+
+    expect(pinIcon).toBeNull()
+
+    renderedComponent.unmount()
+  })
+
+  it('should render the pin icon if NavBar is unfolded and call the correct function on click ', () => {
+    const renderedComponent = render(<NavBar {...propsUnfoldedNav} />, {
+      wrapper,
+    })
+
+    const pinIcon = screen.getByLabelText(
+      'navigation.toggleFixedNavIcon.arialabel',
+    ) as HTMLInputElement
+
+    expect(pinIcon).toBeDefined()
+
+    fireEvent.click(pinIcon)
+
+    expect(sharedProps.setFixedNav).toHaveBeenCalledOnce()
+
+    renderedComponent.unmount()
   })
 })
