@@ -93,6 +93,7 @@ describe('NavBar', () => {
     RIGHTS.RIGHT_READ,
     RIGHTS.TRANSLATION_READ,
   ]
+
   const someUserRights = [RIGHTS.USER_READ, RIGHTS.ROLE_READ, RIGHTS.RIGHT_READ]
 
   const propsAllUserRights = {
