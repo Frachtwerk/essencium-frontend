@@ -2,10 +2,29 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*"],
-      "@frachtwerk/essencium-lib": ["../lib/src"],
-      "@frachtwerk/essencium-types": ["../types/src"]
-    }
+      "@/*": [
+        "./src/*"
+      ],
+      "@frachtwerk/essencium-lib": [
+        "../lib/src"
+      ],
+      "@frachtwerk/essencium-types": [
+        "../types/src"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    ".next/types/**/*.ts"
+  ]
 }

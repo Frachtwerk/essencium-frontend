@@ -17,4 +17,37 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './AuthLayout'
+.loginCard {
+  box-shadow: var(--mantine-shadow-sm);
+  border-radius: var(--mantine-radius-sm);
+
+  @mixin dark {
+    background-color: var(--mantine-color-dark-7);
+  }
+}
+
+.ssoSection {
+  margin-top: var(--mantine-spacing-md);
+}
+
+.ssoSection__link {
+  text-decoration: none;
+  color: white;
+}
+
+.ssoSection__button {
+  margin: var(--mantine-spacing-xs) 0;
+}
+
+.ssoSection__spacer {
+  margin: 0 var(--mantine-spacing-xs);
+}
+
+.ssoSection__divider {
+  margin: var(--mantine-spacing-xl) 0;
+}
+
+.loginCard__title {
+  text-align: center;
+  font-weight: bold;
+}

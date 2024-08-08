@@ -17,4 +17,17 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './AuthLayout'
+import { AuthLayout } from '@/components/layouts'
+import { RouteProtector } from '@/components/RouteProtector'
+
+type Props = {
+  children: React.ReactNode
+}
+
+export default function MainLayout({ children }: Props): JSX.Element | null {
+  return (
+    <RouteProtector>
+      <AuthLayout>{children} </AuthLayout>
+    </RouteProtector>
+  )
+}

@@ -1,3 +1,5 @@
+'use client'
+
 import { hasRequiredRights } from '@frachtwerk/essencium-lib'
 import { Box, Button, Flex, Title } from '@mantine/core'
 import { useAtomValue } from 'jotai'

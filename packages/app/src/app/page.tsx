@@ -17,4 +17,26 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './AuthLayout'
+'use client'
+
+import { Home } from '@frachtwerk/essencium-lib'
+import { useRouter } from 'next/navigation'
+
+import { AuthLayout } from '@/components/layouts'
+import { RouteProtector } from '@/components/RouteProtector'
+
+export default function HomeView(): JSX.Element {
+  const router = useRouter()
+
+  function handleButtonClick(path: string): void {
+    router.push(path)
+  }
+
+  return (
+    <RouteProtector>
+      <AuthLayout>
+        <Home onClickButton={handleButtonClick} />
+      </AuthLayout>
+    </RouteProtector>
+  )
+}

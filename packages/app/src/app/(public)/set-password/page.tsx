@@ -1,0 +1,74 @@
+/*
+ * Copyright (C) 2023 Frachtwerk GmbH, Leopoldstraße 7C, 76133 Karlsruhe.
+ *
+ * This file is part of Essencium Frontend.
+ *
+ * Essencium Frontend is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Essencium Frontend is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+'use client'
+
+import {
+  SetPasswordForm,
+  SetPasswordSuccessMessage,
+} from '@frachtwerk/essencium-lib'
+import { SetPasswordInput } from '@frachtwerk/essencium-types'
+import { Container, Paper, Title } from '@mantine/core'
+import { useSearchParams } from 'next/navigation'
+import { useTranslation } from 'next-i18next'
+import { useState } from 'react'
+
+import { useSetPassword } from '@/api'
+
+import classes from './SetPassword.module.css'
+
+export default function SetPasswordView(): JSX.Element {
+  const { t } = useTranslation()
+
+  const { mutate: setPassword } = useSetPassword()
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+
+  const searchParams = useSearchParams()
+
+  const token = searchParams.get('token')
+
+  const verification: SetPasswordInput['verification'] = String(token) || ''
+
+  function handleSetPassword(password: SetPasswordInput['password']): void {
+    setPassword(
+      { password, verification },
+      {
+        onSuccess: () => setShowSuccessMessage(true),
+      },
+    )
+  }
+
+  return (
+    <Container className={classes['setPassword__container']}>
+      {!showSuccessMessage && (
+        <Title ta="center" order={2} fw="bold">
+          {t('setPasswordView.title')}
+        </Title>
+      )}
+
+      <Paper className={classes['setPassword__paper']}>
+        {!showSuccessMessage && (
+          <SetPasswordForm handleSetPassword={handleSetPassword} />
+        )}
+
+        {showSuccessMessage && <SetPasswordSuccessMessage />}
+      </Paper>
+    </Container>
+  )
+}

@@ -17,6 +17,8 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+'use client'
+
 import {
   FeedbackWidget,
   Footer,
@@ -43,7 +45,7 @@ import { useAtom, useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
+import { usePathname, useRouter } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 import React, { useEffect, useState } from 'react'
 
@@ -205,18 +207,17 @@ export function AuthLayout({
 
   const [isLoadingAuthToken, setIsLoadingAuthToken] = useState(true)
 
+  const path = usePathname()
+
   useEffect(() => {
     const authToken = localStorage.getItem('authToken')
 
     if (!authToken) {
-      router.push({
-        pathname: '/login',
-        query: router.asPath === '/' ? null : { redirect: router.asPath },
-      })
+      router.push(`/login${path === '/' ? '' : `?redirect=${path}`}`)
     } else {
       setIsLoadingAuthToken(false)
     }
-  }, [user, router])
+  }, [user, router, path])
 
   function handleLogout(): void {
     logout()

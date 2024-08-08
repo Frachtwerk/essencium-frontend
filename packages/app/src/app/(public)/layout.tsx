@@ -17,4 +17,12 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './AuthLayout'
+import { Center } from '@mantine/core'
+
+type Props = {
+  children: React.ReactNode
+}
+
+export default function PublicLayout({ children }: Props): JSX.Element | null {
+  return <Center>{children}</Center>
+}

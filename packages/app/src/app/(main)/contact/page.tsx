@@ -17,4 +17,34 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './AuthLayout'
+'use client'
+
+import { Contact } from '@frachtwerk/essencium-lib'
+import { contactFormSchema, ContactFormType } from '@frachtwerk/essencium-types'
+
+import { useSendContactMessage } from '@/api'
+import { useZodForm } from '@/hooks'
+
+export default function ContactView(): JSX.Element {
+  const { mutate: sendMessage } = useSendContactMessage()
+
+  const { handleSubmit, control, formState, reset } = useZodForm({
+    schema: contactFormSchema,
+    defaultValues: {
+      mailAddress: '',
+      name: '',
+      subject: '',
+      message: '',
+    },
+  })
+
+  function onSubmit(form: ContactFormType): void {
+    sendMessage(form, { onSuccess: () => reset() })
+  }
+
+  return (
+    <form data-testid="form" onSubmit={handleSubmit(onSubmit)}>
+      <Contact control={control} formState={formState} />
+    </form>
+  )
+}

@@ -17,4 +17,27 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './AuthLayout'
+import '@mantine/core/styles.css'
+import '@mantine/spotlight/styles.css'
+
+import { ColorSchemeScript } from '@mantine/core'
+
+import { Providers } from './providers'
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}): JSX.Element {
+  return (
+    <html lang="en">
+      <head>
+        <ColorSchemeScript defaultColorScheme="auto" />
+      </head>
+      <body>
+        <div id="notification" />
+        <Providers>{children}</Providers>
+      </body>
+    </html>
+  )
+}

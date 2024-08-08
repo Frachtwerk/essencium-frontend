@@ -17,30 +17,8 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Center } from '@mantine/core'
-import Head from 'next/head'
+import { NextApiRequest, NextApiResponse } from 'next'
 
-import { getTranslation } from '@/utils'
-
-type Props = {
-  children: React.ReactNode
-  routeName?: string
-}
-
-export function PublicLayout({
-  children,
-  routeName,
-}: Props): JSX.Element | null {
-  const pageTitle = `${routeName ? `${routeName} -` : ''} ${getTranslation(
-    'header.title',
-  )}`
-
-  return (
-    <Center>
-      <Head>
-        <title>{pageTitle}</title>
-      </Head>
-      {children}
-    </Center>
-  )
+export default function handler(_: NextApiRequest, res: NextApiResponse): void {
+  res.status(200).json({ status: 'ok' })
 }
