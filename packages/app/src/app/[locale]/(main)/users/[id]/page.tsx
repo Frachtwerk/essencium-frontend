@@ -21,7 +21,7 @@ import { Metadata, ResolvingMetadata } from 'next'
 
 import initTranslations from '@/utils/i18n'
 
-import UpdateUserView from './updateUsersView'
+import UpdateUserView from './UpdateUsersView'
 
 type Props = {
   params: { locale: string; id: number }

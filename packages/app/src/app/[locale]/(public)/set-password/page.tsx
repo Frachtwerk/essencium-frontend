@@ -18,6 +18,7 @@
  */
 
 import { Metadata, ResolvingMetadata } from 'next'
+import { Suspense } from 'react'
 
 import initTranslations from '@/utils/i18n'
 
@@ -43,5 +44,9 @@ export async function generateMetadata(
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function page({ params }: Props): JSX.Element {
-  return <SetPasswordView />
+  return (
+    <Suspense fallback={null}>
+      <SetPasswordView />
+    </Suspense>
+  )
 }

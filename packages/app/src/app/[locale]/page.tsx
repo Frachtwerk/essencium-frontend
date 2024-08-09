@@ -23,7 +23,7 @@ import { AuthLayout } from '@/components/layouts'
 import { RouteProtector } from '@/components/RouteProtector'
 import initTranslations from '@/utils/i18n'
 
-import HomeView from './homeView'
+import HomeView from './HomeView'
 
 type Props = {
   params: { locale: string }

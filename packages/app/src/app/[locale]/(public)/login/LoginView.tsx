@@ -35,7 +35,7 @@ import { useSetAtom } from 'jotai'
 import Image from 'next/image'
 import NextLink from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import {
@@ -105,68 +105,70 @@ export default function LoginView(): JSX.Element {
   }
 
   return (
-    <Container mt="150px">
-      {!oauthToken ? (
-        <Card className={classes['loginCard']} withBorder>
-          <Flex direction="column">
-            <Title order={2} className={classes['loginCard__title']}>
-              {t('loginView.title')}
-            </Title>
+    <Suspense>
+      <Container mt="150px">
+        {!oauthToken ? (
+          <Card className={classes['loginCard']} withBorder>
+            <Flex direction="column">
+              <Title order={2} className={classes['loginCard__title']}>
+                {t('loginView.title')}
+              </Title>
 
-            {hasSsoApplications ? (
-              <>
-                <Box className={classes['ssoSection']}>
-                  {Object.keys(ssoApplications).map(application => (
-                    <NextLink
-                      className={classes['ssoSection__link']}
-                      key={application}
-                      href={`${process.env.NEXT_PUBLIC_API_BASE_URL}${ssoApplications[application].url}?redirect_uri=${OAUTH_REDIRECT_URI}`}
-                    >
-                      <Flex
-                        justify="center"
-                        align="center"
-                        className={classes['ssoSection__button']}
+              {hasSsoApplications ? (
+                <>
+                  <Box className={classes['ssoSection']}>
+                    {Object.keys(ssoApplications).map(application => (
+                      <NextLink
+                        className={classes['ssoSection__link']}
+                        key={application}
+                        href={`${process.env.NEXT_PUBLIC_API_BASE_URL}${ssoApplications[application].url}?redirect_uri=${OAUTH_REDIRECT_URI}`}
                       >
-                        <Button
-                          variant="outline"
-                          fullWidth
-                          leftSection={
-                            <Image
-                              src={ssoApplications[application].imageUrl}
-                              alt={ssoApplications[application].name}
-                              width={45}
-                              height={20}
-                            />
-                          }
+                        <Flex
+                          justify="center"
+                          align="center"
+                          className={classes['ssoSection__button']}
                         >
-                          <Box className={classes['ssoSection__spacer']} />
+                          <Button
+                            variant="outline"
+                            fullWidth
+                            leftSection={
+                              <Image
+                                src={ssoApplications[application].imageUrl}
+                                alt={ssoApplications[application].name}
+                                width={45}
+                                height={20}
+                              />
+                            }
+                          >
+                            <Box className={classes['ssoSection__spacer']} />
 
-                          <Text>{ssoApplications[application].name}</Text>
-                        </Button>
-                      </Flex>
-                    </NextLink>
-                  ))}
-                </Box>
+                            <Text>{ssoApplications[application].name}</Text>
+                          </Button>
+                        </Flex>
+                      </NextLink>
+                    ))}
+                  </Box>
 
-                <Divider
-                  className={classes['ssoSection__divider']}
-                  label={t('loginView.sso.or')}
-                  labelPosition="center"
-                />
-              </>
-            ) : null}
+                  <Divider
+                    className={classes['ssoSection__divider']}
+                    label={t('loginView.sso.or')}
+                    labelPosition="center"
+                  />
+                </>
+              ) : null}
 
-            <LoginForm
-              handleLogin={handleLogin}
-              handlePasswordReset={handlePasswordReset}
-              setIsPasswordResetFormOpened={setIsPasswordResetFormOpened}
-              isResetPasswordSent={isResetPasswordSent}
-              isPasswordResetFormOpened={isPasswordResetFormOpened}
-              isResettingPassword={isResettingPassword}
-            />
-          </Flex>
-        </Card>
-      ) : null}
-    </Container>
+              <LoginForm
+                handleLogin={handleLogin}
+                handlePasswordReset={handlePasswordReset}
+                setIsPasswordResetFormOpened={setIsPasswordResetFormOpened}
+                isResetPasswordSent={isResetPasswordSent}
+                isPasswordResetFormOpened={isPasswordResetFormOpened}
+                isResettingPassword={isResettingPassword}
+              />
+            </Flex>
+          </Card>
+        ) : null}
+      </Container>
+    </Suspense>
   )
 }

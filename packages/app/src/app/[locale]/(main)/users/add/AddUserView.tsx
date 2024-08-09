@@ -29,7 +29,7 @@ import { useTranslation } from 'react-i18next'
 import { useCreateUser, useGetRoles } from '@/api'
 import { useZodForm } from '@/hooks'
 
-import { FORM_DEFAULTS_USERS_VIEW } from '../usersView'
+import { FORM_DEFAULTS_USERS_VIEW } from '../UsersView'
 import classes from './AddUserView.module.css'
 
 export default function AddUserView(): JSX.Element {

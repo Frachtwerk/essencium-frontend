@@ -31,7 +31,7 @@ import { useGetRoles, useGetUser, useUpdateUser } from '@/api'
 import { useZodForm } from '@/hooks'
 
 import classes from '../users.module.css'
-import { FORM_DEFAULTS_USERS_VIEW } from '../usersView'
+import { FORM_DEFAULTS_USERS_VIEW } from '../UsersView'
 
 export default function UpdateUserView({
   params,
