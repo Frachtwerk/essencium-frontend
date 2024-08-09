@@ -1,0 +1,436 @@
+{
+  "de": "German",
+  "en": "English",
+  "header": {
+    "title": "Essencium",
+    "logo": "Essencium Logo",
+    "spotlight": {
+      "placeholder": "Search (Ctrl + K)",
+      "nothingFound": "Nothing found"
+    },
+    "themeToggle": {
+      "lightMode": "Light",
+      "darkMode": "Dark",
+      "systemMode": "System"
+    },
+    "profile": {
+      "arialLabel": "View profile"
+    },
+    "mobile": {
+      "menu": {
+        "ariaLabel": "Open navigation"
+      }
+    }
+  },
+  "actions": {
+    "refresh": "Refresh data",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "backToHome": "Back to home"
+  },
+  "navigation": {
+    "home": {
+      "label": "Home",
+      "description": "Homepage"
+    },
+    "users": {
+      "label": "Users",
+      "description": "Users Management"
+    },
+    "roles": {
+      "label": "Roles",
+      "description": "Roles Management"
+    },
+    "rights": {
+      "label": "Rights",
+      "description": "Rights Management"
+    },
+    "translations": {
+      "label": "Translations",
+      "description": "Translations Management"
+    },
+    "logout": {
+      "label": "Logout",
+      "description": "Logout user"
+    }
+  },
+  "footer": {
+    "license": "2024 Essencium License",
+    "privacy": {
+      "label": "Privacy",
+      "description": "Privacy Policy"
+    },
+    "imprint": {
+      "label": "Imprint",
+      "description": "Legal Notice"
+    },
+    "contact": {
+      "label": "Contact",
+      "description": "Contact Form"
+    }
+  },
+  "routeProtector": {
+    "message": "You are not authorized to view this page."
+  },
+  "profileView": {
+    "title": "Profile",
+    "description": "User Profile",
+    "overviewCard": {
+      "active": "active",
+      "inactive": "inactive"
+    },
+    "dataCard": {
+      "tabs": {
+        "personalData": {
+          "title": "Personal Data",
+          "label": {
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "email": "E-Mail",
+            "phone": "Phone Number",
+            "mobile": "Mobile Number",
+            "language": "Language"
+          },
+          "saveChanges": "Save Changes",
+          "placeholder": {
+            "firstName": "Jane",
+            "lastName": "Doe",
+            "email": "jane@mail.de",
+            "phone": "030 123456",
+            "mobile": "0171 123456"
+          }
+        },
+        "passwordChange": {
+          "title": "Change Password",
+          "content": {
+            "currentPassword": "Current Password",
+            "newPassword": "New Password",
+            "confirmNewPassword": "Confirm New Password",
+            "savePassword": "Save Password"
+          }
+        }
+      }
+    },
+    "userNotFound": "User not found"
+  },
+  "contactView": {
+    "contactForm": {
+      "title": "Contact us",
+      "form": {
+        "email": "Your Email",
+        "name": "Your Name",
+        "number": "Your Phone Number",
+        "subject": "Subject",
+        "message": "Message",
+        "messagePlaceholder": "Write your message here",
+        "sendMessage": "Send Message"
+      }
+    },
+    "contactPersonCard": {
+      "title": "Your Contact Person",
+      "avatar": {
+        "alt": "Avatar contact person"
+      },
+      "contactPerson": {
+        "ariaLabel": "Contact Person"
+      }
+    }
+  },
+  "loginView": {
+    "title": "Login",
+    "sso": {
+      "or": "or"
+    },
+    "form": {
+      "email": "E-Mail",
+      "password": "Password",
+      "login": "Login",
+      "resetPassword": "Reset Password",
+      "submit": "Login",
+      "emailPlaceholder": "E-Mail",
+      "passwordPlaceholder": "Password"
+    },
+    "forgotPassword": "Forgot Password?",
+    "register": "Register",
+    "noAccount": "No Account?",
+    "errorMessage": {
+      "title": "We are sorry. Your login was not successful."
+    },
+    "resetPassword": {
+      "form": {
+        "description": "Forgot your password? Enter your E-Mail and we will send you a link to reset your password.",
+        "label": "Your Email",
+        "placeholder": "Your Email",
+        "submitButton": "Reset Password",
+        "cancelButton": "Cancel"
+      },
+      "successMessage": {
+        "title": "Email sent",
+        "description": "We sent an email with a link to reset your password to your account. Please check your inbox and follow the instructions in the email. "
+      },
+      "errorMessage": {
+        "title": "We are sorry. Resetting your password was not successful."
+      }
+    }
+  },
+  "setPasswordView": {
+    "title": "Set new password",
+    "form": {
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password",
+      "submit": "Save Password"
+    },
+    "successMessage": {
+      "title": "Update successful",
+      "text": "Your password has been updated. You can now login with your new credentials.",
+      "button": "Login now"
+    }
+  },
+  "homeView": {
+    "action": {
+      "search": "Open Search Bar",
+      "users": "Show All Users",
+      "profile": "Change Profile Data"
+    }
+  },
+  "usersView": {
+    "title": "Users",
+    "action": {
+      "refresh": "Refresh data",
+      "add": "Add User"
+    },
+    "table": {
+      "id": "ID",
+      "active": "Active",
+      "name": "Name",
+      "description": "Description",
+      "phone": "Phone",
+      "email": "E-Mail",
+      "locale": "Language",
+      "roles": "Roles",
+      "actions": "Actions",
+      "invalidate": "Logout User"
+    },
+    "deleteDialog": {
+      "title": "Delete a user",
+      "text": "Are you sure you want to delete this user?"
+    }
+  },
+  "addUpdateUserView": {
+    "add": {
+      "title": "Add a new user"
+    },
+    "update": {
+      "title": "Update a user"
+    },
+    "form": {
+      "userDataHeading": "User Data",
+      "userSettingsHeading": "User Settings",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "phone": "Phone Number",
+      "mobile": "Mobile Number",
+      "email": "Email",
+      "password": "Password",
+      "status": "Status",
+      "language": "Language",
+      "role": "Role",
+      "save": "Save User",
+      "placeholder": {
+        "firstName": "Norman",
+        "lastName": "Anderson",
+        "phone": "555 987654",
+        "mobile": "0177 98765432",
+        "email": "norman.anderson@mail.com",
+        "password": "***********"
+      }
+    }
+  },
+  "rightsView": {
+    "title": "Rights",
+    "table": {
+      "name": "Name",
+      "description": "Description",
+      "USER": "User",
+      "ADMIN": "Admin",
+      "HR": "Human Resources",
+      "ORCHESTRATOR": "Orchestrator",
+      "REPRESENTATIVE": "Representative",
+      "FACILITATOR": "Facilitator",
+      "TECHNICIAN": "Technician",
+      "COORDINATOR": "Coordinator",
+      "ARCHITECT": "Architect",
+      "PLANNER": "Planner",
+      "STRATEGIST": "Strategist",
+      "PRODUCER": "Producer",
+      "DIRECTOR": "Director",
+      "SPECIALIST": "Specialist",
+      "ENGINEER": "Engineer",
+      "EXECUTIVE": "Executive",
+      "MANAGER": "Manager",
+      "CONSULTANT": "Consultant",
+      "LIAISON": "Liaison",
+      "OFFICER": "Officer",
+      "DEVELOPER": "Developer",
+      "AGENT": "Agent"
+    }
+  },
+  "rolesView": {
+    "title": "Roles",
+    "action": {
+      "add": "Add Role"
+    },
+    "table": {
+      "name": "Name",
+      "description": "Description",
+      "rights": "Rights"
+    },
+    "modal": {
+      "titleAdd": "Add Role",
+      "titleEdit": "Edit Role",
+      "name": "Name",
+      "description": "Description",
+      "protected": "Protected",
+      "editable": "Editable",
+      "rights": "Rights",
+      "cancel": "Cancel",
+      "submit": "Add Role",
+      "update": "Update Role",
+      "placeholder": {
+        "name": "USER",
+        "description": "Application User"
+      }
+    },
+    "deleteDialog": {
+      "title": "Delete a role",
+      "text": "Are you sure you want to delete this role?"
+    }
+  },
+  "validation": {
+    "email": {
+      "notValid": "E-Mail is not valid"
+    },
+    "password": {
+      "minLength": "Password must be at least 8 characters long",
+      "confirmError": "The passwords you entered did not match."
+    },
+    "firstName": {
+      "minLength": "First Name must be at least 2 characters long"
+    },
+    "lastName": {
+      "minLength": "Last Name must be at least 2 characters long"
+    },
+    "role": {
+      "isRequired": "Please select a role"
+    },
+    "roleDescription": {
+      "minLength": "Role description must be at least 8 characters long."
+    },
+    "roleName": {
+      "minLength": "Role name must be at least 2 characters long."
+    },
+    "contact": {
+      "name": "Name must be at least 2 characters long.",
+      "subject": "Subject must be at least 2 characters long.",
+      "message": "Message must be at least 10 characters long."
+    }
+  },
+  "notifications": {
+    "loadingAsyncData": {
+      "title": "Loading ...",
+      "message": "Loading data from the server"
+    },
+    "createdDataSuccess": {
+      "title": "Success",
+      "message": "Created data successfully"
+    },
+    "createdDataError": {
+      "title": "Error",
+      "message": "Could not create data"
+    },
+    "creatingAsyncData": {
+      "title": "Creating ...",
+      "message": "Creating data on the server"
+    },
+    "updatedDataSuccess": {
+      "title": "Success",
+      "message": "Updated data successfully"
+    },
+    "updatedDataError": {
+      "title": "Error",
+      "message": "Could not update data"
+    },
+    "updatingAsyncData": {
+      "title": "Updating ...",
+      "message": "Updating data on the server"
+    },
+    "deletedDataSuccess": {
+      "title": "Success",
+      "message": "Deleted data successfully"
+    },
+    "deletedDataError": {
+      "title": "Error",
+      "message": "Could not delete data"
+    },
+    "deletingAsyncData": {
+      "title": "Deleting ...",
+      "message": "Deleting data on the server"
+    },
+    "invalidateUserSuccess": {
+      "title": "Success",
+      "message": "The user has been logged out."
+    },
+    "invalidateUserError": {
+      "title": "Error",
+      "message": "The use can not be logged out."
+    },
+    "sendMessageSuccess": {
+      "title": "Success",
+      "message": "Your email has been sent."
+    },
+    "sendMessageError": {
+      "title": "Error",
+      "message": "Could not send your email."
+    }
+  },
+  "table": {
+    "misc": {
+      "showFilter": "Show filter"
+    },
+    "footer": {
+      "pageCount": "Pages:",
+      "pageSize": "Size:"
+    }
+  },
+  "translationsView": {
+    "title": "Translations",
+    "select": "Choose Language",
+    "search": {
+      "label": "Search all translations",
+      "placeholder": "Search ...",
+      "noResults": "No translations found"
+    },
+    "divider": "New Translation",
+    "save": "Save",
+    "cancel": "Cancel",
+    "reset": "Reset"
+  },
+  "feedbackWidget": {
+    "title": "Send Feedback",
+    "issue": "Issue",
+    "idea": "Idea",
+    "other": "Other",
+    "button": "Send",
+    "placeholder": "I am having an issue with...",
+    "successMessage": "Thank you for submitting your feedback!",
+    "errorMessage": "Submitting your feedback was not successful. Please try again.",
+    "requiredError": "Please enter a message.",
+    "screenshot": {
+      "label": "Capture Screenshot",
+      "created": "Screenshot captured"
+    },
+    "openButton": {
+      "ariaLabel": "Open Feedback Widget"
+    }
+  }
+}

@@ -4,10 +4,9 @@ import { hasRequiredRights } from '@frachtwerk/essencium-lib'
 import { Box, Button, Flex, Title } from '@mantine/core'
 import { useAtomValue } from 'jotai'
 import { usePathname, useRouter } from 'next/navigation'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'react-i18next'
 
 import { userRightsAtom } from '@/api'
-import { getTranslation } from '@/utils'
 
 import { AuthLayout, NAV_LINKS } from './layouts'
 import classes from './RouteProtector.module.css'
@@ -34,7 +33,7 @@ export function RouteProtector({
   }
 
   return (
-    <AuthLayout routeName={getTranslation('profileView.title')}>
+    <AuthLayout>
       <Flex className={classes['routeProtector']}>
         <Title order={3} className={classes['routeProtector__title']}>
           {t('routeProtector.message')}

@@ -43,26 +43,28 @@ import {
 } from '@tabler/icons-react'
 import { useAtom, useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
-import Head from 'next/head'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
-import { useTranslation } from 'next-i18next'
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { useGetMe, userAtom, userRightsAtom } from '@/api'
 import { useCreateFeedback } from '@/api/feedback'
-import {
-  getTranslation,
-  logout,
-  withBaseStylingShowNotification,
-} from '@/utils'
+import { logout, withBaseStylingShowNotification } from '@/utils'
 
+import packageJson from '../../../package.json'
 import classes from './AuthLayout.module.css'
+
+const version =
+  packageJson.version &&
+  process.env.NEXT_PUBLIC_SHOW_VERSION &&
+  process.env.NEXT_PUBLIC_SHOW_VERSION === '1'
+    ? packageJson.version
+    : undefined
 
 type Props = AppShellProps & {
   children: React.ReactNode
   routeName?: string
-  version?: string
 }
 
 type SearchItems = {
@@ -155,7 +157,6 @@ const isFoldedNavAtom = atomWithStorage('isFoldedNav', true)
 export function AuthLayout({
   children,
   routeName,
-  version,
   ...props
 }: Props): JSX.Element | null {
   const router = useRouter()
@@ -225,11 +226,25 @@ export function AuthLayout({
     router.push('/login')
   }
 
-  const pageTitle = `${routeName ? `${routeName} -` : ''} ${getTranslation(
-    'header.title',
-  )}`
-
   const isNotMobile = useMediaQuery('(min-width: 48em)') // equals mantine breakpoint sm
+
+  const { i18n } = useTranslation()
+  const currentLocale = i18n.language
+  const pathname = usePathname()
+
+  useEffect(() => {
+    // Check if the user's locale is different from the current locale
+
+    if (user?.locale && currentLocale !== user?.locale) {
+      const days = 30
+      const date = new Date()
+      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
+      const expires = date.toUTCString()
+      document.cookie = `NEXT_LOCALE=${user?.locale};expires=${expires};path=/`
+
+      i18n.changeLanguage(user?.locale)
+    }
+  }, [pathname, user, router, currentLocale, i18n])
 
   return (
     <>
@@ -242,10 +257,6 @@ export function AuthLayout({
         highlightQuery
         nothingFound={t('header.spotlight.nothingFound') as string}
       />
-
-      <Head>
-        <title>{pageTitle}</title>
-      </Head>
 
       {!isLoadingAuthToken ? (
         <AppShell

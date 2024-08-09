@@ -1,0 +1,436 @@
+{
+  "de": "Deutsch",
+  "en": "Englisch",
+  "header": {
+    "title": "Essencium",
+    "logo": "Essencium Logo",
+    "spotlight": {
+      "placeholder": "Suchen (Ctrl + K) ",
+      "nothingFound": "Nichts gefunden"
+    },
+    "themeToggle": {
+      "lightMode": "Hell",
+      "darkMode": "Dunkel",
+      "systemMode": "System"
+    },
+    "profile": {
+      "arialLabel": "Profil ansehen"
+    },
+    "mobile": {
+      "menu": {
+        "ariaLabel": "Navigation öffnen"
+      }
+    }
+  },
+  "actions": {
+    "refresh": "Daten aktualisieren",
+    "delete": "Löschen",
+    "cancel": "Abbrechen",
+    "backToHome": "Zurück zur Startseite"
+  },
+  "navigation": {
+    "home": {
+      "label": "Home",
+      "description": "Startseite"
+    },
+    "users": {
+      "label": "Benutzer",
+      "description": "Benutzerverwaltung"
+    },
+    "roles": {
+      "label": "Rollen",
+      "description": "Rollenverwaltung"
+    },
+    "rights": {
+      "label": "Rechte",
+      "description": "Rechteverwaltung"
+    },
+    "translations": {
+      "label": "Übersetzungen",
+      "description": "Übersetzungen Übersicht"
+    },
+    "logout": {
+      "label": "Logout",
+      "description": "Benutzer ausloggen"
+    }
+  },
+  "footer": {
+    "license": "2024 Essencium License",
+    "privacy": {
+      "label": "Datenschutz",
+      "description": "Datenschutzerklärung"
+    },
+    "imprint": {
+      "label": "Impressum",
+      "description": "Rechtliche Informationen"
+    },
+    "contact": {
+      "label": "Kontakt",
+      "description": "Kontaktformular"
+    }
+  },
+  "routeProtector": {
+    "message": "Sie besitzen nicht die notwendigen Rechte um diese Seite aufzurufen."
+  },
+  "profileView": {
+    "title": "Profil",
+    "description": "Benutzerprofil",
+    "overviewCard": {
+      "active": "aktiv",
+      "inactive": "inaktiv"
+    },
+    "dataCard": {
+      "tabs": {
+        "personalData": {
+          "title": "Persönliche Daten",
+          "label": {
+            "firstName": "Vorname",
+            "lastName": "Nachname",
+            "email": "E-Mail",
+            "phone": "Telefonnummer",
+            "mobile": "Handynummer",
+            "language": "Sprache"
+          },
+          "saveChanges": "Änderungen speichern",
+          "placeholder": {
+            "firstName": "Jane",
+            "lastName": "Doe",
+            "email": "jane@mail.de",
+            "phone": "030 123456",
+            "mobile": "0171 123456"
+          }
+        },
+        "passwordChange": {
+          "title": "Passwort ändern",
+          "content": {
+            "currentPassword": "Aktuelles Passwort",
+            "newPassword": "Neues Passwort",
+            "confirmNewPassword": "Neues Passwort bestätigen",
+            "savePassword": "Passwort speichern"
+          }
+        }
+      }
+    },
+    "userNotFound": "Benutzer nicht gefunden"
+  },
+  "contactView": {
+    "contactForm": {
+      "title": "Kontaktieren Sie uns",
+      "form": {
+        "email": "Ihre E-Mail",
+        "name": "Ihr Name",
+        "number": "Ihre Telefonnummer",
+        "subject": "Betreff",
+        "message": "Nachricht",
+        "messagePlaceholder": "Schreiben Sie hier Ihre Nachricht",
+        "sendMessage": "Nachricht senden"
+      }
+    },
+    "contactPersonCard": {
+      "title": "Ihr Ansprechpartner",
+      "avatar": {
+        "alt": "Ansprechpartner Avatar"
+      },
+      "contactPerson": {
+        "ariaLabel": "Ansprechpartner"
+      }
+    }
+  },
+  "loginView": {
+    "title": "Anmeldung",
+    "sso": {
+      "or": "oder"
+    },
+    "form": {
+      "email": "E-Mail",
+      "password": "Passwort",
+      "login": "Anmelden",
+      "resetPassword": "Passwort zurücksetzen",
+      "submit": "Anmelden",
+      "emailPlaceholder": "E-Mail",
+      "passwordPlaceholder": "Passwort"
+    },
+    "forgotPassword": "Passwort vergessen?",
+    "register": "Registrieren",
+    "noAccount": "Kein Konto?",
+    "errorMessage": {
+      "title": "Ihre Anmeldung war leider nicht erfolgreich."
+    },
+    "resetPassword": {
+      "form": {
+        "description": "Passwort vergessen? Geben Sie Ihre E-Mail ein und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts.",
+        "label": "Ihre E-Mail",
+        "placeholder": "Ihre E-Mail",
+        "submitButton": "Passwort zurücksetzen",
+        "cancelButton": "Abbrechen"
+      },
+      "successMessage": {
+        "title": "E-Mail gesendet",
+        "description": "Wir haben eine E-Mail mit einem Link zum Zurücksetzen Ihres Passworts an Ihr Konto gesendet. Bitte überprüfen Sie Ihren Posteingang und befolgen Sie die Anweisungen in der E-Mail."
+      },
+      "errorMessage": {
+        "title": "Zurücksetzen war leider nicht erfolgreich."
+      }
+    }
+  },
+  "setPasswordView": {
+    "title": "Neues Passwort festlegen",
+    "form": {
+      "newPassword": "Neues Passwort",
+      "confirmPassword": "Passwort bestätigen",
+      "submit": "Passwort speichern"
+    },
+    "successMessage": {
+      "title": "Update erfolgreich",
+      "text": "Ihr Password wurde erfolgreich geändert. Sie können sich jetzt mit Ihren neuen Zugangsdaten anmelden.",
+      "button": "Jetzt anmelden"
+    }
+  },
+  "homeView": {
+    "action": {
+      "search": "Suchleiste öffnen",
+      "users": "Alle Benutzer anzeigen",
+      "profile": "Profildaten ändern"
+    }
+  },
+  "usersView": {
+    "title": "Nutzer",
+    "action": {
+      "refresh": "Daten aktualisieren",
+      "add": "Benutzer hinzufügen"
+    },
+    "table": {
+      "id": "ID",
+      "active": "Aktiv",
+      "name": "Name",
+      "description": "Beschreibung",
+      "phone": "Telefon",
+      "email": "E-Mail",
+      "locale": "Sprache",
+      "roles": "Rollen",
+      "actions": "Aktionen",
+      "invalidate": "Nutzer ausloggen"
+    },
+    "deleteDialog": {
+      "title": "Nutzer löschen",
+      "text": "Wollen Sie diesen Nutzer wirklich löschen?"
+    }
+  },
+  "addUpdateUserView": {
+    "add": {
+      "title": "Benutzer hinzufügen"
+    },
+    "update": {
+      "title": "Benutzer aktualisieren"
+    },
+    "form": {
+      "userDataHeading": "Benutzerdaten",
+      "userSettingsHeading": "Einstellungen",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "phone": "Telefon",
+      "mobile": "Mobilnummer",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "status": "Status",
+      "language": "Sprache",
+      "role": "Rolle",
+      "save": "Benutzer speichern",
+      "placeholder": {
+        "firstName": "Norman",
+        "lastName": "Anderson",
+        "phone": "555 987654",
+        "mobile": "0177 98765432",
+        "email": "norman.anderson@mail.com",
+        "password": "***********"
+      }
+    }
+  },
+  "rightsView": {
+    "title": "Rechte",
+    "table": {
+      "name": "Name",
+      "description": "Beschreibung",
+      "USER": "Benutzer",
+      "ADMIN": "Administrator",
+      "HR": "Human Resources",
+      "ORCHESTRATOR": "Orchestrierer",
+      "REPRESENTATIVE": "Stellvertreter",
+      "FACILITATOR": "Moderator",
+      "TECHNICIAN": "Techniker",
+      "COORDINATOR": "Koordinator",
+      "ARCHITECT": "Architekt",
+      "PLANNER": "Planer",
+      "STRATEGIST": "Stratege",
+      "PRODUCER": "Produzent",
+      "DIRECTOR": "Direktor",
+      "SPECIALIST": "Spezialist",
+      "ENGINEER": "Ingenieur",
+      "EXECUTIVE": "Führungskraft",
+      "MANAGER": "Manager",
+      "CONSULTANT": "Berater",
+      "LIAISON": "Verbindung",
+      "OFFICER": "Beamter",
+      "DEVELOPER": "Entwickler",
+      "AGENT": "Agent"
+    }
+  },
+  "rolesView": {
+    "title": "Rollen",
+    "action": {
+      "add": "Rolle hinzufügen"
+    },
+    "table": {
+      "name": "Name",
+      "description": "Beschreibung",
+      "rights": "Rechte"
+    },
+    "modal": {
+      "titleAdd": "Rolle hinzufügen",
+      "titleEdit": "Rolle bearbeiten",
+      "name": "Name",
+      "description": "Beschreibung",
+      "protected": "Geschützt",
+      "editable": "Editierbar",
+      "rights": "Rechte",
+      "cancel": "Abbrechen",
+      "submit": "Speichern",
+      "update": "Ändern",
+      "placeholder": {
+        "name": "NUTZER",
+        "description": "Nutzer der Applikation"
+      }
+    },
+    "deleteDialog": {
+      "title": "Rolle löschen",
+      "text": "Wollen Sie diese Rolle wirklich löschen?"
+    }
+  },
+  "validation": {
+    "email": {
+      "notValid": "E-Mail ist nicht gültig"
+    },
+    "password": {
+      "minLength": "Passwort muss mindestens 8 Zeichen lang sein",
+      "confirmError": "Die eingegebenen Passwörter stimmen nicht überein."
+    },
+    "firstName": {
+      "minLength": "Vorname muss mindestens 2 Zeichen lang sein"
+    },
+    "lastName": {
+      "minLength": "Nachname muss mindestens 2 Zeichen lang sein"
+    },
+    "role": {
+      "isRequired": "Bitte wählen Sie eine Rolle"
+    },
+    "roleDescription": {
+      "minLength": "Rollenbeschreibung muss mindestens 8 Zeichen lang sein."
+    },
+    "roleName": {
+      "minLength": "Rollenname muss mindestens 2 Zeichen lang sein."
+    },
+    "contact": {
+      "name": "Name muss mindestens zwei Zeichen lang sein",
+      "subject": "Der Betreff muss mindestens zwei Zeichen lang sein.",
+      "message": "Die Nachricht muss mindestens zehn Zeichen lang sein."
+    }
+  },
+  "notifications": {
+    "loadingAsyncData": {
+      "title": "Laden ...",
+      "message": "Daten vom Server laden"
+    },
+    "createdDataSuccess": {
+      "title": "Erfolg",
+      "message": "Daten erfolgreich erstellt"
+    },
+    "createdDataError": {
+      "title": "Fehler",
+      "message": "Daten konnten nicht erstellt werden"
+    },
+    "creatingAsyncData": {
+      "title": "Erstellen ...",
+      "message": "Daten werden erstellt"
+    },
+    "updatedDataSuccess": {
+      "title": "Erfolg",
+      "message": "Daten erfolgreich aktualisiert"
+    },
+    "updatedDataError": {
+      "title": "Fehler",
+      "message": "Daten konnten nicht aktualisiert werden"
+    },
+    "updatingAsyncData": {
+      "title": "Aktualisieren ...",
+      "message": "Daten werden aktualisiert"
+    },
+    "deletedDataSuccess": {
+      "title": "Erfolg",
+      "message": "Daten erfolgreich gelöscht"
+    },
+    "deletedDataError": {
+      "title": "Fehler",
+      "message": "Daten konnten nicht gelöscht werden"
+    },
+    "deletingAsyncData": {
+      "title": "Löschen ...",
+      "message": "Daten werden gelöscht"
+    },
+    "invalidateUserSuccess": {
+      "title": "Erfolg",
+      "message": "Der Nutzer wurde ausgeloggt."
+    },
+    "invalidateUserError": {
+      "title": "Fehler",
+      "message": "Der Nutzer konnte nicht ausgeloggt werden."
+    },
+    "sendMessageSuccess": {
+      "title": "Erfolg",
+      "message": "Ihre Email wurde erfolgreich versendet."
+    },
+    "sendMessageError": {
+      "title": "Fehler",
+      "message": "Ihre Email konnte leider nicht versendet werden."
+    }
+  },
+  "table": {
+    "misc": {
+      "showFilter": "Filter anzeigen"
+    },
+    "footer": {
+      "pageCount": "Seiten:",
+      "pageSize": "Größe:"
+    }
+  },
+  "translationsView": {
+    "title": "Übersetzungen",
+    "select": "Wählen Sie die Sprache",
+    "search": {
+      "label": "Durchsuchen Sie die Übersetzungen",
+      "placeholder": "Suchen ...",
+      "noResults": "Keine Übersetzungen gefunden"
+    },
+    "divider": "Neue Übersetzung",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "reset": "Zurücksetzen"
+  },
+  "feedbackWidget": {
+    "title": "Feedback geben",
+    "issue": "Problem",
+    "idea": "Idee",
+    "other": "Sonstiges",
+    "button": "Feedback senden",
+    "placeholder": "Beschreiben Sie Ihr Anliegen",
+    "successMessage": "Vielen Dank für Ihr Feedback!",
+    "errorMessage": "Leider ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+    "requiredError": "Bitte geben Sie eine Nachricht ein.",
+    "screenshot": {
+      "label": "Screenshot aufnehmen",
+      "created": "Screenshot erstellt"
+    },
+    "openButton": {
+      "ariaLabel": "Feedback Widget öffnen"
+    }
+  }
+}

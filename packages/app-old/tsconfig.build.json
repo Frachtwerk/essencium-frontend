@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      "@frachtwerk/essencium-lib": ["../lib/dist"],
+      "@frachtwerk/essencium-types": ["../types/dist"]
+    }
+  }
+}
