@@ -64,7 +64,6 @@ const version =
 
 type Props = AppShellProps & {
   children: React.ReactNode
-  routeName?: string
 }
 
 type SearchItems = {
@@ -154,11 +153,7 @@ export const SEARCH_ITEMS: SearchItems[] = [
 const isFixedNavAtom = atomWithStorage('isFixedNav', false)
 const isFoldedNavAtom = atomWithStorage('isFoldedNav', true)
 
-export function AuthLayout({
-  children,
-  routeName,
-  ...props
-}: Props): JSX.Element | null {
+export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
   const router = useRouter()
 
   const { t } = useTranslation()
