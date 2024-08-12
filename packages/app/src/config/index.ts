@@ -17,31 +17,5 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Metadata, ResolvingMetadata } from 'next'
-
-import initTranslations from '@/config/i18n'
-
-import UpdateUserView from './UpdateUserView'
-
-type Props = {
-  params: { locale: string; id: number }
-}
-
-export async function generateMetadata(
-  { params }: Props,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
-  const { locale } = params
-
-  const { t } = await initTranslations(locale)
-
-  return {
-    title: t('addUpdateUserView.update.title'),
-  }
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default function page({ params }: Props): JSX.Element {
-  return <UpdateUserView params={params} />
-}
+export * from './i18n'
+export * from './mantine'

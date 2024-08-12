@@ -21,7 +21,7 @@ import { Metadata, ResolvingMetadata } from 'next'
 
 import { AuthLayout } from '@/components/layouts'
 import { RouteProtector } from '@/components/RouteProtector'
-import initTranslations from '@/utils/i18n'
+import initTranslations from '@/config/i18n'
 
 import HomeView from './HomeView'
 

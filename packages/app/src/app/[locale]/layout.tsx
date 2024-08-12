@@ -24,7 +24,7 @@ import { ColorSchemeScript } from '@mantine/core'
 
 import TranslationProvider from '@/components/provider/translationProvider'
 
-import initTranslations, { i18nConfig } from '../../utils/i18n'
+import initTranslations, { i18nConfig } from '../../config/i18n'
 import { Providers } from './providers'
 
 export function generateStaticParams(): { locale: string }[] {

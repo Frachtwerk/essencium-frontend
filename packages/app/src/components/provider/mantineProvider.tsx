@@ -23,7 +23,7 @@ import { MantineColorScheme, MantineProvider } from '@mantine/core'
 import { useHotkeys, useLocalStorage } from '@mantine/hooks'
 import { ReactNode } from 'react'
 
-import { MantineColorSchemes, theme } from '@/utils/mantine'
+import { MantineColorSchemes, theme } from '@/config/mantine'
 
 export function MantineThemeProvider({
   children,

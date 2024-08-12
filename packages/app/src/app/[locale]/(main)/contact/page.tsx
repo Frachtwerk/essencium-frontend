@@ -19,7 +19,7 @@
 
 import { Metadata, ResolvingMetadata } from 'next'
 
-import initTranslations from '@/utils/i18n'
+import initTranslations from '@/config/i18n'
 
 import ContactView from './ContactView'
 

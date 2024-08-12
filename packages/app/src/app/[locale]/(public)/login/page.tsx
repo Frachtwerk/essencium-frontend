@@ -20,7 +20,7 @@
 import { Metadata, ResolvingMetadata } from 'next'
 import { Suspense } from 'react'
 
-import initTranslations from '@/utils/i18n'
+import initTranslations from '@/config/i18n'
 
 import LoginView from './LoginView'
 
