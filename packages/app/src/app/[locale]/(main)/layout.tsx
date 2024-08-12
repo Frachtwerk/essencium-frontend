@@ -24,9 +24,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export default async function MainLayout({
-  children,
-}: Props): Promise<JSX.Element | null> {
+export default function MainLayout({ children }: Props): JSX.Element {
   return (
     <RouteProtector>
       <AuthLayout>{children} </AuthLayout>
