@@ -30,7 +30,7 @@ import { useTranslation } from 'react-i18next'
 import { useGetRoles, useGetUser, useUpdateUser } from '@/api'
 import { useZodForm } from '@/hooks'
 
-import classes from '../users.module.css'
+import classes from '../Users.module.css'
 import { FORM_DEFAULTS_USERS_VIEW } from '../UsersView'
 
 export default function UpdateUserView({

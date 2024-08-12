@@ -76,7 +76,7 @@ import {
 } from '@/api'
 import { parseSorting } from '@/utils'
 
-import classes from './users.module.css'
+import classes from './Users.module.css'
 
 export const FORM_DEFAULTS_USERS_VIEW = {
   firstName: '',

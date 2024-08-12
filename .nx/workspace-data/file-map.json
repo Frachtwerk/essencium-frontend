@@ -39,88 +39,68 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": ".commitlintrc.json",
-        "hash": "17641981523871600112"
-      },
-      {
-        "file": ".eslintrc.json",
-        "hash": "14206357669273153672"
-      },
-      {
-        "file": ".github/ISSUE_TEMPLATE/bug.md",
-        "hash": "15980473247679156455"
-      },
-      {
-        "file": ".github/ISSUE_TEMPLATE/issue.md",
-        "hash": "5089351549005616243"
-      },
-      {
-        "file": ".github/workflows/ci.yml",
-        "hash": "2791579316471774506"
-      },
-      {
-        "file": ".gitignore",
-        "hash": "4467250763164247422"
-      },
-      {
-        "file": ".husky/_/husky.sh",
-        "hash": "17708014289578791027"
-      },
-      {
-        "file": ".husky/commit-msg",
-        "hash": "9859990003664972517"
-      },
-      {
-        "file": ".husky/pre-commit",
-        "hash": "3019125748602225967"
-      },
-      {
         "file": ".lintstagedrc.json",
         "hash": "9568069632061727463"
-      },
-      {
-        "file": ".npmrc",
-        "hash": "13814597391149052346"
-      },
-      {
-        "file": ".prettierrc",
-        "hash": "14901094139262635652"
-      },
-      {
-        "file": ".release-please-manifest.json",
-        "hash": "1782866169679071047"
-      },
-      {
-        "file": ".vscode/essencium-frontend.code-workspace",
-        "hash": "10619091334832478088"
-      },
-      {
-        "file": ".vscode/settings.json",
-        "hash": "4448761822157285411"
-      },
-      {
-        "file": "CODE_OF_CONDUCT.md",
-        "hash": "4368392060364776178"
       },
       {
         "file": "CONTRIBUTION.md",
         "hash": "3647170675464594361"
       },
       {
-        "file": "LICENSE.md",
-        "hash": "1219734595960567403"
+        "file": ".husky/commit-msg",
+        "hash": "9859990003664972517"
+      },
+      {
+        "file": "pull_request_template.md",
+        "hash": "17559153940590731370"
+      },
+      {
+        "file": ".husky/pre-commit",
+        "hash": "3019125748602225967"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "4467250763164247422"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "14206357669273153672"
       },
       {
         "file": "README.md",
         "hash": "5501695435822739852"
       },
       {
-        "file": "nx.json",
-        "hash": "1028860299634008045"
+        "file": ".vscode/settings.json",
+        "hash": "4448761822157285411"
       },
       {
-        "file": "package.json",
-        "hash": "7161351664459657247"
+        "file": "scripts/seed-db.ts",
+        "hash": "4644022109184975184"
+      },
+      {
+        "file": "release-please-config.json",
+        "hash": "6994894909212701350"
+      },
+      {
+        "file": ".github/workflows/ci.yml",
+        "hash": "2791579316471774506"
+      },
+      {
+        "file": "CODE_OF_CONDUCT.md",
+        "hash": "4368392060364776178"
+      },
+      {
+        "file": "LICENSE.md",
+        "hash": "1219734595960567403"
+      },
+      {
+        "file": ".release-please-manifest.json",
+        "hash": "1782866169679071047"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "9662554907373427563"
       },
       {
         "file": "pnpm-lock.yaml",
@@ -131,20 +111,40 @@
         "hash": "414265049992887245"
       },
       {
-        "file": "pull_request_template.md",
-        "hash": "17559153940590731370"
+        "file": ".prettierrc",
+        "hash": "14901094139262635652"
       },
       {
-        "file": "release-please-config.json",
-        "hash": "6994894909212701350"
+        "file": ".vscode/essencium-frontend.code-workspace",
+        "hash": "10619091334832478088"
       },
       {
-        "file": "scripts/seed-db.ts",
-        "hash": "4644022109184975184"
+        "file": ".commitlintrc.json",
+        "hash": "17641981523871600112"
       },
       {
-        "file": "tsconfig.json",
-        "hash": "9662554907373427563"
+        "file": ".husky/_/husky.sh",
+        "hash": "17708014289578791027"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/bug.md",
+        "hash": "15980473247679156455"
+      },
+      {
+        "file": "package.json",
+        "hash": "7161351664459657247"
+      },
+      {
+        "file": "nx.json",
+        "hash": "1028860299634008045"
+      },
+      {
+        "file": ".npmrc",
+        "hash": "13814597391149052346"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/issue.md",
+        "hash": "5089351549005616243"
       }
     ],
     "projectFileMap": {
@@ -179,7 +179,7 @@
         },
         {
           "file": "packages/lib/README.md",
-          "hash": "13931630725916477683"
+          "hash": "2906050634427242926"
         },
         {
           "file": "packages/lib/declaration.d.ts",
@@ -327,7 +327,7 @@
         },
         {
           "file": "packages/lib/src/components/Footer/Footer.module.css",
-          "hash": "4340011977982327144"
+          "hash": "7536394858302401730"
         },
         {
           "file": "packages/lib/src/components/Footer/Footer.test.tsx",
@@ -463,7 +463,7 @@
         },
         {
           "file": "packages/lib/src/components/NavBar/NavBar.module.css",
-          "hash": "17391845679841878603"
+          "hash": "5246427520033775462"
         },
         {
           "file": "packages/lib/src/components/NavBar/NavBar.test.tsx",
@@ -791,7 +791,7 @@
         },
         {
           "file": "packages/types/README.md",
-          "hash": "16316584297112928534"
+          "hash": "16326302214334334352"
         },
         {
           "file": "packages/types/package.json",
@@ -881,11 +881,11 @@
       "@frachtwerk/prettier-config-essencium": [
         {
           "file": "packages/prettier-config/CHANGELOG.md",
-          "hash": "16003969714120536925"
+          "hash": "17513781222301122288"
         },
         {
           "file": "packages/prettier-config/README.md",
-          "hash": "2498026064496481980"
+          "hash": "11045161965951429419"
         },
         {
           "file": "packages/prettier-config/index.json",
@@ -926,7 +926,7 @@
         },
         {
           "file": "packages/docs/README.md",
-          "hash": "8879267744784048032"
+          "hash": "4554988404094137965"
         },
         {
           "file": "packages/docs/next-env.d.ts",
@@ -995,7 +995,7 @@
         },
         {
           "file": "packages/docs/pages/devguide/new-component.mdx",
-          "hash": "14924626518110561872"
+          "hash": "15310701801758726110"
         },
         {
           "file": "packages/docs/pages/devguide/new-page.mdx",
@@ -1381,15 +1381,11 @@
         },
         {
           "file": "packages/app/src/app/[locale]/(main)/users/UsersView.tsx",
-          "hash": "17009848251532243263"
-        },
-        {
-          "file": "packages/app/src/app/[locale]/(main)/users/[id]/UpdateUsersView.tsx",
-          "hash": "10482556573928769922"
+          "hash": "15926798936072138607"
         },
         {
           "file": "packages/app/src/app/[locale]/(main)/users/[id]/page.tsx",
-          "hash": "8523124426883270895"
+          "hash": "4297374686594649371"
         },
         {
           "file": "packages/app/src/app/[locale]/(main)/users/add/AddUserView.module.css",
@@ -1550,6 +1546,10 @@
         {
           "file": "packages/app/vitest.config.ts",
           "hash": "3570732301771560563"
+        },
+        {
+          "file": "packages/app/src/app/[locale]/(main)/users/[id]/UpdateUserView.tsx",
+          "hash": "1285413346027123560"
         }
       ],
       "@frachtwerk/essencium-app-old": [
@@ -1587,7 +1587,7 @@
         },
         {
           "file": "packages/app-old/README.md",
-          "hash": "2411814949860963032"
+          "hash": "5771755110889934373"
         },
         {
           "file": "packages/app-old/e2e/HomeView.spec.ts",
