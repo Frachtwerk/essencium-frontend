@@ -31,6 +31,18 @@
   }
 }
 
+.theme-selector__group--active {
+  @mixin light {
+    background-color: var(--mantine-color-gray-0);
+    color: var(--mantine-primary-color-6);
+  }
+
+  @mixin dark {
+    background-color: var(--mantine-color-gray-9);
+    color: var(--mantine-primary-color-2);
+  }
+}
+
 .theme-selector__button {
   padding: 0;
   background-color: transparent;
@@ -61,6 +73,16 @@
 
   @mixin dark {
     display: block;
+  }
+}
+
+.theme-selector__icon--active {
+  @mixin light {
+    color: var(--mantine-primary-color-6);
+  }
+
+  @mixin dark {
+    color: var(--mantine-primary-color-2);
   }
 }
 
