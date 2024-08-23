@@ -1,5 +1,11 @@
 # Migrations
 
+## 7.4.0
+
+### `src/pages/users/[id].tsx`
+
+- `UserForm` Component now accepts a new optional prop "rolesEnabledForSsoUser" which is false by default. If set to `true`, the input field for roles in the userForm can be edited for user which are logged in via SSO.
+
 ## [7.3.0 (06.08.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.2.0...essencium-app-v7.3.0)
 
 ### `src/pages/index.tsx`
