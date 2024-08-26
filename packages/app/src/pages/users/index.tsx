@@ -27,7 +27,6 @@ import {
   TablePagination,
 } from '@frachtwerk/essencium-lib'
 import {
-  FilterObjectUser,
   RIGHTS,
   ROLES,
   UserOutput,
@@ -56,6 +55,7 @@ import {
 } from '@tabler/icons-react'
 import {
   ColumnDef,
+  ColumnFiltersState,
   getCoreRowModel,
   SortingState,
   useReactTable,
@@ -115,27 +115,11 @@ function UsersView(): JSX.Element {
   const [activePage, setActivePage] = useState(1)
   const [pageSize, setPageSize] = useState(20)
   const [sorting, setSorting] = useState<SortingState>(DEFAULT_SORTING)
-  const [columnFilters, setColumnFilters] = useState<FilterObjectUser>({
-    name: null,
-    email: null,
-    role: null,
-  })
+
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 
   const [columnFiltersDebounced] = useDebouncedValue(columnFilters, 350)
   const [showFilter, setShowFilter] = useState(false)
-
-  function handleFilterChange(
-    key: FilterObjectUser['key'],
-    value: FilterObjectUser['value'],
-  ): void {
-    // reset to first page when filtering
-    setActivePage(1)
-
-    setColumnFilters(prevFilters => ({
-      ...prevFilters,
-      [key as string]: value,
-    }))
-  }
 
   const {
     data: users,
@@ -148,7 +132,10 @@ function UsersView(): JSX.Element {
     page: activePage - 1,
     size: pageSize,
     sort: parseSorting(sorting, DEFAULT_SORTING),
-    filter: columnFiltersDebounced,
+    filter: columnFiltersDebounced.reduce(
+      (acc, { id, value }) => ({ ...acc, [id]: value }),
+      {},
+    ),
   })
 
   const handleRefetch = useCallback((): void => {
@@ -161,29 +148,6 @@ function UsersView(): JSX.Element {
     },
     [router],
   )
-
-  const { data: allUsers } = useGetUsers({
-    page: 0,
-    size: 9999,
-  })
-
-  function getFilterData(): Record<string, Array<string>> {
-    const { content: usersContent } = allUsers || {}
-
-    const name = usersContent?.map(
-      userItem => `${userItem.firstName} ${userItem.lastName}`,
-    )
-    const email = usersContent?.map(userItem => userItem.email)
-    const roles = usersContent?.flatMap(userItem =>
-      userItem.roles.map(role => role.name),
-    )
-
-    return {
-      name: removeDuplicates(name),
-      email: removeDuplicates(email),
-      roles: removeDuplicates(roles),
-    }
-  }
 
   const { mutate: deleteUser } = useDeleteUser()
 
@@ -369,9 +333,14 @@ function UsersView(): JSX.Element {
     columns,
     state: {
       sorting,
+      columnFilters,
     },
     manualSorting: true,
+    manualPagination: true,
+    manualFiltering: true,
     onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    enableColumnFilters: showFilter,
     getCoreRowModel: getCoreRowModel(),
     pageCount: users?.totalPages,
   })
@@ -447,17 +416,15 @@ function UsersView(): JSX.Element {
           text={t('usersView.deleteDialog.text')}
         />
 
-        {isLoadingUsers ? (
+        {isLoadingUsers && !columnFilters.length ? (
           <LoadingSpinner show />
         ) : (
           <>
             <Table
               tableModel={table}
-              onFilterChange={handleFilterChange}
-              showFilter={showFilter}
-              filterData={getFilterData()}
-              filterValue={columnFilters}
-              setFilterValue={setColumnFilters}
+              setActivePage={setActivePage}
+              isLoadingData={isLoadingUsers}
+              showFilter
             />
 
             <TablePagination

@@ -28,7 +28,7 @@
   cursor: pointer;
 }
 
-.table__select {
+.table__text-input {
   margin-top: var(--mantine-spacing-xs);
   margin-bottom: var(--mantine-spacing-xs);
 }
