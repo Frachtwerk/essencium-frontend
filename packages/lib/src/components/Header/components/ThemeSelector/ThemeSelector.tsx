@@ -29,29 +29,31 @@ import {
 } from '@mantine/core'
 import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
+import { useState } from 'react'
 
 import classes from './ThemeSelector.module.css'
 
-type Props = {
-  className?: {
-    iconSun?: string
-    iconMoon?: string
-  }
-}
+export const COLOR_SCHEME = {
+  light: 'light',
+  dark: 'dark',
+} as const
 
-export function ThemeSelector({ className }: Props): JSX.Element {
+export function ThemeSelector(): JSX.Element {
   const { t } = useTranslation()
 
-  const { setColorScheme } = useMantineColorScheme()
+  const { setColorScheme, colorScheme } = useMantineColorScheme()
 
-  let systemColorScheme: MantineColorScheme = 'light'
+  const [isSystemColorScheme, setIsSystemColorScheme] = useState(false)
+
+  let systemColorScheme: MantineColorScheme = COLOR_SCHEME.light
 
   if (typeof window !== 'undefined') {
     systemColorScheme = window.matchMedia('(prefers-color-scheme: light)')
       .matches
-      ? 'light'
-      : 'dark'
+      ? COLOR_SCHEME.light
+      : COLOR_SCHEME.dark
   }
+
   return (
     <Popover width={130} position="bottom" withArrow shadow="sm">
       <PopoverTarget>
@@ -62,13 +64,17 @@ export function ThemeSelector({ className }: Props): JSX.Element {
             <>
               <IconSun
                 className={`${classes['theme-selector__iconLight']} ${
-                  className?.iconSun ? className.iconSun : ''
+                  !isSystemColorScheme
+                    ? classes['theme-selector__icon--active']
+                    : ''
                 } `}
               />
 
               <IconMoon
                 className={`${classes['theme-selector__iconDark']} ${
-                  className?.iconMoon ? className.iconMoon : ''
+                  !isSystemColorScheme
+                    ? classes['theme-selector__icon--active']
+                    : ''
                 }`}
               />
             </>
@@ -79,9 +85,15 @@ export function ThemeSelector({ className }: Props): JSX.Element {
       <PopoverDropdown className={classes['theme-selector__popover-dropdown']}>
         <Group
           onClick={() => {
-            setColorScheme('light')
+            setColorScheme(COLOR_SCHEME.light)
+
+            setIsSystemColorScheme(false)
           }}
-          className={classes['theme-selector__group']}
+          className={
+            colorScheme === COLOR_SCHEME.light && !isSystemColorScheme
+              ? `${classes['theme-selector__group']} ${classes['theme-selector__group--active']}`
+              : classes['theme-selector__group']
+          }
         >
           <IconSun size={20} />
 
@@ -92,9 +104,15 @@ export function ThemeSelector({ className }: Props): JSX.Element {
 
         <Group
           onClick={() => {
-            setColorScheme('dark')
+            setColorScheme(COLOR_SCHEME.dark)
+
+            setIsSystemColorScheme(false)
           }}
-          className={classes['theme-selector__group']}
+          className={
+            colorScheme === COLOR_SCHEME.dark && !isSystemColorScheme
+              ? `${classes['theme-selector__group']} ${classes['theme-selector__group--active']}`
+              : classes['theme-selector__group']
+          }
         >
           <IconMoon size={20} />
 
@@ -106,8 +124,14 @@ export function ThemeSelector({ className }: Props): JSX.Element {
         <Group
           onClick={() => {
             setColorScheme(systemColorScheme)
+
+            setIsSystemColorScheme(true)
           }}
-          className={classes['theme-selector__group']}
+          className={
+            isSystemColorScheme
+              ? `${classes['theme-selector__group']} ${classes['theme-selector__group--active']}`
+              : classes['theme-selector__group']
+          }
         >
           <IconDeviceLaptop size={20} />
 

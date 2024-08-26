@@ -20,6 +20,7 @@
 import '@mantine/core/styles.css'
 import '@mantine/spotlight/styles.css'
 
+import { COLOR_SCHEME } from '@frachtwerk/essencium-lib'
 import {
   createTheme,
   Loader,
@@ -151,7 +152,7 @@ function App({
       }),
   )
 
-  let systemColorScheme: MantineColorScheme = 'light'
+  let systemColorScheme: MantineColorScheme = COLOR_SCHEME.light
 
   const [colorScheme, setColorScheme] = useLocalStorage<MantineColorScheme>({
     key: 'mantine-color-scheme',
@@ -162,18 +163,23 @@ function App({
   if (typeof window !== 'undefined') {
     systemColorScheme = window.matchMedia('(prefers-color-scheme: light)')
       .matches
-      ? 'light'
-      : 'dark'
+      ? COLOR_SCHEME.light
+      : COLOR_SCHEME.dark
 
     window
       .matchMedia('(prefers-color-scheme: light)')
       .addEventListener('change', event => {
-        setColorScheme(event.matches ? 'light' : 'dark')
+        setColorScheme(event.matches ? COLOR_SCHEME.light : COLOR_SCHEME.dark)
       })
   }
 
   function toggleColorScheme(value?: MantineColorScheme): void {
-    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
+    setColorScheme(
+      value ||
+        (colorScheme === COLOR_SCHEME.dark
+          ? COLOR_SCHEME.light
+          : COLOR_SCHEME.dark),
+    )
   }
 
   useHotkeys([['mod+J', () => toggleColorScheme()]])
