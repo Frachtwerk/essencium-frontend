@@ -21,6 +21,7 @@ import { PaginatedResponse } from '@frachtwerk/essencium-types'
 import {
   Flex,
   Loader,
+  Select,
   Table as MantineTable,
   TableProps,
   TextInput,
@@ -131,30 +132,51 @@ export function Table<T>({
                       }
                     </Flex>
 
-                    {showFilter && header.column.getCanFilter() ? (
-                      <TextInput
-                        size="xs"
-                        className={classes['table__text-input']}
-                        value={
-                          (filterValue && filterValue[header.column.id]) ||
-                          ((header.column.getFilterValue() ?? '') as string)
-                        }
-                        onChange={event => {
-                          handleFilterChange(header, event.currentTarget.value)
-                        }}
-                        placeholder={t('table.filter.placeholder')}
-                        type="text"
-                        rightSection={
-                          (filterValue && filterValue[header.column.id]) ||
-                          ((header.column.getFilterValue() ?? '') as string) ? (
-                            <IconX
-                              size={15}
-                              onClick={() => handleFilterChange(header, null)}
-                            />
-                          ) : null
-                        }
-                      />
-                    ) : null}
+                    {showFilter &&
+                      header.column.getCanFilter() &&
+                      (filterData && filterData[header.column.id] ? (
+                        <Select
+                          size="xs"
+                          className={classes.table__select}
+                          data={filterData[header.column.id] || []}
+                          placeholder={t('table.filter.placeholder')}
+                          searchable
+                          clearable
+                          value={
+                            filterValue?.[header.column.id] ||
+                            ((header.column.getFilterValue() ?? '') as string)
+                          }
+                          onChange={value => {
+                            handleFilterChange(header, value)
+                          }}
+                        />
+                      ) : (
+                        <TextInput
+                          size="xs"
+                          className={classes['table__text-input']}
+                          value={
+                            filterValue?.[header.column.id] ||
+                            ((header.column.getFilterValue() ?? '') as string)
+                          }
+                          onChange={event => {
+                            handleFilterChange(
+                              header,
+                              event.currentTarget.value,
+                            )
+                          }}
+                          placeholder={t('table.filter.placeholder')}
+                          type="text"
+                          rightSection={
+                            filterValue?.[header.column.id] ||
+                            (header.column.getFilterValue() ?? '') ? (
+                              <IconX
+                                size={15}
+                                onClick={() => handleFilterChange(header, null)}
+                              />
+                            ) : null
+                          }
+                        />
+                      ))}
                   </MantineTable.Th>
                 ))}
               </MantineTable.Tr>

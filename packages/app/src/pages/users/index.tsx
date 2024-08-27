@@ -121,6 +121,23 @@ function UsersView(): JSX.Element {
   const [columnFiltersDebounced] = useDebouncedValue(columnFilters, 350)
   const [showFilter, setShowFilter] = useState(false)
 
+  const { data: allUsers } = useGetUsers({
+    page: 0,
+    size: 9999,
+  })
+
+  function getFilterRolesData(): Record<string, Array<string>> {
+    const { content: usersContent } = allUsers || {}
+
+    const roles = usersContent?.flatMap(userItem =>
+      userItem.roles.map(role => role.name),
+    )
+
+    return {
+      roles: removeDuplicates(roles),
+    }
+  }
+
   const {
     data: users,
     isLoading: isLoadingUsers,
@@ -424,6 +441,7 @@ function UsersView(): JSX.Element {
               tableModel={table}
               setActivePage={setActivePage}
               isLoadingData={isLoadingUsers}
+              filterData={getFilterRolesData()}
               showFilter
             />
 

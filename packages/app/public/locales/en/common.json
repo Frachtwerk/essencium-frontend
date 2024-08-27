@@ -401,7 +401,7 @@
       "showFilter": "Show filter"
     },
     "filter": {
-      "placeholder": "Search..."
+      "placeholder": "Search ..."
     },
     "footer": {
       "pageCount": "Pages:",
