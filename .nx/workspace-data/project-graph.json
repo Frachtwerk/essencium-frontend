@@ -108,208 +108,6 @@
         "implicitDependencies": []
       }
     },
-    "@frachtwerk/essencium-app-old": {
-      "name": "@frachtwerk/essencium-app-old",
-      "type": "lib",
-      "data": {
-        "root": "packages/app-old",
-        "targets": {
-          "build": {
-            "executor": "nx:run-script",
-            "metadata": {
-              "scriptContent": "next build",
-              "runCommand": "pnpm run build"
-            },
-            "dependsOn": [
-              "^build"
-            ],
-            "cache": true,
-            "options": {
-              "script": "build"
-            },
-            "configurations": {}
-          },
-          "test": {
-            "executor": "nx:run-script",
-            "metadata": {
-              "scriptContent": "pnpm test:unit && pnpm test:e2e",
-              "runCommand": "pnpm run test"
-            },
-            "dependsOn": [
-              "^build"
-            ],
-            "cache": true,
-            "options": {
-              "script": "test"
-            },
-            "configurations": {}
-          },
-          "test:unit:watch": {
-            "executor": "nx:run-script",
-            "metadata": {
-              "scriptContent": "vitest watch",
-              "runCommand": "pnpm run test:unit:watch"
-            },
-            "dependsOn": [
-              "^build"
-            ],
-            "options": {
-              "script": "test:unit:watch"
-            },
-            "configurations": {}
-          },
-          "lint": {
-            "executor": "nx:run-script",
-            "metadata": {
-              "scriptContent": "next lint",
-              "runCommand": "pnpm run lint"
-            },
-            "cache": true,
-            "options": {
-              "script": "lint"
-            },
-            "configurations": {}
-          },
-          "clean": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "clean"
-            },
-            "metadata": {
-              "scriptContent": "rimraf dist node_modules",
-              "runCommand": "pnpm run clean"
-            },
-            "configurations": {}
-          },
-          "clean:install": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "clean:install"
-            },
-            "metadata": {
-              "scriptContent": "pnpm clean && pnpm install",
-              "runCommand": "pnpm run clean:install"
-            },
-            "configurations": {}
-          },
-          "dev": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "dev"
-            },
-            "metadata": {
-              "scriptContent": "next dev",
-              "runCommand": "pnpm run dev"
-            },
-            "configurations": {}
-          },
-          "format:check": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "format:check"
-            },
-            "metadata": {
-              "scriptContent": "prettier --check .",
-              "runCommand": "pnpm run format:check"
-            },
-            "configurations": {}
-          },
-          "format:write": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "format:write"
-            },
-            "metadata": {
-              "scriptContent": "prettier --write .",
-              "runCommand": "pnpm run format:write"
-            },
-            "configurations": {}
-          },
-          "preview": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "preview"
-            },
-            "metadata": {
-              "scriptContent": "next start",
-              "runCommand": "pnpm run preview"
-            },
-            "configurations": {}
-          },
-          "sort-package-json": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "sort-package-json"
-            },
-            "metadata": {
-              "scriptContent": "sort-package-json",
-              "runCommand": "pnpm run sort-package-json"
-            },
-            "configurations": {}
-          },
-          "test:e2e": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "test:e2e"
-            },
-            "metadata": {
-              "scriptContent": "playwright test .",
-              "runCommand": "pnpm run test:e2e"
-            },
-            "configurations": {}
-          },
-          "test:unit": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "test:unit"
-            },
-            "metadata": {
-              "scriptContent": "vitest run",
-              "runCommand": "pnpm run test:unit"
-            },
-            "configurations": {}
-          },
-          "test:unit:coverage": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "test:unit:coverage"
-            },
-            "metadata": {
-              "scriptContent": "vitest run --coverage",
-              "runCommand": "pnpm run test:unit:coverage"
-            },
-            "configurations": {}
-          }
-        },
-        "sourceRoot": "packages/app-old",
-        "name": "@frachtwerk/essencium-app-old",
-        "projectType": "library",
-        "tags": [
-          "scope:app"
-        ],
-        "metadata": {
-          "targetGroups": {
-            "NPM Scripts": [
-              "build",
-              "clean",
-              "clean:install",
-              "dev",
-              "format:check",
-              "format:write",
-              "lint",
-              "preview",
-              "sort-package-json",
-              "test",
-              "test:e2e",
-              "test:unit",
-              "test:unit:coverage",
-              "test:unit:watch"
-            ]
-          }
-        },
-        "implicitDependencies": []
-      }
-    },
     "@frachtwerk/essencium-types": {
       "name": "@frachtwerk/essencium-types",
       "type": "lib",
@@ -3319,13 +3117,13 @@
         "hash": "sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA=="
       }
     },
-    "npm:@playwright/test@1.45.2": {
+    "npm:@playwright/test@1.45.0": {
       "type": "npm",
-      "name": "npm:@playwright/test@1.45.2",
+      "name": "npm:@playwright/test@1.45.0",
       "data": {
-        "version": "1.45.2",
+        "version": "1.45.0",
         "packageName": "@playwright/test",
-        "hash": "sha512-JxG9eq92ET75EbVi3s+4sYbcG7q72ECeZNbdBlaMkGcNbiDQ4cAi8U2QP5oKkOx+1gpaiL1LDStmzCaEM1Z6fQ=="
+        "hash": "sha512-TVYsfMlGAaxeUllNkywbwek67Ncf8FRGn8ZlRdO291OL3NjG9oMbfVhyP82HQF0CZLMrYsvesqoUekxdWuF9Qw=="
       }
     },
     "npm:@playwright/test@1.46.0": {
@@ -10555,13 +10353,13 @@
         "hash": "sha512-+JrgthZG6m3ckicaOB74TwQ+tBWsFl3qVQg7mN8ulwSOElJ7gBhKzj2VkCPnZ4NlF6kEquYU+RIYNVAvzd54UA=="
       }
     },
-    "npm:playwright-core@1.45.2": {
+    "npm:playwright-core@1.45.0": {
       "type": "npm",
-      "name": "npm:playwright-core@1.45.2",
+      "name": "npm:playwright-core@1.45.0",
       "data": {
-        "version": "1.45.2",
+        "version": "1.45.0",
         "packageName": "playwright-core",
-        "hash": "sha512-ha175tAWb0dTK0X4orvBIqi3jGEt701SMxMhyujxNrgd8K0Uy5wMSwwcQHtyB4om7INUkfndx02XnQ2p6dvLDw=="
+        "hash": "sha512-lZmHlFQ0VYSpAs43dRq1/nJ9G/6SiTI7VPqidld9TDefL9tX87bTKExWZZUF5PeRyqtXqd8fQi2qmfIedkwsNQ=="
       }
     },
     "npm:playwright-core@1.46.0": {
@@ -10573,13 +10371,13 @@
         "hash": "sha512-9Y/d5UIwuJk8t3+lhmMSAJyNP1BUC/DqP3cQJDQQL/oWqAiuPTLgy7Q5dzglmTLwcBRdetzgNM/gni7ckfTr6A=="
       }
     },
-    "npm:playwright@1.45.2": {
+    "npm:playwright@1.45.0": {
       "type": "npm",
-      "name": "npm:playwright@1.45.2",
+      "name": "npm:playwright@1.45.0",
       "data": {
-        "version": "1.45.2",
+        "version": "1.45.0",
         "packageName": "playwright",
-        "hash": "sha512-ReywF2t/0teRvNBpfIgh5e4wnrI/8Su8ssdo5XsQKpjxJj+jspm00jSoz9BTg91TT0c9HRjXO7LBNVrgYj9X0g=="
+        "hash": "sha512-4z3ac3plDfYzGB6r0Q3LF8POPR20Z8D0aXcxbJvmfMgSSq1hkcgvFRXJk9rUq5H/MJ0Ktal869hhOdI/zUTeLA=="
       }
     },
     "npm:playwright@1.46.0": {
@@ -13588,284 +13386,12 @@
         "type": "static"
       }
     ],
-    "@frachtwerk/essencium-app-old": [
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "@frachtwerk/eslint-config-essencium",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "@frachtwerk/prettier-config-essencium",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@testing-library/react@14.3.1",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@types/nodemailer",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@typescript-eslint/eslint-plugin@7.8.0",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@typescript-eslint/parser@7.8.0",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@vitejs/plugin-react",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:eslint",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:eslint-config-airbnb",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:eslint-config-airbnb-typescript",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:eslint-config-prettier",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:eslint-plugin-import",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:eslint-plugin-jsx-a11y",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:eslint-plugin-prettier",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:eslint-plugin-react",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:eslint-plugin-react-hooks",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:eslint-plugin-simple-import-sort",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:postcss-preset-mantine",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:prettier",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:vite",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:vitest",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@emotion/react",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@emotion/server",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@fortawesome/fontawesome-svg-core",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@fortawesome/free-solid-svg-icons",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@fortawesome/react-fontawesome",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "@frachtwerk/essencium-lib",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "@frachtwerk/essencium-types",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@hookform/resolvers",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@mantine/core",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@mantine/dates",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@mantine/hooks",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@mantine/modals",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@mantine/notifications",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@mantine/spotlight",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@playwright/test@1.45.2",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@tabler/icons-react",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@tanstack/react-query",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@tanstack/react-table",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@types/node",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:@types/react-dom",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:axios",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:dayjs",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:dotenv",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:i18next",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:jotai",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:next",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:next-i18next",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:nodemailer",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:react",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:react-dom",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:react-hook-form",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:react-i18next",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:react-json-tree",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app-old",
-        "target": "npm:typescript",
-        "type": "static"
-      }
-    ],
     "@frachtwerk/essencium-types": [
+      {
+        "source": "@frachtwerk/essencium-types",
+        "target": "npm:zod@3.22.4",
+        "type": "static"
+      },
       {
         "source": "@frachtwerk/essencium-types",
         "target": "@frachtwerk/eslint-config-essencium",
@@ -13894,6 +13420,11 @@
       {
         "source": "@frachtwerk/essencium-types",
         "target": "npm:@rollup/plugin-typescript",
+        "type": "static"
+      },
+      {
+        "source": "@frachtwerk/essencium-types",
+        "target": "npm:@types/react@18.0.28",
         "type": "static"
       },
       {
@@ -14282,11 +13813,6 @@
       },
       {
         "source": "@frachtwerk/essencium-app",
-        "target": "npm:@playwright/test@1.46.0",
-        "type": "static"
-      },
-      {
-        "source": "@frachtwerk/essencium-app",
         "target": "npm:@tabler/icons-react",
         "type": "static"
       },
@@ -14534,6 +14060,11 @@
       },
       {
         "source": "@frachtwerk/essencium-lib",
+        "target": "npm:zod@3.22.4",
+        "type": "static"
+      },
+      {
+        "source": "@frachtwerk/essencium-lib",
         "target": "npm:@babel/core",
         "type": "static"
       },
@@ -14570,6 +14101,11 @@
       {
         "source": "@frachtwerk/essencium-lib",
         "target": "npm:@testing-library/react@14.0.0",
+        "type": "static"
+      },
+      {
+        "source": "@frachtwerk/essencium-lib",
+        "target": "npm:@types/react@18.0.28",
         "type": "static"
       },
       {
@@ -18634,10 +18170,10 @@
         "type": "static"
       }
     ],
-    "npm:@playwright/test@1.45.2": [
+    "npm:@playwright/test@1.45.0": [
       {
-        "source": "npm:@playwright/test@1.45.2",
-        "target": "npm:playwright@1.45.2",
+        "source": "npm:@playwright/test@1.45.0",
+        "target": "npm:playwright@1.45.0",
         "type": "static"
       }
     ],
@@ -26751,7 +26287,7 @@
       },
       {
         "source": "npm:next",
-        "target": "npm:@playwright/test@1.45.2",
+        "target": "npm:@playwright/test@1.45.0",
         "type": "static"
       },
       {
@@ -27701,14 +27237,14 @@
         "type": "static"
       }
     ],
-    "npm:playwright@1.45.2": [
+    "npm:playwright@1.45.0": [
       {
-        "source": "npm:playwright@1.45.2",
-        "target": "npm:playwright-core@1.45.2",
+        "source": "npm:playwright@1.45.0",
+        "target": "npm:playwright-core@1.45.0",
         "type": "static"
       },
       {
-        "source": "npm:playwright@1.45.2",
+        "source": "npm:playwright@1.45.0",
         "target": "npm:fsevents@2.3.2",
         "type": "static"
       }

@@ -22,21 +22,11 @@ import {
   feedbackFormSchema,
   FeedbackInput,
 } from '@frachtwerk/essencium-types'
-import { NextApiRequest, NextApiResponse } from 'next'
 import nodemailer from 'nodemailer'
-
-const RequestMethods = {
-  POST: 'POST',
-  GET: 'GET',
-  PUT: 'PUT',
-  DELETE: 'DELETE',
-} as const
 
 const fixedFeedbackProperties = Object.keys(baseFeedbackFormSchema.shape)
 
-export async function sendFeedbackEmail(
-  feedback: FeedbackInput,
-): Promise<void> {
+async function sendFeedbackEmail(feedback: FeedbackInput): Promise<void> {
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: Number(process.env.SMTP_PORT),
@@ -81,30 +71,32 @@ ${Object.keys(feedback)
   await transporter.sendMail(mailOptions)
 }
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse,
-): Promise<void> {
-  if (req.method === RequestMethods.POST) {
-    const feedback = req.body
+export async function POST(request: Request): Promise<Response> {
+  try {
+    const body = await request.json()
 
-    const isFeedbackValid = feedbackFormSchema.safeParse(feedback)
-
-    if (!isFeedbackValid.success) {
-      return res.status(400).json({
-        message: "Feedback couldn't be sent",
-        receivedData: feedback,
-        errors: isFeedbackValid.error,
+    if (!feedbackFormSchema.safeParse(body).success) {
+      return new Response("Feedback couldn't be sent", {
+        status: 400,
       })
     }
 
-    await sendFeedbackEmail(feedback)
+    await sendFeedbackEmail(body)
 
-    return res.status(200).json({
-      message: 'Feedback has been sent successfully',
-      receivedData: feedback,
+    return new Response(
+      JSON.stringify({
+        message: 'Feedback has been sent successfully',
+        receivedData: body,
+      }),
+      {
+        status: 200,
+      },
+    )
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    return new Response(error.message, {
+      status: 400,
     })
   }
-
-  res.status(405).end()
 }

@@ -2385,13 +2385,13 @@
         "hash": "sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA=="
       }
     },
-    "npm:@playwright/test@1.45.2": {
+    "npm:@playwright/test@1.45.0": {
       "type": "npm",
-      "name": "npm:@playwright/test@1.45.2",
+      "name": "npm:@playwright/test@1.45.0",
       "data": {
-        "version": "1.45.2",
+        "version": "1.45.0",
         "packageName": "@playwright/test",
-        "hash": "sha512-JxG9eq92ET75EbVi3s+4sYbcG7q72ECeZNbdBlaMkGcNbiDQ4cAi8U2QP5oKkOx+1gpaiL1LDStmzCaEM1Z6fQ=="
+        "hash": "sha512-TVYsfMlGAaxeUllNkywbwek67Ncf8FRGn8ZlRdO291OL3NjG9oMbfVhyP82HQF0CZLMrYsvesqoUekxdWuF9Qw=="
       }
     },
     "npm:@playwright/test@1.46.0": {
@@ -9621,13 +9621,13 @@
         "hash": "sha512-+JrgthZG6m3ckicaOB74TwQ+tBWsFl3qVQg7mN8ulwSOElJ7gBhKzj2VkCPnZ4NlF6kEquYU+RIYNVAvzd54UA=="
       }
     },
-    "npm:playwright-core@1.45.2": {
+    "npm:playwright-core@1.45.0": {
       "type": "npm",
-      "name": "npm:playwright-core@1.45.2",
+      "name": "npm:playwright-core@1.45.0",
       "data": {
-        "version": "1.45.2",
+        "version": "1.45.0",
         "packageName": "playwright-core",
-        "hash": "sha512-ha175tAWb0dTK0X4orvBIqi3jGEt701SMxMhyujxNrgd8K0Uy5wMSwwcQHtyB4om7INUkfndx02XnQ2p6dvLDw=="
+        "hash": "sha512-lZmHlFQ0VYSpAs43dRq1/nJ9G/6SiTI7VPqidld9TDefL9tX87bTKExWZZUF5PeRyqtXqd8fQi2qmfIedkwsNQ=="
       }
     },
     "npm:playwright-core@1.46.0": {
@@ -9639,13 +9639,13 @@
         "hash": "sha512-9Y/d5UIwuJk8t3+lhmMSAJyNP1BUC/DqP3cQJDQQL/oWqAiuPTLgy7Q5dzglmTLwcBRdetzgNM/gni7ckfTr6A=="
       }
     },
-    "npm:playwright@1.45.2": {
+    "npm:playwright@1.45.0": {
       "type": "npm",
-      "name": "npm:playwright@1.45.2",
+      "name": "npm:playwright@1.45.0",
       "data": {
-        "version": "1.45.2",
+        "version": "1.45.0",
         "packageName": "playwright",
-        "hash": "sha512-ReywF2t/0teRvNBpfIgh5e4wnrI/8Su8ssdo5XsQKpjxJj+jspm00jSoz9BTg91TT0c9HRjXO7LBNVrgYj9X0g=="
+        "hash": "sha512-4z3ac3plDfYzGB6r0Q3LF8POPR20Z8D0aXcxbJvmfMgSSq1hkcgvFRXJk9rUq5H/MJ0Ktal869hhOdI/zUTeLA=="
       }
     },
     "npm:playwright@1.46.0": {
@@ -16136,8 +16136,8 @@
       "type": "static"
     },
     {
-      "source": "npm:@playwright/test@1.45.2",
-      "target": "npm:playwright@1.45.2",
+      "source": "npm:@playwright/test@1.45.0",
+      "target": "npm:playwright@1.45.0",
       "type": "static"
     },
     {
@@ -23916,51 +23916,6 @@
       "type": "static"
     },
     {
-      "source": "npm:next-i18next",
-      "target": "npm:@babel/runtime@7.25.0",
-      "type": "static"
-    },
-    {
-      "source": "npm:next-i18next",
-      "target": "npm:@types/hoist-non-react-statics",
-      "type": "static"
-    },
-    {
-      "source": "npm:next-i18next",
-      "target": "npm:core-js",
-      "type": "static"
-    },
-    {
-      "source": "npm:next-i18next",
-      "target": "npm:hoist-non-react-statics",
-      "type": "static"
-    },
-    {
-      "source": "npm:next-i18next",
-      "target": "npm:i18next",
-      "type": "static"
-    },
-    {
-      "source": "npm:next-i18next",
-      "target": "npm:i18next-fs-backend",
-      "type": "static"
-    },
-    {
-      "source": "npm:next-i18next",
-      "target": "npm:next",
-      "type": "static"
-    },
-    {
-      "source": "npm:next-i18next",
-      "target": "npm:react",
-      "type": "static"
-    },
-    {
-      "source": "npm:next-i18next",
-      "target": "npm:react-i18next",
-      "type": "static"
-    },
-    {
       "source": "npm:next-mdx-remote",
       "target": "npm:@mdx-js/mdx",
       "type": "static"
@@ -24122,7 +24077,7 @@
     },
     {
       "source": "npm:next",
-      "target": "npm:@playwright/test@1.45.2",
+      "target": "npm:@playwright/test@1.45.0",
       "type": "static"
     },
     {
@@ -25086,12 +25041,12 @@
       "type": "static"
     },
     {
-      "source": "npm:playwright@1.45.2",
-      "target": "npm:playwright-core@1.45.2",
+      "source": "npm:playwright@1.45.0",
+      "target": "npm:playwright-core@1.45.0",
       "type": "static"
     },
     {
-      "source": "npm:playwright@1.45.2",
+      "source": "npm:playwright@1.45.0",
       "target": "npm:fsevents@2.3.2",
       "type": "static"
     },

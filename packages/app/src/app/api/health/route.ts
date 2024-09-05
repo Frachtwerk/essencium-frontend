@@ -17,8 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { NextApiRequest, NextApiResponse } from 'next'
-
-export default function handler(_: NextApiRequest, res: NextApiResponse): void {
-  res.status(200).json({ status: 'ok' })
+export async function GET(): Promise<Response> {
+  return new Response('ok', { status: 200 })
 }
