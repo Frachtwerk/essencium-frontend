@@ -260,8 +260,8 @@ function App({
           {getLayout(
             <Component {...pageProps} />,
             version &&
-              process.env.NEXT_PUBLIC_SHOW_VERSION &&
-              process.env.NEXT_PUBLIC_SHOW_VERSION === '1'
+              process.env.SHOW_APP_VERSION &&
+              process.env.SHOW_APP_VERSION === '1'
               ? version
               : undefined,
           )}

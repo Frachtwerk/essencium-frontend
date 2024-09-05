@@ -30,6 +30,7 @@ export default function Document(): JSX.Element {
       </Head>
 
       <body>
+        <script src="/runtimeConfig.js" />
         <div id="notification" />
         <Main />
         <NextScript />

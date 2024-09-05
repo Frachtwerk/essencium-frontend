@@ -49,7 +49,15 @@ import { baseGetServerSideProps } from '@/utils/next'
 
 import classes from './Login.module.css'
 
-const OAUTH_REDIRECT_URI = `${process.env.NEXT_PUBLIC_APP_URL}/login`
+const OAUTH_REDIRECT_URI =
+  typeof window !== 'undefined'
+    ? `${window.runtimeConfig.optional.OAUTH_REDIRECT_URI}/login`
+    : ''
+
+const API_URL =
+  typeof window !== 'undefined'
+    ? `${window.runtimeConfig.required.API_URL}`
+    : ''
 
 function LoginView(): JSX.Element {
   const { t } = useTranslation()
@@ -122,7 +130,7 @@ function LoginView(): JSX.Element {
                     <NextLink
                       className={classes['ssoSection__link']}
                       key={application}
-                      href={`${process.env.NEXT_PUBLIC_API_BASE_URL}${ssoApplications[application].url}?redirect_uri=${OAUTH_REDIRECT_URI}`}
+                      href={`${API_URL}${ssoApplications[application].url}?redirect_uri=${OAUTH_REDIRECT_URI}`}
                     >
                       <Flex
                         justify="center"
