@@ -106,7 +106,7 @@ export default function LoginView(): JSX.Element {
 
   return (
     <Suspense>
-      <Container mt="150px">
+      <Container className={classes.loginCard__container}>
         {!oauthToken ? (
           <Card className={classes['loginCard']} withBorder>
             <Flex direction="column">
