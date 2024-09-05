@@ -4,13 +4,10 @@
 
 The files and folder structure follows the
 [tightly-coupled architecture](https://nordicapis.com/the-difference-between-tight-coupling-and-loose-coupling/) and
-underlies the [Next.js file-system router](https://nextjs.org/docs/pages). That means that a file and code should live
-as close as possible to its context. In the image below you can see we've a `UserAdd` component (used by `pages/users/add/index.tsx`) that is located under
-`src/components/users/add`. It does have other components it uses. Because they're specific to it, they live in the
-`components` folder and follow the same architecture. We don't place components beside the page (inside the
-`pages` folder) because they're treated as routes then.
-
-But to maintain a clean structure, we construct the same folder structure that fits to the structure of the page.
+underlies the [Next.js file-system router](https://nextjs.org/docs/app). That means that a file and code should live
+as close as possible to its context. In the image below you can see we've a `UserForm` component that is located under
+`app/[locale]/(main)/users/add/_components`. It does have other components it uses. Because they're specific to it, they live in the
+same folder (or subdirectories of the `/_components` folder) and follow the same architecture. 
 
 ![New Component Structure](/images/new-component-structure.png)
 
@@ -19,8 +16,8 @@ But to maintain a clean structure, we construct the same folder structure that f
 ### General
 
 - the component is located in:
-  - the `components` folder
-  - a folder that is named after the page folder it belongs to i.e. `components/users/UserForm.tsx`
+  - the `_components` folder
+  - a folder that is located inside the same directory as the component that uses it
 - the file is named after the component and written in `PascalCase`
 
 ### Specific
@@ -43,9 +40,7 @@ function NewComponent(...) { ... }
 
 ---
 
-- import types with `import type { ... } from ...` synta
-
-  x
+- import types with `import type { ... } from ...` syntax
 
 ```typescript
 // ❌
@@ -71,7 +66,7 @@ import type { NewType } from ...
 
 ---
 
-- use function declaration syntax instead of arrow function syntax.
+- use function declaration syntax instead of arrow function syntax. 
 
 ```tsx
 // ❌
@@ -88,9 +83,7 @@ function NewComponent(...) { ... }
 
 ---
 
-- export the functional component as default export (`export default MyComponent`) and at the bottom of the fil
-
-  e
+- export the functional component as default export (`export default MyComponent`) and at the bottom of the file
 
 ```tsx
 // ❌
