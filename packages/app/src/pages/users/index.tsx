@@ -155,6 +155,8 @@ function UsersView(): JSX.Element {
     ),
   })
 
+  const [usersDataDebounced] = useDebouncedValue(users?.content || [], 450)
+
   const handleRefetch = useCallback((): void => {
     refetchUsers()
   }, [refetchUsers])
@@ -346,7 +348,7 @@ function UsersView(): JSX.Element {
   )
 
   const table = useReactTable({
-    data: users?.content || [],
+    data: users?.content || usersDataDebounced || [],
     columns,
     state: {
       sorting,
@@ -440,7 +442,6 @@ function UsersView(): JSX.Element {
             <Table
               tableModel={table}
               setActivePage={setActivePage}
-              isLoadingData={isLoadingUsers}
               filterData={getFilterRolesData()}
               showFilter
             />

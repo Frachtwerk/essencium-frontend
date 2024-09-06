@@ -20,7 +20,6 @@
 import { PaginatedResponse } from '@frachtwerk/essencium-types'
 import {
   Flex,
-  Loader,
   Select,
   Table as MantineTable,
   TableProps,
@@ -50,7 +49,6 @@ type Props<T> = TableProps & {
   setFilterValue?: Dispatch<SetStateAction<Record<string, string | null>>>
   firstColSticky?: boolean
   setActivePage?: (activePage: PaginatedResponse<T>['number']) => void
-  isLoadingData?: boolean
 }
 
 export function Table<T>({
@@ -62,7 +60,6 @@ export function Table<T>({
   setFilterValue,
   firstColSticky,
   setActivePage,
-  isLoadingData = false,
   ...props
 }: Props<T>): JSX.Element {
   const { t } = useTranslation()
@@ -184,39 +181,28 @@ export function Table<T>({
           </MantineTable.Thead>
 
           <MantineTable.Tbody aria-label="table-body">
-            {isLoadingData ? (
-              <MantineTable.Tr>
-                <MantineTable.Td>
-                  <Loader size="xs" />
-                </MantineTable.Td>
+            {tableModel.getRowModel().rows.map(row => (
+              <MantineTable.Tr
+                key={row.id}
+                className={
+                  firstColSticky
+                    ? classes['table__table-row--sticky']
+                    : classes['table__table-row']
+                }
+              >
+                {row.getVisibleCells().map(cell => (
+                  <MantineTable.Td
+                    key={cell.id}
+                    width={cell.column.getSize()}
+                    className={
+                      firstColSticky ? classes['table__col-sticky'] : ''
+                    }
+                  >
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </MantineTable.Td>
+                ))}
               </MantineTable.Tr>
-            ) : (
-              tableModel.getRowModel().rows.map(row => (
-                <MantineTable.Tr
-                  key={row.id}
-                  className={
-                    firstColSticky
-                      ? classes['table__table-row--sticky']
-                      : classes['table__table-row']
-                  }
-                >
-                  {row.getVisibleCells().map(cell => (
-                    <MantineTable.Td
-                      key={cell.id}
-                      width={cell.column.getSize()}
-                      className={
-                        firstColSticky ? classes['table__col-sticky'] : ''
-                      }
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
-                    </MantineTable.Td>
-                  ))}
-                </MantineTable.Tr>
-              ))
-            )}
+            ))}
           </MantineTable.Tbody>
 
           <MantineTable.Tfoot
