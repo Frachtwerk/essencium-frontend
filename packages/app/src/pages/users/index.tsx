@@ -155,8 +155,6 @@ function UsersView(): JSX.Element {
     ),
   })
 
-  const [usersDataDebounced] = useDebouncedValue(users?.content || [], 450)
-
   const handleRefetch = useCallback((): void => {
     refetchUsers()
   }, [refetchUsers])
@@ -348,7 +346,7 @@ function UsersView(): JSX.Element {
   )
 
   const table = useReactTable({
-    data: users?.content || usersDataDebounced || [],
+    data: users?.content || [],
     columns,
     state: {
       sorting,

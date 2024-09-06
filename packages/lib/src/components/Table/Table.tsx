@@ -25,6 +25,7 @@ import {
   TableProps,
   TextInput,
 } from '@mantine/core'
+import { useDebouncedValue } from '@mantine/hooks'
 import {
   IconSortAscending2,
   IconSortDescending2,
@@ -63,6 +64,8 @@ export function Table<T>({
   ...props
 }: Props<T>): JSX.Element {
   const { t } = useTranslation()
+
+  const [rowsDebounced] = useDebouncedValue(tableModel.getRowModel().rows, 350)
 
   function handleFilterChange(
     header: Header<T, unknown>,
@@ -181,7 +184,10 @@ export function Table<T>({
           </MantineTable.Thead>
 
           <MantineTable.Tbody aria-label="table-body">
-            {tableModel.getRowModel().rows.map(row => (
+            {(tableModel.getRowModel().rows.length
+              ? tableModel.getRowModel().rows
+              : rowsDebounced
+            ).map(row => (
               <MantineTable.Tr
                 key={row.id}
                 className={
