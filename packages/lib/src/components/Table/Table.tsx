@@ -65,7 +65,7 @@ export function Table<T>({
 }: Props<T>): JSX.Element {
   const { t } = useTranslation()
 
-  const [rowsDebounced] = useDebouncedValue(tableModel.getRowModel().rows, 350)
+  const [rowsDebounced] = useDebouncedValue(tableModel.getRowModel().rows, 150)
 
   function handleFilterChange(
     header: Header<T, unknown>,
