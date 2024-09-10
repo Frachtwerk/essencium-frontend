@@ -11,6 +11,7 @@
 The Prettier configuration enforces consistent code formatting across the project using rules specified in the `index.json` file. The package ensure a uniform and visually appealing codebase.
 
 [Report an issue](https://github.com/Frachtwerk/essencium-frontend/issues)
+
 </div>
 
 ---

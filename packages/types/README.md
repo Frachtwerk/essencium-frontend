@@ -11,6 +11,7 @@
 The package called types has clear rules which types are included in the monorepo. Basically, types should live and be exported in the corresponding file where it is initially created
 
 [Report an issue](https://github.com/Frachtwerk/essencium-frontend/issues)
+
 </div>
 
 ---

@@ -17,8 +17,8 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { i18n } from 'next-i18next'
+import { getI18n } from 'react-i18next'
 
 export function getTranslation(translationKey: string): string {
-  return i18n?.t(translationKey) ?? translationKey
+  return getI18n()?.t(translationKey) ?? translationKey
 }

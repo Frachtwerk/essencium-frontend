@@ -17,7 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 .navBar__container {
   padding: var(--mantine-spacing-sm);
   display: flex;
@@ -37,7 +36,7 @@
   flex-direction: column;
 }
 
-.navBar__logo{
+.navBar__logo {
   margin-bottom: var(--mantine-spacing-xl);
 }
 
@@ -46,7 +45,6 @@
   margin-top: var(--mantine-spacing-xs);
   cursor: pointer;
 }
-
 
 .navBar__navLink--root {
   border-radius: var(--mantine-radius-sm);

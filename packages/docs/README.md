@@ -11,6 +11,7 @@
 The documentation provides detailed guidelines on setup, architecture, code style and linting practices employed in the project. It contains the development guide for consistency across the project.
 
 [Report an issue](https://github.com/Frachtwerk/essencium-frontend/issues)
+
 </div>
 
 ---
