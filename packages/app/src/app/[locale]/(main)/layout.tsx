@@ -27,7 +27,7 @@ type Props = {
 export default function MainLayout({ children }: Props): JSX.Element {
   return (
     <RouteProtector>
-      <AuthLayout>{children} </AuthLayout>
+      <AuthLayout>{children}</AuthLayout>
     </RouteProtector>
   )
 }

@@ -17,7 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
- .loginCard__container {
+.loginCard__container {
   margin-top: 150px;
 
   @media (max-width: 36em) {
