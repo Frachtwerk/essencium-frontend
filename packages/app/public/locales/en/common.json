@@ -52,6 +52,9 @@
     "logout": {
       "label": "Logout",
       "description": "Logout user"
+    },
+    "toggleFixedNavIcon": {
+      "ariaLabel": "fix navigation bar"
     }
   },
   "footer": {

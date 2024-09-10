@@ -76,10 +76,6 @@ export function NavBar({
     string | number | NodeJS.Timeout | undefined
   >(undefined)
 
-  function toggleFixedNav(): void {
-    setFixedNav(fixed => !fixed)
-  }
-
   function handleMouseEnter(): void {
     const timeoutId = setTimeout(() => {
       setFoldedNav(false)
@@ -132,8 +128,9 @@ export function NavBar({
 
           {!foldedNav && !isMobile ? (
             <Box
-              onClick={() => toggleFixedNav()}
+              onClick={() => setFixedNav(fixed => !fixed)}
               className={classes['navBar__pinIcon']}
+              aria-label={t('navigation.toggleFixedNavIcon.arialabel')}
             >
               {fixedNav ? (
                 <IconPinFilled

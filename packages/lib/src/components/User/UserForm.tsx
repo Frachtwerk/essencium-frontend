@@ -58,6 +58,7 @@ type Props = {
   setValue: UseFormSetValue<UserInput | UserUpdate>
   onSubmit: () => void
   isLoading: boolean
+  rolesEnabledForSsoUser?: boolean
 }
 
 export function UserForm({
@@ -68,6 +69,7 @@ export function UserForm({
   formState,
   onSubmit,
   isLoading,
+  rolesEnabledForSsoUser = false,
 }: Props): JSX.Element {
   const isSso = Boolean(ssoProvider && ssoProvider !== UserSource.LOCAL)
 
@@ -347,7 +349,7 @@ export function UserForm({
             render={({ field }) => (
               <MultiSelect
                 {...field}
-                disabled={isSso}
+                disabled={isSso && !rolesEnabledForSsoUser}
                 label={t('addUpdateUserView.form.role')}
                 data={rolesData}
                 withAsterisk

@@ -48,6 +48,7 @@ import { FormEvent, useState } from 'react'
 import { KeyPath } from 'react-json-tree'
 
 import { hasRequiredRights } from '../../utils/hasRequiredRights'
+import { COLOR_SCHEME } from '../Header'
 import classes from './Translations.module.css'
 
 // dynamically load the JSONTree component to avoid SSR errors
@@ -242,7 +243,9 @@ export function Translations({
           <JSONTree
             hideRoot
             data={filteredTranslations}
-            theme={colorScheme === 'light' ? TREE_THEME : TREE_THEME_DARK}
+            theme={
+              colorScheme === COLOR_SCHEME.light ? TREE_THEME : TREE_THEME_DARK
+            }
             getItemString={() => null}
             labelRenderer={([key]) => (
               <Text
