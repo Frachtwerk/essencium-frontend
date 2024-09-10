@@ -400,6 +400,9 @@
     "misc": {
       "showFilter": "Show filter"
     },
+    "filter": {
+      "placeholder": "Search ..."
+    },
     "footer": {
       "pageCount": "Pages:",
       "pageSize": "Size:"

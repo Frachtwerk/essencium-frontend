@@ -17,9 +17,26 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Flex, Select, Table as MantineTable, TableProps } from '@mantine/core'
-import { IconSortAscending2, IconSortDescending2 } from '@tabler/icons-react'
-import { flexRender, Table as TanstackTable } from '@tanstack/react-table'
+import { PaginatedResponse } from '@frachtwerk/essencium-types'
+import {
+  Flex,
+  Select,
+  Table as MantineTable,
+  TableProps,
+  TextInput,
+} from '@mantine/core'
+import { useDebouncedValue } from '@mantine/hooks'
+import {
+  IconSortAscending2,
+  IconSortDescending2,
+  IconX,
+} from '@tabler/icons-react'
+import {
+  flexRender,
+  Header,
+  Table as TanstackTable,
+} from '@tanstack/react-table'
+import { useTranslation } from 'next-i18next'
 import { Dispatch, SetStateAction } from 'react'
 
 import classes from './Table.module.css'
@@ -32,6 +49,7 @@ type Props<T> = TableProps & {
   filterValue?: Record<string, string | null>
   setFilterValue?: Dispatch<SetStateAction<Record<string, string | null>>>
   firstColSticky?: boolean
+  setActivePage?: (activePage: PaginatedResponse<T>['number']) => void
 }
 
 export function Table<T>({
@@ -42,8 +60,34 @@ export function Table<T>({
   filterValue,
   setFilterValue,
   firstColSticky,
+  setActivePage,
   ...props
 }: Props<T>): JSX.Element {
+  const { t } = useTranslation()
+
+  const [rowsDebounced] = useDebouncedValue(tableModel.getRowModel().rows, 150)
+
+  function handleFilterChange(
+    header: Header<T, unknown>,
+    value: string | null,
+  ): void {
+    // reset to first page when filtering
+    if (setActivePage) {
+      setActivePage(1)
+    }
+
+    if (setFilterValue) {
+      setFilterValue({
+        ...filterValue,
+        [header.column.id]: value,
+      })
+    }
+
+    header.column.setFilterValue(value)
+
+    onFilterChange?.(header.column.id, value)
+  }
+
   return (
     <Flex direction="column" align="end">
       <div style={{ overflowX: 'auto', width: '100%' }}>
@@ -87,25 +131,52 @@ export function Table<T>({
                         }[(header.column.getIsSorted() as string) ?? null]
                       }
                     </Flex>
-                    {showFilter && header.column.getCanFilter() ? (
-                      <Select
-                        size="xs"
-                        className={classes.table__select}
-                        data={filterData ? filterData[header.column.id] : []}
-                        searchable
-                        clearable
-                        value={filterValue && filterValue[header.column.id]}
-                        onChange={event => {
-                          if (setFilterValue)
-                            setFilterValue({
-                              ...filterValue,
-                              [header.column.id]: event,
-                            })
-                          header.column.setFilterValue(event)
-                          onFilterChange?.(header.column.id, event)
-                        }}
-                      />
-                    ) : null}
+
+                    {showFilter &&
+                      header.column.getCanFilter() &&
+                      (filterData && filterData[header.column.id] ? (
+                        <Select
+                          size="xs"
+                          className={classes.table__select}
+                          data={filterData[header.column.id] || []}
+                          placeholder={t('table.filter.placeholder')}
+                          searchable
+                          clearable
+                          value={
+                            filterValue?.[header.column.id] ||
+                            ((header.column.getFilterValue() ?? '') as string)
+                          }
+                          onChange={value => {
+                            handleFilterChange(header, value)
+                          }}
+                        />
+                      ) : (
+                        <TextInput
+                          size="xs"
+                          className={classes['table__text-input']}
+                          value={
+                            filterValue?.[header.column.id] ||
+                            ((header.column.getFilterValue() ?? '') as string)
+                          }
+                          onChange={event => {
+                            handleFilterChange(
+                              header,
+                              event.currentTarget.value,
+                            )
+                          }}
+                          placeholder={t('table.filter.placeholder')}
+                          type="text"
+                          rightSection={
+                            filterValue?.[header.column.id] ||
+                            (header.column.getFilterValue() ?? '') ? (
+                              <IconX
+                                size={15}
+                                onClick={() => handleFilterChange(header, null)}
+                              />
+                            ) : null
+                          }
+                        />
+                      ))}
                   </MantineTable.Th>
                 ))}
               </MantineTable.Tr>
@@ -113,7 +184,10 @@ export function Table<T>({
           </MantineTable.Thead>
 
           <MantineTable.Tbody aria-label="table-body">
-            {tableModel.getRowModel().rows.map(row => (
+            {(tableModel.getRowModel().rows.length
+              ? tableModel.getRowModel().rows
+              : rowsDebounced
+            ).map(row => (
               <MantineTable.Tr
                 key={row.id}
                 className={
