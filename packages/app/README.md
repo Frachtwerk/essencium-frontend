@@ -11,6 +11,7 @@
 The package called app is acting as boilerplate and consumes all the other packages
 
 [Report an issue](https://github.com/Frachtwerk/essencium-frontend/issues)
+
 </div>
 
 ---

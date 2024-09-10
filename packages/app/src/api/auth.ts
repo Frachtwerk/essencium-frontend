@@ -32,7 +32,7 @@ import {
 import { AxiosError } from 'axios'
 import { atom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'react-i18next'
 
 import { api } from './api'
 
