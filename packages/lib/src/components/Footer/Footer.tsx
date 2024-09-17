@@ -18,7 +18,13 @@
  */
 
 import { FooterLink } from '@frachtwerk/essencium-types'
-import { AppShellFooter, AppShellFooterProps, Flex, Text } from '@mantine/core'
+import {
+  AppShellFooter,
+  AppShellFooterProps,
+  Code,
+  Flex,
+  Text,
+} from '@mantine/core'
 import { IconCopyright } from '@tabler/icons-react'
 import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
@@ -27,9 +33,15 @@ import classes from './Footer.module.css'
 
 type Props = AppShellFooterProps & {
   links: FooterLink[]
+  version?: string
 }
 
-export function Footer({ links, children, ...props }: Props): JSX.Element {
+export function Footer({
+  links,
+  version,
+  children,
+  ...props
+}: Props): JSX.Element {
   const { t } = useTranslation()
 
   return (
@@ -49,6 +61,12 @@ export function Footer({ links, children, ...props }: Props): JSX.Element {
           <IconCopyright size="16" />
 
           <Text> {t('footer.license')} </Text>
+
+          {version || process.env.NEXT_PUBLIC_ENV ? (
+            <Code>{`${version || ''} ${
+              process.env.NEXT_PUBLIC_ENV || ''
+            }`}</Code>
+          ) : null}
         </Flex>
 
         <Flex direction="row" gap="lg" align="center">
