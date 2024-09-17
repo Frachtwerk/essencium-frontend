@@ -21,9 +21,9 @@
   padding: var(--mantine-spacing-sm);
   display: flex;
   flex-direction: column;
-  -webkit-transition: width 0.4s ease-in-out;
-  -o-transition: width 0.4s ease-in-out;
-  transition: width 0.4s ease-in-out;
+  -webkit-transition: width 0.3s ease-in-out;
+  -o-transition: width 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out;
 }
 
 .navBar__container:hover {
@@ -36,22 +36,25 @@
   flex-direction: column;
 }
 
+.navBar__flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 .navBar__logo {
   margin-bottom: var(--mantine-spacing-xl);
 }
 
 .navBar__pinIcon {
-  margin-left: var(--mantine-spacing-xl);
   margin-top: var(--mantine-spacing-xs);
+  margin-right: var(--mantine-spacing-sm);
   cursor: pointer;
 }
 
 .navBar__navLink--root {
   border-radius: var(--mantine-radius-sm);
-}
-
-.navBar__versionContainer {
-  margin-bottom: var(--mantine-spacing-md);
 }
 
 .navBar__navLink--label {
