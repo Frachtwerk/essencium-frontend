@@ -33,3 +33,11 @@
 .table-pagination__select {
   width: 70px;
 }
+
+.table-pagination__go-to {
+  margin-left: var(--mantine-spacing-xl);
+}
+
+.table-pagination__go-to-wrapper {
+  width: 125px;
+}

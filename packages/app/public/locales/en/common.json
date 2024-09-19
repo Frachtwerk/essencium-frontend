@@ -405,7 +405,8 @@
     },
     "footer": {
       "pageCount": "Pages:",
-      "pageSize": "Size:"
+      "pageSize": "Size:",
+      "pageGoTo": "Go to"
     }
   },
   "translationsView": {
