@@ -39,8 +39,9 @@ import classes from './TablePagination.module.css'
 type CustomPaginationProps = Omit<PaginationProps, 'total'>
 
 type Props<T> = CustomPaginationProps & {
-  table: TanstackTable<T>
+  table?: TanstackTable<T>
   pageSize: PaginatedResponse<T>['size']
+  pageCount?: PaginatedResponse<T>['totalPages']
   activePage: PaginatedResponse<T>['number']
   setPageSize: (pageSize: PaginatedResponse<T>['size']) => void
   setActivePage: (activePage: PaginatedResponse<T>['number']) => void
@@ -51,6 +52,7 @@ type Props<T> = CustomPaginationProps & {
 export function TablePagination<T>({
   table,
   pageSize,
+  pageCount,
   activePage,
   setPageSize,
   setActivePage,
@@ -65,7 +67,9 @@ export function TablePagination<T>({
   useEffect(() => {
     if (!fixedTablePageSize) return
 
-    table.setPageSize(fixedTablePageSize)
+    if (table) {
+      table.setPageSize(fixedTablePageSize)
+    }
 
     setPageSize(fixedTablePageSize)
   }, [fixedTablePageSize, setPageSize, table])
@@ -75,7 +79,7 @@ export function TablePagination<T>({
 
     if (
       enteredPageAsNumber > 0 &&
-      enteredPageAsNumber <= table.getPageCount()
+      enteredPageAsNumber <= (table ? table.getPageCount() : pageCount ?? 1)
     ) {
       setActivePage(enteredPageAsNumber)
       handleRefetch()
@@ -104,7 +108,7 @@ export function TablePagination<T>({
               className={classes['table-pagination__select']}
               size="xs"
               onChange={e => {
-                table.setPageSize(Number(e))
+                if (table) table.setPageSize(Number(e))
                 setPageSize(Number(e))
                 setActivePage(1)
                 handleRefetch()
@@ -115,7 +119,7 @@ export function TablePagination<T>({
       </Flex>
 
       <Pagination
-        total={table.getPageCount()}
+        total={table ? table.getPageCount() : pageCount ?? 1}
         value={activePage}
         onChange={e => {
           setActivePage(e)
