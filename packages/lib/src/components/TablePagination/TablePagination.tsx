@@ -38,6 +38,8 @@ type Props<T> = CustomPaginationProps & {
   setActivePage: (activePage: PaginatedResponse<T>['number']) => void
   handleRefetch: () => void
   fixedTablePageSize?: number
+  jumpToLimit?: number
+  pageSizeOptions?: string[]
 }
 
 export function TablePagination<T>({
@@ -49,6 +51,8 @@ export function TablePagination<T>({
   setActivePage,
   handleRefetch,
   fixedTablePageSize,
+  jumpToLimit = 50,
+  pageSizeOptions = ['10', '20', '30', '40', '50', '100'],
   ...props
 }: Props<T>): JSX.Element {
   const { t } = useTranslation()
