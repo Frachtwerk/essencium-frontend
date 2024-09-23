@@ -20,16 +20,7 @@
 'use client'
 
 import { PaginatedResponse } from '@frachtwerk/essencium-types'
-import {
-  ActionIcon,
-  Flex,
-  Pagination,
-  PaginationProps,
-  Select,
-  Text,
-  TextInput,
-} from '@mantine/core'
-import { IconSearch } from '@tabler/icons-react'
+import { Flex, Pagination, PaginationProps, Select, Text } from '@mantine/core'
 import { Table as TanstackTable } from '@tanstack/react-table'
 import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
@@ -74,8 +65,8 @@ export function TablePagination<T>({
     setPageSize(fixedTablePageSize)
   }, [fixedTablePageSize, setPageSize, table])
 
-  function handlePageJump(): void {
-    const enteredPageAsNumber = Number(enteredPage)
+  function handlePageJump(selectedPage: string): void {
+    const enteredPageAsNumber = Number(selectedPage)
 
     if (
       enteredPageAsNumber > 0 &&
@@ -103,14 +94,16 @@ export function TablePagination<T>({
 
             <Select
               defaultValue={String(pageSize)}
-              data={['10', '20', '30', '40', '50', '100']}
+              data={pageSizeOptions}
               aria-label={t('table.footer.pageSize') as string}
               className={classes['table-pagination__select']}
               size="xs"
               onChange={e => {
                 if (table) table.setPageSize(Number(e))
+
                 setPageSize(Number(e))
                 setActivePage(1)
+
                 handleRefetch()
               }}
             />
@@ -128,7 +121,7 @@ export function TablePagination<T>({
         {...props}
       />
 
-      <TextInput
+      <Select
         className={classes['table-pagination__go-to']}
         size="xs"
         aria-label={t('table.footer.pageGoTo') as string}
@@ -136,24 +129,19 @@ export function TablePagination<T>({
         classNames={{
           wrapper: classes['table-pagination__go-to-wrapper'],
         }}
-        onChange={e => setEnteredPage(e.currentTarget.value)}
-        value={enteredPage}
-        onKeyDown={e => {
-          if (e.key === 'Enter') {
-            handlePageJump()
-          }
+        data={Array.from(
+          { length: table ? table.getPageCount() : pageCount ?? 1 },
+          (_, i) => String(i + 1),
+        )}
+        limit={jumpToLimit}
+        onChange={value => {
+          if (!value) return
+
+          setEnteredPage(value)
+          handlePageJump(value)
         }}
-        rightSection={
-          <ActionIcon
-            variant="subtle"
-            aria-label={t('table.footer.pageGoTo') as string}
-            size="md"
-            color="gray"
-            onClick={() => handlePageJump()}
-          >
-            <IconSearch style={{ width: '65%', height: '65%' }} stroke={1.25} />
-          </ActionIcon>
-        }
+        value={enteredPage}
+        searchable
       />
     </Flex>
   )
