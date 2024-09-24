@@ -277,20 +277,10 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
             links={NAV_LINKS}
             userRights={userRights}
             handleLogout={handleLogout}
-            version={version}
             foldedNav={isFoldedNav}
             setFoldedNav={setIsFoldedNav}
             fixedNav={isFixedNav}
             setFixedNav={setIsFixedNav}
-            logo={
-              <Image
-                src="/img/web/logotype_400x100px.svg"
-                alt={t('header.logo')}
-                width={150}
-                height={50}
-                style={{ verticalAlign: 'initial' }}
-              />
-            }
             icon={
               <Image
                 src="/img/web/emblem_400x400px.svg"
@@ -301,7 +291,7 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
             }
           />
 
-          <Footer links={FOOTER_LINKS}>
+          <Footer links={FOOTER_LINKS} version={version}>
             {user ? (
               <FeedbackWidget
                 currentUser={user}

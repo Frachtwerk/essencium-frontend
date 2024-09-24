@@ -25,8 +25,7 @@ import {
   AppShellNavbarProps,
   AppShellSection,
   Box,
-  Code,
-  Group,
+  Flex,
   NavLink as MantineNavLink,
   useMantineColorScheme,
   useMantineTheme,
@@ -46,7 +45,6 @@ type Props = AppShellNavbarProps & {
   handleLogout: () => void
   logo?: JSX.Element
   icon?: JSX.Element
-  version?: string
   foldedNav: boolean
   setFoldedNav: Dispatch<SetStateAction<boolean>>
   fixedNav: boolean
@@ -59,7 +57,6 @@ export function NavBar({
   userRights,
   logo,
   icon,
-  version,
   handleLogout,
   foldedNav,
   setFoldedNav,
@@ -76,18 +73,12 @@ export function NavBar({
     string | number | NodeJS.Timeout | undefined
   >(undefined)
 
-  function handleMouseEnter(): void {
+  function handleMouse(isEnter: boolean): void {
     const timeoutId = setTimeout(() => {
-      setFoldedNav(false)
-    }, 350)
+      setFoldedNav(!isEnter)
+    }, 50)
 
     setCurrentTimeOutId(timeoutId)
-  }
-
-  function handleMouseLeave(): void {
-    setFoldedNav(true)
-
-    clearTimeout(currentTimeOutId)
   }
 
   useEffect(() => {
@@ -96,22 +87,16 @@ export function NavBar({
     }
   }, [currentTimeOutId])
 
-  const Logo = logo ? <Box>{logo}</Box> : null
-
-  const Icon = icon ? (
-    <Box className={classes['navBar__logo']}>{icon}</Box>
-  ) : null
-
   return (
     <AppShellNavbar
       onMouseEnter={() => {
         if (!fixedNav && !isMobile) {
-          handleMouseEnter()
+          handleMouse(true)
         }
       }}
       onMouseLeave={() => {
         if (!fixedNav && !isMobile) {
-          handleMouseLeave()
+          handleMouse(false)
         }
       }}
       zIndex={100}
@@ -122,9 +107,13 @@ export function NavBar({
           : classes['navBar__container']
       } ${props.className ? props.className : ''}`}
     >
-      <AppShellSection className={classes['navBar__versionContainer']}>
-        <Group gap="xs" align="center">
-          <NextLink href="/">{foldedNav || isMobile ? Icon : Logo}</NextLink>
+      <AppShellSection>
+        <Flex gap="xs" className={classes['navBar__flex']}>
+          <NextLink href="/">
+            <Box className={classes['navBar__logo']}>
+              {!logo || foldedNav || isMobile ? icon : logo}
+            </Box>
+          </NextLink>
 
           {!foldedNav && !isMobile ? (
             <Box
@@ -153,13 +142,7 @@ export function NavBar({
               )}
             </Box>
           ) : null}
-
-          {version ? <Code>{version}</Code> : null}
-
-          {process.env.NEXT_PUBLIC_ENV && !foldedNav && !isMobile ? (
-            <Code>{process.env.NEXT_PUBLIC_ENV}</Code>
-          ) : null}
-        </Group>
+        </Flex>
       </AppShellSection>
 
       <AppShellSection grow>
