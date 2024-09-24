@@ -23,41 +23,63 @@ import { PaginatedResponse } from '@frachtwerk/essencium-types'
 import { Flex, Pagination, PaginationProps, Select, Text } from '@mantine/core'
 import { Table as TanstackTable } from '@tanstack/react-table'
 import { useTranslation } from 'next-i18next'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 import classes from './TablePagination.module.css'
 
 type CustomPaginationProps = Omit<PaginationProps, 'total'>
 
 type Props<T> = CustomPaginationProps & {
-  table: TanstackTable<T>
+  table?: TanstackTable<T>
   pageSize: PaginatedResponse<T>['size']
+  pageCount?: PaginatedResponse<T>['totalPages']
   activePage: PaginatedResponse<T>['number']
   setPageSize: (pageSize: PaginatedResponse<T>['size']) => void
   setActivePage: (activePage: PaginatedResponse<T>['number']) => void
   handleRefetch: () => void
   fixedTablePageSize?: number
+  jumpToLimit?: number
+  pageSizeOptions?: string[]
 }
 
 export function TablePagination<T>({
   table,
   pageSize,
+  pageCount,
   activePage,
   setPageSize,
   setActivePage,
   handleRefetch,
   fixedTablePageSize,
+  jumpToLimit = 50,
+  pageSizeOptions = ['10', '20', '30', '40', '50', '100'],
   ...props
 }: Props<T>): JSX.Element {
   const { t } = useTranslation()
 
+  const [enteredPage, setEnteredPage] = useState('')
+
   useEffect(() => {
     if (!fixedTablePageSize) return
 
-    table.setPageSize(fixedTablePageSize)
+    if (table) {
+      table.setPageSize(fixedTablePageSize)
+    }
 
     setPageSize(fixedTablePageSize)
   }, [fixedTablePageSize, setPageSize, table])
+
+  function handlePageJump(selectedPage: string): void {
+    const enteredPageAsNumber = Number(selectedPage)
+
+    if (
+      enteredPageAsNumber > 0 &&
+      enteredPageAsNumber <= (table ? table.getPageCount() : pageCount ?? 1)
+    ) {
+      setActivePage(enteredPageAsNumber)
+      handleRefetch()
+    }
+  }
 
   return (
     <Flex
@@ -76,13 +98,16 @@ export function TablePagination<T>({
 
             <Select
               defaultValue={String(pageSize)}
-              data={['10', '20', '30', '40', '50', '100']}
+              data={pageSizeOptions}
               aria-label={t('table.footer.pageSize') as string}
               className={classes['table-pagination__select']}
+              size="xs"
               onChange={e => {
-                table.setPageSize(Number(e))
+                if (table) table.setPageSize(Number(e))
+
                 setPageSize(Number(e))
                 setActivePage(1)
+
                 handleRefetch()
               }}
             />
@@ -91,13 +116,36 @@ export function TablePagination<T>({
       </Flex>
 
       <Pagination
-        total={table.getPageCount()}
+        total={table ? table.getPageCount() : pageCount ?? 1}
         value={activePage}
         onChange={e => {
           setActivePage(e)
           handleRefetch()
         }}
         {...props}
+      />
+
+      <Select
+        className={classes['table-pagination__go-to']}
+        size="xs"
+        aria-label={t('table.footer.pageGoTo') as string}
+        placeholder={t('table.footer.pageGoTo') as string}
+        classNames={{
+          wrapper: classes['table-pagination__go-to-wrapper'],
+        }}
+        data={Array.from(
+          { length: table ? table.getPageCount() : pageCount ?? 1 },
+          (_, i) => String(i + 1),
+        )}
+        limit={jumpToLimit}
+        onChange={value => {
+          if (!value) return
+
+          setEnteredPage(value)
+          handlePageJump(value)
+        }}
+        value={enteredPage}
+        searchable
       />
     </Flex>
   )
