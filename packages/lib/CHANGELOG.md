@@ -1,5 +1,20 @@
 # Changelog
 
+## [7.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.3.0...essencium-lib-v7.4.0) (2024-09-24)
+
+
+### Features
+
+* add ability to jump to a specific page ([59ea847](https://github.com/Frachtwerk/essencium-frontend/commit/59ea8478d2d50479b172979ce0e0e3b71f864747))
+* allow custom page size options and jump to render limit ([2c80807](https://github.com/Frachtwerk/essencium-frontend/commit/2c80807e677d4b18abd9847d74fa94eb526712ce))
+* migrate to app router ([60f9af5](https://github.com/Frachtwerk/essencium-frontend/commit/60f9af5e6f0e56c597b8a06a5e588138f1f2600f))
+* support usage of beside tanstack table ([4b0cc7f](https://github.com/Frachtwerk/essencium-frontend/commit/4b0cc7f2059c8977d1f240ac01f7830c5f923500))
+
+
+### Bug Fixes
+
+* fix menu items occasionally jumping, replace text logo in navbar with icon ([04a66fd](https://github.com/Frachtwerk/essencium-frontend/commit/04a66fda13f5c06db77166e0c8be09a6eaa34fe4))
+
 ## [7.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.2.3...essencium-lib-v7.3.0) (2024-08-06)
 
 
