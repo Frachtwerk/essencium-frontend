@@ -1,6 +1,28 @@
 # Migrations
 
-## 7.4.0
+## [7.4.0 (24.09.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.3.0...essencium-app-v7.4.0)
+
+- migration to app router
+
+### `src/pages/_app.tsx`
+
+- indicate selected color theme in dropdown and icon
+
+### `src/pages/login/index.tsx`
+
+- make login form responsive
+
+### `src/app/[locale]/(main)/users/UsersView.tsx`
+
+- refactor filter functionality for table views
+
+### `public/locales/(de|en)/common.json`
+
+- add ability to jump to a specific page
+
+### `src/components/layouts/AuthLayout.tsx`
+
+- move version number and environment info from the navbar to the footer
 
 ### `src/pages/users/[id].tsx`
 

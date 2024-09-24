@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.3.0...essencium-app-v7.4.0) (2024-09-24)
+
+
+### Features
+
+* add ability to jump to a specific page ([59ea847](https://github.com/Frachtwerk/essencium-frontend/commit/59ea8478d2d50479b172979ce0e0e3b71f864747))
+* migrate to app router ([60f9af5](https://github.com/Frachtwerk/essencium-frontend/commit/60f9af5e6f0e56c597b8a06a5e588138f1f2600f))
+
 ## [7.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.2.0...essencium-app-v7.3.0) (2024-08-06)
 
 

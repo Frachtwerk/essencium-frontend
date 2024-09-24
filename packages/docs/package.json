@@ -1,6 +1,6 @@
 {
   "name": "@frachtwerk/essencium-docs",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "description": "Essencium Frontend Docs",
   "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/main/README.md",
   "bugs": {
@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "clsx": "2.1.0",
-    "next": "14.2.2",
+    "next": "14.2.10",
     "nextra": "2.13.3",
     "nextra-theme-docs": "2.13.3",
     "react": "18.2.0",

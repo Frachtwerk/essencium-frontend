@@ -46,8 +46,8 @@ importers:
         specifier: 7.13.0
         version: 7.13.0(eslint@8.56.0)(typescript@4.9.5)
       axios:
-        specifier: 1.6.8
-        version: 1.6.8
+        specifier: 1.7.4
+        version: 1.7.4
       eslint:
         specifier: 8.56.0
         version: 8.56.0
@@ -169,8 +169,8 @@ importers:
         specifier: 18.0.11
         version: 18.0.11
       axios:
-        specifier: 1.6.8
-        version: 1.6.8
+        specifier: 1.7.4
+        version: 1.7.4
       dayjs:
         specifier: 1.11.7
         version: 1.11.7
@@ -187,8 +187,8 @@ importers:
         specifier: 2.0.3
         version: 2.0.3(react@18.2.0)
       next:
-        specifier: 14.2.2
-        version: 14.2.2(@babel/core@7.24.0)(@playwright/test@1.45.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 14.2.10
+        version: 14.2.10(@babel/core@7.24.0)(@playwright/test@1.45.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       next-i18n-router:
         specifier: 5.5.1
         version: 5.5.1
@@ -237,7 +237,7 @@ importers:
         version: 7.8.0(eslint@8.56.0)(typescript@4.9.5)
       '@vitejs/plugin-react':
         specifier: 4.2.1
-        version: 4.2.1(vite@5.0.13(@types/node@20.11.30)(sugarss@4.0.1(postcss@8.4.41))(terser@5.31.1))
+        version: 4.2.1(vite@5.1.8(@types/node@20.11.30)(sugarss@4.0.1(postcss@8.4.41))(terser@5.31.1))
       eslint:
         specifier: 8.56.0
         version: 8.56.0
@@ -275,8 +275,8 @@ importers:
         specifier: 3.0.3
         version: 3.0.3
       vite:
-        specifier: 5.0.13
-        version: 5.0.13(@types/node@20.11.30)(sugarss@4.0.1(postcss@8.4.41))(terser@5.31.1)
+        specifier: 5.1.8
+        version: 5.1.8(@types/node@20.11.30)(sugarss@4.0.1(postcss@8.4.41))(terser@5.31.1)
       vitest:
         specifier: 1.5.3
         version: 1.5.3(@types/node@20.11.30)(happy-dom@8.9.0)(sugarss@4.0.1(postcss@8.4.41))(terser@5.31.1)
@@ -287,14 +287,14 @@ importers:
         specifier: 2.1.0
         version: 2.1.0
       next:
-        specifier: 14.2.2
-        version: 14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 14.2.10
+        version: 14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       nextra:
         specifier: 2.13.3
-        version: 2.13.3(next@14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 2.13.3(next@14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       nextra-theme-docs:
         specifier: 2.13.3
-        version: 2.13.3(next@14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(nextra@2.13.3(next@14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 2.13.3(next@14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(nextra@2.13.3(next@14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -452,16 +452,16 @@ importers:
         version: 7.5.2(@mantine/core@7.5.2(@mantine/hooks@7.5.2(react@18.2.0))(@types/react@18.0.28)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@mantine/hooks@7.5.2(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@rollup/plugin-commonjs':
         specifier: 24.0.1
-        version: 24.0.1(rollup@3.18.0)
+        version: 24.0.1(rollup@3.29.4)
       '@rollup/plugin-node-resolve':
         specifier: 15.0.1
-        version: 15.0.1(rollup@3.18.0)
+        version: 15.0.1(rollup@3.29.4)
       '@rollup/plugin-terser':
         specifier: 0.4.0
-        version: 0.4.0(rollup@3.18.0)
+        version: 0.4.0(rollup@3.29.4)
       '@rollup/plugin-typescript':
         specifier: 11.0.0
-        version: 11.0.0(rollup@3.18.0)(tslib@2.5.0)(typescript@4.9.5)
+        version: 11.0.0(rollup@3.29.4)(tslib@2.5.0)(typescript@4.9.5)
       '@tabler/icons-react':
         specifier: 2.11.0
         version: 2.11.0(react@18.2.0)
@@ -488,10 +488,10 @@ importers:
         version: 7.8.0(eslint@8.56.0)(typescript@4.9.5)
       '@vitejs/plugin-react':
         specifier: 4.2.1
-        version: 4.2.1(vite@5.0.13(@types/node@20.14.14)(sugarss@4.0.1(postcss@8.4.34))(terser@5.31.1))
+        version: 4.2.1(vite@5.1.8(@types/node@20.14.14)(sugarss@4.0.1(postcss@8.4.34))(terser@5.31.1))
       axios:
-        specifier: 1.6.8
-        version: 1.6.8
+        specifier: 1.7.4
+        version: 1.7.4
       dayjs:
         specifier: 1.11.7
         version: 1.11.7
@@ -538,14 +538,14 @@ importers:
         specifier: 2.0.3
         version: 2.0.3(react@18.2.0)
       next:
-        specifier: 14.2.2
-        version: 14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 14.2.10
+        version: 14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       next-i18next:
         specifier: 15.3.0
-        version: 15.3.0(i18next@23.11.2)(next@14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-i18next@14.1.1(i18next@23.11.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
+        version: 15.3.0(i18next@23.11.2)(next@14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-i18next@14.1.1(i18next@23.11.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
       next-router-mock:
         specifier: 0.9.12
-        version: 0.9.12(next@14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
+        version: 0.9.12(next@14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
       postcss:
         specifier: 8.4.34
         version: 8.4.34
@@ -574,14 +574,14 @@ importers:
         specifier: 4.4.0
         version: 4.4.0
       rollup:
-        specifier: 3.18.0
-        version: 3.18.0
+        specifier: 3.29.4
+        version: 3.29.4
       rollup-plugin-dts:
         specifier: 5.2.0
-        version: 5.2.0(rollup@3.18.0)(typescript@4.9.5)
+        version: 5.2.0(rollup@3.29.4)(typescript@4.9.5)
       rollup-plugin-peer-deps-external:
         specifier: 2.2.4
-        version: 2.2.4(rollup@3.18.0)
+        version: 2.2.4(rollup@3.29.4)
       rollup-plugin-postcss:
         specifier: 4.0.2
         version: 4.0.2(postcss@8.4.34)(ts-node@10.9.1(@types/node@20.14.14)(typescript@4.9.5))
@@ -592,8 +592,8 @@ importers:
         specifier: 4.9.5
         version: 4.9.5
       vite:
-        specifier: 5.0.13
-        version: 5.0.13(@types/node@20.14.14)(sugarss@4.0.1(postcss@8.4.34))(terser@5.31.1)
+        specifier: 5.1.8
+        version: 5.1.8(@types/node@20.14.14)(sugarss@4.0.1(postcss@8.4.34))(terser@5.31.1)
       vitest:
         specifier: 1.5.3
         version: 1.5.3(@types/node@20.14.14)(happy-dom@8.9.0)(sugarss@4.0.1(postcss@8.4.34))(terser@5.31.1)
@@ -617,16 +617,16 @@ importers:
         version: link:../prettier-config
       '@rollup/plugin-commonjs':
         specifier: 24.0.1
-        version: 24.0.1(rollup@3.18.0)
+        version: 24.0.1(rollup@3.29.4)
       '@rollup/plugin-node-resolve':
         specifier: 15.0.1
-        version: 15.0.1(rollup@3.18.0)
+        version: 15.0.1(rollup@3.29.4)
       '@rollup/plugin-terser':
         specifier: 0.4.0
-        version: 0.4.0(rollup@3.18.0)
+        version: 0.4.0(rollup@3.29.4)
       '@rollup/plugin-typescript':
         specifier: 11.0.0
-        version: 11.0.0(rollup@3.18.0)(tslib@2.5.0)(typescript@4.9.5)
+        version: 11.0.0(rollup@3.29.4)(tslib@2.5.0)(typescript@4.9.5)
       '@types/react':
         specifier: 18.0.28
         version: 18.0.28
@@ -670,14 +670,14 @@ importers:
         specifier: 3.0.3
         version: 3.0.3
       rollup:
-        specifier: 3.18.0
-        version: 3.18.0
+        specifier: 3.29.4
+        version: 3.29.4
       rollup-plugin-dts:
         specifier: 5.1.1
-        version: 5.1.1(rollup@3.18.0)(typescript@4.9.5)
+        version: 5.1.1(rollup@3.29.4)(typescript@4.9.5)
       rollup-plugin-peer-deps-external:
         specifier: 2.2.4
-        version: 2.2.4(rollup@3.18.0)
+        version: 2.2.4(rollup@3.29.4)
       tslib:
         specifier: 2.5.0
         version: 2.5.0
@@ -1875,59 +1875,59 @@ packages:
     resolution: {integrity: sha512-C5wRPw9waqL2jk3jEDeJv+f7ScuO3N0a39HVdyFLkwKxHH4Sya4ZbzZsu2JLi6eEqe7RuHipHL6mC7B2OfYZZw==}
     engines: {node: '>= 10'}
 
-  '@next/env@14.2.2':
-    resolution: {integrity: sha512-sk72qRfM1Q90XZWYRoJKu/UWlTgihrASiYw/scb15u+tyzcze3bOuJ/UV6TBOQEeUaxOkRqGeuGUdiiuxc5oqw==}
+  '@next/env@14.2.10':
+    resolution: {integrity: sha512-dZIu93Bf5LUtluBXIv4woQw2cZVZ2DJTjax5/5DOs3lzEOeKLy7GxRSr4caK9/SCPdaW6bCgpye6+n4Dh9oJPw==}
 
-  '@next/swc-darwin-arm64@14.2.2':
-    resolution: {integrity: sha512-3iPgMhzbalizGwHNFUcGnDhFPSgVBHQ8aqSTAMxB5BvJG0oYrDf1WOJZlbXBgunOEj/8KMVbejEur/FpvFsgFQ==}
+  '@next/swc-darwin-arm64@14.2.10':
+    resolution: {integrity: sha512-V3z10NV+cvMAfxQUMhKgfQnPbjw+Ew3cnr64b0lr8MDiBJs3eLnM6RpGC46nhfMZsiXgQngCJKWGTC/yDcgrDQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
 
-  '@next/swc-darwin-x64@14.2.2':
-    resolution: {integrity: sha512-x7Afi/jt0ZBRUZHTi49yyej4o8znfIMHO4RvThuoc0P+uli8Jd99y5GKjxoYunPKsXL09xBXEM1+OQy2xEL0Ag==}
+  '@next/swc-darwin-x64@14.2.10':
+    resolution: {integrity: sha512-Y0TC+FXbFUQ2MQgimJ/7Ina2mXIKhE7F+GUe1SgnzRmwFY3hX2z8nyVCxE82I2RicspdkZnSWMn4oTjIKz4uzA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
 
-  '@next/swc-linux-arm64-gnu@14.2.2':
-    resolution: {integrity: sha512-zbfPtkk7L41ODMJwSp5VbmPozPmMMQrzAc0HAUomVeVIIwlDGs/UCqLJvLNDt4jpWgc21SjjyIn762lNGrMaUA==}
+  '@next/swc-linux-arm64-gnu@14.2.10':
+    resolution: {integrity: sha512-ZfQ7yOy5zyskSj9rFpa0Yd7gkrBnJTkYVSya95hX3zeBG9E55Z6OTNPn1j2BTFWvOVVj65C3T+qsjOyVI9DQpA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-arm64-musl@14.2.2':
-    resolution: {integrity: sha512-wPbS3pI/JU16rm3XdLvvTmlsmm1nd+sBa2ohXgBZcShX4TgOjD4R+RqHKlI1cjo/jDZKXt6OxmcU0Iys0OC/yg==}
+  '@next/swc-linux-arm64-musl@14.2.10':
+    resolution: {integrity: sha512-n2i5o3y2jpBfXFRxDREr342BGIQCJbdAUi/K4q6Env3aSx8erM9VuKXHw5KNROK9ejFSPf0LhoSkU/ZiNdacpQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-x64-gnu@14.2.2':
-    resolution: {integrity: sha512-NqWOHqqq8iC9tuHvZxjQ2tX+jWy2X9y8NX2mcB4sj2bIccuCxbIZrU/ThFPZZPauygajZuVQ6zediejQHwZHwQ==}
+  '@next/swc-linux-x64-gnu@14.2.10':
+    resolution: {integrity: sha512-GXvajAWh2woTT0GKEDlkVhFNxhJS/XdDmrVHrPOA83pLzlGPQnixqxD8u3bBB9oATBKB//5e4vpACnx5Vaxdqg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-linux-x64-musl@14.2.2':
-    resolution: {integrity: sha512-lGepHhwb9sGhCcU7999+iK1ZZT+6rrIoVg40MP7DZski9GIZP80wORSbt5kJzh9v2x2ev2lxC6VgwMQT0PcgTA==}
+  '@next/swc-linux-x64-musl@14.2.10':
+    resolution: {integrity: sha512-opFFN5B0SnO+HTz4Wq4HaylXGFV+iHrVxd3YvREUX9K+xfc4ePbRrxqOuPOFjtSuiVouwe6uLeDtabjEIbkmDA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-win32-arm64-msvc@14.2.2':
-    resolution: {integrity: sha512-TZSh/48SfcLEQ4rD25VVn2kdIgUWmMflRX3OiyPwGNXn3NiyPqhqei/BaqCYXViIQ+6QsG9R0C8LftMqy8JPMA==}
+  '@next/swc-win32-arm64-msvc@14.2.10':
+    resolution: {integrity: sha512-9NUzZuR8WiXTvv+EiU/MXdcQ1XUvFixbLIMNQiVHuzs7ZIFrJDLJDaOF1KaqttoTujpcxljM/RNAOmw1GhPPQQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
 
-  '@next/swc-win32-ia32-msvc@14.2.2':
-    resolution: {integrity: sha512-M0tBVNMEBJN2ZNQWlcekMn6pvLria7Sa2Fai5znm7CCJz4pP3lrvlSxhKdkCerk0D9E0bqx5yAo3o2Q7RrD4gA==}
+  '@next/swc-win32-ia32-msvc@14.2.10':
+    resolution: {integrity: sha512-fr3aEbSd1GeW3YUMBkWAu4hcdjZ6g4NBl1uku4gAn661tcxd1bHs1THWYzdsbTRLcCKLjrDZlNp6j2HTfrw+Bg==}
     engines: {node: '>= 10'}
     cpu: [ia32]
     os: [win32]
 
-  '@next/swc-win32-x64-msvc@14.2.2':
-    resolution: {integrity: sha512-a/20E/wtTJZ3Ykv3f/8F0l7TtgQa2LWHU2oNB9bsu0VjqGuGGHmm/q6waoUNQYTVPYrrlxxaHjJcDV6aiSTt/w==}
+  '@next/swc-win32-x64-msvc@14.2.10':
+    resolution: {integrity: sha512-UjeVoRGKNL2zfbcQ6fscmgjBAS/inHBh63mjIlfPg/NG8Yn2ztqylXt5qilYb6hoHIwaU2ogHknHWWmahJjgZQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -2704,8 +2704,8 @@ packages:
     resolution: {integrity: sha512-Mr2ZakwQ7XUAjp7pAwQWRhhK8mQQ6JAaNWSjmjxil0R8BPioMtQsTLOolGYkji1rcL++3dCqZA3zWqpT+9Ew6g==}
     engines: {node: '>=4'}
 
-  axios@1.6.8:
-    resolution: {integrity: sha512-v/ZHtJDU39mDpyBoFVkETcd/uNdxrWRrg3bKpOKzXFA6Bvqopts6ALSMU3y6ijYxbw2B+wPrIv46egTzJXCLGQ==}
+  axios@1.7.4:
+    resolution: {integrity: sha512-DukmaFRnY6AzAALSH4J2M3k6PkaC+MfaAGdEERRWcC9q3/TWQwLpHR8ZRLKTdQ3aBDL64EdluRDjJqKw+BPZEw==}
 
   axobject-query@3.2.4:
     resolution: {integrity: sha512-aPTElBrbifBU1krmZxGZOlBkslORe7Ll7+BDnI50Wy4LgOt69luMgevkDfTq1O/ZgprooPCtWpjCwKSZw/iZ4A==}
@@ -4917,8 +4917,8 @@ packages:
       react: '*'
       react-dom: '*'
 
-  next@14.2.2:
-    resolution: {integrity: sha512-oGwUaa2bCs47FbuxWMpOoXtBMPYpvTPgdZr3UAo+pu7Ns00z9otmYpoeV1HEiYL06AlRQQIA/ypK526KjJfaxg==}
+  next@14.2.10:
+    resolution: {integrity: sha512-sDDExXnh33cY3RkS9JuFEKaS4HmlWmDKP1VJioucCG6z5KuA008DPsDZOzi8UfqEk3Ii+2NCQSJrfbEWtZZfww==}
     engines: {node: '>=18.17.0'}
     hasBin: true
     peerDependencies:
@@ -5783,8 +5783,8 @@ packages:
   rollup-pluginutils@2.8.2:
     resolution: {integrity: sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==}
 
-  rollup@3.18.0:
-    resolution: {integrity: sha512-J8C6VfEBjkvYPESMQYxKHxNOh4A5a3FlP+0BETGo34HEcE4eTlgCrO2+eWzlu2a/sHs2QUkZco+wscH7jhhgWg==}
+  rollup@3.29.4:
+    resolution: {integrity: sha512-oWzmBZwvYrU0iJHtDmhsm662rC15FRXmcjCk1xD771dFDx5jJ02ufAQQTn0etB2emNk4J9EZg/yWKpsn9BWGRw==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
 
@@ -6447,8 +6447,8 @@ packages:
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
 
-  vite@5.0.13:
-    resolution: {integrity: sha512-/9ovhv2M2dGTuA+dY93B9trfyWMDRQw2jdVBhHNP6wr0oF34wG2i/N55801iZIpgUpnHDm4F/FabGQLyc+eOgg==}
+  vite@5.1.8:
+    resolution: {integrity: sha512-mB8ToUuSmzODSpENgvpFk2fTiU/YQ1tmcVJJ4WZbq4fPdGJkFNVcmVL5k7iDug6xzWjjuGDKAuSievIsD6H7Xw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -8038,33 +8038,33 @@ snapshots:
       '@napi-rs/simple-git-win32-arm64-msvc': 0.1.16
       '@napi-rs/simple-git-win32-x64-msvc': 0.1.16
 
-  '@next/env@14.2.2': {}
+  '@next/env@14.2.10': {}
 
-  '@next/swc-darwin-arm64@14.2.2':
+  '@next/swc-darwin-arm64@14.2.10':
     optional: true
 
-  '@next/swc-darwin-x64@14.2.2':
+  '@next/swc-darwin-x64@14.2.10':
     optional: true
 
-  '@next/swc-linux-arm64-gnu@14.2.2':
+  '@next/swc-linux-arm64-gnu@14.2.10':
     optional: true
 
-  '@next/swc-linux-arm64-musl@14.2.2':
+  '@next/swc-linux-arm64-musl@14.2.10':
     optional: true
 
-  '@next/swc-linux-x64-gnu@14.2.2':
+  '@next/swc-linux-x64-gnu@14.2.10':
     optional: true
 
-  '@next/swc-linux-x64-musl@14.2.2':
+  '@next/swc-linux-x64-musl@14.2.10':
     optional: true
 
-  '@next/swc-win32-arm64-msvc@14.2.2':
+  '@next/swc-win32-arm64-msvc@14.2.10':
     optional: true
 
-  '@next/swc-win32-ia32-msvc@14.2.2':
+  '@next/swc-win32-ia32-msvc@14.2.10':
     optional: true
 
-  '@next/swc-win32-x64-msvc@14.2.2':
+  '@next/swc-win32-x64-msvc@14.2.10':
     optional: true
 
   '@nodelib/fs.scandir@2.1.5':
@@ -8275,52 +8275,52 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
-  '@rollup/plugin-commonjs@24.0.1(rollup@3.18.0)':
+  '@rollup/plugin-commonjs@24.0.1(rollup@3.29.4)':
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@3.18.0)
+      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
       commondir: 1.0.1
       estree-walker: 2.0.2
       glob: 8.1.0
       is-reference: 1.2.1
       magic-string: 0.27.0
     optionalDependencies:
-      rollup: 3.18.0
+      rollup: 3.29.4
 
-  '@rollup/plugin-node-resolve@15.0.1(rollup@3.18.0)':
+  '@rollup/plugin-node-resolve@15.0.1(rollup@3.29.4)':
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@3.18.0)
+      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
       '@types/resolve': 1.20.2
       deepmerge: 4.3.1
       is-builtin-module: 3.2.1
       is-module: 1.0.0
       resolve: 1.22.8
     optionalDependencies:
-      rollup: 3.18.0
+      rollup: 3.29.4
 
-  '@rollup/plugin-terser@0.4.0(rollup@3.18.0)':
+  '@rollup/plugin-terser@0.4.0(rollup@3.29.4)':
     dependencies:
       serialize-javascript: 6.0.2
       smob: 0.0.6
       terser: 5.31.1
     optionalDependencies:
-      rollup: 3.18.0
+      rollup: 3.29.4
 
-  '@rollup/plugin-typescript@11.0.0(rollup@3.18.0)(tslib@2.5.0)(typescript@4.9.5)':
+  '@rollup/plugin-typescript@11.0.0(rollup@3.29.4)(tslib@2.5.0)(typescript@4.9.5)':
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@3.18.0)
+      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
       resolve: 1.22.8
       typescript: 4.9.5
     optionalDependencies:
-      rollup: 3.18.0
+      rollup: 3.29.4
       tslib: 2.5.0
 
-  '@rollup/pluginutils@5.1.0(rollup@3.18.0)':
+  '@rollup/pluginutils@5.1.0(rollup@3.29.4)':
     dependencies:
       '@types/estree': 1.0.5
       estree-walker: 2.0.2
       picomatch: 2.3.1
     optionalDependencies:
-      rollup: 3.18.0
+      rollup: 3.29.4
 
   '@rollup/rollup-android-arm-eabi@4.20.0':
     optional: true
@@ -8841,25 +8841,25 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@vitejs/plugin-react@4.2.1(vite@5.0.13(@types/node@20.11.30)(sugarss@4.0.1(postcss@8.4.41))(terser@5.31.1))':
+  '@vitejs/plugin-react@4.2.1(vite@5.1.8(@types/node@20.11.30)(sugarss@4.0.1(postcss@8.4.41))(terser@5.31.1))':
     dependencies:
       '@babel/core': 7.24.0
       '@babel/plugin-transform-react-jsx-self': 7.24.7(@babel/core@7.24.0)
       '@babel/plugin-transform-react-jsx-source': 7.24.7(@babel/core@7.24.0)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 5.0.13(@types/node@20.11.30)(sugarss@4.0.1(postcss@8.4.41))(terser@5.31.1)
+      vite: 5.1.8(@types/node@20.11.30)(sugarss@4.0.1(postcss@8.4.41))(terser@5.31.1)
     transitivePeerDependencies:
       - supports-color
 
-  '@vitejs/plugin-react@4.2.1(vite@5.0.13(@types/node@20.14.14)(sugarss@4.0.1(postcss@8.4.34))(terser@5.31.1))':
+  '@vitejs/plugin-react@4.2.1(vite@5.1.8(@types/node@20.14.14)(sugarss@4.0.1(postcss@8.4.34))(terser@5.31.1))':
     dependencies:
       '@babel/core': 7.24.0
       '@babel/plugin-transform-react-jsx-self': 7.24.7(@babel/core@7.24.0)
       '@babel/plugin-transform-react-jsx-source': 7.24.7(@babel/core@7.24.0)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 5.0.13(@types/node@20.14.14)(sugarss@4.0.1(postcss@8.4.34))(terser@5.31.1)
+      vite: 5.1.8(@types/node@20.14.14)(sugarss@4.0.1(postcss@8.4.34))(terser@5.31.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -9058,7 +9058,7 @@ snapshots:
 
   axe-core@4.10.0: {}
 
-  axios@1.6.8:
+  axios@1.7.4:
     dependencies:
       follow-redirects: 1.15.6
       form-data: 4.0.0
@@ -11881,7 +11881,7 @@ snapshots:
       '@formatjs/intl-localematcher': 0.5.4
       negotiator: 0.6.3
 
-  next-i18next@15.3.0(i18next@23.11.2)(next@14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-i18next@14.1.1(i18next@23.11.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0):
+  next-i18next@15.3.0(i18next@23.11.2)(next@14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-i18next@14.1.1(i18next@23.11.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0):
     dependencies:
       '@babel/runtime': 7.25.0
       '@types/hoist-non-react-statics': 3.3.5
@@ -11889,7 +11889,7 @@ snapshots:
       hoist-non-react-statics: 3.3.2
       i18next: 23.11.2
       i18next-fs-backend: 2.3.2
-      next: 14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      next: 14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react: 18.2.0
       react-i18next: 14.1.1(i18next@23.11.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 
@@ -11904,26 +11904,26 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  next-router-mock@0.9.12(next@14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0):
+  next-router-mock@0.9.12(next@14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0):
     dependencies:
-      next: 14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      next: 14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react: 18.2.0
 
-  next-seo@6.5.0(next@14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  next-seo@6.5.0(next@14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
-      next: 14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-
-  next-themes@0.2.1(next@14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
-    dependencies:
-      next: 14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      next: 14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  next@14.2.2(@babel/core@7.24.0)(@playwright/test@1.45.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  next-themes@0.2.1(next@14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
-      '@next/env': 14.2.2
+      next: 14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+
+  next@14.2.10(@babel/core@7.24.0)(@playwright/test@1.45.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+    dependencies:
+      '@next/env': 14.2.10
       '@swc/helpers': 0.5.5
       busboy: 1.6.0
       caniuse-lite: 1.0.30001651
@@ -11933,23 +11933,23 @@ snapshots:
       react-dom: 18.2.0(react@18.2.0)
       styled-jsx: 5.1.1(@babel/core@7.24.0)(react@18.2.0)
     optionalDependencies:
-      '@next/swc-darwin-arm64': 14.2.2
-      '@next/swc-darwin-x64': 14.2.2
-      '@next/swc-linux-arm64-gnu': 14.2.2
-      '@next/swc-linux-arm64-musl': 14.2.2
-      '@next/swc-linux-x64-gnu': 14.2.2
-      '@next/swc-linux-x64-musl': 14.2.2
-      '@next/swc-win32-arm64-msvc': 14.2.2
-      '@next/swc-win32-ia32-msvc': 14.2.2
-      '@next/swc-win32-x64-msvc': 14.2.2
+      '@next/swc-darwin-arm64': 14.2.10
+      '@next/swc-darwin-x64': 14.2.10
+      '@next/swc-linux-arm64-gnu': 14.2.10
+      '@next/swc-linux-arm64-musl': 14.2.10
+      '@next/swc-linux-x64-gnu': 14.2.10
+      '@next/swc-linux-x64-musl': 14.2.10
+      '@next/swc-win32-arm64-msvc': 14.2.10
+      '@next/swc-win32-ia32-msvc': 14.2.10
+      '@next/swc-win32-x64-msvc': 14.2.10
       '@playwright/test': 1.45.0
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
 
-  next@14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  next@14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
-      '@next/env': 14.2.2
+      '@next/env': 14.2.10
       '@swc/helpers': 0.5.5
       busboy: 1.6.0
       caniuse-lite: 1.0.30001651
@@ -11959,21 +11959,21 @@ snapshots:
       react-dom: 18.2.0(react@18.2.0)
       styled-jsx: 5.1.1(@babel/core@7.24.0)(react@18.2.0)
     optionalDependencies:
-      '@next/swc-darwin-arm64': 14.2.2
-      '@next/swc-darwin-x64': 14.2.2
-      '@next/swc-linux-arm64-gnu': 14.2.2
-      '@next/swc-linux-arm64-musl': 14.2.2
-      '@next/swc-linux-x64-gnu': 14.2.2
-      '@next/swc-linux-x64-musl': 14.2.2
-      '@next/swc-win32-arm64-msvc': 14.2.2
-      '@next/swc-win32-ia32-msvc': 14.2.2
-      '@next/swc-win32-x64-msvc': 14.2.2
+      '@next/swc-darwin-arm64': 14.2.10
+      '@next/swc-darwin-x64': 14.2.10
+      '@next/swc-linux-arm64-gnu': 14.2.10
+      '@next/swc-linux-arm64-musl': 14.2.10
+      '@next/swc-linux-x64-gnu': 14.2.10
+      '@next/swc-linux-x64-musl': 14.2.10
+      '@next/swc-win32-arm64-msvc': 14.2.10
+      '@next/swc-win32-ia32-msvc': 14.2.10
+      '@next/swc-win32-x64-msvc': 14.2.10
       '@playwright/test': 1.46.0
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
 
-  nextra-theme-docs@2.13.3(next@14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(nextra@2.13.3(next@14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  nextra-theme-docs@2.13.3(next@14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(nextra@2.13.3(next@14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@headlessui/react': 1.7.19(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@popperjs/core': 2.11.8
@@ -11984,16 +11984,16 @@ snapshots:
       git-url-parse: 13.1.1
       intersection-observer: 0.12.2
       match-sorter: 6.3.4
-      next: 14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      next-seo: 6.5.0(next@14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      next-themes: 0.2.1(next@14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      nextra: 2.13.3(next@14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      next: 14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      next-seo: 6.5.0(next@14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      next-themes: 0.2.1(next@14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      nextra: 2.13.3(next@14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       scroll-into-view-if-needed: 3.1.0
       zod: 3.22.5
 
-  nextra@2.13.3(next@14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  nextra@2.13.3(next@14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@headlessui/react': 1.7.19(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@mdx-js/mdx': 2.3.0
@@ -12007,7 +12007,7 @@ snapshots:
       gray-matter: 4.0.3
       katex: 0.16.10
       lodash.get: 4.4.2
-      next: 14.2.2(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      next: 14.2.10(@babel/core@7.24.0)(@playwright/test@1.46.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       next-mdx-remote: 4.4.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       p-limit: 3.1.0
       react: 18.2.0
@@ -12072,7 +12072,7 @@ snapshots:
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.0-rc.46
       '@zkochan/js-yaml': 0.0.7
-      axios: 1.6.8
+      axios: 1.7.4
       chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
@@ -12934,25 +12934,25 @@ snapshots:
 
   robust-predicates@3.0.2: {}
 
-  rollup-plugin-dts@5.1.1(rollup@3.18.0)(typescript@4.9.5):
+  rollup-plugin-dts@5.1.1(rollup@3.29.4)(typescript@4.9.5):
     dependencies:
       magic-string: 0.27.0
-      rollup: 3.18.0
+      rollup: 3.29.4
       typescript: 4.9.5
     optionalDependencies:
       '@babel/code-frame': 7.24.7
 
-  rollup-plugin-dts@5.2.0(rollup@3.18.0)(typescript@4.9.5):
+  rollup-plugin-dts@5.2.0(rollup@3.29.4)(typescript@4.9.5):
     dependencies:
       magic-string: 0.29.0
-      rollup: 3.18.0
+      rollup: 3.29.4
       typescript: 4.9.5
     optionalDependencies:
       '@babel/code-frame': 7.24.7
 
-  rollup-plugin-peer-deps-external@2.2.4(rollup@3.18.0):
+  rollup-plugin-peer-deps-external@2.2.4(rollup@3.29.4):
     dependencies:
-      rollup: 3.18.0
+      rollup: 3.29.4
 
   rollup-plugin-postcss@4.0.2(postcss@8.4.34)(ts-node@10.9.1(@types/node@20.14.14)(typescript@4.9.5)):
     dependencies:
@@ -12977,7 +12977,7 @@ snapshots:
     dependencies:
       estree-walker: 0.6.1
 
-  rollup@3.18.0:
+  rollup@3.29.4:
     optionalDependencies:
       fsevents: 2.3.3
 
@@ -13723,7 +13723,7 @@ snapshots:
       debug: 4.3.6
       pathe: 1.1.2
       picocolors: 1.0.1
-      vite: 5.0.13(@types/node@20.11.30)(sugarss@4.0.1(postcss@8.4.41))(terser@5.31.1)
+      vite: 5.1.8(@types/node@20.11.30)(sugarss@4.0.1(postcss@8.4.41))(terser@5.31.1)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -13740,7 +13740,7 @@ snapshots:
       debug: 4.3.6
       pathe: 1.1.2
       picocolors: 1.0.1
-      vite: 5.0.13(@types/node@20.14.14)(sugarss@4.0.1(postcss@8.4.34))(terser@5.31.1)
+      vite: 5.1.8(@types/node@20.14.14)(sugarss@4.0.1(postcss@8.4.34))(terser@5.31.1)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -13751,10 +13751,10 @@ snapshots:
       - supports-color
       - terser
 
-  vite@5.0.13(@types/node@20.11.30)(sugarss@4.0.1(postcss@8.4.41))(terser@5.31.1):
+  vite@5.1.8(@types/node@20.11.30)(sugarss@4.0.1(postcss@8.4.41))(terser@5.31.1):
     dependencies:
       esbuild: 0.19.12
-      postcss: 8.4.34
+      postcss: 8.4.41
       rollup: 4.20.0
     optionalDependencies:
       '@types/node': 20.11.30
@@ -13762,10 +13762,10 @@ snapshots:
       sugarss: 4.0.1(postcss@8.4.41)
       terser: 5.31.1
 
-  vite@5.0.13(@types/node@20.14.14)(sugarss@4.0.1(postcss@8.4.34))(terser@5.31.1):
+  vite@5.1.8(@types/node@20.14.14)(sugarss@4.0.1(postcss@8.4.34))(terser@5.31.1):
     dependencies:
       esbuild: 0.19.12
-      postcss: 8.4.34
+      postcss: 8.4.41
       rollup: 4.20.0
     optionalDependencies:
       '@types/node': 20.14.14
@@ -13792,7 +13792,7 @@ snapshots:
       strip-literal: 2.1.0
       tinybench: 2.9.0
       tinypool: 0.8.4
-      vite: 5.0.13(@types/node@20.11.30)(sugarss@4.0.1(postcss@8.4.41))(terser@5.31.1)
+      vite: 5.1.8(@types/node@20.11.30)(sugarss@4.0.1(postcss@8.4.41))(terser@5.31.1)
       vite-node: 1.5.3(@types/node@20.11.30)(sugarss@4.0.1(postcss@8.4.41))(terser@5.31.1)
       why-is-node-running: 2.3.0
     optionalDependencies:
@@ -13826,7 +13826,7 @@ snapshots:
       strip-literal: 2.1.0
       tinybench: 2.9.0
       tinypool: 0.8.4
-      vite: 5.0.13(@types/node@20.14.14)(sugarss@4.0.1(postcss@8.4.34))(terser@5.31.1)
+      vite: 5.1.8(@types/node@20.14.14)(sugarss@4.0.1(postcss@8.4.34))(terser@5.31.1)
       vite-node: 1.5.3(@types/node@20.14.14)(sugarss@4.0.1(postcss@8.4.34))(terser@5.31.1)
       why-is-node-running: 2.3.0
     optionalDependencies:

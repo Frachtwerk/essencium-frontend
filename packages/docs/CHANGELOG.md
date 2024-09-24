@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.1.0...essencium-docs-v4.2.0) (2024-09-24)
+
+
+### Features
+
+* migrate to app router ([60f9af5](https://github.com/Frachtwerk/essencium-frontend/commit/60f9af5e6f0e56c597b8a06a5e588138f1f2600f))
+
 ## [4.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.0.0...essencium-docs-v4.1.0) (2024-08-06)
 
 
