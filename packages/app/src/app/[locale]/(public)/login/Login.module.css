@@ -18,11 +18,10 @@
  */
 
 .loginCard__container {
-  margin-top: 150px;
-
-  @media (max-width: 36em) {
-    margin-top: 80px;
-  }
+  all: unset;
+  width: 100%;
+  display: block;
+  size: 100%;
 }
 
 .loginCard {
@@ -58,4 +57,43 @@
 .loginCard__title {
   text-align: center;
   font-weight: bold;
+}
+
+.loginCard__flex {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loginBackground__flex {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: var(--mantine-spacing-md);
+
+  background: radial-gradient(
+    var(--mantine-color-blue-7),
+    var(--mantine-color-blue-9)
+  );
+}
+
+.loginBackground__flex:hover {
+  background: radial-gradient(
+    var(--mantine-color-blue-6),
+    var(--mantine-color-blue-9)
+  );
+}
+
+.loginBackground__image {
+  width: 50%;
+  vertical-align: initial;
+}
+
+.loginBackground__text {
+  color: white;
+  width: 80%;
+  font-size: var(--text-fz, var(--mantine-font-size-lg));
+  text-align: center;
+  font-weight: 450;
 }

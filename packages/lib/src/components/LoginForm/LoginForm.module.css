@@ -23,20 +23,10 @@
   }
 
   @media (min-width: 36em) {
-    width: 350px;
-  }
-
-  @media (min-width: 48em) {
     width: 400px;
   }
-
-  @media (min-width: 62em) {
-    width: 450px;
-  }
 }
 
-.login-form__input-label--email {
-}
 
 .login-form__input-label--password {
   font-weight: var(--mantine-font-weight-bold);
