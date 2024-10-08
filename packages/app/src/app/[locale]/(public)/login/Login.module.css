@@ -73,21 +73,23 @@
   gap: var(--mantine-spacing-md);
 
   background: radial-gradient(
-    var(--mantine-color-blue-7),
-    var(--mantine-color-blue-9)
-  );
-}
-
-.loginBackground__flex:hover {
-  background: radial-gradient(
     var(--mantine-color-blue-6),
     var(--mantine-color-blue-9)
   );
+  transition: background 0.5s ease-in-out;
+}
+
+.loginBackground__flex:hover .loginBackground__image {
+  animation: bounce 2s ease infinite;
+  filter: drop-shadow(0 8mm 4mm var(--mantine-color-blue-7));
 }
 
 .loginBackground__image {
-  width: 50%;
-  vertical-align: initial;
+  align-self: flex-end;
+  height: 300px;
+  margin: 0 auto;
+  transform-origin: bottom;
+  width: 300px;
 }
 
 .loginBackground__text {
@@ -96,4 +98,38 @@
   font-size: var(--text-fz, var(--mantine-font-size-lg));
   text-align: center;
   font-weight: 450;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeIn 1s forwards 1s;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(1.1, 0.9) translateY(0);
+  }
+  30% {
+    transform: scale(0.9, 1.1) translateY(-100px);
+  }
+  50% {
+    transform: scale(1.05, 0.95) translateY(0);
+  }
+  57% {
+    transform: scale(1, 1) translateY(-7px);
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
 }

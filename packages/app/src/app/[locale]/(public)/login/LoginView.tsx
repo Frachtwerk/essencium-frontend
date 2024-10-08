@@ -186,7 +186,7 @@ export default function LoginView(): JSX.Element {
               <Flex className={classes.loginBackground__flex} w="50%">
                 <Image
                   className={classes.loginBackground__image}
-                  src="/img/web/logotype_400x100px.svg"
+                  src="/img/web/logotype_weiß_400x100px.svg"
                   alt={t('header.logo')}
                 />
 
