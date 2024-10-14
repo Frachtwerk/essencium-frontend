@@ -42,6 +42,10 @@ export function NavLinks({ links, userRights }: Props): JSX.Element {
     return pathname.endsWith(link)
   }
 
+  function isSubLinkActive(sublinks: NavLink[] = []): boolean {
+    return sublinks.some(sublink => isLinkActive(sublink.to))
+  }
+
   return (
     <Stack gap="md">
       {links.map(link =>
@@ -53,7 +57,8 @@ export function NavLinks({ links, userRights }: Props): JSX.Element {
             href={link.to}
             leftSection={link.icon}
             label={t(link.label)}
-            active={isLinkActive(link.to)}
+            active={isLinkActive(link.to) || isSubLinkActive(link.navLinks)}
+            color={isLinkActive(link.to) ? undefined : 'gray'}
             classNames={{
               root: classes['nav-bar__navlink--root'],
               label: classes['nav-bar__navlink--label'],
@@ -66,7 +71,7 @@ export function NavLinks({ links, userRights }: Props): JSX.Element {
                 <MantineNavLink
                   component={NextLink}
                   key={sublink.label}
-                  href={`${link.to}${sublink.to}`}
+                  href={`${link.to === '/' ? '' : link.to}${sublink.to}`}
                   leftSection={sublink.icon}
                   label={t(sublink.label)}
                   active={isLinkActive(sublink.to)}
