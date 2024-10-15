@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v5.2.0...essencium-types-v5.3.0) (2024-10-15)
+
+
+### Features
+
+* add support for sub nav items ([c5a66f5](https://github.com/Frachtwerk/essencium-frontend/commit/c5a66f5f65d25004d8ea5961b5d6473cb47cbb7e))
+
 ## [5.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v5.1.0...essencium-types-v5.2.0) (2024-09-24)
 
 
