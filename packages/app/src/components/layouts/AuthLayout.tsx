@@ -42,7 +42,6 @@ import {
   IconUserStar,
 } from '@tabler/icons-react'
 import { useAtom, useSetAtom } from 'jotai'
-import { atomWithStorage } from 'jotai/utils'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
@@ -150,9 +149,6 @@ export const SEARCH_ITEMS: SearchItems[] = [
   ...FOOTER_LINKS,
 ]
 
-const isFixedNavAtom = atomWithStorage('isFixedNav', false)
-const isFoldedNavAtom = atomWithStorage('isFoldedNav', true)
-
 export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
   const router = useRouter()
 
@@ -160,9 +156,9 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
 
   const [mobileNavBarOpened, { toggle: toggleMobileNavBar }] = useDisclosure()
 
-  const [isFoldedNav, setIsFoldedNav] = useAtom(isFoldedNavAtom)
+  const [isFoldedNav, setIsFoldedNav] = useState(false)
 
-  const [isFixedNav, setIsFixedNav] = useAtom(isFixedNavAtom)
+  const [isFixedNav, setIsFixedNav] = useState(true)
 
   const { data: user } = useGetMe()
 

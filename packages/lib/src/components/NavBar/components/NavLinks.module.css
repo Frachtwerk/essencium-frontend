@@ -25,3 +25,7 @@
   font-size: var(--mantine-font-size-sm);
   white-space: nowrap;
 }
+
+.nav-bar__navlink--sublink {
+  margin: 8px 0;
+}

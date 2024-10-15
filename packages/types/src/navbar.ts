@@ -18,10 +18,11 @@
  */
 
 export type NavLink = {
-  icon: JSX.Element
+  icon?: JSX.Element
   label: string
   color: string
   to: string
   description?: string
   rights: (string | string[])[]
+  navLinks?: NavLink[]
 }

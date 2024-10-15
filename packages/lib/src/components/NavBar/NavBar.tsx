@@ -146,7 +146,7 @@ export function NavBar({
       </AppShellSection>
 
       <AppShellSection grow>
-        <NavLinks links={links} userRights={userRights} />
+        <NavLinks links={links} userRights={userRights} foldedNav={foldedNav} />
       </AppShellSection>
 
       <AppShellSection>

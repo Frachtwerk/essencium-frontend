@@ -31,19 +31,20 @@ import classes from './NavLinks.module.css'
 type Props = {
   links: NavLink[]
   userRights?: string[] | null
+  foldedNav: boolean
 }
 
-export function NavLinks({ links, userRights }: Props): JSX.Element {
+export function NavLinks({ links, userRights, foldedNav }: Props): JSX.Element {
   const { t } = useTranslation()
 
   const pathname = usePathname()
 
-  function isLinkActive(path: string): boolean {
-    if (path === '/') {
-      return pathname === path
-    }
+  function isLinkActive(link: string): boolean {
+    return pathname.endsWith(link)
+  }
 
-    return pathname?.startsWith(path)
+  function isSubLinkActive(sublinks: NavLink[] = []): boolean {
+    return sublinks.some(sublink => isLinkActive(sublink.to))
   }
 
   return (
@@ -57,12 +58,35 @@ export function NavLinks({ links, userRights }: Props): JSX.Element {
             href={link.to}
             leftSection={link.icon}
             label={t(link.label)}
-            active={isLinkActive(link.to)}
+            active={isLinkActive(link.to) || isSubLinkActive(link.navLinks)}
+            color={isLinkActive(link.to) ? undefined : 'gray'}
             classNames={{
               root: classes['nav-bar__navlink--root'],
               label: classes['nav-bar__navlink--label'],
             }}
-          />
+          >
+            {!foldedNav
+              ? link.navLinks?.map(sublink =>
+                  !sublink.rights.length ||
+                  (sublink.rights &&
+                    hasRequiredRights(userRights, sublink.rights)) ? (
+                    <MantineNavLink
+                      component={NextLink}
+                      key={sublink.label}
+                      href={`${link.to === '/' ? '' : link.to}${sublink.to}`}
+                      leftSection={sublink.icon}
+                      label={t(sublink.label)}
+                      active={isLinkActive(sublink.to)}
+                      className={classes['nav-bar__navlink--sublink']}
+                      classNames={{
+                        root: classes['nav-bar__navlink--root'],
+                        label: classes['nav-bar__navlink--label'],
+                      }}
+                    />
+                  ) : null,
+                )
+              : null}
+          </MantineNavLink>
         ) : null,
       )}
     </Stack>
