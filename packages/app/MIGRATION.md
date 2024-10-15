@@ -1,5 +1,11 @@
 # Migrations
 
+## [7.5.0 (15.10.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.4.0...essencium-app-v7.5.0)
+
+### `src/components/layouts/AuthLayout.tsx`
+
+- add support for sub nav items and disable local storage persistence for nav bar folded state
+
 ## [7.4.0 (24.09.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.3.0...essencium-app-v7.4.0)
 
 - migration to app router
