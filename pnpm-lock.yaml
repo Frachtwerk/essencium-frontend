@@ -452,16 +452,16 @@ importers:
         version: 7.5.2(@mantine/core@7.5.2(@mantine/hooks@7.5.2(react@18.2.0))(@types/react@18.0.28)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@mantine/hooks@7.5.2(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@rollup/plugin-commonjs':
         specifier: 24.0.1
-        version: 24.0.1(rollup@3.29.4)
+        version: 24.0.1(rollup@3.29.5)
       '@rollup/plugin-node-resolve':
         specifier: 15.0.1
-        version: 15.0.1(rollup@3.29.4)
+        version: 15.0.1(rollup@3.29.5)
       '@rollup/plugin-terser':
         specifier: 0.4.0
-        version: 0.4.0(rollup@3.29.4)
+        version: 0.4.0(rollup@3.29.5)
       '@rollup/plugin-typescript':
         specifier: 11.0.0
-        version: 11.0.0(rollup@3.29.4)(tslib@2.5.0)(typescript@4.9.5)
+        version: 11.0.0(rollup@3.29.5)(tslib@2.5.0)(typescript@4.9.5)
       '@tabler/icons-react':
         specifier: 2.11.0
         version: 2.11.0(react@18.2.0)
@@ -574,14 +574,14 @@ importers:
         specifier: 4.4.0
         version: 4.4.0
       rollup:
-        specifier: 3.29.4
-        version: 3.29.4
+        specifier: 3.29.5
+        version: 3.29.5
       rollup-plugin-dts:
         specifier: 5.2.0
-        version: 5.2.0(rollup@3.29.4)(typescript@4.9.5)
+        version: 5.2.0(rollup@3.29.5)(typescript@4.9.5)
       rollup-plugin-peer-deps-external:
         specifier: 2.2.4
-        version: 2.2.4(rollup@3.29.4)
+        version: 2.2.4(rollup@3.29.5)
       rollup-plugin-postcss:
         specifier: 4.0.2
         version: 4.0.2(postcss@8.4.34)(ts-node@10.9.1(@types/node@20.14.14)(typescript@4.9.5))
@@ -3630,6 +3630,7 @@ packages:
   eslint@8.56.0:
     resolution: {integrity: sha512-Go19xM6T9puCOWntie1/P997aXxFsOi37JIHRWI514Hc6ZnaHGKY9xFhrU65RT6CcBEzZoGG1e6Nq+DT04ZtZQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   espree@9.6.1:
@@ -5782,11 +5783,6 @@ packages:
 
   rollup-pluginutils@2.8.2:
     resolution: {integrity: sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==}
-
-  rollup@3.29.4:
-    resolution: {integrity: sha512-oWzmBZwvYrU0iJHtDmhsm662rC15FRXmcjCk1xD771dFDx5jJ02ufAQQTn0etB2emNk4J9EZg/yWKpsn9BWGRw==}
-    engines: {node: '>=14.18.0', npm: '>=8.0.0'}
-    hasBin: true
 
   rollup@3.29.5:
     resolution: {integrity: sha512-GVsDdsbJzzy4S/v3dqWPJ7EfvZJfCHiDqe80IyrF59LYuP+e6U1LJoUqeuqRbwAWoMNoXivMNeNAOf5E22VA1w==}
@@ -8280,17 +8276,6 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
-  '@rollup/plugin-commonjs@24.0.1(rollup@3.29.4)':
-    dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
-      commondir: 1.0.1
-      estree-walker: 2.0.2
-      glob: 8.1.0
-      is-reference: 1.2.1
-      magic-string: 0.27.0
-    optionalDependencies:
-      rollup: 3.29.4
-
   '@rollup/plugin-commonjs@24.0.1(rollup@3.29.5)':
     dependencies:
       '@rollup/pluginutils': 5.1.0(rollup@3.29.5)
@@ -8301,17 +8286,6 @@ snapshots:
       magic-string: 0.27.0
     optionalDependencies:
       rollup: 3.29.5
-
-  '@rollup/plugin-node-resolve@15.0.1(rollup@3.29.4)':
-    dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
-      '@types/resolve': 1.20.2
-      deepmerge: 4.3.1
-      is-builtin-module: 3.2.1
-      is-module: 1.0.0
-      resolve: 1.22.8
-    optionalDependencies:
-      rollup: 3.29.4
 
   '@rollup/plugin-node-resolve@15.0.1(rollup@3.29.5)':
     dependencies:
@@ -8324,14 +8298,6 @@ snapshots:
     optionalDependencies:
       rollup: 3.29.5
 
-  '@rollup/plugin-terser@0.4.0(rollup@3.29.4)':
-    dependencies:
-      serialize-javascript: 6.0.2
-      smob: 0.0.6
-      terser: 5.31.1
-    optionalDependencies:
-      rollup: 3.29.4
-
   '@rollup/plugin-terser@0.4.0(rollup@3.29.5)':
     dependencies:
       serialize-javascript: 6.0.2
@@ -8339,15 +8305,6 @@ snapshots:
       terser: 5.31.1
     optionalDependencies:
       rollup: 3.29.5
-
-  '@rollup/plugin-typescript@11.0.0(rollup@3.29.4)(tslib@2.5.0)(typescript@4.9.5)':
-    dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
-      resolve: 1.22.8
-      typescript: 4.9.5
-    optionalDependencies:
-      rollup: 3.29.4
-      tslib: 2.5.0
 
   '@rollup/plugin-typescript@11.0.0(rollup@3.29.5)(tslib@2.5.0)(typescript@4.9.5)':
     dependencies:
@@ -8357,14 +8314,6 @@ snapshots:
     optionalDependencies:
       rollup: 3.29.5
       tslib: 2.5.0
-
-  '@rollup/pluginutils@5.1.0(rollup@3.29.4)':
-    dependencies:
-      '@types/estree': 1.0.5
-      estree-walker: 2.0.2
-      picomatch: 2.3.1
-    optionalDependencies:
-      rollup: 3.29.4
 
   '@rollup/pluginutils@5.1.0(rollup@3.29.5)':
     dependencies:
@@ -12986,10 +12935,10 @@ snapshots:
 
   robust-predicates@3.0.2: {}
 
-  rollup-plugin-dts@5.2.0(rollup@3.29.4)(typescript@4.9.5):
+  rollup-plugin-dts@5.2.0(rollup@3.29.5)(typescript@4.9.5):
     dependencies:
       magic-string: 0.29.0
-      rollup: 3.29.4
+      rollup: 3.29.5
       typescript: 4.9.5
     optionalDependencies:
       '@babel/code-frame': 7.24.7
@@ -13001,10 +12950,6 @@ snapshots:
       typescript: 4.9.5
     optionalDependencies:
       '@babel/code-frame': 7.24.7
-
-  rollup-plugin-peer-deps-external@2.2.4(rollup@3.29.4):
-    dependencies:
-      rollup: 3.29.4
 
   rollup-plugin-peer-deps-external@2.2.4(rollup@3.29.5):
     dependencies:
@@ -13032,10 +12977,6 @@ snapshots:
   rollup-pluginutils@2.8.2:
     dependencies:
       estree-walker: 0.6.1
-
-  rollup@3.29.4:
-    optionalDependencies:
-      fsevents: 2.3.3
 
   rollup@3.29.5:
     optionalDependencies:
