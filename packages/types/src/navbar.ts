@@ -22,6 +22,7 @@ export type NavLink = {
   label: string
   color: string
   to: string
+  isExternalLink?: boolean
   description?: string
   rights: (string | string[])[]
   navLinks?: NavLink[]
