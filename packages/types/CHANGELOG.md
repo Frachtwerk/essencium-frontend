@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v5.3.0...essencium-types-v5.4.0) (2024-10-18)
+
+
+### Features
+
+* add option to implement external links ([22b1b37](https://github.com/Frachtwerk/essencium-frontend/commit/22b1b37f0dabebac0e8d8d37d77bd7962ea8705b))
+
 ## [5.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v5.2.0...essencium-types-v5.3.0) (2024-10-15)
 
 
