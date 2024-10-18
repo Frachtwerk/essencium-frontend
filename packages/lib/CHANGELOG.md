@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.6.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.5.0...essencium-lib-v7.6.0) (2024-10-18)
+
+
+### Features
+
+* add option to implement external links ([22b1b37](https://github.com/Frachtwerk/essencium-frontend/commit/22b1b37f0dabebac0e8d8d37d77bd7962ea8705b))
+
 ## [7.5.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.4.0...essencium-lib-v7.5.0) (2024-10-15)
 
 
