@@ -56,6 +56,7 @@ export function NavLinks({ links, userRights, foldedNav }: Props): JSX.Element {
             component={NextLink}
             key={link.label}
             href={link.to}
+            target={link?.isExternalLink ? '_blank' : '_self'}
             leftSection={link.icon}
             label={t(link.label)}
             active={isLinkActive(link.to) || isSubLinkActive(link.navLinks)}
@@ -75,6 +76,7 @@ export function NavLinks({ links, userRights, foldedNav }: Props): JSX.Element {
                       key={sublink.label}
                       href={`${link.to === '/' ? '' : link.to}${sublink.to}`}
                       leftSection={sublink.icon}
+                      target={sublink?.isExternalLink ? '_blank' : '_self'}
                       label={t(sublink.label)}
                       active={isLinkActive(sublink.to)}
                       className={classes['nav-bar__navlink--sublink']}
