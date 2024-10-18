@@ -141,6 +141,7 @@
   },
   "loginView": {
     "title": "Login",
+    "slogan": "Your scalable, easy-to-maintain, and adaptable boilerplate",
     "sso": {
       "or": "or"
     },

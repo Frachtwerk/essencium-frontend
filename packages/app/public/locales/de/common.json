@@ -141,6 +141,7 @@
   },
   "loginView": {
     "title": "Anmeldung",
+    "slogan": "Dein skalierbares, leicht zu wartendes und anpassungsfähiges Boilerplate",
     "sso": {
       "or": "oder"
     },
