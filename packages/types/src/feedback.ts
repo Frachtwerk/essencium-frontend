@@ -14,7 +14,7 @@ export const baseFeedbackFormSchema = z.object({
   email: z.string().email(),
   feedbackType: z.enum([OpenInput.Issue, OpenInput.Idea, OpenInput.Other]),
   message: z.string({ required_error: 'feedbackWidget.requiredError' }).min(10),
-  screenshot: z.string(),
+  screenshot: z.string().optional(),
   path: z.string(),
 })
 
