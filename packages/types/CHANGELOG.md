@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.4.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v5.4.0...essencium-types-v5.4.1) (2024-10-28)
+
+
+### Bug Fixes
+
+* set screenshot type optinal ([7e33587](https://github.com/Frachtwerk/essencium-frontend/commit/7e3358760c09e2cbd442ff38fff77bef23f3d255))
+
 ## [5.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v5.3.0...essencium-types-v5.4.0) (2024-10-18)
 
 
