@@ -46,10 +46,5 @@
   "volta": {
     "node": "20.15.0",
     "pnpm": "9.4.0"
-  },
-  "nx": {
-    "tags": [
-      "scope:eslint-config"
-    ]
   }
 }

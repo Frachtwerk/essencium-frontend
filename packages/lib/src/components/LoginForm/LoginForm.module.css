@@ -27,7 +27,6 @@
   }
 }
 
-
 .login-form__input-label--password {
   font-weight: var(--mantine-font-weight-bold);
   margin-top: var(--mantine-spacing-xs);

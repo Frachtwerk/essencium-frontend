@@ -2,6 +2,3 @@ node_modules
 dist
 .DS_Store
 .rollup.cache
-nx-cloud.env
-.nx/cache
-.nx/workspace-data

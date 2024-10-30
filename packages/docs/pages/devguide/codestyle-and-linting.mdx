@@ -110,34 +110,6 @@ optionalDependencies, peerDependencies, or bundledDependencies.
 
 Do not prefer default export.
 
-### `"@nrwl/nx/enforce-module-boundaries"`
-
-```json
-[
-  "error",
-  {
-    "allow": [],
-    "depConstraints": [
-      {
-        "sourceTag": "scope:app",
-        "onlyDependOnLibsWithTags": ["scope:app", "scope:lib", "scope:types"]
-      },
-      {
-        "sourceTag": "scope:lib",
-        "onlyDependOnLibsWithTags": ["scope:lib", "scope:types"]
-      },
-      {
-        "sourceTag": "scope:types",
-        "onlyDependOnLibsWithTags": ["scope:types"]
-      }
-    ]
-  }
-]
-```
-
-Here we set contraints which package can import other packages inside the `packages` folder. For example, it does not
-make sense to import anything from `app` in `lib` but vice versa.
-
 ### `"@typescript-eslint/explicit-function-return-type"`
 
 ```json

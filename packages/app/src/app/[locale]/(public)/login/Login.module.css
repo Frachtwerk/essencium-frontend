@@ -75,10 +75,9 @@
   background: radial-gradient(
     var(--mantine-color-blue-7),
     var(--mantine-color-dark-7)
-  ); 
+  );
   transition: background 0.5s ease-in-out;
 }
-
 
 .loginBackground__image {
   align-self: flex-end;
@@ -109,4 +108,3 @@
     transform: translateY(0);
   }
 }
-

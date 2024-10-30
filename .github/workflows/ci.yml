@@ -10,7 +10,6 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  NX_PUBLIC_CLOUD_ACCESS_TOKEN: ${{secrets.NX_PUBLIC_CLOUD_ACCESS_TOKEN}}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
@@ -37,11 +36,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Set base and head SHAs for nx
-        uses: nrwl/nx-set-shas@v3
-
       - name: Run linting
-        run: NX_PUBLIC_BRANCH=$GITHUB_HEAD_REF pnpm exec nx affected --target=lint --parallel=10
+        run: pnpm --stream -r lint
 
   # +++ COMMENTED OUT BECAUSE THIS IS A SEPARATE ISSUE: https://github.com/Frachtwerk/essencium-frontend/issues/221 +++
   # unit-tests:
@@ -67,11 +63,8 @@ jobs:
   #     - name: Install dependencies
   #       run: pnpm install --frozen-lockfile
 
-  #     - name: Set base and head SHAs for nx
-  #       uses: nrwl/nx-set-shas@v3
-
   #     - name: Run unit tests
-  #       run: NX_PUBLIC_BRANCH=$GITHUB_HEAD_REF pnpm exec nx affected --target=test:unit --parallel=10
+  #       run: pnpm --stream -r test:unit
 
   e2e-tests:
     name: E2E Tests
@@ -167,12 +160,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Set base and head SHAs for nx
-        uses: nrwl/nx-set-shas@v3
-
       - name: Build
-        if: steps.cache-dist.outputs.cache-hit != 'true'
-        run: NX_PUBLIC_BRANCH=$GITHUB_HEAD_REF pnpm exec nx build @frachtwerk/essencium-app
+        run: pnpm --filter @frachtwerk/essencium-app build
 
       - name: Upload 'lib' dist folder
         uses: actions/upload-artifact@v3
