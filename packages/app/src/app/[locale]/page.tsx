@@ -47,7 +47,7 @@ export async function generateMetadata(
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function page({ params }: Props): JSX.Element {
   return (
-    <RouteProtector>
+    <RouteProtector params={params}>
       <AuthLayout>
         <HomeView />
       </AuthLayout>
