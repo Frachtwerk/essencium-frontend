@@ -7,14 +7,17 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 
 import { userRightsAtom } from '@/api'
+import { i18nConfig } from '@/config'
 
 import { AuthLayout, NAV_LINKS } from './layouts'
 import classes from './RouteProtector.module.css'
 
 export function RouteProtector({
   children,
+  params,
 }: {
   children: React.ReactNode
+  params: { locale: string }
 }): JSX.Element | null {
   const pathname = usePathname()
 
@@ -22,7 +25,14 @@ export function RouteProtector({
 
   const { t } = useTranslation()
 
-  const route = NAV_LINKS.find(navLink => navLink.to === `${pathname}`)
+  const { locale } = params
+
+  const pathnameToFind =
+    locale === i18nConfig.defaultLocale
+      ? pathname
+      : `/${pathname.split(`/${locale}/`)[1]}`
+
+  const route = NAV_LINKS.find(navLink => navLink.to === pathnameToFind)
 
   const userRights = useAtomValue(userRightsAtom)
 

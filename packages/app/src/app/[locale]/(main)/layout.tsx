@@ -22,11 +22,12 @@ import { RouteProtector } from '@/components/RouteProtector'
 
 type Props = {
   children: React.ReactNode
+  params: { locale: string }
 }
 
-export default function MainLayout({ children }: Props): JSX.Element {
+export default function MainLayout({ children, params }: Props): JSX.Element {
   return (
-    <RouteProtector>
+    <RouteProtector params={params}>
       <AuthLayout>{children}</AuthLayout>
     </RouteProtector>
   )
