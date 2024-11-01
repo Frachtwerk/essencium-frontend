@@ -147,7 +147,7 @@ export const passwordChangeSchemaUser = passwordChangeBaseSchema
     path: ['confirmPassword'],
   })
 
-export type PasswordChangeUser = z.infer<typeof passwordChangeSchemaUser>
+export type PasswordChange = z.infer<typeof passwordChangeSchemaUser>
 
 export const passwordChangeSchemaAdmin = passwordChangeBaseSchema
   .extend({

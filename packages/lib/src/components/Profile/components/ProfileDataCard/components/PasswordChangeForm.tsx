@@ -20,10 +20,9 @@
 'use client'
 
 import {
-  PasswordChangeAdmin,
+  PasswordChange,
   passwordChangeSchemaAdmin,
   passwordChangeSchemaUser,
-  PasswordChangeUser,
   PasswordStrengthRules,
 } from '@frachtwerk/essencium-types'
 import {
@@ -45,8 +44,8 @@ import { PasswordRequirement } from './PasswordRequirement'
 
 type Props = {
   handlePasswordUpdate: (
-    oldPassword: PasswordChangeUser['password'],
-    newPassword: PasswordChangeUser['password'],
+    oldPassword: PasswordChange['password'],
+    newPassword: PasswordChange['password'],
   ) => void
   isLoading: boolean
   isAdmin: boolean
@@ -98,7 +97,7 @@ export function PasswordChangeForm({
     },
   })
 
-  function onSubmit(data: PasswordChangeUser | PasswordChangeAdmin): void {
+  function onSubmit(data: PasswordChange): void {
     handlePasswordUpdate(data.password, data.verification)
   }
 
