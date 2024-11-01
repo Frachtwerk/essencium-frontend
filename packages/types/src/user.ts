@@ -94,18 +94,69 @@ export const userUpdateSchema = userOutputSchema
 
 export type UserUpdate = z.infer<typeof userUpdateSchema>
 
-export const passwordChangeSchema = z
-  .object({
-    verification: z.string().min(8, 'validation.password.minLength'),
-    password: z.string().min(8, 'validation.password.minLength'),
-    confirmPassword: z.string().min(8, 'validation.password.minLength'),
+export const upperCaseRegex = /[A-Z]/
+export const lowerCaseRegex = /[a-z]/
+export const numberRegex = /[0-9]/
+export const specialCharacterRegex = /[!@#§$%^&*(),.?":{}|<>[\]\\';'/`~+=_-]/
+
+const passwordStrengthBaseSchema = z
+  .string()
+  .refine(
+    password =>
+      upperCaseRegex.test(password) &&
+      lowerCaseRegex.test(password) &&
+      numberRegex.test(password) &&
+      specialCharacterRegex.test(password),
+    {
+      message:
+        'profileView.dataCard.tabs.passwordChange.passwordStrength.validationError',
+    },
+  )
+
+const passwordStrengthSchemaUser = passwordStrengthBaseSchema.and(
+  z
+    .string()
+    .min(
+      12,
+      'profileView.dataCard.tabs.passwordChange.passwordStrength.validationError',
+    ),
+)
+
+const passwordStrengthSchemaAdmin = passwordStrengthBaseSchema.and(
+  z
+    .string()
+    .min(
+      20,
+      'profileView.dataCard.tabs.passwordChange.passwordStrength.validationError',
+    ),
+)
+
+const passwordChangeBaseSchema = z.object({
+  verification: z.string(),
+  confirmPassword: z.string(),
+})
+
+export const passwordChangeSchemaUser = passwordChangeBaseSchema
+  .extend({
+    password: passwordStrengthSchemaUser,
   })
   .refine(data => data.password === data.confirmPassword, {
     message: 'validation.password.confirmError',
     path: ['confirmPassword'],
   })
 
-export type PasswordChange = z.infer<typeof passwordChangeSchema>
+export type PasswordChange = z.infer<typeof passwordChangeSchemaUser>
+
+export const passwordChangeSchemaAdmin = passwordChangeBaseSchema
+  .extend({
+    password: passwordStrengthSchemaAdmin,
+  })
+  .refine(data => data.password === data.confirmPassword, {
+    message: 'validation.password.confirmError',
+    path: ['confirmPassword'],
+  })
+
+export type PasswordChangeAdmin = z.infer<typeof passwordChangeSchemaAdmin>
 
 export const loginFormSchema = z.object({
   email: z.string().email('validation.email.notValid'),

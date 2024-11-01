@@ -20,15 +20,30 @@
 'use client'
 
 import {
+  lowerCaseRegex,
+  numberRegex,
   PasswordChange,
-  passwordChangeSchema,
+  passwordChangeSchemaAdmin,
+  passwordChangeSchemaUser,
+  specialCharacterRegex,
+  upperCaseRegex,
 } from '@frachtwerk/essencium-types'
-import { Box, Button, Flex, PasswordInput, Stack, Text } from '@mantine/core'
+import {
+  Box,
+  Button,
+  Flex,
+  PasswordInput,
+  Popover,
+  Stack,
+  Text,
+} from '@mantine/core'
 import { useTranslation } from 'next-i18next'
+import { useMemo, useState } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../../../../hooks'
 import classes from './PasswordChangeForm.module.css'
+import { PasswordRequirement } from './PasswordRequirement'
 
 type Props = {
   handlePasswordUpdate: (
@@ -36,16 +51,69 @@ type Props = {
     newPassword: PasswordChange['password'],
   ) => void
   isLoading: boolean
+  isAdmin: boolean
 }
+
+type PasswordRequirementType = {
+  id: number
+  requirement: RegExp
+  label: string
+}[]
 
 export function PasswordChangeForm({
   handlePasswordUpdate,
   isLoading,
+  isAdmin,
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
+  const [popoverOpened, setPopoverOpened] = useState(false)
+
+  const [passwordValue, setPasswordValue] = useState<string | null>(null)
+
+  const passwordRequirements: PasswordRequirementType = useMemo(() => {
+    return [
+      {
+        id: 1,
+        requirement: isAdmin ? /.{20,}/ : /.{12,}/,
+        label: t(
+          'profileView.dataCard.tabs.passwordChange.passwordStrength.length',
+          { passwordLength: isAdmin ? 20 : 12 },
+        ),
+      },
+      {
+        id: 2,
+        requirement: lowerCaseRegex,
+        label: t(
+          'profileView.dataCard.tabs.passwordChange.passwordStrength.lowercase',
+        ),
+      },
+      {
+        id: 3,
+        requirement: upperCaseRegex,
+        label: t(
+          'profileView.dataCard.tabs.passwordChange.passwordStrength.uppercase',
+        ),
+      },
+      {
+        id: 4,
+        requirement: specialCharacterRegex,
+        label: t(
+          'profileView.dataCard.tabs.passwordChange.passwordStrength.special',
+        ),
+      },
+      {
+        id: 5,
+        requirement: numberRegex,
+        label: t(
+          'profileView.dataCard.tabs.passwordChange.passwordStrength.number',
+        ),
+      },
+    ]
+  }, [isAdmin, t])
+
   const { handleSubmit, control, formState } = useZodForm({
-    schema: passwordChangeSchema,
+    schema: isAdmin ? passwordChangeSchemaAdmin : passwordChangeSchemaUser,
     defaultValues: {
       verification: '',
       password: '',
@@ -88,20 +156,50 @@ export function PasswordChangeForm({
         </Stack>
 
         <Stack className={classes['password-change-form__stack']}>
-          <Controller
-            name="password"
-            control={control}
-            render={({ field }) => (
-              <PasswordInput
-                {...field}
-                label={t(
-                  'profileView.dataCard.tabs.passwordChange.content.newPassword',
-                )}
-                withAsterisk
-                variant="filled"
-              />
-            )}
-          />
+          <Popover
+            opened={popoverOpened}
+            position="bottom"
+            width="target"
+            transitionProps={{ transition: 'pop' }}
+          >
+            <Popover.Target>
+              <div
+                onFocusCapture={() => setPopoverOpened(true)}
+                onBlurCapture={() => setPopoverOpened(false)}
+              >
+                <Controller
+                  name="password"
+                  control={control}
+                  render={({ field }) => (
+                    <PasswordInput
+                      {...field}
+                      onChange={event => {
+                        field.onChange(event)
+
+                        setPasswordValue(event.target.value)
+                      }}
+                      value={field.value || ''}
+                      label={t(
+                        'profileView.dataCard.tabs.passwordChange.content.newPassword',
+                      )}
+                      withAsterisk
+                      variant="filled"
+                    />
+                  )}
+                />
+              </div>
+            </Popover.Target>
+
+            <Popover.Dropdown>
+              {passwordRequirements.map(requirement => (
+                <PasswordRequirement
+                  key={requirement.id}
+                  label={requirement.label}
+                  meets={requirement.requirement.test(passwordValue || '')}
+                />
+              ))}
+            </Popover.Dropdown>
+          </Popover>
 
           <Box className={classes['password-change-form__error-box']}>
             {formState.errors.password && (

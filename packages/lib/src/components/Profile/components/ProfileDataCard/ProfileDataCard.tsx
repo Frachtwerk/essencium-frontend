@@ -92,6 +92,7 @@ export function ProfileDataCard({
             <PasswordChangeForm
               handlePasswordUpdate={handlePasswordUpdate}
               isLoading={isUpdatingPassword}
+              isAdmin={!!user.roles.find(role => role.name === 'ADMIN')}
             />
           </Tabs.Panel>
         )}
