@@ -63,7 +63,11 @@ export function useCreateToken(): UseMutationResult<
     mutationFn: (loginCredentials: LoginCredentials) =>
       api
         .post<TokenResponse, LoginCredentials>('/token', loginCredentials, {
-          baseURL: `${window.runtimeConfig.required.API_URL}/auth`,
+          baseURL: `${
+            process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
+              ? process.env.NEXT_PUBLIC_API_URL
+              : window.runtimeConfig.required.API_URL
+          }/auth`,
         })
         .then(response => response.data),
     meta: {
@@ -173,7 +177,11 @@ export function useGetSsoApplications(): UseQueryResult<SsoApplications> {
     queryFn: () =>
       api
         .get<SsoApplications>('/oauth-registrations', {
-          baseURL: `${window.runtimeConfig.required.API_URL}/auth`,
+          baseURL: `${
+            process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
+              ? process.env.NEXT_PUBLIC_API_URL
+              : window.runtimeConfig.required.API_URL
+          }/auth`,
         })
         .then(response => response.data),
   })

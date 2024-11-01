@@ -86,14 +86,20 @@ function createApi(instance: AxiosInstance): CreateApi {
   }
 }
 
-export const api = createApi(
-  axios.create({
-    baseURL:
-      typeof window !== 'undefined'
-        ? `${window.runtimeConfig?.required.API_URL}/v1`
-        : '',
-  }),
-)
+export const api = process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
+  ? createApi(
+      axios.create({
+        baseURL: `${process.env.NEXT_PUBLIC_API_URL}/v1`,
+      }),
+    )
+  : createApi(
+      axios.create({
+        baseURL:
+          typeof window !== 'undefined'
+            ? `${window.runtimeConfig?.required.API_URL}/v1`
+            : '',
+      }),
+    )
 
 api.interceptors.request.use(
   (request: InternalAxiosRequestConfig<AxiosRequestConfig>) => {

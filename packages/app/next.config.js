@@ -3,7 +3,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    instrumentationHook: true,
+    instrumentationHook: Boolean(
+      !process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION,
+    ),
   },
   reactStrictMode: true,
   transpilePackages: [
