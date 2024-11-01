@@ -10,11 +10,10 @@ React based starter monorepo consisting of a component library, docs and a boile
 
 ### [Preview](https://staging.essencium.dev)
 
-|
-
 ### [Docs](https://docs.essencium.dev)
 
 [Report an issue](https://github.com/Frachtwerk/essencium-frontend/issues)
+
 </div>
 
 ---
@@ -47,11 +46,11 @@ Runs all existing tests with Vitest.
 
 ### `dev`
 
-Behind this command, the command `nx dev app` is executed. The Vite development server will start and the library **and** the application are ready for development. Both packages support HMR.
+Behind this command, the command `pnpm --filter @frachtwerk/essencium-app dev` is executed. The Next.js development server will start and the library **and** the application are ready for development. Both packages support HMR.
 
 ### `build`
 
-Behind this command, the command `nx build app` is executed. Due to the fact, that the Essencium library is a direct dependency of the application, it gets built firstly to make sure the application has the latest version. As a result, a `dist` folder gets created for production inside the `app` package.
+Behind this command, the command `pnpm --stream -r build` is executed. Due to the fact, that the Essencium library is a direct dependency of the application, it gets built firstly to make sure the application has the latest version. As a result, a `dist` folder gets created for production inside the `app` package.
 
 ## [Project Architecture](https://docs.essencium-frontend.vercel.app/architecture)
 

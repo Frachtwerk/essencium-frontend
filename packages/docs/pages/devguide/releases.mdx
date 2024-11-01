@@ -10,7 +10,7 @@ changelog for each package. A new Git tag is created, and the release is publish
 
 ## Manual Build
 
-A build can be created by executing the command `pnpm build`. Behind this command, [`nx`](https://nx.dev/) takes control
+A build can be created by executing the command `pnpm build`. Behind this command, `pnpm --stream -r build` takes control
 and builds all packages inside of the monorepo as well as the Next.js application which is built statically. All
 TypeScript files get transpiled to JavaScript files, and afterwards, these files get bundled with
 [Rollup](https://rollupjs.org/guide/en/) for production. A new folder `dist` or `.next` (for the `app` package) is

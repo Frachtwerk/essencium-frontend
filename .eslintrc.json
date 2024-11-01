@@ -4,40 +4,8 @@
   "parserOptions": {
     "project": ["./tsconfig.json"]
   },
-  "plugins": ["@typescript-eslint", "prettier", "@nx", "simple-import-sort"],
+  "plugins": ["@typescript-eslint", "prettier", "simple-import-sort"],
   "rules": {
-    "@nx/enforce-module-boundaries": [
-      "error",
-      {
-        "allow": [],
-        "depConstraints": [
-          {
-            "sourceTag": "scope:app",
-            "onlyDependOnLibsWithTags": [
-              "scope:app",
-              "scope:lib",
-              "scope:types"
-            ]
-          },
-          {
-            "sourceTag": "scope:lib",
-            "onlyDependOnLibsWithTags": ["scope:lib", "scope:types"]
-          },
-          {
-            "sourceTag": "scope:types",
-            "onlyDependOnLibsWithTags": []
-          },
-          {
-            "sourceTag": "scope:eslint-config",
-            "onlyDependOnLibsWithTags": []
-          },
-          {
-            "sourceTag": "scope:prettier-config",
-            "onlyDependOnLibsWithTags": []
-          }
-        ]
-      }
-    ],
     "import/no-extraneous-dependencies": [
       "error",
       {

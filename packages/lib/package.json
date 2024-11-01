@@ -67,6 +67,7 @@
     "@typescript-eslint/eslint-plugin": "7.8.0",
     "@typescript-eslint/parser": "7.8.0",
     "@vitejs/plugin-react": "4.2.1",
+    "@vitest/coverage-v8": "2.1.4",
     "axios": "1.7.4",
     "dayjs": "1.11.7",
     "eslint": "8.56.0",
@@ -102,7 +103,7 @@
     "tslib": "2.5.0",
     "typescript": "4.9.5",
     "vite": "5.1.8",
-    "vitest": "1.5.3",
+    "vitest": "2.1.4",
     "zod": "3.22.4"
   },
   "peerDependencies": {
@@ -142,10 +143,5 @@
   "volta": {
     "node": "20.15.0",
     "pnpm": "9.4.0"
-  },
-  "nx": {
-    "tags": [
-      "scope:lib"
-    ]
   }
 }
