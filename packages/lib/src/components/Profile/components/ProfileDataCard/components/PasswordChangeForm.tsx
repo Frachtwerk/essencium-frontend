@@ -20,13 +20,11 @@
 'use client'
 
 import {
-  lowerCaseRegex,
-  numberRegex,
-  PasswordChange,
+  PasswordChangeAdmin,
   passwordChangeSchemaAdmin,
   passwordChangeSchemaUser,
-  specialCharacterRegex,
-  upperCaseRegex,
+  PasswordChangeUser,
+  PasswordStrengthRules,
 } from '@frachtwerk/essencium-types'
 import {
   Box,
@@ -38,7 +36,7 @@ import {
   Text,
 } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../../../../hooks'
@@ -47,15 +45,15 @@ import { PasswordRequirement } from './PasswordRequirement'
 
 type Props = {
   handlePasswordUpdate: (
-    oldPassword: PasswordChange['password'],
-    newPassword: PasswordChange['password'],
+    oldPassword: PasswordChangeUser['password'],
+    newPassword: PasswordChangeUser['password'],
   ) => void
   isLoading: boolean
   isAdmin: boolean
 }
 
 type PasswordRequirementType = {
-  id: number
+  id: string
   requirement: RegExp
   label: string
 }[]
@@ -71,46 +69,25 @@ export function PasswordChangeForm({
 
   const [passwordValue, setPasswordValue] = useState<string | null>(null)
 
-  const passwordRequirements: PasswordRequirementType = useMemo(() => {
-    return [
-      {
-        id: 1,
-        requirement: isAdmin ? /.{20,}/ : /.{12,}/,
+  const passwordRequirements: PasswordRequirementType = [
+    ...Object.entries(PasswordStrengthRules).map(([key, value]) => {
+      return {
+        id: key,
+        requirement: value,
         label: t(
-          'profileView.dataCard.tabs.passwordChange.passwordStrength.length',
-          { passwordLength: isAdmin ? 20 : 12 },
+          `profileView.dataCard.tabs.passwordChange.passwordStrength.${key}`,
         ),
-      },
-      {
-        id: 2,
-        requirement: lowerCaseRegex,
-        label: t(
-          'profileView.dataCard.tabs.passwordChange.passwordStrength.lowercase',
-        ),
-      },
-      {
-        id: 3,
-        requirement: upperCaseRegex,
-        label: t(
-          'profileView.dataCard.tabs.passwordChange.passwordStrength.uppercase',
-        ),
-      },
-      {
-        id: 4,
-        requirement: specialCharacterRegex,
-        label: t(
-          'profileView.dataCard.tabs.passwordChange.passwordStrength.special',
-        ),
-      },
-      {
-        id: 5,
-        requirement: numberRegex,
-        label: t(
-          'profileView.dataCard.tabs.passwordChange.passwordStrength.number',
-        ),
-      },
-    ]
-  }, [isAdmin, t])
+      }
+    }),
+    {
+      id: 'length',
+      requirement: isAdmin ? /.{20,}/ : /.{12,}/,
+      label: t(
+        'profileView.dataCard.tabs.passwordChange.passwordStrength.length',
+        { passwordLength: isAdmin ? 20 : 12 },
+      ),
+    },
+  ]
 
   const { handleSubmit, control, formState } = useZodForm({
     schema: isAdmin ? passwordChangeSchemaAdmin : passwordChangeSchemaUser,
@@ -121,7 +98,7 @@ export function PasswordChangeForm({
     },
   })
 
-  function onSubmit(data: PasswordChange): void {
+  function onSubmit(data: PasswordChangeUser | PasswordChangeAdmin): void {
     handlePasswordUpdate(data.password, data.verification)
   }
 

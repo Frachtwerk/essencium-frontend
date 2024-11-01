@@ -94,19 +94,21 @@ export const userUpdateSchema = userOutputSchema
 
 export type UserUpdate = z.infer<typeof userUpdateSchema>
 
-export const upperCaseRegex = /[A-Z]/
-export const lowerCaseRegex = /[a-z]/
-export const numberRegex = /[0-9]/
-export const specialCharacterRegex = /[!@#§$%^&*(),.?":{}|<>[\]\\';'/`~+=_-]/
+export const PasswordStrengthRules = {
+  uppercase: /[A-Z]/,
+  lowercase: /[a-z]/,
+  number: /[0-9]/,
+  specialCharacter: /[!@#§$%^&*(),.?":{}|<>[\]\\';'/`~+=_-]/,
+} as const
 
 const passwordStrengthBaseSchema = z
   .string()
   .refine(
     password =>
-      upperCaseRegex.test(password) &&
-      lowerCaseRegex.test(password) &&
-      numberRegex.test(password) &&
-      specialCharacterRegex.test(password),
+      PasswordStrengthRules.uppercase.test(password) &&
+      PasswordStrengthRules.lowercase.test(password) &&
+      PasswordStrengthRules.number.test(password) &&
+      PasswordStrengthRules.specialCharacter.test(password),
     {
       message:
         'profileView.dataCard.tabs.passwordChange.passwordStrength.validationError',
@@ -145,7 +147,7 @@ export const passwordChangeSchemaUser = passwordChangeBaseSchema
     path: ['confirmPassword'],
   })
 
-export type PasswordChange = z.infer<typeof passwordChangeSchemaUser>
+export type PasswordChangeUser = z.infer<typeof passwordChangeSchemaUser>
 
 export const passwordChangeSchemaAdmin = passwordChangeBaseSchema
   .extend({

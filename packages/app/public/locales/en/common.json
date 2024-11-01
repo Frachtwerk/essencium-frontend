@@ -116,8 +116,12 @@
             "number": "At least one number",
             "lowercase": "At least one lowercase letter",
             "uppercase": "At least one uppercase letter",
-            "special": "At least one special character",
-            "length": "At least {{passwordLength}} characters"
+            "specialCharacter": "At least one special character",
+            "length": "At least {{passwordLength}} characters",
+            "requirements": {
+              "met": "Requirements met",
+              "unmet": "Requirements not met"
+            }
           }
         }
       }

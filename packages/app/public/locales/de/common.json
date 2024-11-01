@@ -116,8 +116,12 @@
             "number": "Mindestens eine Zahl",
             "lowercase": "Mindestens ein Kleinbuchstabe",
             "uppercase": "Mindestens ein Großbuchstabe",
-            "special": "Mindestens ein Sonderzeichen",
-            "length": "Mindestens {{passwordLength}} Zeichen lang"
+            "specialCharacter": "Mindestens ein Sonderzeichen",
+            "length": "Mindestens {{passwordLength}} Zeichen lang",
+            "requirements": {
+              "met": "Anforderungen erfüllt",
+              "unmet": "Anforderungen nicht erfüllt"
+            }
           }
         }
       }
