@@ -10,8 +10,6 @@ React based starter monorepo consisting of a component library, docs and a boile
 
 ### [Preview](https://staging.essencium.dev)
 
-|
-
 ### [Docs](https://docs.essencium.dev)
 
 [Report an issue](https://github.com/Frachtwerk/essencium-frontend/issues)
