@@ -2,6 +2,12 @@ import { Callout } from 'nextra-theme-docs'
 
 # Runtime Config
 
+<Callout emoji="⚠️" type="warning">
+  Unfortunately, this feature does not work on Vercel deployments since we are
+  not able to write to the file system which is required for the runtime config
+  file.
+</Callout>
+
 Essencium provides the ability to pass a runtime config to your instance beside a build config. This feature shines when having i.e. multiple
 enironments like `development`, `staging`, `production` and you want to have different configurations for each environment without the need to rebuild
 the application.
