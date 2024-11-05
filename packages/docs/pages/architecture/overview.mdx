@@ -1,0 +1,55 @@
+# Architecture Overview
+
+Essencium consists of a core library (called `lib` inside the monorepo and `@frachtwerk/essencium-lib` on npm), a types
+package (called `types` inside the monorepo and `@frachtwerk/essencium-types` on npm) and a boilerplate (`app`) that
+consumes those packages. Additonally, we have a `docs` package to document the project (this is what you're currently
+reading) and two packages for shared linting and formatting configurations (`eslint-config` and `prettier-config`). We chose a monorepo architecture for better developer experience and less complex maintainability.
+
+All components are developed inside the `lib` and imported inside the `app`. That allows us to easily update our `lib`
+package.
+
+That gives us the following architecture:
+
+```txt
+├── .github
+├── .husky
+├── .vscode
+├── packages
+│   ├── app
+│   │   ├── package.json
+│   │   └── ...
+│   └── docs
+│   │   ├── package.json
+│   │   └── ...
+│   └── lib
+│   │   ├── package.json
+│   │   └── ...
+│   └── types
+│   │   ├── package.json
+│   │   └── ...
+│   └── eslint-config
+│   │   ├── package.json
+│   │   └── ...
+│   └── prettier-config
+│   │   ├── package.json
+│   │   └── ...
+├── scripts
+│   ├── seed-db.ts
+├── .commitlintrc.json
+├── .eslintrc.json
+├── .gitignore
+├── .lintstagedrc.json
+├── .npmrc
+├── .prettierrc
+├── .release-please-manifest.json
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTION.md
+├── LICENSE.md
+├── package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── pull_request_template.md
+├── README.md
+├── release-please-config.json
+└── tsconfig.json
+```

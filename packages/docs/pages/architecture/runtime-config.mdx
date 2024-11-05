@@ -1,0 +1,35 @@
+import { Callout } from 'nextra-theme-docs'
+
+# Runtime Config
+
+<Callout emoji="⚠️" type="warning">
+  Unfortunately, this feature does not work on Vercel deployments since we are
+  not able to write to the file system which is required for the runtime config
+  file.
+</Callout>
+
+Essencium provides the ability to pass a runtime config to your instance beside a build config. This feature shines when having i.e. multiple
+enironments like `development`, `staging`, `production` and you want to have different configurations for each environment without the need to rebuild
+the application.
+
+## How it works
+
+Essencium utilises the [`instrumentation.ts`](https://nextjs.org/docs/app/building-your-application/optimizing/instrumentation#importing-runtime-specific-code) function that is invoked when starting the Next.js server. This function is responsible for
+population the `runtimeConfig.js` file based on the given environment variables inside the `.env` file. It is then read by the application at different places. You can consider it as glue between the `.env` file and the application.
+
+## Adding a new environment variable
+
+1. Adding the new environment variable to the `.env` file
+2. Adding the new environment variable to the `instrumentation.ts` file under `REPLACEMENTS` object and the corresponding scope (`required` or `optional`)
+3. Adding the new environment variable to the `runtimeConfig.ts` file under the corresponding scope (`required` or `optional`)
+
+<Callout emoji="⚠️" type="warning">
+  When adding a new environment variable inside the `required` scope, the
+  application will fail to start if the variable is not provided via the `.env`
+  file.
+</Callout>
+
+<Callout emoji="⚠️" type="warning">
+  Do not modifiy the values inside the `runtimeConfig.js` file directly. The
+  values are populated by the `instrumentation.ts` file automatically.
+</Callout>

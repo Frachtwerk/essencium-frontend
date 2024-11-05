@@ -1,55 +1,39 @@
-# Architecture
+# Development Guide
 
-Essencium consists of a core library (called `lib` inside the monorepo and `@frachtwerk/essencium-lib` on npm), a types
-package (called `types` inside the monorepo and `@frachtwerk/essencium-types` on npm) and a boilerplate (`app`) that
-consumes those packages. Additonally, we have a `docs` package to document the project (this is what you're currently
-reading) and two packages for shared linting and formatting configurations (`eslint-config` and `prettier-config`). We chose a monorepo architecture for better developer experience and less complex maintainability.
+import { Card, Cards } from 'nextra-theme-docs'
 
-All components are developed inside the `lib` and imported inside the `app`. That allows us to easily update our `lib`
-package.
+<Cards>
+  <Card
+    icon={
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75"
+        />
+      </svg>
+    }
+    title="Overview"
+    href="/architecture/overview"
+  />
 
-That gives us the following architecture:
+<Card
+  icon={
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="w-6 h-6"
+    >
+      <path
+        fillRule="evenodd"
+        d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z"
+        clipRule="evenodd"
+      />
+    </svg>
+  }
+  title="Runtime Config"
+  href="/architecture/runtime-config"
+/>
 
-```txt
-├── .github
-├── .husky
-├── .vscode
-├── packages
-│   ├── app
-│   │   ├── package.json
-│   │   └── ...
-│   └── docs
-│   │   ├── package.json
-│   │   └── ...
-│   └── lib
-│   │   ├── package.json
-│   │   └── ...
-│   └── types
-│   │   ├── package.json
-│   │   └── ...
-│   └── eslint-config
-│   │   ├── package.json
-│   │   └── ...
-│   └── prettier-config
-│   │   ├── package.json
-│   │   └── ...
-├── scripts
-│   ├── seed-db.ts
-├── .commitlintrc.json
-├── .eslintrc.json
-├── .gitignore
-├── .lintstagedrc.json
-├── .npmrc
-├── .prettierrc
-├── .release-please-manifest.json
-├── CODE_OF_CONDUCT.md
-├── CONTRIBUTION.md
-├── LICENSE.md
-├── package.json
-├── pnpm-lock.yaml
-├── pnpm-workspace.yaml
-├── pull_request_template.md
-├── README.md
-├── release-please-config.json
-└── tsconfig.json
-```
+</Cards>

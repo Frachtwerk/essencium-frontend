@@ -62,13 +62,13 @@ export function useCreateToken(): UseMutationResult<
     mutationKey: ['useCreateToken'],
     mutationFn: (loginCredentials: LoginCredentials) =>
       api
-        .post<TokenResponse, LoginCredentials>(
-          '/auth/token',
-          loginCredentials,
-          {
-            baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-          },
-        )
+        .post<TokenResponse, LoginCredentials>('/token', loginCredentials, {
+          baseURL: `${
+            process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
+              ? process.env.NEXT_PUBLIC_API_URL
+              : window.runtimeConfig.required.API_URL
+          }/auth`,
+        })
         .then(response => response.data),
     meta: {
       errorNotification: {
@@ -176,8 +176,12 @@ export function useGetSsoApplications(): UseQueryResult<SsoApplications> {
     queryKey: ['useGetSsoApplications'],
     queryFn: () =>
       api
-        .get<SsoApplications>('/auth/oauth-registrations', {
-          baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+        .get<SsoApplications>('/oauth-registrations', {
+          baseURL: `${
+            process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
+              ? process.env.NEXT_PUBLIC_API_URL
+              : window.runtimeConfig.required.API_URL
+          }/auth`,
         })
         .then(response => response.data),
   })
