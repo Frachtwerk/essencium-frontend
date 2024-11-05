@@ -47,7 +47,9 @@ export default async function RootLayout({
       <head>
         <link rel="icon" href="/img/web/favicon.ico" sizes="any" />
         <ColorSchemeScript defaultColorScheme="auto" />
+        <script src="/runtimeConfig.js" />
       </head>
+
       <body>
         <div id="notification" />
         <TranslationProvider locale={locale} resources={resources}>
