@@ -48,7 +48,7 @@ type Props = {
     newPassword: PasswordChange['password'],
   ) => void
   isLoading: boolean
-  isAdmin: boolean
+  isAdmin?: boolean
 }
 
 type PasswordRequirementType = {

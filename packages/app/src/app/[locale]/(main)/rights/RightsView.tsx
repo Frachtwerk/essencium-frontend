@@ -31,6 +31,7 @@ import {
   RightOutput,
   RIGHTS,
   RoleOutput,
+  ROLES,
   RoleUpdate,
 } from '@frachtwerk/essencium-types'
 import { Button, Checkbox, Flex, Text, Title } from '@mantine/core'
@@ -155,7 +156,7 @@ export default function RightsView(): JSX.Element {
           }
 
           if (
-            role.name === 'ADMIN' ||
+            role.name === ROLES.ADMIN ||
             role.protected ||
             !hasRequiredRights(userRights, [
               RIGHTS.ROLE_UPDATE,
