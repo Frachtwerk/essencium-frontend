@@ -298,10 +298,10 @@ export function UserForm({
             {...field}
             checked={field.value}
             value={String(field.value)}
-            color="var(--mantine-primary-color-filled)"
+            color="var(--mantine-color-primary-filled)"
             size="md"
             className={classes['userForm__enableToggle']}
-            label={t('addUpdateUserView.form.status')}
+            label={t('addUpdateUserView.form.active')}
           />
         )}
       />
