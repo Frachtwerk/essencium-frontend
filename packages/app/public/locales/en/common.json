@@ -110,6 +110,18 @@
             "newPassword": "New Password",
             "confirmNewPassword": "Confirm New Password",
             "savePassword": "Save Password"
+          },
+          "passwordStrength": {
+            "validationError": "Password does not meet the requirements",
+            "number": "At least one number",
+            "lowercase": "At least one lowercase letter",
+            "uppercase": "At least one uppercase letter",
+            "specialCharacter": "At least one special character",
+            "length": "At least {{passwordLength}} characters",
+            "requirements": {
+              "met": "Requirements met",
+              "unmet": "Requirements not met"
+            }
           }
         }
       }

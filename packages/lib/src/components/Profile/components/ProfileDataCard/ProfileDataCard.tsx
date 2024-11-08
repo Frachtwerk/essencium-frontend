@@ -19,6 +19,7 @@
 
 import {
   PasswordChange,
+  ROLES,
   UserOutput,
   UserUpdate,
 } from '@frachtwerk/essencium-types'
@@ -92,6 +93,9 @@ export function ProfileDataCard({
             <PasswordChangeForm
               handlePasswordUpdate={handlePasswordUpdate}
               isLoading={isUpdatingPassword}
+              isAdmin={Boolean(
+                user.roles.find(role => role.name === ROLES.ADMIN),
+              )}
             />
           </Tabs.Panel>
         )}
