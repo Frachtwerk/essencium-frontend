@@ -133,7 +133,7 @@ jobs:
           severity: 'CRITICAL'
 
       - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: 'trivy-results.sarif'
 
@@ -191,11 +191,8 @@ jobs:
     needs: [lint, build, security] # [lint, unit-tests, e2e-tests, build, security]
     steps:
       - name: Release Please
-        uses: google-github-actions/release-please-action@v3
+        uses: googleapis/release-please-action@v4
         id: release
-        with:
-          release-type: node
-          command: manifest
 
       - name: Checkout repo
         uses: actions/checkout@v4
