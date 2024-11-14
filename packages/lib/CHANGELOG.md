@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.6.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.6.0...essencium-lib-v7.6.1) (2024-11-14)
+
+
+### Bug Fixes
+
+* remove the ability to mark a role as uneditable or protected ([#655](https://github.com/Frachtwerk/essencium-frontend/issues/655)) ([635be3a](https://github.com/Frachtwerk/essencium-frontend/commit/635be3a912cd23c558af9c306e20240de37e16f7))
+
 ## [7.6.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.5.0...essencium-lib-v7.6.0) (2024-10-18)
 
 
