@@ -59,7 +59,11 @@ export function AddRole({
     defaultValues: formDefaults,
   })
 
-  const onSubmit = handleSubmit(createRole)
+  const onSubmit = handleSubmit((data: RoleInput) => {
+    createRole(data)
+
+    reset()
+  })
 
   return (
     <Modal

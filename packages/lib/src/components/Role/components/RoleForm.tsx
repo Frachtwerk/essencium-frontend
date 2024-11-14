@@ -28,7 +28,6 @@ import {
 import {
   Box,
   Button,
-  Checkbox,
   Chip,
   Divider,
   Flex,
@@ -163,38 +162,6 @@ export function RoleForm({
                 </Chip>
               ))}
             </Flex>
-          )}
-        />
-      </Flex>
-
-      <Divider className={classes['role-form__divider--margin-xl']} />
-
-      <Flex gap="lg" justify="start">
-        <Controller
-          name="protected"
-          control={control}
-          render={({ field }) => (
-            <Checkbox
-              value={undefined}
-              onChange={() => field.onChange(!field.value)}
-              checked={field.value}
-              label={t('rolesView.modal.protected')}
-              size="sm"
-            />
-          )}
-        />
-
-        <Controller
-          name="editable"
-          control={control}
-          render={({ field }) => (
-            <Checkbox
-              value={undefined}
-              onChange={() => field.onChange(!field.value)}
-              checked={field.value}
-              label={t('rolesView.modal.editable')}
-              size="sm"
-            />
           )}
         />
       </Flex>
