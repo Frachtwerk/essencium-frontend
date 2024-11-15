@@ -193,8 +193,11 @@ jobs:
     needs: [lint, build, security] # [lint, unit-tests, e2e-tests, build, security]
     steps:
       - name: Release Please
-        uses: googleapis/release-please-action@v4
+        uses: google-github-actions/release-please-action@v3
         id: release
+        with:
+          release-type: node
+          command: manifest
 
       - name: Checkout repo
         uses: actions/checkout@v4
