@@ -190,17 +190,11 @@ jobs:
     name: Release
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-      actions: read
     needs: [lint, build, security] # [lint, unit-tests, e2e-tests, build, security]
     steps:
       - name: Release Please
         uses: googleapis/release-please-action@v4
         id: release
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Checkout repo
         uses: actions/checkout@v4
