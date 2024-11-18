@@ -224,13 +224,13 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Download 'lib' dist folder
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: lib-dist
           path: packages/lib/dist
 
       - name: Download 'types' dist folder
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: types-dist
           path: packages/types/dist
