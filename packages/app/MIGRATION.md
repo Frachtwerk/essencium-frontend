@@ -1,5 +1,14 @@
 # Migrations
 
+## [7.7.0 (18.11.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.5.0...essencium-app-v7.7.0)
+
+- add support for runtime environment variables (See [docs](https://docs.essencium.dev/architecture/runtime-config))
+- fix pathname in route protector
+
+### `src/app/[locale]/(main)/rights/RightsView.tsx`
+
+- minor refactoring by importing roles enum from types package
+
 ## [7.5.0 (15.10.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.4.0...essencium-app-v7.5.0)
 
 ### `src/components/layouts/AuthLayout.tsx`
