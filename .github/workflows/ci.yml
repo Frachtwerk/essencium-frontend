@@ -190,14 +190,18 @@ jobs:
     name: Release
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     needs: [lint, build, security] # [lint, unit-tests, e2e-tests, build, security]
     steps:
       - name: Release Please
-        uses: google-github-actions/release-please-action@v3
+        uses: googleapis/release-please-action@v4
         id: release
         with:
-          release-type: node
-          command: manifest
+          token: ${{ secrets.RELEASE_PLEASE }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
 
       - name: Checkout repo
         uses: actions/checkout@v4

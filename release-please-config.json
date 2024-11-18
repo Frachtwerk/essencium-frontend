@@ -1,6 +1,7 @@
 {
   "packages": {
     "packages/types": {
+      "path": "packages/types",
       "changelog-path": "CHANGELOG.md",
       "release-type": "node",
       "bump-minor-pre-major": false,
@@ -9,6 +10,7 @@
       "prerelease": false
     },
     "packages/lib": {
+      "path": "packages/lib",
       "changelog-path": "CHANGELOG.md",
       "release-type": "node",
       "bump-minor-pre-major": false,
@@ -17,6 +19,7 @@
       "prerelease": false
     },
     "packages/docs": {
+      "path": "packages/docs",
       "changelog-path": "CHANGELOG.md",
       "release-type": "node",
       "bump-minor-pre-major": false,
@@ -25,6 +28,7 @@
       "prerelease": false
     },
     "packages/app": {
+      "path": "packages/app",
       "changelog-path": "CHANGELOG.md",
       "release-type": "node",
       "bump-minor-pre-major": false,
@@ -33,6 +37,7 @@
       "prerelease": false
     },
     "packages/prettier-config": {
+      "path": "packages/prettier-config",
       "changelog-path": "CHANGELOG.md",
       "release-type": "node",
       "bump-minor-pre-major": false,
@@ -41,6 +46,7 @@
       "prerelease": false
     },
     "packages/eslint-config": {
+      "path": "packages/eslint-config",
       "changelog-path": "CHANGELOG.md",
       "release-type": "node",
       "bump-minor-pre-major": false,
