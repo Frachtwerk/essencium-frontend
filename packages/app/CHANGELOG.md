@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.7.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.6.0...essencium-app-v7.7.0) (2024-11-18)
+
+
+### Features
+
+* add runtime config feature ([99273bf](https://github.com/Frachtwerk/essencium-frontend/commit/99273bff418afbeb7aea6ef875b2f64fdce48d98))
+
+
+### Bug Fixes
+
+* check via env var if Vercel environment ([5f010ee](https://github.com/Frachtwerk/essencium-frontend/commit/5f010eeb4c7658d22d266098b9835a87f19c07fc))
+
 ## [7.6.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.5.0...essencium-app-v7.6.0) (2024-11-14)
 
 
