@@ -1,6 +1,6 @@
 {
   "name": "@frachtwerk/essencium",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "This is a Next.js-based boilerplate monorepo.",
   "keywords": [
