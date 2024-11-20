@@ -101,6 +101,7 @@ export const PasswordStrengthRules = {
   specialCharacter: /[!@#§$%^&*(),.?":{}|<>[\]\\';'/`~+=_-]/,
 } as const
 
+// release change to trigger a new version, DELETE ME
 const passwordStrengthBaseSchema = z
   .string()
   .refine(
