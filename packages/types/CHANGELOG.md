@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.5.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v5.4.1...essencium-types-v5.5.0) (2024-11-20)
+
+
+### Features
+
+* add password strength meter to user profile ([1f4535b](https://github.com/Frachtwerk/essencium-frontend/commit/1f4535ba340a7df3e7b2b9d167998a3acc9e4ce2))
+
 ## [5.4.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v5.4.0...essencium-types-v5.4.1) (2024-10-28)
 
 
