@@ -15,7 +15,7 @@
   "scripts": {
     "build": "next build",
     "clean": "rimraf node_modules .next",
-    "clean:install": "pnpm clean && pnpm install",
+    "clean:install": "pnpm clean && pnpm install --ignore-workspace",
     "dev": "next dev",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
