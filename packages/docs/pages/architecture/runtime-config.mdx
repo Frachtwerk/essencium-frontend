@@ -33,3 +33,7 @@ population the `runtimeConfig.js` file based on the given environment variables 
   Do not modifiy the values inside the `runtimeConfig.js` file directly. The
   values are populated by the `instrumentation.ts` file automatically.
 </Callout>
+
+## Deactivate runtime config
+
+Sometimes you might want to deactivate the runtime config feature. This can be done by setting the `NEXT_PUBLIC_DISABLE_INSTRUMENTATION` environment variable to `1` inside `packages/app/.env` file. Since the script inside the instrumentation file needs to read from the file system, the runtime config feature will not work on i.e. Vercel.

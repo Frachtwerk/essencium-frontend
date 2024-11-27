@@ -24,6 +24,7 @@ import { useHotkeys, useLocalStorage } from '@mantine/hooks'
 import { ReactNode } from 'react'
 
 import { MantineColorSchemes, theme } from '@/config/mantine'
+import { isBrowserEnvironment } from '@/utils'
 
 export function MantineThemeProvider({
   children,
@@ -38,7 +39,7 @@ export function MantineThemeProvider({
     getInitialValueInEffect: true,
   })
 
-  if (typeof window !== 'undefined') {
+  if (isBrowserEnvironment()) {
     systemColorScheme = window.matchMedia('(prefers-color-scheme: light)')
       .matches
       ? MantineColorSchemes.LIGHT
