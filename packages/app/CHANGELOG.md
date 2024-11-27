@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.7.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.7.0...essencium-app-v7.7.1) (2024-11-27)
+
+
+### Bug Fixes
+
+* fix runtime config for oauth redirect url ([3afd5d9](https://github.com/Frachtwerk/essencium-frontend/commit/3afd5d9a029b81074d98d6bd4201fffed0384e0e))
+
 ## [7.7.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.6.0...essencium-app-v7.7.0) (2024-11-18)
 
 

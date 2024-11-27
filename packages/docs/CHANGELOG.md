@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.2.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.2.0...essencium-docs-v4.2.1) (2024-11-27)
+
+
+### Bug Fixes
+
+* fix typo ([1f6a223](https://github.com/Frachtwerk/essencium-frontend/commit/1f6a223eba0d59e6b9f3ab949e6c4d0ee52a80be))
+* give ignore workspace flag to install in docs package ([3ef810e](https://github.com/Frachtwerk/essencium-frontend/commit/3ef810e66106e709a4c04741d7def5b8769f9b81))
+
 ## [4.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.1.0...essencium-docs-v4.2.0) (2024-09-24)
 
 
