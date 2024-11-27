@@ -18,6 +18,7 @@
  */
 
 export * from './getTranslation'
+export * from './isBrowserEnvironment'
 export * from './logout'
 export * from './parseSorting'
 export * from './withBaseStylingShowNotification'

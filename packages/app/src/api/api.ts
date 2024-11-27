@@ -25,7 +25,7 @@ import axios, {
   InternalAxiosRequestConfig,
 } from 'axios'
 
-import { logout } from '@/utils'
+import { isBrowserEnvironment, logout } from '@/utils'
 
 export type GetFilterParams = {
   page: number
@@ -94,10 +94,9 @@ export const api = process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
     )
   : createApi(
       axios.create({
-        baseURL:
-          typeof window !== 'undefined'
-            ? `${window.runtimeConfig?.required.API_URL}/v1`
-            : '',
+        baseURL: isBrowserEnvironment()
+          ? `${window.runtimeConfig?.required.API_URL}/v1`
+          : '',
       }),
     )
 

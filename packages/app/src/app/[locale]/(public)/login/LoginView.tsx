@@ -45,10 +45,16 @@ import {
   useGetSsoApplications,
   useResetPassword,
 } from '@/api'
+import { isBrowserEnvironment } from '@/utils'
 
 import classes from './Login.module.css'
 
-const OAUTH_REDIRECT_URI = `${process.env.NEXT_PUBLIC_APP_URL}/login`
+const OAUTH_REDIRECT_URI =
+  isBrowserEnvironment() &&
+  !process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION &&
+  window?.runtimeConfig?.optional?.OAUTH_REDIRECT_URI !== 'undefined'
+    ? `${window.runtimeConfig.optional.OAUTH_REDIRECT_URI}/login`
+    : `${process.env.NEXT_PUBLIC_APP_URL}/login`
 
 export default function LoginView(): JSX.Element {
   const { t } = useTranslation()
@@ -132,7 +138,17 @@ export default function LoginView(): JSX.Element {
                           <NextLink
                             className={classes['ssoSection__link']}
                             key={application}
-                            href={`${process.env.NEXT_PUBLIC_API_BASE_URL}${ssoApplications[application].url}?redirect_uri=${OAUTH_REDIRECT_URI}`}
+                            href={`${
+                              isBrowserEnvironment() &&
+                              !process.env
+                                .NEXT_PUBLIC_DISABLE_INSTRUMENTATION &&
+                              window.runtimeConfig.required.API_URL !==
+                                'undefined'
+                                ? window.runtimeConfig.required.API_URL
+                                : process.env.NEXT_PUBLIC_API_URL
+                            }${
+                              ssoApplications[application].url
+                            }?redirect_uri=${OAUTH_REDIRECT_URI}`}
                           >
                             <Flex
                               justify="center"
