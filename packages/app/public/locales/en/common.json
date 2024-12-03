@@ -433,6 +433,10 @@
       "placeholder": "Search ...",
       "noResults": "No translations found"
     },
+    "table": {
+      "key": "Key",
+      "value": "Translation value"
+    },
     "divider": "New Translation",
     "save": "Save",
     "cancel": "Cancel",
