@@ -6,6 +6,14 @@ const nextConfig = {
     instrumentationHook: Boolean(
       !process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION,
     ),
+    optimizePackageImports: [
+      '@mantine/core',
+      '@mantine/hooks',
+      '@mantine/dates',
+      '@mantine/modals',
+      '@mantine/notifications',
+      '@mantine/spotlight',
+    ],
   },
   reactStrictMode: true,
   transpilePackages: [
