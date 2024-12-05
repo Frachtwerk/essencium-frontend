@@ -326,7 +326,9 @@ export default function TranlsationView(): JSX.Element {
           placeholder={t('translationsView.search.placeholder')}
           value={searchQuery || ''}
           rightSection={
-            <IconX onClick={() => setSearchQuery(null)} size={16} />
+            searchQuery?.length && searchQuery.length > 0 ? (
+              <IconX onClick={() => setSearchQuery(null)} size={16} />
+            ) : null
           }
           leftSection={<IconSearch size={16} />}
           className={classes['translations-view__search']}
