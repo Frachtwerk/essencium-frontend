@@ -141,11 +141,11 @@ export default function TranlsationView(): JSX.Element {
     useState<TranslationOutput | null>(null)
 
   const [transformedTranslations, setTransformedTranslations] = useState<
-    TranslationTableRow[] | undefined | null
+    TranslationTableRow[] | null
   >(null)
 
   const [searchedTransformedTranslations, setSearchedTransformedTranslations] =
-    useState<TranslationTableRow[] | undefined | null>(null)
+    useState<TranslationTableRow[] | null>(null)
 
   const [isDelete, setIsDelete] = useState<boolean>(false)
 
@@ -208,7 +208,7 @@ export default function TranlsationView(): JSX.Element {
       setUpdatedTranslations(getDataByLanguage(locale) ?? null)
     })
 
-    setTransformedTranslations(transformData(updatedTranslations || {}))
+    setTransformedTranslations(transformData(updatedTranslations ?? {}) || [])
 
     if (isDelete) {
       window.location.reload()
