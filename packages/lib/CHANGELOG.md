@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.6.3](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.6.2...essencium-lib-v7.6.3) (2024-12-05)
+
+
+### Bug Fixes
+
+* error message overlap on profile page in mobile view ([4d3b23c](https://github.com/Frachtwerk/essencium-frontend/commit/4d3b23c58ded55cd4e7cd4cafe75469743d1ea4b))
+
 ## [7.6.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.6.1...essencium-lib-v7.6.2) (2024-11-18)
 
 
