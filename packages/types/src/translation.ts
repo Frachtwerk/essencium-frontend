@@ -17,6 +17,8 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { z } from 'zod'
+
 export type TranslationOutput = Record<string, string>
 
 export type TranslationInput = {
@@ -24,3 +26,18 @@ export type TranslationInput = {
   key: string
   translation: string
 }
+
+export type TranslationTableRow = {
+  key: string
+  value?: string
+  subRows?: TranslationTableRow[]
+  keyPath?: string
+}
+
+export const changeTranslationSchema = z.object({
+  translation: z.string().min(2, 'validation.contact.subject'),
+})
+
+export type ChangeTranslationSchemaFormType = z.infer<
+  typeof changeTranslationSchema
+>
