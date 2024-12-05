@@ -19,8 +19,6 @@
 
 import { Metadata, ResolvingMetadata } from 'next'
 
-import { AuthLayout } from '@/components/layouts'
-import { RouteProtector } from '@/components/RouteProtector'
 import initTranslations from '@/config/i18n'
 
 import HomeView from './HomeView'
@@ -46,11 +44,5 @@ export async function generateMetadata(
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function page({ params }: Props): JSX.Element {
-  return (
-    <RouteProtector params={params}>
-      <AuthLayout>
-        <HomeView />
-      </AuthLayout>
-    </RouteProtector>
-  )
+  return <HomeView />
 }

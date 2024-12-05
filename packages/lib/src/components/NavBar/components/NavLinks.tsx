@@ -20,7 +20,7 @@
 'use client'
 
 import { NavLink } from '@frachtwerk/essencium-types'
-import { NavLink as MantineNavLink, Stack } from '@mantine/core'
+import { NavLink as MantineNavLink } from '@mantine/core'
 import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
@@ -48,7 +48,7 @@ export function NavLinks({ links, userRights, foldedNav }: Props): JSX.Element {
   }
 
   return (
-    <Stack gap="md">
+    <>
       {links.map(link =>
         !link.rights.length ||
         (link.rights && hasRequiredRights(userRights, link.rights)) ? (
@@ -61,6 +61,7 @@ export function NavLinks({ links, userRights, foldedNav }: Props): JSX.Element {
             label={t(link.label)}
             active={isLinkActive(link.to) || isSubLinkActive(link.navLinks)}
             color={isLinkActive(link.to) ? undefined : 'gray'}
+            className={classes['nav-bar__navlink']}
             classNames={{
               root: classes['nav-bar__navlink--root'],
               label: classes['nav-bar__navlink--label'],
@@ -91,6 +92,6 @@ export function NavLinks({ links, userRights, foldedNav }: Props): JSX.Element {
           </MantineNavLink>
         ) : null,
       )}
-    </Stack>
+    </>
   )
 }
