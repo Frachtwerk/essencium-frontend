@@ -33,6 +33,9 @@
       "label": "Home",
       "description": "Homepage"
     },
+    "administration": {
+      "label": "Administration"
+    },
     "users": {
       "label": "Users",
       "description": "Users Management"
