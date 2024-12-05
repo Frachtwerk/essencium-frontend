@@ -1,40 +1,58 @@
+/*
+ * Copyright (C) 2023 Frachtwerk GmbH, Leopoldstraße 7C, 76133 Karlsruhe.
+ *
+ * This file is part of Essencium Frontend.
+ *
+ * Essencium Frontend is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Essencium Frontend is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+import { hasRequiredRights } from '@frachtwerk/essencium-lib'
 import {
+  changeTranslationSchema,
+  ChangeTranslationSchemaFormType,
+  RIGHTS,
   TranslationInput,
   TranslationOutput,
 } from '@frachtwerk/essencium-types'
 import { ActionIcon, Group, Stack, TextInput } from '@mantine/core'
-import { IconBackspace, IconSend } from '@tabler/icons-react'
+import { IconBackspace, IconDeviceFloppy } from '@tabler/icons-react'
+import { useAtomValue } from 'jotai'
 import { useEffect } from 'react'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { z } from 'zod'
 
+import { userRightsAtom } from '@/api'
 import { useZodForm } from '@/hooks'
-
-export const changeTranslationSchema = z.object({
-  translation: z.string().min(2, 'validation.contact.subject'),
-})
-
-export type ChangeTranslationSchemaFormType = z.infer<
-  typeof changeTranslationSchema
->
 
 type Props = {
   currentValue: TranslationOutput['value']
-  updateTranslation: (translationInput: TranslationInput) => void
   locale: TranslationInput['locale']
   keyPath: TranslationInput['key']
-  deleteTranslation: (key: TranslationInput['key'], value: string) => void
+  updateTranslation: (translationInput: TranslationInput) => void
+  deleteTranslation: (key: TranslationInput['key']) => void
 }
 
 export function TranslationChangeForm({
   currentValue,
-  updateTranslation,
   locale,
   keyPath,
+  updateTranslation,
   deleteTranslation,
 }: Props): JSX.Element {
   const { t } = useTranslation()
+
+  const userRights = useAtomValue(userRightsAtom)
 
   const {
     handleSubmit,
@@ -47,6 +65,14 @@ export function TranslationChangeForm({
       translation: '',
     },
   })
+
+  const userRightUpdate = hasRequiredRights(userRights, [
+    RIGHTS.TRANSLATION_UPDATE,
+  ])
+
+  const userRightDelete = hasRequiredRights(userRights, [
+    RIGHTS.TRANSLATION_DELETE,
+  ])
 
   const fieldValue = watch('translation')
 
@@ -75,19 +101,31 @@ export function TranslationChangeForm({
                 aria-label={t('translationView.form.changeTranslation')}
                 withAsterisk
                 w="40%"
-                onChange={field.onChange}
                 variant="unstyled"
+                disabled={!userRightUpdate}
+                styles={{
+                  input: {
+                    fontSize: '1rem',
+                    backgroundColor: !userRightUpdate
+                      ? 'transparent'
+                      : undefined,
+                  },
+                }}
               />
             )}
           />
 
-          <ActionIcon type="submit" disabled={!fieldValue.length}>
-            <IconSend size={18} />
-          </ActionIcon>
+          {userRightUpdate ? (
+            <ActionIcon type="submit" disabled={!fieldValue.length}>
+              <IconDeviceFloppy size={20} />
+            </ActionIcon>
+          ) : null}
 
-          <ActionIcon onClick={() => deleteTranslation(keyPath, currentValue)}>
-            <IconBackspace size={18} />
-          </ActionIcon>
+          {userRightDelete ? (
+            <ActionIcon onClick={() => deleteTranslation(keyPath)}>
+              <IconBackspace size={20} />
+            </ActionIcon>
+          ) : null}
         </Group>
       </Stack>
     </form>

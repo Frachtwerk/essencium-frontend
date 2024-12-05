@@ -23,6 +23,7 @@ import { Table } from '@frachtwerk/essencium-lib'
 import type {
   TranslationInput,
   TranslationOutput,
+  TranslationTableRow,
 } from '@frachtwerk/essencium-types'
 import { Box, Flex, Group, Select, Text, TextInput, Title } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
@@ -50,15 +51,9 @@ import {
 import { i18nConfig } from '@/config'
 
 import { TranslationChangeForm } from '../../translations/_components/TranslationsChangeForm'
+import classes from './TranslationsView.module.css'
 
 /* eslint-disable react/no-unstable-nested-components */
-
-type TableRow = {
-  key: string
-  value?: string
-  subRows?: TableRow[]
-  keyPath?: string
-}
 
 function getDataByLanguage(lang: string): TranslationOutput | undefined {
   return getI18n().getDataByLanguage(lang)?.common
@@ -67,13 +62,13 @@ function getDataByLanguage(lang: string): TranslationOutput | undefined {
 export function transformData(
   translationObject: TranslationOutput,
   path: string[] = [],
-): TableRow[] | undefined {
+): TranslationTableRow[] | undefined {
   if (!translationObject) return
 
   return Object.entries(translationObject).map(([key, value]) => {
     const currentPath = [...path, key]
 
-    const row: TableRow = {
+    const row: TranslationTableRow = {
       key,
     }
 
@@ -91,15 +86,15 @@ export function transformData(
 }
 
 const searchTableRowsAndReturnPath = (
-  rows: TableRow[],
+  rows: TranslationTableRow[],
   searchQuery: string,
   currentPath: string[] = [],
-): TableRow[] => {
-  const result: TableRow[] = []
+): TranslationTableRow[] => {
+  const result: TranslationTableRow[] = []
 
   rows.forEach(currentRow => {
     const newPath = [...currentPath, currentRow.key]
-    let matchedSubRows: TableRow[] = []
+    let matchedSubRows: TranslationTableRow[] = []
 
     // Recursively search subRows
     if (currentRow.subRows) {
@@ -146,11 +141,13 @@ export default function TranlsationView(): JSX.Element {
     useState<TranslationOutput | null>(null)
 
   const [transformedTranslations, setTransformedTranslations] = useState<
-    TableRow[] | undefined | null
+    TranslationTableRow[] | undefined | null
   >(null)
 
   const [searchedTransformedTranslations, setSearchedTransformedTranslations] =
-    useState<TableRow[] | undefined | null>(null)
+    useState<TranslationTableRow[] | undefined | null>(null)
+
+  const [isDelete, setIsDelete] = useState<boolean>(false)
 
   const { data: serverTranslationsDe, refetch: refetchServerTranslationsDe } =
     useGetTranslations('de')
@@ -167,6 +164,7 @@ export default function TranlsationView(): JSX.Element {
       updateTranslation(translationInput, {
         onSuccess: async () => {
           await refetchServerTranslationsDe()
+
           await refetchServerTranslationsEn()
         },
       })
@@ -183,7 +181,10 @@ export default function TranlsationView(): JSX.Element {
       deleteTranslation(keyPath, {
         onSuccess: async () => {
           await refetchServerTranslationsDe()
+
           await refetchServerTranslationsEn()
+
+          setIsDelete(true)
         },
       })
     },
@@ -208,6 +209,10 @@ export default function TranlsationView(): JSX.Element {
     })
 
     setTransformedTranslations(transformData(updatedTranslations || {}))
+
+    if (isDelete) {
+      window.location.reload()
+    }
   }, [
     serverTranslationsDe,
     serverTranslationsEn,
@@ -215,6 +220,7 @@ export default function TranlsationView(): JSX.Element {
     locale,
     setTransformedTranslations,
     updatedTranslations,
+    isDelete,
   ])
 
   useEffect(() => {
@@ -229,7 +235,7 @@ export default function TranlsationView(): JSX.Element {
     debouncedSearchQuery,
   ])
 
-  const columns = useMemo<ColumnDef<TableRow>[]>(
+  const columns = useMemo<ColumnDef<TranslationTableRow>[]>(
     () => [
       {
         accessorKey: 'key',
@@ -260,6 +266,7 @@ export default function TranlsationView(): JSX.Element {
           )
         },
         size: 80,
+        enableSorting: false,
       },
       {
         accessorKey: 'value',
@@ -278,6 +285,7 @@ export default function TranlsationView(): JSX.Element {
           ) : null
         },
         size: 400,
+        enableSorting: false,
       },
     ],
     [onUpdateTranslation, locale, onDeleteTranslation, t],
@@ -289,7 +297,6 @@ export default function TranlsationView(): JSX.Element {
       : transformedTranslations || [],
     columns,
     state: {},
-    manualSorting: true,
     getCoreRowModel: getCoreRowModel(),
     getExpandedRowModel: getExpandedRowModel(),
     getSubRows: row => row.subRows,
@@ -308,23 +315,21 @@ export default function TranlsationView(): JSX.Element {
         <Select
           data={i18nConfig.locales}
           onChange={value => setLocale(value || i18n.language)}
-          w="20%"
-          mb="md"
           defaultValue={i18n.language}
           label={t('translationsView.select')}
+          className={classes['translations-view__select']}
         />
 
         <TextInput
           onChange={event => setSearchQuery(event.target.value)}
           label={t('translationsView.search.label')}
           placeholder={t('translationsView.search.placeholder')}
-          mb="md"
-          w="40%"
           value={searchQuery || ''}
           rightSection={
             <IconX onClick={() => setSearchQuery(null)} size={16} />
           }
           leftSection={<IconSearch size={16} />}
+          className={classes['translations-view__search']}
         />
       </Group>
 
