@@ -1,5 +1,19 @@
 # Migrations
 
+## [7.8.0]
+
+### `src/app/[locale]/(main)/translations/TranslationsView.tsx`
+
+- major refactoring of translationsView
+
+### `src/app/[locale]/(main)/translations/_components/TranslationsChangeForm.tsx`
+
+- add new component
+
+### `src/app/[locale]/(main)/translations/TranslationsView.module.css`
+
+- add css file
+
 ## [7.7.0 (18.11.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.5.0...essencium-app-v7.7.0)
 
 - add support for runtime environment variables (See [docs](https://docs.essencium.dev/architecture/runtime-config))

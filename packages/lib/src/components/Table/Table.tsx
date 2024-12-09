@@ -190,6 +190,11 @@ export function Table<T>({
             ).map(row => (
               <MantineTable.Tr
                 key={row.id}
+                onClick={
+                  row.getToggleExpandedHandler() &&
+                  row.getToggleExpandedHandler()
+                }
+                style={row.getCanExpand() ? { cursor: 'pointer' } : {}}
                 className={
                   firstColSticky
                     ? classes['table__table-row--sticky']
