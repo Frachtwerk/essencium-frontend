@@ -35,6 +35,8 @@ import { useTranslation } from 'react-i18next'
 import { userRightsAtom } from '@/api'
 import { useZodForm } from '@/hooks'
 
+import classes from './TranslationChangeForm.module.css'
+
 type Props = {
   currentValue: TranslationOutput['value']
   locale: TranslationInput['locale']
@@ -103,13 +105,8 @@ export function TranslationChangeForm({
                 w="40%"
                 variant="unstyled"
                 disabled={!userRightUpdate}
-                styles={{
-                  input: {
-                    fontSize: '1rem',
-                    backgroundColor: !userRightUpdate
-                      ? 'transparent'
-                      : undefined,
-                  },
+                classNames={{
+                  input: classes['translation-change-form__input'],
                 }}
               />
             )}
