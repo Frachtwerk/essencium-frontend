@@ -250,9 +250,9 @@ export default function TranlsationView(): JSX.Element {
               {isParent ? (
                 <Group ml={`${row.depth * 30}px`}>
                   {row.getIsExpanded() ? (
-                    <IconChevronUp onClick={row.getToggleExpandedHandler()} />
+                    <IconChevronUp />
                   ) : (
-                    <IconChevronDown onClick={row.getToggleExpandedHandler()} />
+                    <IconChevronDown />
                   )}
 
                   <Text fw={row.getIsExpanded() ? 'bold' : undefined}>
