@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.6.3](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.6.2...essencium-lib-v7.6.3) (2024-12-09)
+
+
+### Bug Fixes
+
+* error message overlap on profile page in mobile view ([4d3b23c](https://github.com/Frachtwerk/essencium-frontend/commit/4d3b23c58ded55cd4e7cd4cafe75469743d1ea4b))
+* fix early rendering of Navbar pin ([f4acbee](https://github.com/Frachtwerk/essencium-frontend/commit/f4acbee5c646354047959b977dc557a856f2d001))
+* fix navbar ([2c7e4cf](https://github.com/Frachtwerk/essencium-frontend/commit/2c7e4cf3367911eedf5d572c6221bea6b23f0a96))
+
 ## [7.6.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.6.1...essencium-lib-v7.6.2) (2024-11-18)
 
 

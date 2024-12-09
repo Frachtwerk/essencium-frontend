@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.7.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.7.1...essencium-app-v7.7.2) (2024-12-09)
+
+
+### Bug Fixes
+
+* fix navbar ([2c7e4cf](https://github.com/Frachtwerk/essencium-frontend/commit/2c7e4cf3367911eedf5d572c6221bea6b23f0a96))
+
 ## [7.7.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.7.0...essencium-app-v7.7.1) (2024-11-27)
 
 
