@@ -33,6 +33,9 @@
       "label": "Home",
       "description": "Startseite"
     },
+    "administration": {
+      "label": "Administration"
+    },
     "users": {
       "label": "Benutzer",
       "description": "Benutzerverwaltung"

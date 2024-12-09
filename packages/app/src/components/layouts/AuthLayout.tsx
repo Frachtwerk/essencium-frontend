@@ -36,6 +36,7 @@ import {
   IconMessage,
   IconSearch,
   IconSectionSign,
+  IconSettings,
   IconShieldHalf,
   IconShieldLock,
   IconUsers,
@@ -83,36 +84,50 @@ export const NAV_LINKS: NavLink[] = [
     rights: [],
   },
   {
-    icon: <IconUsers />,
+    icon: <IconSettings />,
     color: 'blue',
-    label: 'navigation.users.label',
-    to: '/users',
-    description: 'navigation.users.description',
-    rights: [RIGHTS.USER_READ],
-  },
-  {
-    icon: <IconUserStar />,
-    color: 'blue',
-    label: 'navigation.roles.label',
-    to: '/roles',
-    description: 'navigation.roles.description',
-    rights: [RIGHTS.ROLE_READ, RIGHTS.RIGHT_READ],
-  },
-  {
-    icon: <IconShieldHalf />,
-    color: 'blue',
-    label: 'navigation.rights.label',
-    to: '/rights',
-    description: 'navigation.rights.description',
-    rights: [RIGHTS.ROLE_READ, RIGHTS.RIGHT_READ],
-  },
-  {
-    icon: <IconLanguage />,
-    color: 'blue',
-    label: 'navigation.translations.label',
-    to: '/translations',
-    description: 'navigation.translations.description',
-    rights: [RIGHTS.TRANSLATION_READ],
+    label: 'navigation.administration.label',
+    to: '/',
+    rights: [
+      RIGHTS.USER_READ,
+      RIGHTS.ROLE_READ,
+      RIGHTS.RIGHT_READ,
+      RIGHTS.TRANSLATION_READ,
+    ],
+    navLinks: [
+      {
+        icon: <IconUsers />,
+        color: 'blue',
+        label: 'navigation.users.label',
+        to: '/users',
+        description: 'navigation.users.description',
+        rights: [RIGHTS.USER_READ],
+      },
+      {
+        icon: <IconUserStar />,
+        color: 'blue',
+        label: 'navigation.roles.label',
+        to: '/roles',
+        description: 'navigation.roles.description',
+        rights: [RIGHTS.ROLE_READ, RIGHTS.RIGHT_READ],
+      },
+      {
+        icon: <IconShieldHalf />,
+        color: 'blue',
+        label: 'navigation.rights.label',
+        to: '/rights',
+        description: 'navigation.rights.description',
+        rights: [RIGHTS.ROLE_READ, RIGHTS.RIGHT_READ],
+      },
+      {
+        icon: <IconLanguage />,
+        color: 'blue',
+        label: 'navigation.translations.label',
+        to: '/translations',
+        description: 'navigation.translations.description',
+        rights: [RIGHTS.TRANSLATION_READ],
+      },
+    ],
   },
 ]
 
@@ -156,9 +171,9 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
 
   const [mobileNavBarOpened, { toggle: toggleMobileNavBar }] = useDisclosure()
 
-  const [isFoldedNav, setIsFoldedNav] = useState(false)
+  const [isFoldedNav, setIsFoldedNav] = useState(true)
 
-  const [isFixedNav, setIsFixedNav] = useState(true)
+  const [isFixedNav, setIsFixedNav] = useState(false)
 
   const { data: user } = useGetMe()
 
