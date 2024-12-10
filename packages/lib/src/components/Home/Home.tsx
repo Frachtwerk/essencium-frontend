@@ -62,7 +62,7 @@ export function Home({ onClickButton }: Props): JSX.Element {
           </Button>
 
           <Button
-            onClick={() => onClickButton('/users')}
+            onClick={() => onClickButton('/admin/users')}
             variant="outline"
             leftSection={<IconUsers />}
             fullWidth

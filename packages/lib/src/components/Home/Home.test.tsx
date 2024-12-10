@@ -85,7 +85,7 @@ describe('Home', () => {
   it('should navigate to corresponding routes', () => {
     const usersButton = screen.getByText('homeView.action.users')
     fireEvent.click(usersButton)
-    expect(mockRouter.pathname).toEqual('/users')
+    expect(mockRouter.pathname).toEqual('/admin/users')
 
     const profileButton = screen.getByText('homeView.action.profile')
     fireEvent.click(profileButton)

@@ -20,55 +20,29 @@
 'use client'
 
 import { UserForm } from '@frachtwerk/essencium-lib'
-import { UserUpdate, userUpdateSchema } from '@frachtwerk/essencium-types'
+import { UserInput, userInputSchema } from '@frachtwerk/essencium-types'
 import { Card, Flex, Text, Title } from '@mantine/core'
-import { IconUserEdit } from '@tabler/icons-react'
+import { IconUserPlus } from '@tabler/icons-react'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { useGetRoles, useGetUser, useUpdateUser } from '@/api'
+import { useCreateUser, useGetRoles } from '@/api'
 import { useZodForm } from '@/hooks'
 
-import classes from '../Users.module.css'
 import { FORM_DEFAULTS_USERS_VIEW } from '../UsersView'
+import classes from './AddUserView.module.css'
 
-export default function UpdateUserView({
-  params,
-}: {
-  params: { id: number }
-}): JSX.Element {
+export default function AddUserView(): JSX.Element {
   const router = useRouter()
 
   const { t } = useTranslation()
 
-  const { data: user } = useGetUser(Number(params.id))
-
-  const ssoProvider = user?.source
-
-  const {
-    handleSubmit,
-    control,
-    formState,
-    setValue,
-    reset: resetAndFillForm,
-  } = useZodForm({
-    schema: userUpdateSchema,
+  const { handleSubmit, control, formState, setValue } = useZodForm({
+    schema: userInputSchema,
     defaultValues: FORM_DEFAULTS_USERS_VIEW,
   })
 
-  useEffect(() => {
-    if (user) {
-      const parsedUser = userUpdateSchema.parse({
-        ...user,
-        roles: user.roles.flatMap(role => role.name),
-      })
-
-      resetAndFillForm({ ...parsedUser })
-    }
-  }, [user, resetAndFillForm])
-
-  const { mutate: updateUser, isPending } = useUpdateUser()
+  const { mutate: addUser, isPending } = useCreateUser()
 
   const { data: rolesResponse } = useGetRoles({
     requestConfig: {
@@ -79,31 +53,28 @@ export default function UpdateUserView({
 
   const roles = rolesResponse?.content || []
 
-  function handleUpdateUser(updatedUser: UserUpdate): void {
-    updateUser(updatedUser, {
+  function handleAddUser(user: UserInput): void {
+    addUser(user, {
       onSuccess: () => {
-        router.push('/users')
+        router.push('/admin/users')
       },
     })
   }
 
-  const onSubmit = handleSubmit(handleUpdateUser)
+  const onSubmit = handleSubmit(handleAddUser)
 
   return (
     <>
-      <Title className={classes['userDetailTitle']} order={2}>
+      <Title py="md" order={2}>
         <Flex>
-          <IconUserEdit size="32" />
+          <IconUserPlus size="32" />
 
-          <Text className={classes['userDetailTitle__subtitle']}>
-            {t('addUpdateUserView.update.title')}
-          </Text>
+          <Text ml="xs">{t('addUpdateUserView.add.title')}</Text>
         </Flex>
       </Title>
 
-      <Card withBorder className={classes['userDetailCard']}>
+      <Card withBorder className={classes['add-user-view__card']}>
         <UserForm
-          ssoProvider={ssoProvider}
           title={t('addUpdateUserView.form.userDataHeading')}
           roles={roles}
           onSubmit={onSubmit}

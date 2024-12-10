@@ -160,7 +160,7 @@ export default function UsersView(): JSX.Element {
 
   const handleEditUser = useCallback(
     (userToEdit: UserOutput) => {
-      router.push(`/users/${userToEdit.id}`)
+      router.push(`/admin/users/${userToEdit.id}`)
     },
     [router],
   )
@@ -402,7 +402,7 @@ export default function UsersView(): JSX.Element {
           gap="xs"
         >
           {hasRequiredRights(userRights, RIGHTS.USER_CREATE) ? (
-            <NextLink href="/users/add">
+            <NextLink href="/admin/users/add">
               <Button>{t('usersView.action.add')}</Button>
             </NextLink>
           ) : null}

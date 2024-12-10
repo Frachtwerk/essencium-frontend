@@ -87,7 +87,7 @@ export const NAV_LINKS: NavLink[] = [
     icon: <IconSettings />,
     color: 'blue',
     label: 'navigation.administration.label',
-    to: '/',
+    to: '/admin',
     rights: [
       RIGHTS.USER_READ,
       RIGHTS.ROLE_READ,
