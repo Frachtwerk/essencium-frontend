@@ -20,7 +20,7 @@
 import '@mantine/core/styles.css'
 import '@mantine/spotlight/styles.css'
 
-import { ColorSchemeScript } from '@mantine/core'
+import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core'
 
 import TranslationProvider from '@/components/provider/translationProvider'
 
@@ -43,7 +43,7 @@ export default async function RootLayout({
   const { resources } = await initTranslations(locale)
 
   return (
-    <html lang={locale}>
+    <html lang={locale} {...mantineHtmlProps}>
       <head>
         <link rel="icon" href="/img/web/favicon.ico" sizes="any" />
         <ColorSchemeScript defaultColorScheme="auto" />
