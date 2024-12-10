@@ -6,7 +6,7 @@ To create a new page, go into the `app` folder. Inside of `/[locale]/(main)` you
 After you created the `page.tsx` file, create another file called `YourNewView.tsx` which is consumed by the `page.tsx file` and contains the actual component that will be rendered on the page. This way you can separate the server-side logic from the client-side logic if needed.
 
 You can create further sub-pages by creating a new folder on the level of the `page.tsx`. For example, if you want to
-create a new sub-page under `/users`, you can create a folder called `add` and create new files called `page.tsx` and `AddUserView.tsx`
+create a new sub-page under `/admin/users`, you can create a folder called `add` and create new files called `page.tsx` and `AddUserView.tsx`
 inside it. This will create a new route `/users/add`. More details can be found inside the
 [Next.js docs](https://nextjs.org/docs/app/building-your-application/routing). If the folder name contains more than one word, use `-` to separate them, i.e. `general-settings` in order to build up a consistent folder structure that is close the the one inside the `app` directory.
 

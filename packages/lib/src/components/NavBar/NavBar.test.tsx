@@ -149,19 +149,19 @@ describe('NavBar', () => {
 
     expect(
       screen.getByText('navigation.users.label').closest('a'),
-    ).toHaveProperty('href', `${BASE_PATH}/users`)
+    ).toHaveProperty('href', `${BASE_PATH}/admin/users`)
 
     expect(
       screen.getByText('navigation.roles.label').closest('a'),
-    ).toHaveProperty('href', `${BASE_PATH}/roles`)
+    ).toHaveProperty('href', `${BASE_PATH}/admin/roles`)
 
     expect(
       screen.getByText('navigation.rights.label').closest('a'),
-    ).toHaveProperty('href', `${BASE_PATH}/rights`)
+    ).toHaveProperty('href', `${BASE_PATH}/admin/rights`)
 
     expect(
       screen.getByText('navigation.translations.label').closest('a'),
-    ).toHaveProperty('href', `${BASE_PATH}/translations`)
+    ).toHaveProperty('href', `${BASE_PATH}/admin/translations`)
 
     renderedComponent.unmount()
   })
@@ -177,15 +177,15 @@ describe('NavBar', () => {
 
     expect(
       screen.getByText('navigation.users.label').closest('a'),
-    ).toHaveProperty('href', `${BASE_PATH}/users`)
+    ).toHaveProperty('href', `${BASE_PATH}/admin/users`)
 
     expect(
       screen.getByText('navigation.roles.label').closest('a'),
-    ).toHaveProperty('href', `${BASE_PATH}/roles`)
+    ).toHaveProperty('href', `${BASE_PATH}/admin/roles`)
 
     expect(
       screen.getByText('navigation.rights.label').closest('a'),
-    ).toHaveProperty('href', `${BASE_PATH}/rights`)
+    ).toHaveProperty('href', `${BASE_PATH}/admin/rights`)
 
     expect(screen.queryByText('navigation.translations.label')).toBeNull()
 
