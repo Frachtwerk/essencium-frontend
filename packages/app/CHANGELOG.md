@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.8.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.7.1...essencium-app-v7.8.0) (2024-12-10)
+
+
+### Features
+
+* extend component to accept nav links array ([27fc95e](https://github.com/Frachtwerk/essencium-frontend/commit/27fc95ed458c9567c7597c8037e526d118fd6742))
+
+
+### Bug Fixes
+
+* fix navbar ([2c7e4cf](https://github.com/Frachtwerk/essencium-frontend/commit/2c7e4cf3367911eedf5d572c6221bea6b23f0a96))
+
 ## [7.7.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.7.0...essencium-app-v7.7.1) (2024-11-27)
 
 

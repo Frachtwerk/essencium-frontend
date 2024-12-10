@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.2.1...essencium-docs-v4.3.0) (2024-12-10)
+
+
+### Features
+
+* extend component to accept nav links array ([27fc95e](https://github.com/Frachtwerk/essencium-frontend/commit/27fc95ed458c9567c7597c8037e526d118fd6742))
+
 ## [4.2.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.2.0...essencium-docs-v4.2.1) (2024-11-27)
 
 
