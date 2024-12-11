@@ -32,3 +32,12 @@
 .header__burger {
   z-index: 200;
 }
+
+.environment-indicator {
+  margin-right: 20px;
+  overflow: visible;
+}
+
+.environment-indicator__text {
+  text-transform: uppercase;
+}

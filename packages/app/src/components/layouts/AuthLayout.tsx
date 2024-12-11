@@ -50,12 +50,21 @@ import { useTranslation } from 'react-i18next'
 
 import { useGetMe, userAtom, userRightsAtom } from '@/api'
 import { useCreateFeedback } from '@/api/feedback'
-import { logout, withBaseStylingShowNotification } from '@/utils'
+import {
+  isBrowserEnvironment,
+  logout,
+  withBaseStylingShowNotification,
+} from '@/utils'
 
 import packageJson from '../../../package.json'
 import classes from './AuthLayout.module.css'
 
 const version = packageJson?.version ? packageJson.version : undefined
+
+const environment =
+  isBrowserEnvironment() && !process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
+    ? window?.runtimeConfig?.optional?.APP_ENV
+    : undefined
 
 type Props = AppShellProps & {
   children: React.ReactNode
@@ -276,6 +285,7 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
             user={user}
             isOpen={mobileNavBarOpened}
             handleOpenNav={toggleMobileNavBar}
+            environment={environment}
           />
 
           <NavBar
