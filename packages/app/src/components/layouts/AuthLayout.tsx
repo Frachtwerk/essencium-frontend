@@ -55,12 +55,7 @@ import { logout, withBaseStylingShowNotification } from '@/utils'
 import packageJson from '../../../package.json'
 import classes from './AuthLayout.module.css'
 
-const version =
-  packageJson.version &&
-  process.env.NEXT_PUBLIC_SHOW_VERSION &&
-  process.env.NEXT_PUBLIC_SHOW_VERSION === '1'
-    ? packageJson.version
-    : undefined
+const version = packageJson?.version ? packageJson.version : undefined
 
 type Props = AppShellProps & {
   children: React.ReactNode
