@@ -62,11 +62,7 @@ export function Footer({
 
           <Text> {t('footer.license')} </Text>
 
-          {version || process.env.NEXT_PUBLIC_ENV ? (
-            <Code>{`${version || ''} ${
-              process.env.NEXT_PUBLIC_ENV || ''
-            }`}</Code>
-          ) : null}
+          {version && <Code>{version}</Code>}
         </Flex>
 
         <Flex direction="row" gap="lg" align="center">

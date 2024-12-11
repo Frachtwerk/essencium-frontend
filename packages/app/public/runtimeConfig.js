@@ -3,10 +3,10 @@
 window['runtimeConfig'] = {
   required: {
     API_URL: '<API_URL>',
-    APP_ENV: '<APP_ENV>',
     APP_URL: '<APP_URL>',
   },
   optional: {
     OAUTH_REDIRECT_URI: '<OAUTH_REDIRECT_URI>',
+    APP_ENV: '<APP_ENV>',
   },
 }

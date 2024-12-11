@@ -24,6 +24,7 @@ import {
   AppShellHeader,
   AppShellHeaderProps,
   Burger,
+  Code,
   Flex,
   Group,
   useMantineTheme,
@@ -36,12 +37,14 @@ type Props = AppShellHeaderProps & {
   user: UserOutput | undefined
   isOpen: boolean
   handleOpenNav: () => void
+  environment: string | undefined
 }
 
 export function Header({
   user,
   isOpen,
   handleOpenNav,
+  environment,
   ...props
 }: Props): JSX.Element {
   const theme = useMantineTheme()
@@ -73,7 +76,15 @@ export function Header({
 
         <SearchBar />
 
-        <Group wrap="nowrap">
+        <Group wrap="nowrap" justify="space-between">
+          {environment && (
+            <Code className={classes['environment-indicator']}>
+              <span className={classes['environment-indicator__text']}>
+                {environment}
+              </span>
+            </Code>
+          )}
+
           <Group wrap="nowrap">
             <ThemeSelector />
           </Group>
