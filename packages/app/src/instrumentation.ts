@@ -13,11 +13,11 @@ export async function register(): Promise<void> {
     } = {
       required: {
         API_URL: `${process.env.API_URL}`,
-        APP_ENV: `${process.env.APP_ENV}`,
         APP_URL: `${process.env.APP_URL}`,
       },
       optional: {
         OAUTH_REDIRECT_URI: `${process.env.OAUTH_REDIRECT_URI}`,
+        APP_ENV: `${process.env.APP_ENV}`,
       },
     } as const
 
