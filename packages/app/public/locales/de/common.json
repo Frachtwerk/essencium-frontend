@@ -251,7 +251,7 @@
       "mobile": "Mobilnummer",
       "email": "E-Mail",
       "password": "Passwort",
-      "status": "Status",
+      "activeStatus": "Aktiv",
       "language": "Sprache",
       "role": "Rolle",
       "save": "Benutzer speichern",

@@ -16,13 +16,17 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
- 
- .nav-bar__navlink {
+
+.nav-bar__navlink {
   margin-bottom: var(--mantine-spacing-sm);
 }
 
 .nav-bar__navlink--root {
   border-radius: var(--mantine-radius-sm);
+
+  @media (max-width: 47em) {
+    width: 93vw;
+  }
 }
 
 .nav-bar__navlink--label {
@@ -32,4 +36,8 @@
 
 .nav-bar__navlink--sublink {
   margin: 8px 0;
+
+  @media (max-width: 47em) {
+    width: 88vw;
+  }
 }
