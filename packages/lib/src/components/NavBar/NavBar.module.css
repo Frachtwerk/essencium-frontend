@@ -31,6 +31,13 @@
 }
 
 .navBar__container--mobile {
+  position: fixed;
+  top: 1;
+  left: 0;
+  width: 100%;
+  height: 95%;
+  overflow: hidden;
+
   padding: var(--mantine-spacing-sm);
   display: flex;
   flex-direction: column;
@@ -56,6 +63,7 @@
 
 .navBar__navLink--root {
   border-radius: var(--mantine-radius-sm);
+  margin-bottom: var(--mantine-spacing-xl);
 }
 
 .navBar__navLink--label {
