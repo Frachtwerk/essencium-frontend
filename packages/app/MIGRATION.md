@@ -1,6 +1,6 @@
 # Migrations
 
-## [?.?.? (dd.mm.yyyy)]()
+## [7.8.0 (19.12.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.7.0...essencium-app-v7.8.0)
 
 - upgrade next and react with script `npx @next/codemod@canary upgrade latest` from the official [guide](https://nextjs.org/docs/app/building-your-application/upgrading/version-15)
 - upgrade all mantine packages to latest
