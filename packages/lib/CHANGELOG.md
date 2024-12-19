@@ -1,5 +1,21 @@
 # Changelog
 
+## [7.7.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.6.2...essencium-lib-v7.7.0) (2024-12-19)
+
+
+### Features
+
+* extend component to accept nav links array ([27fc95e](https://github.com/Frachtwerk/essencium-frontend/commit/27fc95ed458c9567c7597c8037e526d118fd6742))
+* put environment into runtime config and visualize in header ([5d3e104](https://github.com/Frachtwerk/essencium-frontend/commit/5d3e1049d52abfc971c0f450b2d73e06f7c6b174))
+* upgrade next to v15 and react to v9 ([#705](https://github.com/Frachtwerk/essencium-frontend/issues/705)) ([e9005a9](https://github.com/Frachtwerk/essencium-frontend/commit/e9005a980ba85fde9e7790789c995826d3d3b207))
+
+
+### Bug Fixes
+
+* error message overlap on profile page in mobile view ([4d3b23c](https://github.com/Frachtwerk/essencium-frontend/commit/4d3b23c58ded55cd4e7cd4cafe75469743d1ea4b))
+* fix early rendering of Navbar pin ([f4acbee](https://github.com/Frachtwerk/essencium-frontend/commit/f4acbee5c646354047959b977dc557a856f2d001))
+* fix navbar ([2c7e4cf](https://github.com/Frachtwerk/essencium-frontend/commit/2c7e4cf3367911eedf5d572c6221bea6b23f0a96))
+
 ## [7.6.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.6.1...essencium-lib-v7.6.2) (2024-11-18)
 
 

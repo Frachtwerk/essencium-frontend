@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.6.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v5.5.0...essencium-types-v5.6.0) (2024-12-19)
+
+
+### Features
+
+* upgrade next to v15 and react to v9 ([#705](https://github.com/Frachtwerk/essencium-frontend/issues/705)) ([e9005a9](https://github.com/Frachtwerk/essencium-frontend/commit/e9005a980ba85fde9e7790789c995826d3d3b207))
+
 ## [5.5.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v5.4.1...essencium-types-v5.5.0) (2024-11-20)
 
 
