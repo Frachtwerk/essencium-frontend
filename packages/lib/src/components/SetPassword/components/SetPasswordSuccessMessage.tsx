@@ -20,6 +20,7 @@
 import { Button, Center, Stack, Text, Title } from '@mantine/core'
 import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
+import type { JSX } from 'react'
 
 import classes from './SetPasswordSuccessMessage.module.css'
 

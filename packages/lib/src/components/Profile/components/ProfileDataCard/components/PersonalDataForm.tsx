@@ -34,7 +34,7 @@ import {
   TextInput,
 } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
-import { useEffect } from 'react'
+import { type JSX, useEffect } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../../../../hooks'

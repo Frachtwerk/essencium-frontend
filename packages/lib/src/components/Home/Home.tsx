@@ -22,6 +22,7 @@ import { openSpotlight } from '@mantine/spotlight'
 import { IconSearch, IconUserEdit, IconUsers } from '@tabler/icons-react'
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
+import type { JSX } from 'react'
 
 import classes from './Home.module.css'
 

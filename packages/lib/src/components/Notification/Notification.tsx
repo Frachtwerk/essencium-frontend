@@ -23,6 +23,7 @@ import {
   Notification as MantineNotification,
   NotificationProps as Props,
 } from '@mantine/core'
+import type { JSX } from 'react'
 import { createPortal } from 'react-dom'
 
 export function Notification({ children, ...props }: Props): JSX.Element {

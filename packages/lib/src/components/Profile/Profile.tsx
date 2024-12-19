@@ -19,6 +19,7 @@
 
 import { UserOutput, UserUpdate } from '@frachtwerk/essencium-types'
 import { Grid } from '@mantine/core'
+import type { JSX } from 'react'
 
 import { ProfileDataCard, ProfileOverviewCard } from './components'
 

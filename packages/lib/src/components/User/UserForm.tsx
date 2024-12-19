@@ -40,6 +40,7 @@ import {
   Title,
 } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
+import type { JSX } from 'react'
 import {
   Control,
   Controller,

@@ -23,7 +23,7 @@ import { PaginatedResponse } from '@frachtwerk/essencium-types'
 import { Flex, Pagination, PaginationProps, Select, Text } from '@mantine/core'
 import { Table as TanstackTable } from '@tanstack/react-table'
 import { useTranslation } from 'next-i18next'
-import { useEffect, useState } from 'react'
+import { type JSX, useEffect, useState } from 'react'
 
 import classes from './TablePagination.module.css'
 

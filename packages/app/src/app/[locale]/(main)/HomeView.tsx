@@ -21,6 +21,7 @@
 
 import { Home } from '@frachtwerk/essencium-lib'
 import { useRouter } from 'next/navigation'
+import type { JSX } from 'react'
 
 export default function HomeView(): JSX.Element {
   const router = useRouter()

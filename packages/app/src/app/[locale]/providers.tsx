@@ -18,6 +18,7 @@
  */
 
 import { Notifications } from '@mantine/notifications'
+import type { JSX } from 'react'
 
 import { MantineThemeProvider } from '@/components/provider/mantineProvider'
 import { QueryProvider } from '@/components/provider/queryClientProvider'

@@ -26,6 +26,7 @@ import {
 } from '@frachtwerk/essencium-types'
 import { Box, Button, PasswordInput, Stack, Text } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
+import type { JSX } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../hooks'

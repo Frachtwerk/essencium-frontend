@@ -25,6 +25,7 @@ import {
   roleInputSchema,
 } from '@frachtwerk/essencium-types'
 import { Modal } from '@mantine/core'
+import type { JSX } from 'react'
 
 import { useZodForm } from '../../hooks'
 import { RoleForm } from './components/RoleForm'

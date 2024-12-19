@@ -37,7 +37,7 @@ import {
   Transition,
 } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, type JSX, SetStateAction } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../hooks'

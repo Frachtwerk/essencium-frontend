@@ -43,7 +43,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { useAtomValue } from 'jotai'
-import { useCallback, useMemo, useState } from 'react'
+import { type JSX, useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useGetRights, useGetRoles, userRightsAtom, useUpdateRole } from '@/api'

@@ -21,6 +21,7 @@
 
 import { Contact } from '@frachtwerk/essencium-lib'
 import { contactFormSchema, ContactFormType } from '@frachtwerk/essencium-types'
+import type { JSX } from 'react'
 
 import { useSendContactMessage } from '@/api'
 import { useZodForm } from '@/hooks'

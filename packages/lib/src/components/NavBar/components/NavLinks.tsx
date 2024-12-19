@@ -24,6 +24,7 @@ import { NavLink as MantineNavLink } from '@mantine/core'
 import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
+import type { JSX } from 'react'
 
 import { hasRequiredRights } from '../../../utils'
 import classes from './NavLinks.module.css'

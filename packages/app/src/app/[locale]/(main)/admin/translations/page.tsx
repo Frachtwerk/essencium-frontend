@@ -18,20 +18,22 @@
  */
 
 import { Metadata, ResolvingMetadata } from 'next'
+import type { JSX } from 'react'
 
 import initTranslations from '@/config/i18n'
 
 import TranslationsView from './TranslationsView'
 
 type Props = {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }
 
 export async function generateMetadata(
-  { params }: Props,
+  props: Props,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
+  const params = await props.params
   const { locale } = params
 
   const { t } = await initTranslations(locale)
