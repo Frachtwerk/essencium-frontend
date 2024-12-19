@@ -1,5 +1,10 @@
 export async function register(): Promise<void> {
+  if (process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION) return
+
   if (process.env.NEXT_RUNTIME === 'nodejs') {
+    // eslint-disable-next-line no-console
+    console.log('Registering instrumentation...')
+
     const fs = await import('fs')
     const path = await import('path')
 

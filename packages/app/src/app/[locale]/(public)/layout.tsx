@@ -18,6 +18,7 @@
  */
 
 import { Center } from '@mantine/core'
+import type { JSX } from 'react'
 
 type Props = {
   children: React.ReactNode

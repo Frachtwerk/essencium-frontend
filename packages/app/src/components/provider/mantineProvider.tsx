@@ -21,7 +21,7 @@
 
 import { MantineColorScheme, MantineProvider } from '@mantine/core'
 import { useHotkeys, useLocalStorage } from '@mantine/hooks'
-import { ReactNode } from 'react'
+import { type JSX } from 'react'
 
 import { MantineColorSchemes, theme } from '@/config/mantine'
 import { isBrowserEnvironment } from '@/utils'
@@ -29,7 +29,7 @@ import { isBrowserEnvironment } from '@/utils'
 export function MantineThemeProvider({
   children,
 }: {
-  children: ReactNode
+  children: JSX.Element
 }): JSX.Element {
   let systemColorScheme: MantineColorScheme = MantineColorSchemes.LIGHT
 

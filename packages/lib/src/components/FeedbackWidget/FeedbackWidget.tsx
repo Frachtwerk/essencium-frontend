@@ -56,7 +56,7 @@ import {
 import html2canvas from 'html2canvas'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
-import { ReactNode, useEffect, useState } from 'react'
+import { type JSX, ReactNode, useEffect, useState } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../hooks'

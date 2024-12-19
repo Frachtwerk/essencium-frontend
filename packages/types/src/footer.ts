@@ -17,6 +17,8 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { JSX } from 'react'
+
 export type FooterLink = {
   icon?: JSX.Element
   label: string

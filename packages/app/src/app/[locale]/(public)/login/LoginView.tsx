@@ -37,6 +37,7 @@ import { useSetAtom } from 'jotai'
 import NextLink from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Suspense, useEffect, useState } from 'react'
+import { type JSX } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import {

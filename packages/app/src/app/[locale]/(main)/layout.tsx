@@ -17,15 +17,21 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import type { JSX } from 'react'
+
 import { AuthLayout } from '@/components/layouts'
 import { RouteProtector } from '@/components/RouteProtector'
 
 type Props = {
   children: React.ReactNode
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }
 
-export default function MainLayout({ children, params }: Props): JSX.Element {
+export default async function MainLayout(props: Props): Promise<JSX.Element> {
+  const params = await props.params
+
+  const { children } = props
+
   return (
     <RouteProtector params={params}>
       <AuthLayout>{children}</AuthLayout>

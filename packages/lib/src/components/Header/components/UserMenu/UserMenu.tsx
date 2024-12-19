@@ -22,6 +22,7 @@ import { Box, Flex, Group, Text, UnstyledButton } from '@mantine/core'
 import { IconChevronRight, IconUser } from '@tabler/icons-react'
 import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
+import type { JSX } from 'react'
 
 import classes from './UserMenu.module.css'
 

@@ -27,6 +27,7 @@ import { SetPasswordInput } from '@frachtwerk/essencium-types'
 import { Container, Paper, Title } from '@mantine/core'
 import { useSearchParams } from 'next/navigation'
 import { useState } from 'react'
+import { type JSX } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useSetPassword } from '@/api'

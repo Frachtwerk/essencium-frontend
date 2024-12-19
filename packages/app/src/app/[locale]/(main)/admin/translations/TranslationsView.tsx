@@ -24,6 +24,7 @@ import { TranslationInput } from '@frachtwerk/essencium-types'
 import { Flex, Text, Title } from '@mantine/core'
 import { IconLanguage } from '@tabler/icons-react'
 import { useAtomValue } from 'jotai'
+import type { JSX } from 'react'
 import { getI18n, useTranslation } from 'react-i18next'
 
 import De from '@/../public/locales/de/common.json'

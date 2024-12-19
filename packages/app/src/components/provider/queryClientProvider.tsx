@@ -26,9 +26,15 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
-import { ReactNode, useState } from 'react'
+import { type JSX, ReactNode, useState } from 'react'
 
 import { withBaseStylingShowNotification } from '@/utils'
+
+type NotificationMessage = Omit<NotificationData, 'message'> & {
+  notificationType: 'created' | 'updated' | 'deleted'
+  color: 'success' | 'error'
+  message?: NotificationData['message']
+}
 
 export function QueryProvider({
   children,
@@ -40,13 +46,9 @@ export function QueryProvider({
       new QueryClient({
         queryCache: new QueryCache({
           onError: (_, query) => {
-            if (query?.meta?.errorNotification) {
-              const {
-                title,
-                message,
-                notificationType,
-              }: Omit<NotificationData, 'message'> =
-                query.meta.errorNotification
+            if (query?.meta?.message) {
+              const { title, message, notificationType } = query.meta
+                .errorNotification as NotificationMessage
 
               withBaseStylingShowNotification({
                 title,
@@ -58,12 +60,8 @@ export function QueryProvider({
           },
           onSuccess: (_, query) => {
             if (query?.meta?.successNotification) {
-              const {
-                title,
-                message,
-                notificationType,
-              }: Omit<NotificationData, 'message'> =
-                query.meta.successNotification
+              const { title, message, notificationType } = query.meta
+                .successNotification as NotificationMessage
 
               withBaseStylingShowNotification({
                 title,
@@ -77,12 +75,8 @@ export function QueryProvider({
         mutationCache: new MutationCache({
           onError: (error, variables, context, mutation) => {
             if (mutation?.meta?.errorNotification) {
-              const {
-                title,
-                message,
-                notificationType,
-              }: Omit<NotificationData, 'message'> =
-                mutation.meta.errorNotification
+              const { title, message, notificationType } = mutation.meta
+                .errorNotification as NotificationMessage
 
               withBaseStylingShowNotification({
                 title,
@@ -94,12 +88,8 @@ export function QueryProvider({
           },
           onSuccess: (error, variables, context, mutation) => {
             if (mutation?.meta?.successNotification) {
-              const {
-                title,
-                message,
-                notificationType,
-              }: Omit<NotificationData, 'message'> =
-                mutation.meta.successNotification
+              const { title, message, notificationType } = mutation.meta
+                .successNotification as NotificationMessage
               withBaseStylingShowNotification({
                 title,
                 message,

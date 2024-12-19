@@ -29,6 +29,7 @@ import {
   Group,
   useMantineTheme,
 } from '@mantine/core'
+import type { JSX } from 'react'
 
 import { SearchBar, ThemeSelector, UserMenu } from './components'
 import classes from './Header.module.css'

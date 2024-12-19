@@ -2,11 +2,11 @@
 
 window['runtimeConfig'] = {
   required: {
-    API_URL: '<API_URL>',
-    APP_URL: '<APP_URL>',
+    API_URL: 'https://backend.staging.essencium.dev',
+    APP_URL: 'http://localhost:3000',
   },
   optional: {
-    OAUTH_REDIRECT_URI: '<OAUTH_REDIRECT_URI>',
-    APP_ENV: '<APP_ENV>',
+    OAUTH_REDIRECT_URI: 'http://localhost:3000',
+    APP_ENV: 'development',
   },
 }

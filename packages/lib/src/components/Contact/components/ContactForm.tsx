@@ -35,6 +35,7 @@ import {
 } from '@mantine/core'
 import { IconSend } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
+import type { JSX } from 'react'
 import { Control, Controller, FormState } from 'react-hook-form'
 
 import classes from './ContactForm.module.css'

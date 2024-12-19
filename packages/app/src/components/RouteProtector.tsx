@@ -5,6 +5,7 @@ import { NavLink } from '@frachtwerk/essencium-types'
 import { Box, Button, Flex, Title } from '@mantine/core'
 import { useAtomValue } from 'jotai'
 import { usePathname, useRouter } from 'next/navigation'
+import type { JSX } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { userRightsAtom } from '@/api'

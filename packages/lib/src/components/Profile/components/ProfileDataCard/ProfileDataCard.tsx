@@ -26,6 +26,7 @@ import {
 import { Card, Tabs } from '@mantine/core'
 import { IconLock, IconUser } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
+import type { JSX } from 'react'
 
 import { PasswordChangeForm, PersonalDataForm } from './components'
 import classes from './ProfileDataCard.module.css'

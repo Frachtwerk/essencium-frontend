@@ -21,6 +21,7 @@ import { Group, Text, UnstyledButton } from '@mantine/core'
 import { openSpotlight } from '@mantine/spotlight'
 import { IconSearch } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
+import type { JSX } from 'react'
 
 import classes from './SearchBar.module.css'
 

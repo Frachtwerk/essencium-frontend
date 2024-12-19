@@ -19,6 +19,7 @@
 
 import { ContactFormType } from '@frachtwerk/essencium-types'
 import { Grid } from '@mantine/core'
+import type { JSX } from 'react'
 import { Control, FormState } from 'react-hook-form'
 
 import { ContactForm, ContactPersonCard } from './components'

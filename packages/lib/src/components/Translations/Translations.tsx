@@ -44,7 +44,7 @@ import {
 import dynamic from 'next/dynamic'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
-import { FormEvent, useState } from 'react'
+import { FormEvent, type JSX, useState } from 'react'
 import { KeyPath } from 'react-json-tree'
 
 import { hasRequiredRights } from '../../utils/hasRequiredRights'

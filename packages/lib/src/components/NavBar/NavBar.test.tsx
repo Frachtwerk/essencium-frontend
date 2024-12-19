@@ -27,7 +27,7 @@ import {
   IconUserStar,
 } from '@tabler/icons-react'
 import { fireEvent, render, screen } from '@testing-library/react'
-import { ReactNode } from 'react'
+import { type JSX, ReactNode } from 'react'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { NavBar } from './NavBar'

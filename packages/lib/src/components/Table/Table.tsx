@@ -37,7 +37,7 @@ import {
   Table as TanstackTable,
 } from '@tanstack/react-table'
 import { useTranslation } from 'next-i18next'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, type JSX, SetStateAction } from 'react'
 
 import classes from './Table.module.css'
 

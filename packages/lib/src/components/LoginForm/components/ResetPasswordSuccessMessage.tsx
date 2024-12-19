@@ -20,6 +20,7 @@
 import { Center, Stack, Text, Title } from '@mantine/core'
 import { IconMailForward } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
+import type { JSX } from 'react'
 
 import classes from './ResetPasswordSuccessMessage.module.css'
 

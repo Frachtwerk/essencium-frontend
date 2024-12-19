@@ -19,6 +19,7 @@
 
 import { Group, Text } from '@mantine/core'
 import { IconCircleCheck, IconCircleX } from '@tabler/icons-react'
+import type { JSX } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import classes from './PasswordRequirement.module.css'
