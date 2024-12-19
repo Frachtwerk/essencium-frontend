@@ -1,5 +1,14 @@
 # Migrations
 
+## [?.?.? (dd.mm.yyyy)]()
+
+- upgrade next and react with script `npx @next/codemod@canary upgrade latest` from the official [guide](https://nextjs.org/docs/app/building-your-application/upgrading/version-15)
+- upgrade all mantine packages to latest
+
+### `src/components/provider/queryClientProvider.tsx`
+
+- use type cast for workaround
+
 ## [7.7.0 (18.11.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.5.0...essencium-app-v7.7.0)
 
 - add support for runtime environment variables (See [docs](https://docs.essencium.dev/architecture/runtime-config))
