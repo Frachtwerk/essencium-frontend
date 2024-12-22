@@ -19,18 +19,15 @@
 
 .header__app-shell {
   padding: var(--mantine-spacing-md);
+  z-index: 1;
 
-  @media (max-width: $mantine-breakpoint-sm) {
+  @media (max-width: var(--mantine-breakpoint-sm)) {
     margin-left: 0;
   }
 }
 
 .header__content {
   height: 100%;
-}
-
-.header__burger {
-  z-index: 200;
 }
 
 .environment-indicator {

@@ -72,7 +72,6 @@ export function Header({
           // not in CSS module because it's not applied there with CSS 'color' prop
           color={theme.colors.gray[5]}
           hiddenFrom="sm"
-          className={classes.header__burger}
         />
 
         <SearchBar />
