@@ -40,6 +40,7 @@ import {
   getExpandedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
+import type { JSX } from 'react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { getI18n, useTranslation } from 'react-i18next'
 

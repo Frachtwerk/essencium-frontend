@@ -28,6 +28,7 @@ import {
 import { ActionIcon, Group, Stack, TextInput } from '@mantine/core'
 import { IconBackspace, IconDeviceFloppy } from '@tabler/icons-react'
 import { useAtomValue } from 'jotai'
+import type { JSX } from 'react'
 import { useEffect } from 'react'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
