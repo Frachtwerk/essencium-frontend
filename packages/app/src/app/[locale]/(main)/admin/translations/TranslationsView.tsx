@@ -19,101 +19,289 @@
 
 'use client'
 
-import { Translations } from '@frachtwerk/essencium-lib'
-import { TranslationInput } from '@frachtwerk/essencium-types'
-import { Flex, Text, Title } from '@mantine/core'
-import { IconLanguage } from '@tabler/icons-react'
-import { useAtomValue } from 'jotai'
+import { Table } from '@frachtwerk/essencium-lib'
+import type {
+  TranslationInput,
+  TranslationOutput,
+  TranslationTableRow,
+} from '@frachtwerk/essencium-types'
+import { Box, Flex, Group, Select, Text, TextInput, Title } from '@mantine/core'
+import { useDebouncedValue } from '@mantine/hooks'
+import {
+  IconChevronDown,
+  IconChevronUp,
+  IconLanguage,
+  IconSearch,
+  IconX,
+} from '@tabler/icons-react'
+import {
+  ColumnDef,
+  getCoreRowModel,
+  getExpandedRowModel,
+  useReactTable,
+} from '@tanstack/react-table'
 import type { JSX } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { getI18n, useTranslation } from 'react-i18next'
 
-import De from '@/../public/locales/de/common.json'
-import En from '@/../public/locales/en/common.json'
 import {
   useDeleteTranslation,
   useGetTranslations,
-  userRightsAtom,
   useUpdateTranslation,
 } from '@/api'
+import { i18nConfig } from '@/config'
 
-interface TTranslations {
-  [key: string]: string | TTranslations
+import { TranslationChangeForm } from '../../translations/_components/TranslationsChangeForm'
+import classes from './TranslationsView.module.css'
+
+/* eslint-disable react/no-unstable-nested-components */
+
+function getDataByLanguage(lang: string): TranslationOutput | undefined {
+  return getI18n().getDataByLanguage(lang)?.common
 }
 
-function getTranslationsByLanguage(
-  lang: string,
-): Record<string, string> | undefined {
-  const translations = getI18n().getResourceBundle(lang, 'common')
+export function transformData(
+  translationObject: TranslationOutput,
+  path: string[] = [],
+): TranslationTableRow[] | undefined {
+  if (!translationObject) return
 
-  return translations
+  return Object.entries(translationObject).map(([key, value]) => {
+    const currentPath = [...path, key]
+
+    const row: TranslationTableRow = {
+      key,
+    }
+
+    if (typeof value === 'string' && value !== '') {
+      // entry is key value pair
+      row.value = value
+      row.keyPath = currentPath.join('.')
+    } else if (typeof value === 'object' && value !== null) {
+      // entry containts subRows
+      row.subRows = transformData(value, currentPath)
+    }
+
+    return row
+  })
 }
 
-export default function TranslationsView(): JSX.Element {
-  const { t } = useTranslation()
+const searchTableRowsAndReturnPath = (
+  rows: TranslationTableRow[],
+  searchQuery: string,
+  currentPath: string[] = [],
+): TranslationTableRow[] => {
+  const result: TranslationTableRow[] = []
 
+  rows.forEach(currentRow => {
+    const newPath = [...currentPath, currentRow.key]
+    let matchedSubRows: TranslationTableRow[] = []
+
+    // Recursively search subRows
+    if (currentRow.subRows) {
+      matchedSubRows = searchTableRowsAndReturnPath(
+        currentRow.subRows,
+        searchQuery.toLowerCase(),
+        newPath,
+      )
+    }
+
+    // Check if the current row or any subRow matches the search query
+    const isMatch =
+      currentRow.value && currentRow.value.toLowerCase().includes(searchQuery)
+
+    if (isMatch || matchedSubRows.length > 0) {
+      // Include the current row, and only add non-empty matchedSubRows
+      result.push({
+        key: currentRow.key,
+        value: isMatch ? currentRow.value : undefined,
+        subRows: matchedSubRows.length > 0 ? matchedSubRows : undefined,
+        keyPath: matchedSubRows.length === 0 ? newPath.join('.') : undefined,
+      })
+    }
+  })
+
+  return result
+}
+
+export default function TranlsationView(): JSX.Element {
   const i18n = getI18n()
 
-  const userRights = useAtomValue(userRightsAtom)
+  const { t } = useTranslation()
 
-  const { mutate: updateTranslation } = useUpdateTranslation()
-  const { mutate: deleteTranslation } = useDeleteTranslation()
+  const [locale, setLocale] = useState(i18n.language)
 
-  const { refetch: refetchServerTranslationsDe, data: backendTranslationsDe } =
+  const [searchQuery, setSearchQuery] = useState<string | null>(null)
+
+  const [debouncedSearchQuery] = useDebouncedValue<string | null>(
+    searchQuery,
+    300,
+  )
+
+  const [updatedTranslations, setUpdatedTranslations] =
+    useState<TranslationOutput | null>(null)
+
+  const [transformedTranslations, setTransformedTranslations] = useState<
+    TranslationTableRow[] | null
+  >(null)
+
+  const [searchedTransformedTranslations, setSearchedTransformedTranslations] =
+    useState<TranslationTableRow[] | null>(null)
+
+  const [isDelete, setIsDelete] = useState<boolean>(false)
+
+  const { data: serverTranslationsDe, refetch: refetchServerTranslationsDe } =
     useGetTranslations('de')
-  const { refetch: refetchServerTranslationsEn, data: backendTranslationsEn } =
+
+  const { data: serverTranslationsEn, refetch: refetchServerTranslationsEn } =
     useGetTranslations('en')
 
-  function onUpdateTranslation(translationInput: TranslationInput): void {
-    updateTranslation(translationInput, {
-      onSuccess: async () => {
-        await refetchServerTranslationsDe()
-        await refetchServerTranslationsEn()
+  const { mutate: updateTranslation } = useUpdateTranslation()
 
-        i18n?.addResourceBundle(
-          i18n.language,
-          'common',
-          i18n.language === 'de'
-            ? backendTranslationsDe
-            : backendTranslationsEn,
-          true,
-          true,
-        )
-      },
+  const { mutate: deleteTranslation } = useDeleteTranslation()
+
+  const onUpdateTranslation = useCallback(
+    (translationInput: TranslationInput): void => {
+      updateTranslation(translationInput, {
+        onSuccess: async () => {
+          await refetchServerTranslationsDe()
+
+          await refetchServerTranslationsEn()
+        },
+      })
+    },
+    [
+      updateTranslation,
+      refetchServerTranslationsDe,
+      refetchServerTranslationsEn,
+    ],
+  )
+
+  const onDeleteTranslation = useCallback(
+    (keyPath: TranslationInput['key']): void => {
+      deleteTranslation(keyPath, {
+        onSuccess: async () => {
+          await refetchServerTranslationsDe()
+
+          await refetchServerTranslationsEn()
+
+          setIsDelete(true)
+        },
+      })
+    },
+    [
+      deleteTranslation,
+      refetchServerTranslationsDe,
+      refetchServerTranslationsEn,
+    ],
+  )
+
+  useEffect(() => {
+    i18n?.addResourceBundle(
+      locale,
+      'common',
+      locale === 'de' ? serverTranslationsDe || {} : serverTranslationsEn || {},
+      true,
+      true,
+    )
+
+    i18n?.init(() => {
+      setUpdatedTranslations(getDataByLanguage(locale) ?? null)
     })
-  }
 
-  function onDeleteTranslation(translationKey: TranslationInput['key']): void {
-    deleteTranslation(translationKey, {
-      onSuccess: async () => {
-        await refetchServerTranslationsDe()
-        await refetchServerTranslationsEn()
+    setTransformedTranslations(transformData(updatedTranslations ?? {}) || [])
 
-        const keyPath = translationKey.split('.')
+    if (isDelete) {
+      window.location.reload()
+    }
+  }, [
+    serverTranslationsDe,
+    serverTranslationsEn,
+    i18n,
+    locale,
+    setTransformedTranslations,
+    updatedTranslations,
+    isDelete,
+  ])
 
-        const valueByKeyPath: string = keyPath.reduce(
-          (obj: TTranslations | string, key: string) => {
-            if (typeof obj === 'string') {
-              return obj
-            }
+  useEffect(() => {
+    const searchResults = searchTableRowsAndReturnPath(
+      transformedTranslations || [],
+      debouncedSearchQuery || '',
+    )
+    setSearchedTransformedTranslations(searchResults)
+  }, [
+    setSearchedTransformedTranslations,
+    transformedTranslations,
+    debouncedSearchQuery,
+  ])
 
-            return obj[key]
-          },
-          i18n?.language === 'de'
-            ? (De as TTranslations)
-            : (En as TTranslations),
-        ) as string
+  const columns = useMemo<ColumnDef<TranslationTableRow>[]>(
+    () => [
+      {
+        accessorKey: 'key',
+        header: t('translationsView.table.key'),
+        cell: ({ row }) => {
+          const rowContent = row.original
 
-        i18n?.addResource(
-          i18n.language,
-          'common',
-          translationKey,
-          valueByKeyPath,
-        )
+          const isParent = row.subRows && row.subRows.length > 0
 
-        i18n?.init()
+          return (
+            <Box>
+              {isParent ? (
+                <Group ml={`${row.depth * 30}px`}>
+                  {row.getIsExpanded() ? (
+                    <IconChevronUp />
+                  ) : (
+                    <IconChevronDown />
+                  )}
+
+                  <Text fw={row.getIsExpanded() ? 'bold' : undefined}>
+                    {rowContent.key}
+                  </Text>
+                </Group>
+              ) : (
+                <Text ml={`${row.depth * 70}px`}>{rowContent.key}</Text>
+              )}
+            </Box>
+          )
+        },
+        size: 80,
+        enableSorting: false,
       },
-    })
-  }
+      {
+        accessorKey: 'value',
+        header: t('translationsView.table.value'),
+        cell: ({ row }) => {
+          const rowContent = row.original
+
+          return rowContent.value ? (
+            <TranslationChangeForm
+              currentValue={rowContent.value}
+              updateTranslation={onUpdateTranslation}
+              locale={locale}
+              keyPath={rowContent.keyPath || ''}
+              deleteTranslation={onDeleteTranslation}
+            />
+          ) : null
+        },
+        size: 400,
+        enableSorting: false,
+      },
+    ],
+    [onUpdateTranslation, locale, onDeleteTranslation, t],
+  )
+
+  const table = useReactTable({
+    data: debouncedSearchQuery
+      ? searchedTransformedTranslations || []
+      : transformedTranslations || [],
+    columns,
+    state: {},
+    getCoreRowModel: getCoreRowModel(),
+    getExpandedRowModel: getExpandedRowModel(),
+    getSubRows: row => row.subRows,
+  })
 
   return (
     <>
@@ -124,12 +312,35 @@ export default function TranslationsView(): JSX.Element {
         </Flex>
       </Title>
 
-      <Translations
-        userRights={userRights}
-        getTranslations={getTranslationsByLanguage}
-        updateTranslation={onUpdateTranslation}
-        deleteTranslation={onDeleteTranslation}
-      />
+      <Group gap="md" mt="lg">
+        <Select
+          data={i18nConfig.locales}
+          onChange={value => setLocale(value || i18n.language)}
+          defaultValue={i18n.language}
+          label={t('translationsView.select')}
+          className={classes['translations-view__select']}
+        />
+
+        <TextInput
+          onChange={event => setSearchQuery(event.target.value)}
+          label={t('translationsView.search.label')}
+          placeholder={t('translationsView.search.placeholder')}
+          value={searchQuery || ''}
+          rightSection={
+            searchQuery?.length && searchQuery.length > 0 ? (
+              <IconX onClick={() => setSearchQuery(null)} size={16} />
+            ) : null
+          }
+          leftSection={<IconSearch size={16} />}
+          className={classes['translations-view__search']}
+        />
+      </Group>
+
+      {debouncedSearchQuery && !searchedTransformedTranslations?.length ? (
+        t('translationsView.search.noResults')
+      ) : (
+        <Table tableModel={table} />
+      )}
     </>
   )
 }
