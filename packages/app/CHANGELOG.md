@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.9.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.8.0...essencium-app-v7.9.0) (2024-12-23)
+
+
+### Features
+
+* add new translation page ([29dd6d7](https://github.com/Frachtwerk/essencium-frontend/commit/29dd6d7fb5ee9139f4885b113d05d25ea4cd93d9))
+
 ## [7.8.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.7.1...essencium-app-v7.8.0) (2024-12-19)
 
 
