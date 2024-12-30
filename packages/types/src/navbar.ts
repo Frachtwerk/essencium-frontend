@@ -26,6 +26,6 @@ export type NavLink = {
   to: string
   isExternalLink?: boolean
   description?: string
-  rights: string[]
+  rights: (string | string[])[]
   navLinks?: NavLink[]
 }

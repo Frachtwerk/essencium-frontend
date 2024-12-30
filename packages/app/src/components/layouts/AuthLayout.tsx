@@ -22,6 +22,7 @@
 import {
   FeedbackWidget,
   Footer,
+  hasRequiredRights,
   Header,
   LoadingSpinner,
   NavBar,
@@ -71,15 +72,6 @@ type Props = AppShellProps & {
   children: React.ReactNode
 }
 
-type SearchItems = {
-  icon?: JSX.Element
-  label: string
-  to: string
-  description?: string
-  rights?: string[]
-  navLinks?: NavLink[]
-}
-
 export const NAV_LINKS: NavLink[] = [
   {
     icon: <IconHome />,
@@ -95,10 +87,12 @@ export const NAV_LINKS: NavLink[] = [
     label: 'navigation.administration.label',
     to: '/admin',
     rights: [
-      RIGHTS.USER_READ,
-      RIGHTS.ROLE_READ,
-      RIGHTS.RIGHT_READ,
-      RIGHTS.TRANSLATION_READ,
+      [
+        RIGHTS.USER_READ,
+        RIGHTS.ROLE_READ,
+        RIGHTS.RIGHT_READ,
+        RIGHTS.TRANSLATION_READ,
+      ],
     ],
     navLinks: [
       {
@@ -164,10 +158,11 @@ export const FOOTER_LINKS: NavLink[] = [
   },
 ]
 
-export const SEARCH_ITEMS: SearchItems[] = [
+export const SEARCH_ITEMS: NavLink[] = [
   {
     icon: <IconSearch />,
     label: 'profileView.title',
+    color: theme.primaryColor,
     to: '/profile',
     description: 'profileView.description',
     rights: [],
@@ -210,21 +205,22 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
   } = useCreateFeedback()
 
   const actions: SpotlightActionData[] = SEARCH_ITEMS.filter(link =>
-    !link.rights?.length ||
-    link.rights?.some(right => userRights?.includes(right))
+    !link.rights?.length || hasRequiredRights(userRights ?? [], link.rights)
       ? link
       : null,
   ).flatMap(link => {
     if (link.navLinks?.length) {
-      return link.navLinks.map(navLink => ({
-        id: navLink.label,
-        label: t(navLink.label) as string,
-        description: navLink.description
-          ? (t(navLink.description) as string)
-          : '',
-        onClick: () => router.push(`${navLink.to}`),
-        leftSection: navLink.icon,
-      }))
+      return link.navLinks
+        .filter(navLink => hasRequiredRights(userRights ?? [], navLink.rights))
+        .map(navLink => ({
+          id: navLink.label,
+          label: t(navLink.label) as string,
+          description: navLink.description
+            ? (t(navLink.description) as string)
+            : '',
+          onClick: () => router.push(`${link.to}/${navLink.to}`),
+          leftSection: navLink.icon,
+        }))
     }
 
     return {
