@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.7.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v5.6.0...essencium-types-v5.7.0) (2024-12-30)
+
+
+### Features
+
+* add new translation page ([29dd6d7](https://github.com/Frachtwerk/essencium-frontend/commit/29dd6d7fb5ee9139f4885b113d05d25ea4cd93d9))
+
+
+### Bug Fixes
+
+* get child navItems with flatmap ([da263c9](https://github.com/Frachtwerk/essencium-frontend/commit/da263c95865667428f3364de3a0ccca13d656104))
+
 ## [5.6.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v5.5.0...essencium-types-v5.6.0) (2024-12-19)
 
 

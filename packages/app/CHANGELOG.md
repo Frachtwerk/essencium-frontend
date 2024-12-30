@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.9.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.8.0...essencium-app-v7.9.0) (2024-12-30)
+
+
+### Features
+
+* add new translation page ([29dd6d7](https://github.com/Frachtwerk/essencium-frontend/commit/29dd6d7fb5ee9139f4885b113d05d25ea4cd93d9))
+
+
+### Bug Fixes
+
+* get child navItems with flatmap ([da263c9](https://github.com/Frachtwerk/essencium-frontend/commit/da263c95865667428f3364de3a0ccca13d656104))
+
 ## [7.8.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.7.1...essencium-app-v7.8.0) (2024-12-19)
 
 
