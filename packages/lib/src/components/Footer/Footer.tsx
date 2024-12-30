@@ -17,7 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { FooterLink } from '@frachtwerk/essencium-types'
+import { NavLink } from '@frachtwerk/essencium-types'
 import {
   AppShellFooter,
   AppShellFooterProps,
@@ -33,7 +33,7 @@ import type { JSX } from 'react'
 import classes from './Footer.module.css'
 
 type Props = AppShellFooterProps & {
-  links: FooterLink[]
+  links: NavLink[]
   version?: string
 }
 
