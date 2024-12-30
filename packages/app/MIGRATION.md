@@ -2,11 +2,19 @@
 
 ## [7.8.? (dd.01.2025)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.8.0...essencium-app-v7.8.?)
 
-### `src/components/layouts`
+### `src/components/layouts/AuthLayout.tsx`
 
 - set primary color variable for links
 - convert fooker links to NavLink type
 - extract child routes for spotlight
+
+### `src/app/[locale]/layout.tsx`
+
+- remove ColorSchemeScript
+
+### `src/components/provider/mantineProvider.tsx`
+
+- remove custom color scheme logic
 
 ## [7.8.0 (19.12.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.7.0...essencium-app-v7.8.0)
 

@@ -20,7 +20,7 @@
 import '@mantine/core/styles.css'
 import '@mantine/spotlight/styles.css'
 
-import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core'
+import { mantineHtmlProps } from '@mantine/core'
 import type { JSX } from 'react'
 
 import TranslationProvider from '@/components/provider/translationProvider'
@@ -50,7 +50,6 @@ export default async function RootLayout(props: Props): Promise<JSX.Element> {
     <html lang={locale} {...mantineHtmlProps}>
       <head>
         <link rel="icon" href="/img/web/favicon.ico" sizes="any" />
-        <ColorSchemeScript defaultColorScheme="auto" />
         <script src="/runtimeConfig.js" />
       </head>
 

@@ -18,9 +18,8 @@
  */
 
 import {
-  Button,
+  ActionIcon,
   Group,
-  MantineColorScheme,
   Popover,
   PopoverDropdown,
   PopoverTarget,
@@ -29,68 +28,49 @@ import {
 } from '@mantine/core'
 import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
-import { type JSX, useState } from 'react'
+import { type JSX } from 'react'
 
 import classes from './ThemeSelector.module.css'
 
 export const COLOR_SCHEME = {
-  light: 'light',
-  dark: 'dark',
+  LIGHT: 'light',
+  DARK: 'dark',
+  AUTO: 'auto',
 } as const
 
 export function ThemeSelector(): JSX.Element {
   const { t } = useTranslation()
 
-  const { setColorScheme, colorScheme } = useMantineColorScheme()
+  const { setColorScheme, colorScheme, clearColorScheme } =
+    useMantineColorScheme()
 
-  const [isSystemColorScheme, setIsSystemColorScheme] = useState(false)
+  const isLightMode = colorScheme === COLOR_SCHEME.LIGHT
 
-  let systemColorScheme: MantineColorScheme = COLOR_SCHEME.light
-
-  if (typeof window !== 'undefined') {
-    systemColorScheme = window.matchMedia('(prefers-color-scheme: light)')
-      .matches
-      ? COLOR_SCHEME.light
-      : COLOR_SCHEME.dark
-  }
+  const isAutoMode = colorScheme === COLOR_SCHEME.AUTO
 
   return (
     <Popover width={130} position="bottom" withArrow shadow="sm">
       <PopoverTarget>
-        <Button
-          aria-label="theme-selector"
-          className={classes['theme-selector__button']}
-          leftSection={
-            <>
-              <IconSun
-                className={`${classes['theme-selector__iconLight']} ${
-                  !isSystemColorScheme
-                    ? classes['theme-selector__icon--active']
-                    : ''
-                } `}
-              />
-
-              <IconMoon
-                className={`${classes['theme-selector__iconDark']} ${
-                  !isSystemColorScheme
-                    ? classes['theme-selector__icon--active']
-                    : ''
-                }`}
-              />
-            </>
-          }
-        />
+        <ActionIcon variant="subtle" aria-label="theme-selector" size="xl">
+          {isLightMode ? (
+            <IconSun
+              className={isAutoMode ? classes['theme-selector__auto-mode'] : ''}
+            />
+          ) : (
+            <IconMoon
+              className={isAutoMode ? classes['theme-selector__auto-mode'] : ''}
+            />
+          )}
+        </ActionIcon>
       </PopoverTarget>
 
       <PopoverDropdown className={classes['theme-selector__popover-dropdown']}>
         <Group
           onClick={() => {
-            setColorScheme(COLOR_SCHEME.light)
-
-            setIsSystemColorScheme(false)
+            setColorScheme(COLOR_SCHEME.LIGHT)
           }}
           className={
-            colorScheme === COLOR_SCHEME.light && !isSystemColorScheme
+            colorScheme === COLOR_SCHEME.LIGHT && !isAutoMode
               ? `${classes['theme-selector__group']} ${classes['theme-selector__group--active']}`
               : classes['theme-selector__group']
           }
@@ -104,12 +84,10 @@ export function ThemeSelector(): JSX.Element {
 
         <Group
           onClick={() => {
-            setColorScheme(COLOR_SCHEME.dark)
-
-            setIsSystemColorScheme(false)
+            setColorScheme(COLOR_SCHEME.DARK)
           }}
           className={
-            colorScheme === COLOR_SCHEME.dark && !isSystemColorScheme
+            colorScheme === COLOR_SCHEME.DARK && !isAutoMode
               ? `${classes['theme-selector__group']} ${classes['theme-selector__group--active']}`
               : classes['theme-selector__group']
           }
@@ -123,12 +101,10 @@ export function ThemeSelector(): JSX.Element {
 
         <Group
           onClick={() => {
-            setColorScheme(systemColorScheme)
-
-            setIsSystemColorScheme(true)
+            clearColorScheme()
           }}
           className={
-            isSystemColorScheme
+            isAutoMode
               ? `${classes['theme-selector__group']} ${classes['theme-selector__group--active']}`
               : classes['theme-selector__group']
           }
