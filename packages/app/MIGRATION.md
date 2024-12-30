@@ -1,5 +1,13 @@
 # Migrations
 
+## [7.8.? (dd.01.2025)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.8.0...essencium-app-v7.8.?)
+
+### `src/components/layouts`
+
+- set primary color variable for links
+- convert fooker links to NavLink type
+- extract child routes for spotlight
+
 ## [7.8.0 (19.12.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.7.0...essencium-app-v7.8.0)
 
 - upgrade next and react with script `npx @next/codemod@canary upgrade latest` from the official [guide](https://nextjs.org/docs/app/building-your-application/upgrading/version-15)
