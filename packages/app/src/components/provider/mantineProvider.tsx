@@ -19,51 +19,19 @@
 
 'use client'
 
-import { MantineColorScheme, MantineProvider } from '@mantine/core'
-import { useHotkeys, useLocalStorage } from '@mantine/hooks'
+import { MantineProvider } from '@mantine/core'
 import { type JSX } from 'react'
 
-import { MantineColorSchemes, theme } from '@/config/mantine'
-import { isBrowserEnvironment } from '@/utils'
+import { theme } from '@/config/mantine'
 
 export function MantineThemeProvider({
   children,
 }: {
   children: JSX.Element
 }): JSX.Element {
-  let systemColorScheme: MantineColorScheme = MantineColorSchemes.LIGHT
-
-  const [colorScheme, setColorScheme] = useLocalStorage<MantineColorScheme>({
-    key: 'mantine-color-scheme',
-    defaultValue: systemColorScheme,
-    getInitialValueInEffect: true,
-  })
-
-  if (isBrowserEnvironment()) {
-    systemColorScheme = window.matchMedia('(prefers-color-scheme: light)')
-      .matches
-      ? MantineColorSchemes.LIGHT
-      : MantineColorSchemes.DARK
-
-    window
-      .matchMedia('(prefers-color-scheme: light)')
-      .addEventListener('change', event => {
-        setColorScheme(
-          event.matches ? MantineColorSchemes.LIGHT : MantineColorSchemes.DARK,
-        )
-      })
-  }
-
-  function toggleColorScheme(value?: MantineColorScheme): void {
-    setColorScheme(
-      value ||
-        (colorScheme === MantineColorSchemes.DARK
-          ? MantineColorSchemes.LIGHT
-          : MantineColorSchemes.DARK),
-    )
-  }
-
-  useHotkeys([['mod+J', () => toggleColorScheme()]])
-
-  return <MantineProvider theme={theme}>{children}</MantineProvider>
+  return (
+    <MantineProvider defaultColorScheme="auto" theme={theme}>
+      {children}
+    </MantineProvider>
+  )
 }

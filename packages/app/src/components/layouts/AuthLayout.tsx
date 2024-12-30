@@ -22,11 +22,12 @@
 import {
   FeedbackWidget,
   Footer,
+  hasRequiredRights,
   Header,
   LoadingSpinner,
   NavBar,
 } from '@frachtwerk/essencium-lib'
-import { FooterLink, NavLink, RIGHTS } from '@frachtwerk/essencium-types'
+import { NavLink, RIGHTS } from '@frachtwerk/essencium-types'
 import { AppShell, AppShellMain, AppShellProps } from '@mantine/core'
 import { useDisclosure, useMediaQuery } from '@mantine/hooks'
 import { Spotlight, SpotlightActionData } from '@mantine/spotlight'
@@ -50,6 +51,7 @@ import { useTranslation } from 'react-i18next'
 
 import { useGetMe, userAtom, userRightsAtom } from '@/api'
 import { useCreateFeedback } from '@/api/feedback'
+import { theme } from '@/config'
 import {
   isBrowserEnvironment,
   logout,
@@ -70,18 +72,10 @@ type Props = AppShellProps & {
   children: React.ReactNode
 }
 
-type SearchItems = {
-  icon?: JSX.Element
-  label: string
-  to: string
-  description?: string
-  rights?: string[]
-}
-
 export const NAV_LINKS: NavLink[] = [
   {
     icon: <IconHome />,
-    color: 'blue',
+    color: theme.primaryColor,
     label: 'navigation.home.label',
     to: '/',
     description: 'navigation.home.description',
@@ -89,19 +83,21 @@ export const NAV_LINKS: NavLink[] = [
   },
   {
     icon: <IconSettings />,
-    color: 'blue',
+    color: theme.primaryColor,
     label: 'navigation.administration.label',
     to: '/admin',
     rights: [
-      RIGHTS.USER_READ,
-      RIGHTS.ROLE_READ,
-      RIGHTS.RIGHT_READ,
-      RIGHTS.TRANSLATION_READ,
+      [
+        RIGHTS.USER_READ,
+        RIGHTS.ROLE_READ,
+        RIGHTS.RIGHT_READ,
+        RIGHTS.TRANSLATION_READ,
+      ],
     ],
     navLinks: [
       {
         icon: <IconUsers />,
-        color: 'blue',
+        color: theme.primaryColor,
         label: 'navigation.users.label',
         to: '/users',
         description: 'navigation.users.description',
@@ -109,7 +105,7 @@ export const NAV_LINKS: NavLink[] = [
       },
       {
         icon: <IconUserStar />,
-        color: 'blue',
+        color: theme.primaryColor,
         label: 'navigation.roles.label',
         to: '/roles',
         description: 'navigation.roles.description',
@@ -117,7 +113,7 @@ export const NAV_LINKS: NavLink[] = [
       },
       {
         icon: <IconShieldHalf />,
-        color: 'blue',
+        color: theme.primaryColor,
         label: 'navigation.rights.label',
         to: '/rights',
         description: 'navigation.rights.description',
@@ -125,7 +121,7 @@ export const NAV_LINKS: NavLink[] = [
       },
       {
         icon: <IconLanguage />,
-        color: 'blue',
+        color: theme.primaryColor,
         label: 'navigation.translations.label',
         to: '/translations',
         description: 'navigation.translations.description',
@@ -135,31 +131,38 @@ export const NAV_LINKS: NavLink[] = [
   },
 ]
 
-export const FOOTER_LINKS: FooterLink[] = [
+export const FOOTER_LINKS: NavLink[] = [
   {
-    label: 'footer.privacy.label',
     icon: <IconShieldLock size={20} />,
+    color: theme.primaryColor,
+    label: 'footer.privacy.label',
     to: '/',
     description: 'footer.privacy.description',
+    rights: [],
   },
   {
-    label: 'footer.imprint.label',
     icon: <IconSectionSign size={20} />,
+    color: theme.primaryColor,
+    label: 'footer.imprint.label',
     to: '/',
     description: 'footer.imprint.description',
+    rights: [],
   },
   {
-    label: 'footer.contact.label',
     icon: <IconMessage size={20} />,
+    color: theme.primaryColor,
+    label: 'footer.contact.label',
     to: '/contact',
     description: 'footer.contact.description',
+    rights: [],
   },
 ]
 
-export const SEARCH_ITEMS: SearchItems[] = [
+export const SEARCH_ITEMS: NavLink[] = [
   {
     icon: <IconSearch />,
     label: 'profileView.title',
+    color: theme.primaryColor,
     to: '/profile',
     description: 'profileView.description',
     rights: [],
@@ -202,11 +205,24 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
   } = useCreateFeedback()
 
   const actions: SpotlightActionData[] = SEARCH_ITEMS.filter(link =>
-    !link.rights?.length ||
-    link.rights?.some(right => userRights?.includes(right))
+    !link.rights?.length || hasRequiredRights(userRights ?? [], link.rights)
       ? link
       : null,
-  ).map(link => {
+  ).flatMap(link => {
+    if (link.navLinks?.length) {
+      return link.navLinks
+        .filter(navLink => hasRequiredRights(userRights ?? [], navLink.rights))
+        .map(navLink => ({
+          id: navLink.label,
+          label: t(navLink.label) as string,
+          description: navLink.description
+            ? (t(navLink.description) as string)
+            : '',
+          onClick: () => router.push(`${link.to}/${navLink.to}`),
+          leftSection: navLink.icon,
+        }))
+    }
+
     return {
       id: link.label,
       label: t(link.label) as string,

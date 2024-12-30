@@ -22,7 +22,7 @@ import { JSX } from 'react'
 export type NavLink = {
   icon?: JSX.Element
   label: string
-  color: string
+  color: string | undefined
   to: string
   isExternalLink?: boolean
   description?: string
