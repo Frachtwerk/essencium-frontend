@@ -259,6 +259,8 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
   useEffect(() => {
     if (!isNotMobile) {
       setIsFoldedNav(false)
+    } else {
+      setIsFoldedNav(true)
     }
   }, [isNotMobile])
 
