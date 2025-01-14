@@ -449,7 +449,6 @@ export default function UsersView(): JSX.Element {
               pageSize={pageSize}
               setActivePage={setActivePage}
               setPageSize={setPageSize}
-              handleRefetch={handleRefetch}
             />
           </>
         )}

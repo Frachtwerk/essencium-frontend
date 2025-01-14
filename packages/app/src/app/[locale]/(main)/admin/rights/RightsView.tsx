@@ -254,7 +254,6 @@ export default function RightsView(): JSX.Element {
             pageSize={pageSize}
             setActivePage={setActivePage}
             setPageSize={setPageSize}
-            handleRefetch={handleRefetch}
           />
         </>
       )}
