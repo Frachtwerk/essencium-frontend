@@ -376,7 +376,6 @@ export default function RolesView(): JSX.Element {
             pageSize={pageSize}
             setActivePage={setActivePage}
             setPageSize={setPageSize}
-            handleRefetch={handleRefetch}
           />
         </>
       )}
