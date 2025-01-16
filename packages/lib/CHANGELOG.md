@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.8.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.8.0...essencium-lib-v7.8.1) (2025-01-15)
+
+
+### Bug Fixes
+
+* remove handle refetch that causes duplicate requests ([83ae8b7](https://github.com/Frachtwerk/essencium-frontend/commit/83ae8b7690fbe8bee62f4fe75be875d59bc21d2f))
+
 ## [7.8.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.7.0...essencium-lib-v7.8.0) (2024-12-30)
 
 
