@@ -1,5 +1,9 @@
 # Migrations
 
+## [7.9.1 (16.01.2025)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.9.0...essencium-app-v7.9.1)
+
+- `handleRefetch` prop in `TablePagination.tsx` was removed, means all references of `TablePagination.tsx` needs to be adjusted by removing the handler prop
+
 ## [7.9.0 (30.12.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.8.0...essencium-app-v7.9.0)
 
 ### `src/components/layouts/AuthLayout.tsx`
