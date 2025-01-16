@@ -60,7 +60,7 @@ export function NavLinks({
         (link.rights && hasRequiredRights(userRights, link.rights)) ? (
           <MantineNavLink
             component={NextLink}
-            key={link.label + link.icon}
+            key={crypto.randomUUID()}
             href={link.to}
             target={link?.isExternalLink ? '_blank' : '_self'}
             leftSection={link.icon}
