@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.8.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.8.1...essencium-lib-v7.8.2) (2025-01-22)
+
+
+### Bug Fixes
+
+* update dependencies ([86a7606](https://github.com/Frachtwerk/essencium-frontend/commit/86a760602b11c1e9442f8f36f1f0926f30a380cf))
+
 ## [7.8.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.8.0...essencium-lib-v7.8.1) (2025-01-15)
 
 
