@@ -143,7 +143,7 @@ export default function RightsView(): JSX.Element {
         size: 100,
         header: () => (
           <Text inherit c={role.protected ? 'grey' : 'primary'}>
-            {t(`rightsView.table.${role.name}`)}
+            {role.name}
           </Text>
         ),
         enableSorting: false,
