@@ -1,5 +1,23 @@
 # Changelog
 
+## [7.9.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.8.2...essencium-lib-v7.9.0) (2025-01-23)
+
+
+### Features
+
+* add option to stop prefetching ([b81abd1](https://github.com/Frachtwerk/essencium-frontend/commit/b81abd1b2364d825b2202eb9e7073fd0fa058bc5))
+
+
+### Bug Fixes
+
+* show buttons depending on rights on home page ([#716](https://github.com/Frachtwerk/essencium-frontend/issues/716)) ([377df25](https://github.com/Frachtwerk/essencium-frontend/commit/377df256af3c6e1ac2bc005349652df92d3ad7f9))
+
+
+### Reverts
+
+* add explicit import for JSX type ([69d875c](https://github.com/Frachtwerk/essencium-frontend/commit/69d875c78a270915b52db87df76ab5a660970f7a))
+* reset key value to original value ([b932a03](https://github.com/Frachtwerk/essencium-frontend/commit/b932a03feaafc2f83856e9ed7282110c8be10f13))
+
 ## [7.8.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v7.8.1...essencium-lib-v7.8.2) (2025-01-22)
 
 

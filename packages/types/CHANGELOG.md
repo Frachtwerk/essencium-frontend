@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.8.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v5.7.0...essencium-types-v5.8.0) (2025-01-23)
+
+
+### Features
+
+* add option to stop prefetching ([b81abd1](https://github.com/Frachtwerk/essencium-frontend/commit/b81abd1b2364d825b2202eb9e7073fd0fa058bc5))
+
+
+### Reverts
+
+* add explicit import for JSX type ([69d875c](https://github.com/Frachtwerk/essencium-frontend/commit/69d875c78a270915b52db87df76ab5a660970f7a))
+
 ## [5.7.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v5.6.0...essencium-types-v5.7.0) (2024-12-30)
 
 
