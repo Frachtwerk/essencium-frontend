@@ -65,7 +65,7 @@ import {
 import { useAtomValue } from 'jotai'
 import NextLink from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useCallback, useMemo, useState } from 'react'
+import { type JSX, useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import {
@@ -449,7 +449,6 @@ export default function UsersView(): JSX.Element {
               pageSize={pageSize}
               setActivePage={setActivePage}
               setPageSize={setPageSize}
-              handleRefetch={handleRefetch}
             />
           </>
         )}

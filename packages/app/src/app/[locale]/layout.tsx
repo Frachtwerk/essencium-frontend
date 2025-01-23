@@ -20,7 +20,8 @@
 import '@mantine/core/styles.css'
 import '@mantine/spotlight/styles.css'
 
-import { ColorSchemeScript } from '@mantine/core'
+import { mantineHtmlProps } from '@mantine/core'
+import type { JSX } from 'react'
 
 import TranslationProvider from '@/components/provider/translationProvider'
 
@@ -33,20 +34,22 @@ export function generateStaticParams(): { locale: string }[] {
 
 type Props = {
   children: React.ReactNode
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }
 
-export default async function RootLayout({
-  children,
-  params: { locale },
-}: Props): Promise<JSX.Element> {
+export default async function RootLayout(props: Props): Promise<JSX.Element> {
+  const params = await props.params
+
+  const { locale } = params
+
+  const { children } = props
+
   const { resources } = await initTranslations(locale)
 
   return (
-    <html lang={locale}>
+    <html lang={locale} {...mantineHtmlProps}>
       <head>
         <link rel="icon" href="/img/web/favicon.ico" sizes="any" />
-        <ColorSchemeScript defaultColorScheme="auto" />
         <script src="/runtimeConfig.js" />
       </head>
 

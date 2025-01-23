@@ -1,5 +1,34 @@
 # Migrations
 
+## [7.9.1 (16.01.2025)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.9.0...essencium-app-v7.9.1)
+
+- `handleRefetch` prop in `TablePagination.tsx` was removed, means all references of `TablePagination.tsx` needs to be adjusted by removing the handler prop
+
+## [7.9.0 (30.12.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.8.0...essencium-app-v7.9.0)
+
+### `src/components/layouts/AuthLayout.tsx`
+
+- set primary color variable for links
+- convert fooker links to NavLink type
+- extract child routes for spotlight
+
+### `src/app/[locale]/layout.tsx`
+
+- remove ColorSchemeScript
+
+### `src/components/provider/mantineProvider.tsx`
+
+- remove custom color scheme logic
+
+## [7.8.0 (19.12.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.7.0...essencium-app-v7.8.0)
+
+- upgrade next and react with script `npx @next/codemod@canary upgrade latest` from the official [guide](https://nextjs.org/docs/app/building-your-application/upgrading/version-15)
+- upgrade all mantine packages to latest
+
+### `src/components/provider/queryClientProvider.tsx`
+
+- use type cast for workaround
+
 ## [7.7.0 (18.11.2024)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.5.0...essencium-app-v7.7.0)
 
 - add support for runtime environment variables (See [docs](https://docs.essencium.dev/architecture/runtime-config))

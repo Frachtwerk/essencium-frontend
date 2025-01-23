@@ -37,7 +37,7 @@ import {
   Table as TanstackTable,
 } from '@tanstack/react-table'
 import { useTranslation } from 'next-i18next'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, type JSX, SetStateAction } from 'react'
 
 import classes from './Table.module.css'
 
@@ -190,6 +190,11 @@ export function Table<T>({
             ).map(row => (
               <MantineTable.Tr
                 key={row.id}
+                onClick={
+                  row.getToggleExpandedHandler() &&
+                  row.getToggleExpandedHandler()
+                }
+                style={row.getCanExpand() ? { cursor: 'pointer' } : {}}
                 className={
                   firstColSticky
                     ? classes['table__table-row--sticky']

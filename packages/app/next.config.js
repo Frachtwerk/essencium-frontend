@@ -3,9 +3,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    instrumentationHook: Boolean(
-      !process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION,
-    ),
     optimizePackageImports: [
       '@mantine/core',
       '@mantine/hooks',

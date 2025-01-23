@@ -110,7 +110,6 @@ describe('TablePagination.tsx', () => {
     activePage: 1,
     setPageSize: vi.fn(),
     setActivePage: vi.fn(),
-    handleRefetch: vi.fn(),
   }
 
   it('should render page select and pagination', () => {
@@ -159,7 +158,6 @@ describe('TablePagination.tsx', () => {
             activePage={mockedProps.activePage}
             setPageSize={mockedProps.setPageSize}
             setActivePage={mockedProps.setActivePage}
-            handleRefetch={mockedProps.handleRefetch}
             fixedTablePageSize={2}
           />
         </AppShell>

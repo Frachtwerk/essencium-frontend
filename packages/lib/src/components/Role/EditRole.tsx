@@ -27,7 +27,7 @@ import {
   roleUpdateSchema,
 } from '@frachtwerk/essencium-types'
 import { Modal } from '@mantine/core'
-import { Dispatch, SetStateAction, useEffect } from 'react'
+import { Dispatch, type JSX, SetStateAction, useEffect } from 'react'
 
 import { useZodForm } from '../../hooks'
 import { RoleForm } from './components/RoleForm'

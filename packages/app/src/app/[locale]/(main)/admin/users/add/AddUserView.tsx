@@ -24,6 +24,7 @@ import { UserInput, userInputSchema } from '@frachtwerk/essencium-types'
 import { Card, Flex, Text, Title } from '@mantine/core'
 import { IconUserPlus } from '@tabler/icons-react'
 import { useRouter } from 'next/navigation'
+import type { JSX } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useCreateUser, useGetRoles } from '@/api'

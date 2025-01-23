@@ -33,7 +33,7 @@ import {
 import { IconLogout, IconPinFilled, IconPinnedOff } from '@tabler/icons-react'
 import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { Dispatch, type JSX, SetStateAction, useEffect, useState } from 'react'
 
 import { NavLinks } from './components'
 import classes from './NavBar.module.css'

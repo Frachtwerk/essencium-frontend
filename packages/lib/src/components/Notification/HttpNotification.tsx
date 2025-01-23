@@ -21,6 +21,7 @@
 
 import { NotificationProps, Text, useMantineTheme } from '@mantine/core'
 import { IconX } from '@tabler/icons-react'
+import type { JSX } from 'react'
 
 import { Notification } from './Notification'
 

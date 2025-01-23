@@ -1,6 +1,6 @@
 {
   "name": "@frachtwerk/essencium-docs",
-  "version": "4.2.1",
+  "version": "4.3.1",
   "description": "Essencium Frontend Docs",
   "homepage": "https://github.com/Frachtwerk/essencium-frontend/blob/main/README.md",
   "bugs": {
@@ -12,6 +12,7 @@
   },
   "license": "MIT",
   "author": "Frachtwerk GmbH",
+  "type": "module",
   "scripts": {
     "build": "next build",
     "clean": "rimraf node_modules .next",
@@ -24,12 +25,12 @@
     "start": "next start"
   },
   "dependencies": {
-    "clsx": "2.1.0",
-    "next": "14.2.10",
-    "nextra": "2.13.4",
-    "nextra-theme-docs": "2.13.4",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "clsx": "2.1.1",
+    "next": "14.2.23",
+    "nextra": "3.3.1",
+    "nextra-theme-docs": "3.3.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
     "@frachtwerk/eslint-config-essencium": "2.3.0",
@@ -43,9 +44,9 @@
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-import": "2.29.1",
     "eslint-plugin-jsx-a11y": "6.7.1",
-    "eslint-plugin-prettier": "5.0.0",
+    "eslint-plugin-prettier": "5.0.1",
     "eslint-plugin-react": "7.32.2",
-    "eslint-plugin-react-hooks": "4.6.0",
+    "eslint-plugin-react-hooks": "4.6.2",
     "eslint-plugin-simple-import-sort": "10.0.0",
     "prettier": "3.0.3",
     "typescript": "5.1.6"

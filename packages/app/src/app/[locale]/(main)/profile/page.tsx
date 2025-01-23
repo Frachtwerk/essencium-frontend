@@ -18,20 +18,22 @@
  */
 
 import { Metadata, ResolvingMetadata } from 'next'
+import type { JSX } from 'react'
 
 import initTranslations from '@/config/i18n'
 
 import ProfileView from './ProfileView'
 
 type Props = {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }
 
 export async function generateMetadata(
-  { params }: Props,
+  props: Props,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
+  const params = await props.params
   const { locale } = params
 
   const { t } = await initTranslations(locale)
@@ -42,6 +44,6 @@ export async function generateMetadata(
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default function page({ params }: Props): JSX.Element {
+export default async function page({ params }: Props): Promise<JSX.Element> {
   return <ProfileView />
 }

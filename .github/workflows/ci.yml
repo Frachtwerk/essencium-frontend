@@ -114,31 +114,6 @@ jobs:
             packages/app/test-results
             packages/app/playwright-report
 
-  security:
-    name: Vulnerability Scan
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        continue-on-error: true
-        with:
-          scan-type: 'fs'
-          ignore-unfixed: true
-          format: 'sarif'
-          output: 'trivy-results.sarif'
-          severity: 'CRITICAL'
-
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v3
-        continue-on-error: true
-        with:
-          sarif_file: 'trivy-results.sarif'
-
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -193,7 +168,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    needs: [lint, build, security] # [lint, unit-tests, e2e-tests, build, security]
+    needs: [lint, build] # [lint, unit-tests, e2e-tests, build]
     steps:
       - name: Release Please
         uses: googleapis/release-please-action@v4

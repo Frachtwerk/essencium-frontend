@@ -35,7 +35,7 @@ import {
   Text,
 } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
-import { useState } from 'react'
+import { type JSX, useState } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../../../../hooks'

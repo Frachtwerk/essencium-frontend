@@ -433,6 +433,10 @@
       "placeholder": "Suchen ...",
       "noResults": "Keine Übersetzungen gefunden"
     },
+    "table": {
+      "key": "Schlüssel",
+      "value": "Übersetzungswert"
+    },
     "divider": "Neue Übersetzung",
     "save": "Speichern",
     "cancel": "Abbrechen",

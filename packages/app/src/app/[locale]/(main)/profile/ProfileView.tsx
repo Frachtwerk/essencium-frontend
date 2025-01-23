@@ -24,7 +24,7 @@ import { PasswordChange, UserUpdate } from '@frachtwerk/essencium-types'
 import { Center } from '@mantine/core'
 import { useAtomValue, useSetAtom } from 'jotai'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { type JSX, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import {

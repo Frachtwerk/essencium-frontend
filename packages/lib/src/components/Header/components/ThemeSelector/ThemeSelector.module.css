@@ -43,46 +43,15 @@
   }
 }
 
-.theme-selector__button {
-  padding: 0;
-  background-color: transparent;
 
-  @mixin dark {
-    color: var(--mantine-color-gray-0);
-  }
 
+.theme-selector__auto-mode {
   @mixin light {
     color: var(--mantine-color-gray-9);
   }
-}
-
-.theme-selector__iconLight {
-  @mixin dark {
-    display: none;
-  }
-
-  @mixin light {
-    display: block;
-  }
-}
-
-.theme-selector__iconDark {
-  @mixin light {
-    display: none;
-  }
 
   @mixin dark {
-    display: block;
-  }
-}
-
-.theme-selector__icon--active {
-  @mixin light {
-    color: var(--mantine-primary-color-6);
-  }
-
-  @mixin dark {
-    color: var(--mantine-primary-color-2);
+    color: var(--mantine-color-gray-0);
   }
 }
 

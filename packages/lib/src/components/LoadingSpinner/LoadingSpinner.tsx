@@ -20,7 +20,7 @@
 'use client'
 
 import { Container, Loader, LoaderProps } from '@mantine/core'
-import { useEffect, useState } from 'react'
+import { type JSX, useEffect, useState } from 'react'
 
 import classes from './LoadingSpinner.module.css'
 

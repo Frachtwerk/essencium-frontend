@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import { DocsThemeConfig } from 'nextra-theme-docs'
 import React from 'react'
 
@@ -26,19 +25,8 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase:
     'https://github.com/Frachtwerk/essencium-frontend/tree/main/packages/docs',
-  useNextSeoProps() {
-    const { asPath } = useRouter()
-    if (asPath !== '/') {
-      return {
-        titleTemplate: '%s – Essencium',
-      }
-    }
-    return {
-      titleTemplate: 'Introduction - Essencium',
-    }
-  },
   footer: {
-    text: 'Essencium Docs',
+    content: <span>Essencium Docs</span>,
   },
 }
 

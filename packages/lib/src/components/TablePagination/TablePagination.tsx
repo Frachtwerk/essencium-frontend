@@ -23,7 +23,7 @@ import { PaginatedResponse } from '@frachtwerk/essencium-types'
 import { Flex, Pagination, PaginationProps, Select, Text } from '@mantine/core'
 import { Table as TanstackTable } from '@tanstack/react-table'
 import { useTranslation } from 'next-i18next'
-import { useEffect, useState } from 'react'
+import { type JSX, useEffect, useState } from 'react'
 
 import classes from './TablePagination.module.css'
 
@@ -36,7 +36,6 @@ type Props<T> = CustomPaginationProps & {
   activePage: PaginatedResponse<T>['number']
   setPageSize: (pageSize: PaginatedResponse<T>['size']) => void
   setActivePage: (activePage: PaginatedResponse<T>['number']) => void
-  handleRefetch: () => void
   fixedTablePageSize?: number
   jumpToLimit?: number
   pageSizeOptions?: string[]
@@ -49,7 +48,6 @@ export function TablePagination<T>({
   activePage,
   setPageSize,
   setActivePage,
-  handleRefetch,
   fixedTablePageSize,
   jumpToLimit = 50,
   pageSizeOptions = ['10', '20', '30', '40', '50', '100'],
@@ -77,7 +75,6 @@ export function TablePagination<T>({
       enteredPageAsNumber <= (table ? table.getPageCount() : pageCount ?? 1)
     ) {
       setActivePage(enteredPageAsNumber)
-      handleRefetch()
     }
   }
 
@@ -107,8 +104,6 @@ export function TablePagination<T>({
 
                 setPageSize(Number(e))
                 setActivePage(1)
-
-                handleRefetch()
               }}
             />
           </>
@@ -120,7 +115,6 @@ export function TablePagination<T>({
         value={activePage}
         onChange={e => {
           setActivePage(e)
-          handleRefetch()
         }}
         {...props}
       />

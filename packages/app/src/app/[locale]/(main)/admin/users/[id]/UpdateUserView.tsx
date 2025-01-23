@@ -24,7 +24,7 @@ import { UserUpdate, userUpdateSchema } from '@frachtwerk/essencium-types'
 import { Card, Flex, Text, Title } from '@mantine/core'
 import { IconUserEdit } from '@tabler/icons-react'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { type JSX, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useGetRoles, useGetUser, useUpdateUser } from '@/api'

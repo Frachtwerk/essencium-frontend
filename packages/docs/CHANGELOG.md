@@ -1,5 +1,20 @@
 # Changelog
 
+## [4.3.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.3.0...essencium-docs-v4.3.1) (2025-01-22)
+
+
+### Bug Fixes
+
+* update dependencies ([86a7606](https://github.com/Frachtwerk/essencium-frontend/commit/86a760602b11c1e9442f8f36f1f0926f30a380cf))
+
+## [4.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.2.1...essencium-docs-v4.3.0) (2024-12-19)
+
+
+### Features
+
+* extend component to accept nav links array ([27fc95e](https://github.com/Frachtwerk/essencium-frontend/commit/27fc95ed458c9567c7597c8037e526d118fd6742))
+* upgrade nextra ([#704](https://github.com/Frachtwerk/essencium-frontend/issues/704)) ([89f6814](https://github.com/Frachtwerk/essencium-frontend/commit/89f6814fa3c7101449308975dca49471ec42d2b6))
+
 ## [4.2.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.2.0...essencium-docs-v4.2.1) (2024-11-27)
 
 

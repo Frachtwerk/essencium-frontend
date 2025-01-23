@@ -1,7 +1,7 @@
 'use client'
 
 import { createInstance, Resource } from 'i18next'
-import React, { PropsWithChildren } from 'react'
+import React, { type JSX, PropsWithChildren } from 'react'
 import { I18nextProvider } from 'react-i18next'
 
 import initTranslations from '@/config/i18n'

@@ -17,7 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { FooterLink } from '@frachtwerk/essencium-types'
+import { NavLink } from '@frachtwerk/essencium-types'
 import { AppShell, MantineProvider } from '@mantine/core'
 import { render, RenderResult, screen } from '@testing-library/react'
 import { CSSProperties } from 'react'
@@ -39,18 +39,24 @@ vi.mock('@mantine/core', async () => {
   }
 })
 
-const FOOTER_LINKS: FooterLink[] = [
+const FOOTER_LINKS: NavLink[] = [
   {
     label: 'footer.privacy.label',
     to: 'privacy',
+    color: 'blue',
+    rights: [],
   },
   {
     label: 'footer.imprint.label',
     to: 'imprint',
+    color: 'blue',
+    rights: [],
   },
   {
     label: 'footer.contact.label',
     to: 'contact',
+    color: 'blue',
+    rights: [],
   },
 ]
 

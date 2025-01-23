@@ -55,7 +55,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { useAtomValue } from 'jotai'
-import { useCallback, useMemo, useState } from 'react'
+import { type JSX, useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import {
@@ -376,7 +376,6 @@ export default function RolesView(): JSX.Element {
             pageSize={pageSize}
             setActivePage={setActivePage}
             setPageSize={setPageSize}
-            handleRefetch={handleRefetch}
           />
         </>
       )}

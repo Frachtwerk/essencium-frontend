@@ -31,6 +31,7 @@ import {
   useMantineTheme,
 } from '@mantine/core'
 import { IconUser } from '@tabler/icons-react'
+import type { JSX } from 'react'
 
 import classes from './ProfileOverviewCard.module.css'
 
