@@ -28,12 +28,12 @@ import classes from './Home.module.css'
 
 type Props = {
   onClickButton: (path: string) => void
-  showUserButtonRight?: boolean
+  showUsersPageButton: boolean
 }
 
 export function Home({
   onClickButton,
-  showUserButtonRight,
+  showUsersPageButton,
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
@@ -66,7 +66,7 @@ export function Home({
             {t('homeView.action.search')}
           </Button>
 
-          {showUserButtonRight ? (
+          {showUsersPageButton ? (
             <Button
               onClick={() => onClickButton('/admin/users')}
               variant="outline"

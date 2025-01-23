@@ -4,7 +4,7 @@
 
 ### `src/app/[locale]/main/HomeView.tsx:`
 
-- check for right `USER_READ` and hand down prop `showUserButtonRight` to `Home.tsx`
+- check for right `USER_READ` and hand down prop `showUsersPageButton` to `Home.tsx`
 
 ## [7.9.1 (16.01.2025)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.9.0...essencium-app-v7.9.1)
 

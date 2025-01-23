@@ -36,12 +36,12 @@ export default function HomeView(): JSX.Element {
     router.push(path)
   }
 
-  const showUserButtonRight = hasRequiredRights(userRights, RIGHTS.USER_READ)
+  const showUsersPageButton = hasRequiredRights(userRights, RIGHTS.USER_READ)
 
   return (
     <Home
       onClickButton={handleButtonClick}
-      showUserButtonRight={showUserButtonRight}
+      showUsersPageButton={showUsersPageButton}
     />
   )
 }
