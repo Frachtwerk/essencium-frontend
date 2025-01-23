@@ -45,7 +45,11 @@ export default function ProfileView(): JSX.Element {
 
   const isSso = useAtomValue(isSsoAtom)
 
-  const { data: user, isLoading: isLoadingUser } = useGetMe()
+  const {
+    data: user,
+    isLoading: isLoadingUser,
+    refetch: refetchMe,
+  } = useGetMe()
 
   const {
     mutate: updateUser,
@@ -65,7 +69,9 @@ export default function ProfileView(): JSX.Element {
     useUpdatePassword()
 
   function handleUpdate(updatedUser: UserUpdate): void {
-    updateUser(updatedUser)
+    updateUser(updatedUser, {
+      onSuccess: () => refetchMe(),
+    })
   }
 
   function handlePasswordUpdate(
