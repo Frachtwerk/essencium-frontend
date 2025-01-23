@@ -19,16 +19,29 @@
 
 'use client'
 
-import { Home } from '@frachtwerk/essencium-lib'
+import { hasRequiredRights, Home } from '@frachtwerk/essencium-lib'
+import { RIGHTS } from '@frachtwerk/essencium-types'
+import { useAtomValue } from 'jotai'
 import { useRouter } from 'next/navigation'
 import type { JSX } from 'react'
 
+import { userRightsAtom } from '@/api'
+
 export default function HomeView(): JSX.Element {
   const router = useRouter()
+
+  const userRights = useAtomValue(userRightsAtom)
 
   function handleButtonClick(path: string): void {
     router.push(path)
   }
 
-  return <Home onClickButton={handleButtonClick} />
+  const showUsersPageButton = hasRequiredRights(userRights, RIGHTS.USER_READ)
+
+  return (
+    <Home
+      onClickButton={handleButtonClick}
+      showUsersPageButton={showUsersPageButton}
+    />
+  )
 }

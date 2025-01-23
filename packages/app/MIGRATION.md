@@ -1,5 +1,11 @@
 # Migrations
 
+## 7.10.0
+
+### `src/app/[locale]/main/HomeView.tsx:`
+
+- check for right `USER_READ` and hand down prop `showUsersPageButton` to `Home.tsx`
+
 ## [7.9.1 (16.01.2025)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.9.0...essencium-app-v7.9.1)
 
 - `handleRefetch` prop in `TablePagination.tsx` was removed, means all references of `TablePagination.tsx` needs to be adjusted by removing the handler prop
