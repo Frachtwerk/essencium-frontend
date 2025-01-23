@@ -52,20 +52,12 @@ export function Footer({
     >
       <Flex
         justify={{ base: 'center', xs: 'space-between' }}
-        direction="row"
+        direction="row-reverse"
         wrap="wrap"
         align="center"
         h="100%" // not applied with normal css
         className={classes.footer__flex}
       >
-        <Flex gap="xs" align="center" visibleFrom="sm">
-          <IconCopyright size="16" />
-
-          <Text> {t('footer.license')} </Text>
-
-          {version && <Code>{version}</Code>}
-        </Flex>
-
         <Flex direction="row" gap="lg" align="center">
           {links.map(link => (
             <Text
@@ -79,6 +71,14 @@ export function Footer({
           ))}
 
           {children}
+        </Flex>
+
+        <Flex gap="xs" align="center">
+          <IconCopyright size="16" />
+
+          <Text> {t('footer.license')} </Text>
+
+          {version && <Code>{version}</Code>}
         </Flex>
       </Flex>
     </AppShellFooter>

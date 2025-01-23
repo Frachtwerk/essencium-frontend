@@ -49,6 +49,7 @@ type Props = AppShellNavbarProps & {
   setFoldedNav: Dispatch<SetStateAction<boolean>>
   fixedNav: boolean
   setFixedNav: Dispatch<SetStateAction<boolean>>
+  handleOpenNav: () => void
 }
 
 export function NavBar({
@@ -62,6 +63,7 @@ export function NavBar({
   setFoldedNav,
   fixedNav,
   setFixedNav,
+  handleOpenNav,
   ...props
 }: Props): JSX.Element {
   const { colorScheme } = useMantineColorScheme()
@@ -103,7 +105,7 @@ export function NavBar({
       {...props}
       className={`${
         isMobile
-          ? classes['navBar__container-mobile']
+          ? classes['navBar__container--mobile']
           : classes['navBar__container']
       } ${props.className ? props.className : ''}`}
     >
@@ -115,7 +117,7 @@ export function NavBar({
             </Box>
           </NextLink>
 
-          {!foldedNav && !isMobile ? (
+          {!foldedNav ? (
             <Box
               onClick={() => setFixedNav(fixed => !fixed)}
               className={classes['navBar__pinIcon']}
@@ -146,7 +148,12 @@ export function NavBar({
       </AppShellSection>
 
       <AppShellSection grow>
-        <NavLinks links={links} userRights={userRights} foldedNav={foldedNav} />
+        <NavLinks
+          links={links}
+          userRights={userRights}
+          foldedNav={foldedNav}
+          handleOpenNav={handleOpenNav}
+        />
       </AppShellSection>
 
       <AppShellSection>

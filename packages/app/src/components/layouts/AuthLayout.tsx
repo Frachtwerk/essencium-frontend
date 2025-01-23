@@ -273,6 +273,14 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
     }
   }, [pathname, user, router, currentLocale, i18n])
 
+  useEffect(() => {
+    if (!isNotMobile) {
+      setIsFoldedNav(false)
+    } else {
+      setIsFoldedNav(true)
+    }
+  }, [isNotMobile])
+
   return (
     <>
       <Spotlight
@@ -314,6 +322,7 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
             setFoldedNav={setIsFoldedNav}
             fixedNav={isFixedNav}
             setFixedNav={setIsFixedNav}
+            handleOpenNav={toggleMobileNavBar}
             icon={
               <Image
                 src="/img/web/emblem_400x400px.svg"
@@ -324,7 +333,11 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
             }
           />
 
-          <Footer links={FOOTER_LINKS} version={version}>
+          <Footer
+            links={FOOTER_LINKS}
+            version={version}
+            h={isNotMobile ? '60px' : '90px'}
+          >
             {user ? (
               <FeedbackWidget
                 currentUser={user}
@@ -337,7 +350,9 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
             ) : null}
           </Footer>
 
-          <AppShellMain>{children}</AppShellMain>
+          <AppShellMain className={classes['app-shell-main']}>
+            {children}
+          </AppShellMain>
         </AppShell>
       ) : (
         <LoadingSpinner show />

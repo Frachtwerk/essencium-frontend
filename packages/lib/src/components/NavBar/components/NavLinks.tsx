@@ -33,9 +33,15 @@ type Props = {
   links: NavLink[]
   userRights?: string[] | null
   foldedNav: boolean
+  handleOpenNav: () => void
 }
 
-export function NavLinks({ links, userRights, foldedNav }: Props): JSX.Element {
+export function NavLinks({
+  links,
+  userRights,
+  foldedNav,
+  handleOpenNav,
+}: Props): JSX.Element {
   const { t } = useTranslation()
 
   const pathname = usePathname()
@@ -61,12 +67,15 @@ export function NavLinks({ links, userRights, foldedNav }: Props): JSX.Element {
             leftSection={link.icon}
             label={t(link.label)}
             active={isLinkActive(link.to) || isSubLinkActive(link.navLinks)}
-            color={isLinkActive(link.to) ? undefined : 'gray'}
+            color={
+              isLinkActive(link.to) ? undefined : 'var(--mantine-color-gray-9)'
+            }
             className={classes['nav-bar__navlink']}
             classNames={{
               root: classes['nav-bar__navlink--root'],
               label: classes['nav-bar__navlink--label'],
             }}
+            onClick={() => !link.navLinks?.length && handleOpenNav()}
             prefetch={link.prefetch ?? true}
           >
             {!foldedNav
@@ -87,6 +96,7 @@ export function NavLinks({ links, userRights, foldedNav }: Props): JSX.Element {
                         root: classes['nav-bar__navlink--root'],
                         label: classes['nav-bar__navlink--label'],
                       }}
+                      onClick={() => handleOpenNav()}
                       prefetch={sublink.prefetch ?? true}
                     />
                   ) : null,
