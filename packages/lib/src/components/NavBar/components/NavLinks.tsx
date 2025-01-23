@@ -67,6 +67,7 @@ export function NavLinks({ links, userRights, foldedNav }: Props): JSX.Element {
               root: classes['nav-bar__navlink--root'],
               label: classes['nav-bar__navlink--label'],
             }}
+            prefetch={link.prefetch ?? true}
           >
             {!foldedNav
               ? link.navLinks?.map(sublink =>
@@ -86,6 +87,7 @@ export function NavLinks({ links, userRights, foldedNav }: Props): JSX.Element {
                         root: classes['nav-bar__navlink--root'],
                         label: classes['nav-bar__navlink--label'],
                       }}
+                      prefetch={sublink.prefetch ?? true}
                     />
                   ) : null,
                 )

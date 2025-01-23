@@ -28,4 +28,5 @@ export type NavLink = {
   description?: string
   rights: (string | string[])[]
   navLinks?: NavLink[]
+  prefetch?: boolean
 }

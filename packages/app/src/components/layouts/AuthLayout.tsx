@@ -94,6 +94,7 @@ export const NAV_LINKS: NavLink[] = [
         RIGHTS.TRANSLATION_READ,
       ],
     ],
+    prefetch: false,
     navLinks: [
       {
         icon: <IconUsers />,
