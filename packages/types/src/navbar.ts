@@ -17,8 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { JSX } from 'react'
-
 export type NavLink = {
   icon?: JSX.Element
   label: string
@@ -28,4 +26,5 @@ export type NavLink = {
   description?: string
   rights: (string | string[])[]
   navLinks?: NavLink[]
+  prefetch?: boolean
 }

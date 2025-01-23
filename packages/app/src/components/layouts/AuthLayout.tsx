@@ -46,7 +46,7 @@ import {
 import { useAtom, useSetAtom } from 'jotai'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
-import React, { type JSX, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useGetMe, userAtom, userRightsAtom } from '@/api'
@@ -94,6 +94,7 @@ export const NAV_LINKS: NavLink[] = [
         RIGHTS.TRANSLATION_READ,
       ],
     ],
+    prefetch: false,
     navLinks: [
       {
         icon: <IconUsers />,
