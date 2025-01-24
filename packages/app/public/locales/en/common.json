@@ -342,9 +342,6 @@
     "role": {
       "isRequired": "Please select a role"
     },
-    "roleDescription": {
-      "minLength": "Role description must be at least 8 characters long."
-    },
     "roleName": {
       "minLength": "Role name must be at least 2 characters long."
     },

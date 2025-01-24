@@ -342,9 +342,6 @@
     "role": {
       "isRequired": "Bitte wählen Sie eine Rolle"
     },
-    "roleDescription": {
-      "minLength": "Rollenbeschreibung muss mindestens 8 Zeichen lang sein."
-    },
     "roleName": {
       "minLength": "Rollenname muss mindestens 2 Zeichen lang sein."
     },

@@ -27,7 +27,7 @@ export enum ROLES {
 }
 
 const sharedPropertiesSchema = z.object({
-  description: z.string().min(8, 'validation.roleDescription.minLength'),
+  description: z.string(),
   editable: z.boolean(),
   name: z.string().min(2, 'validation.roleName.minLength'),
   protected: z.boolean(),
