@@ -109,12 +109,10 @@ export function RoleForm({
                 t('rolesView.modal.placeholder.description') as string
               }
               label={t('rolesView.modal.description')}
-              required
               variant="filled"
               classNames={{
                 label: classes['role-form__text-input--label'],
               }}
-              withAsterisk
             />
           )}
         />
