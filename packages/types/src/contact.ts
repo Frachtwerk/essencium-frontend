@@ -27,3 +27,12 @@ export const contactFormSchema = z.object({
 })
 
 export type ContactFormType = z.infer<typeof contactFormSchema>
+
+export type ContactPerson = {
+  name: string
+  email: string
+  phone: string | null
+  address: string | null
+  linkedinUrl: string | null
+  instagramUrl: string | null
+}

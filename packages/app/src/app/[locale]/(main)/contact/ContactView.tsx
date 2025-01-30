@@ -39,13 +39,26 @@ export default function ContactView(): JSX.Element {
     },
   })
 
+  const contactPerson = {
+    name: 'Sandra Galuba',
+    phone: '+49 30 209669462',
+    email: 'contact@frachtwerk.de',
+    address: 'Große Präsidentenstraße 10, 10178 Berlin',
+    linkedinUrl: 'https://www.linkedin.com/company/frachtwerk',
+    instagramUrl: 'https://www.instagram.com/frachtwerk.de/',
+  }
+
   function onSubmit(form: ContactFormType): void {
     sendMessage(form, { onSuccess: () => reset() })
   }
 
   return (
     <form data-testid="form" onSubmit={handleSubmit(onSubmit)}>
-      <Contact control={control} formState={formState} />
+      <Contact
+        control={control}
+        formState={formState}
+        contactPerson={contactPerson}
+      />
     </form>
   )
 }

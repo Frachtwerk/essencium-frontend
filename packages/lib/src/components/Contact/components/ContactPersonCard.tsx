@@ -17,6 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { ContactPerson } from '@frachtwerk/essencium-types'
 import {
   Avatar,
   Card,
@@ -27,20 +28,35 @@ import {
   Title,
 } from '@mantine/core'
 import {
-  IconBrandFacebook,
   IconBrandInstagram,
   IconBrandLinkedin,
   IconLocation,
   IconMail,
   IconPhoneCall,
 } from '@tabler/icons-react'
+import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
 import type { JSX } from 'react'
 
 import classes from './ContactPersonCard.module.css'
 
-export function ContactPersonCard(): JSX.Element {
+type Props = {
+  contactPerson?: ContactPerson
+}
+
+export function ContactPersonCard({
+  contactPerson = undefined,
+}: Props): JSX.Element {
   const { t } = useTranslation()
+
+  const examplePerson = {
+    name: 'Jane Doe',
+    phone: '+1(123) 456-7890',
+    email: 'jane.doe@example.com',
+    address: '123 Maple Street. Anytown, PA 17101',
+    linkedinUrl: 'https://www.linkedin.com/company/frachtwerk',
+    instagramUrl: 'https://www.instagram.com/frachtwerk.de/',
+  }
 
   return (
     <Card
@@ -60,13 +76,13 @@ export function ContactPersonCard(): JSX.Element {
           size="xl"
           // color gets not applied when outsourced to module.css
           color="var(--mantine-color-blue-6)"
-          src={null}
+          name={contactPerson?.name ?? examplePerson.name}
           alt={String(t('contactView.contactPersonCard.avatar.alt'))}
           className={classes['contact-person-card__avatar']}
         />
 
         <Title order={5} className={classes['contact-person-card__title']}>
-          Firstname Lastname
+          {contactPerson?.name ?? examplePerson.name}
         </Title>
 
         <Flex direction="column" align="flex-start" gap="sm">
@@ -86,7 +102,7 @@ export function ContactPersonCard(): JSX.Element {
               />
             </ThemeIcon>
 
-            <Text>555 - 5555 5555</Text>
+            <Text>{contactPerson?.phone ?? examplePerson.phone}</Text>
           </Group>
 
           <Group gap="xl" aria-label="Contact info">
@@ -98,7 +114,7 @@ export function ContactPersonCard(): JSX.Element {
               />
             </ThemeIcon>
 
-            <Text>test@email.de</Text>
+            <Text>{contactPerson?.email ?? examplePerson.email}</Text>
           </Group>
 
           <Group gap="xl" aria-label="Contact info">
@@ -110,7 +126,7 @@ export function ContactPersonCard(): JSX.Element {
               />
             </ThemeIcon>
 
-            <Text>Teststreet 1, 12345 Testcity</Text>
+            <Text>{contactPerson?.address ?? examplePerson.address}</Text>
           </Group>
         </Flex>
 
@@ -118,35 +134,35 @@ export function ContactPersonCard(): JSX.Element {
           className={classes['contact-person-card__group']}
           aria-label="Contact info"
         >
-          <ThemeIcon
-            variant="light"
-            className={classes['contact-person-card__theme-icon--radius']}
+          <NextLink
+            href={contactPerson?.linkedinUrl ?? examplePerson.linkedinUrl}
+            passHref
           >
-            <IconBrandLinkedin
-              className={classes['contact-person-card__icon--size']}
-              aria-label="Social icon"
-            />
-          </ThemeIcon>
+            <ThemeIcon
+              variant="light"
+              className={classes['contact-person-card__theme-icon--radius']}
+            >
+              <IconBrandLinkedin
+                className={classes['contact-person-card__icon--size']}
+                aria-label="Social icon"
+              />
+            </ThemeIcon>
+          </NextLink>
 
-          <ThemeIcon
-            variant="light"
-            className={classes['contact-person-card__theme-icon--radius']}
+          <NextLink
+            href={contactPerson?.instagramUrl ?? examplePerson.instagramUrl}
+            passHref
           >
-            <IconBrandFacebook
-              className={classes['contact-person-card__icon--size']}
-              aria-label="Social icon"
-            />
-          </ThemeIcon>
-
-          <ThemeIcon
-            variant="light"
-            className={classes['contact-person-card__theme-icon--radius']}
-          >
-            <IconBrandInstagram
-              className={classes['contact-person-card__icon--size']}
-              aria-label="Social icon"
-            />
-          </ThemeIcon>
+            <ThemeIcon
+              variant="light"
+              className={classes['contact-person-card__theme-icon--radius']}
+            >
+              <IconBrandInstagram
+                className={classes['contact-person-card__icon--size']}
+                aria-label="Social icon"
+              />
+            </ThemeIcon>
+          </NextLink>
         </Group>
       </Flex>
     </Card>
