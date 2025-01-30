@@ -55,7 +55,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { useAtomValue } from 'jotai'
-import { type JSX, useCallback, useMemo, useState } from 'react'
+import { type JSX, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import {
@@ -121,15 +121,11 @@ export default function RolesView(): JSX.Element {
 
   const { mutate: deleteRole } = useDeleteRole()
 
-  const handleRefetch = useCallback((): void => {
-    refetchRoles()
-  }, [refetchRoles])
-
   function handleDeleteRole(roleName: RoleOutput['name']): void {
     deleteRole(roleName, {
       onSuccess: () => {
         deleteModalHandlers.close()
-        handleRefetch()
+        refetchRoles()
       },
       onError: () => {
         deleteModalHandlers.close()
@@ -146,7 +142,7 @@ export default function RolesView(): JSX.Element {
       {
         onSuccess: () => {
           addModalHandlers.close()
-          handleRefetch()
+          refetchRoles()
         },
         onError: () => {
           addModalHandlers.close()
@@ -164,7 +160,7 @@ export default function RolesView(): JSX.Element {
       {
         onSuccess: () => {
           editModalHandlers.close()
-          handleRefetch()
+          refetchRoles()
         },
         onError: () => {
           editModalHandlers.close()
@@ -298,22 +294,11 @@ export default function RolesView(): JSX.Element {
           </Flex>
         </Title>
 
-        <Flex align="center" gap="xs">
-          {hasRequiredRights(userRights, RIGHTS.ROLE_CREATE) ? (
-            <Button onClick={() => addModalHandlers.open()}>
-              {t('rolesView.action.add')}
-            </Button>
-          ) : null}
-
-          <Button
-            variant="light"
-            onClick={() => {
-              handleRefetch()
-            }}
-          >
-            {t('actions.refresh')}
+        {hasRequiredRights(userRights, RIGHTS.ROLE_CREATE) ? (
+          <Button onClick={() => addModalHandlers.open()}>
+            {t('rolesView.action.add')}
           </Button>
-        </Flex>
+        ) : null}
       </Flex>
 
       <AddRole

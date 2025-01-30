@@ -16,9 +16,4 @@ test.describe('RightsView', () => {
     const rightsTable = page.getByRole('table')
     expect(rightsTable).not.toBeNull()
   })
-
-  test('should render the refresh button', ({ page }) => {
-    const refreshButton = page.getByText('Refresh data')
-    expect(refreshButton).not.toBeNull()
-  })
 })
