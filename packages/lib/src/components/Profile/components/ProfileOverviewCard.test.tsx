@@ -50,8 +50,8 @@ describe('ProfileOverviewCard.tsx', () => {
 
   it('should render all static profile information', () => {
     expect(
-      ProfileOverviewCardMounted.getByTitle(
-        `${MOCK_USER.firstName} ${MOCK_USER.lastName} avatar`,
+      ProfileOverviewCardMounted.getByText(
+        `${MOCK_USER.firstName[0]}${MOCK_USER.lastName[0]}`,
       ),
     ).toBeDefined()
 

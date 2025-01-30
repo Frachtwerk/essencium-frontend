@@ -51,7 +51,12 @@ export function ThemeSelector(): JSX.Element {
   return (
     <Popover width={130} position="bottom" withArrow shadow="sm">
       <PopoverTarget>
-        <ActionIcon variant="subtle" aria-label="theme-selector" size="xl">
+        <ActionIcon
+          variant="subtle"
+          aria-label="theme-selector"
+          size="xl"
+          className={classes['theme-selector__icon']}
+        >
           {isLightMode ? (
             <IconSun
               className={isAutoMode ? classes['theme-selector__auto-mode'] : ''}

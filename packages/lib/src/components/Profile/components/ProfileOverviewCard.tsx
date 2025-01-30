@@ -30,7 +30,6 @@ import {
   Title,
   useMantineTheme,
 } from '@mantine/core'
-import { IconUser } from '@tabler/icons-react'
 import type { JSX } from 'react'
 
 import classes from './ProfileOverviewCard.module.css'
@@ -61,12 +60,9 @@ export function ProfileOverviewCard({ user }: Props): JSX.Element {
           <Avatar
             size="xl"
             radius="xl"
-            src={null}
-            alt={`${user.firstName} ${user.lastName} avatar`}
+            name={`${user.firstName} ${user.lastName}`}
             color={theme.primaryColor}
-          >
-            <IconUser size={50} />
-          </Avatar>
+          />
         </Indicator>
 
         <Title order={2}>

@@ -146,9 +146,6 @@
     },
     "contactPersonCard": {
       "title": "Your Contact Person",
-      "avatar": {
-        "alt": "Avatar contact person"
-      },
       "contactPerson": {
         "ariaLabel": "Contact Person"
       }

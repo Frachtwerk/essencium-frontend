@@ -77,7 +77,6 @@ export function ContactPersonCard({
           // color gets not applied when outsourced to module.css
           color="var(--mantine-color-blue-6)"
           name={contactPerson?.name ?? examplePerson.name}
-          alt={String(t('contactView.contactPersonCard.avatar.alt'))}
           className={classes['contact-person-card__avatar']}
         />
 

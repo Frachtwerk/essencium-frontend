@@ -39,12 +39,26 @@ describe('Contact', () => {
       }),
     )
 
+    const examplePerson = {
+      name: 'Jane Doe',
+      phone: '1(123) 456-7890',
+      email: 'jane.doe@example.com',
+      address: '123 Maple Street. Anytown, PA 17101',
+      linkedinUrl: 'https://www.linkedin.com/company/frachtwerk',
+      instagramUrl: 'https://www.instagram.com/frachtwerk.de/',
+    }
+
     const { control, formState } = result.current
 
     render(
       <MantineProvider>
         <AppShell>
-          <Contact control={control} formState={formState} />,
+          <Contact
+            control={control}
+            formState={formState}
+            contactPerson={examplePerson}
+          />
+          ,
         </AppShell>
       </MantineProvider>,
     )
@@ -72,9 +86,7 @@ describe('Contact', () => {
       const title = within(card).getByRole('heading', { level: 3 })
       expect(title).toBeDefined()
 
-      const avatar = within(card).getByTitle(
-        'contactView.contactPersonCard.avatar.alt',
-      )
+      const avatar = within(card).getByText(/JD/)
       expect(avatar).toBeDefined()
 
       const name = within(card).getByRole('heading', { level: 5 })
@@ -88,14 +100,14 @@ describe('Contact', () => {
       const location = information[2]
       const socialIcons = information[3]
 
-      expect(within(phone).getByText(/555 - 5555 5555/)).toBeDefined()
-      expect(within(mail).getByText(/test@email.de/)).toBeDefined()
+      expect(within(phone).getByText(/1(123) 456-7890/)).toBeDefined()
+      expect(within(mail).getByText(/jane.doe@example.com/)).toBeDefined()
       expect(
-        within(location).getByText(/Teststreet 1, 12345 Testcity/),
+        within(location).getByText(/123 Maple Street. Anytown, PA 17101/),
       ).toBeDefined()
 
       const social = within(socialIcons).getAllByLabelText('Social icon')
-      expect(social).toHaveLength(3)
+      expect(social).toHaveLength(2)
     })
   })
 
