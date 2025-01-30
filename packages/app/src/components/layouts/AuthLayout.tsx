@@ -271,11 +271,13 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
 
       i18n.changeLanguage(user?.locale)
 
-      if (pathname.includes('/de')) {
-        router.replace(pathname.slice(3) !== '' ? pathname.slice(3) : '/')
+      if (pathname.includes(currentLocale)) {
+        router.push(pathname.replace(`/${currentLocale}`, `/${user?.locale}`))
       } else {
-        router.replace(pathname)
+        router.push(pathname.replace(`/`, `/${user?.locale}/`))
       }
+
+      router.refresh()
     }
   }, [pathname, user, router, currentLocale, i18n])
 
