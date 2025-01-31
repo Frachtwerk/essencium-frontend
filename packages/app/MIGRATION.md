@@ -1,8 +1,18 @@
 # Migrations
 
-## 7.10.0
+## [7.10.X (XX.XX.XXXX)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.10.0...essencium-app-v7.10.X)
 
-### `src/app/[locale]/main/HomeView.tsx:`
+### `src/app/[locale]/(main)/profile/ProfileView.tsx`
+
+- refetch user after update
+
+### `src/components/layouts/AuthLayout.tsx`
+
+- update route and refresh router
+
+## [7.10.0 (23.01.2025)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.9.1...essencium-app-v7.10.0)
+
+### `src/app/[locale]/(main)/HomeView.tsx`
 
 - check for right `USER_READ` and hand down prop `showUsersPageButton` to `Home.tsx`
 
