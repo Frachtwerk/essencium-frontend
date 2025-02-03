@@ -132,6 +132,7 @@
     "userNotFound": "User not found"
   },
   "contactView": {
+    "title": "Contact",
     "contactForm": {
       "title": "Contact us",
       "form": {

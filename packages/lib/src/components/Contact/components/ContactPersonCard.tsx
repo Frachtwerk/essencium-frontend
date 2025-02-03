@@ -44,9 +44,7 @@ type Props = {
   contactPerson?: ContactPerson
 }
 
-export function ContactPersonCard({
-  contactPerson = undefined,
-}: Props): JSX.Element {
+export function ContactPersonCard({ contactPerson }: Props): JSX.Element {
   const { t } = useTranslation()
 
   const examplePerson = {
