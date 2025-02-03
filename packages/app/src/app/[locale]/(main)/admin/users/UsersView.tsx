@@ -154,10 +154,6 @@ export default function UsersView(): JSX.Element {
     ),
   })
 
-  const handleRefetch = useCallback((): void => {
-    refetchUsers()
-  }, [refetchUsers])
-
   const handleEditUser = useCallback(
     (userToEdit: UserOutput) => {
       router.push(`/admin/users/${userToEdit.id}`)
@@ -171,7 +167,10 @@ export default function UsersView(): JSX.Element {
     (userToDelete: UserOutput) => {
       deleteUser(userToDelete.id, {
         onSuccess: () => {
+          deleteModalHandlers.close()
           refetchUsers()
+        },
+        onError: () => {
           deleteModalHandlers.close()
         },
       })
@@ -406,14 +405,6 @@ export default function UsersView(): JSX.Element {
               <Button>{t('usersView.action.add')}</Button>
             </NextLink>
           ) : null}
-          <Button
-            variant="light"
-            onClick={() => {
-              handleRefetch()
-            }}
-          >
-            {t('usersView.action.refresh')}
-          </Button>
         </Flex>
       </Flex>
 

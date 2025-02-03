@@ -23,7 +23,6 @@
     }
   },
   "actions": {
-    "refresh": "Daten aktualisieren",
     "delete": "Löschen",
     "cancel": "Abbrechen",
     "backToHome": "Zurück zur Startseite"
@@ -215,7 +214,6 @@
   "usersView": {
     "title": "Nutzer",
     "action": {
-      "refresh": "Daten aktualisieren",
       "add": "Benutzer hinzufügen"
     },
     "table": {

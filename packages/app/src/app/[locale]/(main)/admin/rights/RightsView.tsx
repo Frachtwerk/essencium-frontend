@@ -34,7 +34,7 @@ import {
   ROLES,
   RoleUpdate,
 } from '@frachtwerk/essencium-types'
-import { Button, Checkbox, Flex, Text, Title } from '@mantine/core'
+import { Checkbox, Flex, Text, Title } from '@mantine/core'
 import { IconShieldHalf } from '@tabler/icons-react'
 import {
   ColumnDef,
@@ -231,15 +231,6 @@ export default function RightsView(): JSX.Element {
             <Text inherit> {t('rightsView.title')}</Text>
           </Flex>
         </Title>
-
-        <Button
-          variant="light"
-          onClick={() => {
-            handleRefetch()
-          }}
-        >
-          {t('actions.refresh')}
-        </Button>
       </Flex>
 
       {isLoadingRights ? (

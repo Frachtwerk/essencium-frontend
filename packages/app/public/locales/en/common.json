@@ -23,7 +23,6 @@
     }
   },
   "actions": {
-    "refresh": "Refresh data",
     "delete": "Delete",
     "cancel": "Cancel",
     "backToHome": "Back to home"
@@ -215,7 +214,6 @@
   "usersView": {
     "title": "Users",
     "action": {
-      "refresh": "Refresh data",
       "add": "Add User"
     },
     "table": {
