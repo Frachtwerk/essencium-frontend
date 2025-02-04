@@ -7,6 +7,7 @@ window['runtimeConfig'] = {
   },
   optional: {
     OAUTH_REDIRECT_URI: 'http://localhost:3000',
+    DEFAULT_USER_EMAIL: '<DEFAULT_USER_EMAIL>',
     APP_ENV: 'development',
   },
 }
