@@ -18,8 +18,16 @@
  */
 
 import { UserOutput } from '@frachtwerk/essencium-types'
-import { Box, Flex, Group, Text, UnstyledButton } from '@mantine/core'
-import { IconChevronRight, IconUser } from '@tabler/icons-react'
+import {
+  Avatar,
+  Box,
+  Flex,
+  Group,
+  Text,
+  UnstyledButton,
+  useMantineTheme,
+} from '@mantine/core'
+import { IconChevronRight } from '@tabler/icons-react'
 import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
 import type { JSX } from 'react'
@@ -38,6 +46,8 @@ type Props = {
 export function UserMenu({ user, className }: Props): JSX.Element {
   const { t } = useTranslation()
 
+  const theme = useMantineTheme()
+
   return (
     <UnstyledButton
       component={NextLink}
@@ -53,7 +63,12 @@ export function UserMenu({ user, className }: Props): JSX.Element {
         }`}
         wrap="nowrap"
       >
-        <IconUser size="28" />
+        <Avatar
+          size="md"
+          radius="lg"
+          name={`${user.firstName} ${user.lastName}`}
+          color={theme.primaryColor}
+        />
 
         <Box className={classes['user-menu__box']}>
           <Flex align="center" justify="space-between">

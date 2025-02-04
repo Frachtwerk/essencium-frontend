@@ -131,6 +131,7 @@
     "userNotFound": "User not found"
   },
   "contactView": {
+    "title": "Contact",
     "contactForm": {
       "title": "Contact us",
       "form": {
@@ -145,9 +146,6 @@
     },
     "contactPersonCard": {
       "title": "Your Contact Person",
-      "avatar": {
-        "alt": "Avatar contact person"
-      },
       "contactPerson": {
         "ariaLabel": "Contact Person"
       }

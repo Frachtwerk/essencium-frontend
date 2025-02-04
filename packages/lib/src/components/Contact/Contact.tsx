@@ -17,7 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { ContactFormType } from '@frachtwerk/essencium-types'
+import { ContactFormType, ContactPerson } from '@frachtwerk/essencium-types'
 import { Grid } from '@mantine/core'
 import type { JSX } from 'react'
 import { Control, FormState } from 'react-hook-form'
@@ -27,13 +27,18 @@ import { ContactForm, ContactPersonCard } from './components'
 type Props = {
   control: Control<ContactFormType>
   formState: FormState<ContactFormType>
+  contactPerson?: ContactPerson
 }
 
-export function Contact({ control, formState }: Props): JSX.Element {
+export function Contact({
+  control,
+  formState,
+  contactPerson = undefined,
+}: Props): JSX.Element {
   return (
     <Grid role="grid">
       <Grid.Col span={{ md: 4 }} role="gridcell">
-        <ContactPersonCard />
+        <ContactPersonCard contactPerson={contactPerson} />
       </Grid.Col>
 
       <Grid.Col span={{ md: 8 }} role="gridcell">

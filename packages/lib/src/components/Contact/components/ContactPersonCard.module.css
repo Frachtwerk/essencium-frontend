@@ -25,7 +25,6 @@
 
 .contact-person-card__avatar {
   margin-top: var(--mantine-spacing-xs);
-
   border-radius: var(--mantine-radius-xl);
 }
 
