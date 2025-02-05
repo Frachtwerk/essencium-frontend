@@ -10,6 +10,14 @@
 
 - update route and refresh router
 
+### `.env`
+
+- add new env variables `DEFAULT_USER_EMAIL` and `NEXT_PUBLIC_DEFAULT_USER_EMAIL`
+
+### `src/app/[locale]/(main)/admin/users/UsersView.tsx`
+
+- check for undeletable default user by using email from env variables `DEFAULT_USER_EMAIL` or `NEXT_PUBLIC_DEFAULT_USER_EMAIL` instead of the default username
+
 ## [7.10.0 (23.01.2025)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.9.1...essencium-app-v7.10.0)
 
 ### `src/app/[locale]/(main)/HomeView.tsx`
