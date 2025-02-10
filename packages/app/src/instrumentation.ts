@@ -22,6 +22,7 @@ export async function register(): Promise<void> {
       },
       optional: {
         OAUTH_REDIRECT_URI: `${process.env.OAUTH_REDIRECT_URI}`,
+        DEFAULT_USER_EMAIL: `${process.env.DEFAULT_USER_EMAIL}`,
         APP_ENV: `${process.env.APP_ENV}`,
       },
     } as const

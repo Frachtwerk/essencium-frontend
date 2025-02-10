@@ -104,6 +104,10 @@ export default function UsersView(): JSX.Element {
 
   const userRights = useAtomValue(userRightsAtom)
 
+  const defaultUserEmail = process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
+    ? process.env.NEXT_PUBLIC_DEFAULT_USER_EMAIL
+    : window?.runtimeConfig?.optional?.DEFAULT_USER_EMAIL
+
   const { t } = useTranslation()
 
   const [deleteModalOpened, deleteModalHandlers] = useDisclosure(false)
@@ -274,7 +278,7 @@ export default function UsersView(): JSX.Element {
         cell: info => {
           const rowUser = info.row.original
 
-          const isDefaultUser = rowUser.firstName === 'Admin'
+          const isDefaultUser = rowUser.email === defaultUserEmail
 
           return (
             <Flex direction="row" gap="xs">
@@ -340,7 +344,14 @@ export default function UsersView(): JSX.Element {
         size: 120,
       },
     ],
-    [t, handleEditUser, userRights, handleInvalidateToken, deleteModalHandlers],
+    [
+      t,
+      handleEditUser,
+      userRights,
+      defaultUserEmail,
+      handleInvalidateToken,
+      deleteModalHandlers,
+    ],
   )
 
   const table = useReactTable({

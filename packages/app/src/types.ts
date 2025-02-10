@@ -9,6 +9,7 @@ declare global {
       }
       optional: {
         OAUTH_REDIRECT_URI: string
+        DEFAULT_USER_EMAIL: string
         APP_ENV: string
       }
     }
