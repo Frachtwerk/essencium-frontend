@@ -1,5 +1,18 @@
 # Changelog
 
+## [7.11.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.10.0...essencium-app-v7.11.0) (2025-02-10)
+
+
+### Features
+
+* implement avatar initials and add contact person ([#726](https://github.com/Frachtwerk/essencium-frontend/issues/726)) ([d732555](https://github.com/Frachtwerk/essencium-frontend/commit/d7325554b3f84b06a1601400b08934d9cc82273c))
+
+
+### Bug Fixes
+
+* remove required role description ([5611d5d](https://github.com/Frachtwerk/essencium-frontend/commit/5611d5d551f4c46edb98ccac54cd9023f425ef8e))
+* update URL on language change and auto-refresh user updates ([#722](https://github.com/Frachtwerk/essencium-frontend/issues/722)) ([7198688](https://github.com/Frachtwerk/essencium-frontend/commit/71986880a62d2e64e5ed6a7b5a8dbae36caa940b))
+
 ## [7.10.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.9.2...essencium-app-v7.10.0) (2025-01-23)
 
 
