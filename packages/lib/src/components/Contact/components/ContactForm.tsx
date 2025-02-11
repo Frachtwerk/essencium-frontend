@@ -122,7 +122,6 @@ export function ContactForm({ formState, control }: Props): JSX.Element {
                   className={classes['contact-from__text-input']}
                   label={t('contactView.contactForm.form.subject')}
                   size="sm"
-                  variant="filled"
                   withAsterisk
                 />
               )}
@@ -153,7 +152,6 @@ export function ContactForm({ formState, control }: Props): JSX.Element {
                   withAsterisk
                   minRows={8}
                   maxRows={15}
-                  variant="filled"
                   className={classes['contact-form__text-area']}
                 />
               )}

@@ -21,22 +21,29 @@
 
 import { Contact } from '@frachtwerk/essencium-lib'
 import { contactFormSchema, ContactFormType } from '@frachtwerk/essencium-types'
-import type { JSX } from 'react'
+import { useAtom } from 'jotai'
+import { type JSX, useEffect } from 'react'
 
-import { useSendContactMessage } from '@/api'
+import { userAtom, useSendContactMessage } from '@/api'
 import { useZodForm } from '@/hooks'
 
 export default function ContactView(): JSX.Element {
   const { mutate: sendMessage } = useSendContactMessage()
 
-  const { handleSubmit, control, formState, reset } = useZodForm({
+  const currentUserObject = useAtom(userAtom)
+
+  const currentUser = currentUserObject[0]
+
+  const defaultValues = { mailAddress: '', name: '', subject: '', message: '' }
+
+  const {
+    handleSubmit,
+    control,
+    formState,
+    reset: resetAndPrefillForm,
+  } = useZodForm({
     schema: contactFormSchema,
-    defaultValues: {
-      mailAddress: '',
-      name: '',
-      subject: '',
-      message: '',
-    },
+    defaultValues,
   })
 
   const contactPerson = {
@@ -49,8 +56,15 @@ export default function ContactView(): JSX.Element {
   }
 
   function onSubmit(form: ContactFormType): void {
-    sendMessage(form, { onSuccess: () => reset() })
+    sendMessage(form, { onSuccess: () => resetAndPrefillForm(defaultValues) })
   }
+
+  useEffect(() => {
+    resetAndPrefillForm({
+      mailAddress: currentUser?.email ?? '',
+      name: `${currentUser?.firstName ?? ''} ${currentUser?.lastName ?? ''}`,
+    })
+  }, [currentUser, resetAndPrefillForm])
 
   return (
     <form data-testid="form" onSubmit={handleSubmit(onSubmit)}>
