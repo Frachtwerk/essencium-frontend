@@ -30,9 +30,7 @@ import { useZodForm } from '@/hooks'
 export default function ContactView(): JSX.Element {
   const { mutate: sendMessage } = useSendContactMessage()
 
-  const currentUserObject = useAtom(userAtom)
-
-  const currentUser = currentUserObject[0]
+  const currentUser = useAtom(userAtom)[0]
 
   const defaultValues = { mailAddress: '', name: '', subject: '', message: '' }
 
