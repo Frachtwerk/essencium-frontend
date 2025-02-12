@@ -115,7 +115,6 @@ export function PasswordChangeForm({
                   'profileView.dataCard.tabs.passwordChange.content.currentPassword',
                 )}
                 withAsterisk
-                variant="filled"
               />
             )}
           />
@@ -159,7 +158,6 @@ export function PasswordChangeForm({
                         'profileView.dataCard.tabs.passwordChange.content.newPassword',
                       )}
                       withAsterisk
-                      variant="filled"
                     />
                   )}
                 />
@@ -199,7 +197,6 @@ export function PasswordChangeForm({
                   'profileView.dataCard.tabs.passwordChange.content.confirmNewPassword',
                 )}
                 withAsterisk
-                variant="filled"
               />
             )}
           />

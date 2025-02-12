@@ -94,7 +94,7 @@ export function PersonalDataForm({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Flex
-        direction={{ base: 'column', sm: 'row' }}
+        direction={{ base: 'column', md: 'row' }}
         gap={{ base: 'xs', sm: 'md' }}
         justify={{ sm: 'space-between' }}
       >
@@ -115,7 +115,6 @@ export function PersonalDataForm({
                   'profileView.dataCard.tabs.personalData.label.firstName',
                 )}
                 size="sm"
-                variant="filled"
               />
             )}
           />
@@ -148,7 +147,6 @@ export function PersonalDataForm({
                   'profileView.dataCard.tabs.personalData.label.lastName',
                 )}
                 size="sm"
-                variant="filled"
               />
             )}
           />
@@ -166,7 +164,7 @@ export function PersonalDataForm({
       </Flex>
 
       <Flex
-        direction={{ base: 'column', sm: 'row' }}
+        direction={{ base: 'column', md: 'row' }}
         gap={{ base: 'sm', sm: 'md' }}
         justify={{ sm: 'space-between' }}
         className={classes['personal-data-form__flex--margin-top']}
@@ -183,7 +181,6 @@ export function PersonalDataForm({
                 )}
                 label={t('profileView.dataCard.tabs.personalData.label.phone')}
                 size="sm"
-                variant="filled"
               />
             )}
           />
@@ -213,7 +210,6 @@ export function PersonalDataForm({
                 )}
                 label={t('profileView.dataCard.tabs.personalData.label.mobile')}
                 size="sm"
-                variant="filled"
               />
             )}
           />
@@ -250,7 +246,6 @@ export function PersonalDataForm({
                 label={t('profileView.dataCard.tabs.personalData.label.email')}
                 withAsterisk
                 size="sm"
-                variant="filled"
               />
             )}
           />

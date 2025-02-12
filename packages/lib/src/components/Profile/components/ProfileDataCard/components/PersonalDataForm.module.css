@@ -25,6 +25,10 @@
 
 .personal-data-form__stack {
   width: 45%;
+
+  @media (max-width: $mantine-breakpoint-md) {
+    width: 100%;
+  }
 }
 
 .personal-data-form__error-box {
