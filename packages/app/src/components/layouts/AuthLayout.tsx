@@ -270,8 +270,6 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
       document.cookie = `NEXT_LOCALE=${user?.locale};expires=${expires};path=/`
 
       i18n.changeLanguage(user?.locale)
-
-      router.push(pathname.includes('/de') ? pathname.slice(3) : pathname)
     }
   }, [pathname, user, router, currentLocale, i18n])
 
