@@ -22,7 +22,6 @@
   "author": "Frachtwerk GmbH",
   "scripts": {
     "build": "pnpm --stream -r build",
-    "preview": "pnpm --filter @frachtwerk/essencium-app preview",
     "clean": "pnpm --stream -r clean && rimraf dist node_modules",
     "clean:install": "pnpm i -w && pnpm clean && pnpm install",
     "dev": "pnpm --filter @frachtwerk/essencium-app dev",

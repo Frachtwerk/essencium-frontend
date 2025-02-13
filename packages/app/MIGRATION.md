@@ -1,6 +1,6 @@
 # Migrations
 
-## [7.10.X (XX.XX.XXXX)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.10.0...essencium-app-v7.10.X)
+## 7.10.0
 
 ### `src/app/[locale]/(main)/profile/ProfileView.tsx`
 
