@@ -141,6 +141,7 @@
         "subject": "Subject",
         "message": "Message",
         "messagePlaceholder": "Write your message here",
+        "subjectPlaceholder": "Write your subject here",
         "sendMessage": "Send Message"
       }
     },

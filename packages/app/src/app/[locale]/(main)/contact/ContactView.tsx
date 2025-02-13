@@ -21,22 +21,27 @@
 
 import { Contact } from '@frachtwerk/essencium-lib'
 import { contactFormSchema, ContactFormType } from '@frachtwerk/essencium-types'
-import type { JSX } from 'react'
+import { useAtomValue } from 'jotai'
+import { type JSX } from 'react'
 
-import { useSendContactMessage } from '@/api'
+import { userAtom, useSendContactMessage } from '@/api'
 import { useZodForm } from '@/hooks'
 
 export default function ContactView(): JSX.Element {
   const { mutate: sendMessage } = useSendContactMessage()
 
-  const { handleSubmit, control, formState, reset } = useZodForm({
+  const currentUser = useAtomValue(userAtom)
+
+  const defaultValues = { mailAddress: '', name: '', subject: '', message: '' }
+
+  const {
+    handleSubmit,
+    control,
+    formState,
+    reset: resetAndPrefillForm,
+  } = useZodForm({
     schema: contactFormSchema,
-    defaultValues: {
-      mailAddress: '',
-      name: '',
-      subject: '',
-      message: '',
-    },
+    defaultValues,
   })
 
   const contactPerson = {
@@ -49,7 +54,14 @@ export default function ContactView(): JSX.Element {
   }
 
   function onSubmit(form: ContactFormType): void {
-    sendMessage(form, { onSuccess: () => reset() })
+    sendMessage(
+      {
+        ...form,
+        name: `${currentUser?.firstName ?? ''} ${currentUser?.lastName ?? ''}`,
+        mailAddress: currentUser?.email ?? '',
+      },
+      { onSuccess: () => resetAndPrefillForm(defaultValues) },
+    )
   }
 
   return (

@@ -17,11 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-.contact-form__container {
-  padding: 0;
-  margin: 0;
-}
-
 .contact-form__card {
   padding: var(--mantine-spacing-lg);
   box-shadow: var(--mantine-shadow-sm);
@@ -55,12 +50,14 @@
 
 .contact-form__stack {
   margin-top: var(--mantine-spacing-md);
-}
+  width: 75%;
 
-.contact-form__text-area {
-  min-width: 45%;
+  @media (max-width: $mantine-breakpoint-md) {
+    min-width: 100%;
+  }
 }
 
 .contact-form__group {
-  margin-top: var(--mantine-spacing-md);
+  margin-top: var(--mantine-spacing-sm);
+  margin-bottom: var(--mantine-spacing-xs);
 }
