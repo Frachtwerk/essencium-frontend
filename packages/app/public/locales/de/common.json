@@ -140,7 +140,8 @@
         "number": "Ihre Telefonnummer",
         "subject": "Betreff",
         "message": "Nachricht",
-        "messagePlaceholder": "Schreiben Sie hier Ihre Nachricht",
+        "messagePlaceholder": "Schreiben Sie hier Ihre Nachricht.",
+        "subjectPlaceholder": "Geben Sie hier Ihren Betreff ein.",
         "sendMessage": "Nachricht senden"
       }
     },

@@ -2,6 +2,14 @@
 
 ## [7.10.X (XX.XX.XXXX)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.10.0...essencium-app-v7.10.X)
 
+### `src/app/[locale]/(main)/contact/ContactView.tsx`
+
+- Inputfields `name` and `mailAdress` have been removed from the contactForm and therefore the values must be set in the sendMessage request.
+
+### `public/locales/(de|en)/common.json`
+
+- add translation variables for `contactView.contactForm.subjectPlaceholder`
+
 ### `src/app/[locale]/(main)/profile/ProfileView.tsx`
 
 - refetch user after update
