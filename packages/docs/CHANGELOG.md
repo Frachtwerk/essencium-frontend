@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.3.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.3.1...essencium-docs-v4.3.2) (2025-02-26)
+
+
+### Bug Fixes
+
+* **frontend:** fix vite vulnerability ([#734](https://github.com/Frachtwerk/essencium-frontend/issues/734)) ([bb9c15d](https://github.com/Frachtwerk/essencium-frontend/commit/bb9c15d20a71c49d920aadd31d9fe06f910a9805))
+
 ## [4.3.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.3.0...essencium-docs-v4.3.1) (2025-01-22)
 
 
