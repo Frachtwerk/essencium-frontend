@@ -124,7 +124,9 @@ api.interceptors.response.use(
     if (error?.response?.status === 401) {
       logout()
 
-      if (window.location.pathname !== '/login') window.location.href = '/login'
+      if (window.location.pathname !== '/login') {
+        window.location.href = `/login?redirect=${window.location.pathname}`
+      }
     }
 
     throw error
