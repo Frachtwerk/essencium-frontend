@@ -47,13 +47,13 @@ import {
 } from '@mantine/core'
 import { useDebouncedValue, useDisclosure } from '@mantine/hooks'
 import {
-  IconCheck,
   IconDotsVertical,
   IconLogout,
   IconPencil,
   IconTrash,
+  IconUserCheck,
   IconUsers,
-  IconX,
+  IconUserX,
 } from '@tabler/icons-react'
 import {
   ColumnDef,
@@ -196,7 +196,12 @@ export default function UsersView(): JSX.Element {
       {
         accessorKey: 'enabled',
         header: () => <Text inherit>{t('usersView.table.active')}</Text>,
-        cell: info => (info.getValue() ? <IconCheck /> : <IconX />),
+        cell: info =>
+          info.getValue() ? (
+            <IconUserCheck color="var(--mantine-color-green-8)" />
+          ) : (
+            <IconUserX color="var(--mantine-color-red-8)" />
+          ),
         size: 80,
         enableColumnFilter: false,
       },
