@@ -198,9 +198,9 @@ export default function UsersView(): JSX.Element {
         header: () => <Text inherit>{t('usersView.table.active')}</Text>,
         cell: info =>
           info.getValue() ? (
-            <IconUserCheck color="#2f9e44" />
+            <IconUserCheck color="var(--mantine-color-green-8)" />
           ) : (
-            <IconUserX color="#e03131" />
+            <IconUserX color="var(--mantine-color-red-8)" />
           ),
         size: 80,
         enableColumnFilter: false,
