@@ -259,7 +259,8 @@
         "mobile": "0177 98765432",
         "email": "norman.anderson@mail.com",
         "password": "***********"
-      }
+      },
+      "passwordTooltip": "Wenn Sie dieses Feld frei lassen, erhält der Benutzer eine E-Mail mit einem Link zum Festlegen eines Passworts."
     }
   },
   "rightsView": {

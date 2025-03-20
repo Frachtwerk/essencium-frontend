@@ -59,3 +59,8 @@
 .userForm__saveButton {
   margin-top: var(--mantine-spacing-md);
 }
+
+.userForm__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+}

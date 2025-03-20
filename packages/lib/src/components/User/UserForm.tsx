@@ -30,6 +30,7 @@ import {
   Box,
   Button,
   Flex,
+  Group,
   MultiSelect,
   PasswordInput,
   Select,
@@ -38,7 +39,10 @@ import {
   Text,
   TextInput,
   Title,
+  Tooltip,
 } from '@mantine/core'
+import { IconInfoCircle } from '@tabler/icons-react'
+import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 import type { JSX } from 'react'
 import {
@@ -76,6 +80,10 @@ export function UserForm({
 
   const { t } = useTranslation()
 
+  const pathname = usePathname()
+
+  const isAddUserForm = pathname.endsWith('add')
+
   const rolesData = roles.map(role => {
     return { value: role.name, label: role.name }
   })
@@ -110,7 +118,6 @@ export function UserForm({
                 )}
                 label={t('addUpdateUserView.form.firstName')}
                 size="sm"
-                variant="filled"
                 withAsterisk
               />
             )}
@@ -140,7 +147,6 @@ export function UserForm({
                 )}
                 label={t('addUpdateUserView.form.lastName')}
                 size="sm"
-                variant="filled"
                 withAsterisk
               />
             )}
@@ -178,7 +184,6 @@ export function UserForm({
                 label={t('addUpdateUserView.form.email')}
                 withAsterisk
                 size="sm"
-                variant="filled"
               />
             )}
           />
@@ -195,6 +200,25 @@ export function UserForm({
         </Stack>
 
         <Stack className={classes['userForm__inputContainer']}>
+          <Group align="vertical" gap="0.4rem" mb="-0.8rem">
+            <Text className={classes.userForm__label}>
+              {t('addUpdateUserView.form.password')}
+            </Text>
+
+            {isAddUserForm ? (
+              <Tooltip
+                label={t('addUpdateUserView.form.passwordTooltip')}
+                position="right"
+                withArrow
+                multiline
+                bg=" var(--mantine-color-gray-6)"
+                w="250px"
+              >
+                <IconInfoCircle size={20} />
+              </Tooltip>
+            ) : null}
+          </Group>
+
           <Controller
             name="password"
             control={control}
@@ -205,9 +229,7 @@ export function UserForm({
                 placeholder={String(
                   t('addUpdateUserView.form.placeholder.password'),
                 )}
-                label={t('addUpdateUserView.form.password')}
                 size="sm"
-                variant="filled"
               />
             )}
           />
@@ -242,7 +264,6 @@ export function UserForm({
                 )}
                 label={t('addUpdateUserView.form.phone')}
                 size="sm"
-                variant="filled"
               />
             )}
           />
@@ -270,7 +291,6 @@ export function UserForm({
                 )}
                 label={t('addUpdateUserView.form.mobile')}
                 size="sm"
-                variant="filled"
               />
             )}
           />
