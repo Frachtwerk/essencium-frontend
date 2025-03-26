@@ -41,7 +41,7 @@
     "@types/node": "20.11.30",
     "@types/react": "19.0.7",
     "@types/react-dom": "19.0.3",
-    "axios": "1.7.9",
+    "axios": "1.8.2",
     "dayjs": "1.11.13",
     "dotenv": "16.3.2",
     "i18next": "23.11.5",
