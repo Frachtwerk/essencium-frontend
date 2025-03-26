@@ -39,16 +39,16 @@ export default function LegalNoticeView(): JSX.Element {
         <Text>Frachtwerk GmbH</Text>
         <Text>Leopoldstraße 7C</Text>
         <Text>76133 Karlsruhe</Text>
-        <Text>Deutschland</Text>
-        <Text>Telefon: +49 (0) 721/1234567</Text>
-        <Text>E-Mail: info@frachtwerk.de</Text>
-        <Text>Geschäftsführer: Max Mustermann</Text>
+        <Text>Germany</Text>
+        <Text>Phone: +49 (0) 721/1234567</Text>
+        <Text>Email: info@frachtwerk.de</Text>
+        <Text>Managing Director: Max Mustermann</Text>
         <Divider />
 
         {/* Regulatory Authority (if any) */}
         <Title order={2}>{t('legalNoticeView.regulatoryAuthority')}</Title>
         <Text>
-          Beispielaufsichtsbehörde <br />
+          Example Regulatory Authority <br />
           Musterstraße 1 <br />
           12345 Musterstadt
         </Text>
@@ -57,20 +57,20 @@ export default function LegalNoticeView(): JSX.Element {
         {/* Disclaimer */}
         <Title order={2}>{t('legalNoticeView.dsiclaimer')}</Title>
         <Text>
-          Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung
-          für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten
-          sind ausschließlich deren Betreiber verantwortlich.
+          Despite careful review of content, we assume no liability for the
+          content of external links. The providers of the linked pages are
+          solely responsible for their content.
         </Text>
         <Divider />
 
         {/* Copyright / Legal Notice */}
         <Title order={2}>{t('legalNoticeView.copyright')}</Title>
         <Text>
-          Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen
-          Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung,
-          Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der
-          Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des
-          jeweiligen Autors bzw. Erstellers.
+          The content and works created by the site operators on these pages are
+          subject to German copyright law. Reproduction, processing,
+          distribution and any form of commercialization beyond the scope of
+          copyright law require the written consent of the respective author or
+          creator.
         </Text>
       </Stack>
     </Card>

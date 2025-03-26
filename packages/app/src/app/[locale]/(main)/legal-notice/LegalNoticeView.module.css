@@ -3,6 +3,6 @@
     box-shadow: var(--mantine-shadow-sm);
     border-radius: var(--mantine-radius-md);
     max-width: 800px;
-    margin: 0 auto;
+    margin: 12px auto;
   }
   
