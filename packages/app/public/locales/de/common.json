@@ -323,6 +323,13 @@
       "text": "Wollen Sie diese Rolle wirklich löschen?"
     }
   },
+  "legalNoticeView": {
+    "title": "Impressum",
+    "companyInformation": "Angaben gemäß § 5 TMG",
+    "regulatoryAuthority": "Aufsichtsbehörde",
+    "dsiclaimer": "Haftungsausschluss",
+    "copyright": "Urheberrecht"
+  },
   "validation": {
     "email": {
       "notValid": "E-Mail ist nicht gültig"

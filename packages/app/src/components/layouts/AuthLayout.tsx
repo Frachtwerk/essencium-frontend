@@ -142,11 +142,11 @@ export const FOOTER_LINKS: NavLink[] = [
     rights: [],
   },
   {
-    icon: <IconSectionSign size={20} />,
     color: theme.primaryColor,
-    label: 'footer.imprint.label',
-    to: '/',
-    description: 'footer.imprint.description',
+    label: 'legalNoticeView.title',
+    icon: <IconSectionSign size={20} />,
+    to: '/legal-notice',
+    description: 'footer.legalNotice.description',
     rights: [],
   },
   {
