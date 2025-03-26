@@ -1,5 +1,31 @@
 # Changelog
 
+## [8.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.10.0...essencium-app-v8.0.0) (2025-03-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* refactor contact page
+
+### Features
+
+* add DEFAULT_USER_EMAIL env for undeletable default user ([1137f68](https://github.com/Frachtwerk/essencium-frontend/commit/1137f689f179e36559951b464fcfef4f3817cb9a))
+* implement avatar initials and add contact person ([#726](https://github.com/Frachtwerk/essencium-frontend/issues/726)) ([d732555](https://github.com/Frachtwerk/essencium-frontend/commit/d7325554b3f84b06a1601400b08934d9cc82273c))
+
+
+### Bug Fixes
+
+* fix vulnerability vitest ([#728](https://github.com/Frachtwerk/essencium-frontend/issues/728)) ([3d9342d](https://github.com/Frachtwerk/essencium-frontend/commit/3d9342d6c07d003b9ecc3b4fc8a8070c7ef6a047))
+* **frontend:** fix vite vulnerability ([#734](https://github.com/Frachtwerk/essencium-frontend/issues/734)) ([bb9c15d](https://github.com/Frachtwerk/essencium-frontend/commit/bb9c15d20a71c49d920aadd31d9fe06f910a9805))
+* remove required role description ([5611d5d](https://github.com/Frachtwerk/essencium-frontend/commit/5611d5d551f4c46edb98ccac54cd9023f425ef8e))
+* update nextjs to patched version 15.2.3 ([#744](https://github.com/Frachtwerk/essencium-frontend/issues/744)) ([d81e938](https://github.com/Frachtwerk/essencium-frontend/commit/d81e938fafab96feb5b71eaa1ff191b39b1aa81f))
+* update URL on language change and auto-refresh user updates ([#722](https://github.com/Frachtwerk/essencium-frontend/issues/722)) ([7198688](https://github.com/Frachtwerk/essencium-frontend/commit/71986880a62d2e64e5ed6a7b5a8dbae36caa940b))
+
+
+### Code Refactoring
+
+* refactor contact page  ([8db4d41](https://github.com/Frachtwerk/essencium-frontend/commit/8db4d41f10d0b1b120c8c3e214eca50e949660fc))
+
 ## [7.10.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.9.2...essencium-app-v7.10.0) (2025-01-23)
 
 

@@ -1,5 +1,26 @@
 # Changelog
 
+## [6.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v5.8.0...essencium-types-v6.0.0) (2025-03-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* refactor contact page
+
+### Features
+
+* implement avatar initials and add contact person ([#726](https://github.com/Frachtwerk/essencium-frontend/issues/726)) ([d732555](https://github.com/Frachtwerk/essencium-frontend/commit/d7325554b3f84b06a1601400b08934d9cc82273c))
+
+
+### Bug Fixes
+
+* remove required role description ([5611d5d](https://github.com/Frachtwerk/essencium-frontend/commit/5611d5d551f4c46edb98ccac54cd9023f425ef8e))
+
+
+### Code Refactoring
+
+* refactor contact page  ([8db4d41](https://github.com/Frachtwerk/essencium-frontend/commit/8db4d41f10d0b1b120c8c3e214eca50e949660fc))
+
 ## [5.8.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v5.7.0...essencium-types-v5.8.0) (2025-01-23)
 
 
