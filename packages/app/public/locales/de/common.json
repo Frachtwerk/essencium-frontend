@@ -330,6 +330,14 @@
     "dsiclaimer": "Haftungsausschluss",
     "copyright": "Urheberrecht"
   },
+  "privacyPolicyView": {
+    "title": "Datenschutz",
+    "introduction": "Einleitung",
+    "dataCollection": "Datenerhebung",
+    "dataUsage": "Datenverwendung",
+    "dataProtection": "Datenschutz",
+    "contactInformation": "Kontaktinformationen"
+  },
   "validation": {
     "email": {
       "notValid": "E-Mail ist nicht gültig"

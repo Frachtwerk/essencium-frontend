@@ -330,6 +330,14 @@
     "dsiclaimer": "Disclaimer",
     "copyright": "Copyright"
   },
+  "privacyPolicyView": {
+    "title": "Privacy Policy",
+    "introduction": "introduction",
+    "dataCollection": "Data Collection",
+    "dataUsage": "Data Usage",
+    "dataProtection": "Data Protection",
+    "contactInformation": "Contact Information"
+  },
   "validation": {
     "email": {
       "notValid": "E-Mail is not valid"
