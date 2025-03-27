@@ -27,13 +27,13 @@ import { ContactForm, ContactPersonCard } from './components'
 type Props = {
   control: Control<ContactFormType>
   formState: FormState<ContactFormType>
-  contactPerson?: ContactPerson
+  contactPerson: ContactPerson
 }
 
 export function Contact({
   control,
   formState,
-  contactPerson = undefined,
+  contactPerson,
 }: Props): JSX.Element {
   return (
     <Grid role="grid">
