@@ -323,6 +323,21 @@
       "text": "Are you sure you want to delete this role?"
     }
   },
+  "legalNoticeView": {
+    "title": "Legal Notice",
+    "companyInformation": "Information according to § 5 TMG",
+    "regulatoryAuthority": "Regulatory Authority",
+    "dsiclaimer": "Disclaimer",
+    "copyright": "Copyright"
+  },
+  "privacyPolicyView": {
+    "title": "Privacy Policy",
+    "introduction": "introduction",
+    "dataCollection": "Data Collection",
+    "dataUsage": "Data Usage",
+    "dataProtection": "Data Protection",
+    "contactInformation": "Contact Information"
+  },
   "validation": {
     "email": {
       "notValid": "E-Mail is not valid"
