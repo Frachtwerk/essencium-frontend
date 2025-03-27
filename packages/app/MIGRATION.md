@@ -1,10 +1,11 @@
 # Migrations
 
-## [7.10.X (XX.XX.XXXX)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.10.0...essencium-app-v7.10.X)
+## [8.0.1 (27.03.2025)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.10.0...essencium-app-v8.0.1)
 
 ### `src/app/[locale]/(main)/contact/ContactView.tsx`
 
 - Inputfields `name` and `mailAdress` have been removed from the contactForm and therefore the values must be set in the sendMessage request.
+- `contactPerson` is required as prop for `<Contact/>` with minimum name and phone number.
 
 ### `public/locales/(de|en)/common.json`
 

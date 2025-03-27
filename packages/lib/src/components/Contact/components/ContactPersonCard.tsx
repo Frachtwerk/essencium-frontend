@@ -26,6 +26,7 @@ import {
   Text,
   ThemeIcon,
   Title,
+  useMantineTheme,
 } from '@mantine/core'
 import {
   IconBrandInstagram,
@@ -41,20 +42,13 @@ import type { JSX } from 'react'
 import classes from './ContactPersonCard.module.css'
 
 type Props = {
-  contactPerson?: ContactPerson
+  contactPerson: ContactPerson
 }
 
 export function ContactPersonCard({ contactPerson }: Props): JSX.Element {
   const { t } = useTranslation()
 
-  const examplePerson = {
-    name: 'Jane Doe',
-    phone: '+1(123) 456-7890',
-    email: 'jane.doe@example.com',
-    address: '123 Maple Street. Anytown, PA 17101',
-    linkedinUrl: 'https://www.linkedin.com/company/frachtwerk',
-    instagramUrl: 'https://www.instagram.com/frachtwerk.de/',
-  }
+  const theme = useMantineTheme()
 
   return (
     <Card
@@ -73,34 +67,36 @@ export function ContactPersonCard({ contactPerson }: Props): JSX.Element {
         <Avatar
           size="xl"
           // color gets not applied when outsourced to module.css
-          color="var(--mantine-color-blue-6)"
-          name={contactPerson?.name ?? examplePerson.name}
+          color={theme.primaryColor}
+          name={contactPerson.name}
           className={classes['contact-person-card__avatar']}
         />
 
         <Title order={5} className={classes['contact-person-card__title']}>
-          {contactPerson?.name ?? examplePerson.name}
+          {contactPerson.name}
         </Title>
 
         <Flex direction="column" align="flex-start" gap="sm">
-          <Group
-            gap="xl"
-            aria-label={
-              t(
-                'contactView.contactPersonCard.contactPerson.ariaLabel',
-              ) as string
-            }
-          >
-            <ThemeIcon
-              className={classes['contact-person-card__theme-icon--radius']}
+          {contactPerson?.phone ? (
+            <Group
+              gap="xl"
+              aria-label={
+                t(
+                  'contactView.contactPersonCard.contactPerson.ariaLabel',
+                ) as string
+              }
             >
-              <IconPhoneCall
-                className={classes['contact-person-card__icon--size']}
-              />
-            </ThemeIcon>
+              <ThemeIcon
+                className={classes['contact-person-card__theme-icon--radius']}
+              >
+                <IconPhoneCall
+                  className={classes['contact-person-card__icon--size']}
+                />
+              </ThemeIcon>
 
-            <Text>{contactPerson?.phone ?? examplePerson.phone}</Text>
-          </Group>
+              <Text>{contactPerson.phone}</Text>
+            </Group>
+          ) : null}
 
           <Group gap="xl" aria-label="Contact info">
             <ThemeIcon
@@ -111,55 +107,55 @@ export function ContactPersonCard({ contactPerson }: Props): JSX.Element {
               />
             </ThemeIcon>
 
-            <Text>{contactPerson?.email ?? examplePerson.email}</Text>
+            <Text>{contactPerson.email}</Text>
           </Group>
 
-          <Group gap="xl" aria-label="Contact info">
-            <ThemeIcon
-              className={classes['contact-person-card__theme-icon--radius']}
-            >
-              <IconLocation
-                className={classes['contact-person-card__icon--size']}
-              />
-            </ThemeIcon>
+          {contactPerson?.address ? (
+            <Group gap="xl" aria-label="Contact info">
+              <ThemeIcon
+                className={classes['contact-person-card__theme-icon--radius']}
+              >
+                <IconLocation
+                  className={classes['contact-person-card__icon--size']}
+                />
+              </ThemeIcon>
 
-            <Text>{contactPerson?.address ?? examplePerson.address}</Text>
-          </Group>
+              <Text>{contactPerson.address}</Text>
+            </Group>
+          ) : null}
         </Flex>
 
         <Group
           className={classes['contact-person-card__group']}
           aria-label="Contact info"
         >
-          <NextLink
-            href={contactPerson?.linkedinUrl ?? examplePerson.linkedinUrl}
-            passHref
-          >
-            <ThemeIcon
-              variant="light"
-              className={classes['contact-person-card__theme-icon--radius']}
-            >
-              <IconBrandLinkedin
-                className={classes['contact-person-card__icon--size']}
-                aria-label="Social icon"
-              />
-            </ThemeIcon>
-          </NextLink>
+          {contactPerson?.linkedinUrl ? (
+            <NextLink href={contactPerson.linkedinUrl} passHref>
+              <ThemeIcon
+                variant="light"
+                className={classes['contact-person-card__theme-icon--radius']}
+              >
+                <IconBrandLinkedin
+                  className={classes['contact-person-card__icon--size']}
+                  aria-label="Social icon"
+                />
+              </ThemeIcon>
+            </NextLink>
+          ) : null}
 
-          <NextLink
-            href={contactPerson?.instagramUrl ?? examplePerson.instagramUrl}
-            passHref
-          >
-            <ThemeIcon
-              variant="light"
-              className={classes['contact-person-card__theme-icon--radius']}
-            >
-              <IconBrandInstagram
-                className={classes['contact-person-card__icon--size']}
-                aria-label="Social icon"
-              />
-            </ThemeIcon>
-          </NextLink>
+          {contactPerson.instagramUrl ? (
+            <NextLink href={contactPerson.instagramUrl} passHref>
+              <ThemeIcon
+                variant="light"
+                className={classes['contact-person-card__theme-icon--radius']}
+              >
+                <IconBrandInstagram
+                  className={classes['contact-person-card__icon--size']}
+                  aria-label="Social icon"
+                />
+              </ThemeIcon>
+            </NextLink>
+          ) : null}
         </Group>
       </Flex>
     </Card>
