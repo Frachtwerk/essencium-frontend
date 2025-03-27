@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v6.0.0...essencium-types-v6.0.1) (2025-03-27)
+
+
+### Bug Fixes
+
+* set only name and mail as required in contact data ([#750](https://github.com/Frachtwerk/essencium-frontend/issues/750)) ([0627f5a](https://github.com/Frachtwerk/essencium-frontend/commit/0627f5a25d68659a108503bb63c5e90cd2f79530))
+
 ## [6.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v5.8.0...essencium-types-v6.0.0) (2025-03-26)
 
 
