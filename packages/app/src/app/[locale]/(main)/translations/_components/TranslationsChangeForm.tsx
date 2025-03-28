@@ -23,7 +23,6 @@ import {
   ChangeTranslationSchemaFormType,
   RIGHTS,
   TranslationInput,
-  TranslationOutput,
 } from '@frachtwerk/essencium-types'
 import { ActionIcon, Group, Stack, TextInput } from '@mantine/core'
 import { IconBackspace, IconDeviceFloppy } from '@tabler/icons-react'
@@ -39,7 +38,7 @@ import { useZodForm } from '@/hooks'
 import classes from './TranslationChangeForm.module.css'
 
 type Props = {
-  currentValue: TranslationOutput['value']
+  currentValue: string
   locale: TranslationInput['locale']
   keyPath: TranslationInput['key']
   updateTranslation: (translationInput: TranslationInput) => void

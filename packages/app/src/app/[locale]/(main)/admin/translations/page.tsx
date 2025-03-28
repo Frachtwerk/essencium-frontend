@@ -44,6 +44,12 @@ export async function generateMetadata(
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default async function page({ params }: Props): Promise<JSX.Element> {
-  return <TranslationsView />
+export default async function page(props: Props): Promise<JSX.Element> {
+  const params = await props.params
+
+  const { locale } = params
+
+  const { resources } = await initTranslations(locale)
+
+  return <TranslationsView resources={resources} />
 }
