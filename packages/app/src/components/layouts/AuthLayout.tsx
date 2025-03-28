@@ -52,6 +52,7 @@ import { useTranslation } from 'react-i18next'
 import { useGetMe, userAtom, userRightsAtom } from '@/api'
 import { useCreateFeedback } from '@/api/feedback'
 import { theme } from '@/config'
+import { useAddTranslations } from '@/hooks'
 import {
   isBrowserEnvironment,
   logout,
@@ -173,7 +174,7 @@ export const SEARCH_ITEMS: NavLink[] = [
 export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
   const router = useRouter()
 
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   const [mobileNavBarOpened, { toggle: toggleMobileNavBar }] = useDisclosure()
 
@@ -184,7 +185,10 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
   const { data: user } = useGetMe()
 
   const setUser = useSetAtom(userAtom)
+
   const [userRights, setUserRights] = useAtom(userRightsAtom)
+
+  const addTranslations = useAddTranslations(i18n)
 
   useEffect(() => {
     if (user) {
@@ -253,7 +257,6 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
 
   const isNotMobile = useMediaQuery('(min-width: 48em)') // equals mantine breakpoint sm
 
-  const { i18n } = useTranslation()
   const currentLocale = i18n.language
   const pathname = usePathname()
 
@@ -278,6 +281,10 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
       router.refresh()
     }
   }, [pathname, user, router, currentLocale, i18n])
+
+  useEffect(() => {
+    addTranslations()
+  }, [currentLocale, addTranslations])
 
   useEffect(() => {
     if (!isNotMobile) {
