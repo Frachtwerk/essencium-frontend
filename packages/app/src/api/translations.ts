@@ -28,18 +28,13 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { useAtomValue } from 'jotai'
 
 import { api } from './api'
-import { authTokenAtom } from './auth'
 
 export function useGetTranslations(
   locale: TranslationInput['locale'],
 ): UseQueryResult<TranslationOutput, AxiosError> {
-  const authToken = useAtomValue(authTokenAtom)
-
   return useQuery<TranslationOutput, AxiosError>({
-    enabled: Boolean(authToken),
     queryKey: [`useGetTranslations-${locale}`],
     queryFn: () =>
       api
