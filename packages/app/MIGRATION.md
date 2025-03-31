@@ -1,5 +1,51 @@
 # Migrations
 
+## [8.x.x (XX.XX.XXXX)]()
+
+### Fix Translation
+
+#### `src/api/translation.ts`
+
+- remove authToken as requirement to enable getTranslations request
+
+#### `src/app/[locale]/(main)/admin/translations/TranslationsView`
+
+- accept prop `resources` from page
+- add mergeTranslations function
+- adjust useEffect logic
+
+#### `src/app/[locale]/(main)/admin/translations/page.tsx`
+
+- hand down resources as prop to TranslationsView
+
+#### `src/app/[locale]/(main)/admin/translations/_components/TranslationsChangeForm.tsx`
+
+- adjust type of currentValue
+
+#### `src/app/[locale]/(public)/layout.tsx`
+
+- add addTranslation logic
+
+#### `src/app/components/layouts/AuthLayout.tsx`
+
+- add addTranslation logic
+
+#### `scr/config/i18n.ts`
+
+- export namespace
+
+#### `app/src/hooks/useAddTranslation.ts`
+
+- add file
+
+#### `app/src/utils/mergeTranslations.ts`
+
+- add file
+
+#### `app/src/utils/mergeTranslations.test.ts`
+
+- add file
+
 ## [8.0.1 (27.03.2025)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.10.0...essencium-app-v8.0.1)
 
 ### `src/app/[locale]/(main)/contact/ContactView.tsx`
