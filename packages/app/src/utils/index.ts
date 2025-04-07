@@ -17,8 +17,8 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './getTranslation'
 export * from './isBrowserEnvironment'
 export * from './logout'
+export * from './mergeTranslations'
 export * from './parseSorting'
 export * from './withBaseStylingShowNotification'

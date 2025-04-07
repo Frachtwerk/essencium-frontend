@@ -40,6 +40,7 @@ import {
   getExpandedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
+import { Resource } from 'i18next'
 import type { JSX } from 'react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { getI18n, useTranslation } from 'react-i18next'
@@ -50,14 +51,15 @@ import {
   useUpdateTranslation,
 } from '@/api'
 import { i18nConfig } from '@/config'
+import { mergeTranslations } from '@/utils/mergeTranslations'
 
 import { TranslationChangeForm } from '../../translations/_components/TranslationsChangeForm'
 import classes from './TranslationsView.module.css'
 
 /* eslint-disable react/no-unstable-nested-components */
 
-function getDataByLanguage(lang: string): TranslationOutput | undefined {
-  return getI18n().getDataByLanguage(lang)?.common
+type Props = {
+  resources: Resource
 }
 
 export function transformData(
@@ -124,7 +126,7 @@ const searchTableRowsAndReturnPath = (
   return result
 }
 
-export default function TranlsationView(): JSX.Element {
+export default function TranlsationView({ resources }: Props): JSX.Element {
   const i18n = getI18n()
 
   const { t } = useTranslation()
@@ -196,6 +198,14 @@ export default function TranlsationView(): JSX.Element {
     ],
   )
 
+  const mergedTranslations = useMemo(() => {
+    return mergeTranslations(
+      // eslint-disable-next-line react/destructuring-assignment
+      resources[locale]?.common,
+      locale === 'de' ? serverTranslationsDe : serverTranslationsEn,
+    )
+  }, [resources, serverTranslationsDe, serverTranslationsEn, locale])
+
   useEffect(() => {
     i18n?.addResourceBundle(
       locale,
@@ -205,24 +215,16 @@ export default function TranlsationView(): JSX.Element {
       true,
     )
 
-    i18n?.init(() => {
-      setUpdatedTranslations(getDataByLanguage(locale) ?? null)
-    })
-
-    setTransformedTranslations(transformData(updatedTranslations ?? {}) || [])
-
     if (isDelete) {
       window.location.reload()
     }
-  }, [
-    serverTranslationsDe,
-    serverTranslationsEn,
-    i18n,
-    locale,
-    setTransformedTranslations,
-    updatedTranslations,
-    isDelete,
-  ])
+  }, [i18n, locale, serverTranslationsDe, serverTranslationsEn, isDelete])
+
+  useEffect(() => {
+    setUpdatedTranslations(mergedTranslations)
+
+    setTransformedTranslations(transformData(updatedTranslations ?? {}) || [])
+  }, [setTransformedTranslations, updatedTranslations, mergedTranslations])
 
   useEffect(() => {
     const searchResults = searchTableRowsAndReturnPath(

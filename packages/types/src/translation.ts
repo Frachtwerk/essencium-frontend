@@ -19,7 +19,13 @@
 
 import { z } from 'zod'
 
-export type TranslationOutput = Record<string, string>
+// mimics type ResourceKey from i18next
+export type TranslationOutput =
+  | string
+  | {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      [key: string]: any
+    }
 
 export type TranslationInput = {
   locale: string
