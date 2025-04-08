@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v6.0.1...essencium-types-v6.0.2) (2025-04-08)
+
+
+### Bug Fixes
+
+* fix updating translations ([#751](https://github.com/Frachtwerk/essencium-frontend/issues/751)) ([3e718fa](https://github.com/Frachtwerk/essencium-frontend/commit/3e718fa8dd54ffd7dd434f6e9b1efc6a3a47b92d))
+
 ## [6.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v6.0.0...essencium-types-v6.0.1) (2025-03-27)
 
 

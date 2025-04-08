@@ -1,5 +1,13 @@
 # Changelog
 
+## [8.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v8.1.0...essencium-app-v8.1.1) (2025-04-08)
+
+
+### Bug Fixes
+
+* fix updating translations ([#751](https://github.com/Frachtwerk/essencium-frontend/issues/751)) ([3e718fa](https://github.com/Frachtwerk/essencium-frontend/commit/3e718fa8dd54ffd7dd434f6e9b1efc6a3a47b92d))
+* update dependencies ([#753](https://github.com/Frachtwerk/essencium-frontend/issues/753)) ([c4df88a](https://github.com/Frachtwerk/essencium-frontend/commit/c4df88ac06753a3f63f12dfbc4f1306f80eb8507))
+
 ## [8.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v8.0.0...essencium-app-v8.1.0) (2025-03-27)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.3.3](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.3.2...essencium-docs-v4.3.3) (2025-04-08)
+
+
+### Bug Fixes
+
+* update dependencies ([#753](https://github.com/Frachtwerk/essencium-frontend/issues/753)) ([c4df88a](https://github.com/Frachtwerk/essencium-frontend/commit/c4df88ac06753a3f63f12dfbc4f1306f80eb8507))
+
 ## [4.3.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.3.1...essencium-docs-v4.3.2) (2025-03-26)
 
 
