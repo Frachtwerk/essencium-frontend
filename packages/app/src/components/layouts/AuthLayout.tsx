@@ -287,12 +287,14 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
   }, [currentLocale, addTranslations])
 
   useEffect(() => {
-    if (!isNotMobile) {
-      setIsFoldedNav(false)
-    } else {
-      setIsFoldedNav(true)
+    if (!isFixedNav) {
+      if (!isNotMobile) {
+        setIsFoldedNav(false)
+      } else {
+        setIsFoldedNav(true)
+      }
     }
-  }, [isNotMobile])
+  }, [isFixedNav, isNotMobile])
 
   return (
     <>
