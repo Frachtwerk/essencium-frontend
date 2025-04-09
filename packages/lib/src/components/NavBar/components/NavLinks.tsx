@@ -56,14 +56,43 @@ export function NavLinks({
 
   return (
     <>
-      {links.map(link =>
-        !link.rights.length ||
-        (link.rights && hasRequiredRights(userRights, link.rights)) ? (
+      {links.map(link => {
+        const isParentLink = link.navLinks?.length
+
+        // Check if the link is a parent link
+        if (!isParentLink) {
+          return !link.rights.length ||
+            (link.rights && hasRequiredRights(userRights, link.rights)) ? (
+            <MantineNavLink
+              component={NextLink}
+              href={link.to}
+              target={link?.isExternalLink ? '_blank' : '_self'}
+              key={link.label}
+              leftSection={link.icon}
+              label={t(link.label)}
+              active={isLinkActive(link.to) || isSubLinkActive(link.navLinks)}
+              color={
+                isLinkActive(link.to)
+                  ? undefined
+                  : 'var(--mantine-color-gray-9)'
+              }
+              className={classes['nav-bar__navlink']}
+              classNames={{
+                root: classes['nav-bar__navlink--root'],
+                label: classes['nav-bar__navlink--label'],
+              }}
+              onClick={() => handleOpenNav()}
+              prefetch={link.prefetch ?? true}
+            />
+          ) : null
+        }
+
+        // if link is a parent link display it as a button without href & co. and add sublinks
+        return !link.rights.length ||
+          (link.rights && hasRequiredRights(userRights, link.rights)) ? (
           <MantineNavLink
-            component={NextLink}
+            component="button"
             key={link.label}
-            href={link.to}
-            target={link?.isExternalLink ? '_blank' : '_self'}
             leftSection={link.icon}
             label={t(link.label)}
             active={isLinkActive(link.to) || isSubLinkActive(link.navLinks)}
@@ -75,8 +104,6 @@ export function NavLinks({
               root: classes['nav-bar__navlink--root'],
               label: classes['nav-bar__navlink--label'],
             }}
-            onClick={() => !link.navLinks?.length && handleOpenNav()}
-            prefetch={link.prefetch ?? true}
           >
             {!foldedNav
               ? link.navLinks?.map(sublink =>
@@ -103,8 +130,8 @@ export function NavLinks({
                 )
               : null}
           </MantineNavLink>
-        ) : null,
-      )}
+        ) : null
+      })}
     </>
   )
 }
