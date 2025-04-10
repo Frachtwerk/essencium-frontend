@@ -313,6 +313,7 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
           layout={isNotMobile ? 'alt' : 'default'}
           header={{ height: { base: 60 } }}
           footer={{ height: { base: 58 } }}
+          padding="lg"
           navbar={{
             width: isFixedNav ? 250 : 80,
             breakpoint: 'sm',
@@ -365,7 +366,7 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
           </Footer>
 
           <AppShellMain className={classes['app-shell-main']}>
-            <div className={classes['app-shell-main-content']}>{children}</div>
+            {children}
           </AppShellMain>
         </AppShell>
       ) : (

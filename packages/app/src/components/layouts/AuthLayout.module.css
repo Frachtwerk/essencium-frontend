@@ -1,7 +1,3 @@
-.app-shell-main-content {
-  padding: var(--mantine-spacing-lg);
-}
-
 .app-shell-main {
   overflow: auto;
 }
