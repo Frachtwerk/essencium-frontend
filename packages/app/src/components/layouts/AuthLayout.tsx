@@ -318,7 +318,6 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
             breakpoint: 'sm',
             collapsed: { mobile: !mobileNavBarOpened },
           }}
-          className={classes['app-shell']}
           {...props}
         >
           <Header
@@ -366,7 +365,7 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
           </Footer>
 
           <AppShellMain className={classes['app-shell-main']}>
-            {children}
+            <div className={classes['app-shell-main-content']}>{children}</div>
           </AppShellMain>
         </AppShell>
       ) : (
