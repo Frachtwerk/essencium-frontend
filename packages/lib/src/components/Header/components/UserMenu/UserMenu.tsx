@@ -41,9 +41,10 @@ type Props = {
     group?: string
     mail?: string
   }
+  avatarColor?: string
 }
 
-export function UserMenu({ user, className }: Props): JSX.Element {
+export function UserMenu({ user, className, avatarColor }: Props): JSX.Element {
   const { t } = useTranslation()
 
   const theme = useMantineTheme()
@@ -67,7 +68,7 @@ export function UserMenu({ user, className }: Props): JSX.Element {
           size="md"
           radius="lg"
           name={`${user.firstName} ${user.lastName}`}
-          color={theme.primaryColor}
+          color={avatarColor ?? theme.primaryColor}
         />
 
         <Box className={classes['user-menu__box']}>
