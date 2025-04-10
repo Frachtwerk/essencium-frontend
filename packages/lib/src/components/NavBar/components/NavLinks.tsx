@@ -25,6 +25,7 @@ import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 import type { JSX } from 'react'
+import { getI18n } from 'react-i18next'
 
 import { hasRequiredRights } from '../../../utils'
 import classes from './NavLinks.module.css'
@@ -44,10 +45,16 @@ export function NavLinks({
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
-  const pathname = usePathname()
+  const currentLocale = getI18n().language
+
+  const pathname = usePathname().replace(`/${currentLocale}`, '')
 
   function isLinkActive(link: string): boolean {
-    return pathname.endsWith(link)
+    return link === '/' ? pathname === '' : pathname.endsWith(link)
+  }
+
+  function isParentActive(link: string): boolean {
+    return pathname.includes(link)
   }
 
   function isSubLinkActive(sublinks: NavLink[] = []): boolean {
@@ -70,12 +77,7 @@ export function NavLinks({
               key={link.label}
               leftSection={link.icon}
               label={t(link.label)}
-              active={isLinkActive(link.to) || isSubLinkActive(link.navLinks)}
-              color={
-                isLinkActive(link.to)
-                  ? undefined
-                  : 'var(--mantine-color-gray-9)'
-              }
+              active={isLinkActive(link.to)}
               className={classes['nav-bar__navlink']}
               classNames={{
                 root: classes['nav-bar__navlink--root'],
@@ -95,10 +97,7 @@ export function NavLinks({
             key={link.label}
             leftSection={link.icon}
             label={t(link.label)}
-            active={isLinkActive(link.to) || isSubLinkActive(link.navLinks)}
-            color={
-              isLinkActive(link.to) ? undefined : 'var(--mantine-color-gray-9)'
-            }
+            active={isParentActive(link.to) && isSubLinkActive(link.navLinks)}
             className={classes['nav-bar__navlink']}
             classNames={{
               root: classes['nav-bar__navlink--root'],
@@ -117,7 +116,9 @@ export function NavLinks({
                       leftSection={sublink.icon}
                       target={sublink?.isExternalLink ? '_blank' : '_self'}
                       label={t(sublink.label)}
-                      active={isLinkActive(sublink.to)}
+                      active={
+                        isParentActive(link.to) && isLinkActive(sublink.to)
+                      }
                       className={classes['nav-bar__navlink--sublink']}
                       classNames={{
                         root: classes['nav-bar__navlink--root'],
