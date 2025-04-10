@@ -1,6 +1,19 @@
 # Migrations
 
-## [8.x.x (XX.XX.XXXX)]()
+## [8.1.2 (XX.XX.XXXX)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v8.1.1...essencium-app-v8.1.2)
+
+### Fix Scrollbar Bug
+
+#### `src/components/layouts/AuthLayout.module.css`
+
+- remove class `app-shell`
+
+#### `src/components/layouts/AuthLayout.tsx`
+
+- remove attribute `className` from `AppShell`
+- add attribute `padding="lg"` to `AppShell`
+
+## [8.1.1 (08.04.2025)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v8.1.0...essencium-app-v8.1.1)
 
 ### Fix Translation
 
@@ -46,7 +59,7 @@
 
 - add file
 
-## [8.0.1 (27.03.2025)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.10.0...essencium-app-v8.0.1)
+## [8.1.0 (27.03.2025)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v7.10.0...essencium-app-v8.1.0)
 
 ### `src/app/[locale]/(main)/contact/ContactView.tsx`
 
