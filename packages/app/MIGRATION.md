@@ -2,6 +2,21 @@
 
 ## [8.1.2 (XX.XX.XXXX)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v8.1.1...essencium-app-v8.1.2)
 
+### Fix Consistent Background for Cards
+
+#### `/src/app/[locale]/(main)/admin/users/Users.module.css`
+
+- remove dark mixin in class `userDetailCard`
+
+#### `/src/config/Theme.module.css`
+
+- file added
+
+#### `/src/config/mantine.ts`
+
+- import `Card` and `classes`
+- extend `Card` with root className
+
 ### Fix Scrollbar Bug
 
 #### `src/components/layouts/AuthLayout.module.css`
