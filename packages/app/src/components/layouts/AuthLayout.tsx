@@ -313,12 +313,12 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
           layout={isNotMobile ? 'alt' : 'default'}
           header={{ height: { base: 60 } }}
           footer={{ height: { base: 58 } }}
+          padding="lg"
           navbar={{
             width: isFixedNav ? 250 : 80,
             breakpoint: 'sm',
             collapsed: { mobile: !mobileNavBarOpened },
           }}
-          className={classes['app-shell']}
           {...props}
         >
           <Header
