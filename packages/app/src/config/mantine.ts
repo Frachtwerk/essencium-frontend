@@ -1,5 +1,7 @@
-import { createTheme, Loader } from '@mantine/core'
+import { Card, createTheme, Loader } from '@mantine/core'
 import { Fira_Code, Fira_Sans } from 'next/font/google'
+
+import classes from './Theme.module.css'
 
 const firaSans = Fira_Sans({
   subsets: ['latin'],
@@ -66,6 +68,11 @@ export const theme = createTheme({
     Loader: Loader.extend({
       defaultProps: {
         type: 'dots',
+      },
+    }),
+    Card: Card.extend({
+      classNames: {
+        root: classes['card-root'],
       },
     }),
   },
