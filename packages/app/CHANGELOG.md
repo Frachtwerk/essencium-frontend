@@ -1,5 +1,22 @@
 # Changelog
 
+## [9.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v8.1.1...essencium-app-v9.0.0) (2025-04-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* use consistent background for all cards in darkmode
+
+### Bug Fixes
+
+* **frontend:** fixed a bug where an extra scrollbar would appear on every page ([884556f](https://github.com/Frachtwerk/essencium-frontend/commit/884556ffa6c05e40bcf1490762f4ad9d711a5191))
+* prevent NavBar pin icon from disappearing ([0b09b90](https://github.com/Frachtwerk/essencium-frontend/commit/0b09b90647a5970d8d12072210898803387ad60b))
+
+
+### Styles
+
+* use consistent background for all cards in darkmode ([cfeecff](https://github.com/Frachtwerk/essencium-frontend/commit/cfeecff314816f26a873622645a3956271110e4e))
+
 ## [8.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v8.1.0...essencium-app-v8.1.1) (2025-04-08)
 
 
