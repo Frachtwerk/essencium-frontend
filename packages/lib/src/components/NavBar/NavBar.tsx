@@ -136,6 +136,7 @@ export function NavBar({
           links={links}
           userRights={userRights}
           foldedNav={foldedNav}
+          isMobile={isMobile}
           handleOpenNav={handleOpenNav}
         />
       </AppShellSection>
