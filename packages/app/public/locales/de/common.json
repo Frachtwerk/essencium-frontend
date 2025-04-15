@@ -260,7 +260,8 @@
         "email": "norman.anderson@mail.com",
         "password": "***********"
       },
-      "passwordTooltip": "Wenn Sie dieses Feld frei lassen, erhält der Benutzer eine E-Mail mit einem Link zum Festlegen eines Passworts."
+      "passwordTooltip": "Wenn Sie dieses Feld frei lassen, erhält der Benutzer eine E-Mail mit einem Link zum Festlegen eines Passworts.",
+      "passwordWarning": "ACHTUNG: Das Passwort des Benutzers wird geändert!"
     }
   },
   "rightsView": {
