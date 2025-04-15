@@ -260,7 +260,8 @@
         "email": "norman.anderson@mail.com",
         "password": "***********"
       },
-      "passwordTooltip": "If you leave this field empty, the user will receive an email with a link to set a password."
+      "passwordTooltip": "If you leave this field empty, the user will receive an email with a link to set a password.",
+      "passwordWarning": "WARNING: The user's password will be changed!"
     }
   },
   "rightsView": {
