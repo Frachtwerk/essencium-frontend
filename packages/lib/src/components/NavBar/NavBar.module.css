@@ -58,8 +58,6 @@
 .navBar__pinIcon {
   margin-top: var(--mantine-spacing-xs);
   margin-right: var(--mantine-spacing-sm);
-  animation: appearAnimation 0s 0.3s forwards;
-  cursor: pointer;
 }
 
 .navBar__navLink--root {

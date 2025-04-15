@@ -34,6 +34,7 @@ type Props = {
   links: NavLink[]
   userRights?: string[] | null
   foldedNav: boolean
+  isMobile: boolean
   handleOpenNav: () => void
 }
 
@@ -41,6 +42,7 @@ export function NavLinks({
   links,
   userRights,
   foldedNav,
+  isMobile,
   handleOpenNav,
 }: Props): JSX.Element {
   const { t } = useTranslation()
@@ -104,7 +106,7 @@ export function NavLinks({
               label: classes['nav-bar__navlink--label'],
             }}
           >
-            {!foldedNav
+            {!foldedNav || isMobile
               ? link.navLinks?.map(sublink =>
                   !sublink.rights.length ||
                   (sublink.rights &&

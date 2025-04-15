@@ -286,16 +286,6 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
     addTranslations()
   }, [currentLocale, addTranslations])
 
-  useEffect(() => {
-    if (!isFixedNav) {
-      if (!isNotMobile) {
-        setIsFoldedNav(false)
-      } else {
-        setIsFoldedNav(true)
-      }
-    }
-  }, [isFixedNav, isNotMobile])
-
   return (
     <>
       <Spotlight

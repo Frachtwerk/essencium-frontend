@@ -21,14 +21,13 @@
 
 import { NavLink } from '@frachtwerk/essencium-types'
 import {
+  ActionIcon,
   AppShellNavbar,
   AppShellNavbarProps,
   AppShellSection,
   Box,
   Flex,
   NavLink as MantineNavLink,
-  useMantineColorScheme,
-  useMantineTheme,
 } from '@mantine/core'
 import { IconLogout, IconPinFilled, IconPinnedOff } from '@tabler/icons-react'
 import NextLink from 'next/link'
@@ -66,9 +65,6 @@ export function NavBar({
   handleOpenNav,
   ...props
 }: Props): JSX.Element {
-  const { colorScheme } = useMantineColorScheme()
-  const theme = useMantineTheme()
-
   const { t } = useTranslation()
 
   const [currentTimeOutId, setCurrentTimeOutId] = useState<
@@ -117,33 +113,21 @@ export function NavBar({
             </Box>
           </NextLink>
 
-          {!foldedNav ? (
-            <Box
-              onClick={() => setFixedNav(fixed => !fixed)}
+          {!foldedNav && (
+            <ActionIcon
+              variant="transparent"
+              color="text"
               className={classes['navBar__pinIcon']}
+              onClick={() => setFixedNav(fixed => !fixed)}
               aria-label={t('navigation.toggleFixedNavIcon.arialabel')}
             >
               {fixedNav ? (
-                <IconPinFilled
-                  size={20}
-                  color={
-                    colorScheme === 'dark'
-                      ? theme.colors.gray[3]
-                      : theme.colors.dark[9]
-                  }
-                />
+                <IconPinFilled size={20} />
               ) : (
-                <IconPinnedOff
-                  size={20}
-                  color={
-                    colorScheme === 'dark'
-                      ? theme.colors.gray[3]
-                      : theme.colors.dark[9]
-                  }
-                />
+                <IconPinnedOff size={20} />
               )}
-            </Box>
-          ) : null}
+            </ActionIcon>
+          )}
         </Flex>
       </AppShellSection>
 
@@ -152,6 +136,7 @@ export function NavBar({
           links={links}
           userRights={userRights}
           foldedNav={foldedNav}
+          isMobile={isMobile}
           handleOpenNav={handleOpenNav}
         />
       </AppShellSection>
