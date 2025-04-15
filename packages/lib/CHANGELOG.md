@@ -1,5 +1,24 @@
 # Changelog
 
+## [9.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v8.0.2...essencium-lib-v9.0.0) (2025-04-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* use consistent background for all cards in darkmode
+
+### Bug Fixes
+
+* added isMobile prop to navlinks to show subitems correctly ([6763aed](https://github.com/Frachtwerk/essencium-frontend/commit/6763aed0f6173aedbfaa59a2113c45d7a34074f6))
+* fixed multiple problems with the navbar pin icon ([689cf36](https://github.com/Frachtwerk/essencium-frontend/commit/689cf36bcf6ce629c1e0db88e6a56e80de4cc405))
+* fixed some errors with active states of links ([0926821](https://github.com/Frachtwerk/essencium-frontend/commit/092682102809d5790acfeb8e8266ecf2fbb442ce))
+* render links with sublinks as button ([305bde4](https://github.com/Frachtwerk/essencium-frontend/commit/305bde495041d81b8fdbd55340d062224d5b9355))
+
+
+### Styles
+
+* use consistent background for all cards in darkmode ([cfeecff](https://github.com/Frachtwerk/essencium-frontend/commit/cfeecff314816f26a873622645a3956271110e4e))
+
 ## [8.0.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v8.0.1...essencium-lib-v8.0.2) (2025-04-08)
 
 
