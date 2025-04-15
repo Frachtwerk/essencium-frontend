@@ -17,6 +17,12 @@
 - import `Card` and `classes`
 - extend `Card` with root className
 
+### Fix Navbar and Pin icon bugs
+
+#### `src/components/layouts/AuthLayout.tsx`
+
+- completely removed effect that sets the `isFolded` value
+
 ### Fix Scrollbar Bug
 
 #### `src/components/layouts/AuthLayout.module.css`
