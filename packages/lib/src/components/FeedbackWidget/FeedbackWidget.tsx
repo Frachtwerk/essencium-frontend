@@ -53,7 +53,7 @@ import {
   IconExclamationCircle,
   IconMessageDots,
 } from '@tabler/icons-react'
-import html2canvas from 'html2canvas'
+import html2canvas from 'html2canvas-pro'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 import { type JSX, ReactNode, useEffect, useState } from 'react'
