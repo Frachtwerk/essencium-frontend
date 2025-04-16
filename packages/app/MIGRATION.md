@@ -34,6 +34,12 @@
 - remove attribute `className` from `AppShell`
 - add attribute `padding="lg"` to `AppShell`
 
+### Fix sorting of user table by name
+
+#### `src/app/[locale]/(main)/admin/users/UsersView.tsx`
+
+- fix `accessorKey` for column `name`
+
 ## [8.1.1 (08.04.2025)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v8.1.0...essencium-app-v8.1.1)
 
 ### Fix Translation

@@ -206,7 +206,7 @@ export default function UsersView(): JSX.Element {
         enableColumnFilter: false,
       },
       {
-        accessorKey: 'name',
+        accessorKey: 'firstName',
         header: () => <Text inherit>{t('usersView.table.name')}</Text>,
         cell: info => {
           const rowUser = info.row.original
