@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.0.0...essencium-app-v9.0.1) (2025-04-16)
+
+
+### Bug Fixes
+
+* **frontend:** fix sorting by name of user table ([#772](https://github.com/Frachtwerk/essencium-frontend/issues/772)) ([84f13b6](https://github.com/Frachtwerk/essencium-frontend/commit/84f13b64aef0eff102ca2205bf693b22f51cac56))
+
 ## [9.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v8.1.1...essencium-app-v9.0.0) (2025-04-15)
 
 
