@@ -27,6 +27,7 @@ import {
 } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
 import {
+  IconArrowsSort,
   IconSortAscending2,
   IconSortDescending2,
   IconX,
@@ -114,7 +115,7 @@ export function Table<T>({
                       gap="sm"
                       className={
                         header.column.getCanSort()
-                          ? classes['table__col-header--cursor-pointer']
+                          ? classes['table__col-header']
                           : ''
                       }
                       onClick={header.column.getToggleSortingHandler()}
@@ -130,6 +131,12 @@ export function Table<T>({
                           desc: <IconSortDescending2 />,
                         }[(header.column.getIsSorted() as string) ?? null]
                       }
+                      {!header.column.getIsSorted() &&
+                        header.column.getCanSort() && (
+                          <IconArrowsSort
+                            className={classes['table__col-header--sortable']}
+                          />
+                        )}
                     </Flex>
 
                     {showFilter &&

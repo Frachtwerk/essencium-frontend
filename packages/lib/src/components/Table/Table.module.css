@@ -24,8 +24,16 @@
   z-index: 10;
 }
 
-.table__col-header--cursor-pointer {
+.table__col-header {
   cursor: pointer;
+}
+
+.table__col-header .table__col-header--sortable {
+  opacity: 0;
+}
+
+.table__col-header:hover .table__col-header--sortable {
+  opacity: 1;
 }
 
 .table__select {
