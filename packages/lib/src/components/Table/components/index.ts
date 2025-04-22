@@ -17,5 +17,4 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './components'
-export * from './Table'
+export * from './TableHeader'

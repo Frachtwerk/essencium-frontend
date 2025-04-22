@@ -24,28 +24,6 @@
   z-index: 10;
 }
 
-.table__col-header {
-  cursor: pointer;
-}
-
-.table__col-header .table__col-header--sortable {
-  opacity: 0;
-}
-
-.table__col-header:hover .table__col-header--sortable {
-  opacity: 1;
-}
-
-.table__select {
-  margin-top: var(--mantine-spacing-xs);
-  margin-bottom: var(--mantine-spacing-xs);
-}
-
-.table__text-input {
-  margin-top: var(--mantine-spacing-xs);
-  margin-bottom: var(--mantine-spacing-xs);
-}
-
 .table__table-row--sticky {
   border-bottom: 2px solid white;
   border-top: 2px solid white;
