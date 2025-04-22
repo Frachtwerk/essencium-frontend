@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.0.0...essencium-app-v9.0.1) (2025-04-22)
+
+
+### Bug Fixes
+
+* fix vulnerability in vite package ([#781](https://github.com/Frachtwerk/essencium-frontend/issues/781)) ([7f0f55f](https://github.com/Frachtwerk/essencium-frontend/commit/7f0f55f47d92e5364bcb746d3a6e919460b813e4))
+* **frontend:** fix sorting by name of user table ([#772](https://github.com/Frachtwerk/essencium-frontend/issues/772)) ([84f13b6](https://github.com/Frachtwerk/essencium-frontend/commit/84f13b64aef0eff102ca2205bf693b22f51cac56))
+
 ## [9.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v8.1.1...essencium-app-v9.0.0) (2025-04-15)
 
 

@@ -1,5 +1,14 @@
 # Changelog
 
+## [9.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.0.0...essencium-lib-v9.0.1) (2025-04-22)
+
+
+### Bug Fixes
+
+* fix vulnerability in vite package ([#781](https://github.com/Frachtwerk/essencium-frontend/issues/781)) ([7f0f55f](https://github.com/Frachtwerk/essencium-frontend/commit/7f0f55f47d92e5364bcb746d3a6e919460b813e4))
+* fixed a bug when creating screenshots with html2canvas ([6f5ce64](https://github.com/Frachtwerk/essencium-frontend/commit/6f5ce64cf210a5cb98294a9b18373fac6ec3a830))
+* fixed a bug when creating screenshots with html2canvas ([46c6629](https://github.com/Frachtwerk/essencium-frontend/commit/46c6629fd5fd5aa9ef0526115b8e31bc2220425f))
+
 ## [9.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v8.0.2...essencium-lib-v9.0.0) (2025-04-15)
 
 
