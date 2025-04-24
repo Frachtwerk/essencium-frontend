@@ -22,7 +22,6 @@
   "author": "Frachtwerk GmbH",
   "scripts": {
     "build": "pnpm --stream -r build",
-    "preview": "pnpm --filter @frachtwerk/essencium-app preview",
     "clean": "pnpm --stream -r clean && rimraf dist node_modules",
     "clean:install": "pnpm i -w && pnpm clean && pnpm install",
     "dev": "pnpm --filter @frachtwerk/essencium-app dev",
@@ -30,6 +29,7 @@
     "format:check": "pnpm --stream -r format:check",
     "format:write": "pnpm --stream -r format:write",
     "lint": "pnpm --stream -r lint",
+    "preview": "pnpm --filter @frachtwerk/essencium-app preview",
     "seed-db": "ts-node ./scripts/seed-db.ts",
     "setup-env": "pnpm install && husky install",
     "sort-package-json": "sort-package-json && pnpm --stream -r sort-package-json",
@@ -74,10 +74,10 @@
   },
   "engines": {
     "node": ">=20",
-    "pnpm": "9"
+    "pnpm": "10"
   },
   "volta": {
     "node": "20.15.0",
-    "pnpm": "9.4.0"
+    "pnpm": "10.9.0"
   }
 }
