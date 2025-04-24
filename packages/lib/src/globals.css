@@ -1,6 +1,6 @@
 @layer theme, base, mantine, components, utilities;
 
 @import 'tailwindcss';
-@source "../../lib/**/*.{ts,tsx,js,jsx}";
+@source "../../lib/src/**/*.{ts,tsx,js,jsx}";
 
 @import '@mantine/core/styles.layer.css';
