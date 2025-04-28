@@ -51,6 +51,7 @@
     "prettier": "3.0.3",
     "typescript": "5.1.6"
   },
+  "packageManager": "pnpm@10.9.0",
   "engines": {
     "node": ">=20",
     "pnpm": "10"
