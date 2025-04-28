@@ -230,6 +230,15 @@ export function UserForm({
                   t('addUpdateUserView.form.placeholder.password'),
                 )}
                 size="sm"
+                styles={{
+                  description: {
+                    color: 'red',
+                  },
+                }}
+                description={
+                  field.value ? t('addUpdateUserView.form.passwordWarning') : ''
+                }
+                inputWrapperOrder={['label', 'input', 'description', 'error']}
               />
             )}
           />
