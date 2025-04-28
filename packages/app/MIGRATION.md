@@ -8,6 +8,12 @@
 
 - added translation key `passwordWarning`
 
+### Fix: add translation keys for min length of the feedback message
+
+#### `/public/locales/de/common.json` and `/public/locales/en/common.json`
+
+- added translation key `feedbackWidget.passwordWarning`
+
 ## [9.0.1 (2025-04-22)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.0.1)
 
 ### Fix sorting of user table by name
