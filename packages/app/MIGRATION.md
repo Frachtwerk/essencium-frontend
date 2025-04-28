@@ -1,6 +1,22 @@
 # Migrations
 
-## [8.1.2 (XX.XX.XXXX)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v8.1.1...essencium-app-v8.1.2)
+## [9.X.X (XXXX-XX-XX)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.0.1)
+
+### Feat: add warning when changing a users password
+
+#### `packages/app/public/locales/de/common.json` and `packages/app/public/locales/en/common.json`
+
+- added translation key `passwordWarning`
+
+## [9.0.1 (2025-04-22)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.0.1)
+
+### Fix sorting of user table by name
+
+#### `src/app/[locale]/(main)/admin/users/UsersView.tsx`
+
+- fix `accessorKey` for column `name`
+
+## [9.0.0 (2025-04-15)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.0.0)
 
 ### Fix Consistent Background for Cards
 
@@ -33,12 +49,6 @@
 
 - remove attribute `className` from `AppShell`
 - add attribute `padding="lg"` to `AppShell`
-
-### Fix sorting of user table by name
-
-#### `src/app/[locale]/(main)/admin/users/UsersView.tsx`
-
-- fix `accessorKey` for column `name`
 
 ## [8.1.1 (08.04.2025)](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v8.1.0...essencium-app-v8.1.1)
 
