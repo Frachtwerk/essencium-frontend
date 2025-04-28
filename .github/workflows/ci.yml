@@ -86,6 +86,9 @@ jobs:
       - name: Get installed Playwright version
         run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./packages/app/package.json').dependencies['@playwright/test'])")" >> $GITHUB_ENV
 
+      - name: Install Playwright browsers
+        run: pnpm --filter @frachtwerk/essencium-app exec playwright install --with-deps
+
       - name: Cache Playwright
         uses: actions/cache@v4
         id: playwright-cache
