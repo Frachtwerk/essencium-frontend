@@ -463,6 +463,7 @@
     "successMessage": "Thank you for submitting your feedback!",
     "errorMessage": "Submitting your feedback was not successful. Please try again.",
     "requiredError": "Please enter a message.",
+    "minLengthError": "Your message must be at least 10 characters long.",
     "screenshot": {
       "label": "Capture Screenshot",
       "created": "Screenshot captured"
