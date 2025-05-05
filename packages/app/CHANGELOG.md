@@ -1,5 +1,18 @@
 # Changelog
 
+## [9.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.0.1...essencium-app-v9.1.0) (2025-05-05)
+
+
+### Features
+
+* add warning when changing a users password ([80df2d0](https://github.com/Frachtwerk/essencium-frontend/commit/80df2d0eb81daf1e1b73cb2af543f2613f7ff199))
+* add warning when changing a users password ([7d809e1](https://github.com/Frachtwerk/essencium-frontend/commit/7d809e10063e990c3dd9cc1fb7947b8076c99f5b))
+
+
+### Bug Fixes
+
+* **frontend:** fix vulnerability in vite package ([#793](https://github.com/Frachtwerk/essencium-frontend/issues/793)) ([fb35535](https://github.com/Frachtwerk/essencium-frontend/commit/fb35535a12f5ab5dedd0e52594d4f001955c6099))
+
 ## [9.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.0.0...essencium-app-v9.0.1) (2025-04-22)
 
 

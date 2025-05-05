@@ -1,5 +1,20 @@
 # Changelog
 
+## [9.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.0.1...essencium-lib-v9.1.0) (2025-05-05)
+
+
+### Features
+
+* add warning when changing a users password ([80df2d0](https://github.com/Frachtwerk/essencium-frontend/commit/80df2d0eb81daf1e1b73cb2af543f2613f7ff199))
+* add warning when changing a users password ([7d809e1](https://github.com/Frachtwerk/essencium-frontend/commit/7d809e10063e990c3dd9cc1fb7947b8076c99f5b))
+* indicate sortable table columns ([1b69110](https://github.com/Frachtwerk/essencium-frontend/commit/1b6911057a5378ee8187172580466e84c4b56001))
+* indicate sortable table columns ([#736](https://github.com/Frachtwerk/essencium-frontend/issues/736)) ([82ef47c](https://github.com/Frachtwerk/essencium-frontend/commit/82ef47c2a45d99538b79a02c4a74314cf30d302d))
+
+
+### Bug Fixes
+
+* **frontend:** fix vulnerability in vite package ([#793](https://github.com/Frachtwerk/essencium-frontend/issues/793)) ([fb35535](https://github.com/Frachtwerk/essencium-frontend/commit/fb35535a12f5ab5dedd0e52594d4f001955c6099))
+
 ## [9.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.0.0...essencium-lib-v9.0.1) (2025-04-22)
 
 
