@@ -1,6 +1,6 @@
 # Migrations
 
-## [9.X.X (XXXX-XX-XX)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.0.1)
+## [9.1.0 (2025-05-05)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.1.0)
 
 ### Feat: add warning when changing a users password
 
