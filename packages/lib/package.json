@@ -102,7 +102,7 @@
     "rollup-plugin-postcss": "4.0.2",
     "tslib": "2.5.3",
     "typescript": "5.7.3",
-    "vite": "6.2.6",
+    "vite": "6.2.7",
     "vitest": "3.0.7",
     "zod": "3.22.5"
   },
