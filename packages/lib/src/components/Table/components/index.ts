@@ -18,3 +18,4 @@
  */
 
 export * from './TableHeader'
+export * from './TableHeaderColumn'
