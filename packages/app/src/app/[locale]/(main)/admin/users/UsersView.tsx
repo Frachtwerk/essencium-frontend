@@ -31,6 +31,7 @@ import {
 import {
   RIGHTS,
   ROLES,
+  TABLEFILTERTYPE,
   UserOutput,
   UserSource,
 } from '@frachtwerk/essencium-types'
@@ -274,6 +275,9 @@ export default function UsersView(): JSX.Element {
           })
         },
         size: 120,
+        meta: {
+          filterType: TABLEFILTERTYPE.MULTI_SELECT,
+        },
       },
       {
         accessorKey: 'actions',

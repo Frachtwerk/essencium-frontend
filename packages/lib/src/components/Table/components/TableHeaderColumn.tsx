@@ -17,26 +17,134 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Flex, Select, Table as MantineTable, TextInput } from '@mantine/core'
+import { TABLEFILTERTYPE } from '@frachtwerk/essencium-types'
+import {
+  Flex,
+  MultiSelect,
+  Select,
+  Table as MantineTable,
+  TextInput,
+} from '@mantine/core'
 import {
   IconArrowsSort,
   IconSortAscending2,
   IconSortDescending2,
   IconX,
 } from '@tabler/icons-react'
-import { flexRender, Header } from '@tanstack/react-table'
+import { Column, flexRender, Header } from '@tanstack/react-table'
 import { useTranslation } from 'next-i18next'
 import { type JSX } from 'react'
 
 import classes from './TableHeaderColumn.module.css'
 
-type Props<T> = {
+declare module '@tanstack/react-table' {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  interface ColumnMeta<TData, TValue = unknown> {
+    filterType?: TABLEFILTERTYPE
+  }
+}
+
+type InputProps<T> = {
   header: Header<T, unknown>
   onFilterChange: (header: Header<T, unknown>, value: string | null) => void
-  showFilter?: boolean
   filterData?: Record<string, Array<string>>
   filterValue?: Record<string, string | null>
+}
+
+type Props<T> = InputProps<T> & {
+  showFilter?: boolean
   firstColSticky?: boolean
+}
+
+function getFilterType<T>(
+  column: Column<T, unknown>,
+  filterData?: Record<string, Array<string>>,
+): TABLEFILTERTYPE {
+  if (!filterData?.[column.id]) {
+    return TABLEFILTERTYPE.TEXT
+  }
+
+  return column.columnDef.meta?.filterType
+    ? column.columnDef.meta?.filterType
+    : TABLEFILTERTYPE.SELECT
+}
+
+export function FilterInput<T>({
+  header,
+  onFilterChange,
+  filterData,
+  filterValue,
+}: InputProps<T>): JSX.Element {
+  const { t } = useTranslation()
+  const filterType = getFilterType(header.column, filterData)
+
+  const parsedFilterValue =
+    filterValue?.[header.column.id] ||
+    ((header.column.getFilterValue() ?? '') as string)
+
+  function fail(type: never): never {
+    throw new Error(`Unknown filter type: ${type}`)
+  }
+
+  switch (filterType) {
+    case TABLEFILTERTYPE.TEXT:
+      return (
+        <TextInput
+          size="xs"
+          className={classes['table__text-input']}
+          value={
+            filterValue?.[header.column.id] ||
+            ((header.column.getFilterValue() ?? '') as string)
+          }
+          onChange={event => {
+            onFilterChange(header, event.currentTarget.value)
+          }}
+          placeholder={t('table.filter.placeholder')}
+          type="text"
+          rightSection={
+            filterValue?.[header.column.id] ||
+            (header.column.getFilterValue() ?? '') ? (
+              <IconX size={15} onClick={() => onFilterChange(header, null)} />
+            ) : null
+          }
+        />
+      )
+    case TABLEFILTERTYPE.SELECT:
+      return (
+        <Select
+          size="xs"
+          className={classes.table__select}
+          data={filterData?.[header.column.id] || []}
+          placeholder={t('table.filter.placeholder')}
+          searchable
+          clearable
+          value={
+            filterValue?.[header.column.id] ||
+            ((header.column.getFilterValue() ?? '') as string)
+          }
+          onChange={value => {
+            onFilterChange(header, value)
+          }}
+        />
+      )
+    case TABLEFILTERTYPE.MULTI_SELECT:
+      return (
+        <MultiSelect
+          size="xs"
+          className={classes.table__select}
+          data={filterData?.[header.column.id] || []}
+          placeholder={t('table.filter.placeholder')}
+          searchable
+          clearable
+          value={parsedFilterValue?.length ? parsedFilterValue.split(',') : []}
+          onChange={value => {
+            onFilterChange(header, value.join(','))
+          }}
+        />
+      )
+    default:
+      fail(filterType)
+  }
 }
 
 export function TableHeaderColumn<T>({
@@ -47,8 +155,6 @@ export function TableHeaderColumn<T>({
   filterValue,
   firstColSticky,
 }: Props<T>): JSX.Element {
-  const { t } = useTranslation()
-
   return (
     <MantineTable.Th
       style={{ verticalAlign: 'top' }}
@@ -76,45 +182,14 @@ export function TableHeaderColumn<T>({
         )}
       </Flex>
 
-      {showFilter &&
-        header.column.getCanFilter() &&
-        (filterData && filterData[header.column.id] ? (
-          <Select
-            size="xs"
-            className={classes.table__select}
-            data={filterData[header.column.id] || []}
-            placeholder={t('table.filter.placeholder')}
-            searchable
-            clearable
-            value={
-              filterValue?.[header.column.id] ||
-              ((header.column.getFilterValue() ?? '') as string)
-            }
-            onChange={value => {
-              onFilterChange(header, value)
-            }}
-          />
-        ) : (
-          <TextInput
-            size="xs"
-            className={classes['table__text-input']}
-            value={
-              filterValue?.[header.column.id] ||
-              ((header.column.getFilterValue() ?? '') as string)
-            }
-            onChange={event => {
-              onFilterChange(header, event.currentTarget.value)
-            }}
-            placeholder={t('table.filter.placeholder')}
-            type="text"
-            rightSection={
-              filterValue?.[header.column.id] ||
-              (header.column.getFilterValue() ?? '') ? (
-                <IconX size={15} onClick={() => onFilterChange(header, null)} />
-              ) : null
-            }
-          />
-        ))}
+      {showFilter && header.column.getCanFilter() && (
+        <FilterInput
+          header={header}
+          onFilterChange={onFilterChange}
+          filterData={filterData}
+          filterValue={filterValue}
+        />
+      )}
     </MantineTable.Th>
   )
 }

@@ -17,13 +17,8 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './base'
-export * from './contact'
-export * from './feedback'
-export * from './filter'
-export * from './navbar'
-export * from './right'
-export * from './role'
-export * from './table'
-export * from './translation'
-export * from './user'
+export enum TABLEFILTERTYPE {
+  TEXT = 'text',
+  SELECT = 'select',
+  MULTI_SELECT = 'multi-select',
+}
