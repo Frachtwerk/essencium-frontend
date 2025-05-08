@@ -163,8 +163,8 @@ export default function LoginView(): JSX.Element {
                                   <Image
                                     src={ssoApplications[application].imageUrl}
                                     alt={ssoApplications[application].name}
-                                    width={45}
-                                    height={20}
+                                    w={45}
+                                    h={20}
                                   />
                                 }
                               >

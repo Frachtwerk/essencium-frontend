@@ -1,18 +1,26 @@
 # Migrations
 
-## [9.1.0 (2025-05-05)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.1.0)
-
-### Feat: add warning when changing a users password
-
-#### `packages/app/public/locales/de/common.json` and `packages/app/public/locales/en/common.json`
-
-- added translation key `passwordWarning`
+## [9.X.X (XXXX-XX-XX)]()
 
 ### Fix: add translation keys for min length of the feedback message
 
 #### `/public/locales/de/common.json` and `/public/locales/en/common.json`
 
 - added translation key `feedbackWidget.passwordWarning`
+
+### Fix: Display of frachtwerk logo on sso buton
+
+#### `/src/app/[locale]/(public)/login/LoginView.tsx`
+
+- renamed props `width` to `w` and `height` to `h`
+
+## [9.1.0 (2025-05-05)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.1.0)
+
+### Feat: add warning when changing a users password
+
+#### `/public/locales/de/common.json` and `/public/locales/en/common.json`
+
+- added translation key `passwordWarning`
 
 ## [9.0.1 (2025-04-22)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.0.1)
 
