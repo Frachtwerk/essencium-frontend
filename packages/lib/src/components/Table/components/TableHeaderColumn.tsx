@@ -74,17 +74,13 @@ export function FilterInput<T>({
   onFilterChange,
   filterData,
   filterValue,
-}: InputProps<T>): JSX.Element {
+}: InputProps<T>): JSX.Element | null {
   const { t } = useTranslation()
   const filterType = getFilterType(header.column, filterData)
 
   const parsedFilterValue =
     filterValue?.[header.column.id] ||
     ((header.column.getFilterValue() ?? '') as string)
-
-  function fail(type: never): never {
-    throw new Error(`Unknown filter type: ${type}`)
-  }
 
   switch (filterType) {
     case TABLEFILTERTYPE.TEXT:
@@ -143,7 +139,7 @@ export function FilterInput<T>({
         />
       )
     default:
-      fail(filterType)
+      return null
   }
 }
 
