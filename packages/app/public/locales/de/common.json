@@ -463,6 +463,7 @@
     "successMessage": "Vielen Dank für Ihr Feedback!",
     "errorMessage": "Leider ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
     "requiredError": "Bitte geben Sie eine Nachricht ein.",
+    "minLengthError": "Die Nachricht muss mindestens 10 Zeichen lang sein.",
     "screenshot": {
       "label": "Screenshot aufnehmen",
       "created": "Screenshot erstellt"

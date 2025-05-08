@@ -13,7 +13,9 @@ export const baseFeedbackFormSchema = z.object({
   lastName: z.string(),
   email: z.string().email(),
   feedbackType: z.enum([OpenInput.Issue, OpenInput.Idea, OpenInput.Other]),
-  message: z.string({ required_error: 'feedbackWidget.requiredError' }).min(10),
+  message: z
+    .string({ required_error: 'feedbackWidget.requiredError' })
+    .min(10, 'feedbackWidget.minLengthError'),
   screenshot: z.string().optional(),
   path: z.string(),
 })
