@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.3](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v6.0.2...essencium-types-v6.0.3) (2025-05-08)
+
+
+### Bug Fixes
+
+* add error translations for the length of the feedback dialog message ([31908c5](https://github.com/Frachtwerk/essencium-frontend/commit/31908c5fbe300c675b4f212e39a19c58b84df6e2))
+
 ## [6.0.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v6.0.1...essencium-types-v6.0.2) (2025-04-08)
 
 
