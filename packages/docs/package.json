@@ -51,13 +51,13 @@
     "prettier": "3.0.3",
     "typescript": "5.1.6"
   },
-  "packageManager": "pnpm@10.9.0",
+  "packageManager": "pnpm@10.10.0",
   "engines": {
     "node": ">=20",
     "pnpm": "10"
   },
   "volta": {
     "node": "20.15.0",
-    "pnpm": "10.9.0"
+    "pnpm": "10.10.0"
   }
 }
