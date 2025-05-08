@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.1.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.1.0...essencium-app-v9.1.1) (2025-05-08)
+
+
+### Bug Fixes
+
+* add error translations for the length of the feedback dialog message ([31908c5](https://github.com/Frachtwerk/essencium-frontend/commit/31908c5fbe300c675b4f212e39a19c58b84df6e2))
+* fixed an issue where the image on the sso button was not displayed in firefox ([89a5d19](https://github.com/Frachtwerk/essencium-frontend/commit/89a5d193115951110fcf23e9476cacf2e25a2cb0))
+
 ## [9.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.0.1...essencium-app-v9.1.0) (2025-05-05)
 
 
