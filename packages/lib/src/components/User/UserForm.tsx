@@ -44,7 +44,7 @@ import {
 import { IconInfoCircle } from '@tabler/icons-react'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
-import type { JSX } from 'react'
+import { type JSX, useState } from 'react'
 import {
   Control,
   Controller,
@@ -52,6 +52,7 @@ import {
   UseFormSetValue,
 } from 'react-hook-form'
 
+import { PasswordStrengthIndicator } from '../PasswordStrengthIndicator/PasswordStrengthIndicator'
 import classes from './UserForm.module.css'
 
 type Props = {
@@ -87,6 +88,8 @@ export function UserForm({
   const rolesData = roles.map(role => {
     return { value: role.name, label: role.name }
   })
+
+  const [passwordValue, setPasswordValue] = useState<string | null>(null)
 
   return (
     <form onSubmit={onSubmit}>
@@ -219,29 +222,38 @@ export function UserForm({
             ) : null}
           </Group>
 
-          <Controller
-            name="password"
-            control={control}
-            render={({ field }) => (
-              <PasswordInput
-                {...field}
-                disabled={isSso}
-                placeholder={String(
-                  t('addUpdateUserView.form.placeholder.password'),
-                )}
-                size="sm"
-                styles={{
-                  description: {
-                    color: 'red',
-                  },
-                }}
-                description={
-                  field.value ? t('addUpdateUserView.form.passwordWarning') : ''
-                }
-                inputWrapperOrder={['label', 'input', 'description', 'error']}
-              />
-            )}
-          />
+          <PasswordStrengthIndicator passwordValue={passwordValue}>
+            <Controller
+              name="password"
+              control={control}
+              render={({ field }) => (
+                <PasswordInput
+                  {...field}
+                  onChange={event => {
+                    field.onChange(event)
+
+                    setPasswordValue(event.target.value)
+                  }}
+                  disabled={isSso}
+                  placeholder={String(
+                    t('addUpdateUserView.form.placeholder.password'),
+                  )}
+                  size="sm"
+                  styles={{
+                    description: {
+                      color: 'red',
+                    },
+                  }}
+                  description={
+                    field.value
+                      ? t('addUpdateUserView.form.passwordWarning')
+                      : ''
+                  }
+                  inputWrapperOrder={['label', 'input', 'description', 'error']}
+                />
+              )}
+            />
+          </PasswordStrengthIndicator>
 
           <Box className={classes['userForm__errorContainer']}>
             {formState.errors.password && (
