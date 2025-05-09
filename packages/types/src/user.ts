@@ -56,44 +56,6 @@ export const userOutputSchema = basePropertiesSchema
 
 export type UserOutput = z.infer<typeof userOutputSchema>
 
-export const userInputSchema = sharedPropertiesSchema.merge(
-  z.object({
-    password: z.string().optional(),
-    roles: roleOutputSchema.shape.name
-      .refine(
-        role =>
-          role !== undefined &&
-          roleOutputSchema.shape.name.safeParse(role).success,
-        {
-          message: 'validation.role.isRequired',
-        },
-      )
-      .array(),
-  }),
-)
-
-export type UserInput = z.infer<typeof userInputSchema>
-
-export const userUpdateSchema = userOutputSchema
-  .merge(
-    z.object({
-      password: z.string().optional(),
-      roles: roleOutputSchema.shape.name
-        .refine(
-          role =>
-            role !== undefined &&
-            roleOutputSchema.shape.name.safeParse(role).success,
-          {
-            message: 'validation.role.isRequired',
-          },
-        )
-        .array(),
-    }),
-  )
-  .omit({ source: true })
-
-export type UserUpdate = z.infer<typeof userUpdateSchema>
-
 export const PasswordStrengthRules = {
   uppercase: /[A-Z]/,
   lowercase: /[a-z]/,
@@ -133,6 +95,43 @@ const passwordStrengthSchemaAdmin = passwordStrengthBaseSchema.and(
       'profileView.dataCard.tabs.passwordChange.passwordStrength.validationError',
     ),
 )
+export const userInputSchema = sharedPropertiesSchema.merge(
+  z.object({
+    password: passwordStrengthBaseSchema.or(z.literal('')).optional(),
+    roles: roleOutputSchema.shape.name
+      .refine(
+        role =>
+          role !== undefined &&
+          roleOutputSchema.shape.name.safeParse(role).success,
+        {
+          message: 'validation.role.isRequired',
+        },
+      )
+      .array(),
+  }),
+)
+
+export type UserInput = z.infer<typeof userInputSchema>
+
+export const userUpdateSchema = userOutputSchema
+  .merge(
+    z.object({
+      password: passwordStrengthSchemaUser.or(z.literal('')).optional(),
+      roles: roleOutputSchema.shape.name
+        .refine(
+          role =>
+            role !== undefined &&
+            roleOutputSchema.shape.name.safeParse(role).success,
+          {
+            message: 'validation.role.isRequired',
+          },
+        )
+        .array(),
+    }),
+  )
+  .omit({ source: true })
+
+export type UserUpdate = z.infer<typeof userUpdateSchema>
 
 const passwordChangeBaseSchema = z.object({
   verification: z.string(),
