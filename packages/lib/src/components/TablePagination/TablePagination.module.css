@@ -19,6 +19,7 @@
 
 .table-pagination__flex--margin-top {
   margin-top: var(--mantine-spacing-xs);
+  margin-bottom: var(--mantine-spacing-xl);
 }
 
 .table-pagination__flex--margin-right {
@@ -31,7 +32,7 @@
 }
 
 .table-pagination__select {
-  width: 70px;
+  width: 75px;
 }
 
 .table-pagination__go-to {
