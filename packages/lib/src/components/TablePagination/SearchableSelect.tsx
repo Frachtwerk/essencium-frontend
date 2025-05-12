@@ -103,6 +103,7 @@ export function SearchableSelect({
             height={listHeight}
             itemCount={filteredOptions.length}
             itemSize={itemSize}
+            width="100%"
           >
             {({ index }: { index: number }) => {
               const item = filteredOptions[index]

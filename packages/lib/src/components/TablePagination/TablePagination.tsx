@@ -56,7 +56,7 @@ export function TablePagination<T>({
 }: Props<T>): JSX.Element {
   const { t } = useTranslation()
 
-  const [enteredPage, setEnteredPage] = useState('')
+  const [enteredPage, setEnteredPage] = useState('1')
 
   useEffect(() => {
     if (!fixedTablePageSize) return
