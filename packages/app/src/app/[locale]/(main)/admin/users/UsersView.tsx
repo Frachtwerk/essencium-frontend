@@ -70,6 +70,7 @@ import { useTranslation } from 'react-i18next'
 
 import {
   useDeleteUser,
+  useGetRoles,
   useGetUsers,
   useInvalidateToken,
   userRightsAtom,
@@ -91,13 +92,6 @@ export const FORM_DEFAULTS_USERS_VIEW = {
 }
 
 const DEFAULT_SORTING: SortingState = [{ id: 'firstName', desc: false }]
-
-export function removeDuplicates(array: string[] | undefined): string[] {
-  if (array) {
-    return array.filter((item, index) => array.indexOf(item) === index)
-  }
-  return []
-}
 
 export default function UsersView(): JSX.Element {
   const router = useRouter()
@@ -124,20 +118,19 @@ export default function UsersView(): JSX.Element {
   const [columnFiltersDebounced] = useDebouncedValue(columnFilters, 350)
   const [showFilter, setShowFilter] = useState(false)
 
-  const { data: allUsers } = useGetUsers({
-    page: 0,
-    size: 9999,
+  const { data: allRoles } = useGetRoles({
+    requestConfig: {
+      page: 0,
+      size: 9999,
+      sort: 'name,asc',
+    },
   })
 
   function getFilterRolesData(): Record<string, Array<string>> {
-    const { content: usersContent } = allUsers || {}
-
-    const roles = usersContent?.flatMap(userItem =>
-      userItem.roles.map(role => role.name),
-    )
+    const roles = allRoles?.content.map(role => role.name) || []
 
     return {
-      roles: removeDuplicates(roles),
+      roles,
     }
   }
 
