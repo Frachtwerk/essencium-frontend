@@ -65,6 +65,7 @@ type Props = {
   onSubmit: () => void
   isLoading: boolean
   rolesEnabledForSsoUser?: boolean
+  isUpdate?: boolean
 }
 
 export function UserForm({
@@ -76,6 +77,7 @@ export function UserForm({
   onSubmit,
   isLoading,
   rolesEnabledForSsoUser = false,
+  isUpdate = false,
 }: Props): JSX.Element {
   const isSso = Boolean(ssoProvider && ssoProvider !== UserSource.LOCAL)
 
@@ -239,16 +241,6 @@ export function UserForm({
                     t('addUpdateUserView.form.placeholder.password'),
                   )}
                   size="sm"
-                  styles={{
-                    description: {
-                      color: 'red',
-                    },
-                  }}
-                  description={
-                    field.value
-                      ? t('addUpdateUserView.form.passwordWarning')
-                      : ''
-                  }
                   inputWrapperOrder={['label', 'input', 'description', 'error']}
                 />
               )}
@@ -263,6 +255,13 @@ export function UserForm({
                   : null}
               </Text>
             )}
+            {!formState.errors.password?.message &&
+              passwordValue &&
+              isUpdate && (
+                <Text className={classes['userForm__errorText']}>
+                  {String(t('addUpdateUserView.form.passwordWarning'))}
+                </Text>
+              )}
           </Box>
         </Stack>
       </Flex>
