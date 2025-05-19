@@ -248,20 +248,20 @@ export function UserForm({
           </PasswordStrengthIndicator>
 
           <Box className={classes['userForm__errorContainer']}>
-            {formState.errors.password && (
+            {formState.errors.password ? (
               <Text className={classes['userForm__errorText']}>
                 {formState.errors.password?.message
                   ? String(t(formState.errors.password.message))
                   : null}
               </Text>
-            )}
-            {!formState.errors.password?.message &&
+            ) : (
               passwordValue &&
               isUpdate && (
                 <Text className={classes['userForm__errorText']}>
                   {String(t('addUpdateUserView.form.passwordWarning'))}
                 </Text>
-              )}
+              )
+            )}
           </Box>
         </Stack>
       </Flex>
