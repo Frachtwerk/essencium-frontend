@@ -17,28 +17,11 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {
-  Flex,
-  Select,
-  Table as MantineTable,
-  TableProps,
-  TextInput,
-} from '@mantine/core'
-import {
-  IconArrowsSort,
-  IconSortAscending2,
-  IconSortDescending2,
-  IconX,
-} from '@tabler/icons-react'
-import {
-  flexRender,
-  Header,
-  Table as TanstackTable,
-} from '@tanstack/react-table'
-import { useTranslation } from 'next-i18next'
+import { Table as MantineTable, TableProps } from '@mantine/core'
+import { Header, Table as TanstackTable } from '@tanstack/react-table'
 import { type JSX } from 'react'
 
-import classes from './TableHeader.module.css'
+import { TableHeaderColumn } from './TableHeaderColumn'
 
 type Props<T> = TableProps & {
   tableModel: TanstackTable<T>
@@ -57,88 +40,20 @@ export function TableHeader<T>({
   filterValue,
   firstColSticky,
 }: Props<T>): JSX.Element {
-  const { t } = useTranslation()
-
   return (
     <MantineTable.Thead aria-label="header-row">
       {tableModel.getHeaderGroups().map(headerGroup => (
         <MantineTable.Tr key={headerGroup.id}>
           {headerGroup.headers.map(header => (
-            <MantineTable.Th
+            <TableHeaderColumn
               key={header.id}
-              style={{ verticalAlign: 'top' }}
-              className={firstColSticky ? classes['table__col-sticky'] : ''}
-            >
-              <Flex
-                align="center"
-                justify="flex-start"
-                gap="sm"
-                className={
-                  header.column.getCanSort() ? classes['table__col-header'] : ''
-                }
-                onClick={header.column.getToggleSortingHandler()}
-                w={header.column.getSize()}
-              >
-                {flexRender(
-                  header.column.columnDef.header,
-                  header.getContext(),
-                )}
-                {
-                  {
-                    asc: <IconSortAscending2 />,
-                    desc: <IconSortDescending2 />,
-                  }[(header.column.getIsSorted() as string) ?? null]
-                }
-                {!header.column.getIsSorted() && header.column.getCanSort() && (
-                  <IconArrowsSort
-                    className={classes['table__col-header--sortable']}
-                  />
-                )}
-              </Flex>
-
-              {showFilter &&
-                header.column.getCanFilter() &&
-                (filterData && filterData[header.column.id] ? (
-                  <Select
-                    size="xs"
-                    className={classes.table__select}
-                    data={filterData[header.column.id] || []}
-                    placeholder={t('table.filter.placeholder')}
-                    searchable
-                    clearable
-                    value={
-                      filterValue?.[header.column.id] ||
-                      ((header.column.getFilterValue() ?? '') as string)
-                    }
-                    onChange={value => {
-                      onFilterChange(header, value)
-                    }}
-                  />
-                ) : (
-                  <TextInput
-                    size="xs"
-                    className={classes['table__text-input']}
-                    value={
-                      filterValue?.[header.column.id] ||
-                      ((header.column.getFilterValue() ?? '') as string)
-                    }
-                    onChange={event => {
-                      onFilterChange(header, event.currentTarget.value)
-                    }}
-                    placeholder={t('table.filter.placeholder')}
-                    type="text"
-                    rightSection={
-                      filterValue?.[header.column.id] ||
-                      (header.column.getFilterValue() ?? '') ? (
-                        <IconX
-                          size={15}
-                          onClick={() => onFilterChange(header, null)}
-                        />
-                      ) : null
-                    }
-                  />
-                ))}
-            </MantineTable.Th>
+              header={header}
+              onFilterChange={onFilterChange}
+              showFilter={showFilter}
+              filterData={filterData}
+              filterValue={filterValue}
+              firstColSticky={firstColSticky}
+            />
           ))}
         </MantineTable.Tr>
       ))}
