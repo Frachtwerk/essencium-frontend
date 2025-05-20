@@ -6,7 +6,7 @@ import {
   Text,
   useCombobox,
 } from '@mantine/core'
-import { type JSX, useMemo, useState } from 'react'
+import { CSSProperties, type JSX, useMemo, useState } from 'react'
 import { FixedSizeList as List } from 'react-window'
 
 type Props = {
@@ -105,12 +105,12 @@ export function SearchableSelect({
             itemSize={itemSize}
             width="100%"
           >
-            {({ index }: { index: number }) => {
+            {({ index, style }: { index: number; style: CSSProperties }) => {
               const item = filteredOptions[index]
               const isActive = item === selectedValue
 
               return (
-                <div key={item}>
+                <div key={item} style={style}>
                   <Combobox.Option
                     key={item}
                     value={item}
