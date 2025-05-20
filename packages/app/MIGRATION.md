@@ -2,6 +2,12 @@
 
 ## [9.X.X (XXXX-XX-XX)]()
 
+### Fix: load all roles for the roles filter in the users view
+
+#### `/src/app/[locale]/(main)/admin/users/UsersView.tsx`
+
+- replaced `useGetUsers` with `useGetRoles` to load all roles
+
 ### Fix: add translation keys for min length of the feedback message
 
 #### `/public/locales/de/common.json` and `/public/locales/en/common.json`
