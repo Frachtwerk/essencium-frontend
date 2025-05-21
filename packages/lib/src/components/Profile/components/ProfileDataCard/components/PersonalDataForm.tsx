@@ -24,15 +24,7 @@ import {
   UserUpdate,
   userUpdateSchema,
 } from '@frachtwerk/essencium-types'
-import {
-  Box,
-  Button,
-  Flex,
-  Select,
-  Stack,
-  Text,
-  TextInput,
-} from '@mantine/core'
+import { Button, Grid, Select, TextInput } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
 import { type JSX, useEffect } from 'react'
 import { Controller } from 'react-hook-form'
@@ -93,12 +85,8 @@ export function PersonalDataForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Flex
-        direction={{ base: 'column', md: 'row' }}
-        gap={{ base: 'xs', sm: 'md' }}
-        justify={{ sm: 'space-between' }}
-      >
-        <Stack className={classes['personal-data-form__stack']}>
+      <Grid>
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <Controller
             name="firstName"
             control={control}
@@ -115,22 +103,16 @@ export function PersonalDataForm({
                   'profileView.dataCard.tabs.personalData.label.firstName',
                 )}
                 size="sm"
+                error={
+                  formState.errors?.firstName?.message &&
+                  t(formState.errors.firstName.message)
+                }
               />
             )}
           />
+        </Grid.Col>
 
-          <Box className={classes['personal-data-form__error-box']}>
-            {formState.errors.firstName && (
-              <Text className={classes['personal-data-form__error-text']}>
-                {formState.errors.firstName?.message
-                  ? String(t(formState.errors.firstName.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-
-        <Stack className={classes['personal-data-form__stack']}>
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <Controller
             name="lastName"
             control={control}
@@ -147,29 +129,16 @@ export function PersonalDataForm({
                   'profileView.dataCard.tabs.personalData.label.lastName',
                 )}
                 size="sm"
+                error={
+                  formState.errors?.lastName?.message &&
+                  t(formState.errors.lastName.message)
+                }
               />
             )}
           />
+        </Grid.Col>
 
-          <Box className={classes['personal-data-form__error-box']}>
-            {formState.errors.lastName && (
-              <Text className={classes['personal-data-form__error-text']}>
-                {formState.errors.lastName?.message
-                  ? String(t(formState.errors.lastName.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-      </Flex>
-
-      <Flex
-        direction={{ base: 'column', md: 'row' }}
-        gap={{ base: 'sm', sm: 'md' }}
-        justify={{ sm: 'space-between' }}
-        className={classes['personal-data-form__flex--margin-top']}
-      >
-        <Stack className={classes['personal-data-form__stack']}>
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <Controller
             name="phone"
             control={control}
@@ -181,22 +150,16 @@ export function PersonalDataForm({
                 )}
                 label={t('profileView.dataCard.tabs.personalData.label.phone')}
                 size="sm"
+                error={
+                  formState.errors?.phone?.message &&
+                  t(formState.errors.phone.message)
+                }
               />
             )}
           />
+        </Grid.Col>
 
-          <Box className={classes['personal-data-form__error-box']}>
-            {formState.errors.phone && (
-              <Text className={classes['personal-data-form__error-text']}>
-                {formState.errors.phone?.message
-                  ? String(t(formState.errors.phone.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-
-        <Stack className={classes['personal-data-form__stack']}>
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <Controller
             name="mobile"
             control={control}
@@ -210,29 +173,16 @@ export function PersonalDataForm({
                 )}
                 label={t('profileView.dataCard.tabs.personalData.label.mobile')}
                 size="sm"
+                error={
+                  formState.errors?.mobile?.message &&
+                  t(formState.errors.mobile.message)
+                }
               />
             )}
           />
+        </Grid.Col>
 
-          <Box className={classes['personal-data-form__error-box']}>
-            {formState.errors.mobile && (
-              <Text className={classes['personal-data-form__error-text']}>
-                {formState.errors.mobile?.message
-                  ? String(t(formState.errors.mobile.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-      </Flex>
-
-      <Flex
-        direction={{ base: 'column', sm: 'row' }}
-        gap={{ base: 'sm', sm: 'md' }}
-        justify={{ sm: 'space-between' }}
-        className={classes['personal-data-form__flex--margin-top']}
-      >
-        <Stack className={classes['personal-data-form__stack']}>
+        <Grid.Col span={{ base: 12, sm: 6 }}>
           <Controller
             name="email"
             control={control}
@@ -246,22 +196,16 @@ export function PersonalDataForm({
                 label={t('profileView.dataCard.tabs.personalData.label.email')}
                 withAsterisk
                 size="sm"
+                error={
+                  formState.errors?.email?.message &&
+                  t(formState.errors.email.message)
+                }
               />
             )}
           />
+        </Grid.Col>
 
-          <Box className={classes['personal-data-form__error-box']}>
-            {formState.errors.email && (
-              <Text className={classes['personal-data-form__error-text']}>
-                {formState.errors.email?.message
-                  ? String(t(formState.errors.email.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-
-        <Stack className={classes['personal-data-form__stack']}>
+        <Grid.Col span={{ base: 12, sm: 6 }}>
           <Controller
             name="locale"
             control={control}
@@ -280,21 +224,15 @@ export function PersonalDataForm({
                   { value: 'de', label: 'Deutsch' },
                   { value: 'en', label: 'English' },
                 ]}
+                error={
+                  formState.errors?.locale?.message &&
+                  t(formState.errors.locale.message)
+                }
               />
             )}
           />
-
-          <Box className={classes['personal-data-form__error-box']}>
-            {formState.errors.locale && (
-              <Text className={classes['personal-data-form__error-text']}>
-                {formState.errors.locale?.message
-                  ? String(t(formState.errors.locale.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-      </Flex>
+        </Grid.Col>
+      </Grid>
 
       <Button
         type="submit"

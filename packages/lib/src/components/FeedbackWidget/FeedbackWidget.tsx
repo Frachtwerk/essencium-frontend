@@ -383,61 +383,55 @@ export function FeedbackWidget({
                     </Group>
 
                     <form onSubmit={handleSubmit(onSubmit)}>
-                      <Controller
-                        name="message"
-                        control={control}
-                        render={({ field }) => (
-                          <Textarea
-                            {...field}
-                            className={classes['feedback-widget__textarea']}
-                            placeholder={
-                              t('feedbackWidget.placeholder') as string
+                      <Stack>
+                        <Controller
+                          name="message"
+                          control={control}
+                          render={({ field }) => (
+                            <Textarea
+                              {...field}
+                              className={classes['feedback-widget__textarea']}
+                              placeholder={
+                                t('feedbackWidget.placeholder') as string
+                              }
+                              error={
+                                formState.errors?.message?.message &&
+                                t(formState.errors.message.message)
+                              }
+                            />
+                          )}
+                        />
+
+                        <Flex gap="xs">
+                          <Tooltip
+                            label={t('feedbackWidget.screenshot.label')}
+                            className={
+                              isCapturingScreenshot
+                                ? classes['feedback-widget__dialog--display']
+                                : ''
                             }
-                          />
-                        )}
-                      />
-
-                      <Box className={classes['feedback-widget__error-box']}>
-                        {formState.errors.message && (
-                          <Text
-                            className={classes['feedback-widget__error-text']}
                           >
-                            {formState.errors.message?.message
-                              ? String(t(formState.errors.message.message))
-                              : null}
-                          </Text>
-                        )}
-                      </Box>
+                            <ActionIcon
+                              variant={screenshot ? 'filled' : 'outline'}
+                              size="md"
+                              aria-label={t('feedbackWidget.screenshot.label')}
+                              onClick={() => {
+                                setIsCapturingScreenshot(true)
+                              }}
+                            >
+                              {screenshot ? (
+                                <IconCameraCheck size={20} />
+                              ) : (
+                                <IconCameraPlus size={20} />
+                              )}
+                            </ActionIcon>
+                          </Tooltip>
 
-                      <Flex gap="xs">
-                        <Tooltip
-                          label={t('feedbackWidget.screenshot.label')}
-                          className={
-                            isCapturingScreenshot
-                              ? classes['feedback-widget__dialog--display']
-                              : ''
-                          }
-                        >
-                          <ActionIcon
-                            variant={screenshot ? 'filled' : 'outline'}
-                            size="md"
-                            aria-label={t('feedbackWidget.screenshot.label')}
-                            onClick={() => {
-                              setIsCapturingScreenshot(true)
-                            }}
-                          >
-                            {screenshot ? (
-                              <IconCameraCheck size={20} />
-                            ) : (
-                              <IconCameraPlus size={20} />
-                            )}
-                          </ActionIcon>
-                        </Tooltip>
-
-                        <Button type="submit" size="xs" fullWidth>
-                          {t('feedbackWidget.button')}
-                        </Button>
-                      </Flex>
+                          <Button type="submit" size="xs" fullWidth>
+                            {t('feedbackWidget.button')}
+                          </Button>
+                        </Flex>
+                      </Stack>
                     </form>
                   </Box>
                 ) : null}

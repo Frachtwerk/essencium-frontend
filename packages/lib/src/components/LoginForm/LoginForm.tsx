@@ -32,7 +32,6 @@ import {
   Group,
   Loader,
   PasswordInput,
-  Text,
   TextInput,
   Transition,
 } from '@mantine/core'
@@ -100,19 +99,13 @@ export function LoginForm({
                       root: classes['login-form__input-label--email'],
                     }}
                     withAsterisk
+                    error={
+                      formState.errors?.email?.message &&
+                      t(formState.errors.email.message)
+                    }
                   />
                 )}
               />
-
-              <Box className={classes['login-form__error-box']}>
-                {formState.errors.email && (
-                  <Text className={classes['login-form__error-text']}>
-                    {formState.errors.email?.message
-                      ? String(t(formState.errors.email.message))
-                      : null}
-                  </Text>
-                )}
-              </Box>
 
               <Controller
                 name="password"
@@ -129,19 +122,13 @@ export function LoginForm({
                       root: classes['login-form__input-label--password'],
                     }}
                     withAsterisk
+                    error={
+                      formState.errors?.password?.message &&
+                      t(formState.errors.password.message)
+                    }
                   />
                 )}
               />
-
-              <Box className={classes['login-form__error-box']}>
-                {formState.errors.password && (
-                  <Text className={classes['login-form__error-text']}>
-                    {formState.errors.password?.message
-                      ? String(t(formState.errors.password.message))
-                      : null}
-                  </Text>
-                )}
-              </Box>
 
               <Group justify="apart" className={classes['login-form__group']}>
                 <Anchor

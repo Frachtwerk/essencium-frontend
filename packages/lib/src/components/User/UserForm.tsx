@@ -27,16 +27,14 @@ import {
 } from '@frachtwerk/essencium-types'
 import {
   Badge,
-  Box,
   Button,
   Flex,
-  Group,
+  Grid,
+  Input,
   MultiSelect,
   PasswordInput,
   Select,
-  Stack,
   Switch,
-  Text,
   TextInput,
   Title,
   Tooltip,
@@ -100,12 +98,8 @@ export function UserForm({
         ) : null}
       </Flex>
 
-      <Flex
-        direction={{ base: 'column', sm: 'row' }}
-        gap={{ base: 'sm', sm: 'md' }}
-        justify={{ sm: 'space-between' }}
-      >
-        <Stack className={classes['userForm__inputContainer']}>
+      <Grid>
+        <Grid.Col span={{ base: 12, sm: 6 }}>
           <Controller
             name="firstName"
             control={control}
@@ -119,22 +113,16 @@ export function UserForm({
                 label={t('addUpdateUserView.form.firstName')}
                 size="sm"
                 withAsterisk
+                error={
+                  formState.errors?.firstName?.message &&
+                  t(formState.errors.firstName.message)
+                }
               />
             )}
           />
+        </Grid.Col>
 
-          <Box className={classes['userForm__errorContainer']}>
-            {formState.errors.firstName && (
-              <Text className={classes['userForm__errorText']}>
-                {formState.errors.firstName?.message
-                  ? String(t(formState.errors.firstName.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-
-        <Stack className={classes['userForm__inputContainer']}>
+        <Grid.Col span={{ base: 12, sm: 6 }}>
           <Controller
             name="lastName"
             control={control}
@@ -148,29 +136,16 @@ export function UserForm({
                 label={t('addUpdateUserView.form.lastName')}
                 size="sm"
                 withAsterisk
+                error={
+                  formState.errors?.lastName?.message &&
+                  t(formState.errors.lastName.message)
+                }
               />
             )}
           />
+        </Grid.Col>
 
-          <Box className={classes['userForm__errorContainer']}>
-            {formState.errors.lastName && (
-              <Text className={classes['userForm__errorText']}>
-                {formState.errors.lastName?.message
-                  ? String(t(formState.errors.lastName.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-      </Flex>
-
-      <Flex
-        direction={{ base: 'column', sm: 'row' }}
-        gap={{ base: 'sm', sm: 'md' }}
-        justify={{ sm: 'space-between' }}
-        className={classes['userForm__newSection--margin-xs']}
-      >
-        <Stack className={classes['userForm__inputContainer']}>
+        <Grid.Col span={{ base: 12, sm: 6 }}>
           <Controller
             name="email"
             control={control}
@@ -184,84 +159,74 @@ export function UserForm({
                 label={t('addUpdateUserView.form.email')}
                 withAsterisk
                 size="sm"
+                error={
+                  formState.errors?.email?.message &&
+                  t(formState.errors.email.message)
+                }
               />
             )}
           />
+        </Grid.Col>
 
-          <Box className={classes['userForm__errorContainer']}>
-            {formState.errors.email && (
-              <Text className={classes['userForm__errorText']}>
-                {formState.errors.email?.message
-                  ? String(t(formState.errors.email.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-
-        <Stack className={classes['userForm__inputContainer']}>
-          <Group align="vertical" gap="0.4rem" mb="-0.8rem">
-            <Text className={classes.userForm__label}>
-              {t('addUpdateUserView.form.password')}
-            </Text>
-
-            {isAddUserForm ? (
-              <Tooltip
-                label={t('addUpdateUserView.form.passwordTooltip')}
-                position="right"
-                withArrow
-                multiline
-                bg=" var(--mantine-color-gray-6)"
-                w="250px"
-              >
-                <IconInfoCircle size={20} />
-              </Tooltip>
-            ) : null}
-          </Group>
-
+        <Grid.Col span={{ base: 12, sm: 6 }}>
           <Controller
             name="password"
             control={control}
             render={({ field }) => (
-              <PasswordInput
-                {...field}
-                disabled={isSso}
-                placeholder={String(
-                  t('addUpdateUserView.form.placeholder.password'),
-                )}
-                size="sm"
-                styles={{
-                  description: {
-                    color: 'red',
-                  },
-                }}
-                description={
-                  field.value ? t('addUpdateUserView.form.passwordWarning') : ''
-                }
-                inputWrapperOrder={['label', 'input', 'description', 'error']}
-              />
+              <>
+                <Input.Label>
+                  <Flex gap={5}>
+                    {t('addUpdateUserView.form.password')}
+
+                    {isAddUserForm ? (
+                      <Tooltip
+                        label={t('addUpdateUserView.form.passwordTooltip')}
+                        position="right"
+                        withArrow
+                        multiline
+                        bg=" var(--mantine-color-gray-6)"
+                        w="250px"
+                      >
+                        <IconInfoCircle
+                          size={20}
+                          className={
+                            classes['set-password-form__password-tooltip']
+                          }
+                        />
+                      </Tooltip>
+                    ) : null}
+                  </Flex>
+                </Input.Label>
+
+                <PasswordInput
+                  {...field}
+                  disabled={isSso}
+                  placeholder={String(
+                    t('addUpdateUserView.form.placeholder.password'),
+                  )}
+                  size="sm"
+                  styles={{
+                    description: {
+                      color: 'red',
+                    },
+                  }}
+                  description={
+                    field.value
+                      ? t('addUpdateUserView.form.passwordWarning')
+                      : ''
+                  }
+                  inputWrapperOrder={['label', 'input', 'description', 'error']}
+                  error={
+                    formState.errors?.password?.message &&
+                    t(formState.errors.password.message)
+                  }
+                />
+              </>
             )}
           />
+        </Grid.Col>
 
-          <Box className={classes['userForm__errorContainer']}>
-            {formState.errors.password && (
-              <Text className={classes['userForm__errorText']}>
-                {formState.errors.password?.message
-                  ? String(t(formState.errors.password.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-      </Flex>
-
-      <Flex
-        direction={{ base: 'column', sm: 'row' }}
-        gap={{ base: 'sm', sm: 'md' }}
-        justify={{ sm: 'space-between' }}
-        className={classes['userForm__newSection--margin-xs']}
-      >
-        <Stack className={classes['userForm__inputContainer']}>
+        <Grid.Col span={{ base: 12, sm: 6 }}>
           <Controller
             name="phone"
             control={control}
@@ -273,22 +238,16 @@ export function UserForm({
                 )}
                 label={t('addUpdateUserView.form.phone')}
                 size="sm"
+                error={
+                  formState.errors?.phone?.message &&
+                  t(formState.errors.phone.message)
+                }
               />
             )}
           />
+        </Grid.Col>
 
-          <Box className={classes['userForm__errorContainer']}>
-            {formState.errors.phone && (
-              <Text className={classes['userForm__errorText']}>
-                {formState.errors.phone?.message
-                  ? String(t(formState.errors.phone.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-
-        <Stack className={classes['userForm__inputContainer']}>
+        <Grid.Col span={{ base: 12, sm: 6 }}>
           <Controller
             name="mobile"
             control={control}
@@ -300,48 +259,39 @@ export function UserForm({
                 )}
                 label={t('addUpdateUserView.form.mobile')}
                 size="sm"
+                error={
+                  formState.errors?.mobile?.message &&
+                  t(formState.errors.mobile.message)
+                }
               />
             )}
           />
-
-          <Box className={classes['userForm__errorContainer']}>
-            {formState.errors.mobile && (
-              <Text className={classes['userForm__errorText']}>
-                {formState.errors.mobile?.message
-                  ? String(t(formState.errors.mobile.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-      </Flex>
+        </Grid.Col>
+      </Grid>
 
       <Title className={classes['userForm__newSection--margin-lg']} order={3}>
         {t('addUpdateUserView.form.userSettingsHeading')}
       </Title>
 
-      <Controller
-        name="enabled"
-        control={control}
-        render={({ field }) => (
-          <Switch
-            {...field}
-            checked={field.value}
-            value={String(field.value)}
-            size="md"
-            className={classes['userForm__enableToggle']}
-            label={t('addUpdateUserView.form.activeStatus')}
+      <Grid>
+        <Grid.Col>
+          <Controller
+            name="enabled"
+            control={control}
+            render={({ field }) => (
+              <Switch
+                {...field}
+                checked={field.value}
+                value={String(field.value)}
+                size="md"
+                className={classes['userForm__enableToggle']}
+                label={t('addUpdateUserView.form.activeStatus')}
+              />
+            )}
           />
-        )}
-      />
+        </Grid.Col>
 
-      <Flex
-        direction={{ base: 'column', sm: 'row' }}
-        gap={{ base: 'sm', sm: 'md' }}
-        justify={{ sm: 'space-between' }}
-        className={classes['userForm__newSection--margin-sm']}
-      >
-        <Stack className={classes['userForm__inputContainer']}>
+        <Grid.Col span={{ base: 12, sm: 6 }}>
           <Controller
             name="locale"
             control={control}
@@ -356,22 +306,16 @@ export function UserForm({
                   { value: 'de', label: 'Deutsch' },
                   { value: 'en', label: 'English' },
                 ]}
+                error={
+                  formState.errors?.locale?.message &&
+                  t(formState.errors.locale.message)
+                }
               />
             )}
           />
+        </Grid.Col>
 
-          <Box className={classes['userForm__errorContainer']}>
-            {formState.errors.locale && (
-              <Text className={classes['userForm__errorText']}>
-                {formState.errors.locale?.message
-                  ? String(t(formState.errors.locale.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-
-        <Stack className={classes['userForm__inputContainer']}>
+        <Grid.Col span={{ base: 12, sm: 6 }}>
           <Controller
             name="roles"
             control={control}
@@ -384,21 +328,15 @@ export function UserForm({
                 withAsterisk
                 searchable
                 hidePickedOptions
+                error={
+                  formState.errors?.roles?.message &&
+                  t(formState.errors.roles.message)
+                }
               />
             )}
           />
-
-          <Box className={classes['userForm__errorContainer']}>
-            {formState.errors.roles && (
-              <Text className={classes['userForm__errorText']}>
-                {formState.errors.roles?.message
-                  ? String(t(formState.errors.roles.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-      </Flex>
+        </Grid.Col>
+      </Grid>
 
       <Button
         type="submit"

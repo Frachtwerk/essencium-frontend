@@ -32,17 +32,6 @@
   margin-top: var(--mantine-spacing-xs);
 }
 
-.login-form__error-box {
-  margin-top: 0.2rem;
-  height: 0.8rem;
-}
-
-.login-form__error-text {
-  margin-left: 5px;
-  font-size: var(--mantine-font-size-xs);
-  color: var(--mantine-color-red);
-}
-
 .login-form__button {
   margin-top: var(--mantine-spacing-md);
 }
