@@ -6,8 +6,10 @@ import {
   Text,
   useCombobox,
 } from '@mantine/core'
-import { CSSProperties, type JSX, useMemo, useState } from 'react'
+import { type JSX, useEffect, useMemo, useRef, useState } from 'react'
 import { FixedSizeList as List } from 'react-window'
+
+import classes from './SearchableSelect.module.css'
 
 type Props = {
   data: string[]
@@ -26,6 +28,10 @@ export function SearchableSelect({
   value,
   ...props
 }: Props): JSX.Element {
+  const listRef = useRef<List>(null)
+
+  const [activeIndex, setActiveIndex] = useState(0)
+
   const [selectedValue, setSelectedValue] = useState<string | null>(
     (defaultValue || value) ?? null,
   )
@@ -45,16 +51,19 @@ export function SearchableSelect({
 
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
-    onDropdownOpen: eventSource => {
+    onDropdownOpen: () => {
       setSearch('')
+      setActiveIndex(0)
 
-      if (eventSource === 'keyboard') {
-        combobox.selectActiveOption()
-      } else {
-        combobox.updateSelectedOptionIndex('active')
-      }
+      listRef.current?.scrollToItem(0)
     },
   })
+
+  useEffect(() => {
+    if (listRef.current) {
+      listRef.current.scrollToItem(activeIndex)
+    }
+  }, [activeIndex])
 
   return (
     <Combobox
@@ -92,6 +101,33 @@ export function SearchableSelect({
             combobox.closeDropdown()
           }}
           rightSectionPointerEvents="none"
+          onKeyDown={event => {
+            if (event.code === 'ArrowDown') {
+              setActiveIndex(prev => {
+                const next = Math.min(prev + 1, filteredOptions.length - 1)
+                return next
+              })
+            }
+
+            if (event.code === 'ArrowUp') {
+              setActiveIndex(prev => {
+                const next = Math.max(prev - 1, 0)
+                return next
+              })
+            }
+
+            if (event.code === 'Enter') {
+              const filteredValue = filteredOptions[activeIndex]
+
+              setSelectedValue(filteredValue)
+
+              setSearch(filteredValue)
+
+              onChange(filteredValue)
+
+              combobox.closeDropdown()
+            }
+          }}
         />
       </Combobox.Target>
 
@@ -100,25 +136,28 @@ export function SearchableSelect({
           <Combobox.Empty>Nothing found</Combobox.Empty>
         ) : (
           <List
+            ref={listRef}
             height={listHeight}
             itemCount={filteredOptions.length}
             itemSize={itemSize}
             width="100%"
           >
-            {({ index, style }: { index: number; style: CSSProperties }) => {
+            {({ index, style }) => {
               const item = filteredOptions[index]
-              const isActive = item === selectedValue
+
+              const isActive = index === activeIndex
+
+              const isSelected = item === selectedValue
 
               return (
                 <div key={item} style={style}>
                   <Combobox.Option
-                    key={item}
                     value={item}
-                    active={item === selectedValue}
+                    className={isActive ? classes.options : ''}
+                    active={isActive}
                   >
                     <Group gap="xs">
-                      {isActive && <CheckIcon size={12} color="gray" />}
-
+                      {isSelected && <CheckIcon size={12} color="gray" />}
                       <Text size="sm">{item}</Text>
                     </Group>
                   </Combobox.Option>
