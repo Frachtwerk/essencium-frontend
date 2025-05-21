@@ -24,7 +24,7 @@ import {
   passwordChangeSchemaAdmin,
   passwordChangeSchemaUser,
 } from '@frachtwerk/essencium-types'
-import { Box, Button, Flex, PasswordInput, Stack, Text } from '@mantine/core'
+import { Button, Flex, PasswordInput, Stack } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
 import { type JSX, useState } from 'react'
 import { Controller } from 'react-hook-form'
@@ -78,22 +78,14 @@ export function PasswordChangeForm({
                   'profileView.dataCard.tabs.passwordChange.content.currentPassword',
                 )}
                 withAsterisk
+                error={
+                  formState.errors?.verification?.message &&
+                  t(formState.errors.verification.message)
+                }
               />
             )}
           />
 
-          <Box className={classes['password-change-form__error-box']}>
-            {formState.errors.verification && (
-              <Text className={classes['password-change-form__error-text']}>
-                {formState.errors.verification?.message
-                  ? String(t(formState.errors.verification.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-
-        <Stack className={classes['password-change-form__stack']}>
           <PasswordStrengthIndicator
             passwordValue={passwordValue}
             isAdmin={isAdmin}
@@ -119,18 +111,6 @@ export function PasswordChangeForm({
             />
           </PasswordStrengthIndicator>
 
-          <Box className={classes['password-change-form__error-box']}>
-            {formState.errors.password && (
-              <Text className={classes['password-change-form__error-text']}>
-                {formState.errors.password?.message
-                  ? String(t(formState.errors.password.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-
-        <Stack className={classes['password-change-form__stack']}>
           <Controller
             name="confirmPassword"
             control={control}
@@ -141,19 +121,13 @@ export function PasswordChangeForm({
                   'profileView.dataCard.tabs.passwordChange.content.confirmNewPassword',
                 )}
                 withAsterisk
+                error={
+                  formState.errors?.confirmPassword?.message &&
+                  t(formState.errors.confirmPassword.message)
+                }
               />
             )}
           />
-
-          <Box className={classes['password-change-form__error-box']}>
-            {formState.errors.confirmPassword && (
-              <Text className={classes['password-change-form__error-text']}>
-                {formState.errors.confirmPassword?.message
-                  ? String(t(formState.errors.confirmPassword.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
         </Stack>
 
         <Button

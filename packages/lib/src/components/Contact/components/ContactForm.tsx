@@ -21,12 +21,10 @@
 
 import { ContactFormType } from '@frachtwerk/essencium-types'
 import {
-  Box,
   Button,
   Card,
   Group,
   Stack,
-  Text,
   Textarea,
   TextInput,
   Title,
@@ -66,22 +64,14 @@ export function ContactForm({ formState, control }: Props): JSX.Element {
               )}
               size="sm"
               withAsterisk
+              error={
+                formState.errors?.subject?.message &&
+                t(formState.errors.subject.message)
+              }
             />
           )}
         />
 
-        <Box className={classes['contact-form__error-box']}>
-          {formState.errors.subject && (
-            <Text className={classes['contact-form__error-text']}>
-              {formState.errors.subject?.message
-                ? String(t(formState.errors.subject.message))
-                : null}
-            </Text>
-          )}
-        </Box>
-      </Stack>
-
-      <Stack className={classes['contact-form__stack']}>
         <Controller
           name="message"
           control={control}
@@ -94,19 +84,13 @@ export function ContactForm({ formState, control }: Props): JSX.Element {
               label={t('contactView.contactForm.form.message')}
               withAsterisk
               rows={6}
+              error={
+                formState.errors?.message?.message &&
+                t(formState.errors.message.message)
+              }
             />
           )}
         />
-
-        <Box className={classes['contact-form__error-box-message']}>
-          {formState.errors.message && (
-            <Text className={classes['contact-form__error-text']}>
-              {formState.errors.message?.message
-                ? String(t(formState.errors.message?.message))
-                : null}
-            </Text>
-          )}
-        </Box>
       </Stack>
 
       <Group className={classes['contact-form__group']}>

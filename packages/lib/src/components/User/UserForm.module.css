@@ -25,29 +25,6 @@
   margin-left: 10px;
 }
 
-.userForm__inputContainer {
-  min-width: 45%;
-}
-
-.userForm__errorContainer {
-  margin-top: -0.6rem;
-  height: 0.8rem;
-}
-
-.userForm__errorText {
-  margin-left: 5px;
-  font-size: var(--mantine-font-size-xs);
-  color: red;
-}
-
-.userForm__newSection--margin-xs {
-  margin-top: var(--mantine-spacing-xs);
-}
-
-.userForm__newSection--margin-sm {
-  margin-top: var(--mantine-spacing-sm);
-}
-
 .userForm__newSection--margin-lg {
   margin-top: var(--mantine-spacing-lg);
 }
@@ -58,9 +35,4 @@
 
 .userForm__saveButton {
   margin-top: var(--mantine-spacing-md);
-}
-
-.userForm__label {
-  font-size: 0.875rem;
-  font-weight: 500;
 }

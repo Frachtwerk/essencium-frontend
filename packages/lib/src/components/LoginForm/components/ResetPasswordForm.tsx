@@ -20,7 +20,7 @@
 'use client'
 
 import { ResetPassword, resetPasswordSchema } from '@frachtwerk/essencium-types'
-import { Box, Button, Container, Group, Text, TextInput } from '@mantine/core'
+import { Button, Container, Group, Text, TextInput } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
 import { Dispatch, type JSX, SetStateAction } from 'react'
 import { Controller } from 'react-hook-form'
@@ -68,19 +68,13 @@ export function ResetPasswordForm({
               label={String(t('loginView.resetPassword.form.label'))}
               withAsterisk
               className={classes['reset-password-form__text-input']}
+              error={
+                formState.errors?.email?.message &&
+                t(formState.errors.email.message)
+              }
             />
           )}
         />
-
-        <Box className={classes['reset-password-form__error-box']}>
-          {formState.errors.email && (
-            <Text className={classes['reset-password-form__error-text']}>
-              {formState.errors.email?.message
-                ? String(t(formState.errors.email.message))
-                : null}
-            </Text>
-          )}
-        </Box>
 
         <Group>
           <Button

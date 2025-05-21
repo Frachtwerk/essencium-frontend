@@ -32,7 +32,6 @@ import {
   Divider,
   Flex,
   Space,
-  Text,
   TextInput,
 } from '@mantine/core'
 import { IconShieldCheck } from '@tabler/icons-react'
@@ -85,19 +84,13 @@ export function RoleForm({
               }}
               withAsterisk
               disabled={Boolean(role)}
+              error={
+                formState.errors?.name?.message &&
+                t(formState.errors.name.message)
+              }
             />
           )}
         />
-
-        <Box className={classes['role-form__error-box']}>
-          {formState.errors.name && (
-            <Text className={classes['role-form__error-text']}>
-              {formState.errors.name?.message
-                ? String(t(formState.errors.name.message))
-                : null}
-            </Text>
-          )}
-        </Box>
 
         <Controller
           name="description"
@@ -113,19 +106,13 @@ export function RoleForm({
               classNames={{
                 label: classes['role-form__text-input--label'],
               }}
+              error={
+                formState.errors?.description?.message &&
+                t(formState.errors.description.message)
+              }
             />
           )}
         />
-
-        <Box className={classes['role-form__error-box']}>
-          {formState.errors.description && (
-            <Text className={classes['role-form__error-text']}>
-              {formState.errors.description?.message
-                ? String(t(formState.errors.description.message))
-                : null}
-            </Text>
-          )}
-        </Box>
 
         <Divider
           className={classes['role-form__divider--margin-xs']}
