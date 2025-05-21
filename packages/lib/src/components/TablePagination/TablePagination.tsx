@@ -23,7 +23,7 @@ import { PaginatedResponse } from '@frachtwerk/essencium-types'
 import { Flex, Pagination, PaginationProps, Text } from '@mantine/core'
 import { Table as TanstackTable } from '@tanstack/react-table'
 import { useTranslation } from 'next-i18next'
-import { type JSX, useEffect, useState } from 'react'
+import { type JSX, useEffect } from 'react'
 
 import { SearchableSelect } from './SearchableSelect'
 import classes from './TablePagination.module.css'
@@ -55,8 +55,6 @@ export function TablePagination<T>({
   ...props
 }: Props<T>): JSX.Element {
   const { t } = useTranslation()
-
-  const [enteredPage, setEnteredPage] = useState('1')
 
   useEffect(() => {
     if (!fixedTablePageSize) return
@@ -136,10 +134,11 @@ export function TablePagination<T>({
         onChange={value => {
           if (!value) return
 
-          setEnteredPage(value)
+          setActivePage(Number(value))
+
           handlePageJump(value)
         }}
-        value={enteredPage}
+        value={String(activePage)}
       />
     </Flex>
   )
