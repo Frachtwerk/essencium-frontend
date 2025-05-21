@@ -6,6 +6,7 @@ import {
   Text,
   useCombobox,
 } from '@mantine/core'
+import { useTranslation } from 'next-i18next'
 import { type JSX, useEffect, useMemo, useRef, useState } from 'react'
 import { FixedSizeList as List } from 'react-window'
 
@@ -28,6 +29,8 @@ export function SearchableSelect({
   value,
   ...props
 }: Props): JSX.Element {
+  const { t } = useTranslation()
+
   const listRef = useRef<List>(null)
 
   const [activeIndex, setActiveIndex] = useState(0)
@@ -133,7 +136,7 @@ export function SearchableSelect({
 
       <Combobox.Dropdown>
         {filteredOptions.length === 0 ? (
-          <Combobox.Empty>Nothing found</Combobox.Empty>
+          <Combobox.Empty>{t('table.select.nothingFound')}</Combobox.Empty>
         ) : (
           <List
             ref={listRef}
