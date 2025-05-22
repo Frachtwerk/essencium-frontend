@@ -29,6 +29,7 @@ import {
   Divider,
   Flex,
   Image,
+  Space,
   Text,
   Title,
 } from '@mantine/core'
@@ -47,8 +48,6 @@ import {
   useResetPassword,
 } from '@/api'
 import { isBrowserEnvironment } from '@/utils'
-
-import classes from './Login.module.css'
 
 const OAUTH_REDIRECT_URI =
   isBrowserEnvironment() &&
@@ -110,25 +109,29 @@ export default function LoginView(): JSX.Element {
 
   return (
     <Suspense>
-      <Container className={classes.loginCard__container}>
+      <Container className="size-full p-0" fluid>
         {!oauthToken ? (
           <Flex
             direction="row"
-            className={!matches ? classes.loginBackground__flex : ' '}
+            className={
+              !matches
+                ? 'gap-md to-dark-700 h-screen flex-col items-center justify-center bg-radial from-blue-700 transition-[background] duration-500'
+                : ' '
+            }
           >
             <Flex
-              className={classes.loginCard__flex}
+              className="h-screen items-center justify-center"
               w={matches ? '50%' : '100%'}
             >
-              <Card className={classes['loginCard']} withBorder>
-                <Flex direction="column">
-                  <Title order={2} className={classes['loginCard__title']}>
+              <Card className="rounded-sm shadow-sm" withBorder>
+                <Flex className="flex-col">
+                  <Title order={2} className="text-center">
                     {t('loginView.title')}
                   </Title>
 
                   {hasSsoApplications ? (
                     <>
-                      <Box className={classes['ssoSection']}>
+                      <Box className="mt-md">
                         {Object.keys(ssoApplications).map(application => (
                           <Button
                             component={NextLink}
@@ -155,7 +158,7 @@ export default function LoginView(): JSX.Element {
                               />
                             }
                           >
-                            <Box className={classes['ssoSection__spacer']} />
+                            <Space w="xs" />
 
                             <Text>{ssoApplications[application].name}</Text>
                           </Button>
@@ -163,7 +166,7 @@ export default function LoginView(): JSX.Element {
                       </Box>
 
                       <Divider
-                        className={classes['ssoSection__divider']}
+                        className="my-xl"
                         label={t('loginView.sso.or')}
                         labelPosition="center"
                       />
@@ -183,14 +186,14 @@ export default function LoginView(): JSX.Element {
             </Flex>
 
             {matches ? (
-              <Flex className={classes.loginBackground__flex} w="50%">
+              <Flex className="gap-md to-dark-700 duration-500' h-screen w-[50%] flex-col items-center justify-center bg-radial from-blue-700 transition-[background]">
                 <Image
-                  className={classes.loginBackground__image}
+                  className="animate-fade-in mx-auto h-[300px] w-[300px] origin-bottom -translate-y-[10px] self-end opacity-0"
                   src="/img/web/logotype_weiß_400x100px.svg"
                   alt={t('header.logo')}
                 />
 
-                <Text className={classes.loginBackground__text}>
+                <Text className="animate-fade-in-delay w-4/5 -translate-y-[10px] text-center text-lg font-medium text-white opacity-0">
                   {t('loginView.slogan')}
                 </Text>
               </Flex>

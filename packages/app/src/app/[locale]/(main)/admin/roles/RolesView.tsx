@@ -224,7 +224,7 @@ export default function RolesView(): JSX.Element {
           const rowRole = info.row.original
 
           return (
-            <Flex direction="row" gap="xs">
+            <Flex direction="row" className="gap-xs">
               {hasRequiredRights(userRights, RIGHTS.RIGHT_UPDATE) &&
               rowRole.editable === true ? (
                 <ActionIcon size="sm" variant="transparent">

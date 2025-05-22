@@ -1,8 +1,6 @@
 import { Card, Checkbox, createTheme, Loader, Switch } from '@mantine/core'
 import { Fira_Code, Fira_Sans } from 'next/font/google'
 
-import classes from './Theme.module.css'
-
 const firaSans = Fira_Sans({
   subsets: ['latin'],
   weight: ['200', '300', '400', '500', '600', '700'],
@@ -72,7 +70,7 @@ export const theme = createTheme({
     }),
     Card: Card.extend({
       classNames: {
-        root: classes['card-root'],
+        root: 'dark:bg-dark-700',
       },
     }),
     Switch: Switch.extend({
@@ -82,7 +80,7 @@ export const theme = createTheme({
     }),
     Checkbox: Checkbox.extend({
       classNames: {
-        input: classes['inner'],
+        input: 'dark:opacity-60 dark:border-dark-600',
       },
     }),
   },

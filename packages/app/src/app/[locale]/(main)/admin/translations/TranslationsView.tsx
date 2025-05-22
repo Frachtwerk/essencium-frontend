@@ -54,7 +54,6 @@ import { i18nConfig } from '@/config'
 import { mergeTranslations } from '@/utils/mergeTranslations'
 
 import { TranslationChangeForm } from '../../translations/_components/TranslationsChangeForm'
-import classes from './TranslationsView.module.css'
 
 /* eslint-disable react/no-unstable-nested-components */
 
@@ -314,13 +313,13 @@ export default function TranlsationView({ resources }: Props): JSX.Element {
         </Flex>
       </Title>
 
-      <Group gap="md" mt="lg">
+      <Group className="gap-md mt-lg">
         <Select
           data={i18nConfig.locales}
           onChange={value => setLocale(value || i18n.language)}
           defaultValue={i18n.language}
           label={t('translationsView.select')}
-          className={classes['translations-view__select']}
+          className="mb-md w-1/5"
         />
 
         <TextInput
@@ -334,7 +333,7 @@ export default function TranlsationView({ resources }: Props): JSX.Element {
             ) : null
           }
           leftSection={<IconSearch size={16} />}
-          className={classes['translations-view__search']}
+          className="mb-md w-2/5"
         />
       </Group>
 

@@ -36,8 +36,6 @@ import {
 } from '@/api'
 import { logout } from '@/utils'
 
-import classes from './Profile.module.css'
-
 export default function ProfileView(): JSX.Element {
   const { t } = useTranslation()
 
@@ -107,9 +105,5 @@ export default function ProfileView(): JSX.Element {
     return <LoadingSpinner show />
   }
 
-  return (
-    <Center className={classes['profile__center']}>
-      {t('profileView.userNotFound')}
-    </Center>
-  )
+  return <Center className="size-full">{t('profileView.userNotFound')}</Center>
 }
