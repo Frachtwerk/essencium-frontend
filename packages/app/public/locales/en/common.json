@@ -434,6 +434,9 @@
       "pageCount": "Pages:",
       "pageSize": "Size:",
       "pageGoTo": "Go to"
+    },
+    "select": {
+      "nothingFound": "Nothing found"
     }
   },
   "translationsView": {

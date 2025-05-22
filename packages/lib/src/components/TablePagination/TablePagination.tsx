@@ -20,11 +20,12 @@
 'use client'
 
 import { PaginatedResponse } from '@frachtwerk/essencium-types'
-import { Flex, Pagination, PaginationProps, Select, Text } from '@mantine/core'
+import { Flex, Pagination, PaginationProps, Text } from '@mantine/core'
 import { Table as TanstackTable } from '@tanstack/react-table'
 import { useTranslation } from 'next-i18next'
-import { type JSX, useEffect, useState } from 'react'
+import { type JSX, useEffect } from 'react'
 
+import { SearchableSelect } from './SearchableSelect'
 import classes from './TablePagination.module.css'
 
 type CustomPaginationProps = Omit<PaginationProps, 'total'>
@@ -49,13 +50,11 @@ export function TablePagination<T>({
   setPageSize,
   setActivePage,
   fixedTablePageSize,
-  jumpToLimit = 50,
+  jumpToLimit,
   pageSizeOptions = ['10', '20', '30', '40', '50', '100'],
   ...props
 }: Props<T>): JSX.Element {
   const { t } = useTranslation()
-
-  const [enteredPage, setEnteredPage] = useState('')
 
   useEffect(() => {
     if (!fixedTablePageSize) return
@@ -93,7 +92,7 @@ export function TablePagination<T>({
               {t('table.footer.pageSize')}
             </Text>
 
-            <Select
+            <SearchableSelect
               defaultValue={String(pageSize)}
               data={pageSizeOptions}
               aria-label={t('table.footer.pageSize') as string}
@@ -119,7 +118,7 @@ export function TablePagination<T>({
         {...props}
       />
 
-      <Select
+      <SearchableSelect
         className={classes['table-pagination__go-to']}
         size="xs"
         aria-label={t('table.footer.pageGoTo') as string}
@@ -135,11 +134,11 @@ export function TablePagination<T>({
         onChange={value => {
           if (!value) return
 
-          setEnteredPage(value)
+          setActivePage(Number(value))
+
           handlePageJump(value)
         }}
-        value={enteredPage}
-        searchable
+        value={String(activePage)}
       />
     </Flex>
   )
