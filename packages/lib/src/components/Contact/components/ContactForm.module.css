@@ -27,22 +27,6 @@
   margin-bottom: var(--mantine-spacing-md);
 }
 
-.contact-form__error-box {
-  margin-top: -1.5rem;
-  height: 0.8rem;
-}
-
-.contact-form__error-text {
-  margin-left: 5;
-  font-size: var(--mantine-font-size-xs);
-  color: red;
-}
-
-.contact-form__error-box-message {
-  margin-top: -0.6em;
-  height: 0.8rem;
-}
-
 .contact-from__text-input {
   margin-bottom: var(--mantine-spacing-md);
   border-radius: var(--mantine-radius-md);
