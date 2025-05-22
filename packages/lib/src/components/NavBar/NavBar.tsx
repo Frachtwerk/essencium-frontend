@@ -35,7 +35,6 @@ import { useTranslation } from 'next-i18next'
 import { Dispatch, type JSX, SetStateAction, useEffect, useState } from 'react'
 
 import { NavLinks } from './components'
-import classes from './NavBar.module.css'
 
 type Props = AppShellNavbarProps & {
   isMobile: boolean
@@ -101,14 +100,14 @@ export function NavBar({
       {...props}
       className={`${
         isMobile
-          ? classes['navBar__container--mobile']
-          : classes['navBar__container']
+          ? 'p-sm fixed left-0 z-300 flex h-[95%] w-full flex-col overflow-auto'
+          : 'p-sm flex flex-col transition-[width] duration-300 ease-in-out hover:w-[250px]'
       } ${props.className ? props.className : ''}`}
     >
       <AppShellSection>
-        <Flex gap="xs" className={classes['navBar__flex']}>
+        <Flex className="gap-xs flex flex-row items-start justify-between">
           <NextLink href="/">
-            <Box className={classes['navBar__logo']}>
+            <Box className="mb-xl">
               {!logo || foldedNav || isMobile ? icon : logo}
             </Box>
           </NextLink>
@@ -117,7 +116,7 @@ export function NavBar({
             <ActionIcon
               variant="transparent"
               color="text"
-              className={classes['navBar__pinIcon']}
+              className="mt-xs mr-sm"
               onClick={() => setFixedNav(fixed => !fixed)}
               aria-label={t('navigation.toggleFixedNavIcon.arialabel')}
             >
@@ -148,8 +147,8 @@ export function NavBar({
           label={t('navigation.logout.label')}
           onClick={handleLogout}
           classNames={{
-            root: classes['navBar__navLink--root'],
-            label: classes['navBar__navLink--label'],
+            root: 'rounded-sm mb-xl',
+            label: 'text-sm',
           }}
         />
       </AppShellSection>

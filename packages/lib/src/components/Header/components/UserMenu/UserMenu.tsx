@@ -32,8 +32,6 @@ import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
 import type { JSX } from 'react'
 
-import classes from './UserMenu.module.css'
-
 type Props = {
   user: UserOutput
   className?: {
@@ -53,13 +51,12 @@ export function UserMenu({ user, className, avatarColor }: Props): JSX.Element {
     <UnstyledButton
       component={NextLink}
       href="/profile"
-      className={`${classes['user-menu__button']} ${
-        className?.button ? className.button : ''
-      }`}
+      className={`${className?.button ? className.button : ''}`}
       aria-label={t('header.profile.arialLabel') as string}
     >
       <Group
-        className={`${classes['user-menu__group']} ${
+        p="sm"
+        className={`hover:bg-gray-50 dark:hover:bg-gray-900 ${
           className?.group ? className.group : ''
         }`}
         wrap="nowrap"
@@ -71,17 +68,16 @@ export function UserMenu({ user, className, avatarColor }: Props): JSX.Element {
           color={avatarColor ?? theme.primaryColor}
         />
 
-        <Box className={classes['user-menu__box']}>
+        <Box>
           <Flex align="center" justify="space-between">
-            <Text className={classes['user_menu__box--name']}>
+            <Text className="font-medium" size="sm">
               {user.firstName} {user.lastName}
             </Text>
           </Flex>
 
           <Text
-            className={`${classes['user-menu__box--mail']} ${
-              className?.mail ? className.mail : ''
-            }`}
+            className={`text-dimmed ${className?.mail ? className.mail : ''}`}
+            size="xs"
           >
             {user.email}
           </Text>

@@ -27,7 +27,6 @@ import type { JSX } from 'react'
 import { Control } from 'react-hook-form'
 
 import { ControlledTextarea, ControlledTextInput } from '../../Form'
-import classes from './ContactForm.module.css'
 
 type Props = {
   control: Control<ContactFormType>
@@ -37,16 +36,16 @@ export function ContactForm({ control }: Props): JSX.Element {
   const { t } = useTranslation()
 
   return (
-    <Card withBorder role="form" className={classes['contact-form__card']}>
-      <Title order={3} className={classes['contact-form__title']}>
+    <Card withBorder role="form" className="p-lg rounded-md shadow-sm">
+      <Title order={3} className="mb-md">
         {t('contactView.contactForm.title')}
       </Title>
 
-      <Stack className={classes['contact-form__stack']}>
+      <Stack className="mt-md w-3/4">
         <ControlledTextInput
           name="subject"
           control={control}
-          className={classes['contact-from__text-input']}
+          className="mb-md rounded-sm"
           label={t('contactView.contactForm.form.subject')}
           placeholder={String(
             t('contactView.contactForm.form.subjectPlaceholder'),
@@ -67,7 +66,7 @@ export function ContactForm({ control }: Props): JSX.Element {
         />
       </Stack>
 
-      <Group className={classes['contact-form__group']}>
+      <Group className="mt-sm mb-xs">
         <Button type="submit" leftSection={<IconSend size={20} />}>
           {t('contactView.contactForm.form.sendMessage')}
         </Button>

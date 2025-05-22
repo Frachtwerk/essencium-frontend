@@ -29,7 +29,6 @@ import { useTranslation } from 'next-i18next'
 import type { JSX } from 'react'
 
 import { PasswordChangeForm, PersonalDataForm } from './components'
-import classes from './ProfileDataCard.module.css'
 
 type Props = {
   isSso: boolean
@@ -54,7 +53,7 @@ export function ProfileDataCard({
   const { t } = useTranslation()
 
   return (
-    <Card withBorder className={classes['profile-data-card__card']}>
+    <Card withBorder className="p-lg rounded-sm shadow-sm">
       <Tabs defaultValue="personalDataForm">
         <Tabs.List>
           <Tabs.Tab
@@ -74,10 +73,7 @@ export function ProfileDataCard({
           )}
         </Tabs.List>
 
-        <Tabs.Panel
-          value="personalDataForm"
-          className={classes['profile-data-card__tabs-panel']}
-        >
+        <Tabs.Panel value="personalDataForm" className="pt-lg">
           <PersonalDataForm
             isSso={isSso}
             user={user}
@@ -87,10 +83,7 @@ export function ProfileDataCard({
         </Tabs.Panel>
 
         {isSso ? null : (
-          <Tabs.Panel
-            value="passwordChange"
-            className={classes['profile-data-card__tabs-panel']}
-          >
+          <Tabs.Panel value="passwordChange" className="pt-lg">
             <PasswordChangeForm
               handlePasswordUpdate={handlePasswordUpdate}
               isLoading={isUpdatingPassword}

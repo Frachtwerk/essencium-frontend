@@ -26,7 +26,6 @@ import { useTranslation } from 'next-i18next'
 import { type JSX, useEffect } from 'react'
 
 import { SearchableSelect } from './SearchableSelect'
-import classes from './TablePagination.module.css'
 
 type CustomPaginationProps = Omit<PaginationProps, 'total'>
 
@@ -78,19 +77,13 @@ export function TablePagination<T>({
   }
 
   return (
-    <Flex
-      align="center"
-      className={classes['table-pagination__flex--margin-top']}
-    >
-      <Flex
-        align="center"
-        className={classes['table-pagination__flex--margin-right']}
-      >
+    <Flex className="mt-xs items-center">
+      <Flex className="mr-xl items-center">
         {!fixedTablePageSize ? (
           <>
             <label
               htmlFor="table-pagination-size-select"
-              className={classes['table-pagination__text']}
+              className="mr-xs text-sm"
             >
               {t('table.footer.pageSize')}
             </label>
@@ -98,7 +91,7 @@ export function TablePagination<T>({
             <SearchableSelect
               defaultValue={String(pageSize)}
               data={pageSizeOptions}
-              className={classes['table-pagination__select']}
+              className="w-[70px]"
               size="xs"
               id="table-pagination-size-select"
               onChange={e => {
@@ -127,12 +120,12 @@ export function TablePagination<T>({
       />
 
       <SearchableSelect
-        className={classes['table-pagination__go-to']}
+        className="ml-xl"
         size="xs"
         aria-label={t('table.footer.pageGoTo') as string}
         placeholder={t('table.footer.pageGoTo') as string}
         classNames={{
-          wrapper: classes['table-pagination__go-to-wrapper'],
+          wrapper: 'w-[125px]',
         }}
         data={Array.from(
           { length: table ? table.getPageCount() : pageCount ?? 1 },

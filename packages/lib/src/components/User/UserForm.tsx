@@ -49,7 +49,6 @@ import {
   InputErrorStack,
 } from '../Form'
 import { PasswordStrengthIndicator } from '../PasswordStrengthIndicator/PasswordStrengthIndicator'
-import classes from './UserForm.module.css'
 
 type Props = {
   ssoProvider?: UserSource | string | undefined
@@ -87,11 +86,11 @@ export function UserForm({
 
   return (
     <form onSubmit={onSubmit}>
-      <Flex align="center" className={classes['userForm__header']}>
+      <Flex align="center" className="mb-lg">
         <Title order={3}>{title}</Title>
 
         {isSso ? (
-          <Badge className={classes['userForm__ssoBadge']} variant="light">
+          <Badge className="ml-[10px]" variant="light">
             {ssoProvider}
           </Badge>
         ) : null}
@@ -221,7 +220,7 @@ export function UserForm({
         </Grid.Col>
       </Grid>
 
-      <Title className={classes['userForm__newSection--margin-lg']} order={3}>
+      <Title className="mt-lg" order={3}>
         {t('addUpdateUserView.form.userSettingsHeading')}
       </Title>
 
@@ -236,7 +235,7 @@ export function UserForm({
                 checked={field.value}
                 value={String(field.value)}
                 size="md"
-                className={classes['userForm__enableToggle']}
+                className="mt-sm"
                 label={t('addUpdateUserView.form.activeStatus')}
               />
             )}
@@ -271,11 +270,7 @@ export function UserForm({
         </Grid.Col>
       </Grid>
 
-      <Button
-        type="submit"
-        className={classes['userForm__saveButton']}
-        loading={isLoading}
-      >
+      <Button type="submit" className="mt-md" loading={isLoading}>
         {t('addUpdateUserView.form.save')}
       </Button>
     </form>
