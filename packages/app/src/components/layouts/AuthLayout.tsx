@@ -60,7 +60,6 @@ import {
 } from '@/utils'
 
 import packageJson from '../../../package.json'
-import classes from './AuthLayout.module.css'
 
 const version = packageJson?.version ? packageJson.version : undefined
 
@@ -303,7 +302,7 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
           layout={isNotMobile ? 'alt' : 'default'}
           header={{ height: { base: 60 } }}
           footer={{ height: { base: 58 } }}
-          padding="lg"
+          className="p-lg"
           navbar={{
             width: isFixedNav ? 250 : 80,
             breakpoint: 'sm',
@@ -355,9 +354,7 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
             ) : null}
           </Footer>
 
-          <AppShellMain className={classes['app-shell-main']}>
-            {children}
-          </AppShellMain>
+          <AppShellMain className="overflow-auto">{children}</AppShellMain>
         </AppShell>
       ) : (
         <LoadingSpinner show />

@@ -30,7 +30,6 @@ import { useTranslation } from 'react-i18next'
 import { useGetRoles, useGetUser, useUpdateUser } from '@/api'
 import { useZodForm } from '@/hooks'
 
-import classes from '../Users.module.css'
 import { FORM_DEFAULTS_USERS_VIEW } from '../UsersView'
 
 export default function UpdateUserView({
@@ -90,17 +89,15 @@ export default function UpdateUserView({
 
   return (
     <>
-      <Title className={classes['userDetailTitle']} order={2}>
+      <Title className="py-md" order={2}>
         <Flex>
           <IconUserEdit size="32" />
 
-          <Text className={classes['userDetailTitle__subtitle']}>
-            {t('addUpdateUserView.update.title')}
-          </Text>
+          <Text className="ml-xl">{t('addUpdateUserView.update.title')}</Text>
         </Flex>
       </Title>
 
-      <Card withBorder className={classes['userDetailCard']}>
+      <Card withBorder className="p-lg max-w-[82.25rem] rounded-sm shadow-sm">
         <UserForm
           ssoProvider={ssoProvider}
           title={t('addUpdateUserView.form.userDataHeading')}
