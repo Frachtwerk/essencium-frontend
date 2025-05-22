@@ -28,7 +28,6 @@ import {
 import { Dispatch, type JSX, SetStateAction } from 'react'
 
 import { TableHeader } from './components/TableHeader'
-import classes from './Table.module.css'
 
 type Props<T> = TableProps & {
   tableModel: TanstackTable<T>
@@ -107,8 +106,8 @@ export function Table<T>({
                 style={row.getCanExpand() ? { cursor: 'pointer' } : {}}
                 className={
                   firstColSticky
-                    ? classes['table__table-row--sticky']
-                    : classes['table__table-row']
+                    ? 'dark:even:bg-dark-700 odd:bg-(--table-striped-color) even:bg-white'
+                    : ''
                 }
               >
                 {row.getVisibleCells().map(cell => (
@@ -116,7 +115,9 @@ export function Table<T>({
                     key={cell.id}
                     width={cell.column.getSize()}
                     className={
-                      firstColSticky ? classes['table__col-sticky'] : ''
+                      firstColSticky
+                        ? 'first:sticky first:left-0 first:z-10 first:bg-inherit'
+                        : ''
                     }
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -126,10 +127,7 @@ export function Table<T>({
             ))}
           </MantineTable.Tbody>
 
-          <MantineTable.Tfoot
-            aria-label="footer-row"
-            className={classes['footer']}
-          >
+          <MantineTable.Tfoot aria-label="footer-row">
             {tableModel.getFooterGroups().map(footerGroup => (
               <MantineTable.Tr key={footerGroup.id}>
                 {footerGroup.headers.map(header => (

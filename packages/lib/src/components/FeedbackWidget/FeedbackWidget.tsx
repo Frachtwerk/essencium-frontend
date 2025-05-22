@@ -60,7 +60,6 @@ import { type JSX, ReactNode, useEffect, useState } from 'react'
 import { useZodForm } from '../../hooks'
 import { ControlledTextarea } from '../Form'
 import { LoadingSpinner } from '../LoadingSpinner'
-import classes from './FeedbackWidget.module.css'
 
 type NotificationParams = {
   notificationType: 'created' | 'updated' | 'deleted'
@@ -262,14 +261,10 @@ export function FeedbackWidget({
           onCloseWidget()
         }}
         h={openInput ? 'auto' : '180px'}
-        className={
-          isCapturingScreenshot
-            ? classes['feedback-widget__dialog--display']
-            : classes['feedback-widget__dialog']
-        }
+        className={isCapturingScreenshot ? 'hidden' : 'w-[390px] rounded-md'}
       >
         {!showSuccessMessage || !showErrorMessage ? (
-          <Title className={classes['feedback-widget__title']}>
+          <Title className="text-md mb-sm text-center font-medium">
             {t('feedbackWidget.title')}
           </Title>
         ) : null}
@@ -282,7 +277,8 @@ export function FeedbackWidget({
                 <Stack key={key}>
                   <ActionIcon
                     variant="filled"
-                    className={classes['feedback-widget__action-icon']}
+                    size={70}
+                    radius="lg"
                     onClick={() => {
                       setOpenInput(OpenInput[inputKey])
                     }}
@@ -312,11 +308,7 @@ export function FeedbackWidget({
             <div style={styles}>
               <Box>
                 {isLoading ? (
-                  <Box
-                    className={
-                      classes['feedback-widget__loading-spinner--container']
-                    }
-                  >
+                  <Box h="100px">
                     <LoadingSpinner show size="lg" />
                   </Box>
                 ) : null}
@@ -325,17 +317,14 @@ export function FeedbackWidget({
                   <Stack>
                     <Center>
                       {showSuccessMessage ? (
-                        <ThemeIcon
-                          variant="outline"
-                          className={classes['feedback-widget__theme-icon']}
-                        >
-                          <IconCircleCheck
-                            className={classes['feedback-widget__icon--check']}
-                          />
+                        <ThemeIcon variant="outline" h="60px" w="60px">
+                          <IconCircleCheck height="60px" width="60px" />
                         </ThemeIcon>
                       ) : (
                         <IconCircleX
-                          className={classes['feedback-widget__icon--x']}
+                          height="60px"
+                          width="60px"
+                          className="stroke-red-600"
                         />
                       )}
                     </Center>
@@ -352,18 +341,14 @@ export function FeedbackWidget({
 
                 {!isLoading && !showSuccessMessage && !showErrorMessage ? (
                   <Box>
-                    <Group
-                      justify="apart"
-                      gap="xs"
-                      className={classes['feedback-widget__group']}
-                    >
+                    <Group justify="apart" className="gap-xs mb-md">
                       {Object.keys(OpenInput).map(key => {
                         const inputKey = key as keyof typeof OpenInput
 
                         return (
                           <Button
                             key={key}
-                            className={classes['feedback-widget__button']}
+                            size="sm"
                             variant={
                               openInput === OpenInput[inputKey]
                                 ? 'filled'
@@ -386,7 +371,7 @@ export function FeedbackWidget({
                         <ControlledTextarea
                           name="message"
                           control={control}
-                          className={classes['feedback-widget__textarea']}
+                          className="mb-[15px] rounded-[50px]"
                           placeholder={
                             t('feedbackWidget.placeholder') as string
                           }
@@ -397,7 +382,7 @@ export function FeedbackWidget({
                             label={t('feedbackWidget.screenshot.label')}
                             className={
                               isCapturingScreenshot
-                                ? classes['feedback-widget__dialog--display']
+                                ? 'w-[390px] rounded-md'
                                 : ''
                             }
                           >
