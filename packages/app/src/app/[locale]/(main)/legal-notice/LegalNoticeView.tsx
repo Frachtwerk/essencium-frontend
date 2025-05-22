@@ -23,14 +23,15 @@ import { Card, Divider, Stack, Text, Title } from '@mantine/core'
 import type { JSX } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import classes from './LegalNoticeView.module.css'
-
 export default function LegalNoticeView(): JSX.Element {
   const { t } = useTranslation()
 
   return (
-    <Card withBorder className={classes['legal-notice-card']}>
-      <Stack gap="lg">
+    <Card
+      withBorder
+      className="padding-lg mx-auto my-3 max-w-[800px] rounded-md shadow-sm"
+    >
+      <Stack className="gap-lg">
         <Title order={1}>{t('legalNoticeView.title')}</Title>
         <Divider />
 
