@@ -1,3 +1,9 @@
 {
-  "i18n-ally.localesPaths": ["packages", "packages/app/public/locales"]
+  "i18n-ally.localesPaths": ["packages", "packages/app/public/locales"],
+
+  // Enable Tailwind CSS IntelliSense for all packages
+  "tailwindCSS.experimental.configFile": "packages/lib/src/globals.css",
+
+  // Enable Tailwind CSS IntelliSense in classNames property
+  "tailwindCSS.classAttributes": ["class", "className", "classNames"]
 }
