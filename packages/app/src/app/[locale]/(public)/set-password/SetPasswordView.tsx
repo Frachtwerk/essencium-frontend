@@ -32,8 +32,6 @@ import { useTranslation } from 'react-i18next'
 
 import { useSetPassword } from '@/api'
 
-import classes from './SetPassword.module.css'
-
 export default function SetPasswordView(): JSX.Element {
   const { t } = useTranslation()
 
@@ -56,14 +54,14 @@ export default function SetPasswordView(): JSX.Element {
   }
 
   return (
-    <Container className={classes['setPassword__container']}>
+    <Container className="my-xl size-[450px]">
       {!showSuccessMessage && (
         <Title ta="center" order={2} fw="bold">
           {t('setPasswordView.title')}
         </Title>
       )}
 
-      <Paper className={classes['setPassword__paper']}>
+      <Paper className="p-lg mt-md h-[270px] w-[400px] rounded-sm shadow-sm">
         {!showSuccessMessage && (
           <SetPasswordForm handleSetPassword={handleSetPassword} />
         )}
