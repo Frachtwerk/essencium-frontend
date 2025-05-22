@@ -30,7 +30,6 @@ import { type JSX, useEffect } from 'react'
 
 import { useZodForm } from '../../../../../hooks'
 import { ControlledSelect, ControlledTextInput } from '../../../../Form'
-import classes from './PersonalDataForm.module.css'
 
 type Props = {
   isSso: boolean
@@ -85,7 +84,7 @@ export function PersonalDataForm({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid gutter="xs">
-        <Grid.Col span={{ base: 12, md: 6 }}>
+        <Grid.Col className="col-span-12 md:col-span-6">
           <ControlledTextInput
             name="firstName"
             control={control}
@@ -99,7 +98,7 @@ export function PersonalDataForm({
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, md: 6 }}>
+        <Grid.Col className="col-span-12 md:col-span-6">
           <ControlledTextInput
             name="lastName"
             control={control}
@@ -113,7 +112,7 @@ export function PersonalDataForm({
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, md: 6 }}>
+        <Grid.Col className="col-span-12 md:col-span-6">
           <ControlledTextInput
             name="phone"
             control={control}
@@ -125,7 +124,7 @@ export function PersonalDataForm({
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, md: 6 }}>
+        <Grid.Col className="col-span-12 md:col-span-6">
           <ControlledTextInput
             name="mobile"
             control={control}
@@ -137,7 +136,7 @@ export function PersonalDataForm({
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, sm: 6 }}>
+        <Grid.Col className="col-span-12 md:col-span-6">
           <ControlledTextInput
             name="email"
             control={control}
@@ -151,7 +150,7 @@ export function PersonalDataForm({
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, sm: 6 }}>
+        <Grid.Col className="col-span-12 md:col-span-6">
           <ControlledSelect
             name="locale"
             control={control}
@@ -170,11 +169,7 @@ export function PersonalDataForm({
         </Grid.Col>
       </Grid>
 
-      <Button
-        type="submit"
-        className={classes['personal-data-form__button']}
-        loading={isLoading}
-      >
+      <Button type="submit" className="mt-md" loading={isLoading}>
         {t('profileView.dataCard.tabs.personalData.saveChanges')}
       </Button>
     </form>

@@ -22,8 +22,6 @@ import { IconCircleCheck, IconCircleX } from '@tabler/icons-react'
 import type { JSX } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import classes from './PasswordRequirement.module.css'
-
 type Props = {
   meets: boolean
   label: string
@@ -33,11 +31,15 @@ export function PasswordRequirement({ meets, label }: Props): JSX.Element {
   const { t } = useTranslation()
 
   return (
-    <Group mt="xs" gap="xs">
+    <Group className="mt-xs gap-xs">
       {meets ? (
         <IconCircleCheck
           size={20}
-          className={meets ? classes['color-validated'] : classes.color}
+          className={
+            meets
+              ? 'text-green-700 transition-colors duration-500'
+              : 'text-dark transition-colors duration-500'
+          }
           aria-label={t(
             'profileView.dataCard.tabs.passwordChange.passwordStrength.requirements.met',
           )}
@@ -45,7 +47,11 @@ export function PasswordRequirement({ meets, label }: Props): JSX.Element {
       ) : (
         <IconCircleX
           size={20}
-          className={meets ? classes['color-validated'] : classes.color}
+          className={
+            meets
+              ? 'text-green-700 transition-colors duration-500'
+              : 'text-dark transition-colors duration-500'
+          }
           aria-label={t(
             'profileView.dataCard.tabs.passwordChange.passwordStrength.requirements.unmet',
           )}
@@ -54,7 +60,11 @@ export function PasswordRequirement({ meets, label }: Props): JSX.Element {
 
       <Text
         size="sm"
-        className={meets ? classes['color-validated'] : classes.color}
+        className={
+          meets
+            ? 'text-green-700 transition-colors duration-500'
+            : 'text-dark transition-colors duration-500'
+        }
       >
         {label}
       </Text>

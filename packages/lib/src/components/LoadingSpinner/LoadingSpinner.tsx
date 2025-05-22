@@ -22,8 +22,6 @@
 import { Container, Loader, LoaderProps } from '@mantine/core'
 import { type JSX, useEffect, useState } from 'react'
 
-import classes from './LoadingSpinner.module.css'
-
 type Props = LoaderProps & { show: boolean; delay?: number }
 
 export function LoadingSpinner({
@@ -54,7 +52,7 @@ export function LoadingSpinner({
   }, [show, delay])
 
   return showSpinner ? (
-    <Container className={classes['loading-spinner__container']}>
+    <Container className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
       <Loader name="loader" size={size} {...props} />
     </Container>
   ) : null

@@ -32,7 +32,6 @@ import {
 import type { JSX } from 'react'
 
 import { SearchBar, ThemeSelector, UserMenu } from './components'
-import classes from './Header.module.css'
 
 type Props = AppShellHeaderProps & {
   user: UserOutput | undefined
@@ -54,15 +53,10 @@ export function Header({
     <AppShellHeader
       withBorder={false}
       {...props}
-      className={`${classes['header__app-shell']} ${
-        props.className ? props.className : ''
-      }`}
+      p="md"
+      className={`z-100 sm:ml-0 ${props.className ? props.className : ''}`}
     >
-      <Flex
-        className={classes.header__content}
-        justify="space-between"
-        align="center"
-      >
+      <Flex className="h-full" justify="space-between" align="center">
         <Burger
           opened={isOpen}
           onClick={() => {
@@ -78,10 +72,8 @@ export function Header({
 
         <Group wrap="nowrap" justify="space-between">
           {environment && (
-            <Code className={classes['environment-indicator']}>
-              <span className={classes['environment-indicator__text']}>
-                {environment}
-              </span>
+            <Code className="mr-[20px] overflow-visible">
+              <span className="uppercase">{environment}</span>
             </Code>
           )}
 

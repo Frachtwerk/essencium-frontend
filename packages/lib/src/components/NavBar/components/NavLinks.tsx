@@ -28,7 +28,6 @@ import type { JSX } from 'react'
 import { getI18n } from 'react-i18next'
 
 import { hasRequiredRights } from '../../../utils'
-import classes from './NavLinks.module.css'
 
 type Props = {
   links: NavLink[]
@@ -80,10 +79,10 @@ export function NavLinks({
               leftSection={link.icon}
               label={t(link.label)}
               active={isLinkActive(link.to)}
-              className={classes['nav-bar__navlink']}
+              className="mb-sm"
               classNames={{
-                root: classes['nav-bar__navlink--root'],
-                label: classes['nav-bar__navlink--label'],
+                root: 'rounded-sm',
+                label: 'text-sm whitespace-nowrap',
               }}
               onClick={() => handleOpenNav()}
               prefetch={link.prefetch ?? true}
@@ -100,10 +99,10 @@ export function NavLinks({
             leftSection={link.icon}
             label={t(link.label)}
             active={isParentActive(link.to) && isSubLinkActive(link.navLinks)}
-            className={classes['nav-bar__navlink']}
+            className="mb-sm"
             classNames={{
-              root: classes['nav-bar__navlink--root'],
-              label: classes['nav-bar__navlink--label'],
+              root: 'rounded-sm',
+              label: 'text-sm whitespace-nowrap',
             }}
           >
             {!foldedNav || isMobile
@@ -121,10 +120,10 @@ export function NavLinks({
                       active={
                         isParentActive(link.to) && isLinkActive(sublink.to)
                       }
-                      className={classes['nav-bar__navlink--sublink']}
+                      className="my-sm"
                       classNames={{
-                        root: classes['nav-bar__navlink--root'],
-                        label: classes['nav-bar__navlink--label'],
+                        root: 'rounded-sm',
+                        label: 'text-sm whitespace-nowrap',
                       }}
                       onClick={() => handleOpenNav()}
                       prefetch={sublink.prefetch ?? true}

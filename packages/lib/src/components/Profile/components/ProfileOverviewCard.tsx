@@ -32,8 +32,6 @@ import {
 } from '@mantine/core'
 import type { JSX } from 'react'
 
-import classes from './ProfileOverviewCard.module.css'
-
 type Props = {
   user: UserOutput
 }
@@ -46,8 +44,13 @@ export function ProfileOverviewCard({ user }: Props): JSX.Element {
   const isSso = Boolean(ssoProvider && ssoProvider !== UserSource.LOCAL)
 
   return (
-    <Card withBorder className={classes['profile-overview-card']}>
-      <Flex gap="md" justify="center" align="center" direction="column">
+    <Card withBorder className="p-lg rounded-sm shadow-sm">
+      <Flex
+        className="gap-md"
+        justify="center"
+        align="center"
+        direction="column"
+      >
         <Indicator
           role="note"
           inline
