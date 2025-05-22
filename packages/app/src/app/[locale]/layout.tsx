@@ -18,7 +18,7 @@
  */
 
 import '@mantine/spotlight/styles.css'
-import '@frachtwerk/essencium-lib/src/globals.css'
+import '@/globals.css'
 
 import { mantineHtmlProps } from '@mantine/core'
 import type { JSX } from 'react'
