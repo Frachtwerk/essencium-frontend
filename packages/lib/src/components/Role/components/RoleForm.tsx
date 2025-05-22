@@ -40,8 +40,6 @@ import { useTranslation } from 'next-i18next'
 import type { JSX } from 'react'
 import { Control, Controller, FormState } from 'react-hook-form'
 
-import classes from './RoleForm.module.css'
-
 type Props = {
   rights: RightOutput[]
   toggleRight: (right: RightOutput) => void
@@ -69,7 +67,7 @@ export function RoleForm({
 
   return (
     <form onSubmit={onSubmit}>
-      <Flex direction="column" gap="md">
+      <Flex direction="column" className="gap-md">
         <Controller
           name="name"
           control={control}
@@ -80,18 +78,15 @@ export function RoleForm({
               label={t('rolesView.modal.name')}
               required
               variant="filled"
-              classNames={{
-                label: classes['role-form__text-input--label'],
-              }}
               withAsterisk
               disabled={Boolean(role)}
             />
           )}
         />
 
-        <Box className={classes['role-form__error-box']}>
+        <Box>
           {formState.errors.name && (
-            <Text className={classes['role-form__error-text']}>
+            <Text>
               {formState.errors.name?.message
                 ? String(t(formState.errors.name.message))
                 : null}
@@ -110,16 +105,13 @@ export function RoleForm({
               }
               label={t('rolesView.modal.description')}
               variant="filled"
-              classNames={{
-                label: classes['role-form__text-input--label'],
-              }}
             />
           )}
         />
 
-        <Box className={classes['role-form__error-box']}>
+        <Box>
           {formState.errors.description && (
-            <Text className={classes['role-form__error-text']}>
+            <Text>
               {formState.errors.description?.message
                 ? String(t(formState.errors.description.message))
                 : null}
@@ -128,7 +120,7 @@ export function RoleForm({
         </Box>
 
         <Divider
-          className={classes['role-form__divider--margin-xs']}
+          className="my-xs"
           label={
             <Flex align="start">
               <IconShieldCheck size={16} />
@@ -142,7 +134,7 @@ export function RoleForm({
           name="rights"
           control={control}
           render={() => (
-            <Flex wrap="wrap" gap="sm" my="xs">
+            <Flex wrap="wrap" className="gap-sm my-xs">
               {Object.values(rights).map(right => (
                 <Chip
                   defaultChecked={Boolean(
@@ -167,20 +159,15 @@ export function RoleForm({
 
       <Space h="lg" />
 
-      <Flex justify="space-around" gap="lg">
-        <Button
-          type="submit"
-          fullWidth
-          className={classes['role-form__button']}
-          loading={isLoading}
-        >
+      <Flex justify="space-around" className="gap-lg">
+        <Button type="submit" fullWidth className="mt-md" loading={isLoading}>
           {role ? t('rolesView.modal.update') : t('rolesView.modal.submit')}
         </Button>
 
         <Button
           variant="subtle"
           fullWidth
-          className={classes['role-form__button']}
+          className="mt-md"
           onClick={() => {
             if (reset) reset()
             onClose()

@@ -36,8 +36,6 @@ import { useTranslation } from 'next-i18next'
 import type { JSX } from 'react'
 import { Control, Controller, FormState } from 'react-hook-form'
 
-import classes from './ContactForm.module.css'
-
 type Props = {
   control: Control<ContactFormType>
   formState: FormState<ContactFormType>
@@ -47,19 +45,19 @@ export function ContactForm({ formState, control }: Props): JSX.Element {
   const { t } = useTranslation()
 
   return (
-    <Card withBorder role="form" className={classes['contact-form__card']}>
-      <Title order={3} className={classes['contact-form__title']}>
+    <Card withBorder role="form" className="p-lg rounded-md shadow-sm">
+      <Title order={3} className="mb-md">
         {t('contactView.contactForm.title')}
       </Title>
 
-      <Stack className={classes['contact-form__stack']}>
+      <Stack className="mt-md w-3/4">
         <Controller
           name="subject"
           control={control}
           render={({ field }) => (
             <TextInput
               {...field}
-              className={classes['contact-from__text-input']}
+              className="mb-md rounded-sm"
               label={t('contactView.contactForm.form.subject')}
               placeholder={String(
                 t('contactView.contactForm.form.subjectPlaceholder'),
@@ -70,9 +68,9 @@ export function ContactForm({ formState, control }: Props): JSX.Element {
           )}
         />
 
-        <Box className={classes['contact-form__error-box']}>
+        <Box>
           {formState.errors.subject && (
-            <Text className={classes['contact-form__error-text']}>
+            <Text>
               {formState.errors.subject?.message
                 ? String(t(formState.errors.subject.message))
                 : null}
@@ -81,7 +79,7 @@ export function ContactForm({ formState, control }: Props): JSX.Element {
         </Box>
       </Stack>
 
-      <Stack className={classes['contact-form__stack']}>
+      <Stack className="mt-md w-3/4">
         <Controller
           name="message"
           control={control}
@@ -98,9 +96,9 @@ export function ContactForm({ formState, control }: Props): JSX.Element {
           )}
         />
 
-        <Box className={classes['contact-form__error-box-message']}>
+        <Box>
           {formState.errors.message && (
-            <Text className={classes['contact-form__error-text']}>
+            <Text>
               {formState.errors.message?.message
                 ? String(t(formState.errors.message?.message))
                 : null}
@@ -109,7 +107,7 @@ export function ContactForm({ formState, control }: Props): JSX.Element {
         </Box>
       </Stack>
 
-      <Group className={classes['contact-form__group']}>
+      <Group className="mt-sm mb-xs">
         <Button type="submit" leftSection={<IconSend size={20} />}>
           {t('contactView.contactForm.form.sendMessage')}
         </Button>

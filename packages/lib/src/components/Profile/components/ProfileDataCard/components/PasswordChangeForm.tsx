@@ -39,7 +39,6 @@ import { type JSX, useState } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../../../../hooks'
-import classes from './PasswordChangeForm.module.css'
 import { PasswordRequirement } from './PasswordRequirement'
 
 type Props = {
@@ -104,7 +103,7 @@ export function PasswordChangeForm({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Flex direction="column" align="flex-start">
-        <Stack className={classes['password-change-form__stack']}>
+        <Stack className="mb-md w-full min-w-[60%] md:w-auto">
           <Controller
             name="verification"
             control={control}
@@ -119,9 +118,9 @@ export function PasswordChangeForm({
             )}
           />
 
-          <Box className={classes['password-change-form__error-box']}>
+          <Box>
             {formState.errors.verification && (
-              <Text className={classes['password-change-form__error-text']}>
+              <Text>
                 {formState.errors.verification?.message
                   ? String(t(formState.errors.verification.message))
                   : null}
@@ -130,7 +129,7 @@ export function PasswordChangeForm({
           </Box>
         </Stack>
 
-        <Stack className={classes['password-change-form__stack']}>
+        <Stack className="mb-md w-full min-w-[60%] md:w-auto">
           <Popover
             opened={popoverOpened}
             position="bottom"
@@ -175,9 +174,9 @@ export function PasswordChangeForm({
             </Popover.Dropdown>
           </Popover>
 
-          <Box className={classes['password-change-form__error-box']}>
+          <Box>
             {formState.errors.password && (
-              <Text className={classes['password-change-form__error-text']}>
+              <Text>
                 {formState.errors.password?.message
                   ? String(t(formState.errors.password.message))
                   : null}
@@ -186,7 +185,7 @@ export function PasswordChangeForm({
           </Box>
         </Stack>
 
-        <Stack className={classes['password-change-form__stack']}>
+        <Stack className="mb-md w-full min-w-[60%] md:w-auto">
           <Controller
             name="confirmPassword"
             control={control}
@@ -201,9 +200,9 @@ export function PasswordChangeForm({
             )}
           />
 
-          <Box className={classes['password-change-form__error-box']}>
+          <Box>
             {formState.errors.confirmPassword && (
-              <Text className={classes['password-change-form__error-text']}>
+              <Text>
                 {formState.errors.confirmPassword?.message
                   ? String(t(formState.errors.confirmPassword.message))
                   : null}
@@ -212,11 +211,7 @@ export function PasswordChangeForm({
           </Box>
         </Stack>
 
-        <Button
-          type="submit"
-          className={classes['password-change-form__button']}
-          loading={isLoading}
-        >
+        <Button type="submit" className="mt-md" loading={isLoading}>
           {t('profileView.dataCard.tabs.passwordChange.content.savePassword')}
         </Button>
       </Flex>

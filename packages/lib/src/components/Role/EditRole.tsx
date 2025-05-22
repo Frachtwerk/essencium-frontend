@@ -99,7 +99,7 @@ export function EditRole({
         onClose()
         setSelectedRights([])
       }}
-      padding="lg"
+      className="p-lg"
       size="xl"
     >
       <RoleForm

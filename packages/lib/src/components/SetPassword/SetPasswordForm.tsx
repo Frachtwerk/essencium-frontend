@@ -30,7 +30,6 @@ import type { JSX } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../hooks'
-import classes from './SetPasswordForm.module.css'
 
 type Props = {
   handleSetPassword: (password: SetPasswordInput['password']) => void
@@ -49,7 +48,7 @@ export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Stack gap="xs">
+      <Stack className="gap-xs">
         <Controller
           name="password"
           control={control}
@@ -60,16 +59,15 @@ export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
               label={t('setPasswordView.form.newPassword')}
               withAsterisk
               classNames={{
-                root: classes['set-password-form__text-input--root'],
-                label: classes['set-password-form__text-input--label'],
+                root: 'mb-md',
               }}
             />
           )}
         />
 
-        <Box className={classes['set-password-form__error-box']}>
+        <Box>
           {formState.errors.password && (
-            <Text className={classes['set-password-form__error-text']}>
+            <Text>
               {formState.errors.password?.message
                 ? String(t(formState.errors.password.message))
                 : null}
@@ -78,7 +76,7 @@ export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
         </Box>
       </Stack>
 
-      <Stack gap="xs" className={classes['set-password-form__stack']}>
+      <Stack className="gap-xs mt-sm">
         <Controller
           name="confirmPassword"
           control={control}
@@ -89,16 +87,15 @@ export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
               label={t('setPasswordView.form.confirmPassword')}
               withAsterisk
               classNames={{
-                label: classes['set-password-form__text-input--label'],
-                root: classes['set-password-form__text-input--root'],
+                root: 'mb-md',
               }}
             />
           )}
         />
 
-        <Box className={classes['set-password-form__error-box']}>
+        <Box>
           {formState.errors.confirmPassword && (
-            <Text className={classes['set-password-form__error-text']}>
+            <Text>
               {formState.errors.confirmPassword?.message
                 ? String(t(formState.errors.confirmPassword.message))
                 : null}
@@ -107,11 +104,7 @@ export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
         </Box>
       </Stack>
 
-      <Button
-        className={classes['set-password-form__button']}
-        fullWidth
-        type="submit"
-      >
+      <Button className="mt-md" fullWidth type="submit">
         {t('setPasswordView.form.submit')}
       </Button>
     </form>

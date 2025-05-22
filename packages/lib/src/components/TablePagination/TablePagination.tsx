@@ -25,8 +25,6 @@ import { Table as TanstackTable } from '@tanstack/react-table'
 import { useTranslation } from 'next-i18next'
 import { type JSX, useEffect, useState } from 'react'
 
-import classes from './TablePagination.module.css'
-
 type CustomPaginationProps = Omit<PaginationProps, 'total'>
 
 type Props<T> = CustomPaginationProps & {
@@ -79,25 +77,17 @@ export function TablePagination<T>({
   }
 
   return (
-    <Flex
-      align="center"
-      className={classes['table-pagination__flex--margin-top']}
-    >
-      <Flex
-        align="center"
-        className={classes['table-pagination__flex--margin-right']}
-      >
+    <Flex align="center" className="mt-xs">
+      <Flex align="center" className="mr-xl">
         {!fixedTablePageSize ? (
           <>
-            <Text className={classes['table-pagination__text']}>
-              {t('table.footer.pageSize')}
-            </Text>
+            <Text className="mr-xs text-sm">{t('table.footer.pageSize')}</Text>
 
             <Select
               defaultValue={String(pageSize)}
               data={pageSizeOptions}
               aria-label={t('table.footer.pageSize') as string}
-              className={classes['table-pagination__select']}
+              className="w-[70px]"
               size="xs"
               onChange={e => {
                 if (table) table.setPageSize(Number(e))
@@ -120,12 +110,12 @@ export function TablePagination<T>({
       />
 
       <Select
-        className={classes['table-pagination__go-to']}
+        className="ml-xl"
         size="xs"
         aria-label={t('table.footer.pageGoTo') as string}
         placeholder={t('table.footer.pageGoTo') as string}
         classNames={{
-          wrapper: classes['table-pagination__go-to-wrapper'],
+          wrapper: 'w-[125px]',
         }}
         data={Array.from(
           { length: table ? table.getPageCount() : pageCount ?? 1 },
