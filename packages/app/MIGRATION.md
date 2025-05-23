@@ -2,6 +2,12 @@
 
 ## [9.X.X (XXXX-XX-XX)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.0.1)
 
+### Feat: add password strength indicator when changing a users password
+
+#### `packages/app/src/app/[locale]/(main)/admin/users/[id]/UpdateUserView.tsx`
+
+- added property `isUpdate` to UserForm to activate the hint that a User's password is being changed
+
 ### Feat: add warning when changing a users password
 
 #### `packages/app/public/locales/de/common.json` and `packages/app/public/locales/en/common.json`
