@@ -111,6 +111,7 @@ export default function UpdateUserView({
           formState={formState}
           setValue={setValue}
           isLoading={isPending}
+          isUpdate
         />
       </Card>
     </>
