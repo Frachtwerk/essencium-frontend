@@ -20,28 +20,20 @@
 'use client'
 
 import { ContactFormType } from '@frachtwerk/essencium-types'
-import {
-  Button,
-  Card,
-  Group,
-  Stack,
-  Textarea,
-  TextInput,
-  Title,
-} from '@mantine/core'
+import { Button, Card, Group, Stack, Title } from '@mantine/core'
 import { IconSend } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
 import type { JSX } from 'react'
-import { Control, Controller, FormState } from 'react-hook-form'
+import { Control } from 'react-hook-form'
 
+import { ControlledTextarea, ControlledTextInput } from '../../Form'
 import classes from './ContactForm.module.css'
 
 type Props = {
   control: Control<ContactFormType>
-  formState: FormState<ContactFormType>
 }
 
-export function ContactForm({ formState, control }: Props): JSX.Element {
+export function ContactForm({ control }: Props): JSX.Element {
   const { t } = useTranslation()
 
   return (
@@ -51,45 +43,27 @@ export function ContactForm({ formState, control }: Props): JSX.Element {
       </Title>
 
       <Stack className={classes['contact-form__stack']}>
-        <Controller
+        <ControlledTextInput
           name="subject"
           control={control}
-          render={({ field }) => (
-            <TextInput
-              {...field}
-              className={classes['contact-from__text-input']}
-              label={t('contactView.contactForm.form.subject')}
-              placeholder={String(
-                t('contactView.contactForm.form.subjectPlaceholder'),
-              )}
-              size="sm"
-              withAsterisk
-              error={
-                formState.errors?.subject?.message &&
-                t(formState.errors.subject.message)
-              }
-            />
+          className={classes['contact-from__text-input']}
+          label={t('contactView.contactForm.form.subject')}
+          placeholder={String(
+            t('contactView.contactForm.form.subjectPlaceholder'),
           )}
+          size="sm"
+          withAsterisk
         />
 
-        <Controller
+        <ControlledTextarea
           name="message"
           control={control}
-          render={({ field }) => (
-            <Textarea
-              {...field}
-              placeholder={String(
-                t('contactView.contactForm.form.messagePlaceholder'),
-              )}
-              label={t('contactView.contactForm.form.message')}
-              withAsterisk
-              rows={6}
-              error={
-                formState.errors?.message?.message &&
-                t(formState.errors.message.message)
-              }
-            />
+          placeholder={String(
+            t('contactView.contactForm.form.messagePlaceholder'),
           )}
+          label={t('contactView.contactForm.form.message')}
+          withAsterisk
+          rows={6}
         />
       </Stack>
 

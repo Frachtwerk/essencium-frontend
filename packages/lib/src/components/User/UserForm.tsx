@@ -31,11 +31,8 @@ import {
   Flex,
   Grid,
   Input,
-  MultiSelect,
   PasswordInput,
-  Select,
   Switch,
-  TextInput,
   Title,
   Tooltip,
 } from '@mantine/core'
@@ -50,7 +47,12 @@ import {
   UseFormSetValue,
 } from 'react-hook-form'
 
-import { PasswordStrengthIndicator } from '../PasswordStrengthIndicator/PasswordStrengthIndicator'
+import {
+  ControlledMultiSelect,
+  ControlledSelect,
+  ControlledTextInput,
+  InputErrorStack,
+} from '../Form'
 import classes from './UserForm.module.css'
 
 type Props = {
@@ -103,185 +105,119 @@ export function UserForm({
         ) : null}
       </Flex>
 
-      <Grid>
+      <Grid gutter="xs">
         <Grid.Col span={{ base: 12, sm: 6 }}>
-          <Controller
+          <ControlledTextInput
             name="firstName"
             control={control}
-            render={({ field }) => (
-              <TextInput
-                {...field}
-                disabled={isSso}
-                placeholder={String(
-                  t('addUpdateUserView.form.placeholder.firstName'),
-                )}
-                label={t('addUpdateUserView.form.firstName')}
-                size="sm"
-                withAsterisk
-                error={
-                  formState.errors?.firstName?.message &&
-                  t(formState.errors.firstName.message)
-                }
-              />
+            disabled={isSso}
+            placeholder={String(
+              t('addUpdateUserView.form.placeholder.firstName'),
             )}
+            label={t('addUpdateUserView.form.firstName')}
+            size="sm"
+            withAsterisk
           />
         </Grid.Col>
 
         <Grid.Col span={{ base: 12, sm: 6 }}>
-          <Controller
+          <ControlledTextInput
             name="lastName"
             control={control}
-            render={({ field }) => (
-              <TextInput
-                {...field}
-                disabled={isSso}
-                placeholder={String(
-                  t('addUpdateUserView.form.placeholder.lastName'),
-                )}
-                label={t('addUpdateUserView.form.lastName')}
-                size="sm"
-                withAsterisk
-                error={
-                  formState.errors?.lastName?.message &&
-                  t(formState.errors.lastName.message)
-                }
-              />
+            disabled={isSso}
+            placeholder={String(
+              t('addUpdateUserView.form.placeholder.lastName'),
             )}
+            label={t('addUpdateUserView.form.lastName')}
+            size="sm"
+            withAsterisk
           />
         </Grid.Col>
 
         <Grid.Col span={{ base: 12, sm: 6 }}>
-          <Controller
+          <ControlledTextInput
             name="email"
             control={control}
+            disabled={isSso}
+            placeholder={String(t('addUpdateUserView.form.placeholder.email'))}
+            label={t('addUpdateUserView.form.email')}
+            withAsterisk
+            size="sm"
+          />
+        </Grid.Col>
+
+        <Grid.Col span={{ base: 12, sm: 6 }}>
+          <Controller
+            name="password"
+            control={control}
             render={({ field }) => (
-              <TextInput
-                {...field}
-                disabled={isSso}
-                placeholder={String(
-                  t('addUpdateUserView.form.placeholder.email'),
-                )}
-                label={t('addUpdateUserView.form.email')}
-                withAsterisk
-                size="sm"
-                error={
-                  formState.errors?.email?.message &&
-                  t(formState.errors.email.message)
-                }
-              />
+              <InputErrorStack message={formState.errors?.password?.message}>
+                <Input.Label>
+                  <Flex gap={5}>
+                    {t('addUpdateUserView.form.password')}
+
+                    {isAddUserForm ? (
+                      <Tooltip
+                        label={t('addUpdateUserView.form.passwordTooltip')}
+                        position="right"
+                        withArrow
+                        multiline
+                        bg=" var(--mantine-color-gray-6)"
+                        w="250px"
+                      >
+                        <IconInfoCircle
+                          size={20}
+                          className={
+                            classes['set-password-form__password-tooltip']
+                          }
+                        />
+                      </Tooltip>
+                    ) : null}
+                  </Flex>
+                </Input.Label>
+
+                <PasswordInput
+                  {...field}
+                  disabled={isSso}
+                  placeholder={String(
+                    t('addUpdateUserView.form.placeholder.password'),
+                  )}
+                  size="sm"
+                  styles={{
+                    description: {
+                      color: 'red',
+                    },
+                  }}
+                  description={
+                    field.value
+                      ? t('addUpdateUserView.form.passwordWarning')
+                      : ''
+                  }
+                  inputWrapperOrder={['label', 'input', 'description', 'error']}
+                  error={Boolean(formState.errors?.password?.message)}
+                />
+              </InputErrorStack>
             )}
           />
         </Grid.Col>
 
         <Grid.Col span={{ base: 12, sm: 6 }}>
-          <PasswordStrengthIndicator passwordValue={passwordValue}>
-            <Controller
-              name="password"
-              control={control}
-              render={({ field }) => (
-                <>
-                  <Input.Label>
-                    <Flex gap={5}>
-                      {t('addUpdateUserView.form.password')}
-
-                      {isAddUserForm ? (
-                        <Tooltip
-                          label={t('addUpdateUserView.form.passwordTooltip')}
-                          position="right"
-                          withArrow
-                          multiline
-                          bg=" var(--mantine-color-gray-6)"
-                          w="250px"
-                        >
-                          <IconInfoCircle
-                            size={20}
-                            className={
-                              classes['set-password-form__password-tooltip']
-                            }
-                          />
-                        </Tooltip>
-                      ) : null}
-                    </Flex>
-                  </Input.Label>
-
-                  <PasswordInput
-                    {...field}
-                    onChange={event => {
-                      field.onChange(event)
-
-                      setPasswordValue(event.target.value)
-                    }}
-                    disabled={isSso}
-                    placeholder={String(
-                      t('addUpdateUserView.form.placeholder.password'),
-                    )}
-                    size="sm"
-                    styles={{
-                      description: {
-                        color: 'red',
-                      },
-                    }}
-                    description={
-                      field.value
-                        ? t('addUpdateUserView.form.passwordWarning')
-                        : ''
-                    }
-                    inputWrapperOrder={[
-                      'label',
-                      'input',
-                      'description',
-                      'error',
-                    ]}
-                    error={
-                      formState.errors?.password?.message &&
-                      t(formState.errors.password.message)
-                    }
-                  />
-                </>
-              )}
-            />
-          </PasswordStrengthIndicator>
-        </Grid.Col>
-
-        <Grid.Col span={{ base: 12, sm: 6 }}>
-          <Controller
+          <ControlledTextInput
             name="phone"
             control={control}
-            render={({ field }) => (
-              <TextInput
-                {...field}
-                placeholder={String(
-                  t('addUpdateUserView.form.placeholder.phone'),
-                )}
-                label={t('addUpdateUserView.form.phone')}
-                size="sm"
-                error={
-                  formState.errors?.phone?.message &&
-                  t(formState.errors.phone.message)
-                }
-              />
-            )}
+            placeholder={String(t('addUpdateUserView.form.placeholder.phone'))}
+            label={t('addUpdateUserView.form.phone')}
+            size="sm"
           />
         </Grid.Col>
 
         <Grid.Col span={{ base: 12, sm: 6 }}>
-          <Controller
+          <ControlledTextInput
             name="mobile"
             control={control}
-            render={({ field }) => (
-              <TextInput
-                {...field}
-                placeholder={String(
-                  t('addUpdateUserView.form.placeholder.mobile'),
-                )}
-                label={t('addUpdateUserView.form.mobile')}
-                size="sm"
-                error={
-                  formState.errors?.mobile?.message &&
-                  t(formState.errors.mobile.message)
-                }
-              />
-            )}
+            placeholder={String(t('addUpdateUserView.form.placeholder.mobile'))}
+            label={t('addUpdateUserView.form.mobile')}
+            size="sm"
           />
         </Grid.Col>
       </Grid>
@@ -309,48 +245,29 @@ export function UserForm({
         </Grid.Col>
 
         <Grid.Col span={{ base: 12, sm: 6 }}>
-          <Controller
+          <ControlledSelect
             name="locale"
             control={control}
-            render={({ field }) => (
-              <Select
-                {...field}
-                withAsterisk
-                allowDeselect={false}
-                label={t('addUpdateUserView.form.language')}
-                placeholder={String(t('addUpdateUserView.form.language'))}
-                data={[
-                  { value: 'de', label: 'Deutsch' },
-                  { value: 'en', label: 'English' },
-                ]}
-                error={
-                  formState.errors?.locale?.message &&
-                  t(formState.errors.locale.message)
-                }
-              />
-            )}
+            withAsterisk
+            allowDeselect={false}
+            label={t('addUpdateUserView.form.language')}
+            placeholder={String(t('addUpdateUserView.form.language'))}
+            data={[
+              { value: 'de', label: 'Deutsch' },
+              { value: 'en', label: 'English' },
+            ]}
           />
         </Grid.Col>
 
         <Grid.Col span={{ base: 12, sm: 6 }}>
-          <Controller
+          <ControlledMultiSelect
             name="roles"
             control={control}
-            render={({ field }) => (
-              <MultiSelect
-                {...field}
-                disabled={isSso && !rolesEnabledForSsoUser}
-                label={t('addUpdateUserView.form.role')}
-                data={rolesData}
-                withAsterisk
-                searchable
-                hidePickedOptions
-                error={
-                  formState.errors?.roles?.message &&
-                  t(formState.errors.roles.message)
-                }
-              />
-            )}
+            disabled={isSso && !rolesEnabledForSsoUser}
+            label={t('addUpdateUserView.form.role')}
+            data={rolesData}
+            searchable
+            hidePickedOptions
           />
         </Grid.Col>
       </Grid>

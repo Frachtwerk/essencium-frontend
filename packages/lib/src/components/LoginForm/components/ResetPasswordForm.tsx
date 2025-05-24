@@ -20,12 +20,12 @@
 'use client'
 
 import { ResetPassword, resetPasswordSchema } from '@frachtwerk/essencium-types'
-import { Button, Container, Group, Text, TextInput } from '@mantine/core'
+import { Button, Container, Group, Text } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
 import { Dispatch, type JSX, SetStateAction } from 'react'
-import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../../hooks'
+import { ControlledTextInput } from '../../Form'
 import classes from './ResetPasswordForm.module.css'
 
 type Props = {
@@ -39,7 +39,7 @@ export function ResetPasswordForm({
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
-  const { handleSubmit, control, formState } = useZodForm({
+  const { handleSubmit, control } = useZodForm({
     schema: resetPasswordSchema,
     defaultValues: {
       email: '',
@@ -56,24 +56,13 @@ export function ResetPasswordForm({
           {t('loginView.resetPassword.form.description')}
         </Text>
 
-        <Controller
+        <ControlledTextInput
           name="email"
           control={control}
-          render={({ field }) => (
-            <TextInput
-              {...field}
-              placeholder={String(
-                t('loginView.resetPassword.form.placeholder'),
-              )}
-              label={String(t('loginView.resetPassword.form.label'))}
-              withAsterisk
-              className={classes['reset-password-form__text-input']}
-              error={
-                formState.errors?.email?.message &&
-                t(formState.errors.email.message)
-              }
-            />
-          )}
+          placeholder={String(t('loginView.resetPassword.form.placeholder'))}
+          label={String(t('loginView.resetPassword.form.label'))}
+          withAsterisk
+          className={classes['reset-password-form__text-input']}
         />
 
         <Group>

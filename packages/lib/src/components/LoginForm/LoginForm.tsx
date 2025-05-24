@@ -31,15 +31,13 @@ import {
   Center,
   Group,
   Loader,
-  PasswordInput,
-  TextInput,
   Transition,
 } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
 import { Dispatch, type JSX, SetStateAction } from 'react'
-import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../hooks'
+import { ControlledPasswordInput, ControlledTextInput } from '../Form'
 import { ResetPasswordForm, ResetPasswordSuccessMessage } from './components'
 import classes from './LoginForm.module.css'
 
@@ -62,7 +60,7 @@ export function LoginForm({
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
-  const { handleSubmit, control, formState } = useZodForm({
+  const { handleSubmit, control } = useZodForm({
     schema: loginFormSchema,
     defaultValues: {
       email: '',
@@ -85,49 +83,29 @@ export function LoginForm({
       >
         {styles => (
           <div style={styles}>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <Controller
+            <form onSubmit={handleSubmit(onSubmit)} noValidate>
+              <ControlledTextInput
                 name="email"
                 control={control}
-                render={({ field }) => (
-                  <TextInput
-                    {...field}
-                    placeholder={String(t('loginView.form.emailPlaceholder'))}
-                    label={t('loginView.form.email')}
-                    required
-                    classNames={{
-                      root: classes['login-form__input-label--email'],
-                    }}
-                    withAsterisk
-                    error={
-                      formState.errors?.email?.message &&
-                      t(formState.errors.email.message)
-                    }
-                  />
-                )}
+                placeholder={String(t('loginView.form.emailPlaceholder'))}
+                label={t('loginView.form.email')}
+                required
+                classNames={{
+                  root: classes['login-form__input-label--email'],
+                }}
+                withAsterisk
               />
 
-              <Controller
+              <ControlledPasswordInput
                 name="password"
                 control={control}
-                render={({ field }) => (
-                  <PasswordInput
-                    {...field}
-                    placeholder={String(
-                      t('loginView.form.passwordPlaceholder'),
-                    )}
-                    label={t('loginView.form.password')}
-                    required
-                    classNames={{
-                      root: classes['login-form__input-label--password'],
-                    }}
-                    withAsterisk
-                    error={
-                      formState.errors?.password?.message &&
-                      t(formState.errors.password.message)
-                    }
-                  />
-                )}
+                placeholder={String(t('loginView.form.passwordPlaceholder'))}
+                label={t('loginView.form.password')}
+                required
+                classNames={{
+                  root: classes['login-form__input-label--password'],
+                }}
+                withAsterisk
               />
 
               <Group justify="apart" className={classes['login-form__group']}>
