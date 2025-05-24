@@ -69,7 +69,6 @@ export function EditRole({
   const {
     handleSubmit,
     control,
-    formState,
     reset: resetAndFillForm,
   } = useZodForm({
     schema: roleUpdateSchema,
@@ -108,7 +107,6 @@ export function EditRole({
         onSubmit={onSubmit}
         toggleRight={toggleRight}
         control={control}
-        formState={formState}
         onClose={() => {
           onClose()
           setSelectedRights([])

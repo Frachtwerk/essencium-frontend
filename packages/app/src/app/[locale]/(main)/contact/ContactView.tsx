@@ -37,7 +37,6 @@ export default function ContactView(): JSX.Element {
   const {
     handleSubmit,
     control,
-    formState,
     reset: resetAndPrefillForm,
   } = useZodForm({
     schema: contactFormSchema,
@@ -66,11 +65,7 @@ export default function ContactView(): JSX.Element {
 
   return (
     <form data-testid="form" onSubmit={handleSubmit(onSubmit)}>
-      <Contact
-        control={control}
-        formState={formState}
-        contactPerson={contactPerson}
-      />
+      <Contact control={control} contactPerson={contactPerson} />
     </form>
   )
 }
