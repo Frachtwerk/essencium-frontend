@@ -48,17 +48,12 @@ describe('Contact', () => {
       instagramUrl: 'https://www.instagram.com/frachtwerk.de/',
     }
 
-    const { control, formState } = result.current
+    const { control } = result.current
 
     render(
       <MantineProvider>
         <AppShell>
-          <Contact
-            control={control}
-            formState={formState}
-            contactPerson={examplePerson}
-          />
-          ,
+          <Contact control={control} contactPerson={examplePerson} />,
         </AppShell>
       </MantineProvider>,
     )
