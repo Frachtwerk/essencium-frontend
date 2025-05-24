@@ -24,12 +24,12 @@ import {
   UserUpdate,
   userUpdateSchema,
 } from '@frachtwerk/essencium-types'
-import { Button, Grid, Select, TextInput } from '@mantine/core'
+import { Button, Grid } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
 import { type JSX, useEffect } from 'react'
-import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../../../../hooks'
+import { ControlledSelect, ControlledTextInput } from '../../../../Form'
 import classes from './PersonalDataForm.module.css'
 
 type Props = {
@@ -50,7 +50,6 @@ export function PersonalDataForm({
   const {
     handleSubmit,
     control,
-    formState,
     reset: resetAndFillForm,
   } = useZodForm({
     schema: userUpdateSchema,
@@ -85,151 +84,85 @@ export function PersonalDataForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Grid>
+      <Grid gutter="xs">
         <Grid.Col span={{ base: 12, md: 6 }}>
-          <Controller
+          <ControlledTextInput
             name="firstName"
             control={control}
-            render={({ field }) => (
-              <TextInput
-                {...field}
-                disabled={isSso}
-                placeholder={String(
-                  t(
-                    'profileView.dataCard.tabs.personalData.placeholder.firstName',
-                  ),
-                )}
-                label={t(
-                  'profileView.dataCard.tabs.personalData.label.firstName',
-                )}
-                size="sm"
-                error={
-                  formState.errors?.firstName?.message &&
-                  t(formState.errors.firstName.message)
-                }
-              />
+            disabled={isSso}
+            placeholder={String(
+              t('profileView.dataCard.tabs.personalData.placeholder.firstName'),
             )}
+            label={t('profileView.dataCard.tabs.personalData.label.firstName')}
+            size="sm"
           />
         </Grid.Col>
 
         <Grid.Col span={{ base: 12, md: 6 }}>
-          <Controller
+          <ControlledTextInput
             name="lastName"
             control={control}
-            render={({ field }) => (
-              <TextInput
-                {...field}
-                disabled={isSso}
-                placeholder={String(
-                  t(
-                    'profileView.dataCard.tabs.personalData.placeholder.lastName',
-                  ),
-                )}
-                label={t(
-                  'profileView.dataCard.tabs.personalData.label.lastName',
-                )}
-                size="sm"
-                error={
-                  formState.errors?.lastName?.message &&
-                  t(formState.errors.lastName.message)
-                }
-              />
+            disabled={isSso}
+            placeholder={String(
+              t('profileView.dataCard.tabs.personalData.placeholder.lastName'),
             )}
+            label={t('profileView.dataCard.tabs.personalData.label.lastName')}
+            size="sm"
           />
         </Grid.Col>
 
         <Grid.Col span={{ base: 12, md: 6 }}>
-          <Controller
+          <ControlledTextInput
             name="phone"
             control={control}
-            render={({ field }) => (
-              <TextInput
-                {...field}
-                placeholder={String(
-                  t('profileView.dataCard.tabs.personalData.placeholder.phone'),
-                )}
-                label={t('profileView.dataCard.tabs.personalData.label.phone')}
-                size="sm"
-                error={
-                  formState.errors?.phone?.message &&
-                  t(formState.errors.phone.message)
-                }
-              />
+            placeholder={String(
+              t('profileView.dataCard.tabs.personalData.placeholder.phone'),
             )}
+            label={t('profileView.dataCard.tabs.personalData.label.phone')}
+            size="sm"
           />
         </Grid.Col>
 
         <Grid.Col span={{ base: 12, md: 6 }}>
-          <Controller
+          <ControlledTextInput
             name="mobile"
             control={control}
-            render={({ field }) => (
-              <TextInput
-                {...field}
-                placeholder={String(
-                  t(
-                    'profileView.dataCard.tabs.personalData.placeholder.mobile',
-                  ),
-                )}
-                label={t('profileView.dataCard.tabs.personalData.label.mobile')}
-                size="sm"
-                error={
-                  formState.errors?.mobile?.message &&
-                  t(formState.errors.mobile.message)
-                }
-              />
+            placeholder={String(
+              t('profileView.dataCard.tabs.personalData.placeholder.mobile'),
             )}
+            label={t('profileView.dataCard.tabs.personalData.label.mobile')}
+            size="sm"
           />
         </Grid.Col>
 
         <Grid.Col span={{ base: 12, sm: 6 }}>
-          <Controller
+          <ControlledTextInput
             name="email"
             control={control}
-            render={({ field }) => (
-              <TextInput
-                {...field}
-                disabled={isSso}
-                placeholder={String(
-                  t('profileView.dataCard.tabs.personalData.placeholder.email'),
-                )}
-                label={t('profileView.dataCard.tabs.personalData.label.email')}
-                withAsterisk
-                size="sm"
-                error={
-                  formState.errors?.email?.message &&
-                  t(formState.errors.email.message)
-                }
-              />
+            disabled={isSso}
+            placeholder={String(
+              t('profileView.dataCard.tabs.personalData.placeholder.email'),
             )}
+            label={t('profileView.dataCard.tabs.personalData.label.email')}
+            withAsterisk
+            size="sm"
           />
         </Grid.Col>
 
         <Grid.Col span={{ base: 12, sm: 6 }}>
-          <Controller
+          <ControlledSelect
             name="locale"
             control={control}
-            render={({ field }) => (
-              <Select
-                {...field}
-                radius="sm"
-                allowDeselect={false}
-                label={t(
-                  'profileView.dataCard.tabs.personalData.label.language',
-                )}
-                placeholder={String(
-                  t('profileView.dataCard.tabs.personalData.label.language'),
-                )}
-                data={[
-                  { value: 'de', label: 'Deutsch' },
-                  { value: 'en', label: 'English' },
-                ]}
-                error={
-                  formState.errors?.locale?.message &&
-                  t(formState.errors.locale.message)
-                }
-              />
+            radius="sm"
+            allowDeselect={false}
+            label={t('profileView.dataCard.tabs.personalData.label.language')}
+            placeholder={String(
+              t('profileView.dataCard.tabs.personalData.label.language'),
             )}
+            data={[
+              { value: 'de', label: 'Deutsch' },
+              { value: 'en', label: 'English' },
+            ]}
           />
         </Grid.Col>
       </Grid>

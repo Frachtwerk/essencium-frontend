@@ -17,19 +17,21 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { hasRequiredRights } from '@frachtwerk/essencium-lib'
+import {
+  ControlledTextInput,
+  hasRequiredRights,
+} from '@frachtwerk/essencium-lib'
 import {
   changeTranslationSchema,
   ChangeTranslationSchemaFormType,
   RIGHTS,
   TranslationInput,
 } from '@frachtwerk/essencium-types'
-import { ActionIcon, Group, Stack, TextInput } from '@mantine/core'
+import { ActionIcon, Group, Stack } from '@mantine/core'
 import { IconBackspace, IconDeviceFloppy } from '@tabler/icons-react'
 import { useAtomValue } from 'jotai'
 import type { JSX } from 'react'
 import { useEffect } from 'react'
-import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import { userRightsAtom } from '@/api'
@@ -94,22 +96,17 @@ export function TranslationChangeForm({
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack>
         <Group>
-          <Controller
+          <ControlledTextInput
             name="translation"
             control={control}
-            render={({ field }) => (
-              <TextInput
-                {...field}
-                aria-label={t('translationView.form.changeTranslation')}
-                withAsterisk
-                w="40%"
-                variant="unstyled"
-                disabled={!userRightUpdate}
-                classNames={{
-                  input: classes['translation-change-form__input'],
-                }}
-              />
-            )}
+            aria-label={t('translationView.form.changeTranslation')}
+            withAsterisk
+            w="40%"
+            variant="unstyled"
+            disabled={!userRightUpdate}
+            classNames={{
+              input: classes['translation-change-form__input'],
+            }}
           />
 
           {userRightUpdate ? (

@@ -36,7 +36,6 @@ import {
   Group,
   Stack,
   Text,
-  Textarea,
   ThemeIcon,
   Title,
   Tooltip,
@@ -57,9 +56,9 @@ import html2canvas from 'html2canvas-pro'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 import { type JSX, ReactNode, useEffect, useState } from 'react'
-import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../hooks'
+import { ControlledTextarea } from '../Form'
 import { LoadingSpinner } from '../LoadingSpinner'
 import classes from './FeedbackWidget.module.css'
 
@@ -111,7 +110,7 @@ export function FeedbackWidget({
 
   const pathname = usePathname()
 
-  const { handleSubmit, control, formState, reset, setValue } = useZodForm({
+  const { handleSubmit, control, reset, setValue } = useZodForm({
     schema: feedbackFormSchema,
     defaultValues: {
       message: '',
@@ -384,22 +383,13 @@ export function FeedbackWidget({
 
                     <form onSubmit={handleSubmit(onSubmit)}>
                       <Stack>
-                        <Controller
+                        <ControlledTextarea
                           name="message"
                           control={control}
-                          render={({ field }) => (
-                            <Textarea
-                              {...field}
-                              className={classes['feedback-widget__textarea']}
-                              placeholder={
-                                t('feedbackWidget.placeholder') as string
-                              }
-                              error={
-                                formState.errors?.message?.message &&
-                                t(formState.errors.message.message)
-                              }
-                            />
-                          )}
+                          className={classes['feedback-widget__textarea']}
+                          placeholder={
+                            t('feedbackWidget.placeholder') as string
+                          }
                         />
 
                         <Flex gap="xs">
