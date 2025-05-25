@@ -95,6 +95,7 @@ export function PersonalDataForm({
             )}
             label={t('profileView.dataCard.tabs.personalData.label.firstName')}
             size="sm"
+            withAsterisk
           />
         </Grid.Col>
 
@@ -108,6 +109,7 @@ export function PersonalDataForm({
             )}
             label={t('profileView.dataCard.tabs.personalData.label.lastName')}
             size="sm"
+            withAsterisk
           />
         </Grid.Col>
 
@@ -163,6 +165,7 @@ export function PersonalDataForm({
               { value: 'de', label: 'Deutsch' },
               { value: 'en', label: 'English' },
             ]}
+            withAsterisk
           />
         </Grid.Col>
       </Grid>
