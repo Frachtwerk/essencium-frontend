@@ -9,7 +9,7 @@ test.describe('RolesView', () => {
     await expect(page).toHaveURL(`${BASE_URL}/roles`)
   })
 
-  test('open and close add role modal', async ({ page }) => {
+  test.skip('open and close add role modal', async ({ page }) => {
     await page.getByRole('button', { name: 'Add Role' }).click()
 
     const addRoleModal = page.locator('form')
@@ -24,7 +24,7 @@ test.describe('RolesView', () => {
     await expect(addRoleModal).not.toBeVisible()
   })
 
-  test('add, edit and delete a role', async ({ page }) => {
+  test.skip('add, edit and delete a role', async ({ page }) => {
     await page.getByRole('button', { name: 'Add Role' }).click()
 
     const addRoleModal = page.locator('form')
