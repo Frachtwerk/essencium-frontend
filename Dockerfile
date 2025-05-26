@@ -16,7 +16,9 @@ COPY packages/app/package.json ./packages/app/
 COPY packages/lib/package.json ./packages/lib/
 COPY packages/types/package.json ./packages/types/
 
-RUN corepack enable pnpm && pnpm i --frozen-lockfile;
+RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
+    corepack enable pnpm && \
+    pnpm i --frozen-lockfile --store-dir=/root/.local/share/pnpm/store;
 
 # Rebuild the source code only when needed
 FROM base AS builder
