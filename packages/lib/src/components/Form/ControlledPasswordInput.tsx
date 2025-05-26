@@ -21,7 +21,6 @@ import { PasswordInput, PasswordInputProps } from '@mantine/core'
 import { type JSX } from 'react'
 import { Control, Controller, FieldPath, FieldValues } from 'react-hook-form'
 
-import { useFormStateErrorMessage } from '../../hooks'
 import { InputErrorStack } from './InputErrorStack'
 
 type ControlledPasswordInputProps<
@@ -40,18 +39,25 @@ export function ControlledPasswordInput<
   control,
   ...props
 }: ControlledPasswordInputProps<TFieldValues, TName>): JSX.Element {
-  const { message } = useFormStateErrorMessage({
-    control,
-    name,
-  })
-
   return (
     <Controller
       name={name}
       control={control}
-      render={({ field }) => (
-        <InputErrorStack message={message}>
-          <PasswordInput {...field} error={Boolean(message)} {...props} />
+      render={({ field, fieldState }) => (
+        <InputErrorStack message={fieldState.error?.message}>
+          <PasswordInput
+            {...props}
+            {...field}
+            onChange={event => {
+              field.onChange(event)
+              props.onChange?.(event)
+            }}
+            onBlur={event => {
+              field.onBlur()
+              props.onBlur?.(event)
+            }}
+            error={fieldState.invalid}
+          />
         </InputErrorStack>
       )}
     />

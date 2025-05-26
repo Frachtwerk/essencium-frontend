@@ -21,7 +21,6 @@ import { Select, SelectProps } from '@mantine/core'
 import { type JSX } from 'react'
 import { Control, Controller, FieldPath, FieldValues } from 'react-hook-form'
 
-import { useFormStateErrorMessage } from '../../hooks'
 import { InputErrorStack } from './InputErrorStack'
 
 type ControlledSelectProps<
@@ -40,18 +39,25 @@ export function ControlledSelect<
   control,
   ...props
 }: ControlledSelectProps<TFieldValues, TName>): JSX.Element {
-  const { message } = useFormStateErrorMessage({
-    control,
-    name,
-  })
-
   return (
     <Controller
       name={name}
       control={control}
-      render={({ field }) => (
-        <InputErrorStack message={message}>
-          <Select {...field} error={Boolean(message)} {...props} />
+      render={({ field, fieldState }) => (
+        <InputErrorStack message={fieldState.error?.message}>
+          <Select
+            {...props}
+            {...field}
+            onChange={(value, option) => {
+              field.onChange(value)
+              props.onChange?.(value, option)
+            }}
+            onBlur={event => {
+              field.onBlur()
+              props.onBlur?.(event)
+            }}
+            error={fieldState.invalid}
+          />
         </InputErrorStack>
       )}
     />

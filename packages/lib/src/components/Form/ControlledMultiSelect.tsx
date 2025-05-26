@@ -21,7 +21,6 @@ import { MultiSelect, MultiSelectProps } from '@mantine/core'
 import { type JSX } from 'react'
 import { Control, Controller, FieldPath, FieldValues } from 'react-hook-form'
 
-import { useFormStateErrorMessage } from '../../hooks'
 import { InputErrorStack } from './InputErrorStack'
 
 type ControlledMultiSelectProps<
@@ -40,18 +39,25 @@ export function ControlledMultiSelect<
   control,
   ...props
 }: ControlledMultiSelectProps<TFieldValues, TName>): JSX.Element {
-  const { message } = useFormStateErrorMessage({
-    control,
-    name,
-  })
-
   return (
     <Controller
       name={name}
       control={control}
-      render={({ field }) => (
-        <InputErrorStack message={message}>
-          <MultiSelect {...field} error={Boolean(message)} {...props} />
+      render={({ field, fieldState }) => (
+        <InputErrorStack message={fieldState.error?.message}>
+          <MultiSelect
+            {...props}
+            {...field}
+            onChange={value => {
+              field.onChange(value)
+              props.onChange?.(value)
+            }}
+            onBlur={event => {
+              field.onBlur()
+              props.onBlur?.(event)
+            }}
+            error={fieldState.invalid}
+          />
         </InputErrorStack>
       )}
     />

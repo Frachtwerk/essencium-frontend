@@ -21,8 +21,6 @@ import { Switch, SwitchProps } from '@mantine/core'
 import { type JSX } from 'react'
 import { Control, Controller, FieldPath, FieldValues } from 'react-hook-form'
 
-import { useFormStateErrorMessage } from '../../hooks'
-
 type ControlledSwitchProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
@@ -39,23 +37,26 @@ export function ControlledSwitch<
   control,
   ...props
 }: ControlledSwitchProps<TFieldValues, TName>): JSX.Element {
-  const { message } = useFormStateErrorMessage({
-    control,
-    name,
-  })
-
   return (
     <Controller
       name={name}
       control={control}
-      render={({ field }) => (
+      render={({ field, fieldState }) => (
         <Switch
           h="2.875rem"
-          {...field}
           {...props}
+          {...field}
+          onChange={event => {
+            field.onChange(event)
+            props.onChange?.(event)
+          }}
+          onBlur={event => {
+            field.onBlur()
+            props.onBlur?.(event)
+          }}
           checked={field.value}
           value={String(field.value)}
-          error={message}
+          error={fieldState.error?.message}
         />
       )}
     />
