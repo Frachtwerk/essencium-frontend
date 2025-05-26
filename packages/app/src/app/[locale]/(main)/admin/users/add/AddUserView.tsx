@@ -38,7 +38,7 @@ export default function AddUserView(): JSX.Element {
 
   const { t } = useTranslation()
 
-  const { handleSubmit, control, formState, setValue } = useZodForm({
+  const { handleSubmit, control, setValue } = useZodForm({
     schema: userInputSchema,
     defaultValues: FORM_DEFAULTS_USERS_VIEW,
   })
@@ -80,7 +80,6 @@ export default function AddUserView(): JSX.Element {
           roles={roles}
           onSubmit={onSubmit}
           control={control}
-          formState={formState}
           setValue={setValue}
           isLoading={isPending}
         />

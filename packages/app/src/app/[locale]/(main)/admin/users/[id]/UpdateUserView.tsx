@@ -49,7 +49,6 @@ export default function UpdateUserView({
   const {
     handleSubmit,
     control,
-    formState,
     setValue,
     reset: resetAndFillForm,
   } = useZodForm({
@@ -108,7 +107,6 @@ export default function UpdateUserView({
           roles={roles}
           onSubmit={onSubmit}
           control={control}
-          formState={formState}
           setValue={setValue}
           isLoading={isPending}
         />

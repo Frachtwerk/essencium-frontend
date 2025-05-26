@@ -40,12 +40,7 @@ import { IconInfoCircle } from '@tabler/icons-react'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 import { type JSX, useState } from 'react'
-import {
-  Control,
-  Controller,
-  FormState,
-  UseFormSetValue,
-} from 'react-hook-form'
+import { Control, Controller, UseFormSetValue } from 'react-hook-form'
 
 import {
   ControlledMultiSelect,
@@ -61,7 +56,6 @@ type Props = {
   title: string
   roles: RoleOutput[]
   control: Control<UserInput | UserUpdate>
-  formState: FormState<UserInput | UserUpdate>
   setValue: UseFormSetValue<UserInput | UserUpdate>
   onSubmit: () => void
   isLoading: boolean
