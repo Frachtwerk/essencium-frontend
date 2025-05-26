@@ -24,13 +24,12 @@ import {
   passwordChangeSchemaAdmin,
   passwordChangeSchemaUser,
 } from '@frachtwerk/essencium-types'
-import { Button, PasswordInput, Popover, Stack } from '@mantine/core'
+import { Button, Popover, Stack } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
 import { type JSX, useState } from 'react'
-import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../../../../hooks'
-import { ControlledPasswordInput, InputErrorStack } from '../../../../Form'
+import { ControlledPasswordInput } from '../../../../Form'
 import classes from './PasswordChangeForm.module.css'
 
 type Props = {
@@ -51,7 +50,27 @@ export function PasswordChangeForm({
 
   const [passwordValue, setPasswordValue] = useState<string | null>(null)
 
-  const { handleSubmit, control, formState } = useZodForm({
+  const passwordRequirements: PasswordRequirementType = [
+    ...Object.entries(PasswordStrengthRules).map(([key, value]) => {
+      return {
+        id: key,
+        requirement: value,
+        label: t(
+          `profileView.dataCard.tabs.passwordChange.passwordStrength.${key}`,
+        ),
+      }
+    }),
+    {
+      id: 'length',
+      requirement: isAdmin ? /.{20,}/ : /.{12,}/,
+      label: t(
+        'profileView.dataCard.tabs.passwordChange.passwordStrength.length',
+        { passwordLength: isAdmin ? 20 : 12 },
+      ),
+    },
+  ]
+
+  const { handleSubmit, control } = useZodForm({
     schema: isAdmin ? passwordChangeSchemaAdmin : passwordChangeSchemaUser,
     defaultValues: {
       verification: '',
@@ -81,35 +100,23 @@ export function PasswordChangeForm({
           position="bottom"
           width="target"
           transitionProps={{ transition: 'pop' }}
+          offset={-15}
         >
           <Popover.Target>
             <div
               onFocusCapture={() => setPopoverOpened(true)}
               onBlurCapture={() => setPopoverOpened(false)}
             >
-              <Controller
+              <ControlledPasswordInput
                 name="password"
                 control={control}
-                render={({ field }) => (
-                  <InputErrorStack
-                    message={formState.errors?.password?.message}
-                  >
-                    <PasswordInput
-                      {...field}
-                      onChange={event => {
-                        field.onChange(event)
-
-                        setPasswordValue(event.target.value)
-                      }}
-                      value={field.value || ''}
-                      label={t(
-                        'profileView.dataCard.tabs.passwordChange.content.newPassword',
-                      )}
-                      withAsterisk
-                      error={Boolean(formState.errors?.password?.message)}
-                    />
-                  </InputErrorStack>
+                onChange={event => {
+                  setPasswordValue(event.target.value)
+                }}
+                label={t(
+                  'profileView.dataCard.tabs.passwordChange.content.newPassword',
                 )}
+                withAsterisk
               />
             </div>
           </Popover.Target>
