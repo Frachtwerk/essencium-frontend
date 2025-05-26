@@ -53,6 +53,7 @@ import {
   ControlledTextInput,
   InputErrorStack,
 } from '../Form'
+import { PasswordStrengthIndicator } from '../PasswordStrengthIndicator/PasswordStrengthIndicator'
 import classes from './UserForm.module.css'
 
 type Props = {
@@ -65,7 +66,6 @@ type Props = {
   onSubmit: () => void
   isLoading: boolean
   rolesEnabledForSsoUser?: boolean
-  isUpdate?: boolean
 }
 
 export function UserForm({
@@ -73,11 +73,9 @@ export function UserForm({
   title,
   roles,
   control,
-  formState,
   onSubmit,
   isLoading,
   rolesEnabledForSsoUser = false,
-  isUpdate = false,
 }: Props): JSX.Element {
   const isSso = Boolean(ssoProvider && ssoProvider !== UserSource.LOCAL)
 
@@ -150,54 +148,61 @@ export function UserForm({
           <Controller
             name="password"
             control={control}
-            render={({ field }) => (
-              <InputErrorStack message={formState.errors?.password?.message}>
-                <Input.Label>
-                  <Flex gap={5}>
-                    {t('addUpdateUserView.form.password')}
+            render={({ field, fieldState }) => {
+              let message = fieldState.error?.message
 
-                    {isAddUserForm ? (
-                      <Tooltip
-                        label={t('addUpdateUserView.form.passwordTooltip')}
-                        position="right"
-                        withArrow
-                        multiline
-                        bg=" var(--mantine-color-gray-6)"
-                        w="250px"
-                      >
-                        <IconInfoCircle
-                          size={20}
-                          className={
-                            classes['set-password-form__password-tooltip']
-                          }
-                        />
-                      </Tooltip>
-                    ) : null}
-                  </Flex>
-                </Input.Label>
+              if (!isAddUserForm && !message) {
+                message = 'addUpdateUserView.form.passwordWarning'
+              }
 
-                <PasswordInput
-                  {...field}
-                  disabled={isSso}
-                  placeholder={String(
-                    t('addUpdateUserView.form.placeholder.password'),
-                  )}
-                  size="sm"
-                  styles={{
-                    description: {
-                      color: 'red',
-                    },
-                  }}
-                  description={
-                    field.value
-                      ? t('addUpdateUserView.form.passwordWarning')
-                      : ''
-                  }
-                  inputWrapperOrder={['label', 'input', 'description', 'error']}
-                  error={Boolean(formState.errors?.password?.message)}
-                />
-              </InputErrorStack>
-            )}
+              return (
+                <InputErrorStack message={message}>
+                  <Input.Label>
+                    <Flex gap={5}>
+                      {t('addUpdateUserView.form.password')}
+
+                      {isAddUserForm ? (
+                        <Tooltip
+                          label={t('addUpdateUserView.form.passwordTooltip')}
+                          position="right"
+                          withArrow
+                          multiline
+                          bg=" var(--mantine-color-gray-6)"
+                          w="250px"
+                        >
+                          <IconInfoCircle
+                            size={20}
+                            className={
+                              classes['set-password-form__password-tooltip']
+                            }
+                          />
+                        </Tooltip>
+                      ) : null}
+                    </Flex>
+                  </Input.Label>
+
+                  <PasswordStrengthIndicator
+                    passwordValue={passwordValue}
+                    offset={3}
+                  >
+                    <PasswordInput
+                      {...field}
+                      onChange={event => {
+                        field.onChange(event)
+
+                        setPasswordValue(event.target.value)
+                      }}
+                      disabled={isSso}
+                      placeholder={String(
+                        t('addUpdateUserView.form.placeholder.password'),
+                      )}
+                      size="sm"
+                      error={fieldState.invalid}
+                    />
+                  </PasswordStrengthIndicator>
+                </InputErrorStack>
+              )
+            }}
           />
         </Grid.Col>
 

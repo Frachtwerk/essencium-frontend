@@ -24,12 +24,13 @@ import {
   passwordChangeSchemaAdmin,
   passwordChangeSchemaUser,
 } from '@frachtwerk/essencium-types'
-import { Button, Popover, Stack } from '@mantine/core'
+import { Button, Stack } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
 import { type JSX, useState } from 'react'
 
 import { useZodForm } from '../../../../../hooks'
 import { ControlledPasswordInput } from '../../../../Form'
+import { PasswordStrengthIndicator } from '../../../../PasswordStrengthIndicator/PasswordStrengthIndicator'
 import classes from './PasswordChangeForm.module.css'
 
 type Props = {
@@ -49,26 +50,6 @@ export function PasswordChangeForm({
   const { t } = useTranslation()
 
   const [passwordValue, setPasswordValue] = useState<string | null>(null)
-
-  const passwordRequirements: PasswordRequirementType = [
-    ...Object.entries(PasswordStrengthRules).map(([key, value]) => {
-      return {
-        id: key,
-        requirement: value,
-        label: t(
-          `profileView.dataCard.tabs.passwordChange.passwordStrength.${key}`,
-        ),
-      }
-    }),
-    {
-      id: 'length',
-      requirement: isAdmin ? /.{20,}/ : /.{12,}/,
-      label: t(
-        'profileView.dataCard.tabs.passwordChange.passwordStrength.length',
-        { passwordLength: isAdmin ? 20 : 12 },
-      ),
-    },
-  ]
 
   const { handleSubmit, control } = useZodForm({
     schema: isAdmin ? passwordChangeSchemaAdmin : passwordChangeSchemaUser,
@@ -95,42 +76,23 @@ export function PasswordChangeForm({
           withAsterisk
         />
 
-        <Popover
-          opened={popoverOpened}
-          position="bottom"
-          width="target"
-          transitionProps={{ transition: 'pop' }}
+        <PasswordStrengthIndicator
+          passwordValue={passwordValue}
+          isAdmin={isAdmin}
           offset={-15}
         >
-          <Popover.Target>
-            <div
-              onFocusCapture={() => setPopoverOpened(true)}
-              onBlurCapture={() => setPopoverOpened(false)}
-            >
-              <ControlledPasswordInput
-                name="password"
-                control={control}
-                onChange={event => {
-                  setPasswordValue(event.target.value)
-                }}
-                label={t(
-                  'profileView.dataCard.tabs.passwordChange.content.newPassword',
-                )}
-                withAsterisk
-              />
-            </div>
-          </Popover.Target>
-
-          <Popover.Dropdown>
-            {passwordRequirements.map(requirement => (
-              <PasswordRequirement
-                key={requirement.id}
-                label={requirement.label}
-                meets={requirement.requirement.test(passwordValue || '')}
-              />
-            ))}
-          </Popover.Dropdown>
-        </Popover>
+          <ControlledPasswordInput
+            name="password"
+            control={control}
+            onChange={event => {
+              setPasswordValue(event.target.value)
+            }}
+            label={t(
+              'profileView.dataCard.tabs.passwordChange.content.newPassword',
+            )}
+            withAsterisk
+          />
+        </PasswordStrengthIndicator>
 
         <ControlledPasswordInput
           name="confirmPassword"
