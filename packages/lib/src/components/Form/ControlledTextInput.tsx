@@ -46,6 +46,7 @@ export function ControlledTextInput<
       render={({ field, fieldState }) => (
         <InputErrorStack message={fieldState.error?.message}>
           <TextInput
+            {...props}
             {...field}
             onChange={event => {
               field.onChange(event)
@@ -56,7 +57,6 @@ export function ControlledTextInput<
               props.onBlur?.(event)
             }}
             error={fieldState.invalid}
-            {...props}
           />
         </InputErrorStack>
       )}
