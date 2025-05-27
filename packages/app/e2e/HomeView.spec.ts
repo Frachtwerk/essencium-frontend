@@ -7,9 +7,11 @@ test.describe('HomeView', () => {
     await page.goto(BASE_URL)
   })
 
-  test.skip('go to homepage and open search bar', async ({ page }) => {
+  test('go to homepage and open search bar', async ({ page }) => {
     const searchBarButton = page.getByRole('main').getByRole('button').first()
+    await expect(searchBarButton).toBeVisible()
     await searchBarButton.click()
+
     const searchBar = page.getByPlaceholder('Search (Ctrl + K)')
     await expect(searchBar).toBeVisible()
   })
