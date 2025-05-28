@@ -28,7 +28,6 @@
 }
 
 .contact-from__text-input {
-  margin-bottom: var(--mantine-spacing-md);
   border-radius: var(--mantine-radius-md);
 }
 
