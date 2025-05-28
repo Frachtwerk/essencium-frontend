@@ -2,6 +2,25 @@
 
 ## [9.X.X (XXXX-XX-XX)]()
 
+### Refactor: Simplify code for form inputs
+
+#### `packages/app/src/app/[locale]/(main)/admin/users/[id]/UpdateUserView.tsx`
+
+- removed `formState` prop from UserForm
+- removed `isUpdate` prop from UserForm
+
+#### `packages/app/src/app/[locale]/(main)/admin/users/add/AddUserView.tsx`
+
+- removed `formState` prop from UserForm
+
+#### `packages/app/src/app/[locale]/(main)/contact/ContactView.tsx`
+
+- removed `formState` prop from Contact
+
+#### `packages/app/src/app/[locale]/(public)/set-password/SetPassword.module.css`
+
+- removed `height` css attribute
+
 ### Fix: load all roles for the roles filter in the users view
 
 #### `/src/app/[locale]/(main)/admin/users/UsersView.tsx`

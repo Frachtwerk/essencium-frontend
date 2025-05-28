@@ -24,20 +24,12 @@ import {
   UserUpdate,
   userUpdateSchema,
 } from '@frachtwerk/essencium-types'
-import {
-  Box,
-  Button,
-  Flex,
-  Select,
-  Stack,
-  Text,
-  TextInput,
-} from '@mantine/core'
+import { Button, Grid } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
 import { type JSX, useEffect } from 'react'
-import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../../../../hooks'
+import { ControlledSelect, ControlledTextInput } from '../../../../Form'
 import classes from './PersonalDataForm.module.css'
 
 type Props = {
@@ -58,7 +50,6 @@ export function PersonalDataForm({
   const {
     handleSubmit,
     control,
-    formState,
     reset: resetAndFillForm,
   } = useZodForm({
     schema: userUpdateSchema,
@@ -93,208 +84,91 @@ export function PersonalDataForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Flex
-        direction={{ base: 'column', md: 'row' }}
-        gap={{ base: 'xs', sm: 'md' }}
-        justify={{ sm: 'space-between' }}
-      >
-        <Stack className={classes['personal-data-form__stack']}>
-          <Controller
+      <Grid gutter="xs">
+        <Grid.Col span={{ base: 12, md: 6 }}>
+          <ControlledTextInput
             name="firstName"
             control={control}
-            render={({ field }) => (
-              <TextInput
-                {...field}
-                disabled={isSso}
-                placeholder={String(
-                  t(
-                    'profileView.dataCard.tabs.personalData.placeholder.firstName',
-                  ),
-                )}
-                label={t(
-                  'profileView.dataCard.tabs.personalData.label.firstName',
-                )}
-                size="sm"
-              />
+            disabled={isSso}
+            placeholder={String(
+              t('profileView.dataCard.tabs.personalData.placeholder.firstName'),
             )}
+            label={t('profileView.dataCard.tabs.personalData.label.firstName')}
+            size="sm"
+            withAsterisk
           />
+        </Grid.Col>
 
-          <Box className={classes['personal-data-form__error-box']}>
-            {formState.errors.firstName && (
-              <Text className={classes['personal-data-form__error-text']}>
-                {formState.errors.firstName?.message
-                  ? String(t(formState.errors.firstName.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-
-        <Stack className={classes['personal-data-form__stack']}>
-          <Controller
+        <Grid.Col span={{ base: 12, md: 6 }}>
+          <ControlledTextInput
             name="lastName"
             control={control}
-            render={({ field }) => (
-              <TextInput
-                {...field}
-                disabled={isSso}
-                placeholder={String(
-                  t(
-                    'profileView.dataCard.tabs.personalData.placeholder.lastName',
-                  ),
-                )}
-                label={t(
-                  'profileView.dataCard.tabs.personalData.label.lastName',
-                )}
-                size="sm"
-              />
+            disabled={isSso}
+            placeholder={String(
+              t('profileView.dataCard.tabs.personalData.placeholder.lastName'),
             )}
+            label={t('profileView.dataCard.tabs.personalData.label.lastName')}
+            size="sm"
+            withAsterisk
           />
+        </Grid.Col>
 
-          <Box className={classes['personal-data-form__error-box']}>
-            {formState.errors.lastName && (
-              <Text className={classes['personal-data-form__error-text']}>
-                {formState.errors.lastName?.message
-                  ? String(t(formState.errors.lastName.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-      </Flex>
-
-      <Flex
-        direction={{ base: 'column', md: 'row' }}
-        gap={{ base: 'sm', sm: 'md' }}
-        justify={{ sm: 'space-between' }}
-        className={classes['personal-data-form__flex--margin-top']}
-      >
-        <Stack className={classes['personal-data-form__stack']}>
-          <Controller
+        <Grid.Col span={{ base: 12, md: 6 }}>
+          <ControlledTextInput
             name="phone"
             control={control}
-            render={({ field }) => (
-              <TextInput
-                {...field}
-                placeholder={String(
-                  t('profileView.dataCard.tabs.personalData.placeholder.phone'),
-                )}
-                label={t('profileView.dataCard.tabs.personalData.label.phone')}
-                size="sm"
-              />
+            placeholder={String(
+              t('profileView.dataCard.tabs.personalData.placeholder.phone'),
             )}
+            label={t('profileView.dataCard.tabs.personalData.label.phone')}
+            size="sm"
           />
+        </Grid.Col>
 
-          <Box className={classes['personal-data-form__error-box']}>
-            {formState.errors.phone && (
-              <Text className={classes['personal-data-form__error-text']}>
-                {formState.errors.phone?.message
-                  ? String(t(formState.errors.phone.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-
-        <Stack className={classes['personal-data-form__stack']}>
-          <Controller
+        <Grid.Col span={{ base: 12, md: 6 }}>
+          <ControlledTextInput
             name="mobile"
             control={control}
-            render={({ field }) => (
-              <TextInput
-                {...field}
-                placeholder={String(
-                  t(
-                    'profileView.dataCard.tabs.personalData.placeholder.mobile',
-                  ),
-                )}
-                label={t('profileView.dataCard.tabs.personalData.label.mobile')}
-                size="sm"
-              />
+            placeholder={String(
+              t('profileView.dataCard.tabs.personalData.placeholder.mobile'),
             )}
+            label={t('profileView.dataCard.tabs.personalData.label.mobile')}
+            size="sm"
           />
+        </Grid.Col>
 
-          <Box className={classes['personal-data-form__error-box']}>
-            {formState.errors.mobile && (
-              <Text className={classes['personal-data-form__error-text']}>
-                {formState.errors.mobile?.message
-                  ? String(t(formState.errors.mobile.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-      </Flex>
-
-      <Flex
-        direction={{ base: 'column', sm: 'row' }}
-        gap={{ base: 'sm', sm: 'md' }}
-        justify={{ sm: 'space-between' }}
-        className={classes['personal-data-form__flex--margin-top']}
-      >
-        <Stack className={classes['personal-data-form__stack']}>
-          <Controller
+        <Grid.Col span={{ base: 12, sm: 6 }}>
+          <ControlledTextInput
             name="email"
             control={control}
-            render={({ field }) => (
-              <TextInput
-                {...field}
-                disabled={isSso}
-                placeholder={String(
-                  t('profileView.dataCard.tabs.personalData.placeholder.email'),
-                )}
-                label={t('profileView.dataCard.tabs.personalData.label.email')}
-                withAsterisk
-                size="sm"
-              />
+            disabled={isSso}
+            placeholder={String(
+              t('profileView.dataCard.tabs.personalData.placeholder.email'),
             )}
+            label={t('profileView.dataCard.tabs.personalData.label.email')}
+            withAsterisk
+            size="sm"
           />
+        </Grid.Col>
 
-          <Box className={classes['personal-data-form__error-box']}>
-            {formState.errors.email && (
-              <Text className={classes['personal-data-form__error-text']}>
-                {formState.errors.email?.message
-                  ? String(t(formState.errors.email.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-
-        <Stack className={classes['personal-data-form__stack']}>
-          <Controller
+        <Grid.Col span={{ base: 12, sm: 6 }}>
+          <ControlledSelect
             name="locale"
             control={control}
-            render={({ field }) => (
-              <Select
-                {...field}
-                radius="sm"
-                allowDeselect={false}
-                label={t(
-                  'profileView.dataCard.tabs.personalData.label.language',
-                )}
-                placeholder={String(
-                  t('profileView.dataCard.tabs.personalData.label.language'),
-                )}
-                data={[
-                  { value: 'de', label: 'Deutsch' },
-                  { value: 'en', label: 'English' },
-                ]}
-              />
+            radius="sm"
+            allowDeselect={false}
+            label={t('profileView.dataCard.tabs.personalData.label.language')}
+            placeholder={String(
+              t('profileView.dataCard.tabs.personalData.label.language'),
             )}
+            data={[
+              { value: 'de', label: 'Deutsch' },
+              { value: 'en', label: 'English' },
+            ]}
+            withAsterisk
           />
-
-          <Box className={classes['personal-data-form__error-box']}>
-            {formState.errors.locale && (
-              <Text className={classes['personal-data-form__error-text']}>
-                {formState.errors.locale?.message
-                  ? String(t(formState.errors.locale.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-      </Flex>
+        </Grid.Col>
+      </Grid>
 
       <Button
         type="submit"

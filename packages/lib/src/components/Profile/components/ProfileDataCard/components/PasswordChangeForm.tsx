@@ -24,12 +24,12 @@ import {
   passwordChangeSchemaAdmin,
   passwordChangeSchemaUser,
 } from '@frachtwerk/essencium-types'
-import { Box, Button, Flex, PasswordInput, Stack, Text } from '@mantine/core'
+import { Button, Stack } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
 import { type JSX, useState } from 'react'
-import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../../../../hooks'
+import { ControlledPasswordInput } from '../../../../Form'
 import { PasswordStrengthIndicator } from '../../../../PasswordStrengthIndicator/PasswordStrengthIndicator'
 import classes from './PasswordChangeForm.module.css'
 
@@ -51,7 +51,7 @@ export function PasswordChangeForm({
 
   const [passwordValue, setPasswordValue] = useState<string | null>(null)
 
-  const { handleSubmit, control, formState } = useZodForm({
+  const { handleSubmit, control } = useZodForm({
     schema: isAdmin ? passwordChangeSchemaAdmin : passwordChangeSchemaUser,
     defaultValues: {
       verification: '',
@@ -66,104 +66,51 @@ export function PasswordChangeForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Flex direction="column" align="flex-start">
-        <Stack className={classes['password-change-form__stack']}>
-          <Controller
-            name="verification"
-            control={control}
-            render={({ field }) => (
-              <PasswordInput
-                {...field}
-                label={t(
-                  'profileView.dataCard.tabs.passwordChange.content.currentPassword',
-                )}
-                withAsterisk
-              />
-            )}
-          />
+      <Stack gap="xs" className={classes['password-change-form__stack']}>
+        <ControlledPasswordInput
+          name="verification"
+          control={control}
+          label={t(
+            'profileView.dataCard.tabs.passwordChange.content.currentPassword',
+          )}
+          withAsterisk
+        />
 
-          <Box className={classes['password-change-form__error-box']}>
-            {formState.errors.verification && (
-              <Text className={classes['password-change-form__error-text']}>
-                {formState.errors.verification?.message
-                  ? String(t(formState.errors.verification.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-
-        <Stack className={classes['password-change-form__stack']}>
-          <PasswordStrengthIndicator
-            passwordValue={passwordValue}
-            isAdmin={isAdmin}
-          >
-            <Controller
-              name="password"
-              control={control}
-              render={({ field }) => (
-                <PasswordInput
-                  {...field}
-                  onChange={event => {
-                    field.onChange(event)
-
-                    setPasswordValue(event.target.value)
-                  }}
-                  value={field.value || ''}
-                  label={t(
-                    'profileView.dataCard.tabs.passwordChange.content.newPassword',
-                  )}
-                  withAsterisk
-                />
-              )}
-            />
-          </PasswordStrengthIndicator>
-
-          <Box className={classes['password-change-form__error-box']}>
-            {formState.errors.password && (
-              <Text className={classes['password-change-form__error-text']}>
-                {formState.errors.password?.message
-                  ? String(t(formState.errors.password.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-
-        <Stack className={classes['password-change-form__stack']}>
-          <Controller
-            name="confirmPassword"
-            control={control}
-            render={({ field }) => (
-              <PasswordInput
-                {...field}
-                label={t(
-                  'profileView.dataCard.tabs.passwordChange.content.confirmNewPassword',
-                )}
-                withAsterisk
-              />
-            )}
-          />
-
-          <Box className={classes['password-change-form__error-box']}>
-            {formState.errors.confirmPassword && (
-              <Text className={classes['password-change-form__error-text']}>
-                {formState.errors.confirmPassword?.message
-                  ? String(t(formState.errors.confirmPassword.message))
-                  : null}
-              </Text>
-            )}
-          </Box>
-        </Stack>
-
-        <Button
-          type="submit"
-          className={classes['password-change-form__button']}
-          loading={isLoading}
+        <PasswordStrengthIndicator
+          passwordValue={passwordValue}
+          isAdmin={isAdmin}
+          offset={-15}
         >
-          {t('profileView.dataCard.tabs.passwordChange.content.savePassword')}
-        </Button>
-      </Flex>
+          <ControlledPasswordInput
+            name="password"
+            control={control}
+            onChange={event => {
+              setPasswordValue(event.target.value)
+            }}
+            label={t(
+              'profileView.dataCard.tabs.passwordChange.content.newPassword',
+            )}
+            withAsterisk
+          />
+        </PasswordStrengthIndicator>
+
+        <ControlledPasswordInput
+          name="confirmPassword"
+          control={control}
+          label={t(
+            'profileView.dataCard.tabs.passwordChange.content.confirmNewPassword',
+          )}
+          withAsterisk
+        />
+      </Stack>
+
+      <Button
+        type="submit"
+        className={classes['password-change-form__button']}
+        loading={isLoading}
+      >
+        {t('profileView.dataCard.tabs.passwordChange.content.savePassword')}
+      </Button>
     </form>
   )
 }

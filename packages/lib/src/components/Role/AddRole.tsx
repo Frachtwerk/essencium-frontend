@@ -55,7 +55,7 @@ export function AddRole({
   toggleRight,
   isLoading,
 }: Props): JSX.Element {
-  const { handleSubmit, control, formState, reset } = useZodForm({
+  const { handleSubmit, control, reset } = useZodForm({
     schema: roleInputSchema,
     defaultValues: formDefaults,
   })
@@ -81,7 +81,6 @@ export function AddRole({
         onSubmit={onSubmit}
         toggleRight={toggleRight}
         control={control}
-        formState={formState}
         reset={reset}
         onClose={onClose}
         isLoading={isLoading}

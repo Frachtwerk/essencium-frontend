@@ -60,17 +60,6 @@
   height: 32px;
 }
 
-.feedback-widget__error-box {
-  height: 0.8rem;
-  margin-bottom: 0.6em;
-}
-
-.feedback-widget__error-text {
-  margin-left: 5px;
-  font-size: var(--mantine-font-size-xs);
-  color: red;
-}
-
 .feedback-widget__loading-spinner--container {
   height: 100px;
 }

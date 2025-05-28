@@ -24,12 +24,12 @@ import {
   SetPasswordFormType,
   SetPasswordInput,
 } from '@frachtwerk/essencium-types'
-import { Box, Button, PasswordInput, Stack, Text } from '@mantine/core'
+import { Button, Stack } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
 import type { JSX } from 'react'
-import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../hooks'
+import { ControlledPasswordInput } from '../Form'
 import classes from './SetPasswordForm.module.css'
 
 type Props = {
@@ -39,7 +39,7 @@ type Props = {
 export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
   const { t } = useTranslation()
 
-  const { handleSubmit, control, formState } = useZodForm({
+  const { handleSubmit, control } = useZodForm({
     schema: setPasswordFormSchema,
   })
 
@@ -49,71 +49,33 @@ export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Stack gap="xs">
-        <Controller
+      <Stack>
+        <ControlledPasswordInput
           name="password"
           control={control}
-          render={({ field }) => (
-            <PasswordInput
-              {...field}
-              placeholder={String(t('setPasswordView.form.newPassword'))}
-              label={t('setPasswordView.form.newPassword')}
-              withAsterisk
-              classNames={{
-                root: classes['set-password-form__text-input--root'],
-                label: classes['set-password-form__text-input--label'],
-              }}
-            />
-          )}
+          placeholder={String(t('setPasswordView.form.newPassword'))}
+          label={t('setPasswordView.form.newPassword')}
+          withAsterisk
+          classNames={{
+            label: classes['set-password-form__text-input--label'],
+          }}
         />
 
-        <Box className={classes['set-password-form__error-box']}>
-          {formState.errors.password && (
-            <Text className={classes['set-password-form__error-text']}>
-              {formState.errors.password?.message
-                ? String(t(formState.errors.password.message))
-                : null}
-            </Text>
-          )}
-        </Box>
-      </Stack>
-
-      <Stack gap="xs" className={classes['set-password-form__stack']}>
-        <Controller
+        <ControlledPasswordInput
           name="confirmPassword"
           control={control}
-          render={({ field }) => (
-            <PasswordInput
-              {...field}
-              placeholder={String(t('setPasswordView.form.confirmPassword'))}
-              label={t('setPasswordView.form.confirmPassword')}
-              withAsterisk
-              classNames={{
-                label: classes['set-password-form__text-input--label'],
-                root: classes['set-password-form__text-input--root'],
-              }}
-            />
-          )}
+          placeholder={String(t('setPasswordView.form.confirmPassword'))}
+          label={t('setPasswordView.form.confirmPassword')}
+          withAsterisk
+          classNames={{
+            label: classes['set-password-form__text-input--label'],
+          }}
         />
 
-        <Box className={classes['set-password-form__error-box']}>
-          {formState.errors.confirmPassword && (
-            <Text className={classes['set-password-form__error-text']}>
-              {formState.errors.confirmPassword?.message
-                ? String(t(formState.errors.confirmPassword.message))
-                : null}
-            </Text>
-          )}
-        </Box>
+        <Button fullWidth type="submit">
+          {t('setPasswordView.form.submit')}
+        </Button>
       </Stack>
-
-      <Button
-        className={classes['set-password-form__button']}
-        fullWidth
-        type="submit"
-      >
-        {t('setPasswordView.form.submit')}
-      </Button>
     </form>
   )
 }

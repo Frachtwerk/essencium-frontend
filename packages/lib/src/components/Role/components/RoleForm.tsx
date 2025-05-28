@@ -25,21 +25,13 @@ import {
   RoleOutput,
   RoleUpdate,
 } from '@frachtwerk/essencium-types'
-import {
-  Box,
-  Button,
-  Chip,
-  Divider,
-  Flex,
-  Space,
-  Text,
-  TextInput,
-} from '@mantine/core'
+import { Box, Button, Chip, Divider, Flex, Space } from '@mantine/core'
 import { IconShieldCheck } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
 import type { JSX } from 'react'
-import { Control, Controller, FormState } from 'react-hook-form'
+import { Control, Controller } from 'react-hook-form'
 
+import { ControlledTextInput } from '../../Form'
 import classes from './RoleForm.module.css'
 
 type Props = {
@@ -47,7 +39,6 @@ type Props = {
   toggleRight: (right: RightOutput) => void
   onSubmit: () => void
   control: Control<RoleInput | RoleUpdate>
-  formState: FormState<RoleInput | RoleUpdate>
   reset?: () => void
   onClose: () => void
   role?: RoleOutput
@@ -59,7 +50,6 @@ export function RoleForm({
   toggleRight,
   onSubmit,
   control,
-  formState,
   onClose,
   role,
   reset,
@@ -70,62 +60,30 @@ export function RoleForm({
   return (
     <form onSubmit={onSubmit}>
       <Flex direction="column" gap="md">
-        <Controller
+        <ControlledTextInput
           name="name"
           control={control}
-          render={({ field }) => (
-            <TextInput
-              {...field}
-              placeholder={t('rolesView.modal.placeholder.name') as string}
-              label={t('rolesView.modal.name')}
-              required
-              variant="filled"
-              classNames={{
-                label: classes['role-form__text-input--label'],
-              }}
-              withAsterisk
-              disabled={Boolean(role)}
-            />
-          )}
+          placeholder={t('rolesView.modal.placeholder.name') as string}
+          label={t('rolesView.modal.name')}
+          required
+          variant="filled"
+          classNames={{
+            label: classes['role-form__text-input--label'],
+          }}
+          withAsterisk
+          disabled={Boolean(role)}
         />
 
-        <Box className={classes['role-form__error-box']}>
-          {formState.errors.name && (
-            <Text className={classes['role-form__error-text']}>
-              {formState.errors.name?.message
-                ? String(t(formState.errors.name.message))
-                : null}
-            </Text>
-          )}
-        </Box>
-
-        <Controller
+        <ControlledTextInput
           name="description"
           control={control}
-          render={({ field }) => (
-            <TextInput
-              {...field}
-              placeholder={
-                t('rolesView.modal.placeholder.description') as string
-              }
-              label={t('rolesView.modal.description')}
-              variant="filled"
-              classNames={{
-                label: classes['role-form__text-input--label'],
-              }}
-            />
-          )}
+          placeholder={t('rolesView.modal.placeholder.description') as string}
+          label={t('rolesView.modal.description')}
+          variant="filled"
+          classNames={{
+            label: classes['role-form__text-input--label'],
+          }}
         />
-
-        <Box className={classes['role-form__error-box']}>
-          {formState.errors.description && (
-            <Text className={classes['role-form__error-text']}>
-              {formState.errors.description?.message
-                ? String(t(formState.errors.description.message))
-                : null}
-            </Text>
-          )}
-        </Box>
 
         <Divider
           className={classes['role-form__divider--margin-xs']}

@@ -17,22 +17,26 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-.userForm__header {
-  margin-bottom: var(--mantine-spacing-lg);
+import { Input, Stack } from '@mantine/core'
+import type { JSX, ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
+
+type InputErrorStackProps = {
+  children: ReactNode
+  message: string | undefined
 }
 
-.userForm__ssoBadge {
-  margin-left: 10px;
-}
+export function InputErrorStack({
+  message,
+  children,
+}: InputErrorStackProps): JSX.Element {
+  const { t } = useTranslation()
 
-.userForm__newSection--margin-lg {
-  margin-top: var(--mantine-spacing-lg);
-}
+  return (
+    <Stack gap="5px">
+      {children}
 
-.userForm__enableToggle {
-  margin-top: var(--mantine-spacing-sm);
-}
-
-.userForm__saveButton {
-  margin-top: var(--mantine-spacing-md);
+      <Input.Error h="0.9rem">{message && t(message)}</Input.Error>
+    </Stack>
+  )
 }

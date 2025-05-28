@@ -20,7 +20,7 @@
 'use client'
 
 import { PasswordStrengthRules } from '@frachtwerk/essencium-types'
-import { Popover } from '@mantine/core'
+import { Popover, PopoverProps } from '@mantine/core'
 import { type JSX, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -30,7 +30,7 @@ type Props = {
   passwordValue: string | null
   isAdmin?: boolean
   children: JSX.Element
-}
+} & PopoverProps
 
 type PasswordRequirementType = {
   id: string
@@ -42,6 +42,7 @@ export function PasswordStrengthIndicator({
   isAdmin,
   passwordValue,
   children,
+  ...popoverProps
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
@@ -73,6 +74,7 @@ export function PasswordStrengthIndicator({
       position="bottom"
       width="target"
       transitionProps={{ transition: 'pop' }}
+      {...popoverProps}
     >
       <Popover.Target>
         <div

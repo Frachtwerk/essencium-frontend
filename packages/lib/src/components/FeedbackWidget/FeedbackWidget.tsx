@@ -36,7 +36,6 @@ import {
   Group,
   Stack,
   Text,
-  Textarea,
   ThemeIcon,
   Title,
   Tooltip,
@@ -57,9 +56,9 @@ import html2canvas from 'html2canvas-pro'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 import { type JSX, ReactNode, useEffect, useState } from 'react'
-import { Controller } from 'react-hook-form'
 
 import { useZodForm } from '../../hooks'
+import { ControlledTextarea } from '../Form'
 import { LoadingSpinner } from '../LoadingSpinner'
 import classes from './FeedbackWidget.module.css'
 
@@ -111,7 +110,7 @@ export function FeedbackWidget({
 
   const pathname = usePathname()
 
-  const { handleSubmit, control, formState, reset, setValue } = useZodForm({
+  const { handleSubmit, control, reset, setValue } = useZodForm({
     schema: feedbackFormSchema,
     defaultValues: {
       message: '',
@@ -383,61 +382,46 @@ export function FeedbackWidget({
                     </Group>
 
                     <form onSubmit={handleSubmit(onSubmit)}>
-                      <Controller
-                        name="message"
-                        control={control}
-                        render={({ field }) => (
-                          <Textarea
-                            {...field}
-                            className={classes['feedback-widget__textarea']}
-                            placeholder={
-                              t('feedbackWidget.placeholder') as string
-                            }
-                          />
-                        )}
-                      />
-
-                      <Box className={classes['feedback-widget__error-box']}>
-                        {formState.errors.message && (
-                          <Text
-                            className={classes['feedback-widget__error-text']}
-                          >
-                            {formState.errors.message?.message
-                              ? String(t(formState.errors.message.message))
-                              : null}
-                          </Text>
-                        )}
-                      </Box>
-
-                      <Flex gap="xs">
-                        <Tooltip
-                          label={t('feedbackWidget.screenshot.label')}
-                          className={
-                            isCapturingScreenshot
-                              ? classes['feedback-widget__dialog--display']
-                              : ''
+                      <Stack>
+                        <ControlledTextarea
+                          name="message"
+                          control={control}
+                          className={classes['feedback-widget__textarea']}
+                          placeholder={
+                            t('feedbackWidget.placeholder') as string
                           }
-                        >
-                          <ActionIcon
-                            variant={screenshot ? 'filled' : 'outline'}
-                            size="md"
-                            aria-label={t('feedbackWidget.screenshot.label')}
-                            onClick={() => {
-                              setIsCapturingScreenshot(true)
-                            }}
-                          >
-                            {screenshot ? (
-                              <IconCameraCheck size={20} />
-                            ) : (
-                              <IconCameraPlus size={20} />
-                            )}
-                          </ActionIcon>
-                        </Tooltip>
+                        />
 
-                        <Button type="submit" size="xs" fullWidth>
-                          {t('feedbackWidget.button')}
-                        </Button>
-                      </Flex>
+                        <Flex gap="xs">
+                          <Tooltip
+                            label={t('feedbackWidget.screenshot.label')}
+                            className={
+                              isCapturingScreenshot
+                                ? classes['feedback-widget__dialog--display']
+                                : ''
+                            }
+                          >
+                            <ActionIcon
+                              variant={screenshot ? 'filled' : 'outline'}
+                              size="md"
+                              aria-label={t('feedbackWidget.screenshot.label')}
+                              onClick={() => {
+                                setIsCapturingScreenshot(true)
+                              }}
+                            >
+                              {screenshot ? (
+                                <IconCameraCheck size={20} />
+                              ) : (
+                                <IconCameraPlus size={20} />
+                              )}
+                            </ActionIcon>
+                          </Tooltip>
+
+                          <Button type="submit" size="xs" fullWidth>
+                            {t('feedbackWidget.button')}
+                          </Button>
+                        </Flex>
+                      </Stack>
                     </form>
                   </Box>
                 ) : null}
