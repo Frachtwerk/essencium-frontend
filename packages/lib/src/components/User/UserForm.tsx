@@ -145,7 +145,7 @@ export function UserForm({
             render={({ field, fieldState }) => {
               let message = fieldState.error?.message
 
-              if (!isAddUserForm && !message) {
+              if (!isAddUserForm && !message && field.value) {
                 message = 'addUpdateUserView.form.passwordWarning'
               }
 
