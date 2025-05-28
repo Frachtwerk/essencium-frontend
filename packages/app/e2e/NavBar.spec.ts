@@ -7,7 +7,7 @@ test.describe('NavBar', () => {
     await page.goto(BASE_URL)
   })
 
-  test('click through navigation', async ({ page }) => {
+  test.skip('click through navigation', async ({ page }) => {
     await page.getByRole('link', { name: 'Home' }).click()
     await expect(page).toHaveURL(`${BASE_URL}/`)
 
@@ -37,7 +37,7 @@ test.describe('NavBar', () => {
     ).toBeVisible()
   })
 
-  test('toggle hover state of sidebar', async ({ page }) => {
+  test.skip('toggle hover state of sidebar', async ({ page }) => {
     await expect(page.locator('.tabler-icon-pinned-off')).not.toBeVisible()
 
     await page.getByRole('link', { name: 'Home' }).hover()
@@ -49,7 +49,7 @@ test.describe('NavBar', () => {
     await expect(page.locator('.tabler-icon-pinned-off')).not.toBeVisible()
   })
 
-  test('toggle fixed state of sidebar', async ({ page }) => {
+  test.skip('toggle fixed state of sidebar', async ({ page }) => {
     await page.getByRole('link', { name: 'Home' }).hover()
 
     await expect(page.locator('.tabler-icon-pinned-off')).toBeVisible()

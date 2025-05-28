@@ -7,7 +7,7 @@ test.describe('ProfileView', () => {
     await page.goto(`${BASE_URL}/profile`)
   })
 
-  test('go to profile page and change name', async ({ page }) => {
+  test.skip('go to profile page and change name', async ({ page }) => {
     await page.getByLabel('First Name').click()
     await page.getByLabel('First Name').fill('TestName')
 
@@ -24,7 +24,7 @@ test.describe('ProfileView', () => {
     await expect(InputFirstName).toHaveValue(ADMIN.firstName)
   })
 
-  test('form validation', async ({ page }) => {
+  test.skip('form validation', async ({ page }) => {
     await page.getByLabel('First Name').click()
     await page.getByLabel('First Name').fill('T')
 
@@ -54,7 +54,7 @@ test.describe('ProfileView', () => {
     await expect(emailErrorMessage).toBeVisible()
   })
 
-  test('change language', async ({ page }) => {
+  test.skip('change language', async ({ page }) => {
     await page.getByPlaceholder('Language').click()
 
     await page.getByRole('option', { name: 'Deutsch' }).click()

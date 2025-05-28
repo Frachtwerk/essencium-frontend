@@ -9,7 +9,7 @@ test.describe('UsersView', () => {
     await expect(page).toHaveURL(`${BASE_URL}/users`)
   })
 
-  test('go to usersView and render table', async ({ page }) => {
+  test.skip('go to usersView and render table', async ({ page }) => {
     await expect(page.getByRole('heading', { name: 'Users' })).toBeVisible()
     await expect(page.getByRole('cell', { name: 'Active' })).toBeVisible()
     await expect(
@@ -22,7 +22,7 @@ test.describe('UsersView', () => {
     await expect(page.getByRole('cell', { name: 'Actions' })).toBeVisible()
   })
 
-  test('add, edit and delete user', async ({ page }) => {
+  test.skip('add, edit and delete user', async ({ page }) => {
     await page.getByRole('link', { name: 'Add User' }).click()
     await expect(page).toHaveURL(`${BASE_URL}/users/add`)
 

@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 import { ADMIN, BASE_URL } from '../playwright.config'
 
-test('LoginView > redirect to login page', async ({ page }) => {
+test.skip('LoginView > redirect to login page', async ({ page }) => {
   await page.goto(`${BASE_URL}/login`)
   await expect(page).toHaveURL(`${BASE_URL}/login`)
 

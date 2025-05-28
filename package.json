@@ -34,7 +34,7 @@
     "setup-env": "pnpm install && husky install",
     "sort-package-json": "sort-package-json && pnpm --stream -r sort-package-json",
     "test": "pnpm --stream -r test",
-    "test:e2e": "pnpm --filter @frachtwerk/essencium-app pnpm exec playwright install --with-deps test:e2e",
+    "test:e2e": "pnpm --filter @frachtwerk/essencium-app test:e2e",
     "test:unit": "pnpm --stream -r test:unit",
     "test:unit:coverage": "pnpm --stream -r test:unit:coverage",
     "test:unit:watch": "pnpm --stream -r test:unit:watch"
