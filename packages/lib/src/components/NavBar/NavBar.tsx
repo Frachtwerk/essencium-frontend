@@ -34,6 +34,7 @@ import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
 import { Dispatch, type JSX, SetStateAction, useEffect, useState } from 'react'
 
+import { cn } from '../../utils/cn'
 import { NavLinks } from './components'
 
 type Props = AppShellNavbarProps & {
@@ -62,6 +63,7 @@ export function NavBar({
   fixedNav,
   setFixedNav,
   handleOpenNav,
+  className,
   ...props
 }: Props): JSX.Element {
   const { t } = useTranslation()
@@ -97,12 +99,14 @@ export function NavBar({
         }
       }}
       zIndex={100}
-      {...props}
-      className={`${
+      className={cn(
+        'p-sm flex flex-col',
         isMobile
-          ? 'p-sm fixed left-0 z-300 flex h-[95%] w-full flex-col overflow-auto'
-          : 'p-sm flex flex-col transition-[width] duration-300 ease-in-out hover:w-[250px]'
-      } ${props.className ? props.className : ''}`}
+          ? 'fixed left-0 z-300 h-[95%] w-full overflow-auto'
+          : 'transition-[width] duration-300 ease-in-out hover:w-[250px]',
+        className,
+      )}
+      {...props}
     >
       <AppShellSection>
         <Flex className="gap-xs flex flex-row items-start justify-between">

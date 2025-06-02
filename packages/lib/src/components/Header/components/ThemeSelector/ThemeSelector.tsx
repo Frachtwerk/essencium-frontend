@@ -30,6 +30,8 @@ import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
 import { type JSX } from 'react'
 
+import { cn } from '../../../../utils'
+
 export const COLOR_SCHEME = {
   LIGHT: 'light',
   DARK: 'dark',
@@ -45,6 +47,13 @@ export function ThemeSelector(): JSX.Element {
   const isLightMode = colorScheme === COLOR_SCHEME.LIGHT
 
   const isAutoMode = colorScheme === COLOR_SCHEME.AUTO
+
+  const groupClasses = cn(
+    'p-xs cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900',
+    colorScheme === COLOR_SCHEME.LIGHT &&
+      !isAutoMode &&
+      'text-primary-600 dark:text-primary-200 bg-gray-50 dark:bg-gray-900',
+  )
 
   return (
     <Popover width={130} position="bottom" withArrow shadow="sm">
@@ -71,17 +80,12 @@ export function ThemeSelector(): JSX.Element {
         </ActionIcon>
       </PopoverTarget>
 
-      <PopoverDropdown p={0}>
+      <PopoverDropdown className="p-0">
         <Group
           onClick={() => {
             setColorScheme(COLOR_SCHEME.LIGHT)
           }}
-          p="xs"
-          className={
-            colorScheme === COLOR_SCHEME.LIGHT && !isAutoMode
-              ? `text-primary-600 dark:text-primary-200 cursor-pointer bg-gray-50 hover:bg-gray-50 dark:bg-gray-900 dark:hover:bg-gray-900`
-              : 'cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900'
-          }
+          className={groupClasses}
         >
           <IconSun size={20} />
 
@@ -92,12 +96,7 @@ export function ThemeSelector(): JSX.Element {
           onClick={() => {
             setColorScheme(COLOR_SCHEME.DARK)
           }}
-          p="xs"
-          className={
-            colorScheme === COLOR_SCHEME.DARK && !isAutoMode
-              ? `text-primary-600 dark:text-primary-200 cursor-pointer bg-gray-50 hover:bg-gray-50 dark:bg-gray-900 dark:hover:bg-gray-900`
-              : 'cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900'
-          }
+          className={groupClasses}
         >
           <IconMoon size={20} />
 
@@ -108,12 +107,7 @@ export function ThemeSelector(): JSX.Element {
           onClick={() => {
             clearColorScheme()
           }}
-          p="xs"
-          className={
-            isAutoMode
-              ? `text-primary-600 dark:text-primary-200 cursor-pointer bg-gray-50 hover:bg-gray-50 dark:bg-gray-900 dark:hover:bg-gray-900`
-              : 'cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900'
-          }
+          className={groupClasses}
         >
           <IconDeviceLaptop size={20} />
 

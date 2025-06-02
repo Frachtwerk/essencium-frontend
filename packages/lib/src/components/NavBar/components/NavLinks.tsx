@@ -62,6 +62,11 @@ export function NavLinks({
     return sublinks.some(sublink => isLinkActive(sublink.to))
   }
 
+  const navLinkClassNames = {
+    root: 'rounded-sm',
+    label: 'text-sm whitespace-nowrap',
+  }
+
   return (
     <>
       {links.map(link => {
@@ -80,10 +85,7 @@ export function NavLinks({
               label={t(link.label)}
               active={isLinkActive(link.to)}
               className="mb-sm"
-              classNames={{
-                root: 'rounded-sm',
-                label: 'text-sm whitespace-nowrap',
-              }}
+              classNames={navLinkClassNames}
               onClick={() => handleOpenNav()}
               prefetch={link.prefetch ?? true}
             />
@@ -100,10 +102,7 @@ export function NavLinks({
             label={t(link.label)}
             active={isParentActive(link.to) && isSubLinkActive(link.navLinks)}
             className="mb-sm"
-            classNames={{
-              root: 'rounded-sm',
-              label: 'text-sm whitespace-nowrap',
-            }}
+            classNames={navLinkClassNames}
           >
             {!foldedNav || isMobile
               ? link.navLinks?.map(sublink =>
@@ -121,10 +120,7 @@ export function NavLinks({
                         isParentActive(link.to) && isLinkActive(sublink.to)
                       }
                       className="my-sm"
-                      classNames={{
-                        root: 'rounded-sm',
-                        label: 'text-sm whitespace-nowrap',
-                      }}
+                      classNames={navLinkClassNames}
                       onClick={() => handleOpenNav()}
                       prefetch={sublink.prefetch ?? true}
                     />
