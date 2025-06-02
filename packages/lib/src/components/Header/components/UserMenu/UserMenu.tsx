@@ -21,7 +21,6 @@ import { UserOutput } from '@frachtwerk/essencium-types'
 import {
   Avatar,
   Box,
-  Flex,
   Group,
   Text,
   UnstyledButton,
@@ -53,12 +52,12 @@ export function UserMenu({ user, className, avatarColor }: Props): JSX.Element {
     <UnstyledButton
       component={NextLink}
       href="/profile"
-      className={className?.button ?? ''}
+      className={className?.button}
       aria-label={t('header.profile.arialLabel') as string}
     >
       <Group
         className={cn(
-          'p-sm flex-nowrap hover:bg-gray-50 dark:hover:bg-gray-900',
+          'px-sm flex-nowrap hover:bg-gray-50 dark:hover:bg-gray-900',
           className?.group,
         )}
       >
@@ -68,15 +67,12 @@ export function UserMenu({ user, className, avatarColor }: Props): JSX.Element {
           name={`${user.firstName} ${user.lastName}`}
           color={avatarColor ?? theme.primaryColor}
         />
-
         <Box>
-          <Flex className="items-center justify-between">
-            <Text className="font-medium" size="sm">
-              {user.firstName} {user.lastName}
-            </Text>
-          </Flex>
+          <Text className="text-sm font-medium">
+            {user.firstName} {user.lastName}
+          </Text>
 
-          <Text className={cn('text-dimmed', className?.mail)} size="xs">
+          <Text className={cn('text-dimmed text-xs', className?.mail)}>
             {user.email}
           </Text>
         </Box>

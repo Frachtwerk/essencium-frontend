@@ -22,7 +22,7 @@ import { IconCircleCheck, IconCircleX } from '@tabler/icons-react'
 import type { JSX } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { cn } from '../../../../../utils'
+import { cn } from '../../utils'
 
 type Props = {
   meets: boolean

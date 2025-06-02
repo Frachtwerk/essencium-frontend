@@ -55,9 +55,6 @@ export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
           placeholder={String(t('setPasswordView.form.newPassword'))}
           label={t('setPasswordView.form.newPassword')}
           withAsterisk
-          classNames={{
-            root: 'mb-md',
-          }}
         />
 
         <ControlledPasswordInput
@@ -66,9 +63,6 @@ export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
           placeholder={String(t('setPasswordView.form.confirmPassword'))}
           label={t('setPasswordView.form.confirmPassword')}
           withAsterisk
-          classNames={{
-            root: 'mb-md',
-          }}
         />
 
         <Button fullWidth type="submit">
