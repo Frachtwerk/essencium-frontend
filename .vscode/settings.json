@@ -5,5 +5,10 @@
   "tailwindCSS.experimental.configFile": "packages/lib/src/globals.css",
 
   // Enable Tailwind CSS IntelliSense in classNames property
-  "tailwindCSS.classAttributes": ["class", "className", "classNames"]
+  "tailwindCSS.classAttributes": ["class", "className", "classNames"],
+
+  // Enable Tailwind CSS IntelliSense using cn() function
+  "tailwindCSS.experimental.classRegex": [
+    ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ]
 }

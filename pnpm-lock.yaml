@@ -185,7 +185,7 @@ importers:
         version: 2.0.4(react@19.0.0)
       next:
         specifier: 15.2.4
-        version: 15.2.4(@playwright/test@1.45.3)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 15.2.4(@babel/core@7.26.10)(@playwright/test@1.45.3)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       next-i18n-router:
         specifier: 5.5.1
         version: 5.5.1
@@ -444,6 +444,9 @@ importers:
       axios:
         specifier: 1.8.2
         version: 1.8.2
+      clsx:
+        specifier: 2.1.1
+        version: 2.1.1
       dayjs:
         specifier: 1.11.13
         version: 1.11.13
@@ -537,6 +540,9 @@ importers:
       rollup-plugin-postcss:
         specifier: 4.0.2
         version: 4.0.2(postcss@8.4.49)(ts-node@10.9.1(@types/node@20.14.14)(typescript@5.7.3))
+      tailwind-merge:
+        specifier: 3.3.0
+        version: 3.3.0
       tailwindcss:
         specifier: 4.1.3
         version: 4.1.3
@@ -4700,6 +4706,9 @@ packages:
   tabbable@6.2.0:
     resolution: {integrity: sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==}
 
+  tailwind-merge@3.3.0:
+    resolution: {integrity: sha512-fyW/pEfcQSiigd5SNn0nApUOxx0zB/dm6UDU/rEwc2c3sX2smWUNbapHv+QRqLGVp9GWX3THIa7MUGPo+YkDzQ==}
+
   tailwindcss@4.1.3:
     resolution:
       {
@@ -8300,7 +8309,7 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  next@15.2.4(@playwright/test@1.45.3)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  next@15.2.4(@babel/core@7.26.10)(@playwright/test@1.45.3)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       '@next/env': 15.2.4
       '@swc/counter': 0.1.3
@@ -8310,7 +8319,7 @@ snapshots:
       postcss: 8.4.31
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
-      styled-jsx: 5.1.6(@babel/core@7.24.9)(react@19.0.0)
+      styled-jsx: 5.1.6(@babel/core@7.26.10)(react@19.0.0)
     optionalDependencies:
       '@next/swc-darwin-arm64': 15.2.4
       '@next/swc-darwin-x64': 15.2.4
@@ -9343,6 +9352,13 @@ snapshots:
     optionalDependencies:
       '@babel/core': 7.24.9
 
+  styled-jsx@5.1.6(@babel/core@7.26.10)(react@19.0.0):
+    dependencies:
+      client-only: 0.0.1
+      react: 19.0.0
+    optionalDependencies:
+      '@babel/core': 7.26.10
+
   stylehacks@5.1.1(postcss@8.4.49):
     dependencies:
       browserslist: 4.24.4
@@ -9377,6 +9393,8 @@ snapshots:
       tslib: 2.8.1
 
   tabbable@6.2.0: {}
+
+  tailwind-merge@3.3.0: {}
 
   tailwindcss@4.1.3: {}
 
