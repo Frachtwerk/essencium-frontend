@@ -54,14 +54,14 @@ export default function SetPasswordView(): JSX.Element {
   }
 
   return (
-    <Container className="my-xl size-[450px]">
+    <Container className="my-xl width-[450px]">
       {!showSuccessMessage && (
         <Title ta="center" order={2} fw="bold">
           {t('setPasswordView.title')}
         </Title>
       )}
 
-      <Paper className="p-lg mt-md h-[270px] w-[400px] rounded-sm shadow-sm">
+      <Paper className="p-lg mt-md w-[400px] rounded-sm shadow-sm">
         {!showSuccessMessage && (
           <SetPasswordForm handleSetPassword={handleSetPassword} />
         )}

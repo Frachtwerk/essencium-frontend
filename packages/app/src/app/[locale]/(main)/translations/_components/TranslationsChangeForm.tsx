@@ -101,11 +101,9 @@ export function TranslationChangeForm({
                 aria-label={t('translationView.form.changeTranslation')}
                 withAsterisk
                 w="40%"
-                variant="unstyled"
                 disabled={!userRightUpdate}
                 classNames={{
-                  input:
-                    'border-b border-gray-400 text-base disabled:border-none disabled:bg-transparent disabled:text-gray-700',
+                  input: 'bg-transparent',
                 }}
               />
             )}
