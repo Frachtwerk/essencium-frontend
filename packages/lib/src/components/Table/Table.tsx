@@ -30,6 +30,7 @@ import {
 } from '@tanstack/react-table'
 import { Dispatch, type JSX, SetStateAction } from 'react'
 
+import { cn } from '../../utils'
 import { TableHeader } from './components/TableHeader'
 
 type Props<T> = TableProps & {
@@ -109,21 +110,19 @@ export function Table<T>({
                   row.getToggleExpandedHandler()
                 }
                 style={row.getCanExpand() ? { cursor: 'pointer' } : {}}
-                className={
-                  firstColSticky
-                    ? 'dark:even:bg-dark-700 odd:bg-(--table-striped-color) even:bg-white'
-                    : ''
-                }
+                className={cn(
+                  firstColSticky &&
+                    'dark:even:bg-dark-700 odd:bg-(--table-striped-color) even:bg-white',
+                )}
               >
                 {row.getVisibleCells().map(cell => (
                   <MantineTable.Td
                     key={cell.id}
                     width={cell.column.getSize()}
-                    className={
-                      firstColSticky
-                        ? 'first:sticky first:left-0 first:z-10 first:bg-inherit'
-                        : ''
-                    }
+                    className={cn(
+                      firstColSticky &&
+                        'first:sticky first:left-0 first:z-10 first:bg-inherit',
+                    )}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </MantineTable.Td>

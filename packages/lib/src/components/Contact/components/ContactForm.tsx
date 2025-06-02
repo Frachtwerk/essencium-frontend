@@ -45,7 +45,7 @@ export function ContactForm({ control }: Props): JSX.Element {
         <ControlledTextInput
           name="subject"
           control={control}
-          className="mb-md rounded-sm"
+          className="rounded-sm"
           label={t('contactView.contactForm.form.subject')}
           placeholder={String(
             t('contactView.contactForm.form.subjectPlaceholder'),

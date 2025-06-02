@@ -45,10 +45,7 @@ export function Footer({
   const { t } = useTranslation()
 
   return (
-    <AppShellFooter
-      {...props}
-      className={props.className ? props.className : ''}
-    >
+    <AppShellFooter {...props} className={props.className}>
       <Flex
         h="100%" // not applied with normal css
         className="xs:justify-between px-lg flex-row-reverse flex-wrap items-center justify-center"

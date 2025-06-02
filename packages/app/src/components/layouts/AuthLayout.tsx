@@ -304,7 +304,7 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
           layout={isNotMobile ? 'alt' : 'default'}
           header={{ height: { base: 60 } }}
           footer={{ height: { base: 58 } }}
-          className="p-lg"
+          padding="lg"
           navbar={{
             width: isFixedNav ? 250 : 80,
             breakpoint: 'sm',

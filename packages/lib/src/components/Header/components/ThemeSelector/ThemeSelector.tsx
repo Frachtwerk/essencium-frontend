@@ -55,6 +55,10 @@ export function ThemeSelector(): JSX.Element {
       'text-primary-600 dark:text-primary-200 bg-gray-50 dark:bg-gray-900',
   )
 
+  const iconClasses = cn(
+    isAutoMode && 'hover:bg-gray-50 dark:hover:bg-gray-900',
+  )
+
   return (
     <Popover width={130} position="bottom" withArrow shadow="sm">
       <PopoverTarget>
@@ -65,17 +69,9 @@ export function ThemeSelector(): JSX.Element {
           size="xl"
         >
           {isLightMode ? (
-            <IconSun
-              className={
-                isAutoMode ? 'hover:bg-gray-50 dark:hover:bg-gray-900' : ''
-              }
-            />
+            <IconSun className={iconClasses} />
           ) : (
-            <IconMoon
-              className={
-                isAutoMode ? 'hover:bg-gray-50 dark:hover:bg-gray-900' : ''
-              }
-            />
+            <IconMoon className={iconClasses} />
           )}
         </ActionIcon>
       </PopoverTarget>

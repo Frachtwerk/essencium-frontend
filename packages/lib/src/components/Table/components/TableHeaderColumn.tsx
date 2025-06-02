@@ -35,6 +35,8 @@ import { Column, flexRender, Header } from '@tanstack/react-table'
 import { useTranslation } from 'next-i18next'
 import { type JSX } from 'react'
 
+import { cn } from '../../../utils'
+
 declare module '@tanstack/react-table' {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface ColumnMeta<TData, TValue = unknown> {
@@ -166,17 +168,17 @@ export function TableHeaderColumn<T>({
   return (
     <MantineTable.Th
       style={{ verticalAlign: 'top' }}
-      className={
-        firstColSticky
-          ? 'first:dark:bg-dark-700 first:sticky first:left-0 first:z-10 first:bg-white'
-          : ''
-      }
+      className={cn(
+        firstColSticky &&
+          'first:dark:bg-dark-700 first:sticky first:left-0 first:z-10 first:bg-white',
+      )}
       scope="col"
     >
       <Flex
-        className={`gap-sm items-center justify-start ${
-          header.column.getCanSort() ? 'group cursor-pointer' : ''
-        }`}
+        className={cn(
+          'gap-sm items-center justify-start',
+          header.column.getCanSort() && 'group cursor-pointer',
+        )}
         onClick={header.column.getToggleSortingHandler()}
         w={header.column.getSize()}
       >

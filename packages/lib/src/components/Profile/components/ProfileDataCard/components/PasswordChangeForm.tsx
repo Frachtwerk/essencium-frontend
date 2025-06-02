@@ -65,7 +65,7 @@ export function PasswordChangeForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Stack className="mb-md w-full min-w-[60%] md:w-auto">
+      <Stack className="mb-md md:w-[60%]">
         <ControlledPasswordInput
           name="verification"
           control={control}

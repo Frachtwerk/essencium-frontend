@@ -42,7 +42,7 @@ export function SearchBar({ className }: Props): JSX.Element {
       onClick={() => openSpotlight()}
       role="search"
     >
-      <Group className={className?.group ?? ''}>
+      <Group className={className?.group}>
         <Group className="gap-sm">
           <IconSearch
             size="16"
@@ -50,7 +50,7 @@ export function SearchBar({ className }: Props): JSX.Element {
           />
 
           <Text
-            className={className?.text ?? ''}
+            className={className?.text}
             c="gray.5"
             size="sm"
             role="searchbox"

@@ -341,7 +341,7 @@ export function FeedbackWidget({
 
                 {!isLoading && !showSuccessMessage && !showErrorMessage ? (
                   <Box>
-                    <Group className="justify- gap-xs mb-md">
+                    <Group className="gap-xs mb-md justify-evenly">
                       {Object.keys(OpenInput).map(key => {
                         const inputKey = key as keyof typeof OpenInput
 
@@ -371,7 +371,7 @@ export function FeedbackWidget({
                         <ControlledTextarea
                           name="message"
                           control={control}
-                          className="mb-[15px] rounded-[50px]"
+                          className="rounded-[50px]"
                           placeholder={
                             t('feedbackWidget.placeholder') as string
                           }

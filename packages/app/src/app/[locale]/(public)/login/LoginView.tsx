@@ -184,9 +184,9 @@ export default function LoginView(): JSX.Element {
             </Flex>
 
             {matches ? (
-              <Flex className="gap-md to-dark-700 duration-500' h-screen w-[50%] flex-col items-center justify-center bg-radial from-blue-700 transition-[background]">
+              <Flex className="gap-md to-dark-700 h-screen w-1/2 flex-col items-center justify-center bg-radial from-blue-700 transition-[background] duration-500">
                 <Image
-                  className="animate-fade-in mx-auto h-[300px] w-[300px] origin-bottom -translate-y-[10px] self-end opacity-0"
+                  className="animate-fade-in mx-auto aspect-4/1 h-auto w-[300px] origin-bottom -translate-y-[10px] self-end opacity-0 drop-shadow-xl drop-shadow-blue-900"
                   src="/img/web/logotype_weiß_400x100px.svg"
                   alt={t('header.logo')}
                 />
