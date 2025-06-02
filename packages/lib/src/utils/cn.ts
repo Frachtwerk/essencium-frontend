@@ -17,5 +17,17 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './cn'
-export * from './hasRequiredRights'
+import { type ClassValue, clsx } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+
+/**
+ * Utility function to merge class names conditionally and handle Tailwind CSS conflicts.
+ *
+ * @param inputs - Class names or conditional class names to merge.
+ * @returns A single string of merged class names.
+ *
+ * IMPORTANT: Only use this function if classNames are being merged, or classNames are being conditionally applied.
+ */
+export function cn(...inputs: ClassValue[]): string {
+  return twMerge(clsx(inputs))
+}
