@@ -224,7 +224,7 @@ export default function RolesView(): JSX.Element {
           const rowRole = info.row.original
 
           return (
-            <Flex direction="row" className="gap-xs">
+            <Flex className="gap-xs flex-row">
               {hasRequiredRights(userRights, RIGHTS.RIGHT_UPDATE) &&
               rowRole.editable === true ? (
                 <ActionIcon size="sm" variant="transparent">
@@ -285,9 +285,9 @@ export default function RolesView(): JSX.Element {
         loadingMessage={t('notifications.loadingAsyncData.message') as string}
       />
 
-      <Flex py="md" justify="space-between" align="center">
+      <Flex className="py-md items-center justify-between">
         <Title size="h2">
-          <Flex align="center" gap={10}>
+          <Flex className="items-center" gap={10}>
             <IconUserStar size="32" />
 
             <Text inherit>{t('rolesView.title')}</Text>

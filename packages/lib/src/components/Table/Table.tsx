@@ -80,7 +80,7 @@ export function Table<T>({
   }
 
   return (
-    <Flex direction="column" align="end">
+    <Flex className="flex-col items-end">
       <div style={{ overflowX: 'auto', width: '100%' }}>
         <MantineTable
           striped

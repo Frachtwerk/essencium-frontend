@@ -45,12 +45,7 @@ export function ProfileOverviewCard({ user }: Props): JSX.Element {
 
   return (
     <Card withBorder className="p-lg rounded-sm shadow-sm">
-      <Flex
-        className="gap-md"
-        justify="center"
-        align="center"
-        direction="column"
-      >
+      <Flex className="gap-md flex-col items-center justify-center">
         <Indicator
           role="note"
           inline

@@ -23,6 +23,8 @@ import { IconSearch } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
 import type { JSX } from 'react'
 
+import { cn } from '../../../../utils'
+
 type Props = {
   className?: {
     group?: string
@@ -40,18 +42,15 @@ export function SearchBar({ className }: Props): JSX.Element {
       onClick={() => openSpotlight()}
       role="search"
     >
-      <Group
-        justify="apart"
-        className={className?.group ? className.group : ''}
-      >
+      <Group className={className?.group ?? ''}>
         <Group className="gap-sm">
           <IconSearch
             size="16"
-            className={`text-gray-500 ${className?.icon ? className.icon : ''}`}
+            className={cn('text-gray-500', className?.icon)}
           />
 
           <Text
-            className={`${className?.text ? className.text : ''}`}
+            className={className?.text ?? ''}
             c="gray.5"
             size="sm"
             role="searchbox"

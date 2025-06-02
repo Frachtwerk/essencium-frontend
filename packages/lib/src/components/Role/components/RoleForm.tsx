@@ -81,7 +81,7 @@ export function RoleForm({
         <Divider
           className="my-xs"
           label={
-            <Flex align="start">
+            <Flex className="items-start">
               <IconShieldCheck size={16} />
               <Box ml={5}>{t('rolesView.modal.rights')}</Box>
             </Flex>
@@ -93,7 +93,7 @@ export function RoleForm({
           name="rights"
           control={control}
           render={() => (
-            <Flex wrap="wrap" className="gap-sm my-xs">
+            <Flex className="gap-sm my-xs flex-wrap">
               {Object.values(rights).map(right => (
                 <Chip
                   defaultChecked={Boolean(
@@ -118,7 +118,7 @@ export function RoleForm({
 
       <Space h="lg" />
 
-      <Flex justify="space-around" className="gap-lg">
+      <Flex className="gap-lg justify-around">
         <Button type="submit" fullWidth className="mt-md" loading={isLoading}>
           {role ? t('rolesView.modal.update') : t('rolesView.modal.submit')}
         </Button>

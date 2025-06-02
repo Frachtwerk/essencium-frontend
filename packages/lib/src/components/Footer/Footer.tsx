@@ -50,14 +50,10 @@ export function Footer({
       className={props.className ? props.className : ''}
     >
       <Flex
-        justify={{ base: 'center', xs: 'space-between' }}
-        direction="row-reverse"
-        wrap="wrap"
-        align="center"
         h="100%" // not applied with normal css
-        px="lg"
+        className="xs:justify-between px-lg flex-row-reverse flex-wrap items-center justify-center"
       >
-        <Flex direction="row" className="gap-lg" align="center">
+        <Flex className="gap-lg flex-row items-center">
           {links.map(link => (
             <Anchor component={NextLink} key={link.label} href={link.to}>
               {t(link.label)}
@@ -67,7 +63,7 @@ export function Footer({
           {children}
         </Flex>
 
-        <Flex className="gap-xs" align="center">
+        <Flex className="gap-xs items-center">
           <IconCopyright size="16" />
 
           <Text> {t('footer.license')} </Text>

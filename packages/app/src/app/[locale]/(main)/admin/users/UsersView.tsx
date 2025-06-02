@@ -213,7 +213,7 @@ export default function UsersView(): JSX.Element {
           const ssoProvider = rowUser.source
 
           return (
-            <Flex align="center">
+            <Flex className="items-center">
               <Text inherit>
                 {rowUser.firstName} {rowUser.lastName}
               </Text>
@@ -278,7 +278,7 @@ export default function UsersView(): JSX.Element {
           const isDefaultUser = rowUser.email === defaultUserEmail
 
           return (
-            <Flex direction="row" className="gap-xs">
+            <Flex className="gap-xs flex-row">
               {hasRequiredRights(userRights, RIGHTS.USER_UPDATE) ? (
                 <ActionIcon
                   className="disabled:bg-transparent"
@@ -378,9 +378,9 @@ export default function UsersView(): JSX.Element {
         loadingMessage={t('notifications.loadingAsyncData.message') as string}
       />
 
-      <Flex className="py-md" justify="space-between" align="center">
+      <Flex className="py-md items-center justify-between">
         <Title size="h2">
-          <Flex align="center" gap={10}>
+          <Flex className="items-center" gap={10}>
             <IconUsers size="32" />
 
             <Text inherit>{t('usersView.title')}</Text>

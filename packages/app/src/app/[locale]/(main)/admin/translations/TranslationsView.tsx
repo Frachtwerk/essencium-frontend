@@ -306,8 +306,8 @@ export default function TranlsationView({ resources }: Props): JSX.Element {
 
   return (
     <>
-      <Title py="md" size="h2">
-        <Flex align="center" gap={10}>
+      <Title className="py-md" size="h2">
+        <Flex className="items-center" gap={10}>
           <IconLanguage size="32" />
           <Text inherit>{t('translationsView.title')}</Text>
         </Flex>

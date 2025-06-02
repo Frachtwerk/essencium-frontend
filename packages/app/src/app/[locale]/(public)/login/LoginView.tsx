@@ -19,7 +19,7 @@
 
 'use client'
 
-import { LoginForm } from '@frachtwerk/essencium-lib'
+import { cn, LoginForm } from '@frachtwerk/essencium-lib'
 import { ResetPassword } from '@frachtwerk/essencium-types'
 import {
   Box,
@@ -112,12 +112,11 @@ export default function LoginView(): JSX.Element {
       <Container className="size-full p-0" fluid>
         {!oauthToken ? (
           <Flex
-            direction="row"
-            className={
-              !matches
-                ? 'gap-md to-dark-700 h-screen flex-col items-center justify-center bg-radial from-blue-700 transition-[background] duration-500'
-                : ' '
-            }
+            className={cn(
+              'flex-row',
+              !matches &&
+                'gap-md to-dark-700 h-screen flex-col items-center justify-center bg-radial from-blue-700 transition-[background] duration-500',
+            )}
           >
             <Flex
               className="h-screen items-center justify-center"
@@ -153,8 +152,7 @@ export default function LoginView(): JSX.Element {
                               <Image
                                 src={ssoApplications[application].imageUrl}
                                 alt={ssoApplications[application].name}
-                                w={45}
-                                h={20}
+                                className="h-5 w-auto"
                               />
                             }
                           >

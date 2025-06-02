@@ -174,9 +174,7 @@ export function TableHeaderColumn<T>({
       scope="col"
     >
       <Flex
-        align="center"
-        justify="flex-start"
-        className={`gap-sm ${
+        className={`gap-sm items-center justify-start ${
           header.column.getCanSort() ? 'group cursor-pointer' : ''
         }`}
         onClick={header.column.getToggleSortingHandler()}
