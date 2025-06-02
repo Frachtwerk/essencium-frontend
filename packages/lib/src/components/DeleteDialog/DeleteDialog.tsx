@@ -53,7 +53,7 @@ export function DeleteDialog({
 
       <Text className="mb-md">{text}</Text>
 
-      <Flex justify="space-around" className="gap-lg">
+      <Flex className="gap-lg justify-around">
         <Button fullWidth className="mt-md" onClick={deleteFunction}>
           {t('actions.delete')}
         </Button>

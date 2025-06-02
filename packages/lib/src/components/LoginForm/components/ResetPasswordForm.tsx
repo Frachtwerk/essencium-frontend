@@ -49,7 +49,7 @@ export function ResetPasswordForm({
     handlePasswordReset(email)
   }
   return (
-    <Container p={0} m={0}>
+    <Container className="m-0 p-0">
       <form onSubmit={handleSubmit(onSubmit)}>
         <Text size="sm" className="my-md">
           {t('loginView.resetPassword.form.description')}

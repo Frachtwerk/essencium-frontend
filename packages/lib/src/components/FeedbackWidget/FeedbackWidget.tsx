@@ -270,7 +270,7 @@ export function FeedbackWidget({
         ) : null}
 
         {openInput === null ? (
-          <Flex justify="space-around">
+          <Flex className="justify-around">
             {Object.keys(OpenInput).map(key => {
               const inputKey = key as keyof typeof OpenInput
               return (
@@ -341,7 +341,7 @@ export function FeedbackWidget({
 
                 {!isLoading && !showSuccessMessage && !showErrorMessage ? (
                   <Box>
-                    <Group justify="apart" className="gap-xs mb-md">
+                    <Group className="justify- gap-xs mb-md">
                       {Object.keys(OpenInput).map(key => {
                         const inputKey = key as keyof typeof OpenInput
 

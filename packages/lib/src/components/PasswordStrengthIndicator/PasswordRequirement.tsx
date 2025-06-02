@@ -22,6 +22,8 @@ import { IconCircleCheck, IconCircleX } from '@tabler/icons-react'
 import type { JSX } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { cn } from '../../../../../utils'
+
 type Props = {
   meets: boolean
   label: string
@@ -30,16 +32,17 @@ type Props = {
 export function PasswordRequirement({ meets, label }: Props): JSX.Element {
   const { t } = useTranslation()
 
+  const textColorClasses = cn(
+    'transition-colors duration-500',
+    meets ? 'text-green-700' : 'text-dark',
+  )
+
   return (
     <Group className="mt-xs gap-xs">
       {meets ? (
         <IconCircleCheck
           size={20}
-          className={
-            meets
-              ? 'text-green-700 transition-colors duration-500'
-              : 'text-dark transition-colors duration-500'
-          }
+          className={textColorClasses}
           aria-label={t(
             'profileView.dataCard.tabs.passwordChange.passwordStrength.requirements.met',
           )}
@@ -47,25 +50,14 @@ export function PasswordRequirement({ meets, label }: Props): JSX.Element {
       ) : (
         <IconCircleX
           size={20}
-          className={
-            meets
-              ? 'text-green-700 transition-colors duration-500'
-              : 'text-dark transition-colors duration-500'
-          }
+          className={textColorClasses}
           aria-label={t(
             'profileView.dataCard.tabs.passwordChange.passwordStrength.requirements.unmet',
           )}
         />
       )}
 
-      <Text
-        size="sm"
-        className={
-          meets
-            ? 'text-green-700 transition-colors duration-500'
-            : 'text-dark transition-colors duration-500'
-        }
-      >
+      <Text size="sm" className={textColorClasses}>
         {label}
       </Text>
     </Group>
