@@ -97,7 +97,7 @@ export function UserForm({
       </Flex>
 
       <Grid gutter="xs">
-        <Grid.Col className="col-span-12 md:col-span-6">
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <ControlledTextInput
             name="firstName"
             control={control}
@@ -111,7 +111,7 @@ export function UserForm({
           />
         </Grid.Col>
 
-        <Grid.Col className="col-span-12 md:col-span-6">
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <ControlledTextInput
             name="lastName"
             control={control}
@@ -125,7 +125,7 @@ export function UserForm({
           />
         </Grid.Col>
 
-        <Grid.Col className="col-span-12 md:col-span-6">
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <ControlledTextInput
             name="email"
             control={control}
@@ -137,7 +137,7 @@ export function UserForm({
           />
         </Grid.Col>
 
-        <Grid.Col className="col-span-12 md:col-span-6">
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <Controller
             name="password"
             control={control}
@@ -194,7 +194,7 @@ export function UserForm({
           />
         </Grid.Col>
 
-        <Grid.Col className="col-span-12 md:col-span-6">
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <ControlledTextInput
             name="phone"
             control={control}
@@ -204,7 +204,7 @@ export function UserForm({
           />
         </Grid.Col>
 
-        <Grid.Col className="col-span-12 md:col-span-6">
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <ControlledTextInput
             name="mobile"
             control={control}
@@ -237,7 +237,7 @@ export function UserForm({
           />
         </Grid.Col>
 
-        <Grid.Col className="col-span-12 md:col-span-6">
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <ControlledSelect
             name="locale"
             control={control}
@@ -252,7 +252,7 @@ export function UserForm({
           />
         </Grid.Col>
 
-        <Grid.Col className="col-span-12 md:col-span-6">
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <ControlledMultiSelect
             name="roles"
             control={control}
