@@ -83,7 +83,7 @@ export function ThemeSelector(): JSX.Element {
           }}
           className={groupClasses}
         >
-          <IconSun size={20} />
+          <IconSun className="size-5" />
 
           <Text size="sm">{t('header.themeToggle.lightMode')}</Text>
         </Group>
@@ -94,7 +94,7 @@ export function ThemeSelector(): JSX.Element {
           }}
           className={groupClasses}
         >
-          <IconMoon size={20} />
+          <IconMoon className="size-5" />
 
           <Text size="sm">{t('header.themeToggle.darkMode')}</Text>
         </Group>
@@ -105,7 +105,7 @@ export function ThemeSelector(): JSX.Element {
           }}
           className={groupClasses}
         >
-          <IconDeviceLaptop size={20} />
+          <IconDeviceLaptop className="size-5" />
 
           <Text size="sm">{t('header.themeToggle.systemMode')}</Text>
         </Group>

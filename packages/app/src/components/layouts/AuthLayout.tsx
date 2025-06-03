@@ -134,7 +134,7 @@ export const NAV_LINKS: NavLink[] = [
 
 export const FOOTER_LINKS: NavLink[] = [
   {
-    icon: <IconShieldLock size={20} />,
+    icon: <IconShieldLock className="size-5" />,
     color: theme.primaryColor,
     label: 'privacyPolicyView.title',
     to: '/privacy-policy',
@@ -143,12 +143,12 @@ export const FOOTER_LINKS: NavLink[] = [
   {
     color: theme.primaryColor,
     label: 'legalNoticeView.title',
-    icon: <IconSectionSign size={20} />,
+    icon: <IconSectionSign className="size-5" />,
     to: '/legal-notice',
     rights: [],
   },
   {
-    icon: <IconMessage size={20} />,
+    icon: <IconMessage className="size-5" />,
     color: theme.primaryColor,
     label: 'footer.contact.label',
     to: '/contact',

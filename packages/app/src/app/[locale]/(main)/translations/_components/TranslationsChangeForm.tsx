@@ -111,13 +111,13 @@ export function TranslationChangeForm({
 
           {userRightUpdate ? (
             <ActionIcon type="submit" disabled={!fieldValue.length}>
-              <IconDeviceFloppy size={20} />
+              <IconDeviceFloppy className="size-5" />
             </ActionIcon>
           ) : null}
 
           {userRightDelete ? (
             <ActionIcon onClick={() => deleteTranslation(keyPath)}>
-              <IconBackspace size={20} />
+              <IconBackspace className="size-5" />
             </ActionIcon>
           ) : null}
         </Group>

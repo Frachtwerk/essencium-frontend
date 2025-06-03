@@ -67,7 +67,7 @@ export function ContactForm({ control }: Props): JSX.Element {
       </Stack>
 
       <Group className="mt-sm mb-xs">
-        <Button type="submit" leftSection={<IconSend size={20} />}>
+        <Button type="submit" leftSection={<IconSend className="size-5" />}>
           {t('contactView.contactForm.form.sendMessage')}
         </Button>
       </Group>

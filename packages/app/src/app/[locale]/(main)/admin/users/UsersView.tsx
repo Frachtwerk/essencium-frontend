@@ -323,7 +323,7 @@ export default function UsersView(): JSX.Element {
                     <Button
                       variant="transparent"
                       onClick={() => handleInvalidateToken(rowUser)}
-                      leftSection={<IconLogout size={16} />}
+                      leftSection={<IconLogout className="size-4" />}
                     >
                       {t('usersView.table.invalidate')}
                     </Button>
@@ -380,7 +380,7 @@ export default function UsersView(): JSX.Element {
 
       <Flex className="py-md items-center justify-between">
         <Title size="h2">
-          <Flex className="items-center" gap={10}>
+          <Flex className="gap-xs items-center">
             <IconUsers size="32" />
 
             <Text inherit>{t('usersView.title')}</Text>

@@ -226,7 +226,7 @@ export default function RightsView(): JSX.Element {
 
       <Flex className="py-md items-center justify-between">
         <Title size="h2">
-          <Flex className="items-center" gap={10}>
+          <Flex className="gap-xs items-center">
             <IconShieldHalf size="32" />
             <Text inherit> {t('rightsView.title')}</Text>
           </Flex>

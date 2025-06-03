@@ -307,7 +307,7 @@ export default function TranlsationView({ resources }: Props): JSX.Element {
   return (
     <>
       <Title className="py-md" size="h2">
-        <Flex className="items-center" gap={10}>
+        <Flex className="gap-xs items-center">
           <IconLanguage size="32" />
           <Text inherit>{t('translationsView.title')}</Text>
         </Flex>
@@ -329,10 +329,10 @@ export default function TranlsationView({ resources }: Props): JSX.Element {
           value={searchQuery || ''}
           rightSection={
             searchQuery?.length && searchQuery.length > 0 ? (
-              <IconX onClick={() => setSearchQuery(null)} size={16} />
+              <IconX onClick={() => setSearchQuery(null)} className="size-4" />
             ) : null
           }
-          leftSection={<IconSearch size={16} />}
+          leftSection={<IconSearch className="size-4" />}
           className="mb-md w-2/5"
         />
       </Group>

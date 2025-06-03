@@ -33,7 +33,7 @@ export function PasswordRequirement({ meets, label }: Props): JSX.Element {
   const { t } = useTranslation()
 
   const textColorClasses = cn(
-    'transition-colors duration-500',
+    'transition-colors duration-500 size-5',
     meets ? 'text-green-700' : 'text-dark',
   )
 
@@ -41,16 +41,14 @@ export function PasswordRequirement({ meets, label }: Props): JSX.Element {
     <Group className="mt-xs gap-xs">
       {meets ? (
         <IconCircleCheck
-          size={20}
-          className={textColorClasses}
+          className={cn('size-5', textColorClasses)}
           aria-label={t(
             'profileView.dataCard.tabs.passwordChange.passwordStrength.requirements.met',
           )}
         />
       ) : (
         <IconCircleX
-          size={20}
-          className={textColorClasses}
+          className={cn('size-5', textColorClasses)}
           aria-label={t(
             'profileView.dataCard.tabs.passwordChange.passwordStrength.requirements.unmet',
           )}

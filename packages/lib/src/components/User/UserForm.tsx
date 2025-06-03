@@ -151,7 +151,7 @@ export function UserForm({
               return (
                 <InputErrorStack message={message}>
                   <Input.Label>
-                    <Flex gap={5}>
+                    <Flex className="gap-1">
                       {t('addUpdateUserView.form.password')}
 
                       {isAddUserForm ? (
@@ -163,7 +163,7 @@ export function UserForm({
                           bg=" var(--mantine-color-gray-6)"
                           w="250px"
                         >
-                          <IconInfoCircle size={20} />
+                          <IconInfoCircle className="size-5" />
                         </Tooltip>
                       ) : null}
                     </Flex>
