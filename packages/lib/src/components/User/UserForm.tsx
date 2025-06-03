@@ -106,7 +106,6 @@ export function UserForm({
               t('addUpdateUserView.form.placeholder.firstName'),
             )}
             label={t('addUpdateUserView.form.firstName')}
-            size="sm"
             withAsterisk
           />
         </Grid.Col>
@@ -120,7 +119,6 @@ export function UserForm({
               t('addUpdateUserView.form.placeholder.lastName'),
             )}
             label={t('addUpdateUserView.form.lastName')}
-            size="sm"
             withAsterisk
           />
         </Grid.Col>
@@ -133,7 +131,6 @@ export function UserForm({
             placeholder={String(t('addUpdateUserView.form.placeholder.email'))}
             label={t('addUpdateUserView.form.email')}
             withAsterisk
-            size="sm"
           />
         </Grid.Col>
 
@@ -184,7 +181,6 @@ export function UserForm({
                       placeholder={String(
                         t('addUpdateUserView.form.placeholder.password'),
                       )}
-                      size="sm"
                       error={fieldState.invalid}
                     />
                   </PasswordStrengthIndicator>
@@ -200,7 +196,6 @@ export function UserForm({
             control={control}
             placeholder={String(t('addUpdateUserView.form.placeholder.phone'))}
             label={t('addUpdateUserView.form.phone')}
-            size="sm"
           />
         </Grid.Col>
 
@@ -210,7 +205,6 @@ export function UserForm({
             control={control}
             placeholder={String(t('addUpdateUserView.form.placeholder.mobile'))}
             label={t('addUpdateUserView.form.mobile')}
-            size="sm"
           />
         </Grid.Col>
       </Grid>
@@ -229,8 +223,6 @@ export function UserForm({
                 {...field}
                 checked={field.value}
                 value={String(field.value)}
-                size="md"
-                className="mt-sm"
                 label={t('addUpdateUserView.form.activeStatus')}
               />
             )}

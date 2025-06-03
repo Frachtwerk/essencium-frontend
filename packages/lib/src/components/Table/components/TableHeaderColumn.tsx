@@ -96,7 +96,6 @@ export function FilterInput<T>({
     case TABLEFILTERTYPE.TEXT:
       return (
         <TextInput
-          size="xs"
           className="my-xs"
           value={
             filterValue?.[header.column.id] ||
@@ -118,7 +117,6 @@ export function FilterInput<T>({
     case TABLEFILTERTYPE.SELECT:
       return (
         <Select
-          size="xs"
           className="my-xs"
           data={mapToSelectData(filterOptions)}
           placeholder={t('table.filter.placeholder')}
@@ -136,7 +134,6 @@ export function FilterInput<T>({
     case TABLEFILTERTYPE.MULTI_SELECT:
       return (
         <MultiSelect
-          size="xs"
           className="my-xs"
           data={mapToSelectData(filterOptions)}
           placeholder={t('table.filter.placeholder')}

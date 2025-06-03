@@ -50,7 +50,6 @@ export function ContactForm({ control }: Props): JSX.Element {
           placeholder={String(
             t('contactView.contactForm.form.subjectPlaceholder'),
           )}
-          size="sm"
           withAsterisk
         />
 

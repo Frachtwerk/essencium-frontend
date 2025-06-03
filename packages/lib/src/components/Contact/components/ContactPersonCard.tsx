@@ -55,11 +55,11 @@ export function ContactPersonCard({ contactPerson }: Props): JSX.Element {
         <Title order={3}>{t('contactView.contactPersonCard.title')}</Title>
 
         <Avatar
-          size="xl"
+          className="mt-xs rounded-xl"
           // color gets not applied when outsourced to module.css
           color={theme.primaryColor}
           name={contactPerson.name}
-          className="mt-xs rounded-xl"
+          size="xl"
         />
 
         <Title order={5} className="my-sm">

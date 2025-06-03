@@ -388,7 +388,7 @@ export function FeedbackWidget({
                           >
                             <ActionIcon
                               variant={screenshot ? 'filled' : 'outline'}
-                              size="md"
+                              className="size-md"
                               aria-label={t('feedbackWidget.screenshot.label')}
                               onClick={() => {
                                 setIsCapturingScreenshot(true)

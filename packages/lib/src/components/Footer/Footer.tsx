@@ -61,7 +61,7 @@ export function Footer({
         </Flex>
 
         <Flex className="gap-xs items-center">
-          <IconCopyright size="16" />
+          <IconCopyright className="size-4" />
 
           <Text> {t('footer.license')} </Text>
 

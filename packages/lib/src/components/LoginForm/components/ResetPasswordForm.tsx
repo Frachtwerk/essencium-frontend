@@ -51,7 +51,7 @@ export function ResetPasswordForm({
   return (
     <Container className="m-0 p-0">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Text size="sm" className="my-md">
+        <Text className="my-md text-sm">
           {t('loginView.resetPassword.form.description')}
         </Text>
 

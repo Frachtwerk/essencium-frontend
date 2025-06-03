@@ -91,7 +91,7 @@ export default function UpdateUserView({
     <>
       <Title className="py-md" order={2}>
         <Flex>
-          <IconUserEdit size="32" />
+          <IconUserEdit className="size-8" />
 
           <Text className="ml-xl">{t('addUpdateUserView.update.title')}</Text>
         </Flex>

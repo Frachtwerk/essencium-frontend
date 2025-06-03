@@ -219,7 +219,7 @@ export default function UsersView(): JSX.Element {
               </Text>
 
               {isSso ? (
-                <Badge variant="light" size="xs" className="ml-[5px]">
+                <Badge variant="light" className="size-xs ml-[5px]">
                   {ssoProvider}
                 </Badge>
               ) : null}
@@ -281,8 +281,7 @@ export default function UsersView(): JSX.Element {
             <Flex className="gap-xs flex-row">
               {hasRequiredRights(userRights, RIGHTS.USER_UPDATE) ? (
                 <ActionIcon
-                  className="disabled:bg-transparent"
-                  size="sm"
+                  className="size-sm disabled:bg-transparent"
                   disabled={isDefaultUser}
                   variant="transparent"
                 >
@@ -292,8 +291,7 @@ export default function UsersView(): JSX.Element {
 
               {hasRequiredRights(userRights, RIGHTS.USER_DELETE) ? (
                 <ActionIcon
-                  className="disabled:bg-transparent"
-                  size="sm"
+                  className="size-sm disabled:bg-transparent"
                   disabled={isDefaultUser}
                   variant="transparent"
                 >
@@ -310,8 +308,7 @@ export default function UsersView(): JSX.Element {
                 <Popover position="bottom" withArrow shadow="sm">
                   <Popover.Target>
                     <ActionIcon
-                      className="disabled:bg-transparent"
-                      size="sm"
+                      className="size-sm disabled:bg-transparent"
                       disabled={isDefaultUser}
                       variant="transparent"
                     >
@@ -381,7 +378,7 @@ export default function UsersView(): JSX.Element {
       <Flex className="py-md items-center justify-between">
         <Title size="h2">
           <Flex className="gap-xs items-center">
-            <IconUsers size="32" />
+            <IconUsers className="size-8" />
 
             <Text inherit>{t('usersView.title')}</Text>
           </Flex>

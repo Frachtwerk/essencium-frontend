@@ -227,7 +227,7 @@ export default function RolesView(): JSX.Element {
             <Flex className="gap-xs flex-row">
               {hasRequiredRights(userRights, RIGHTS.RIGHT_UPDATE) &&
               rowRole.editable === true ? (
-                <ActionIcon size="sm" variant="transparent">
+                <ActionIcon className="size-sm" variant="transparent">
                   <IconPencil
                     onClick={() => {
                       setRoleToEditOrDelete(rowRole)
@@ -240,7 +240,7 @@ export default function RolesView(): JSX.Element {
 
               {hasRequiredRights(userRights, RIGHTS.ROLE_DELETE) &&
               rowRole.protected === false ? (
-                <ActionIcon size="sm" variant="transparent">
+                <ActionIcon className="size-sm" variant="transparent">
                   <IconTrash
                     onClick={() => {
                       setRoleToEditOrDelete(rowRole)
@@ -288,7 +288,7 @@ export default function RolesView(): JSX.Element {
       <Flex className="py-md items-center justify-between">
         <Title size="h2">
           <Flex className="gap-xs items-center">
-            <IconUserStar size="32" />
+            <IconUserStar className="size-8" />
 
             <Text inherit>{t('rolesView.title')}</Text>
           </Flex>

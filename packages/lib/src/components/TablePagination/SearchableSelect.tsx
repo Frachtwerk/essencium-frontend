@@ -186,7 +186,7 @@ export function SearchableSelect({
                   >
                     <Group gap="xs">
                       {isSelected && <CheckIcon size={12} color="gray" />}
-                      <Text size="sm">{item}</Text>
+                      <Text className="text-sm">{item}</Text>
                     </Group>
                   </Combobox.Option>
                 </div>

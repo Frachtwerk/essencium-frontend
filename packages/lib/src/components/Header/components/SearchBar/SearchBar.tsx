@@ -44,15 +44,11 @@ export function SearchBar({ className }: Props): JSX.Element {
     >
       <Group className={className?.group}>
         <Group className="gap-sm">
-          <IconSearch
-            size="16"
-            className={cn('text-gray-500', className?.icon)}
-          />
+          <IconSearch className={cn('size-4 text-gray-500', className?.icon)} />
 
           <Text
-            className={className?.text}
+            className={cn('text-sm', className?.text)}
             c="gray.5"
-            size="sm"
             role="searchbox"
           >
             {t('header.spotlight.placeholder')}
