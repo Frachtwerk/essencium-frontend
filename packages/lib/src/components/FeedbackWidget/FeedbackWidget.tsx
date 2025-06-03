@@ -395,9 +395,9 @@ export function FeedbackWidget({
                               }}
                             >
                               {screenshot ? (
-                                <IconCameraCheck size={20} />
+                                <IconCameraCheck className="size-5" />
                               ) : (
-                                <IconCameraPlus size={20} />
+                                <IconCameraPlus className="size-5" />
                               )}
                             </ActionIcon>
                           </Tooltip>
