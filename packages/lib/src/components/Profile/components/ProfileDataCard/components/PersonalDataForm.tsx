@@ -93,7 +93,6 @@ export function PersonalDataForm({
               t('profileView.dataCard.tabs.personalData.placeholder.firstName'),
             )}
             label={t('profileView.dataCard.tabs.personalData.label.firstName')}
-            size="sm"
             withAsterisk
           />
         </Grid.Col>
@@ -107,7 +106,6 @@ export function PersonalDataForm({
               t('profileView.dataCard.tabs.personalData.placeholder.lastName'),
             )}
             label={t('profileView.dataCard.tabs.personalData.label.lastName')}
-            size="sm"
             withAsterisk
           />
         </Grid.Col>
@@ -120,7 +118,6 @@ export function PersonalDataForm({
               t('profileView.dataCard.tabs.personalData.placeholder.phone'),
             )}
             label={t('profileView.dataCard.tabs.personalData.label.phone')}
-            size="sm"
           />
         </Grid.Col>
 
@@ -132,7 +129,6 @@ export function PersonalDataForm({
               t('profileView.dataCard.tabs.personalData.placeholder.mobile'),
             )}
             label={t('profileView.dataCard.tabs.personalData.label.mobile')}
-            size="sm"
           />
         </Grid.Col>
 
@@ -146,7 +142,6 @@ export function PersonalDataForm({
             )}
             label={t('profileView.dataCard.tabs.personalData.label.email')}
             withAsterisk
-            size="sm"
           />
         </Grid.Col>
 
