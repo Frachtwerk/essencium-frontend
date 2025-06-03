@@ -49,7 +49,7 @@ export function ProfileOverviewCard({ user }: Props): JSX.Element {
         <Indicator
           role="note"
           inline
-          className="size-4"
+          size={16}
           offset={7}
           position="bottom-end"
           color={user.enabled ? 'green' : 'red'}

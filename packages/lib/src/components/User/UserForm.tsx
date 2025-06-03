@@ -157,8 +157,7 @@ export function UserForm({
                           position="right"
                           withArrow
                           multiline
-                          bg=" var(--mantine-color-gray-6)"
-                          w="250px"
+                          className="w-64"
                         >
                           <IconInfoCircle className="size-5" />
                         </Tooltip>

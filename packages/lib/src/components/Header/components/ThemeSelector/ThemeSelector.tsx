@@ -48,39 +48,29 @@ export function ThemeSelector(): JSX.Element {
 
   const isAutoMode = colorScheme === COLOR_SCHEME.AUTO
 
-  const groupClasses = cn(
-    'p-xs cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900',
-    colorScheme === COLOR_SCHEME.LIGHT &&
-      !isAutoMode &&
-      'text-primary-600 dark:text-primary-200 bg-gray-50 dark:bg-gray-900',
-  )
-
-  const iconClasses = cn(
-    isAutoMode && 'hover:bg-gray-50 dark:hover:bg-gray-900',
-  )
-
   return (
-    <Popover width={130} position="bottom" withArrow shadow="sm">
+    <Popover width={130} position="bottom" withArrow>
       <PopoverTarget>
         <ActionIcon
           variant="subtle"
           className="size-xl hover:bg-gray-50 dark:hover:bg-gray-900"
           aria-label="theme-selector"
         >
-          {isLightMode ? (
-            <IconSun className={iconClasses} />
-          ) : (
-            <IconMoon className={iconClasses} />
-          )}
+          {isLightMode ? <IconSun /> : <IconMoon />}
         </ActionIcon>
       </PopoverTarget>
 
-      <PopoverDropdown className="p-0">
+      <PopoverDropdown className="p-0 shadow-sm">
         <Group
           onClick={() => {
             setColorScheme(COLOR_SCHEME.LIGHT)
           }}
-          className={groupClasses}
+          className={cn(
+            'p-xs cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900',
+            colorScheme === COLOR_SCHEME.LIGHT &&
+              !isAutoMode &&
+              'text-primary-600 dark:text-primary-200 bg-gray-50 dark:bg-gray-900',
+          )}
         >
           <IconSun className="size-5" />
 
@@ -91,7 +81,12 @@ export function ThemeSelector(): JSX.Element {
           onClick={() => {
             setColorScheme(COLOR_SCHEME.DARK)
           }}
-          className={groupClasses}
+          className={cn(
+            'p-xs cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900',
+            colorScheme === COLOR_SCHEME.DARK &&
+              !isAutoMode &&
+              'text-primary-600 dark:text-primary-200 bg-gray-50 dark:bg-gray-900',
+          )}
         >
           <IconMoon className="size-5" />
 
@@ -102,7 +97,12 @@ export function ThemeSelector(): JSX.Element {
           onClick={() => {
             clearColorScheme()
           }}
-          className={groupClasses}
+          className={cn(
+            'p-xs cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900',
+            colorScheme === COLOR_SCHEME.AUTO &&
+              !isAutoMode &&
+              'text-primary-600 dark:text-primary-200 bg-gray-50 dark:bg-gray-900',
+          )}
         >
           <IconDeviceLaptop className="size-5" />
 

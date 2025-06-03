@@ -104,8 +104,7 @@ export function LoginForm({
 
               <Group>
                 <Anchor
-                  size="xs"
-                  fw="bold"
+                  className="text-xs font-bold"
                   onClick={() => setIsPasswordResetFormOpened(true)}
                   role="link"
                 >
@@ -139,7 +138,7 @@ export function LoginForm({
       </Transition>
 
       {isResettingPassword && (
-        <Center h="100%">
+        <Center className="h-full">
           <Loader size="lg" name="loader" />
         </Center>
       )}
