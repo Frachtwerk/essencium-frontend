@@ -61,7 +61,6 @@ export function ResetPasswordForm({
           placeholder={String(t('loginView.resetPassword.form.placeholder'))}
           label={String(t('loginView.resetPassword.form.label'))}
           withAsterisk
-          className="mb-md"
         />
 
         <Group>

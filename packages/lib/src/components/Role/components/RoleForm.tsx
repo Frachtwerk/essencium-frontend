@@ -116,7 +116,7 @@ export function RoleForm({
         />
       </Flex>
 
-      <Space h="lg" />
+      <Space className="h-lg" />
 
       <Flex className="gap-lg justify-around">
         <Button type="submit" fullWidth className="mt-md" loading={isLoading}>

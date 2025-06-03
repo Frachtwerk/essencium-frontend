@@ -76,7 +76,7 @@ export function ContactPersonCard({ contactPerson }: Props): JSX.Element {
               }
             >
               <ThemeIcon className="rounded-md">
-                <IconPhoneCall width={15} height={15} />
+                <IconPhoneCall className="size-4" />
               </ThemeIcon>
 
               <Text>{contactPerson.phone}</Text>
@@ -85,7 +85,7 @@ export function ContactPersonCard({ contactPerson }: Props): JSX.Element {
 
           <Group aria-label="Contact info" className="gap-xl">
             <ThemeIcon className="rounded-md">
-              <IconMail width={15} height={15} />
+              <IconMail className="size-4" />
             </ThemeIcon>
 
             <Text>{contactPerson.email}</Text>
@@ -94,7 +94,7 @@ export function ContactPersonCard({ contactPerson }: Props): JSX.Element {
           {contactPerson?.address ? (
             <Group className="gap-xl" aria-label="Contact info">
               <ThemeIcon className="rounded-md">
-                <IconLocation width={15} height={15} />
+                <IconLocation className="size-4" />
               </ThemeIcon>
 
               <Text>{contactPerson.address}</Text>
@@ -107,8 +107,7 @@ export function ContactPersonCard({ contactPerson }: Props): JSX.Element {
             <NextLink href={contactPerson.linkedinUrl} passHref>
               <ThemeIcon variant="light" className="rounded-md">
                 <IconBrandLinkedin
-                  width={15}
-                  height={15}
+                  className="size-4"
                   aria-label="Social icon"
                 />
               </ThemeIcon>
@@ -119,8 +118,7 @@ export function ContactPersonCard({ contactPerson }: Props): JSX.Element {
             <NextLink href={contactPerson.instagramUrl} passHref>
               <ThemeIcon variant="light" className="rounded-md">
                 <IconBrandInstagram
-                  width={15}
-                  height={15}
+                  className="size-4"
                   aria-label="Social icon"
                 />
               </ThemeIcon>

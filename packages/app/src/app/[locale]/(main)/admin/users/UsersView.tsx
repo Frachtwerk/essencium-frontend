@@ -213,7 +213,11 @@ export default function UsersView(): JSX.Element {
               </Text>
 
               {isSso ? (
-                <Badge variant="light" className="size-xs ml-[5px]">
+                <Badge
+                  variant="light"
+                  size="xs"
+                  className="ml-[calc(var(--spacing-xs)/2)]"
+                >
                   {ssoProvider}
                 </Badge>
               ) : null}
@@ -299,7 +303,7 @@ export default function UsersView(): JSX.Element {
               ) : null}
 
               {hasRequiredRights(userRights, RIGHTS.USER_UPDATE) ? (
-                <Popover position="bottom" withArrow shadow="sm">
+                <Popover position="bottom" withArrow>
                   <Popover.Target>
                     <ActionIcon
                       className="size-sm disabled:bg-transparent"
@@ -310,7 +314,7 @@ export default function UsersView(): JSX.Element {
                     </ActionIcon>
                   </Popover.Target>
 
-                  <Popover.Dropdown>
+                  <Popover.Dropdown className="shadow-sm">
                     <Button
                       variant="transparent"
                       onClick={() => handleInvalidateToken(rowUser)}
@@ -370,7 +374,7 @@ export default function UsersView(): JSX.Element {
       />
 
       <Flex className="py-md items-center justify-between">
-        <Title size="h2">
+        <Title order={2}>
           <Flex className="gap-xs items-center">
             <IconUsers className="size-8" />
 
