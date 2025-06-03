@@ -46,10 +46,7 @@ export function Footer({
 
   return (
     <AppShellFooter {...props} className={props.className}>
-      <Flex
-        h="100%" // not applied with normal css
-        className="xs:justify-between px-lg flex-row-reverse flex-wrap items-center justify-center"
-      >
+      <Flex className="xs:justify-between px-lg h-full flex-row-reverse flex-wrap items-center justify-center">
         <Flex className="gap-lg flex-row items-center">
           {links.map(link => (
             <Anchor component={NextLink} key={link.label} href={link.to}>

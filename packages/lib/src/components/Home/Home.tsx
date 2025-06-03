@@ -36,7 +36,7 @@ export function Home({
   const { t } = useTranslation()
 
   return (
-    <Flex className="gap-lg flex-col items-center justify-center" h="80vh">
+    <Flex className="gap-lg h-[80vh] flex-col items-center justify-center">
       <Center className="my-lg">
         <Image
           src="/img/web/emblem_400x400px.svg"

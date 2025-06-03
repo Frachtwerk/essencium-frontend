@@ -33,7 +33,7 @@ export function InputErrorStack({
   const { t } = useTranslation()
 
   return (
-    <Stack gap="5px">
+    <Stack className="gap-[calc(var(--spacing-xs)/2)]">
       {children}
 
       <Input.Error h="0.9rem">{message && t(message)}</Input.Error>

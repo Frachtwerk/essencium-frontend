@@ -58,6 +58,7 @@ import { useTranslation } from 'next-i18next'
 import { type JSX, ReactNode, useEffect, useState } from 'react'
 
 import { useZodForm } from '../../hooks'
+import { cn } from '../../utils'
 import { ControlledTextarea } from '../Form'
 import { LoadingSpinner } from '../LoadingSpinner'
 
@@ -245,7 +246,7 @@ export function FeedbackWidget({
         variant="filled"
         aria-label={t('feedbackWidget.openButton.ariaLabel')}
         size="lg"
-        radius="xl"
+        className="rounded-xl"
         style={{
           zIndex: 20,
         }}
@@ -260,8 +261,10 @@ export function FeedbackWidget({
         onClose={() => {
           onCloseWidget()
         }}
-        h={openInput ? 'auto' : '180px'}
-        className={isCapturingScreenshot ? 'hidden' : 'w-[390px] rounded-md'}
+        className={cn(
+          openInput ? 'h-auto' : 'h-45',
+          isCapturingScreenshot ? 'hidden' : 'w-[390px] rounded-md',
+        )}
       >
         {!showSuccessMessage || !showErrorMessage ? (
           <Title className="text-md mb-sm text-center font-medium">
@@ -277,8 +280,7 @@ export function FeedbackWidget({
                 <Stack key={key}>
                   <ActionIcon
                     variant="filled"
-                    size={70}
-                    radius="lg"
+                    className="size-18 rounded-lg"
                     onClick={() => {
                       setOpenInput(OpenInput[inputKey])
                     }}
@@ -308,7 +310,7 @@ export function FeedbackWidget({
             <div style={styles}>
               <Box>
                 {isLoading ? (
-                  <Box h="100px">
+                  <Box className="h-25">
                     <LoadingSpinner show size="lg" />
                   </Box>
                 ) : null}
@@ -317,15 +319,11 @@ export function FeedbackWidget({
                   <Stack>
                     <Center>
                       {showSuccessMessage ? (
-                        <ThemeIcon variant="outline" h="60px" w="60px">
-                          <IconCircleCheck height="60px" width="60px" />
+                        <ThemeIcon variant="outline" className="size-15">
+                          <IconCircleCheck className="size-15" />
                         </ThemeIcon>
                       ) : (
-                        <IconCircleX
-                          height="60px"
-                          width="60px"
-                          className="stroke-red-600"
-                        />
+                        <IconCircleX className="size-15 stroke-red-600" />
                       )}
                     </Center>
 
@@ -377,7 +375,7 @@ export function FeedbackWidget({
                           }
                         />
 
-                        <Flex gap="xs">
+                        <Flex className="gap-xs">
                           <Tooltip
                             label={t('feedbackWidget.screenshot.label')}
                             className={

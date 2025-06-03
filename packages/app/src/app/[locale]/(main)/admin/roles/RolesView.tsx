@@ -286,7 +286,7 @@ export default function RolesView(): JSX.Element {
       />
 
       <Flex className="py-md items-center justify-between">
-        <Title size="h2">
+        <Title order={2}>
           <Flex className="gap-xs items-center">
             <IconUserStar className="size-8" />
 

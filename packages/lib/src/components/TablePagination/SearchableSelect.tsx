@@ -184,7 +184,7 @@ export function SearchableSelect({
                     className={cn(isActive && 'dark:bg-dark-700 bg-gray-50')}
                     active={isActive}
                   >
-                    <Group gap="xs">
+                    <Group className="gap-xs">
                       {isSelected && <CheckIcon size={12} color="gray" />}
                       <Text className="text-sm">{item}</Text>
                     </Group>
