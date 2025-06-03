@@ -34,7 +34,7 @@ export function ResetPasswordSuccessMessage(): JSX.Element {
           {t('loginView.resetPassword.successMessage.title')}
         </Title>
 
-        <Text className="mt-xs" size="xs">
+        <Text className="mt-xs text-xs">
           {t('loginView.resetPassword.successMessage.description')}
         </Text>
       </Stack>

@@ -55,9 +55,7 @@ export function PasswordRequirement({ meets, label }: Props): JSX.Element {
         />
       )}
 
-      <Text size="sm" className={textColorClasses}>
-        {label}
-      </Text>
+      <Text className={cn('text-sm', textColorClasses)}>{label}</Text>
     </Group>
   )
 }

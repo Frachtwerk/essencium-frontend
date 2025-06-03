@@ -74,7 +74,7 @@ export function ProfileOverviewCard({ user }: Props): JSX.Element {
         ) : null}
 
         {user.roles.map(role => (
-          <Text key={role.name} size="sm">
+          <Text key={role.name} className="text-sm">
             {role.name}
           </Text>
         ))}

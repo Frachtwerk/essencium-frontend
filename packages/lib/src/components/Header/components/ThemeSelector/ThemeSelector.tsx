@@ -64,9 +64,8 @@ export function ThemeSelector(): JSX.Element {
       <PopoverTarget>
         <ActionIcon
           variant="subtle"
-          className="hover:bg-gray-50 dark:hover:bg-gray-900"
+          className="size-xl hover:bg-gray-50 dark:hover:bg-gray-900"
           aria-label="theme-selector"
-          size="xl"
         >
           {isLightMode ? (
             <IconSun className={iconClasses} />
@@ -85,7 +84,7 @@ export function ThemeSelector(): JSX.Element {
         >
           <IconSun className="size-5" />
 
-          <Text size="sm">{t('header.themeToggle.lightMode')}</Text>
+          <Text className="text-sm">{t('header.themeToggle.lightMode')}</Text>
         </Group>
 
         <Group
@@ -96,7 +95,7 @@ export function ThemeSelector(): JSX.Element {
         >
           <IconMoon className="size-5" />
 
-          <Text size="sm">{t('header.themeToggle.darkMode')}</Text>
+          <Text className="text-sm">{t('header.themeToggle.darkMode')}</Text>
         </Group>
 
         <Group
@@ -107,7 +106,7 @@ export function ThemeSelector(): JSX.Element {
         >
           <IconDeviceLaptop className="size-5" />
 
-          <Text size="sm">{t('header.themeToggle.systemMode')}</Text>
+          <Text className="text-sm">{t('header.themeToggle.systemMode')}</Text>
         </Group>
       </PopoverDropdown>
     </Popover>
