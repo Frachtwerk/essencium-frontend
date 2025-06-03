@@ -82,7 +82,7 @@ export function RoleForm({
           className="my-xs"
           label={
             <Flex className="items-start">
-              <IconShieldCheck size={16} />
+              <IconShieldCheck className="size-4" />
               <Box ml={5}>{t('rolesView.modal.rights')}</Box>
             </Flex>
           }
