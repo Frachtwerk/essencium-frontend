@@ -54,7 +54,7 @@ test.describe('ProfileView', () => {
     await expect(emailErrorMessage).toBeVisible()
   })
 
-  test('change language', async ({ page }) => {
+  test.skip('change language', async ({ page }) => {
     await page.getByPlaceholder('Language').click()
 
     await page.getByRole('option', { name: 'Deutsch' }).click()

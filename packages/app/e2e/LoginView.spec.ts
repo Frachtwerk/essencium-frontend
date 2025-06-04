@@ -6,7 +6,7 @@ test('LoginView > redirect to login page', async ({ page }) => {
   await page.goto(`${BASE_URL}/login`)
   await expect(page).toHaveURL(`${BASE_URL}/login`)
 
-  await expect(page).toHaveTitle(/Essencium/)
+  await expect(page).toHaveTitle(/Login/)
   const heading = page.getByRole('heading', { name: 'Login' })
   await expect(heading).toBeVisible()
 })
