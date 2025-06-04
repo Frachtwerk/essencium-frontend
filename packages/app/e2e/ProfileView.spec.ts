@@ -7,7 +7,7 @@ test.describe('ProfileView', () => {
     await page.goto(`${BASE_URL}/profile`)
   })
 
-  test.skip('go to profile page and change name', async ({ page }) => {
+  test('go to profile page and change name', async ({ page }) => {
     await page.getByLabel('First Name').click()
     await page.getByLabel('First Name').fill('TestName')
 
@@ -24,7 +24,7 @@ test.describe('ProfileView', () => {
     await expect(InputFirstName).toHaveValue(ADMIN.firstName)
   })
 
-  test.skip('form validation', async ({ page }) => {
+  test('form validation', async ({ page }) => {
     await page.getByLabel('First Name').click()
     await page.getByLabel('First Name').fill('T')
 
