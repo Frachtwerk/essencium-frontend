@@ -30,7 +30,6 @@ import { type JSX, useEffect } from 'react'
 
 import { useZodForm } from '../../../../../hooks'
 import { ControlledSelect, ControlledTextInput } from '../../../../Form'
-import classes from './PersonalDataForm.module.css'
 
 type Props = {
   isSso: boolean
@@ -94,7 +93,6 @@ export function PersonalDataForm({
               t('profileView.dataCard.tabs.personalData.placeholder.firstName'),
             )}
             label={t('profileView.dataCard.tabs.personalData.label.firstName')}
-            size="sm"
             withAsterisk
           />
         </Grid.Col>
@@ -108,7 +106,6 @@ export function PersonalDataForm({
               t('profileView.dataCard.tabs.personalData.placeholder.lastName'),
             )}
             label={t('profileView.dataCard.tabs.personalData.label.lastName')}
-            size="sm"
             withAsterisk
           />
         </Grid.Col>
@@ -121,7 +118,6 @@ export function PersonalDataForm({
               t('profileView.dataCard.tabs.personalData.placeholder.phone'),
             )}
             label={t('profileView.dataCard.tabs.personalData.label.phone')}
-            size="sm"
           />
         </Grid.Col>
 
@@ -133,11 +129,10 @@ export function PersonalDataForm({
               t('profileView.dataCard.tabs.personalData.placeholder.mobile'),
             )}
             label={t('profileView.dataCard.tabs.personalData.label.mobile')}
-            size="sm"
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, sm: 6 }}>
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <ControlledTextInput
             name="email"
             control={control}
@@ -147,11 +142,10 @@ export function PersonalDataForm({
             )}
             label={t('profileView.dataCard.tabs.personalData.label.email')}
             withAsterisk
-            size="sm"
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, sm: 6 }}>
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <ControlledSelect
             name="locale"
             control={control}
@@ -170,11 +164,7 @@ export function PersonalDataForm({
         </Grid.Col>
       </Grid>
 
-      <Button
-        type="submit"
-        className={classes['personal-data-form__button']}
-        loading={isLoading}
-      >
+      <Button type="submit" className="mt-md" loading={isLoading}>
         {t('profileView.dataCard.tabs.personalData.saveChanges')}
       </Button>
     </form>

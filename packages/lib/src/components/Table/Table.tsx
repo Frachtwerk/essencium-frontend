@@ -27,8 +27,8 @@ import {
 } from '@tanstack/react-table'
 import { Dispatch, type JSX, SetStateAction } from 'react'
 
+import { cn } from '../../utils'
 import { TableHeader } from './components/TableHeader'
-import classes from './Table.module.css'
 
 type Props<T> = TableProps & {
   tableModel: TanstackTable<T>
@@ -76,7 +76,7 @@ export function Table<T>({
   }
 
   return (
-    <Flex direction="column" align="end">
+    <Flex className="flex-col items-end">
       <div style={{ overflowX: 'auto', width: '100%' }}>
         <MantineTable
           striped
@@ -105,19 +105,19 @@ export function Table<T>({
                   row.getToggleExpandedHandler()
                 }
                 style={row.getCanExpand() ? { cursor: 'pointer' } : {}}
-                className={
-                  firstColSticky
-                    ? classes['table__table-row--sticky']
-                    : classes['table__table-row']
-                }
+                className={cn(
+                  firstColSticky &&
+                    'dark:even:bg-dark-700 odd:bg-(--table-striped-color) even:bg-white',
+                )}
               >
                 {row.getVisibleCells().map(cell => (
                   <MantineTable.Td
                     key={cell.id}
                     width={cell.column.getSize()}
-                    className={
-                      firstColSticky ? classes['table__col-sticky'] : ''
-                    }
+                    className={cn(
+                      firstColSticky &&
+                        'first:sticky first:left-0 first:z-10 first:bg-inherit',
+                    )}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </MantineTable.Td>
@@ -126,10 +126,7 @@ export function Table<T>({
             ))}
           </MantineTable.Tbody>
 
-          <MantineTable.Tfoot
-            aria-label="footer-row"
-            className={classes['footer']}
-          >
+          <MantineTable.Tfoot aria-label="footer-row">
             {tableModel.getFooterGroups().map(footerGroup => (
               <MantineTable.Tr key={footerGroup.id}>
                 {footerGroup.headers.map(header => (

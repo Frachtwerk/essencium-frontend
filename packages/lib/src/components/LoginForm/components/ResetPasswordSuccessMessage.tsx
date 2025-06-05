@@ -22,13 +22,11 @@ import { IconMailForward } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
 import type { JSX } from 'react'
 
-import classes from './ResetPasswordSuccessMessage.module.css'
-
 export function ResetPasswordSuccessMessage(): JSX.Element {
   const { t } = useTranslation()
 
   return (
-    <Center className={classes['reset-password-success-message__center']}>
+    <Center className="mx-auto h-[200px]">
       <Stack>
         <IconMailForward size={40} stroke={1} />
 
@@ -36,7 +34,7 @@ export function ResetPasswordSuccessMessage(): JSX.Element {
           {t('loginView.resetPassword.successMessage.title')}
         </Title>
 
-        <Text className={classes['reset-password-success-message__text']}>
+        <Text className="mt-xs text-xs">
           {t('loginView.resetPassword.successMessage.description')}
         </Text>
       </Stack>

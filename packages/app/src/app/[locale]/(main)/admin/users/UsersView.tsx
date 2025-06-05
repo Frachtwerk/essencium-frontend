@@ -40,7 +40,6 @@ import {
   Badge,
   Button,
   Flex,
-  Group,
   Popover,
   Switch,
   Text,
@@ -77,8 +76,6 @@ import {
   userRightsAtom,
 } from '@/api'
 import { parseSorting } from '@/utils'
-
-import classes from './Users.module.css'
 
 export const FORM_DEFAULTS_USERS_VIEW = {
   firstName: '',
@@ -210,7 +207,7 @@ export default function UsersView(): JSX.Element {
           const ssoProvider = rowUser.source
 
           return (
-            <Flex align="center">
+            <Flex className="items-center">
               <Text inherit>
                 {rowUser.firstName} {rowUser.lastName}
               </Text>
@@ -219,7 +216,7 @@ export default function UsersView(): JSX.Element {
                 <Badge
                   variant="light"
                   size="xs"
-                  className={classes['userView__nameCol--badge']}
+                  className="ml-[calc(var(--spacing-xs)/2)]"
                 >
                   {ssoProvider}
                 </Badge>
@@ -257,11 +254,7 @@ export default function UsersView(): JSX.Element {
           const rowRoles = info.row.original.roles
           return rowRoles.map(role => {
             return (
-              <Badge
-                variant="outline"
-                key={role.name}
-                className={classes['userView__rolesCol--badge']}
-              >
+              <Badge variant="outline" key={role.name} className="mr-xs">
                 {role.name}
               </Badge>
             )
@@ -283,11 +276,10 @@ export default function UsersView(): JSX.Element {
           const isDefaultUser = rowUser.email === defaultUserEmail
 
           return (
-            <Flex direction="row" gap="xs">
+            <Flex className="gap-xs flex-row">
               {hasRequiredRights(userRights, RIGHTS.USER_UPDATE) ? (
                 <ActionIcon
-                  className={classes['userView__actionsCellIcon--disabled']}
-                  size="sm"
+                  className="size-sm disabled:bg-transparent"
                   disabled={isDefaultUser}
                   variant="transparent"
                 >
@@ -297,8 +289,7 @@ export default function UsersView(): JSX.Element {
 
               {hasRequiredRights(userRights, RIGHTS.USER_DELETE) ? (
                 <ActionIcon
-                  className={classes['userView__actionsCellIcon--disabled']}
-                  size="sm"
+                  className="size-sm disabled:bg-transparent"
                   disabled={isDefaultUser}
                   variant="transparent"
                 >
@@ -312,11 +303,10 @@ export default function UsersView(): JSX.Element {
               ) : null}
 
               {hasRequiredRights(userRights, RIGHTS.USER_UPDATE) ? (
-                <Popover width={130} position="bottom" withArrow shadow="sm">
+                <Popover position="bottom" withArrow>
                   <Popover.Target>
                     <ActionIcon
-                      className={classes['userView__actionsCellIcon--disabled']}
-                      size="sm"
+                      className="size-sm disabled:bg-transparent"
                       disabled={isDefaultUser}
                       variant="transparent"
                     >
@@ -324,19 +314,14 @@ export default function UsersView(): JSX.Element {
                     </ActionIcon>
                   </Popover.Target>
 
-                  <Popover.Dropdown p={0}>
-                    <Group
+                  <Popover.Dropdown className="shadow-sm">
+                    <Button
+                      variant="transparent"
                       onClick={() => handleInvalidateToken(rowUser)}
-                      gap="xs"
-                      className={classes['userView__invalidateTokenGroup']}
+                      leftSection={<IconLogout className="size-4" />}
                     >
-                      <IconLogout
-                        size={16}
-                        className={classes['userView__logoutIcon']}
-                      />
-
                       {t('usersView.table.invalidate')}
-                    </Group>
+                    </Button>
                   </Popover.Dropdown>
                 </Popover>
               ) : null}
@@ -388,14 +373,10 @@ export default function UsersView(): JSX.Element {
         loadingMessage={t('notifications.loadingAsyncData.message') as string}
       />
 
-      <Flex
-        className={classes['userView__header']}
-        justify="space-between"
-        align="center"
-      >
-        <Title size="h2">
-          <Flex align="center" gap={10}>
-            <IconUsers size="32" />
+      <Flex className="py-md items-center justify-between">
+        <Title order={2}>
+          <Flex className="gap-xs items-center">
+            <IconUsers className="size-8" />
 
             <Text inherit>{t('usersView.title')}</Text>
           </Flex>
@@ -405,14 +386,10 @@ export default function UsersView(): JSX.Element {
           label={t('table.misc.showFilter')}
           checked={showFilter}
           onChange={() => setShowFilter(!showFilter)}
-          className={classes['userView__showFilterSwitch']}
+          className="ml-auto"
         />
 
-        <Flex
-          className={classes['userView__buttonsSection']}
-          align="center"
-          gap="xs"
-        >
+        <Flex className="ml-xl gap-xs items-center">
           {hasRequiredRights(userRights, RIGHTS.USER_CREATE) ? (
             <NextLink href="/admin/users/add">
               <Button>{t('usersView.action.add')}</Button>
