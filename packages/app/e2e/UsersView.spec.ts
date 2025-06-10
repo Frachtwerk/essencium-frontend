@@ -1,6 +1,19 @@
-import { expect, test } from '@playwright/test'
+import { expect, Page, test } from '@playwright/test'
 
 import { BASE_URL } from '../playwright.config'
+
+async function expectOrderOfUsers(
+  page: Page,
+  expectedOrder: string[],
+): Promise<void> {
+  await Promise.all(
+    expectedOrder.map((name, index) =>
+      expect(page.locator(`tbody > tr:nth-child(${index + 1})`)).toContainText(
+        name,
+      ),
+    ),
+  )
+}
 
 test.describe('UsersView', () => {
   test.beforeEach(async ({ page }) => {
@@ -22,6 +35,109 @@ test.describe('UsersView', () => {
     await expect(page.getByRole('cell', { name: 'Language' })).toBeVisible()
     await expect(page.getByRole('cell', { name: 'Role' })).toBeVisible()
     await expect(page.getByRole('cell', { name: 'Actions' })).toBeVisible()
+  })
+
+  test('filter users', async ({ page }) => {
+    await page.getByText('Show filter').click()
+
+    await expect(
+      page.getByRole('cell', { name: 'Name' }).getByPlaceholder('Search'),
+    ).toBeVisible()
+    await expect(
+      page.getByRole('cell', { name: 'E-Mail' }).getByPlaceholder('Search'),
+    ).toBeVisible()
+    await expect(
+      page.getByRole('cell', { name: 'Roles' }).getByPlaceholder('Search'),
+    ).toBeVisible()
+
+    await expect(
+      page.getByRole('cell', { name: 'andrii.udodenko@frachtwerk.de' }),
+    ).toBeVisible()
+
+    // FIXME: searching by name is currently broken
+
+    await page
+      .getByRole('cell', { name: 'E-Mail' })
+      .getByPlaceholder('Search')
+      .fill('e2e.com')
+    await expect(
+      page.getByRole('cell', { name: 'test.user@e2e.com' }),
+    ).toBeVisible()
+    await expect(
+      page.getByRole('cell', { name: 'andrii.udodenko@frachtwerk.de' }),
+    ).not.toBeVisible()
+    await page
+      .getByRole('cell', { name: 'E-Mail e2e.com' })
+      .getByRole('img')
+      .nth(1)
+      .click() // clear filter
+
+    await expect(
+      page.getByRole('cell', { name: 'andrii.udodenko@frachtwerk.de' }),
+    ).toBeVisible()
+
+    await page
+      .getByRole('cell', { name: 'Roles' })
+      .getByPlaceholder('Search')
+      .click()
+    await page.getByRole('option', { name: 'ADMIN' }).click()
+    await expect(
+      page.getByRole('cell', { name: 'devnull@frachtwerk.de' }),
+    ).toBeVisible()
+    await expect(
+      page.getByRole('cell', { name: 'test.user@e2e.com' }),
+    ).toBeVisible()
+    await expect(
+      page.getByRole('cell', { name: 'andrii.udodenko@frachtwerk.de' }),
+    ).not.toBeVisible()
+  })
+
+  test('sort users', async ({ page }) => {
+    await expectOrderOfUsers(page, [
+      'test.user@e2e.com',
+      'devnull@frachtwerk.de',
+      'andrii.udodenko@frachtwerk.de',
+    ])
+
+    await page.getByRole('cell', { name: 'Name' }).getByRole('img').click()
+
+    await expectOrderOfUsers(page, [
+      'devnull_user@frachtwerk.de',
+      'tuan.vu-extern@frachtwerk.de',
+      'tobias.dillig@frachtwerk.de',
+    ])
+
+    await page.getByRole('cell', { name: 'E-Mail' }).getByRole('img').click()
+
+    await expectOrderOfUsers(page, [
+      'andrii.udodenko@frachtwerk.de',
+      'cathrin.truchan+100@frachtwerk.de',
+      'cathrin.truchan+1@frachtwerk.de',
+    ])
+
+    await page.getByRole('cell', { name: 'E-Mail' }).getByRole('img').click()
+
+    await expectOrderOfUsers(page, [
+      'tuan.vu-extern@frachtwerk.de',
+      'tobias.dillig@frachtwerk.de',
+      'test.user@e2e.com',
+    ])
+
+    await page.getByRole('cell', { name: 'Active' }).getByRole('img').click()
+
+    await expectOrderOfUsers(page, [
+      'lea.kubis@frachtwerk.de',
+      'philipp.kaiser@frachtwerk.de',
+      'cathrin.truchan+1@frachtwerk.de',
+    ])
+
+    await page.getByRole('cell', { name: 'Active' }).getByRole('img').click()
+
+    await expectOrderOfUsers(page, [
+      'fatma.alacayir@frachtwerk.de',
+      'duc-minh.tran@frachtwerk.de',
+      'devnull_user@frachtwerk.de',
+    ])
   })
 
   test('add, edit and delete user', async ({ page }) => {
