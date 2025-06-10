@@ -24,7 +24,7 @@ test.describe('UsersView', () => {
     await expect(page.getByRole('cell', { name: 'Actions' })).toBeVisible()
   })
 
-  test.skip('add, edit and delete user', async ({ page }) => {
+  test('add, edit and delete user', async ({ page }) => {
     await page.getByRole('link', { name: 'Add User' }).click()
     await expect(page).toHaveURL(`${BASE_URL}/admin/users/add`)
 
@@ -47,7 +47,12 @@ test.describe('UsersView', () => {
 
     await expect(page).toHaveURL(`${BASE_URL}/admin/users`)
 
-    // FIXME: add filter to find the user by mail address
+    await page.getByText('Show filter').click()
+    await page
+      .getByRole('cell', { name: 'E-Mail' })
+      .getByPlaceholder('Search')
+      .fill('test@person.de')
+
     await expect(
       page.getByRole('cell', { name: 'Test Person', exact: true }),
     ).toBeVisible()
@@ -71,6 +76,12 @@ test.describe('UsersView', () => {
     await page.getByRole('button', { name: 'Save User' }).click()
 
     await page.waitForURL(`${BASE_URL}/admin/users`)
+
+    await page.getByText('Show filter').click()
+    await page
+      .getByRole('cell', { name: 'E-Mail' })
+      .getByPlaceholder('Search')
+      .fill('test@person.de')
 
     await expect(page.getByRole('cell', { name: '12345' })).toBeVisible()
 
