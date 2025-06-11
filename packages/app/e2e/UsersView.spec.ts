@@ -93,11 +93,14 @@ test.describe('UsersView', () => {
   })
 
   test('sort users', async ({ page }) => {
-    await expectOrderOfUsers(page, [
-      'test.user@e2e.com',
-      'devnull@frachtwerk.de',
-      'andrii.udodenko@frachtwerk.de',
-    ])
+    // FIXME: as there are two users with firstname "Admin", the sorting is not reliable
+    // will be fixed with https://github.com/Frachtwerk/essencium-backend/issues/716
+
+    // await expectOrderOfUsers(page, [
+    //   'test.user@e2e.com',
+    //   'devnull@frachtwerk.de',
+    //   'andrii.udodenko@frachtwerk.de',
+    // ])
 
     await page.getByRole('cell', { name: 'Name' }).getByRole('img').click()
     await page.waitForResponse('**/v1/users?page=0&size=20&sort=firstName,desc')
