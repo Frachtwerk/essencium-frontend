@@ -100,6 +100,7 @@ test.describe('UsersView', () => {
     ])
 
     await page.getByRole('cell', { name: 'Name' }).getByRole('img').click()
+    await page.waitForResponse('**/v1/users?page=0&size=20&sort=firstName,desc')
 
     await expectOrderOfUsers(page, [
       'devnull_user@frachtwerk.de',
@@ -108,6 +109,7 @@ test.describe('UsersView', () => {
     ])
 
     await page.getByRole('cell', { name: 'E-Mail' }).getByRole('img').click()
+    await page.waitForResponse('**/v1/users?page=0&size=20&sort=email,asc')
 
     await expectOrderOfUsers(page, [
       'andrii.udodenko@frachtwerk.de',
@@ -116,6 +118,7 @@ test.describe('UsersView', () => {
     ])
 
     await page.getByRole('cell', { name: 'E-Mail' }).getByRole('img').click()
+    await page.waitForResponse('**/v1/users?page=0&size=20&sort=email,desc')
 
     await expectOrderOfUsers(page, [
       'tuan.vu-extern@frachtwerk.de',
@@ -123,21 +126,12 @@ test.describe('UsersView', () => {
       'test.user@e2e.com',
     ])
 
+    // the exact sorting order is unreliable, so we just check that the correct requests have been made
     await page.getByRole('cell', { name: 'Active' }).getByRole('img').click()
-
-    await expectOrderOfUsers(page, [
-      'lea.kubis@frachtwerk.de',
-      'philipp.kaiser@frachtwerk.de',
-      'cathrin.truchan+1@frachtwerk.de',
-    ])
+    await page.waitForResponse('**/v1/users?page=0&size=20&sort=enabled,desc')
 
     await page.getByRole('cell', { name: 'Active' }).getByRole('img').click()
-
-    await expectOrderOfUsers(page, [
-      'fatma.alacayir@frachtwerk.de',
-      'duc-minh.tran@frachtwerk.de',
-      'devnull_user@frachtwerk.de',
-    ])
+    await page.waitForResponse('**/v1/users?page=0&size=20&sort=enabled,asc')
   })
 
   test('add, edit and delete user', async ({ page }) => {
