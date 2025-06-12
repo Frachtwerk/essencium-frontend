@@ -104,7 +104,7 @@ export function useRenewToken(): UseMutationResult<
       const { data } = await api.post<TokenResponse, undefined>(
         '/renew',
         undefined,
-        { baseURL: `${baseURL}/auth`, withCredentials: true },
+        { baseURL: `${baseURL}/auth` },
       )
       return data
     },
