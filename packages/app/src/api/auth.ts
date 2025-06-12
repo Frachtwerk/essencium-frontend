@@ -30,7 +30,7 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { atom } from 'jotai'
+import { atom, useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 import { useTranslation } from 'react-i18next'
 
@@ -46,9 +46,7 @@ type LoginCredentials = {
 }
 
 export const authTokenAtom = atomWithStorage<string | null>('authToken', null)
-
 export const userAtom = atomWithStorage<UserOutput | null>('user', null)
-
 export const userRightsAtom = atomWithStorage<string[] | null>('rights', null)
 
 export function useCreateToken(): UseMutationResult<
@@ -57,6 +55,7 @@ export function useCreateToken(): UseMutationResult<
   LoginCredentials
 > {
   const { t } = useTranslation()
+  const setAuthToken = useSetAtom(authTokenAtom)
 
   const mutation = useMutation<TokenResponse, AxiosError, LoginCredentials>({
     mutationKey: ['useCreateToken'],
@@ -70,6 +69,12 @@ export function useCreateToken(): UseMutationResult<
           }/auth`,
         })
         .then(response => response.data),
+    onSuccess: data => {
+      setAuthToken(data.token)
+
+      // Store the access token in localStorage for the interceptor:
+      localStorage.setItem('authToken', JSON.stringify(data.token))
+    },
     meta: {
       errorNotification: {
         title: t('loginView.errorMessage.title'),
@@ -79,6 +84,35 @@ export function useCreateToken(): UseMutationResult<
   })
 
   return mutation
+}
+
+export function useRenewToken(): UseMutationResult<
+  TokenResponse,
+  AxiosError,
+  void
+> {
+  const setAuthToken = useSetAtom(authTokenAtom)
+
+  // Token will be set in header automatically by the interceptor.
+  return useMutation<TokenResponse, AxiosError, void>({
+    mutationKey: ['useRenewToken'],
+    mutationFn: async () => {
+      const baseURL = process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
+        ? process.env.NEXT_PUBLIC_API_URL
+        : window.runtimeConfig.required.API_URL
+
+      const { data } = await api.post<TokenResponse, undefined>(
+        '/renew',
+        undefined,
+        { baseURL: `${baseURL}/auth`, withCredentials: true },
+      )
+      return data
+    },
+    onSuccess: data => {
+      setAuthToken(data.token)
+      localStorage.setItem('authToken', JSON.stringify(data.token))
+    },
+  })
 }
 
 export function useInvalidateToken(): UseMutationResult<

@@ -52,7 +52,7 @@ import { useTranslation } from 'react-i18next'
 import { useGetMe, userAtom, userRightsAtom } from '@/api'
 import { useCreateFeedback } from '@/api/feedback'
 import { theme } from '@/config'
-import { useAddTranslations } from '@/hooks'
+import { useAddTranslations, useScheduleTokenRenewal } from '@/hooks'
 import {
   isBrowserEnvironment,
   logout,
@@ -248,6 +248,8 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
       setIsLoadingAuthToken(false)
     }
   }, [user, router, path])
+
+  useScheduleTokenRenewal()
 
   function handleLogout(): void {
     logout()
