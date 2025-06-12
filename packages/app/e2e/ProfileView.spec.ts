@@ -11,7 +11,21 @@ test.describe('ProfileView', () => {
     await page.getByLabel('First Name').click()
     await page.getByLabel('First Name').fill('TestName')
 
+    const putPromise = page.waitForResponse(
+      response =>
+        response.url().includes('/v1/users/me') &&
+        response.request().method() === 'PUT',
+    )
+
+    const getPromise = page.waitForResponse(
+      response =>
+        response.url().includes('/v1/users/me') &&
+        response.request().method() === 'GET',
+    )
+
     await page.getByRole('button', { name: 'Save Changes' }).click()
+    await putPromise
+    await getPromise
 
     const InputFirstName = page.getByLabel('First Name')
     await expect(InputFirstName).toHaveValue('TestName')
@@ -19,7 +33,21 @@ test.describe('ProfileView', () => {
     await page.getByLabel('First Name').click()
     await page.getByLabel('First Name').fill(ADMIN.firstName)
 
+    const putPromise2 = page.waitForResponse(
+      response =>
+        response.url().includes('/v1/users/me') &&
+        response.request().method() === 'PUT',
+    )
+
+    const getPromise2 = page.waitForResponse(
+      response =>
+        response.url().includes('/v1/users/me') &&
+        response.request().method() === 'GET',
+    )
+
     await page.getByRole('button', { name: 'Save Changes' }).click()
+    await putPromise2
+    await getPromise2
 
     await expect(InputFirstName).toHaveValue(ADMIN.firstName)
   })
