@@ -20,5 +20,6 @@
 export * from './isBrowserEnvironment'
 export * from './logout'
 export * from './mergeTranslations'
+export * from './parseJwt'
 export * from './parseSorting'
 export * from './withBaseStylingShowNotification'
