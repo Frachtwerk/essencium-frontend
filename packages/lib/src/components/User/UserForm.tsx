@@ -49,7 +49,6 @@ import {
   InputErrorStack,
 } from '../Form'
 import { PasswordStrengthIndicator } from '../PasswordStrengthIndicator/PasswordStrengthIndicator'
-import classes from './UserForm.module.css'
 
 type Props = {
   ssoProvider?: UserSource | string | undefined
@@ -87,18 +86,18 @@ export function UserForm({
 
   return (
     <form onSubmit={onSubmit}>
-      <Flex align="center" className={classes['userForm__header']}>
+      <Flex className="mb-lg items-center">
         <Title order={3}>{title}</Title>
 
         {isSso ? (
-          <Badge className={classes['userForm__ssoBadge']} variant="light">
+          <Badge className="ml-[10px]" variant="light">
             {ssoProvider}
           </Badge>
         ) : null}
       </Flex>
 
       <Grid gutter="xs">
-        <Grid.Col span={{ base: 12, sm: 6 }}>
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <ControlledTextInput
             name="firstName"
             control={control}
@@ -107,12 +106,11 @@ export function UserForm({
               t('addUpdateUserView.form.placeholder.firstName'),
             )}
             label={t('addUpdateUserView.form.firstName')}
-            size="sm"
             withAsterisk
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, sm: 6 }}>
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <ControlledTextInput
             name="lastName"
             control={control}
@@ -121,12 +119,11 @@ export function UserForm({
               t('addUpdateUserView.form.placeholder.lastName'),
             )}
             label={t('addUpdateUserView.form.lastName')}
-            size="sm"
             withAsterisk
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, sm: 6 }}>
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <ControlledTextInput
             name="email"
             control={control}
@@ -134,11 +131,10 @@ export function UserForm({
             placeholder={String(t('addUpdateUserView.form.placeholder.email'))}
             label={t('addUpdateUserView.form.email')}
             withAsterisk
-            size="sm"
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, sm: 6 }}>
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <Controller
             name="password"
             control={control}
@@ -152,7 +148,7 @@ export function UserForm({
               return (
                 <InputErrorStack message={message}>
                   <Input.Label>
-                    <Flex gap={5}>
+                    <Flex className="gap-1">
                       {t('addUpdateUserView.form.password')}
 
                       {isAddUserForm ? (
@@ -161,15 +157,9 @@ export function UserForm({
                           position="right"
                           withArrow
                           multiline
-                          bg=" var(--mantine-color-gray-6)"
-                          w="250px"
+                          className="w-64"
                         >
-                          <IconInfoCircle
-                            size={20}
-                            className={
-                              classes['set-password-form__password-tooltip']
-                            }
-                          />
+                          <IconInfoCircle className="size-5" />
                         </Tooltip>
                       ) : null}
                     </Flex>
@@ -190,7 +180,6 @@ export function UserForm({
                       placeholder={String(
                         t('addUpdateUserView.form.placeholder.password'),
                       )}
-                      size="sm"
                       error={fieldState.invalid}
                     />
                   </PasswordStrengthIndicator>
@@ -200,28 +189,26 @@ export function UserForm({
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, sm: 6 }}>
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <ControlledTextInput
             name="phone"
             control={control}
             placeholder={String(t('addUpdateUserView.form.placeholder.phone'))}
             label={t('addUpdateUserView.form.phone')}
-            size="sm"
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, sm: 6 }}>
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <ControlledTextInput
             name="mobile"
             control={control}
             placeholder={String(t('addUpdateUserView.form.placeholder.mobile'))}
             label={t('addUpdateUserView.form.mobile')}
-            size="sm"
           />
         </Grid.Col>
       </Grid>
 
-      <Title className={classes['userForm__newSection--margin-lg']} order={3}>
+      <Title className="mt-lg" order={3}>
         {t('addUpdateUserView.form.userSettingsHeading')}
       </Title>
 
@@ -235,15 +222,13 @@ export function UserForm({
                 {...field}
                 checked={field.value}
                 value={String(field.value)}
-                size="md"
-                className={classes['userForm__enableToggle']}
                 label={t('addUpdateUserView.form.activeStatus')}
               />
             )}
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, sm: 6 }}>
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <ControlledSelect
             name="locale"
             control={control}
@@ -258,7 +243,7 @@ export function UserForm({
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, sm: 6 }}>
+        <Grid.Col span={{ base: 12, md: 6 }}>
           <ControlledMultiSelect
             name="roles"
             control={control}
@@ -271,11 +256,7 @@ export function UserForm({
         </Grid.Col>
       </Grid>
 
-      <Button
-        type="submit"
-        className={classes['userForm__saveButton']}
-        loading={isLoading}
-      >
+      <Button type="submit" className="mt-md" loading={isLoading}>
         {t('addUpdateUserView.form.save')}
       </Button>
     </form>
