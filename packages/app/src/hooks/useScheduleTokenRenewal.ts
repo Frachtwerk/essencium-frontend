@@ -17,19 +17,15 @@ export function useScheduleTokenRenewal(): void {
       clearTimeout(timerRef.current)
     }
 
-    if (!token) return
+    if (!token || process.env.NODE_ENV === 'development') return
 
     const parsedToken = parseJwt(token)
     if (!parsedToken || parsedToken.expiringIn <= 0) return
 
     //
     // Safe margin: one minute after the token is created
-    const safeMargin = 1000 * 60 // 1 minute
-    // const safeMargin = 1000 * 60 * 12 // 12 minutes
-    const timeoutDuration = Math.max(
-      parsedToken.expiringIn - (parsedToken.expiringIn - safeMargin),
-      0,
-    )
+    const safeMargin = 1000 * 60 * 12 // 12 minutes
+    const timeoutDuration = Math.max(parsedToken.expiringIn - safeMargin, 0)
 
     timerRef.current = window.setTimeout(() => {
       // Invokes token renewal.

@@ -97,6 +97,7 @@ export function useRenewToken(): UseMutationResult<
   return useMutation<TokenResponse, AxiosError, void>({
     mutationKey: ['useRenewToken'],
     mutationFn: async () => {
+      // No need to send the refresh token. The backend uses the cookie.
       const baseURL = process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
         ? process.env.NEXT_PUBLIC_API_URL
         : window.runtimeConfig.required.API_URL

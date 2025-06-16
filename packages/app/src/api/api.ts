@@ -109,6 +109,7 @@ api.interceptors.request.use(
 
     if (authToken) {
       request.headers.Authorization = `Bearer ${authToken}`
+      request.headers.setAuthorization(`Bearer ${authToken}`)
     }
 
     return request
