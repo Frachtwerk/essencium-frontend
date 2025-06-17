@@ -1,0 +1,37 @@
+**/.github
+**/.idea
+**/.vscode
+**/.husky
+**/.git
+**/.gitignore
+**/node_modules
+
+# Ignore packages that are not needed in the Docker image
+/packages/docs
+/packages/eslint-config
+/packages/prettier-config
+/scripts
+
+# Ignore test files
+**/*.spec.?s
+**/e2e
+**/playwright
+**/playwright-report
+**/test-results
+**/playwright.config.?s
+**/vitest.config.?s
+
+# Ignore linter and formatter config files
+**/.commitlintrc
+**/.eslintignore
+**/.eslintrc.json
+**/.lintstagedrc.json
+**/.prettierignore
+**/.prettierrc
+
+**/.release-please-manifest.json
+**/release-please-config.json
+
+**/*.md
+**/Dockerfile*
+**/docker-compose*
