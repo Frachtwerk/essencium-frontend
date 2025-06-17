@@ -32,7 +32,6 @@ import type { JSX } from 'react'
 import { Control, Controller } from 'react-hook-form'
 
 import { ControlledTextInput } from '../../Form'
-import classes from './RoleForm.module.css'
 
 type Props = {
   rights: RightOutput[]
@@ -59,7 +58,7 @@ export function RoleForm({
 
   return (
     <form onSubmit={onSubmit}>
-      <Flex direction="column" gap="md">
+      <Flex className="gap-md flex-col">
         <ControlledTextInput
           name="name"
           control={control}
@@ -67,9 +66,6 @@ export function RoleForm({
           label={t('rolesView.modal.name')}
           required
           variant="filled"
-          classNames={{
-            label: classes['role-form__text-input--label'],
-          }}
           withAsterisk
           disabled={Boolean(role)}
         />
@@ -80,16 +76,13 @@ export function RoleForm({
           placeholder={t('rolesView.modal.placeholder.description') as string}
           label={t('rolesView.modal.description')}
           variant="filled"
-          classNames={{
-            label: classes['role-form__text-input--label'],
-          }}
         />
 
         <Divider
-          className={classes['role-form__divider--margin-xs']}
+          className="my-xs"
           label={
-            <Flex align="start">
-              <IconShieldCheck size={16} />
+            <Flex className="items-start">
+              <IconShieldCheck className="size-4" />
               <Box ml={5}>{t('rolesView.modal.rights')}</Box>
             </Flex>
           }
@@ -100,7 +93,7 @@ export function RoleForm({
           name="rights"
           control={control}
           render={() => (
-            <Flex wrap="wrap" gap="sm" my="xs">
+            <Flex className="gap-sm my-xs flex-wrap">
               {Object.values(rights).map(right => (
                 <Chip
                   defaultChecked={Boolean(
@@ -123,22 +116,17 @@ export function RoleForm({
         />
       </Flex>
 
-      <Space h="lg" />
+      <Space className="h-lg" />
 
-      <Flex justify="space-around" gap="lg">
-        <Button
-          type="submit"
-          fullWidth
-          className={classes['role-form__button']}
-          loading={isLoading}
-        >
+      <Flex className="gap-lg justify-around">
+        <Button type="submit" fullWidth className="mt-md" loading={isLoading}>
           {role ? t('rolesView.modal.update') : t('rolesView.modal.submit')}
         </Button>
 
         <Button
           variant="subtle"
           fullWidth
-          className={classes['role-form__button']}
+          className="mt-md"
           onClick={() => {
             if (reset) reset()
             onClose()

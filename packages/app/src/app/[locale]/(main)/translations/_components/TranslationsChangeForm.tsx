@@ -35,8 +35,6 @@ import { useTranslation } from 'react-i18next'
 import { userRightsAtom } from '@/api'
 import { useZodForm } from '@/hooks'
 
-import classes from './TranslationChangeForm.module.css'
-
 type Props = {
   currentValue: string
   locale: TranslationInput['locale']
@@ -103,10 +101,9 @@ export function TranslationChangeForm({
                 aria-label={t('translationView.form.changeTranslation')}
                 withAsterisk
                 w="40%"
-                variant="unstyled"
                 disabled={!userRightUpdate}
                 classNames={{
-                  input: classes['translation-change-form__input'],
+                  input: 'bg-transparent',
                 }}
               />
             )}
@@ -114,13 +111,13 @@ export function TranslationChangeForm({
 
           {userRightUpdate ? (
             <ActionIcon type="submit" disabled={!fieldValue.length}>
-              <IconDeviceFloppy size={20} />
+              <IconDeviceFloppy className="size-5" />
             </ActionIcon>
           ) : null}
 
           {userRightDelete ? (
             <ActionIcon onClick={() => deleteTranslation(keyPath)}>
-              <IconBackspace size={20} />
+              <IconBackspace className="size-5" />
             </ActionIcon>
           ) : null}
         </Group>
