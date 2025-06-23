@@ -36,11 +36,7 @@ export function SetPasswordSuccessMessage(): JSX.Element {
           {t('setPasswordView.successMessage.text')}
         </Text>
 
-        <NextLink
-          href="/login"
-          className="text-white"
-          style={{ textDecoration: 'none' }}
-        >
+        <NextLink href="/login" className="text-white no-underline">
           <Button className="mt-md" fullWidth>
             {t('setPasswordView.successMessage.button')}
           </Button>
