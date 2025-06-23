@@ -1,12 +1,10 @@
 import { expect, test } from '@playwright/test'
 
-import { BASE_URL } from '../playwright.config'
-
 test.describe('TranslationsView', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(BASE_URL)
+    await page.goto('/')
     await page.getByRole('link', { name: 'Translations' }).click()
-    await expect(page).toHaveURL(`${BASE_URL}/translations`)
+    await expect(page).toHaveURL('/translations')
   })
 
   // Commented out due to i18n issues, WIP

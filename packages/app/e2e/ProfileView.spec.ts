@@ -1,10 +1,10 @@
 import { expect, test } from '@playwright/test'
 
-import { ADMIN, BASE_URL } from '../playwright.config'
+import { ADMIN } from '../playwright.config'
 
 test.describe('ProfileView', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(`${BASE_URL}/profile`)
+    await page.goto('/profile')
   })
 
   test('go to profile page and change name', async ({ page }) => {

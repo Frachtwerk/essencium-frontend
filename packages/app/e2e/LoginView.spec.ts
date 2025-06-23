@@ -1,10 +1,10 @@
 import { expect, test } from '@playwright/test'
 
-import { ADMIN, BASE_URL } from '../playwright.config'
+import { ADMIN } from '../playwright.config'
 
 test('LoginView > redirect to login page', async ({ page }) => {
-  await page.goto(`${BASE_URL}/login`)
-  await expect(page).toHaveURL(`${BASE_URL}/login`)
+  await page.goto('/login')
+  await expect(page).toHaveURL('/login')
 
   await expect(page).toHaveTitle(/Login/)
   const heading = page.getByRole('heading', { name: 'Login' })
@@ -13,7 +13,7 @@ test('LoginView > redirect to login page', async ({ page }) => {
 
 test.describe('LoginView', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(`${BASE_URL}/login`)
+    await page.goto('/login')
   })
 
   test('login', async ({ page }) => {
@@ -24,7 +24,7 @@ test.describe('LoginView', () => {
     await page.getByLabel('Password').fill(ADMIN.password)
 
     await page.getByRole('button', { name: 'Login' }).click()
-    await expect(page).toHaveURL(BASE_URL)
+    await expect(page).toHaveURL('/')
 
     await expect(page.locator('a').filter({ hasText: 'Logout' })).toBeVisible()
   })
