@@ -66,7 +66,7 @@ export default function AddUserView(): JSX.Element {
   return (
     <>
       <Title className="py-md" order={2}>
-        <Flex>
+        <Flex className="items-center">
           <IconUserPlus className="size-8" />
 
           <Text className="ml-xs">{t('addUpdateUserView.add.title')}</Text>
