@@ -100,7 +100,7 @@ export function ThemeSelector(): JSX.Element {
           className={cn(
             'p-xs cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900',
             colorScheme === COLOR_SCHEME.AUTO &&
-              !isAutoMode &&
+              isAutoMode &&
               'text-primary-600 dark:text-primary-200 bg-gray-50 dark:bg-gray-900',
           )}
         >
