@@ -246,10 +246,7 @@ export function FeedbackWidget({
         variant="filled"
         aria-label={t('feedbackWidget.openButton.ariaLabel')}
         size="lg"
-        className="rounded-xl"
-        style={{
-          zIndex: 20,
-        }}
+        className="z-20 rounded-xl"
         onClick={toggle}
       >
         <IconMessageDots size={24} />
