@@ -33,8 +33,8 @@ export function PasswordRequirement({ meets, label }: Props): JSX.Element {
   const { t } = useTranslation()
 
   const textColorClasses = cn(
-    'transition-colors duration-500 size-5',
-    meets ? 'text-green-700' : 'text-dark',
+    'transition-colors duration-500',
+    meets && 'text-green-700',
   )
 
   return (
