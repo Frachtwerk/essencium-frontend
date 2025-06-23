@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/eslint-config-essencium-v2.3.0...eslint-config-essencium-v2.4.0) (2025-06-23)
+
+
+### Features
+
+* **dependencies:** update pnpm to v10 ([4c08d51](https://github.com/Frachtwerk/essencium-frontend/commit/4c08d51777281b92966feb2f02da35d3cc4157d4))
+* **dependencies:** update pnpm to v10 ([92411a2](https://github.com/Frachtwerk/essencium-frontend/commit/92411a2bd12bc32d7bed55ef74dd932fb4926be3))
+
 ## [2.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/eslint-config-essencium-v2.2.0...eslint-config-essencium-v2.3.0) (2024-03-14)
 
 
