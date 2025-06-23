@@ -53,7 +53,8 @@ export function ThemeSelector(): JSX.Element {
       <PopoverTarget>
         <ActionIcon
           variant="subtle"
-          className="size-xl hover:bg-gray-50 dark:hover:bg-gray-900"
+          className="hover:bg-gray-50 dark:hover:bg-gray-900"
+          size="xl"
           aria-label="theme-selector"
         >
           {isLightMode ? <IconSun /> : <IconMoon />}

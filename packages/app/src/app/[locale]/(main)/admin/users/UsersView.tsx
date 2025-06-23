@@ -285,7 +285,8 @@ export default function UsersView(): JSX.Element {
             <Flex className="gap-xs flex-row">
               {hasRequiredRights(userRights, RIGHTS.USER_UPDATE) ? (
                 <ActionIcon
-                  className="size-sm disabled:bg-transparent"
+                  className="disabled:bg-transparent"
+                  size="sm"
                   disabled={isDefaultUser}
                   variant="transparent"
                 >
@@ -295,7 +296,8 @@ export default function UsersView(): JSX.Element {
 
               {hasRequiredRights(userRights, RIGHTS.USER_DELETE) ? (
                 <ActionIcon
-                  className="size-sm disabled:bg-transparent"
+                  className="disabled:bg-transparent"
+                  size="sm"
                   disabled={isDefaultUser}
                   variant="transparent"
                 >
@@ -312,7 +314,8 @@ export default function UsersView(): JSX.Element {
                 <Popover position="bottom" withArrow>
                   <Popover.Target>
                     <ActionIcon
-                      className="size-sm disabled:bg-transparent"
+                      className="disabled:bg-transparent"
+                      size="sm"
                       disabled={isDefaultUser}
                       variant="transparent"
                     >
