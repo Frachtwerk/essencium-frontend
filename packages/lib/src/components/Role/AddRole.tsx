@@ -73,7 +73,7 @@ export function AddRole({
       closeOnClickOutside={closeOnClickOutside}
       closeOnEscape={closeOnEscape}
       onClose={onClose}
-      className="p-lg"
+      padding="lg"
       size="xl"
     >
       <RoleForm

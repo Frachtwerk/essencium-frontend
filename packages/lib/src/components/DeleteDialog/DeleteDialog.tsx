@@ -44,7 +44,7 @@ export function DeleteDialog({
       closeOnEscape
       onClose={onClose}
       withCloseButton={false}
-      className="p-lg"
+      padding="lg"
       centered
     >
       <Title order={4} className="mb-md">
