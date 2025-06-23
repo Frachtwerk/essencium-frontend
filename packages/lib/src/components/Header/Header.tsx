@@ -71,7 +71,7 @@ export function Header({
 
         <SearchBar />
 
-        <Group className="flex-wrap justify-between">
+        <Group className="flex-nowrap justify-between">
           {environment && (
             <Code className="mr-[20px] overflow-visible">
               <span className="uppercase">{environment}</span>
