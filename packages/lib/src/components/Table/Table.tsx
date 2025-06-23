@@ -82,7 +82,7 @@ export function Table<T>({
 
   return (
     <Flex className="flex-col items-end">
-      <div style={{ overflowX: 'auto', width: '100%' }}>
+      <div className="w-full overflow-x-auto">
         <MantineTable
           striped
           highlightOnHover
@@ -109,10 +109,10 @@ export function Table<T>({
                   row.getToggleExpandedHandler() &&
                   row.getToggleExpandedHandler()
                 }
-                style={row.getCanExpand() ? { cursor: 'pointer' } : {}}
                 className={cn(
                   firstColSticky &&
                     'dark:even:bg-dark-700 odd:bg-(--table-striped-color) even:bg-white',
+                  row.getCanExpand() && 'cursor-pointer',
                 )}
               >
                 {row.getVisibleCells().map(cell => (

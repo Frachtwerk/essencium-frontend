@@ -164,8 +164,8 @@ export function TableHeaderColumn<T>({
 }: Props<T>): JSX.Element {
   return (
     <MantineTable.Th
-      style={{ verticalAlign: 'top' }}
       className={cn(
+        'align-top',
         firstColSticky &&
           'first:dark:bg-dark-700 first:sticky first:left-0 first:z-10 first:bg-white',
       )}
