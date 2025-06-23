@@ -106,7 +106,7 @@ export function LoginForm({
                 withAsterisk
               />
 
-              <Group>
+              <Group className="mt-md">
                 <Anchor
                   component="button"
                   className="text-xs font-bold"
