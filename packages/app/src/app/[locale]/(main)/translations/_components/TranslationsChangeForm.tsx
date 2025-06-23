@@ -103,7 +103,8 @@ export function TranslationChangeForm({
                 w="40%"
                 disabled={!userRightUpdate}
                 classNames={{
-                  input: 'bg-transparent',
+                  input:
+                    'bg-transparent border-t-0 border-x-0 rounded-none border-b disabled:border-0 disabled:text-gray-700 disabled:dark:text-gray-400',
                 }}
               />
             )}
