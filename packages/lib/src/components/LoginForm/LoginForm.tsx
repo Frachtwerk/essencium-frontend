@@ -102,7 +102,7 @@ export function LoginForm({
                 withAsterisk
               />
 
-              <Group>
+              <Group className="mt-md">
                 <Anchor
                   className="text-xs font-bold"
                   onClick={() => setIsPasswordResetFormOpened(true)}
