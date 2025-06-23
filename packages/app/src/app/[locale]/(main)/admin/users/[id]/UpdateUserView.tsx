@@ -93,7 +93,7 @@ export default function UpdateUserView({
         <Flex>
           <IconUserEdit className="size-8" />
 
-          <Text className="ml-xl">{t('addUpdateUserView.update.title')}</Text>
+          <Text className="ml-xs">{t('addUpdateUserView.update.title')}</Text>
         </Flex>
       </Title>
 
