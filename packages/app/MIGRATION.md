@@ -1,6 +1,6 @@
 # Migrations
 
-## [9.X.X (XXXX-XX-XX)]()
+## [9.2.0 (2025-06-23)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.2.0)
 
 ### Refactor: Simplify code for form inputs
 
