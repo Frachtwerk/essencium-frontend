@@ -39,7 +39,7 @@ export function SetPasswordSuccessMessage(): JSX.Element {
         <Button
           component={NextLink}
           href="/login"
-          className="text-white mt-md"
+          className="text-white mt-md no-underline"
           fullWidth
         >
           {t('setPasswordView.successMessage.button')}
