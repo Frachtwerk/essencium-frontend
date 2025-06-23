@@ -227,7 +227,7 @@ export default function RolesView(): JSX.Element {
             <Flex className="gap-xs flex-row">
               {hasRequiredRights(userRights, RIGHTS.RIGHT_UPDATE) &&
               rowRole.editable === true ? (
-                <ActionIcon className="size-sm" variant="transparent">
+                <ActionIcon size="sm" variant="transparent">
                   <IconPencil
                     onClick={() => {
                       setRoleToEditOrDelete(rowRole)
@@ -240,7 +240,7 @@ export default function RolesView(): JSX.Element {
 
               {hasRequiredRights(userRights, RIGHTS.ROLE_DELETE) &&
               rowRole.protected === false ? (
-                <ActionIcon className="size-sm" variant="transparent">
+                <ActionIcon size="sm" variant="transparent">
                   <IconTrash
                     onClick={() => {
                       setRoleToEditOrDelete(rowRole)
