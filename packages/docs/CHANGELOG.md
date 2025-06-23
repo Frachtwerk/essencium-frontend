@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.3.3...essencium-docs-v4.4.0) (2025-06-23)
+
+
+### Features
+
+* **dependencies:** update pnpm to v10 ([4c08d51](https://github.com/Frachtwerk/essencium-frontend/commit/4c08d51777281b92966feb2f02da35d3cc4157d4))
+* **dependencies:** update pnpm to v10 ([92411a2](https://github.com/Frachtwerk/essencium-frontend/commit/92411a2bd12bc32d7bed55ef74dd932fb4926be3))
+
 ## [4.3.3](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.3.2...essencium-docs-v4.3.3) (2025-04-08)
 
 

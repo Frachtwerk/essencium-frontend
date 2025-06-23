@@ -1,5 +1,19 @@
 # Changelog
 
+## [6.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v6.0.2...essencium-types-v6.1.0) (2025-06-23)
+
+
+### Features
+
+* **dependencies:** update pnpm to v10 ([4c08d51](https://github.com/Frachtwerk/essencium-frontend/commit/4c08d51777281b92966feb2f02da35d3cc4157d4))
+* **dependencies:** update pnpm to v10 ([92411a2](https://github.com/Frachtwerk/essencium-frontend/commit/92411a2bd12bc32d7bed55ef74dd932fb4926be3))
+* implement tableFilterTypes by prop ([bf86d18](https://github.com/Frachtwerk/essencium-frontend/commit/bf86d182a44855a47d1fa421516d251123e50f0f))
+
+
+### Bug Fixes
+
+* add error translations for the length of the feedback dialog message ([31908c5](https://github.com/Frachtwerk/essencium-frontend/commit/31908c5fbe300c675b4f212e39a19c58b84df6e2))
+
 ## [6.0.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v6.0.1...essencium-types-v6.0.2) (2025-04-08)
 
 

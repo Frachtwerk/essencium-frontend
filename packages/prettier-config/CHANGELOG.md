@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/prettier-config-essencium-v1.3.0...prettier-config-essencium-v1.4.0) (2025-06-23)
+
+
+### Features
+
+* **dependencies:** update pnpm to v10 ([4c08d51](https://github.com/Frachtwerk/essencium-frontend/commit/4c08d51777281b92966feb2f02da35d3cc4157d4))
+* **dependencies:** update pnpm to v10 ([92411a2](https://github.com/Frachtwerk/essencium-frontend/commit/92411a2bd12bc32d7bed55ef74dd932fb4926be3))
+
 ## [1.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/prettier-config-essencium-v1.2.0...prettier-config-essencium-v1.3.0) (2024-09-24)
 
 ### Features

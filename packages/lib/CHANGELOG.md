@@ -1,5 +1,25 @@
 # Changelog
 
+## [9.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.1.0...essencium-lib-v9.2.0) (2025-06-23)
+
+
+### Features
+
+* **dependencies:** update pnpm to v10 ([4c08d51](https://github.com/Frachtwerk/essencium-frontend/commit/4c08d51777281b92966feb2f02da35d3cc4157d4))
+* **dependencies:** update pnpm to v10 ([92411a2](https://github.com/Frachtwerk/essencium-frontend/commit/92411a2bd12bc32d7bed55ef74dd932fb4926be3))
+* implement password strength indicator for creating and updating a user ([95cb3c2](https://github.com/Frachtwerk/essencium-frontend/commit/95cb3c2a334f48debf6f98cde2a8c5d2c37b9615))
+* implement tableFilterTypes by prop ([bf86d18](https://github.com/Frachtwerk/essencium-frontend/commit/bf86d182a44855a47d1fa421516d251123e50f0f))
+
+
+### Bug Fixes
+
+* add missing default value ([455c3f6](https://github.com/Frachtwerk/essencium-frontend/commit/455c3f6bb3132ae7be96a5a824afd225efbe6629))
+* adjust z-index for navbar to ensure proper layering ([101bf61](https://github.com/Frachtwerk/essencium-frontend/commit/101bf61ae56470fc043984006ee2ca392d99f73c))
+* ensure page change triggers on first input selection ([f3d6fc3](https://github.com/Frachtwerk/essencium-frontend/commit/f3d6fc306535a326245c04437af12b92440bad6a))
+* make it possible to navigate with the keyboard ([c27a83f](https://github.com/Frachtwerk/essencium-frontend/commit/c27a83f7ea9d0c87645cc8d992e44ab4bf12c8e5))
+* make pagination dropdown support arbitrary item counts ([9d53c86](https://github.com/Frachtwerk/essencium-frontend/commit/9d53c865f268d4d46b68bbd0a2592b0e6c2044f2))
+* use correct translation key ([9e63459](https://github.com/Frachtwerk/essencium-frontend/commit/9e63459815e49c754023ab3dc9d8ab173de1fce8))
+
 ## [9.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.0.1...essencium-lib-v9.1.0) (2025-05-05)
 
 

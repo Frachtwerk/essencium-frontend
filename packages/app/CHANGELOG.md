@@ -1,5 +1,25 @@
 # Changelog
 
+## [9.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.1.0...essencium-app-v9.2.0) (2025-06-23)
+
+
+### Features
+
+* **dependencies:** update pnpm to v10 ([4c08d51](https://github.com/Frachtwerk/essencium-frontend/commit/4c08d51777281b92966feb2f02da35d3cc4157d4))
+* **dependencies:** update pnpm to v10 ([92411a2](https://github.com/Frachtwerk/essencium-frontend/commit/92411a2bd12bc32d7bed55ef74dd932fb4926be3))
+* implement tableFilterTypes by prop ([bf86d18](https://github.com/Frachtwerk/essencium-frontend/commit/bf86d182a44855a47d1fa421516d251123e50f0f))
+
+
+### Bug Fixes
+
+* add error translations for the length of the feedback dialog message ([31908c5](https://github.com/Frachtwerk/essencium-frontend/commit/31908c5fbe300c675b4f212e39a19c58b84df6e2))
+* adjust translation value ([07e534d](https://github.com/Frachtwerk/essencium-frontend/commit/07e534dc732c30426c575c6595b7ecabfc84b994))
+* fixed an issue where the image on the sso button was not displayed in firefox ([89a5d19](https://github.com/Frachtwerk/essencium-frontend/commit/89a5d193115951110fcf23e9476cacf2e25a2cb0))
+* load all roles for the roles filter in the users view ([5da1e65](https://github.com/Frachtwerk/essencium-frontend/commit/5da1e65b0e64e3dc3597809e06f2b5daafaa6dcf))
+* load all roles for the roles filter in the users view ([ef7ebdb](https://github.com/Frachtwerk/essencium-frontend/commit/ef7ebdb6befa3f3c2776534fd9347bd340e5de51))
+* restore previous Switch styling ([0c8fb47](https://github.com/Frachtwerk/essencium-frontend/commit/0c8fb475f9ff4dc12a6a84d8edcbfc67e364e790))
+* use correct translation key ([9e63459](https://github.com/Frachtwerk/essencium-frontend/commit/9e63459815e49c754023ab3dc9d8ab173de1fce8))
+
 ## [9.1.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.0.1...essencium-app-v9.1.0) (2025-05-05)
 
 
