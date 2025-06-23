@@ -97,7 +97,7 @@ export function UserForm({
       </Flex>
 
       <Grid gutter="xs">
-        <Grid.Col span={{ base: 12, md: 6 }}>
+        <Grid.Col span={{ base: 12, sm: 6 }}>
           <ControlledTextInput
             name="firstName"
             control={control}
@@ -110,7 +110,7 @@ export function UserForm({
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, md: 6 }}>
+        <Grid.Col span={{ base: 12, sm: 6 }}>
           <ControlledTextInput
             name="lastName"
             control={control}
@@ -123,7 +123,7 @@ export function UserForm({
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, md: 6 }}>
+        <Grid.Col span={{ base: 12, sm: 6 }}>
           <ControlledTextInput
             name="email"
             control={control}
@@ -134,7 +134,7 @@ export function UserForm({
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, md: 6 }}>
+        <Grid.Col span={{ base: 12, sm: 6 }}>
           <Controller
             name="password"
             control={control}
@@ -189,7 +189,7 @@ export function UserForm({
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, md: 6 }}>
+        <Grid.Col span={{ base: 12, sm: 6 }}>
           <ControlledTextInput
             name="phone"
             control={control}
@@ -198,7 +198,7 @@ export function UserForm({
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, md: 6 }}>
+        <Grid.Col span={{ base: 12, sm: 6 }}>
           <ControlledTextInput
             name="mobile"
             control={control}
@@ -212,7 +212,7 @@ export function UserForm({
         {t('addUpdateUserView.form.userSettingsHeading')}
       </Title>
 
-      <Grid>
+      <Grid className="mt-sm">
         <Grid.Col>
           <Controller
             name="enabled"
@@ -220,6 +220,7 @@ export function UserForm({
             render={({ field }) => (
               <Switch
                 {...field}
+                size="md"
                 checked={field.value}
                 value={String(field.value)}
                 label={t('addUpdateUserView.form.activeStatus')}
@@ -228,7 +229,7 @@ export function UserForm({
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, md: 6 }}>
+        <Grid.Col span={{ base: 12, sm: 6 }}>
           <ControlledSelect
             name="locale"
             control={control}
@@ -243,7 +244,7 @@ export function UserForm({
           />
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12, md: 6 }}>
+        <Grid.Col span={{ base: 12, sm: 6 }}>
           <ControlledMultiSelect
             name="roles"
             control={control}
