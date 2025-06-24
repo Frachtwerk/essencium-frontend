@@ -1,10 +1,8 @@
 import { expect, test } from '@playwright/test'
 
-import { BASE_URL } from '../playwright.config'
-
 test.describe('RightsView', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(`${BASE_URL}/rights`)
+    await page.goto('/rights')
   })
 
   test('should render the rights view title', ({ page }) => {

@@ -1,9 +1,7 @@
 import { test as setup } from '@playwright/test'
 
-import { BASE_URL } from '../playwright.config'
-
 setup('language settings', async ({ page }) => {
-  await page.goto(BASE_URL)
+  await page.goto('/')
   await page
     .getByLabel('Profil ansehen')
     .or(page.getByLabel('View profile'))
@@ -20,5 +18,5 @@ setup('language settings', async ({ page }) => {
     .getByRole('button', { name: 'Save Changes' })
     .or(page.getByRole('button', { name: 'Änderungen speichern' }))
     .click()
-  await page.goto(BASE_URL)
+  await page.goto('/')
 })

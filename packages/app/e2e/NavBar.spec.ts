@@ -1,17 +1,15 @@
 import { expect, test } from '@playwright/test'
 
-import { BASE_URL } from '../playwright.config'
-
 // TODO: These tests rely on the UI being rendered in english.
 // Add separate test user that won't be used by actual users on Staging.
 test.describe('NavBar', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(BASE_URL)
+    await page.goto('/')
   })
 
   test('click through navigation', async ({ page }) => {
     await page.getByRole('link', { name: 'Home' }).click()
-    await expect(page).toHaveURL(`${BASE_URL}/`)
+    await expect(page).toHaveURL('/')
 
     const adminstrationMenu = page.getByRole('button', {
       name: 'Administration',
@@ -20,16 +18,16 @@ test.describe('NavBar', () => {
     await adminstrationMenu.click()
 
     await page.getByRole('link', { name: 'Users' }).click()
-    await expect(page).toHaveURL(`${BASE_URL}/admin/users`)
+    await expect(page).toHaveURL('/admin/users')
 
     await page.getByRole('link', { name: 'Roles' }).click()
-    await expect(page).toHaveURL(`${BASE_URL}/admin/roles`)
+    await expect(page).toHaveURL('/admin/roles')
 
     await page.getByRole('link', { name: 'Rights' }).click()
-    await expect(page).toHaveURL(`${BASE_URL}/admin/rights`)
+    await expect(page).toHaveURL('/admin/rights')
 
     await page.getByRole('link', { name: 'Translations' }).click()
-    await expect(page).toHaveURL(`${BASE_URL}/admin/translations`)
+    await expect(page).toHaveURL('/admin/translations')
 
     await expect(
       page.getByRole('link', { name: 'Privacy Policy' }),
@@ -38,7 +36,7 @@ test.describe('NavBar', () => {
     await expect(page.getByRole('link', { name: 'Legal Notice' })).toBeVisible()
 
     await page.getByRole('link', { name: 'Contact' }).click()
-    await expect(page).toHaveURL(`${BASE_URL}/contact`)
+    await expect(page).toHaveURL('/contact')
 
     await expect(page.locator('a').filter({ hasText: 'Logout' })).toBeVisible()
 

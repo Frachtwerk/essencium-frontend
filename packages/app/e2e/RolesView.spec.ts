@@ -1,12 +1,10 @@
 import { expect, test } from '@playwright/test'
 
-import { BASE_URL } from '../playwright.config'
-
 test.describe('RolesView', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(BASE_URL)
+    await page.goto('/')
     await page.getByRole('link', { name: 'Roles' }).click()
-    await expect(page).toHaveURL(`${BASE_URL}/roles`)
+    await expect(page).toHaveURL('/roles')
   })
 
   test.skip('open and close add role modal', async ({ page }) => {
@@ -45,7 +43,7 @@ test.describe('RolesView', () => {
     await saveButton.click()
 
     await page.waitForTimeout(4000)
-    await expect(page).toHaveURL(`${BASE_URL}/roles`)
+    await expect(page).toHaveURL('/roles')
 
     await expect(
       page.getByRole('cell', { name: 'TestRole', exact: true }),
@@ -65,7 +63,7 @@ test.describe('RolesView', () => {
     await updateRoleButton.click()
 
     await page.waitForTimeout(4000)
-    await expect(page).toHaveURL(`${BASE_URL}/roles`)
+    await expect(page).toHaveURL('/roles')
 
     await expect(
       page.getByRole('cell', { name: 'TestDescription edited', exact: true }),

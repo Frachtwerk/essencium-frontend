@@ -1,10 +1,8 @@
 import { expect, test } from '@playwright/test'
 
-import { BASE_URL } from '../playwright.config'
-
 test.describe('HomeView', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(BASE_URL)
+    await page.goto('/')
   })
 
   test('go to homepage and open search bar', async ({ page }) => {
@@ -19,6 +17,6 @@ test.describe('HomeView', () => {
   test('go to homepage and use start menu', async ({ page }) => {
     const profileButton = page.getByLabel('View profile')
     await profileButton.click()
-    await expect(page).toHaveURL(`${BASE_URL}/profile`)
+    await expect(page).toHaveURL('/profile')
   })
 })
