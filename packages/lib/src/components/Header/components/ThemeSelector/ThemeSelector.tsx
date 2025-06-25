@@ -30,7 +30,7 @@ import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
 import { type JSX } from 'react'
 
-import classes from './ThemeSelector.module.css'
+import { cn } from '../../../../utils'
 
 export const COLOR_SCHEME = {
   LIGHT: 'light',
@@ -49,76 +49,65 @@ export function ThemeSelector(): JSX.Element {
   const isAutoMode = colorScheme === COLOR_SCHEME.AUTO
 
   return (
-    <Popover width={130} position="bottom" withArrow shadow="sm">
+    <Popover width={130} position="bottom" withArrow>
       <PopoverTarget>
         <ActionIcon
           variant="subtle"
-          aria-label="theme-selector"
+          className="hover:bg-gray-50 dark:hover:bg-gray-900"
           size="xl"
-          className={classes['theme-selector__icon']}
+          aria-label="theme-selector"
         >
-          {isLightMode ? (
-            <IconSun
-              className={isAutoMode ? classes['theme-selector__auto-mode'] : ''}
-            />
-          ) : (
-            <IconMoon
-              className={isAutoMode ? classes['theme-selector__auto-mode'] : ''}
-            />
-          )}
+          {isLightMode ? <IconSun /> : <IconMoon />}
         </ActionIcon>
       </PopoverTarget>
 
-      <PopoverDropdown className={classes['theme-selector__popover-dropdown']}>
+      <PopoverDropdown className="p-0 shadow-sm">
         <Group
           onClick={() => {
             setColorScheme(COLOR_SCHEME.LIGHT)
           }}
-          className={
-            colorScheme === COLOR_SCHEME.LIGHT && !isAutoMode
-              ? `${classes['theme-selector__group']} ${classes['theme-selector__group--active']}`
-              : classes['theme-selector__group']
-          }
+          className={cn(
+            'p-xs cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900',
+            colorScheme === COLOR_SCHEME.LIGHT &&
+              !isAutoMode &&
+              'text-primary-600 dark:text-primary-200 bg-gray-50 dark:bg-gray-900',
+          )}
         >
-          <IconSun size={20} />
+          <IconSun className="size-5" />
 
-          <Text className={classes['theme-selector__text']}>
-            {t('header.themeToggle.lightMode')}
-          </Text>
+          <Text className="text-sm">{t('header.themeToggle.lightMode')}</Text>
         </Group>
 
         <Group
           onClick={() => {
             setColorScheme(COLOR_SCHEME.DARK)
           }}
-          className={
-            colorScheme === COLOR_SCHEME.DARK && !isAutoMode
-              ? `${classes['theme-selector__group']} ${classes['theme-selector__group--active']}`
-              : classes['theme-selector__group']
-          }
+          className={cn(
+            'p-xs cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900',
+            colorScheme === COLOR_SCHEME.DARK &&
+              !isAutoMode &&
+              'text-primary-600 dark:text-primary-200 bg-gray-50 dark:bg-gray-900',
+          )}
         >
-          <IconMoon size={20} />
+          <IconMoon className="size-5" />
 
-          <Text className={classes['theme-selector__text']}>
-            {t('header.themeToggle.darkMode')}
-          </Text>
+          <Text className="text-sm">{t('header.themeToggle.darkMode')}</Text>
         </Group>
 
         <Group
           onClick={() => {
             clearColorScheme()
           }}
-          className={
-            isAutoMode
-              ? `${classes['theme-selector__group']} ${classes['theme-selector__group--active']}`
-              : classes['theme-selector__group']
-          }
+          className={cn(
+            'p-xs cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900',
+            colorScheme === COLOR_SCHEME.AUTO &&
+              isAutoMode &&
+              'text-primary-600 dark:text-primary-200 bg-gray-50 dark:bg-gray-900',
+          )}
         >
-          <IconDeviceLaptop size={20} />
+          <IconDeviceLaptop className="size-5" />
 
-          <Text className={classes['theme-selector__text']}>
-            {t('header.themeToggle.systemMode')}
-          </Text>
+          <Text className="text-sm">{t('header.themeToggle.systemMode')}</Text>
         </Group>
       </PopoverDropdown>
     </Popover>
