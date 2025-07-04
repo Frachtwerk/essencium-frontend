@@ -17,6 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { BasicEntityOutput } from '@frachtwerk/essencium-types'
 import { Table as MantineTable, TableProps } from '@mantine/core'
 import { Header, Table as TanstackTable } from '@tanstack/react-table'
 import { type JSX } from 'react'
@@ -25,10 +26,14 @@ import { TableHeaderColumn } from './TableHeaderColumn'
 
 type Props<T> = TableProps & {
   tableModel: TanstackTable<T>
-  onFilterChange: (header: Header<T, unknown>, value: string | null) => void
+  onFilterChange: (
+    header: Header<T, unknown>,
+    value: string | number | null,
+  ) => void
   showFilter?: boolean
-  filterData?: Record<string, Array<string>>
-  filterValue?: Record<string, string | null>
+  // filterData could also be a bisicEntity with id and name
+  filterData?: Record<string, Array<string | BasicEntityOutput>>
+  filterValue?: Record<string, string | number | null>
   firstColSticky?: boolean
 }
 

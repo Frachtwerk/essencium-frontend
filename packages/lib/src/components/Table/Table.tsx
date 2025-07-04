@@ -17,7 +17,10 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { PaginatedResponse } from '@frachtwerk/essencium-types'
+import {
+  BasicEntityOutput,
+  PaginatedResponse,
+} from '@frachtwerk/essencium-types'
 import { Flex, Table as MantineTable, TableProps } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
 import {
@@ -32,11 +35,13 @@ import classes from './Table.module.css'
 
 type Props<T> = TableProps & {
   tableModel: TanstackTable<T>
-  onFilterChange?: (key: string, value: string | null) => void
+  onFilterChange?: (key: string, value: string | number | null) => void
   showFilter?: boolean
-  filterData?: Record<string, Array<string>>
-  filterValue?: Record<string, string | null>
-  setFilterValue?: Dispatch<SetStateAction<Record<string, string | null>>>
+  filterData?: Record<string, Array<string | BasicEntityOutput>>
+  filterValue?: Record<string, string | number | null>
+  setFilterValue?: Dispatch<
+    SetStateAction<Record<string, string | number | null>>
+  >
   firstColSticky?: boolean
   setActivePage?: (activePage: PaginatedResponse<T>['number']) => void
 }
@@ -56,7 +61,7 @@ export function Table<T>({
 
   function handleFilterChange(
     header: Header<T, unknown>,
-    value: string | null,
+    value: string | number | null,
   ): void {
     // reset to first page when filtering
     if (setActivePage) {

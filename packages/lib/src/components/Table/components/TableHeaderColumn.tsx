@@ -17,7 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { TABLEFILTERTYPE } from '@frachtwerk/essencium-types'
+import { BasicEntityOutput, TABLEFILTERTYPE } from '@frachtwerk/essencium-types'
 import {
   Flex,
   MultiSelect,
@@ -46,9 +46,12 @@ declare module '@tanstack/react-table' {
 
 type InputProps<T> = {
   header: Header<T, unknown>
-  onFilterChange: (header: Header<T, unknown>, value: string | null) => void
-  filterData?: Record<string, Array<string>>
-  filterValue?: Record<string, string | null>
+  onFilterChange: (
+    header: Header<T, unknown>,
+    value: string | number | null,
+  ) => void
+  filterData?: Record<string, Array<string | BasicEntityOutput>>
+  filterValue?: Record<string, string | number | null>
 }
 
 type Props<T> = InputProps<T> & {
@@ -58,12 +61,11 @@ type Props<T> = InputProps<T> & {
 
 function getFilterType<T>(
   column: Column<T, unknown>,
-  filterData?: Record<string, Array<string>>,
+  filterData?: Record<string, Array<string | BasicEntityOutput>>,
 ): TABLEFILTERTYPE {
   if (!filterData?.[column.id]) {
     return TABLEFILTERTYPE.TEXT
   }
-
   return column.columnDef.meta?.filterType
     ? column.columnDef.meta?.filterType
     : TABLEFILTERTYPE.SELECT
@@ -77,11 +79,19 @@ export function FilterInput<T>({
 }: InputProps<T>): JSX.Element | null {
   const { t } = useTranslation()
   const filterType = getFilterType(header.column, filterData)
-
+  const filterOptions = filterData?.[header.column.id] || []
+  // Helper to map filter options to Mantine format
+  const mapToSelectData = (
+    data: Array<string | BasicEntityOutput>,
+  ): Array<{ value: string; label: string }> =>
+    data.map(option =>
+      typeof option === 'string'
+        ? { value: option, label: option }
+        : { value: String(option.id), label: option.name },
+    )
   const parsedFilterValue =
     filterValue?.[header.column.id] ||
     ((header.column.getFilterValue() ?? '') as string)
-
   switch (filterType) {
     case TABLEFILTERTYPE.TEXT:
       return (
@@ -110,12 +120,12 @@ export function FilterInput<T>({
         <Select
           size="xs"
           className={classes.table__select}
-          data={filterData?.[header.column.id] || []}
+          data={mapToSelectData(filterOptions)}
           placeholder={t('table.filter.placeholder')}
           searchable
           clearable
           value={
-            filterValue?.[header.column.id] ||
+            filterValue?.[header.column.id]?.toString() ||
             ((header.column.getFilterValue() ?? '') as string)
           }
           onChange={value => {
@@ -128,11 +138,15 @@ export function FilterInput<T>({
         <MultiSelect
           size="xs"
           className={classes.table__select}
-          data={filterData?.[header.column.id] || []}
+          data={mapToSelectData(filterOptions)}
           placeholder={t('table.filter.placeholder')}
           searchable
           clearable
-          value={parsedFilterValue?.length ? parsedFilterValue.split(',') : []}
+          value={
+            typeof parsedFilterValue === 'string' && parsedFilterValue.length
+              ? parsedFilterValue.split(',')
+              : []
+          }
           onChange={value => {
             onFilterChange(header, value.join(','))
           }}
