@@ -88,13 +88,7 @@ export default function LoginView(): JSX.Element {
   const [isPasswordResetFormOpened, setIsPasswordResetFormOpened] =
     useState(false)
 
-  const { mutate: createToken, data: tokenData } = useCreateToken()
-
-  const setToken = useSetAtom(authTokenAtom)
-
-  if (tokenData) {
-    setToken(tokenData.token)
-  }
+  const { mutate: createToken } = useCreateToken()
 
   function handleLogin(username: string, password: string): void {
     createToken(
