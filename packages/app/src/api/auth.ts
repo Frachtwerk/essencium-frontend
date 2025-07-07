@@ -72,7 +72,6 @@ export function useCreateToken(): UseMutationResult<
     onSuccess: data => {
       setAuthToken(data.token)
 
-      // Store the access token in localStorage for the interceptor:
       localStorage.setItem('authToken', JSON.stringify(data.token))
     },
     meta: {

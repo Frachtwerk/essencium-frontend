@@ -11,30 +11,38 @@ export function useScheduleTokenRenewal(): void {
 
   const timerRef = useRef<number | undefined>(undefined)
 
+  const intervalRef = useRef<number | undefined>(undefined)
+
   useEffect(() => {
-    // Clear any previous timeout to avoid duplicates.
     if (timerRef.current) {
       clearTimeout(timerRef.current)
     }
 
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current)
+    }
+
     if (!token || process.env.NODE_ENV === 'development') return
 
-    const parsedToken = parseJwt(token)
-    if (!parsedToken || parsedToken.expiringIn <= 0) return
+    const timeoutDuration = 60 * 1000
 
-    //
-    // Safe margin: one minute after the token is created
-    const safeMargin = 1000 * 60 * 12 // 12 minutes
-    const timeoutDuration = Math.max(parsedToken.expiringIn - safeMargin, 0)
+    const parsedToken = parseJwt(token)
+    if (!parsedToken || parsedToken.expiringIn <= timeoutDuration) return
 
     timerRef.current = window.setTimeout(() => {
-      // Invokes token renewal.
       renewToken()
     }, timeoutDuration)
 
-    // Cleanup: clear the timeout if the effect is re-run.
+    intervalRef.current = window.setInterval(
+      () => {
+        renewToken()
+      },
+      60 * 60 * 1000,
+    )
+
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current)
+      if (intervalRef.current) clearInterval(intervalRef.current)
     }
   }, [token, renewToken])
 }
