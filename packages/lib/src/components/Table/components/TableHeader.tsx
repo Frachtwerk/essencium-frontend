@@ -31,7 +31,6 @@ type Props<T> = TableProps & {
     value: string | number | null,
   ) => void
   showFilter?: boolean
-  // filterData could also be a bisicEntity with id and name
   filterData?: Record<string, Array<string | BasicEntityOutput>>
   filterValue?: Record<string, string | number | null>
   firstColSticky?: boolean
