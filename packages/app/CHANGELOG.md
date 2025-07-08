@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.2.0...essencium-app-v9.3.0) (2025-07-08)
+
+
+### Features
+
+* **frontend:** implement refresh token logic ([#814](https://github.com/Frachtwerk/essencium-frontend/issues/814)) ([d79e0da](https://github.com/Frachtwerk/essencium-frontend/commit/d79e0da0f7c78bb6649ade72464e38f08a57eadc))
+
 ## [9.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.1.0...essencium-app-v9.2.0) (2025-06-23)
 
 

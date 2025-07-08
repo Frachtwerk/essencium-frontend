@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.2.0...essencium-lib-v9.3.0) (2025-07-08)
+
+
+### Features
+
+* add basicEntity and work with the object in table filter ([a743ee8](https://github.com/Frachtwerk/essencium-frontend/commit/a743ee8d2d4aa35c6802ba84e13655ef10c8462a))
+
 ## [9.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.1.0...essencium-lib-v9.2.0) (2025-06-23)
 
 
