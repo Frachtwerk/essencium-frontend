@@ -22,33 +22,22 @@ import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
 import type { JSX } from 'react'
 
-import classes from './SetPasswordSuccessMessage.module.css'
-
 export function SetPasswordSuccessMessage(): JSX.Element {
   const { t } = useTranslation()
 
   return (
     <Center>
       <Stack>
-        <Title
-          order={4}
-          className={classes['set-password-success-message__title']}
-        >
+        <Title order={4} className="mb-md">
           {t('setPasswordView.successMessage.title')}
         </Title>
 
-        <Text className={classes['set-password-success-message__text']}>
+        <Text className="text-sm">
           {t('setPasswordView.successMessage.text')}
         </Text>
 
-        <NextLink
-          href="/login"
-          className={classes['set-password-success-message__next-link']}
-        >
-          <Button
-            className={classes['set-password-success-message__button']}
-            fullWidth
-          >
+        <NextLink href="/login" className="text-white no-underline">
+          <Button className="mt-md" fullWidth>
             {t('setPasswordView.successMessage.button')}
           </Button>
         </NextLink>

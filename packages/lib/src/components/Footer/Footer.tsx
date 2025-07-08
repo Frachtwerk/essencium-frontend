@@ -30,8 +30,6 @@ import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
 import type { JSX } from 'react'
 
-import classes from './Footer.module.css'
-
 type Props = AppShellFooterProps & {
   links: NavLink[]
   version?: string
@@ -46,26 +44,11 @@ export function Footer({
   const { t } = useTranslation()
 
   return (
-    <AppShellFooter
-      {...props}
-      className={props.className ? props.className : ''}
-    >
-      <Flex
-        justify={{ base: 'center', xs: 'space-between' }}
-        direction="row-reverse"
-        wrap="wrap"
-        align="center"
-        h="100%" // not applied with normal css
-        className={classes.footer__flex}
-      >
-        <Flex direction="row" gap="lg" align="center">
+    <AppShellFooter {...props} className={props.className}>
+      <Flex className="xs:justify-between px-lg h-full flex-row-reverse flex-wrap items-center justify-center">
+        <Flex className="gap-lg flex-row items-center">
           {links.map(link => (
-            <Text
-              component={NextLink}
-              key={link.label}
-              href={link.to}
-              className={classes.footer__text}
-            >
+            <Text component={NextLink} key={link.label} href={link.to}>
               {t(link.label)}
             </Text>
           ))}
@@ -73,8 +56,8 @@ export function Footer({
           {children}
         </Flex>
 
-        <Flex gap="xs" align="center">
-          <IconCopyright size="16" />
+        <Flex className="gap-xs items-center">
+          <IconCopyright className="size-4" />
 
           <Text> {t('footer.license')} </Text>
 

@@ -39,7 +39,6 @@ import { Dispatch, type JSX, SetStateAction } from 'react'
 import { useZodForm } from '../../hooks'
 import { ControlledPasswordInput, ControlledTextInput } from '../Form'
 import { ResetPasswordForm, ResetPasswordSuccessMessage } from './components'
-import classes from './LoginForm.module.css'
 
 type Props = {
   handleLogin: (name: string, pw: string) => void
@@ -73,7 +72,7 @@ export function LoginForm({
   }
 
   return (
-    <Box className={classes['login-form__container']}>
+    <Box className="xs:w-[400px] w-[300px]">
       <Transition
         mounted={!isPasswordResetFormOpened && !isResetPasswordSent}
         transition="fade"
@@ -90,9 +89,6 @@ export function LoginForm({
                 placeholder={String(t('loginView.form.emailPlaceholder'))}
                 label={t('loginView.form.email')}
                 required
-                classNames={{
-                  root: classes['login-form__input-label--email'],
-                }}
                 withAsterisk
               />
 
@@ -102,16 +98,13 @@ export function LoginForm({
                 placeholder={String(t('loginView.form.passwordPlaceholder'))}
                 label={t('loginView.form.password')}
                 required
-                classNames={{
-                  root: classes['login-form__input-label--password'],
-                }}
+                className="mt-xs"
                 withAsterisk
               />
 
-              <Group justify="apart" className={classes['login-form__group']}>
+              <Group className="mt-md">
                 <Anchor
-                  size="xs"
-                  fw="bold"
+                  className="text-xs font-bold"
                   onClick={() => setIsPasswordResetFormOpened(true)}
                   role="link"
                 >
@@ -119,11 +112,7 @@ export function LoginForm({
                 </Anchor>
               </Group>
 
-              <Button
-                type="submit"
-                fullWidth
-                className={classes['login-form__button']}
-              >
+              <Button type="submit" fullWidth className="mt-md">
                 {t('loginView.form.submit')}
               </Button>
             </form>
@@ -149,7 +138,7 @@ export function LoginForm({
       </Transition>
 
       {isResettingPassword && (
-        <Center className={classes['login-form__center']}>
+        <Center className="h-full">
           <Loader size="lg" name="loader" />
         </Center>
       )}

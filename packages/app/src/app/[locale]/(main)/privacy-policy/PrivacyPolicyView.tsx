@@ -23,14 +23,15 @@ import { Card, Divider, Stack, Text, Title } from '@mantine/core'
 import type { JSX } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import classes from './PrivacyPolicyView.module.css'
-
 export default function PrivacyPolicyView(): JSX.Element {
   const { t } = useTranslation()
 
   return (
-    <Card withBorder className={classes['privacy-policy-card']}>
-      <Stack gap="lg">
+    <Card
+      withBorder
+      className="p-lg mx-auto my-3 max-w-[800px] rounded-md shadow-sm"
+    >
+      <Stack className="gap-lg">
         {/* Header */}
         <Title order={1}>{t('privacyPolicyView.title')}</Title>
         <Divider />
