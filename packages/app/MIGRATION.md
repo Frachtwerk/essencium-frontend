@@ -1,5 +1,25 @@
 # Migrations
 
+## [9.3.0 (2025-06-23)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.3.0)
+
+### Add refresh token logic
+
+#### `packages/app/src/api/auth.ts`
+
+- added renew token api call
+
+#### `packages/app/src/utils/parseJwt.ts`
+
+- added a util function to parse jwt
+
+#### `packages/app/src/hooks/useScheduleTokenRenewal.ts`
+
+- added hook to renew token
+
+#### `packages/app/src/components/layouts/AuthLayout.tsx`
+
+- added call for useScheduleTokenRenewal
+
 ## [9.2.0 (2025-06-23)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.2.0)
 
 ### Refactor: Simplify code for form inputs
