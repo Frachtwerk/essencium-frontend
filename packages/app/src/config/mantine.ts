@@ -1,4 +1,4 @@
-import { Card, createTheme, Loader, Switch } from '@mantine/core'
+import { Card, Checkbox, createTheme, Loader, Switch } from '@mantine/core'
 import { Fira_Code, Fira_Sans } from 'next/font/google'
 
 import classes from './Theme.module.css'
@@ -78,6 +78,11 @@ export const theme = createTheme({
     Switch: Switch.extend({
       defaultProps: {
         withThumbIndicator: false,
+      },
+    }),
+    Checkbox: Checkbox.extend({
+      classNames: {
+        input: classes['inner'],
       },
     }),
   },

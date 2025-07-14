@@ -3,3 +3,17 @@
     background-color: var(--mantine-color-dark-7);
   }
 }
+
+.inner:disabled {
+  @mixin dark {
+    border-color: var(--mantine-color-dark-5);
+    background-color: var(--mantine-color-dark-5);
+  }
+}
+
+.inner {
+  @mixin dark {
+    border-color: var(--mantine-color-dark-2);
+    background-color: var(--mantine-color-dark-3);
+  }
+}
