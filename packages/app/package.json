@@ -8,6 +8,7 @@
     "clean": "rimraf dist node_modules",
     "clean:install": "pnpm clean && pnpm install",
     "dev": "next dev",
+    "dev:test": "NODE_ENV=test next dev",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
     "lint": "next lint",
