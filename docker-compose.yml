@@ -1,9 +1,16 @@
+include:
+  - backend.docker-compose.yml
 services:
   essencium-frontend:
     build:
       context: .
       dockerfile: ./Dockerfile
+      args:
+        NODE_ENV: test
+    restart: unless-stopped
     environment:
-      NODE_ENV: production
+      - NODE_ENV=test
     ports:
-      - 3000:3000
+      - '3000:3000'
+    depends_on:
+      - backend
