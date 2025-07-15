@@ -130,8 +130,8 @@ export default function LoginView(): JSX.Element {
                     <>
                       <Box className={classes['ssoSection']}>
                         {Object.keys(ssoApplications).map(application => (
-                          <NextLink
-                            className={classes['ssoSection__link']}
+                          <Button
+                            component={NextLink}
                             key={application}
                             href={`${
                               isBrowserEnvironment() &&
@@ -144,32 +144,21 @@ export default function LoginView(): JSX.Element {
                             }${
                               ssoApplications[application].url
                             }?redirect_uri=${OAUTH_REDIRECT_URI}`}
+                            variant="outline"
+                            fullWidth
+                            leftSection={
+                              <Image
+                                src={ssoApplications[application].imageUrl}
+                                alt={ssoApplications[application].name}
+                                w={45}
+                                h={20}
+                              />
+                            }
                           >
-                            <Flex
-                              justify="center"
-                              align="center"
-                              className={classes['ssoSection__button']}
-                            >
-                              <Button
-                                variant="outline"
-                                fullWidth
-                                leftSection={
-                                  <Image
-                                    src={ssoApplications[application].imageUrl}
-                                    alt={ssoApplications[application].name}
-                                    w={45}
-                                    h={20}
-                                  />
-                                }
-                              >
-                                <Box
-                                  className={classes['ssoSection__spacer']}
-                                />
+                            <Box className={classes['ssoSection__spacer']} />
 
-                                <Text>{ssoApplications[application].name}</Text>
-                              </Button>
-                            </Flex>
-                          </NextLink>
+                            <Text>{ssoApplications[application].name}</Text>
+                          </Button>
                         ))}
                       </Box>
 

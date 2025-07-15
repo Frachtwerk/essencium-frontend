@@ -1,5 +1,19 @@
 # Migrations
 
+## [9.X.X (XXXX-XX-XX)]()
+
+### Fix Accessibility Issues SSO login button
+
+#### `packages/app/src/app/[locale]/(public)/login/LoginView.tsx`
+
+- Changed SSO Login button to render a NextLink as polymorphic button
+
+### Fix Accessibility Issues Add user button
+
+#### `packages/app/src/app/[locale]/(main)/admin/users/UsersView.tsx`
+
+- Changed Add User button to render a NextLink as polymorphic button
+
 ## [9.3.0 (2025-06-23)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.3.0)
 
 ### Add refresh token logic

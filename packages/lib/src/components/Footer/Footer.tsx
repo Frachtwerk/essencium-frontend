@@ -19,6 +19,7 @@
 
 import { NavLink } from '@frachtwerk/essencium-types'
 import {
+  Anchor,
   AppShellFooter,
   AppShellFooterProps,
   Code,
@@ -60,14 +61,14 @@ export function Footer({
       >
         <Flex direction="row" gap="lg" align="center">
           {links.map(link => (
-            <Text
+            <Anchor
               component={NextLink}
               key={link.label}
               href={link.to}
               className={classes.footer__text}
             >
               {t(link.label)}
-            </Text>
+            </Anchor>
           ))}
 
           {children}

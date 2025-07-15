@@ -19,6 +19,7 @@
 
 import { ContactPerson } from '@frachtwerk/essencium-types'
 import {
+  ActionIcon,
   Avatar,
   Card,
   Flex,
@@ -130,31 +131,33 @@ export function ContactPersonCard({ contactPerson }: Props): JSX.Element {
           aria-label="Contact info"
         >
           {contactPerson?.linkedinUrl ? (
-            <NextLink href={contactPerson.linkedinUrl} passHref>
-              <ThemeIcon
-                variant="light"
-                className={classes['contact-person-card__theme-icon--radius']}
-              >
-                <IconBrandLinkedin
-                  className={classes['contact-person-card__icon--size']}
-                  aria-label="Social icon"
-                />
-              </ThemeIcon>
-            </NextLink>
+            <ActionIcon
+              component={NextLink}
+              href={contactPerson.linkedinUrl}
+              passHref
+              variant="light"
+              className={classes['contact-person-card__theme-icon--radius']}
+            >
+              <IconBrandLinkedin
+                className={classes['contact-person-card__icon--size']}
+                aria-label="Social icon"
+              />
+            </ActionIcon>
           ) : null}
 
           {contactPerson.instagramUrl ? (
-            <NextLink href={contactPerson.instagramUrl} passHref>
-              <ThemeIcon
-                variant="light"
-                className={classes['contact-person-card__theme-icon--radius']}
-              >
-                <IconBrandInstagram
-                  className={classes['contact-person-card__icon--size']}
-                  aria-label="Social icon"
-                />
-              </ThemeIcon>
-            </NextLink>
+            <ActionIcon
+              component={NextLink}
+              href={contactPerson.instagramUrl}
+              passHref
+              variant="light"
+              className={classes['contact-person-card__theme-icon--radius']}
+            >
+              <IconBrandInstagram
+                className={classes['contact-person-card__icon--size']}
+                aria-label="Social icon"
+              />
+            </ActionIcon>
           ) : null}
         </Group>
       </Flex>
