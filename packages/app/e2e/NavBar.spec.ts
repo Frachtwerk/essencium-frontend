@@ -17,16 +17,26 @@ test.describe('NavBar', () => {
     await expect(adminstrationMenu).toBeVisible()
     await adminstrationMenu.click()
 
-    await page.getByRole('link', { name: 'Users' }).click()
+    const usersMenuItem = page.getByRole('link', { name: 'Users' })
+    await expect(usersMenuItem).toBeVisible()
+    await usersMenuItem.click()
     await expect(page).toHaveURL('/admin/users')
 
-    await page.getByRole('link', { name: 'Roles' }).click()
+    const rolesMenuItem = page.getByRole('link', { name: 'Roles' })
+    await expect(rolesMenuItem).toBeVisible()
+    await rolesMenuItem.click()
     await expect(page).toHaveURL('/admin/roles')
 
-    await page.getByRole('link', { name: 'Rights' }).click()
+    const rightsMenuItem = page.getByRole('link', { name: 'Rights' })
+    await expect(rightsMenuItem).toBeVisible()
+    await rightsMenuItem.click()
     await expect(page).toHaveURL('/admin/rights')
 
-    await page.getByRole('link', { name: 'Translations' }).click()
+    const translationsMenuItem = page.getByRole('link', {
+      name: 'Translations',
+    })
+    await expect(translationsMenuItem).toBeVisible()
+    await translationsMenuItem.click()
     await expect(page).toHaveURL('/admin/translations')
 
     await expect(
