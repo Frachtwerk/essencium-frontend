@@ -1,0 +1,42 @@
+---
+services:
+  backend:
+    image: frachtwerk/essencium-backend-demo:unstable
+    restart: unless-stopped
+    environment:
+      SPRING_PROFILES_ACTIVE: development, postgres
+      APP_URL: localhost:8098
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/essencium
+      SPRING_DATASOURCE_USERNAME: essencium
+      SPRING_DATASOURCE_PASSWORD: essencium
+    volumes:
+      - data:/srv/data
+    ports:
+      - '8098:8098'
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: '4G'
+
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      TZ: Europe/Berlin
+      POSTGRES_DB: essencium
+      POSTGRES_USER: essencium
+      POSTGRES_PASSWORD: essencium
+    volumes:
+      - db:/var/lib/postgresql
+      - postgres-data:/var/lib/postgresql/data
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: '4G'
+
+volumes:
+  data:
+  db:
+  postgres-data:
