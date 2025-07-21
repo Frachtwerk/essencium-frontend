@@ -414,9 +414,9 @@ export default function UsersView(): JSX.Element {
           gap="xs"
         >
           {hasRequiredRights(userRights, RIGHTS.USER_CREATE) ? (
-            <NextLink href="/admin/users/add">
-              <Button>{t('usersView.action.add')}</Button>
-            </NextLink>
+            <Button component={NextLink} href="/admin/users/add">
+              {t('usersView.action.add')}
+            </Button>
           ) : null}
         </Flex>
       </Flex>

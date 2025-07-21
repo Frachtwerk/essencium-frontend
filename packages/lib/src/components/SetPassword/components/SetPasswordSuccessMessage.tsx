@@ -41,17 +41,14 @@ export function SetPasswordSuccessMessage(): JSX.Element {
           {t('setPasswordView.successMessage.text')}
         </Text>
 
-        <NextLink
+        <Button
+          component={NextLink}
           href="/login"
-          className={classes['set-password-success-message__next-link']}
+          className={classes['set-password-success-message__button']}
+          fullWidth
         >
-          <Button
-            className={classes['set-password-success-message__button']}
-            fullWidth
-          >
-            {t('setPasswordView.successMessage.button')}
-          </Button>
-        </NextLink>
+          {t('setPasswordView.successMessage.button')}
+        </Button>
       </Stack>
     </Center>
   )
