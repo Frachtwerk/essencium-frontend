@@ -2,6 +2,16 @@
 
 ## [9.X.X (XXXX-XX-XX)]()
 
+### Improve Darkmode Styling of Checkboxes
+
+#### `packages/app/src/config/Theme.module.css`
+
+- Added new class for disabled checkboxes
+
+#### `packages/app/src/config/mantine.ts`
+
+- Import new class for checkboxes
+
 ### Fix Accessibility Issues SSO login button
 
 #### `packages/app/src/app/[locale]/(public)/login/LoginView.tsx`
