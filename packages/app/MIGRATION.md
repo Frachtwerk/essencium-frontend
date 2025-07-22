@@ -12,6 +12,10 @@
 
 - Import new class for checkboxes
 
+#### `packages/app/package.json`
+
+- Updated mantine to 8.2.0
+
 ### Fix Accessibility Issues SSO login button
 
 #### `packages/app/src/app/[locale]/(public)/login/LoginView.tsx`
