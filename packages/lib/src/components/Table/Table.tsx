@@ -102,33 +102,44 @@ export function Table<T>({
             {(tableModel.getRowModel().rows.length
               ? tableModel.getRowModel().rows
               : rowsDebounced
-            ).map(row => (
-              <MantineTable.Tr
-                key={row.id}
-                onClick={
-                  row.getToggleExpandedHandler() &&
-                  row.getToggleExpandedHandler()
-                }
-                style={row.getCanExpand() ? { cursor: 'pointer' } : {}}
-                className={
-                  firstColSticky
-                    ? classes['table__table-row--sticky']
-                    : classes['table__table-row']
-                }
-              >
-                {row.getVisibleCells().map(cell => (
-                  <MantineTable.Td
-                    key={cell.id}
-                    width={cell.column.getSize()}
-                    className={
-                      firstColSticky ? classes['table__col-sticky'] : ''
+            ).map(row => {
+              const canExpand = row.getCanExpand()
+              const toggleExpandedHandler = row.getToggleExpandedHandler()
+
+              return (
+                <MantineTable.Tr
+                  key={row.id}
+                  onClick={toggleExpandedHandler}
+                  tabIndex={canExpand ? 0 : -1}
+                  style={canExpand ? { cursor: 'pointer' } : {}}
+                  className={
+                    firstColSticky
+                      ? classes['table__table-row--sticky']
+                      : classes['table__table-row']
+                  }
+                  onKeyDown={e => {
+                    if (canExpand && e.key === 'Enter') {
+                      toggleExpandedHandler()
                     }
-                  >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </MantineTable.Td>
-                ))}
-              </MantineTable.Tr>
-            ))}
+                  }}
+                >
+                  {row.getVisibleCells().map(cell => (
+                    <MantineTable.Td
+                      key={cell.id}
+                      width={cell.column.getSize()}
+                      className={
+                        firstColSticky ? classes['table__col-sticky'] : ''
+                      }
+                    >
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </MantineTable.Td>
+                  ))}
+                </MantineTable.Tr>
+              )
+            })}
           </MantineTable.Tbody>
 
           <MantineTable.Tfoot
