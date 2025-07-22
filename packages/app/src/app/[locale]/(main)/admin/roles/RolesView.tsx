@@ -227,27 +227,31 @@ export default function RolesView(): JSX.Element {
             <Flex className="gap-xs flex-row">
               {hasRequiredRights(userRights, RIGHTS.RIGHT_UPDATE) &&
               rowRole.editable === true ? (
-                <ActionIcon size="sm" variant="transparent">
-                  <IconPencil
-                    onClick={() => {
-                      setRoleToEditOrDelete(rowRole)
-                      editModalHandlers.open()
-                    }}
-                    color={theme.colors.blue[6]}
-                  />
+                <ActionIcon
+                  size="sm"
+                  variant="transparent"
+                  onClick={() => {
+                    setRoleToEditOrDelete(rowRole)
+                    editModalHandlers.open()
+                  }}
+                  aria-label={t('rolesView.action.edit')}
+                >
+                  <IconPencil aria-hidden />
                 </ActionIcon>
               ) : null}
 
               {hasRequiredRights(userRights, RIGHTS.ROLE_DELETE) &&
               rowRole.protected === false ? (
-                <ActionIcon size="sm" variant="transparent">
-                  <IconTrash
-                    onClick={() => {
-                      setRoleToEditOrDelete(rowRole)
-                      deleteModalHandlers.open()
-                    }}
-                    color={theme.colors.blue[6]}
-                  />
+                <ActionIcon
+                  size="sm"
+                  variant="transparent"
+                  onClick={() => {
+                    setRoleToEditOrDelete(rowRole)
+                    deleteModalHandlers.open()
+                  }}
+                  aria-label={t('rolesView.action.delete')}
+                >
+                  <IconTrash aria-hidden />
                 </ActionIcon>
               ) : null}
             </Flex>
