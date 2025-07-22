@@ -214,7 +214,10 @@
   "usersView": {
     "title": "Nutzer",
     "action": {
-      "add": "Benutzer hinzufügen"
+      "add": "Benutzer hinzufügen",
+      "edit": "Benutzer bearbeiten",
+      "delete": "Benutzer löschen",
+      "additionalActions": "Weitere Aktionen"
     },
     "table": {
       "id": "ID",
@@ -301,7 +304,9 @@
   "rolesView": {
     "title": "Rollen",
     "action": {
-      "add": "Rolle hinzufügen"
+      "add": "Rolle hinzufügen",
+      "edit": "Rolle bearbeiten",
+      "delete": "Rolle löschen"
     },
     "table": {
       "name": "Name",
