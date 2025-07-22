@@ -17,15 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {
-  ActionIcon,
-  Group,
-  Popover,
-  PopoverDropdown,
-  PopoverTarget,
-  Text,
-  useMantineColorScheme,
-} from '@mantine/core'
+import { ActionIcon, Menu, useMantineColorScheme } from '@mantine/core'
 import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
 import { type JSX } from 'react'
@@ -49,8 +41,8 @@ export function ThemeSelector(): JSX.Element {
   const isAutoMode = colorScheme === COLOR_SCHEME.AUTO
 
   return (
-    <Popover width={130} position="bottom" withArrow shadow="sm">
-      <PopoverTarget>
+    <Menu width={130} position="bottom" withArrow shadow="sm">
+      <Menu.Target>
         <ActionIcon
           variant="subtle"
           aria-label="theme-selector"
@@ -67,10 +59,10 @@ export function ThemeSelector(): JSX.Element {
             />
           )}
         </ActionIcon>
-      </PopoverTarget>
+      </Menu.Target>
 
-      <PopoverDropdown className={classes['theme-selector__popover-dropdown']}>
-        <Group
+      <Menu.Dropdown>
+        <Menu.Item
           onClick={() => {
             setColorScheme(COLOR_SCHEME.LIGHT)
           }}
@@ -79,15 +71,12 @@ export function ThemeSelector(): JSX.Element {
               ? `${classes['theme-selector__group']} ${classes['theme-selector__group--active']}`
               : classes['theme-selector__group']
           }
+          leftSection={<IconSun size={20} />}
         >
-          <IconSun size={20} />
+          {t('header.themeToggle.lightMode')}
+        </Menu.Item>
 
-          <Text className={classes['theme-selector__text']}>
-            {t('header.themeToggle.lightMode')}
-          </Text>
-        </Group>
-
-        <Group
+        <Menu.Item
           onClick={() => {
             setColorScheme(COLOR_SCHEME.DARK)
           }}
@@ -96,15 +85,12 @@ export function ThemeSelector(): JSX.Element {
               ? `${classes['theme-selector__group']} ${classes['theme-selector__group--active']}`
               : classes['theme-selector__group']
           }
+          leftSection={<IconMoon size={20} />}
         >
-          <IconMoon size={20} />
+          {t('header.themeToggle.darkMode')}
+        </Menu.Item>
 
-          <Text className={classes['theme-selector__text']}>
-            {t('header.themeToggle.darkMode')}
-          </Text>
-        </Group>
-
-        <Group
+        <Menu.Item
           onClick={() => {
             clearColorScheme()
           }}
@@ -113,14 +99,11 @@ export function ThemeSelector(): JSX.Element {
               ? `${classes['theme-selector__group']} ${classes['theme-selector__group--active']}`
               : classes['theme-selector__group']
           }
+          leftSection={<IconDeviceLaptop size={20} />}
         >
-          <IconDeviceLaptop size={20} />
-
-          <Text className={classes['theme-selector__text']}>
-            {t('header.themeToggle.systemMode')}
-          </Text>
-        </Group>
-      </PopoverDropdown>
-    </Popover>
+          {t('header.themeToggle.systemMode')}
+        </Menu.Item>
+      </Menu.Dropdown>
+    </Menu>
   )
 }

@@ -17,7 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
- .theme-selector__icon {
+.theme-selector__icon {
   &:hover {
     @mixin light {
       background-color: var(--mantine-color-gray-0);
@@ -55,8 +55,6 @@
   }
 }
 
-
-
 .theme-selector__auto-mode {
   @mixin light {
     color: var(--mantine-color-gray-9);
@@ -65,12 +63,4 @@
   @mixin dark {
     color: var(--mantine-color-gray-0);
   }
-}
-
-.theme-selector__text {
-  font-size: var(--mantine-font-size-sm);
-}
-
-.theme-selector__popover-dropdown {
-  padding: 0;
 }
