@@ -33,6 +33,7 @@ import {
   Center,
   Dialog,
   Flex,
+  FocusTrap,
   Group,
   Stack,
   Text,
@@ -55,7 +56,7 @@ import {
 import html2canvas from 'html2canvas-pro'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
-import { type JSX, ReactNode, useEffect, useState } from 'react'
+import { type JSX, ReactNode, useEffect, useRef, useState } from 'react'
 
 import { useZodForm } from '../../hooks'
 import { ControlledTextarea } from '../Form'
@@ -110,6 +111,8 @@ export function FeedbackWidget({
 
   const pathname = usePathname()
 
+  const openFeedbackWidgetRef = useRef<HTMLButtonElement | null>(null)
+
   const { handleSubmit, control, reset, setValue } = useZodForm({
     schema: feedbackFormSchema,
     defaultValues: {
@@ -142,11 +145,22 @@ export function FeedbackWidget({
       <IconExclamationCircle
         size={iconStyling.size}
         stroke={iconStyling.stroke}
+        aria-hidden
       />
     ),
-    Idea: <IconBulb size={iconStyling.size} stroke={iconStyling.stroke} />,
+    Idea: (
+      <IconBulb
+        size={iconStyling.size}
+        stroke={iconStyling.stroke}
+        aria-hidden
+      />
+    ),
     Other: (
-      <IconMessageDots size={iconStyling.size} stroke={iconStyling.stroke} />
+      <IconMessageDots
+        size={iconStyling.size}
+        stroke={iconStyling.stroke}
+        aria-hidden
+      />
     ),
   }
 
@@ -184,6 +198,8 @@ export function FeedbackWidget({
     setScreenshot(null)
 
     setIsCapturingScreenshot(false)
+
+    openFeedbackWidgetRef.current?.focus()
   }
 
   function onSubmit(form: FeedbackInput): void {
@@ -243,6 +259,7 @@ export function FeedbackWidget({
   return (
     <>
       <ActionIcon
+        ref={openFeedbackWidgetRef}
         variant="filled"
         aria-label={t('feedbackWidget.openButton.ariaLabel')}
         size="lg"
@@ -252,184 +269,197 @@ export function FeedbackWidget({
         }}
         onClick={toggle}
       >
-        <IconMessageDots size={24} />
+        <IconMessageDots aria-hidden size={24} />
       </ActionIcon>
 
-      <Dialog
-        opened={opened}
-        withCloseButton
-        onClose={() => {
-          onCloseWidget()
-        }}
-        h={openInput ? 'auto' : '180px'}
-        className={
-          isCapturingScreenshot
-            ? classes['feedback-widget__dialog--display']
-            : classes['feedback-widget__dialog']
-        }
-      >
-        {!showSuccessMessage || !showErrorMessage ? (
-          <Title className={classes['feedback-widget__title']}>
-            {t('feedbackWidget.title')}
-          </Title>
-        ) : null}
+      <FocusTrap active={opened}>
+        <Dialog
+          opened={opened}
+          withCloseButton
+          onClose={onCloseWidget}
+          h={openInput ? 'auto' : '180px'}
+          className={
+            isCapturingScreenshot
+              ? classes['feedback-widget__dialog--display']
+              : classes['feedback-widget__dialog']
+          }
+          onKeyDown={event => {
+            if (event.key === 'Escape') {
+              onCloseWidget()
+            }
+          }}
+          tabIndex={-1}
+        >
+          {!showSuccessMessage || !showErrorMessage ? (
+            <Title className={classes['feedback-widget__title']}>
+              {t('feedbackWidget.title')}
+            </Title>
+          ) : null}
 
-        {openInput === null ? (
-          <Flex justify="space-around">
-            {Object.keys(OpenInput).map(key => {
-              const inputKey = key as keyof typeof OpenInput
-              return (
-                <Stack key={key}>
-                  <ActionIcon
-                    variant="filled"
-                    className={classes['feedback-widget__action-icon']}
+          {openInput === null ? (
+            <Flex justify="space-around">
+              {Object.keys(OpenInput).map(key => {
+                const inputKey = key as keyof typeof OpenInput
+                return (
+                  <UnstyledButton
+                    key={key}
                     onClick={() => {
                       setOpenInput(OpenInput[inputKey])
                     }}
                   >
-                    {icons[inputKey]}
-                  </ActionIcon>
+                    <Stack>
+                      <ThemeIcon
+                        variant="filled"
+                        className={classes['feedback-widget__action-icon']}
+                      >
+                        {icons[inputKey]}
+                      </ThemeIcon>
 
-                  <Center>
-                    <UnstyledButton>
-                      {t(`feedbackWidget.${key.toLowerCase()}`)}
-                    </UnstyledButton>
-                  </Center>
-                </Stack>
-              )
-            })}
-          </Flex>
-        ) : null}
+                      <Center>
+                        {t(`feedbackWidget.${key.toLowerCase()}`)}
+                      </Center>
+                    </Stack>
+                  </UnstyledButton>
+                )
+              })}
+            </Flex>
+          ) : null}
 
-        <Transition
-          mounted={Boolean(openInput !== null)}
-          transition="pop"
-          duration={350}
-          timingFunction="ease"
-          exitDuration={0}
-        >
-          {styles => (
-            <div style={styles}>
-              <Box>
-                {isLoading ? (
-                  <Box
-                    className={
-                      classes['feedback-widget__loading-spinner--container']
-                    }
-                  >
-                    <LoadingSpinner show size="lg" />
-                  </Box>
-                ) : null}
-
-                {!isLoading && (showSuccessMessage || showErrorMessage) ? (
-                  <Stack>
-                    <Center>
-                      {showSuccessMessage ? (
-                        <ThemeIcon
-                          variant="outline"
-                          className={classes['feedback-widget__theme-icon']}
-                        >
-                          <IconCircleCheck
-                            className={classes['feedback-widget__icon--check']}
-                          />
-                        </ThemeIcon>
-                      ) : (
-                        <IconCircleX
-                          className={classes['feedback-widget__icon--x']}
-                        />
-                      )}
-                    </Center>
-
-                    <Center>
-                      <Text>
-                        {showSuccessMessage
-                          ? t('feedbackWidget.successMessage')
-                          : t('feedbackWidget.errorMessage')}
-                      </Text>
-                    </Center>
-                  </Stack>
-                ) : null}
-
-                {!isLoading && !showSuccessMessage && !showErrorMessage ? (
-                  <Box>
-                    <Group
-                      justify="apart"
-                      gap="xs"
-                      className={classes['feedback-widget__group']}
+          <Transition
+            mounted={Boolean(openInput !== null)}
+            transition="pop"
+            duration={350}
+            timingFunction="ease"
+            exitDuration={0}
+          >
+            {styles => (
+              <div style={styles}>
+                <Box>
+                  {isLoading ? (
+                    <Box
+                      className={
+                        classes['feedback-widget__loading-spinner--container']
+                      }
                     >
-                      {Object.keys(OpenInput).map(key => {
-                        const inputKey = key as keyof typeof OpenInput
+                      <LoadingSpinner show size="lg" />
+                    </Box>
+                  ) : null}
 
-                        return (
-                          <Button
-                            key={key}
-                            className={classes['feedback-widget__button']}
-                            variant={
-                              openInput === OpenInput[inputKey]
-                                ? 'filled'
-                                : 'outline'
-                            }
-                            onClick={() => {
-                              setOpenInput(OpenInput[inputKey])
-                              reset()
-                            }}
-                            leftSection={icons[inputKey]}
+                  {!isLoading && (showSuccessMessage || showErrorMessage) ? (
+                    <Stack>
+                      <Center>
+                        {showSuccessMessage ? (
+                          <ThemeIcon
+                            variant="outline"
+                            className={classes['feedback-widget__theme-icon']}
                           >
-                            {t(`feedbackWidget.${key.toLowerCase()}`)}
-                          </Button>
-                        )
-                      })}
-                    </Group>
+                            <IconCircleCheck
+                              className={
+                                classes['feedback-widget__icon--check']
+                              }
+                            />
+                          </ThemeIcon>
+                        ) : (
+                          <IconCircleX
+                            className={classes['feedback-widget__icon--x']}
+                          />
+                        )}
+                      </Center>
 
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                      <Stack>
-                        <ControlledTextarea
-                          name="message"
-                          control={control}
-                          className={classes['feedback-widget__textarea']}
-                          placeholder={
-                            t('feedbackWidget.placeholder') as string
-                          }
-                        />
+                      <Center>
+                        <Text>
+                          {showSuccessMessage
+                            ? t('feedbackWidget.successMessage')
+                            : t('feedbackWidget.errorMessage')}
+                        </Text>
+                      </Center>
+                    </Stack>
+                  ) : null}
 
-                        <Flex gap="xs">
-                          <Tooltip
-                            label={t('feedbackWidget.screenshot.label')}
-                            className={
-                              isCapturingScreenshot
-                                ? classes['feedback-widget__dialog--display']
-                                : ''
-                            }
-                          >
-                            <ActionIcon
-                              variant={screenshot ? 'filled' : 'outline'}
-                              size="md"
-                              aria-label={t('feedbackWidget.screenshot.label')}
+                  {!isLoading && !showSuccessMessage && !showErrorMessage ? (
+                    <Box>
+                      <Group
+                        justify="apart"
+                        gap="xs"
+                        className={classes['feedback-widget__group']}
+                      >
+                        {Object.keys(OpenInput).map(key => {
+                          const inputKey = key as keyof typeof OpenInput
+
+                          return (
+                            <Button
+                              key={key}
+                              className={classes['feedback-widget__button']}
+                              variant={
+                                openInput === OpenInput[inputKey]
+                                  ? 'filled'
+                                  : 'outline'
+                              }
                               onClick={() => {
-                                setIsCapturingScreenshot(true)
+                                setOpenInput(OpenInput[inputKey])
+                                reset()
                               }}
+                              leftSection={icons[inputKey]}
                             >
-                              {screenshot ? (
-                                <IconCameraCheck size={20} />
-                              ) : (
-                                <IconCameraPlus size={20} />
-                              )}
-                            </ActionIcon>
-                          </Tooltip>
+                              {t(`feedbackWidget.${key.toLowerCase()}`)}
+                            </Button>
+                          )
+                        })}
+                      </Group>
 
-                          <Button type="submit" size="xs" fullWidth>
-                            {t('feedbackWidget.button')}
-                          </Button>
-                        </Flex>
-                      </Stack>
-                    </form>
-                  </Box>
-                ) : null}
-              </Box>
-            </div>
-          )}
-        </Transition>
-      </Dialog>
+                      <form onSubmit={handleSubmit(onSubmit)}>
+                        <Stack>
+                          <ControlledTextarea
+                            autoFocus
+                            name="message"
+                            control={control}
+                            className={classes['feedback-widget__textarea']}
+                            placeholder={
+                              t('feedbackWidget.placeholder') as string
+                            }
+                          />
+
+                          <Flex gap="xs">
+                            <Tooltip
+                              label={t('feedbackWidget.screenshot.label')}
+                              className={
+                                isCapturingScreenshot
+                                  ? classes['feedback-widget__dialog--display']
+                                  : ''
+                              }
+                            >
+                              <ActionIcon
+                                variant={screenshot ? 'filled' : 'outline'}
+                                size="md"
+                                aria-label={t(
+                                  'feedbackWidget.screenshot.label',
+                                )}
+                                onClick={() => {
+                                  setIsCapturingScreenshot(true)
+                                }}
+                              >
+                                {screenshot ? (
+                                  <IconCameraCheck size={20} />
+                                ) : (
+                                  <IconCameraPlus size={20} />
+                                )}
+                              </ActionIcon>
+                            </Tooltip>
+
+                            <Button type="submit" size="xs" fullWidth>
+                              {t('feedbackWidget.button')}
+                            </Button>
+                          </Flex>
+                        </Stack>
+                      </form>
+                    </Box>
+                  ) : null}
+                </Box>
+              </div>
+            )}
+          </Transition>
+        </Dialog>
+      </FocusTrap>
     </>
   )
 }
