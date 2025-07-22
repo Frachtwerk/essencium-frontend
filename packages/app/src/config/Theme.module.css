@@ -3,3 +3,10 @@
     background-color: var(--mantine-color-dark-7);
   }
 }
+
+.inner:disabled {
+  @mixin dark {
+    opacity: 0.6;
+    border-color: var(--mantine-color-dark-6);
+  }
+}
