@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.3.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.3.0...essencium-lib-v9.3.1) (2025-07-24)
+
+
+### Bug Fixes
+
+* render NextLink using other mantine components as polymorphic co… ([314df73](https://github.com/Frachtwerk/essencium-frontend/commit/314df73b1f818a80901dfbeda3b66a27728a08a4))
+* render NextLink using other mantine components as polymorphic component ([28083d4](https://github.com/Frachtwerk/essencium-frontend/commit/28083d476a539118506a2edb76617624c7c65f48))
+
 ## [9.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.2.0...essencium-lib-v9.3.0) (2025-07-08)
 
 
