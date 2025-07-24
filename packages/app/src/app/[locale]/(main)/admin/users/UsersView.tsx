@@ -40,8 +40,7 @@ import {
   Badge,
   Button,
   Flex,
-  Group,
-  Popover,
+  Menu,
   Switch,
   Text,
   Title,
@@ -65,7 +64,6 @@ import {
 } from '@tanstack/react-table'
 import { useAtomValue } from 'jotai'
 import NextLink from 'next/link'
-import { useRouter } from 'next/navigation'
 import { type JSX, useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -95,8 +93,6 @@ export const FORM_DEFAULTS_USERS_VIEW = {
 const DEFAULT_SORTING: SortingState = [{ id: 'firstName', desc: false }]
 
 export default function UsersView(): JSX.Element {
-  const router = useRouter()
-
   const userRights = useAtomValue(userRightsAtom)
 
   const defaultUserEmail = process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
@@ -151,13 +147,6 @@ export default function UsersView(): JSX.Element {
       {},
     ),
   })
-
-  const handleEditUser = useCallback(
-    (userToEdit: UserOutput) => {
-      router.push(`/admin/users/${userToEdit.id}`)
-    },
-    [router],
-  )
 
   const { mutate: deleteUser } = useDeleteUser()
 
@@ -286,12 +275,15 @@ export default function UsersView(): JSX.Element {
             <Flex direction="row" gap="xs">
               {hasRequiredRights(userRights, RIGHTS.USER_UPDATE) ? (
                 <ActionIcon
+                  component={NextLink}
+                  href={`/admin/users/${rowUser.id}`}
                   className={classes['userView__actionsCellIcon--disabled']}
                   size="sm"
                   disabled={isDefaultUser}
                   variant="transparent"
+                  aria-label={t('usersView.action.edit')}
                 >
-                  <IconPencil onClick={() => handleEditUser(rowUser)} />
+                  <IconPencil aria-hidden />
                 </ActionIcon>
               ) : null}
 
@@ -301,44 +293,45 @@ export default function UsersView(): JSX.Element {
                   size="sm"
                   disabled={isDefaultUser}
                   variant="transparent"
+                  onClick={() => {
+                    setUserToBeDeleted(rowUser)
+                    deleteModalHandlers.open()
+                  }}
+                  aria-label={t('usersView.action.delete')}
                 >
-                  <IconTrash
-                    onClick={() => {
-                      setUserToBeDeleted(rowUser)
-                      deleteModalHandlers.open()
-                    }}
-                  />
+                  <IconTrash aria-hidden />
                 </ActionIcon>
               ) : null}
 
               {hasRequiredRights(userRights, RIGHTS.USER_UPDATE) ? (
-                <Popover width={130} position="bottom" withArrow shadow="sm">
-                  <Popover.Target>
+                <Menu width={130} position="bottom" withArrow shadow="sm">
+                  <Menu.Target>
                     <ActionIcon
                       className={classes['userView__actionsCellIcon--disabled']}
                       size="sm"
                       disabled={isDefaultUser}
                       variant="transparent"
+                      aria-label={t('usersView.action.additionalActions')}
                     >
-                      <IconDotsVertical />
+                      <IconDotsVertical aria-hidden />
                     </ActionIcon>
-                  </Popover.Target>
+                  </Menu.Target>
 
-                  <Popover.Dropdown p={0}>
-                    <Group
+                  <Menu.Dropdown>
+                    <Menu.Item
                       onClick={() => handleInvalidateToken(rowUser)}
-                      gap="xs"
                       className={classes['userView__invalidateTokenGroup']}
+                      leftSection={
+                        <IconLogout
+                          size={16}
+                          className={classes['userView__logoutIcon']}
+                        />
+                      }
                     >
-                      <IconLogout
-                        size={16}
-                        className={classes['userView__logoutIcon']}
-                      />
-
                       {t('usersView.table.invalidate')}
-                    </Group>
-                  </Popover.Dropdown>
-                </Popover>
+                    </Menu.Item>
+                  </Menu.Dropdown>
+                </Menu>
               ) : null}
             </Flex>
           )
@@ -348,7 +341,6 @@ export default function UsersView(): JSX.Element {
     ],
     [
       t,
-      handleEditUser,
       userRights,
       defaultUserEmail,
       handleInvalidateToken,
