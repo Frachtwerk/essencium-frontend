@@ -1,5 +1,19 @@
 # Changelog
 
+## [9.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.3.0...essencium-app-v9.4.0) (2025-07-24)
+
+
+### Features
+
+* **ci:** add explicit test, development & production environment definitions ([0c6df4a](https://github.com/Frachtwerk/essencium-frontend/commit/0c6df4a779a25b323e0f520d27bf7179bcd55c4f))
+* **e2e:** add support for node environments to playwright config ([e298689](https://github.com/Frachtwerk/essencium-frontend/commit/e298689ce2f6c97e9057254cec88549e0f6bdcd4))
+
+
+### Bug Fixes
+
+* render NextLink using other mantine components as polymorphic co… ([314df73](https://github.com/Frachtwerk/essencium-frontend/commit/314df73b1f818a80901dfbeda3b66a27728a08a4))
+* render NextLink using other mantine components as polymorphic component ([28083d4](https://github.com/Frachtwerk/essencium-frontend/commit/28083d476a539118506a2edb76617624c7c65f48))
+
 ## [9.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.2.0...essencium-app-v9.3.0) (2025-07-08)
 
 
