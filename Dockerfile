@@ -27,6 +27,9 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/packages ./packages
 COPY . .
 
+ARG NODE_ENV=production
+COPY ./packages/app/.env.${NODE_ENV}* ./packages/app/.env.local
+
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
