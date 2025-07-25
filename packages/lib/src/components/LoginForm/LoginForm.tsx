@@ -110,6 +110,7 @@ export function LoginForm({
 
               <Group justify="apart" className={classes['login-form__group']}>
                 <Anchor
+                  component="button"
                   size="xs"
                   fw="bold"
                   onClick={() => setIsPasswordResetFormOpened(true)}
