@@ -143,9 +143,10 @@ export function NavBar({
 
       <AppShellSection>
         <MantineNavLink
+          component="button"
           leftSection={<IconLogout />}
           label={t('navigation.logout.label')}
-          onClick={() => handleLogout()}
+          onClick={handleLogout}
           classNames={{
             root: classes['navBar__navLink--root'],
             label: classes['navBar__navLink--label'],
