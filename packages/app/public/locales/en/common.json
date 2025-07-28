@@ -20,7 +20,8 @@
       "menu": {
         "ariaLabel": "Open navigation"
       }
-    }
+    },
+    "skipToMainContent": "Skip to main content"
   },
   "actions": {
     "delete": "Delete",

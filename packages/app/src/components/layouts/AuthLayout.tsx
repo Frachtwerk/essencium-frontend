@@ -356,7 +356,9 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
             ) : null}
           </Footer>
 
-          <AppShellMain className="overflow-auto">{children}</AppShellMain>
+          <AppShellMain className="overflow-auto" id="main-content">
+            {children}
+          </AppShellMain>
         </AppShell>
       ) : (
         <LoadingSpinner show />
