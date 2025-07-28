@@ -433,7 +433,13 @@
     "footer": {
       "pageCount": "Seiten:",
       "pageSize": "Größe:",
-      "pageGoTo": "Springen zu"
+      "pageGoTo": "Springen zu",
+      "pagination": {
+        "previous": "Vorherige Seite",
+        "next": "Nächste Seite",
+        "first": "Erste Seite",
+        "last": "Letzte Seite"
+      }
     },
     "select": {
       "nothingFound": "Nichts gefunden"

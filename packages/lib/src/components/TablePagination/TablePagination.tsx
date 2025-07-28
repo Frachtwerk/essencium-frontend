@@ -20,7 +20,7 @@
 'use client'
 
 import { PaginatedResponse } from '@frachtwerk/essencium-types'
-import { Flex, Pagination, PaginationProps, Text } from '@mantine/core'
+import { Flex, Pagination, PaginationProps } from '@mantine/core'
 import { Table as TanstackTable } from '@tanstack/react-table'
 import { useTranslation } from 'next-i18next'
 import { type JSX, useEffect } from 'react'
@@ -88,16 +88,19 @@ export function TablePagination<T>({
       >
         {!fixedTablePageSize ? (
           <>
-            <Text className={classes['table-pagination__text']}>
+            <label
+              htmlFor="table-pagination-size-select"
+              className={classes['table-pagination__text']}
+            >
               {t('table.footer.pageSize')}
-            </Text>
+            </label>
 
             <SearchableSelect
               defaultValue={String(pageSize)}
               data={pageSizeOptions}
-              aria-label={t('table.footer.pageSize') as string}
               className={classes['table-pagination__select']}
               size="xs"
+              id="table-pagination-size-select"
               onChange={e => {
                 if (table) table.setPageSize(Number(e))
 
@@ -114,6 +117,11 @@ export function TablePagination<T>({
         value={activePage}
         onChange={e => {
           setActivePage(e)
+        }}
+        getControlProps={control => {
+          return {
+            'aria-label': t(`table.footer.pagination.${control}`) as string,
+          }
         }}
         {...props}
       />
