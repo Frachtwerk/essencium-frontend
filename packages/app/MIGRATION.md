@@ -8,6 +8,17 @@
 
 - added `table.footer.pagination.previous|next|first|last` translations
 
+### Improve Accessibility of UsersView Table
+
+#### `packages/app/[locale]/(main)/admin/users/UsersView.tsx`
+
+- Changed translation key of header `enabled`
+- Added added aria-labels for Icons that indicate the users active status
+
+#### `packages/app/public/locales/de|en/common.json`
+
+- Added additional translations for `usersView.table.active`
+
 ### Improve Darkmode Styling of Checkboxes
 
 #### `packages/app/src/config/Theme.module.css`

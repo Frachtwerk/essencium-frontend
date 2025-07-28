@@ -189,12 +189,18 @@ export default function UsersView(): JSX.Element {
     () => [
       {
         accessorKey: 'enabled',
-        header: () => <Text inherit>{t('usersView.table.active')}</Text>,
+        header: () => <Text inherit>{t('usersView.table.active.title')}</Text>,
         cell: info =>
           info.getValue() ? (
-            <IconUserCheck color="var(--mantine-color-green-8)" />
+            <IconUserCheck
+              color="var(--mantine-color-green-8)"
+              aria-label={t('usersView.table.active.isActive')}
+            />
           ) : (
-            <IconUserX color="var(--mantine-color-red-8)" />
+            <IconUserX
+              color="var(--mantine-color-red-8)"
+              aria-label={t('usersView.table.active.isInactive')}
+            />
           ),
         size: 80,
         enableColumnFilter: false,
