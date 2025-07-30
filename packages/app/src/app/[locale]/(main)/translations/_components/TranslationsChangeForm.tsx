@@ -98,7 +98,7 @@ export function TranslationChangeForm({
             render={({ field }) => (
               <TextInput
                 {...field}
-                aria-label={t('translationView.form.changeTranslation')}
+                aria-label={t('translationsView.form.input')}
                 withAsterisk
                 w="40%"
                 disabled={!userRightUpdate}
@@ -111,14 +111,21 @@ export function TranslationChangeForm({
           />
 
           {userRightUpdate ? (
-            <ActionIcon type="submit" disabled={!fieldValue.length}>
-              <IconDeviceFloppy className="size-5" />
+            <ActionIcon
+              type="submit"
+              disabled={!fieldValue.length}
+              aria-label={t('translationsView.form.save')}
+            >
+              <IconDeviceFloppy className="size-5" aria-hidden />
             </ActionIcon>
           ) : null}
 
           {userRightDelete ? (
-            <ActionIcon onClick={() => deleteTranslation(keyPath)}>
-              <IconBackspace className="size-5" />
+            <ActionIcon
+              onClick={() => deleteTranslation(keyPath)}
+              aria-label={t('translationsView.form.delete')}
+            >
+              <IconBackspace className="size-5" aria-hidden />
             </ActionIcon>
           ) : null}
         </Group>

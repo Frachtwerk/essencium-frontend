@@ -61,6 +61,16 @@ Removed files are:
 - `packages/app/src/components/layouts/AuthLayout.module.css`
 - `packages/app/src/config/Theme.module.css`
 
+### Improve Accessibility of TranslationsChangeForm
+
+#### `packages/app/src/app/[locale]/(main)/translations/_components/TranslationsChangeForm.tsx`
+
+- added `aria-label` to all TextInput and ActionButton elements and `aria-hidden` to Icons
+
+#### `packages/app/public/locales/de|en/common.json`
+
+- added translations for `translationsView.form.input|save|delete`
+
 ### Improve Accessibility of Table Pagination
 
 #### `packages/app/public/locales/de|en/common.json`

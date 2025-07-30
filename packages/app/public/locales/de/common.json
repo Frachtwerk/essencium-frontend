@@ -461,6 +461,11 @@
       "key": "Schlüssel",
       "value": "Übersetzungswert"
     },
+    "form": {
+      "input": "Übersetzungswert",
+      "save": "Übersetzung Speichern",
+      "delete": "Übersetzung Löschen"
+    },
     "divider": "Neue Übersetzung",
     "save": "Speichern",
     "cancel": "Abbrechen",
