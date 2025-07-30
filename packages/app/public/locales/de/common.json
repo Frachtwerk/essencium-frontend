@@ -217,7 +217,11 @@
     },
     "table": {
       "id": "ID",
-      "active": "Aktiv",
+      "active": {
+        "title": "Aktiv",
+        "isActive": "Aktiv",
+        "isInactive": "Inaktiv"
+      },
       "name": "Name",
       "description": "Beschreibung",
       "phone": "Telefon",

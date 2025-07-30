@@ -11,15 +11,25 @@ test.describe('UsersView', () => {
 
   test('go to usersView and render table', async ({ page }) => {
     await expect(page.getByRole('heading', { name: 'Users' })).toBeVisible()
-    await expect(page.getByRole('cell', { name: 'Active' })).toBeVisible()
     await expect(
-      page.getByRole('cell', { name: 'Name', exact: true }),
+      page.getByRole('columnheader', { name: 'Active' }).first(),
     ).toBeVisible()
-    await expect(page.getByRole('cell', { name: 'Phone' })).toBeVisible()
-    await expect(page.getByRole('cell', { name: 'E-Mail' })).toBeVisible()
-    await expect(page.getByRole('cell', { name: 'Language' })).toBeVisible()
-    await expect(page.getByRole('cell', { name: 'Role' })).toBeVisible()
-    await expect(page.getByRole('cell', { name: 'Actions' })).toBeVisible()
+    await expect(
+      page.getByRole('columnheader', { name: 'Name', exact: true }),
+    ).toBeVisible()
+    await expect(
+      page.getByRole('columnheader', { name: 'Phone' }),
+    ).toBeVisible()
+    await expect(
+      page.getByRole('columnheader', { name: 'E-Mail' }),
+    ).toBeVisible()
+    await expect(
+      page.getByRole('columnheader', { name: 'Language' }),
+    ).toBeVisible()
+    await expect(page.getByRole('columnheader', { name: 'Role' })).toBeVisible()
+    await expect(
+      page.getByRole('columnheader', { name: 'Actions' }),
+    ).toBeVisible()
   })
 
   test.skip('add, edit and delete user', async ({ page }) => {

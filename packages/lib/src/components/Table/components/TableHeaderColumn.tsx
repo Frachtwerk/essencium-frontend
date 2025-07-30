@@ -169,6 +169,7 @@ export function TableHeaderColumn<T>({
     <MantineTable.Th
       style={{ verticalAlign: 'top' }}
       className={firstColSticky ? classes['table__col-sticky'] : ''}
+      scope="col"
     >
       <Flex
         align="center"
