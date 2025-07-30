@@ -298,7 +298,8 @@
       "LIAISON": "Liaison",
       "OFFICER": "Officer",
       "DEVELOPER": "Developer",
-      "AGENT": "Agent"
+      "AGENT": "Agent",
+      "checkbox": "Right {{right}} for role {{role}}"
     }
   },
   "rolesView": {
