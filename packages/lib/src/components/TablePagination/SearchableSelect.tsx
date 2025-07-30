@@ -70,6 +70,7 @@ export function SearchableSelect({
 
   useEffect(() => {
     setSelectedValue(value || '')
+
     setSearch(value || '')
   }, [value])
 
