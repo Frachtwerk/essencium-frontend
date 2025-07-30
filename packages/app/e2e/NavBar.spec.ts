@@ -48,7 +48,7 @@ test.describe('NavBar', () => {
     await page.getByRole('link', { name: 'Contact' }).click()
     await expect(page).toHaveURL('/contact')
 
-    await expect(page.locator('a').filter({ hasText: 'Logout' })).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Logout' })).toBeVisible()
 
     await expect(page.getByText('2024 Essencium License')).toBeVisible()
   })
