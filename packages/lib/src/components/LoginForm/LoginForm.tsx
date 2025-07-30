@@ -83,7 +83,11 @@ export function LoginForm({
       >
         {styles => (
           <div style={styles}>
-            <form onSubmit={handleSubmit(onSubmit)} noValidate>
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              noValidate
+              data-testid="login-form"
+            >
               <ControlledTextInput
                 name="email"
                 control={control}

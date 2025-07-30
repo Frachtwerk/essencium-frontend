@@ -26,7 +26,7 @@ test.describe('LoginView', () => {
     await page.getByRole('button', { name: 'Login' }).click()
     await expect(page).toHaveURL('/')
 
-    await expect(page.locator('a').filter({ hasText: 'Logout' })).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Logout' })).toBeVisible()
   })
 
   test('reset password', async ({ page }) => {
@@ -57,10 +57,7 @@ test.describe('LoginView', () => {
 
     await page.getByRole('button', { name: 'Cancel' }).click()
 
-    const loginForm = page
-      .locator('div')
-      .filter({ hasText: 'E-Mail *Password *Reset PasswordLogin' })
-      .nth(3)
+    const loginForm = page.getByTestId('login-form')
 
     await expect(loginForm).toBeVisible()
   })

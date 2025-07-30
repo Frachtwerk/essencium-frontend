@@ -2,6 +2,12 @@
 
 ## [9.X.X (XXXX-XX-XX)]()
 
+### Improve Accessibility of Table Pagination
+
+#### `packages/app/public/locales/de|en/common.json`
+
+- added `table.footer.pagination.previous|next|first|last` translations
+
 ### Improve Darkmode Styling of Checkboxes
 
 #### `packages/app/src/config/Theme.module.css`

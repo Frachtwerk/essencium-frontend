@@ -68,6 +68,12 @@ export function SearchableSelect({
     }
   }, [activeIndex])
 
+  useEffect(() => {
+    setSelectedValue(value || '')
+
+    setSearch(value || '')
+  }, [value])
+
   return (
     <Combobox
       store={combobox}
