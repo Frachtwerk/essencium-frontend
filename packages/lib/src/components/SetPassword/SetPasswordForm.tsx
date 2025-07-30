@@ -24,22 +24,31 @@ import {
   SetPasswordFormType,
   SetPasswordInput,
 } from '@frachtwerk/essencium-types'
-import { Button, Stack } from '@mantine/core'
+import { Button, Stack, Text } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
-import type { JSX } from 'react'
+import { type ChangeEvent, type JSX, useState } from 'react'
 
 import { useZodForm } from '../../hooks'
 import { ControlledPasswordInput } from '../Form'
+import { PasswordStrengthIndicator } from '../PasswordStrengthIndicator/PasswordStrengthIndicator'
 import classes from './SetPasswordForm.module.css'
 
 type Props = {
   handleSetPassword: (password: SetPasswordInput['password']) => void
+  isAdmin?: boolean
 }
 
-export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
+/**
+ * SetPasswordForm component for handling password setting and validation
+ * @param handleSetPassword - Callback function to handle password submission
+ * @param isAdmin - Optional flag to indicate if the user is an admin (affects password requirements)
+ */
+export function SetPasswordForm({ handleSetPassword, isAdmin }: Props): JSX.Element {
   const { t } = useTranslation()
+  const [passwordValue, setPasswordValue] = useState<string | null>(null)
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false)
 
-  const { handleSubmit, control } = useZodForm({
+  const { handleSubmit, control, formState: { errors } } = useZodForm({
     schema: setPasswordFormSchema,
   })
 
@@ -49,17 +58,33 @@ export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Stack>
-        <ControlledPasswordInput
-          name="password"
-          control={control}
-          placeholder={String(t('setPasswordView.form.newPassword'))}
-          label={t('setPasswordView.form.newPassword')}
-          withAsterisk
-          classNames={{
-            label: classes['set-password-form__text-input--label'],
-          }}
-        />
+      <Stack gap="md">
+        <PasswordStrengthIndicator
+          passwordValue={passwordValue}
+          isAdmin={isAdmin}
+          offset={5}
+          position="bottom-start"
+          width={300}
+          opened={isPasswordFocused}
+        >
+          <ControlledPasswordInput
+            name="password"
+            control={control}
+            onChange={(event: ChangeEvent<HTMLInputElement>) => {
+              setPasswordValue(event.target.value)
+            }}
+            onFocus={() => setIsPasswordFocused(true)}
+            onBlur={() => setIsPasswordFocused(false)}
+            placeholder={String(t('setPasswordView.form.newPassword'))}
+            label={t('setPasswordView.form.newPassword')}
+            withAsterisk
+            error={errors.password?.message}
+            classNames={{
+              label: classes['set-password-form__text-input--label'],
+              input: classes['set-password-form__text-input'],
+            }}
+          />
+        </PasswordStrengthIndicator>
 
         <ControlledPasswordInput
           name="confirmPassword"
@@ -67,12 +92,22 @@ export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
           placeholder={String(t('setPasswordView.form.confirmPassword'))}
           label={t('setPasswordView.form.confirmPassword')}
           withAsterisk
+          error={errors.confirmPassword?.message}
           classNames={{
             label: classes['set-password-form__text-input--label'],
+            input: classes['set-password-form__text-input'],
           }}
         />
 
-        <Button fullWidth type="submit">
+        <Text size="sm" c="dimmed" mt={-8}>
+          {t('setPasswordView.form.passwordRequirements')}
+        </Text>
+
+        <Button
+          fullWidth
+          type="submit"
+          className={classes['set-password-form__submit-button']}
+        >
           {t('setPasswordView.form.submit')}
         </Button>
       </Stack>
