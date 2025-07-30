@@ -31,13 +31,17 @@ type Props = {
 
 export function Contact({ control, contactPerson }: Props): JSX.Element {
   return (
-    <Grid role="grid">
-      <Grid.Col span={{ md: 4 }} role="gridcell">
-        <ContactPersonCard contactPerson={contactPerson} />
+    <Grid>
+      <Grid.Col span={{ md: 4 }}>
+        <section>
+          <ContactPersonCard contactPerson={contactPerson} />
+        </section>
       </Grid.Col>
 
-      <Grid.Col span={{ md: 8 }} role="gridcell">
-        <ContactForm control={control} />
+      <Grid.Col span={{ md: 8 }}>
+        <section>
+          <ContactForm control={control} />
+        </section>
       </Grid.Col>
     </Grid>
   )
