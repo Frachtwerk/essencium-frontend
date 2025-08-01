@@ -110,7 +110,7 @@ export function NavBar({
     >
       <AppShellSection>
         <Flex className="gap-xs flex flex-row items-start justify-between">
-          <NextLink href="/">
+          <NextLink className="shrink-0" href="/">
             <Box className="mb-xl">
               {!logo || foldedNav || isMobile ? icon : logo}
             </Box>
