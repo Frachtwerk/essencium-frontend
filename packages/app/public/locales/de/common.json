@@ -294,7 +294,8 @@
       "LIAISON": "Verbindung",
       "OFFICER": "Beamter",
       "DEVELOPER": "Entwickler",
-      "AGENT": "Agent"
+      "AGENT": "Agent",
+      "checkbox": "Recht {{right}} für Rolle {{role}}"
     }
   },
   "rolesView": {

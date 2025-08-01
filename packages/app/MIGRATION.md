@@ -61,6 +61,17 @@ Removed files are:
 - `packages/app/src/components/layouts/AuthLayout.module.css`
 - `packages/app/src/config/Theme.module.css`
 
+### Improve Accessibility of Rights View
+
+#### `packages/app/src/app/[locale]/(main)/admin/rights/RightsView.tsx`
+
+- removed double return of checkboxes and put conditional into the disabled attribute
+- added `aria-label` for checkboxes
+
+#### `packages/app/public/locales/de|en/common.json`
+
+- added translations for `rightsView.table.checkbox`
+
 ### Improve Accessibility of Table Pagination
 
 #### `packages/app/public/locales/de|en/common.json`
