@@ -80,7 +80,8 @@ export const theme = createTheme({
     }),
     Checkbox: Checkbox.extend({
       classNames: {
-        input: 'dark:opacity-60 dark:border-dark-600',
+        input:
+          'disabled:dark:opacity-60 disabled:dark:border-dark-500 disabled:dark:bg-dark-500',
       },
     }),
   },
