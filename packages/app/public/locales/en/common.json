@@ -461,6 +461,11 @@
       "key": "Key",
       "value": "Translation value"
     },
+    "form": {
+      "input": "Translation value",
+      "save": "Save Translation",
+      "delete": "Delete Translation"
+    },
     "divider": "New Translation",
     "save": "Save",
     "cancel": "Cancel",
