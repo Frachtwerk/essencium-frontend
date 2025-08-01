@@ -224,10 +224,10 @@ export default function RightsView(): JSX.Element {
         loadingMessage={t('notifications.loadingAsyncData.message') as string}
       />
 
-      <Flex py="md" justify="space-between" align="center">
-        <Title size="h2">
-          <Flex align="center" gap={10}>
-            <IconShieldHalf size="32" />
+      <Flex className="py-md items-center justify-between">
+        <Title order={2}>
+          <Flex className="gap-xs items-center">
+            <IconShieldHalf className="size-8" />
             <Text inherit> {t('rightsView.title')}</Text>
           </Flex>
         </Title>

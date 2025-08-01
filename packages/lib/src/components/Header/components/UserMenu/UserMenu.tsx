@@ -21,7 +21,6 @@ import { UserOutput } from '@frachtwerk/essencium-types'
 import {
   Avatar,
   Box,
-  Flex,
   Group,
   Text,
   UnstyledButton,
@@ -32,7 +31,7 @@ import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
 import type { JSX } from 'react'
 
-import classes from './UserMenu.module.css'
+import { cn } from '../../../../utils'
 
 type Props = {
   user: UserOutput
@@ -53,16 +52,14 @@ export function UserMenu({ user, className, avatarColor }: Props): JSX.Element {
     <UnstyledButton
       component={NextLink}
       href="/profile"
-      className={`${classes['user-menu__button']} ${
-        className?.button ? className.button : ''
-      }`}
+      className={className?.button}
       aria-label={t('header.profile.arialLabel') as string}
     >
       <Group
-        className={`${classes['user-menu__group']} ${
-          className?.group ? className.group : ''
-        }`}
-        wrap="nowrap"
+        className={cn(
+          'px-sm flex-nowrap hover:bg-gray-50 dark:hover:bg-gray-900',
+          className?.group,
+        )}
       >
         <Avatar
           size="md"
@@ -70,19 +67,12 @@ export function UserMenu({ user, className, avatarColor }: Props): JSX.Element {
           name={`${user.firstName} ${user.lastName}`}
           color={avatarColor ?? theme.primaryColor}
         />
+        <Box>
+          <Text className="text-sm font-medium">
+            {user.firstName} {user.lastName}
+          </Text>
 
-        <Box className={classes['user-menu__box']}>
-          <Flex align="center" justify="space-between">
-            <Text className={classes['user_menu__box--name']}>
-              {user.firstName} {user.lastName}
-            </Text>
-          </Flex>
-
-          <Text
-            className={`${classes['user-menu__box--mail']} ${
-              className?.mail ? className.mail : ''
-            }`}
-          >
+          <Text className={cn('text-dimmed text-xs', className?.mail)}>
             {user.email}
           </Text>
         </Box>

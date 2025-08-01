@@ -31,8 +31,8 @@ import {
 } from '@mantine/core'
 import type { JSX } from 'react'
 
+import { cn } from '../../utils'
 import { SearchBar, ThemeSelector, UserMenu } from './components'
-import classes from './Header.module.css'
 
 type Props = AppShellHeaderProps & {
   user: UserOutput | undefined
@@ -46,6 +46,7 @@ export function Header({
   isOpen,
   handleOpenNav,
   environment,
+  className,
   ...props
 }: Props): JSX.Element {
   const theme = useMantineTheme()
@@ -54,15 +55,9 @@ export function Header({
     <AppShellHeader
       withBorder={false}
       {...props}
-      className={`${classes['header__app-shell']} ${
-        props.className ? props.className : ''
-      }`}
+      className={cn('p-md z-100 sm:ml-0', className)}
     >
-      <Flex
-        className={classes.header__content}
-        justify="space-between"
-        align="center"
-      >
+      <Flex className="h-full items-center justify-between">
         <Burger
           opened={isOpen}
           onClick={() => {
@@ -76,16 +71,14 @@ export function Header({
 
         <SearchBar />
 
-        <Group wrap="nowrap" justify="space-between">
+        <Group className="flex-nowrap justify-between">
           {environment && (
-            <Code className={classes['environment-indicator']}>
-              <span className={classes['environment-indicator__text']}>
-                {environment}
-              </span>
+            <Code className="mr-[20px] overflow-visible">
+              <span className="uppercase">{environment}</span>
             </Code>
           )}
 
-          <Group wrap="nowrap">
+          <Group className="flex-nowrap">
             <ThemeSelector />
           </Group>
 

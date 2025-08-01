@@ -35,7 +35,7 @@ import { Column, flexRender, Header } from '@tanstack/react-table'
 import { useTranslation } from 'next-i18next'
 import { type JSX } from 'react'
 
-import classes from './TableHeaderColumn.module.css'
+import { cn } from '../../../utils'
 
 declare module '@tanstack/react-table' {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -96,8 +96,7 @@ export function FilterInput<T>({
     case TABLEFILTERTYPE.TEXT:
       return (
         <TextInput
-          size="xs"
-          className={classes['table__text-input']}
+          className="my-xs"
           value={
             filterValue?.[header.column.id] ||
             ((header.column.getFilterValue() ?? '') as string)
@@ -118,8 +117,7 @@ export function FilterInput<T>({
     case TABLEFILTERTYPE.SELECT:
       return (
         <Select
-          size="xs"
-          className={classes.table__select}
+          className="my-xs"
           data={mapToSelectData(filterOptions)}
           placeholder={t('table.filter.placeholder')}
           searchable
@@ -136,8 +134,7 @@ export function FilterInput<T>({
     case TABLEFILTERTYPE.MULTI_SELECT:
       return (
         <MultiSelect
-          size="xs"
-          className={classes.table__select}
+          className="my-xs"
           data={mapToSelectData(filterOptions)}
           placeholder={t('table.filter.placeholder')}
           searchable
@@ -167,17 +164,18 @@ export function TableHeaderColumn<T>({
 }: Props<T>): JSX.Element {
   return (
     <MantineTable.Th
-      style={{ verticalAlign: 'top' }}
-      className={firstColSticky ? classes['table__col-sticky'] : ''}
+      className={cn(
+        'align-top',
+        firstColSticky &&
+          'first:dark:bg-dark-700 first:sticky first:left-0 first:z-10 first:bg-white',
+      )}
       scope="col"
     >
       <Flex
-        align="center"
-        justify="flex-start"
-        gap="sm"
-        className={
-          header.column.getCanSort() ? classes['table__col-header'] : ''
-        }
+        className={cn(
+          'gap-sm items-center justify-start',
+          header.column.getCanSort() && 'group cursor-pointer',
+        )}
         onClick={header.column.getToggleSortingHandler()}
         w={header.column.getSize()}
       >
@@ -189,7 +187,7 @@ export function TableHeaderColumn<T>({
           }[(header.column.getIsSorted() as string) ?? null]
         }
         {!header.column.getIsSorted() && header.column.getCanSort() && (
-          <IconArrowsSort className={classes['table__col-header--sortable']} />
+          <IconArrowsSort className="opacity-0 group-hover:opacity-100" />
         )}
       </Flex>
 

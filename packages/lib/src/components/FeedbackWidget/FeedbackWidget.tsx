@@ -58,9 +58,9 @@ import { useTranslation } from 'next-i18next'
 import { type JSX, ReactNode, useEffect, useState } from 'react'
 
 import { useZodForm } from '../../hooks'
+import { cn } from '../../utils'
 import { ControlledTextarea } from '../Form'
 import { LoadingSpinner } from '../LoadingSpinner'
-import classes from './FeedbackWidget.module.css'
 
 type NotificationParams = {
   notificationType: 'created' | 'updated' | 'deleted'
@@ -246,10 +246,7 @@ export function FeedbackWidget({
         variant="filled"
         aria-label={t('feedbackWidget.openButton.ariaLabel')}
         size="lg"
-        radius="xl"
-        style={{
-          zIndex: 20,
-        }}
+        className="z-20 rounded-xl"
         onClick={toggle}
       >
         <IconMessageDots size={24} />
@@ -261,28 +258,26 @@ export function FeedbackWidget({
         onClose={() => {
           onCloseWidget()
         }}
-        h={openInput ? 'auto' : '180px'}
-        className={
-          isCapturingScreenshot
-            ? classes['feedback-widget__dialog--display']
-            : classes['feedback-widget__dialog']
-        }
+        className={cn(
+          openInput ? 'h-auto' : 'h-45',
+          isCapturingScreenshot ? 'hidden' : 'w-[390px] rounded-md',
+        )}
       >
         {!showSuccessMessage || !showErrorMessage ? (
-          <Title className={classes['feedback-widget__title']}>
+          <Title className="text-md mb-sm text-center font-medium">
             {t('feedbackWidget.title')}
           </Title>
         ) : null}
 
         {openInput === null ? (
-          <Flex justify="space-around">
+          <Flex className="justify-around">
             {Object.keys(OpenInput).map(key => {
               const inputKey = key as keyof typeof OpenInput
               return (
                 <Stack key={key}>
                   <ActionIcon
                     variant="filled"
-                    className={classes['feedback-widget__action-icon']}
+                    className="size-18 rounded-lg"
                     onClick={() => {
                       setOpenInput(OpenInput[inputKey])
                     }}
@@ -312,11 +307,7 @@ export function FeedbackWidget({
             <div style={styles}>
               <Box>
                 {isLoading ? (
-                  <Box
-                    className={
-                      classes['feedback-widget__loading-spinner--container']
-                    }
-                  >
+                  <Box className="h-25">
                     <LoadingSpinner show size="lg" />
                   </Box>
                 ) : null}
@@ -325,18 +316,11 @@ export function FeedbackWidget({
                   <Stack>
                     <Center>
                       {showSuccessMessage ? (
-                        <ThemeIcon
-                          variant="outline"
-                          className={classes['feedback-widget__theme-icon']}
-                        >
-                          <IconCircleCheck
-                            className={classes['feedback-widget__icon--check']}
-                          />
+                        <ThemeIcon variant="outline" className="size-15">
+                          <IconCircleCheck className="size-15" />
                         </ThemeIcon>
                       ) : (
-                        <IconCircleX
-                          className={classes['feedback-widget__icon--x']}
-                        />
+                        <IconCircleX className="size-15 stroke-red-600" />
                       )}
                     </Center>
 
@@ -352,18 +336,14 @@ export function FeedbackWidget({
 
                 {!isLoading && !showSuccessMessage && !showErrorMessage ? (
                   <Box>
-                    <Group
-                      justify="apart"
-                      gap="xs"
-                      className={classes['feedback-widget__group']}
-                    >
+                    <Group className="gap-xs mb-md justify-evenly">
                       {Object.keys(OpenInput).map(key => {
                         const inputKey = key as keyof typeof OpenInput
 
                         return (
                           <Button
                             key={key}
-                            className={classes['feedback-widget__button']}
+                            size="sm"
                             variant={
                               openInput === OpenInput[inputKey]
                                 ? 'filled'
@@ -374,6 +354,7 @@ export function FeedbackWidget({
                               reset()
                             }}
                             leftSection={icons[inputKey]}
+                            className="grow"
                           >
                             {t(`feedbackWidget.${key.toLowerCase()}`)}
                           </Button>
@@ -386,18 +367,18 @@ export function FeedbackWidget({
                         <ControlledTextarea
                           name="message"
                           control={control}
-                          className={classes['feedback-widget__textarea']}
+                          className="rounded-[50px]"
                           placeholder={
                             t('feedbackWidget.placeholder') as string
                           }
                         />
 
-                        <Flex gap="xs">
+                        <Flex className="gap-xs">
                           <Tooltip
                             label={t('feedbackWidget.screenshot.label')}
                             className={
                               isCapturingScreenshot
-                                ? classes['feedback-widget__dialog--display']
+                                ? 'w-[390px] rounded-md'
                                 : ''
                             }
                           >
@@ -410,9 +391,9 @@ export function FeedbackWidget({
                               }}
                             >
                               {screenshot ? (
-                                <IconCameraCheck size={20} />
+                                <IconCameraCheck className="size-5" />
                               ) : (
-                                <IconCameraPlus size={20} />
+                                <IconCameraPlus className="size-5" />
                               )}
                             </ActionIcon>
                           </Tooltip>

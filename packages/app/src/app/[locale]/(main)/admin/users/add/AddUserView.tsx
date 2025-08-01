@@ -31,7 +31,6 @@ import { useCreateUser, useGetRoles } from '@/api'
 import { useZodForm } from '@/hooks'
 
 import { FORM_DEFAULTS_USERS_VIEW } from '../UsersView'
-import classes from './AddUserView.module.css'
 
 export default function AddUserView(): JSX.Element {
   const router = useRouter()
@@ -66,15 +65,18 @@ export default function AddUserView(): JSX.Element {
 
   return (
     <>
-      <Title py="md" order={2}>
-        <Flex>
-          <IconUserPlus size="32" />
+      <Title className="py-md" order={2}>
+        <Flex className="items-center">
+          <IconUserPlus className="size-8" />
 
-          <Text ml="xs">{t('addUpdateUserView.add.title')}</Text>
+          <Text className="ml-xs">{t('addUpdateUserView.add.title')}</Text>
         </Flex>
       </Title>
 
-      <Card withBorder className={classes['add-user-view__card']}>
+      <Card
+        withBorder
+        className="p-lg dark:bg-dark-700 max-w-[82.25rem] rounded-sm shadow-sm"
+      >
         <UserForm
           title={t('addUpdateUserView.form.userDataHeading')}
           roles={roles}

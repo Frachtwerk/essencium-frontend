@@ -26,7 +26,6 @@ import { Dispatch, type JSX, SetStateAction } from 'react'
 
 import { useZodForm } from '../../../hooks'
 import { ControlledTextInput } from '../../Form'
-import classes from './ResetPasswordForm.module.css'
 
 type Props = {
   setIsPasswordResetFormOpened: Dispatch<SetStateAction<boolean>>
@@ -50,9 +49,9 @@ export function ResetPasswordForm({
     handlePasswordReset(email)
   }
   return (
-    <Container className={classes['reset-password-form__container']}>
+    <Container className="m-0 p-0">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Text className={classes['reset-password-form__text']}>
+        <Text className="my-md text-sm">
           {t('loginView.resetPassword.form.description')}
         </Text>
 
@@ -62,19 +61,15 @@ export function ResetPasswordForm({
           placeholder={String(t('loginView.resetPassword.form.placeholder'))}
           label={String(t('loginView.resetPassword.form.label'))}
           withAsterisk
-          className={classes['reset-password-form__text-input']}
         />
 
         <Group>
-          <Button
-            className={classes['reset-password-form__button']}
-            type="submit"
-          >
+          <Button className="mt-lg" type="submit">
             {t('loginView.resetPassword.form.submitButton')}
           </Button>
 
           <Button
-            className={classes['reset-password-form__button']}
+            className="mt-lg"
             variant="light"
             onClick={() => {
               setIsPasswordResetFormOpened(false)

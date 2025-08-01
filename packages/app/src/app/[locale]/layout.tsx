@@ -17,8 +17,8 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import '@mantine/core/styles.css'
 import '@mantine/spotlight/styles.css'
+import '@/globals.css'
 
 import { mantineHtmlProps } from '@mantine/core'
 import type { JSX } from 'react'

@@ -28,7 +28,6 @@ import type { JSX } from 'react'
 import { getI18n } from 'react-i18next'
 
 import { hasRequiredRights } from '../../../utils'
-import classes from './NavLinks.module.css'
 
 type Props = {
   links: NavLink[]
@@ -63,6 +62,11 @@ export function NavLinks({
     return sublinks.some(sublink => isLinkActive(sublink.to))
   }
 
+  const navLinkClassNames = {
+    root: 'rounded-sm',
+    label: 'text-sm whitespace-nowrap',
+  }
+
   return (
     <>
       {links.map(link => {
@@ -80,11 +84,8 @@ export function NavLinks({
               leftSection={link.icon}
               label={t(link.label)}
               active={isLinkActive(link.to)}
-              className={classes['nav-bar__navlink']}
-              classNames={{
-                root: classes['nav-bar__navlink--root'],
-                label: classes['nav-bar__navlink--label'],
-              }}
+              className="mb-sm"
+              classNames={navLinkClassNames}
               onClick={() => handleOpenNav()}
               prefetch={link.prefetch ?? true}
             />
@@ -100,11 +101,8 @@ export function NavLinks({
             leftSection={link.icon}
             label={t(link.label)}
             active={isParentActive(link.to) && isSubLinkActive(link.navLinks)}
-            className={classes['nav-bar__navlink']}
-            classNames={{
-              root: classes['nav-bar__navlink--root'],
-              label: classes['nav-bar__navlink--label'],
-            }}
+            className="mb-sm"
+            classNames={navLinkClassNames}
           >
             {!foldedNav || isMobile
               ? link.navLinks?.map(sublink =>
@@ -121,11 +119,8 @@ export function NavLinks({
                       active={
                         isParentActive(link.to) && isLinkActive(sublink.to)
                       }
-                      className={classes['nav-bar__navlink--sublink']}
-                      classNames={{
-                        root: classes['nav-bar__navlink--root'],
-                        label: classes['nav-bar__navlink--label'],
-                      }}
+                      className="my-sm"
+                      classNames={navLinkClassNames}
                       onClick={() => handleOpenNav()}
                       prefetch={sublink.prefetch ?? true}
                     />

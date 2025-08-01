@@ -1,3 +1,22 @@
+/*
+ * Copyright (C) 2023 Frachtwerk GmbH, Leopoldstraße 7C, 76133 Karlsruhe.
+ *
+ * This file is part of Essencium Frontend.
+ *
+ * Essencium Frontend is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Essencium Frontend is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 import {
   CheckIcon,
   Combobox,
@@ -10,7 +29,7 @@ import { useTranslation } from 'next-i18next'
 import { type JSX, useEffect, useMemo, useRef, useState } from 'react'
 import { FixedSizeList as List } from 'react-window'
 
-import classes from './SearchableSelect.module.css'
+import { cn } from '../../utils'
 
 type Props = {
   data: string[]
@@ -69,9 +88,11 @@ export function SearchableSelect({
   }, [activeIndex])
 
   useEffect(() => {
-    setSelectedValue(value || '')
+    if (value === undefined || value === null) return
 
-    setSearch(value || '')
+    setSelectedValue(value)
+
+    setSearch(value)
   }, [value])
 
   return (
@@ -162,12 +183,12 @@ export function SearchableSelect({
                 <div key={item} style={style}>
                   <Combobox.Option
                     value={item}
-                    className={isActive ? classes.options : ''}
+                    className={cn(isActive && 'dark:bg-dark-700 bg-gray-50')}
                     active={isActive}
                   >
-                    <Group gap="xs">
+                    <Group className="gap-xs">
                       {isSelected && <CheckIcon size={12} color="gray" />}
-                      <Text size="sm">{item}</Text>
+                      <Text className="text-sm">{item}</Text>
                     </Group>
                   </Combobox.Option>
                 </div>

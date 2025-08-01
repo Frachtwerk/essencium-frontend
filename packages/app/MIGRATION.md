@@ -2,6 +2,65 @@
 
 ## [9.X.X (XXXX-XX-XX)]()
 
+### Refactor codebase with tailwind css
+
+#### Essential Migrations
+
+##### `packages/app/package.json`
+
+- installed packages `tailwindcss`, `postcss`, and `@tailwindcss/postcss`
+
+##### `packages/app/postcss.config.cjs`
+
+- added plugin `@tailwindcss/postcss`
+
+##### `packages/app/src/globals.css`
+
+- added new globals.css file. This css-file extends the globals.css of the lib-package and can include project specific theme and tailwind configurations.
+
+##### `packages/app/src/app/[locale]/layout.tsx`
+
+- added line `import '@/globals.css'`
+- removed line `import '@mantine/core/styles.css'`
+
+#### Non-Essential Migrations
+
+All other changes are optional. Tailwindcss and css-modules can coexist without problems.
+
+Changed files are:
+
+- `packages/app/src/app/[locale]/(main)/admin/rights/RightsView.tsx`
+- `packages/app/src/app/[locale]/(main)/admin/roles/RolesView.tsx`
+- `packages/app/src/app/[locale]/(main)/admin/translations/TranslationsView.tsx`
+- `packages/app/src/app/[locale]/(main)/admin/users/UsersView.tsx`
+- `packages/app/src/app/[locale]/(main)/admin/users/[id]/UpdateUserView.tsx`
+- `packages/app/src/app/[locale]/(main)/admin/users/add/AddUserView.tsx`
+- `packages/app/src/app/[locale]/(main)/legal-notice/LegalNoticeView.tsx`
+- `packages/app/src/app/[locale]/(main)/privacy-policy/PrivacyPolicyView.tsx`
+- `packages/app/src/app/[locale]/(main)/profile/ProfileView.tsx`
+- `packages/app/src/app/[locale]/(main)/translations/_components/TranslationsChangeForm.tsx`
+- `packages/app/src/app/[locale]/(public)/login/LoginView.tsx`
+- `packages/app/src/app/[locale]/(public)/set-password/SetPasswordView.tsx`
+- `packages/app/src/components/RouteProtector.tsx`
+- `packages/app/src/components/layouts/AuthLayout.tsx`
+- `packages/app/src/config/mantine.ts`
+
+Removed files are:
+
+- `packages/app/src/app/[locale]/(main)/admin/translations/TranslationsView.module.css`
+- `packages/app/src/app/[locale]/(main)/admin/users/Users.module.css`
+- `packages/app/src/app/[locale]/(main)/admin/users/add/AddUserView.module.css`
+- `packages/app/src/app/[locale]/(main)/legal-notice/LegalNoticeView.module.css`
+- `packages/app/src/app/[locale]/(main)/privacy-policy/PrivacyPolicyView.module.css`
+- `packages/app/src/app/[locale]/(main)/profile/Profile.module.css`
+- `packages/app/src/app/[locale]/(main)/translations/TranslationsView.module.css`
+- `packages/app/src/app/[locale]/(main)/translations/_components/TranslationChangeForm.module.css`
+- `packages/app/src/app/[locale]/(public)/login/Login.module.css`
+- `packages/app/src/app/[locale]/(public)/set-password/SetPassword.module.css`
+- `packages/app/src/components/RouteProtector.module.css`
+- `packages/app/src/components/layouts/AuthLayout.module.css`
+- `packages/app/src/config/Theme.module.css`
+
 ### Improve Accessibility of Table Pagination
 
 #### `packages/app/public/locales/de|en/common.json`

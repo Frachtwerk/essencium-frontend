@@ -30,7 +30,6 @@ import type { JSX } from 'react'
 
 import { useZodForm } from '../../hooks'
 import { ControlledPasswordInput } from '../Form'
-import classes from './SetPasswordForm.module.css'
 
 type Props = {
   handleSetPassword: (password: SetPasswordInput['password']) => void
@@ -56,9 +55,6 @@ export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
           placeholder={String(t('setPasswordView.form.newPassword'))}
           label={t('setPasswordView.form.newPassword')}
           withAsterisk
-          classNames={{
-            label: classes['set-password-form__text-input--label'],
-          }}
         />
 
         <ControlledPasswordInput
@@ -67,9 +63,6 @@ export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
           placeholder={String(t('setPasswordView.form.confirmPassword'))}
           label={t('setPasswordView.form.confirmPassword')}
           withAsterisk
-          classNames={{
-            label: classes['set-password-form__text-input--label'],
-          }}
         />
 
         <Button fullWidth type="submit">

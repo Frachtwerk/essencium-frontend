@@ -31,7 +31,6 @@ import { type JSX, useState } from 'react'
 import { useZodForm } from '../../../../../hooks'
 import { ControlledPasswordInput } from '../../../../Form'
 import { PasswordStrengthIndicator } from '../../../../PasswordStrengthIndicator/PasswordStrengthIndicator'
-import classes from './PasswordChangeForm.module.css'
 
 type Props = {
   handlePasswordUpdate: (
@@ -66,7 +65,7 @@ export function PasswordChangeForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Stack gap="xs" className={classes['password-change-form__stack']}>
+      <Stack className="mb-md md:w-[60%]">
         <ControlledPasswordInput
           name="verification"
           control={control}
@@ -104,11 +103,7 @@ export function PasswordChangeForm({
         />
       </Stack>
 
-      <Button
-        type="submit"
-        className={classes['password-change-form__button']}
-        loading={isLoading}
-      >
+      <Button type="submit" className="mt-md" loading={isLoading}>
         {t('profileView.dataCard.tabs.passwordChange.content.savePassword')}
       </Button>
     </form>

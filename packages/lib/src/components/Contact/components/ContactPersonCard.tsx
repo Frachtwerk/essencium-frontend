@@ -40,8 +40,6 @@ import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
 import type { JSX } from 'react'
 
-import classes from './ContactPersonCard.module.css'
-
 type Props = {
   contactPerson: ContactPerson
 }
@@ -52,73 +50,52 @@ export function ContactPersonCard({ contactPerson }: Props): JSX.Element {
   const theme = useMantineTheme()
 
   return (
-    <Card
-      withBorder
-      role="complementary"
-      className={classes['contact-person-card__card']}
-    >
-      <Flex
-        direction={{ base: 'column', sm: 'column' }}
-        gap={{ base: 'sm', sm: 'md' }}
-        justify={{ sm: 'center' }}
-        align={{ base: 'center', md: 'flex-start' }}
-      >
+    <Card withBorder role="complementary" className="p-xl rounded-md shadow-sm">
+      <Flex className="gap-sm sm:gap-md flex-col items-center sm:justify-center md:items-start">
         <Title order={3}>{t('contactView.contactPersonCard.title')}</Title>
 
         <Avatar
-          size="xl"
+          className="mt-xs rounded-xl"
           // color gets not applied when outsourced to module.css
           color={theme.primaryColor}
           name={contactPerson.name}
-          className={classes['contact-person-card__avatar']}
+          size="xl"
         />
 
-        <Title order={5} className={classes['contact-person-card__title']}>
+        <Title order={5} className="my-sm">
           {contactPerson.name}
         </Title>
 
-        <Flex direction="column" align="flex-start" gap="sm">
+        <Flex className="gap-sm flex-col items-start">
           {contactPerson?.phone ? (
             <Group
-              gap="xl"
+              className="gap-xl"
               aria-label={
                 t(
                   'contactView.contactPersonCard.contactPerson.ariaLabel',
                 ) as string
               }
             >
-              <ThemeIcon
-                className={classes['contact-person-card__theme-icon--radius']}
-              >
-                <IconPhoneCall
-                  className={classes['contact-person-card__icon--size']}
-                />
+              <ThemeIcon className="rounded-md">
+                <IconPhoneCall className="size-4" />
               </ThemeIcon>
 
               <Text>{contactPerson.phone}</Text>
             </Group>
           ) : null}
 
-          <Group gap="xl" aria-label="Contact info">
-            <ThemeIcon
-              className={classes['contact-person-card__theme-icon--radius']}
-            >
-              <IconMail
-                className={classes['contact-person-card__icon--size']}
-              />
+          <Group aria-label="Contact info" className="gap-xl">
+            <ThemeIcon className="rounded-md">
+              <IconMail className="size-4" />
             </ThemeIcon>
 
             <Text>{contactPerson.email}</Text>
           </Group>
 
           {contactPerson?.address ? (
-            <Group gap="xl" aria-label="Contact info">
-              <ThemeIcon
-                className={classes['contact-person-card__theme-icon--radius']}
-              >
-                <IconLocation
-                  className={classes['contact-person-card__icon--size']}
-                />
+            <Group className="gap-xl" aria-label="Contact info">
+              <ThemeIcon className="rounded-md">
+                <IconLocation className="size-4" />
               </ThemeIcon>
 
               <Text>{contactPerson.address}</Text>
@@ -126,22 +103,16 @@ export function ContactPersonCard({ contactPerson }: Props): JSX.Element {
           ) : null}
         </Flex>
 
-        <Group
-          className={classes['contact-person-card__group']}
-          aria-label="Contact info"
-        >
+        <Group className="mt-xl" aria-label="Contact info">
           {contactPerson?.linkedinUrl ? (
             <ActionIcon
               component={NextLink}
               href={contactPerson.linkedinUrl}
               passHref
               variant="light"
-              className={classes['contact-person-card__theme-icon--radius']}
+              className="rounded-md"
             >
-              <IconBrandLinkedin
-                className={classes['contact-person-card__icon--size']}
-                aria-label="Social icon"
-              />
+              <IconBrandLinkedin className="size-4" aria-label="Social icon" />
             </ActionIcon>
           ) : null}
 
@@ -151,12 +122,9 @@ export function ContactPersonCard({ contactPerson }: Props): JSX.Element {
               href={contactPerson.instagramUrl}
               passHref
               variant="light"
-              className={classes['contact-person-card__theme-icon--radius']}
+              className="rounded-md"
             >
-              <IconBrandInstagram
-                className={classes['contact-person-card__icon--size']}
-                aria-label="Social icon"
-              />
+              <IconBrandInstagram className="size-4" aria-label="Social icon" />
             </ActionIcon>
           ) : null}
         </Group>

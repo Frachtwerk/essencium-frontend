@@ -24,8 +24,6 @@ import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
 import type { JSX } from 'react'
 
-import classes from './Home.module.css'
-
 type Props = {
   onClickButton: (path: string) => void
   showUsersPageButton: boolean
@@ -38,14 +36,8 @@ export function Home({
   const { t } = useTranslation()
 
   return (
-    <Flex
-      direction="column"
-      gap="lg"
-      align="center"
-      justify="center"
-      className={classes.home__flex}
-    >
-      <Center my="lg">
+    <Flex className="gap-lg h-[80vh] flex-col items-center justify-center">
+      <Center className="my-lg">
         <Image
           src="/img/web/emblem_400x400px.svg"
           alt={t('header.logo')}
@@ -55,7 +47,7 @@ export function Home({
         />
       </Center>
 
-      <Container className={classes.home__container}>
+      <Container className="w-[300px]">
         <Stack>
           <Button
             onClick={() => openSpotlight()}
