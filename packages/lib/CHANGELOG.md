@@ -1,5 +1,31 @@
 # Changelog
 
+## [9.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.3.0...essencium-lib-v9.4.0) (2025-08-01)
+
+
+### Features
+
+* install prettier plugin tailwindcss ([14503a0](https://github.com/Frachtwerk/essencium-frontend/commit/14503a02d7a99f9632d408050f83ce2d035b9572))
+
+
+### Bug Fixes
+
+* :bug: fixed a bug where no value  would be displayed in table page size ([de19bcb](https://github.com/Frachtwerk/essencium-frontend/commit/de19bcbab32430d5ed119933746834924d47eec6))
+* :wheelchair: add aria-label to add and edit role modal close button ([ee9e0a7](https://github.com/Frachtwerk/essencium-frontend/commit/ee9e0a7568c27c9d7d4a3966bd2d55321a4cf3ce))
+* :wheelchair: add aria-label to add and edit role modal close button ([62c31d5](https://github.com/Frachtwerk/essencium-frontend/commit/62c31d5a8f85f793e7dd23d1e5ad5a50a7f29a2d))
+* :wheelchair: improve accessibility in the contact section ([508c978](https://github.com/Frachtwerk/essencium-frontend/commit/508c9784ccccab0b60235dafc4c99a2809b151a4))
+* :wheelchair: improve accessibility in the contact section ([ce49a1c](https://github.com/Frachtwerk/essencium-frontend/commit/ce49a1c0aac5fed545695f2349db26dd85a9a820))
+* **app:** :wheelchair: improved accessibility for users view table ([baf8221](https://github.com/Frachtwerk/essencium-frontend/commit/baf8221ca8b880ab1ee3d11c5c9f56f531fdec68))
+* fixed an issue where tailwind would not include classes from the lib package ([86229a6](https://github.com/Frachtwerk/essencium-frontend/commit/86229a6bb8673304c36e4574f4daefddf6a2c132))
+* **lib:** :bug: fix focus problem with resetPassword link ([fffc08d](https://github.com/Frachtwerk/essencium-frontend/commit/fffc08d9df8737f28522d33afe58c84f838e06df))
+* **lib:** :bug: fix focus problem with resetPassword link ([daef28a](https://github.com/Frachtwerk/essencium-frontend/commit/daef28a78af898c1d5c1dd5acdddf9b32389cd1d))
+* **lib:** :bug: fix focus problem with the logout button ([93eafc0](https://github.com/Frachtwerk/essencium-frontend/commit/93eafc0b5072c0794eafcaad8a5d27abc1a7248f))
+* **lib:** :bug: fix focus problem with the logout button ([1667554](https://github.com/Frachtwerk/essencium-frontend/commit/1667554b85f1f1f91279260cddaf8f46e5fe50c2))
+* **lib:** :bug: fixed a bug where goto value would not update ([ff25738](https://github.com/Frachtwerk/essencium-frontend/commit/ff257384f4ba8070cfea289eaa094c59d99b90ed))
+* **lib:** :wheelchair: imporoved accessibility of table pagination ([cd8d3c4](https://github.com/Frachtwerk/essencium-frontend/commit/cd8d3c4e32a3df9dcfb4bd1a54e7185ae6818182))
+* render NextLink using other mantine components as polymorphic co… ([314df73](https://github.com/Frachtwerk/essencium-frontend/commit/314df73b1f818a80901dfbeda3b66a27728a08a4))
+* render NextLink using other mantine components as polymorphic component ([28083d4](https://github.com/Frachtwerk/essencium-frontend/commit/28083d476a539118506a2edb76617624c7c65f48))
+
 ## [9.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.2.0...essencium-lib-v9.3.0) (2025-07-08)
 
 
