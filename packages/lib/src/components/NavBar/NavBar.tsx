@@ -125,9 +125,9 @@ export function NavBar({
               aria-label={t('navigation.toggleFixedNavIcon.arialabel')}
             >
               {fixedNav ? (
-                <IconPinFilled className="size-5" />
+                <IconPinFilled size={20} />
               ) : (
-                <IconPinnedOff className="size-5" />
+                <IconPinnedOff size={20} />
               )}
             </ActionIcon>
           )}
