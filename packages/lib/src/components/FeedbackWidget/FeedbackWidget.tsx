@@ -33,6 +33,7 @@ import {
   Center,
   Dialog,
   Flex,
+  FocusTrap,
   Group,
   Stack,
   Text,
@@ -55,7 +56,7 @@ import {
 import html2canvas from 'html2canvas-pro'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
-import { type JSX, ReactNode, useEffect, useState } from 'react'
+import { type JSX, ReactNode, useEffect, useRef, useState } from 'react'
 
 import { useZodForm } from '../../hooks'
 import { cn } from '../../utils'
@@ -110,6 +111,8 @@ export function FeedbackWidget({
 
   const pathname = usePathname()
 
+  const openFeedbackWidgetRef = useRef<HTMLButtonElement | null>(null)
+
   const { handleSubmit, control, reset, setValue } = useZodForm({
     schema: feedbackFormSchema,
     defaultValues: {
@@ -142,11 +145,22 @@ export function FeedbackWidget({
       <IconExclamationCircle
         size={iconStyling.size}
         stroke={iconStyling.stroke}
+        aria-hidden
       />
     ),
-    Idea: <IconBulb size={iconStyling.size} stroke={iconStyling.stroke} />,
+    Idea: (
+      <IconBulb
+        size={iconStyling.size}
+        stroke={iconStyling.stroke}
+        aria-hidden
+      />
+    ),
     Other: (
-      <IconMessageDots size={iconStyling.size} stroke={iconStyling.stroke} />
+      <IconMessageDots
+        size={iconStyling.size}
+        stroke={iconStyling.stroke}
+        aria-hidden
+      />
     ),
   }
 
@@ -184,6 +198,8 @@ export function FeedbackWidget({
     setScreenshot(null)
 
     setIsCapturingScreenshot(false)
+
+    openFeedbackWidgetRef.current?.focus()
   }
 
   function onSubmit(form: FeedbackInput): void {
@@ -243,174 +259,189 @@ export function FeedbackWidget({
   return (
     <>
       <ActionIcon
+        ref={openFeedbackWidgetRef}
         variant="filled"
         aria-label={t('feedbackWidget.openButton.ariaLabel')}
         size="lg"
         className="z-20 rounded-xl"
         onClick={toggle}
       >
-        <IconMessageDots size={24} />
+        <IconMessageDots aria-hidden size={24} />
       </ActionIcon>
 
-      <Dialog
-        opened={opened}
-        withCloseButton
-        onClose={() => {
-          onCloseWidget()
-        }}
-        className={cn(
-          openInput ? 'h-auto' : 'h-45',
-          isCapturingScreenshot ? 'hidden' : 'w-[390px] rounded-md',
-        )}
-      >
-        {!showSuccessMessage || !showErrorMessage ? (
-          <Title className="text-md mb-sm text-center font-medium">
-            {t('feedbackWidget.title')}
-          </Title>
-        ) : null}
+      <FocusTrap active={opened}>
+        <Dialog
+          opened={opened}
+          withCloseButton
+          onClose={onCloseWidget}
+          className={cn(
+            openInput ? 'h-auto' : 'h-45',
+            isCapturingScreenshot ? 'hidden' : 'w-[390px] rounded-md',
+          )}
+          onKeyDown={event => {
+            if (event.key === 'Escape') {
+              onCloseWidget()
+            }
+          }}
+          tabIndex={-1}
+        >
+          {!showSuccessMessage || !showErrorMessage ? (
+            <Title className="text-md mb-sm text-center font-medium">
+              {t('feedbackWidget.title')}
+            </Title>
+          ) : null}
 
-        {openInput === null ? (
-          <Flex className="justify-around">
-            {Object.keys(OpenInput).map(key => {
-              const inputKey = key as keyof typeof OpenInput
-              return (
-                <Stack key={key}>
-                  <ActionIcon
-                    variant="filled"
-                    className="size-18 rounded-lg"
+          {openInput === null ? (
+            <Flex className="justify-around">
+              {Object.keys(OpenInput).map(key => {
+                const inputKey = key as keyof typeof OpenInput
+                return (
+                  <UnstyledButton
+                    key={key}
                     onClick={() => {
                       setOpenInput(OpenInput[inputKey])
                     }}
                   >
-                    {icons[inputKey]}
-                  </ActionIcon>
+                    <Stack>
+                      <ThemeIcon
+                        variant="filled"
+                        className="size-18 rounded-lg"
+                      >
+                        {icons[inputKey]}
+                      </ThemeIcon>
 
-                  <Center>
-                    <UnstyledButton>
-                      {t(`feedbackWidget.${key.toLowerCase()}`)}
-                    </UnstyledButton>
-                  </Center>
-                </Stack>
-              )
-            })}
-          </Flex>
-        ) : null}
+                      <Center>
+                        {t(`feedbackWidget.${key.toLowerCase()}`)}
+                      </Center>
+                    </Stack>
+                  </UnstyledButton>
+                )
+              })}
+            </Flex>
+          ) : null}
 
-        <Transition
-          mounted={Boolean(openInput !== null)}
-          transition="pop"
-          duration={350}
-          timingFunction="ease"
-          exitDuration={0}
-        >
-          {styles => (
-            <div style={styles}>
-              <Box>
-                {isLoading ? (
-                  <Box className="h-25">
-                    <LoadingSpinner show size="lg" />
-                  </Box>
-                ) : null}
+          <Transition
+            mounted={Boolean(openInput !== null)}
+            transition="pop"
+            duration={350}
+            timingFunction="ease"
+            exitDuration={0}
+          >
+            {styles => (
+              <div style={styles}>
+                <Box>
+                  {isLoading ? (
+                    <Box className="h-25">
+                      <LoadingSpinner show size="lg" />
+                    </Box>
+                  ) : null}
 
-                {!isLoading && (showSuccessMessage || showErrorMessage) ? (
-                  <Stack>
-                    <Center>
-                      {showSuccessMessage ? (
-                        <ThemeIcon variant="outline" className="size-15">
-                          <IconCircleCheck className="size-15" />
-                        </ThemeIcon>
-                      ) : (
-                        <IconCircleX className="size-15 stroke-red-600" />
-                      )}
-                    </Center>
+                  {!isLoading && (showSuccessMessage || showErrorMessage) ? (
+                    <Stack>
+                      <Center>
+                        {showSuccessMessage ? (
+                          <ThemeIcon variant="outline" className="size-15">
+                            <IconCircleCheck className="size-15" />
+                          </ThemeIcon>
+                        ) : (
+                          <IconCircleX className="size-15 stroke-red-600" />
+                        )}
+                      </Center>
 
-                    <Center>
-                      <Text>
-                        {showSuccessMessage
-                          ? t('feedbackWidget.successMessage')
-                          : t('feedbackWidget.errorMessage')}
-                      </Text>
-                    </Center>
-                  </Stack>
-                ) : null}
+                      <Center>
+                        <Text>
+                          {showSuccessMessage
+                            ? t('feedbackWidget.successMessage')
+                            : t('feedbackWidget.errorMessage')}
+                        </Text>
+                      </Center>
+                    </Stack>
+                  ) : null}
 
-                {!isLoading && !showSuccessMessage && !showErrorMessage ? (
-                  <Box>
-                    <Group className="gap-xs mb-md justify-evenly">
-                      {Object.keys(OpenInput).map(key => {
-                        const inputKey = key as keyof typeof OpenInput
+                  {!isLoading && !showSuccessMessage && !showErrorMessage ? (
+                    <Box>
+                      <Group
+                        justify="apart"
+                        gap="xs"
+                        className="gap-xs mb-md justify-evenly"
+                      >
+                        {Object.keys(OpenInput).map(key => {
+                          const inputKey = key as keyof typeof OpenInput
 
-                        return (
-                          <Button
-                            key={key}
-                            size="sm"
-                            variant={
-                              openInput === OpenInput[inputKey]
-                                ? 'filled'
-                                : 'outline'
-                            }
-                            onClick={() => {
-                              setOpenInput(OpenInput[inputKey])
-                              reset()
-                            }}
-                            leftSection={icons[inputKey]}
-                            className="grow"
-                          >
-                            {t(`feedbackWidget.${key.toLowerCase()}`)}
-                          </Button>
-                        )
-                      })}
-                    </Group>
-
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                      <Stack>
-                        <ControlledTextarea
-                          name="message"
-                          control={control}
-                          className="rounded-[50px]"
-                          placeholder={
-                            t('feedbackWidget.placeholder') as string
-                          }
-                        />
-
-                        <Flex className="gap-xs">
-                          <Tooltip
-                            label={t('feedbackWidget.screenshot.label')}
-                            className={
-                              isCapturingScreenshot
-                                ? 'w-[390px] rounded-md'
-                                : ''
-                            }
-                          >
-                            <ActionIcon
-                              variant={screenshot ? 'filled' : 'outline'}
-                              size="md"
-                              aria-label={t('feedbackWidget.screenshot.label')}
+                          return (
+                            <Button
+                              key={key}
+                              className="grow"
+                              variant={
+                                openInput === OpenInput[inputKey]
+                                  ? 'filled'
+                                  : 'outline'
+                              }
                               onClick={() => {
-                                setIsCapturingScreenshot(true)
+                                setOpenInput(OpenInput[inputKey])
+                                reset()
                               }}
+                              leftSection={icons[inputKey]}
                             >
-                              {screenshot ? (
-                                <IconCameraCheck className="size-5" />
-                              ) : (
-                                <IconCameraPlus className="size-5" />
-                              )}
-                            </ActionIcon>
-                          </Tooltip>
+                              {t(`feedbackWidget.${key.toLowerCase()}`)}
+                            </Button>
+                          )
+                        })}
+                      </Group>
 
-                          <Button type="submit" size="xs" fullWidth>
-                            {t('feedbackWidget.button')}
-                          </Button>
-                        </Flex>
-                      </Stack>
-                    </form>
-                  </Box>
-                ) : null}
-              </Box>
-            </div>
-          )}
-        </Transition>
-      </Dialog>
+                      <form onSubmit={handleSubmit(onSubmit)}>
+                        <Stack>
+                          <ControlledTextarea
+                            autoFocus
+                            name="message"
+                            control={control}
+                            className="rounded-[50px]"
+                            placeholder={
+                              t('feedbackWidget.placeholder') as string
+                            }
+                          />
+
+                          <Flex gap="xs">
+                            <Tooltip
+                              label={t('feedbackWidget.screenshot.label')}
+                              className={
+                                isCapturingScreenshot
+                                  ? 'w-[390px] rounded-md'
+                                  : ''
+                              }
+                            >
+                              <ActionIcon
+                                variant={screenshot ? 'filled' : 'outline'}
+                                size="md"
+                                aria-label={t(
+                                  'feedbackWidget.screenshot.label',
+                                )}
+                                onClick={() => {
+                                  setIsCapturingScreenshot(true)
+                                }}
+                              >
+                                {screenshot ? (
+                                  <IconCameraCheck className="size-5" />
+                                ) : (
+                                  <IconCameraPlus className="size-5" />
+                                )}
+                              </ActionIcon>
+                            </Tooltip>
+
+                            <Button type="submit" size="xs" fullWidth>
+                              {t('feedbackWidget.button')}
+                            </Button>
+                          </Flex>
+                        </Stack>
+                      </form>
+                    </Box>
+                  ) : null}
+                </Box>
+              </div>
+            )}
+          </Transition>
+        </Dialog>
+      </FocusTrap>
     </>
   )
 }
