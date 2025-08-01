@@ -88,9 +88,11 @@ export function SearchableSelect({
   }, [activeIndex])
 
   useEffect(() => {
-    setSelectedValue(value || '')
+    if (value === undefined || value === null) return
 
-    setSearch(value || '')
+    setSelectedValue(value)
+
+    setSearch(value)
   }, [value])
 
   return (
