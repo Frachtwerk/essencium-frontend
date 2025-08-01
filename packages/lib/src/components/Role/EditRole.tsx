@@ -28,6 +28,7 @@ import {
 } from '@frachtwerk/essencium-types'
 import { Modal } from '@mantine/core'
 import { Dispatch, type JSX, SetStateAction, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { useZodForm } from '../../hooks'
 import { RoleForm } from './components/RoleForm'
@@ -61,6 +62,8 @@ export function EditRole({
   setSelectedRights,
   isLoading,
 }: Props): JSX.Element {
+  const { t } = useTranslation()
+
   useEffect(() => {
     if (!role) return
     setSelectedRights(role.rights)
@@ -100,6 +103,7 @@ export function EditRole({
       }}
       padding="lg"
       size="xl"
+      closeButtonProps={{ 'aria-label': t('rolesView.modal.cancel') }}
     >
       <RoleForm
         rights={rights}
