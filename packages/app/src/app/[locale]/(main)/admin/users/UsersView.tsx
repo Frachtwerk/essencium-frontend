@@ -40,7 +40,7 @@ import {
   Badge,
   Button,
   Flex,
-  Popover,
+  Menu,
   Switch,
   Text,
   Title,
@@ -64,7 +64,6 @@ import {
 } from '@tanstack/react-table'
 import { useAtomValue } from 'jotai'
 import NextLink from 'next/link'
-import { useRouter } from 'next/navigation'
 import { type JSX, useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -92,8 +91,6 @@ export const FORM_DEFAULTS_USERS_VIEW = {
 const DEFAULT_SORTING: SortingState = [{ id: 'firstName', desc: false }]
 
 export default function UsersView(): JSX.Element {
-  const router = useRouter()
-
   const userRights = useAtomValue(userRightsAtom)
 
   const defaultUserEmail = process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
@@ -148,13 +145,6 @@ export default function UsersView(): JSX.Element {
       {},
     ),
   })
-
-  const handleEditUser = useCallback(
-    (userToEdit: UserOutput) => {
-      router.push(`/admin/users/${userToEdit.id}`)
-    },
-    [router],
-  )
 
   const { mutate: deleteUser } = useDeleteUser()
 
@@ -285,12 +275,15 @@ export default function UsersView(): JSX.Element {
             <Flex className="gap-xs flex-row">
               {hasRequiredRights(userRights, RIGHTS.USER_UPDATE) ? (
                 <ActionIcon
+                  component={NextLink}
+                  href={`/admin/users/${rowUser.id}`}
                   className="disabled:bg-transparent"
                   size="sm"
                   disabled={isDefaultUser}
                   variant="transparent"
+                  aria-label={t('usersView.action.edit')}
                 >
-                  <IconPencil onClick={() => handleEditUser(rowUser)} />
+                  <IconPencil aria-hidden />
                 </ActionIcon>
               ) : null}
 
@@ -300,39 +293,39 @@ export default function UsersView(): JSX.Element {
                   size="sm"
                   disabled={isDefaultUser}
                   variant="transparent"
+                  onClick={() => {
+                    setUserToBeDeleted(rowUser)
+                    deleteModalHandlers.open()
+                  }}
+                  aria-label={t('usersView.action.delete')}
                 >
-                  <IconTrash
-                    onClick={() => {
-                      setUserToBeDeleted(rowUser)
-                      deleteModalHandlers.open()
-                    }}
-                  />
+                  <IconTrash aria-hidden />
                 </ActionIcon>
               ) : null}
 
               {hasRequiredRights(userRights, RIGHTS.USER_UPDATE) ? (
-                <Popover position="bottom" withArrow>
-                  <Popover.Target>
+                <Menu position="bottom" withArrow>
+                  <Menu.Target>
                     <ActionIcon
                       className="disabled:bg-transparent"
                       size="sm"
                       disabled={isDefaultUser}
                       variant="transparent"
+                      aria-label={t('usersView.action.additionalActions')}
                     >
-                      <IconDotsVertical />
+                      <IconDotsVertical aria-hidden />
                     </ActionIcon>
-                  </Popover.Target>
+                  </Menu.Target>
 
-                  <Popover.Dropdown className="shadow-sm">
-                    <Button
-                      variant="transparent"
+                  <Menu.Dropdown>
+                    <Menu.Item
                       onClick={() => handleInvalidateToken(rowUser)}
-                      leftSection={<IconLogout className="size-4" />}
+                      leftSection={<IconLogout size={16} />}
                     >
                       {t('usersView.table.invalidate')}
-                    </Button>
-                  </Popover.Dropdown>
-                </Popover>
+                    </Menu.Item>
+                  </Menu.Dropdown>
+                </Menu>
               ) : null}
             </Flex>
           )
@@ -342,7 +335,6 @@ export default function UsersView(): JSX.Element {
     ],
     [
       t,
-      handleEditUser,
       userRights,
       defaultUserEmail,
       handleInvalidateToken,
