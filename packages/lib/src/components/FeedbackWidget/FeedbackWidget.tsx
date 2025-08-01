@@ -354,6 +354,7 @@ export function FeedbackWidget({
                               reset()
                             }}
                             leftSection={icons[inputKey]}
+                            className="grow"
                           >
                             {t(`feedbackWidget.${key.toLowerCase()}`)}
                           </Button>
