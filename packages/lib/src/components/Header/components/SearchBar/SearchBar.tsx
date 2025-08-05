@@ -17,7 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Group, Text, UnstyledButton } from '@mantine/core'
+import { Group, UnstyledButton } from '@mantine/core'
 import { openSpotlight } from '@mantine/spotlight'
 import { IconSearch } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
@@ -39,21 +39,19 @@ export function SearchBar({ className }: Props): JSX.Element {
   return (
     <UnstyledButton
       visibleFrom="sm"
-      onClick={() => openSpotlight()}
-      role="search"
+      onClick={openSpotlight}
+      aria-keyshortcuts="Ctrl+K"
+      className="px-2.5 py-1.5"
     >
-      <Group className={className?.group}>
-        <Group className="gap-sm">
-          <IconSearch className={cn('size-4 text-gray-500', className?.icon)} />
+      <Group justify="apart" className={className?.group} gap="sm">
+        <IconSearch
+          aria-hidden
+          className={cn('size-4 text-gray-600', className?.icon)}
+        />
 
-          <Text
-            className={cn('text-sm', className?.text)}
-            c="gray.5"
-            role="searchbox"
-          >
-            {t('header.spotlight.placeholder')}
-          </Text>
-        </Group>
+        <span className={cn('text-sm text-gray-600', className?.text)}>
+          {t('header.spotlight.placeholder')}
+        </span>
       </Group>
     </UnstyledButton>
   )
