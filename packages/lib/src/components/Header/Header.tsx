@@ -21,6 +21,7 @@
 
 import { UserOutput } from '@frachtwerk/essencium-types'
 import {
+  Anchor,
   AppShellHeader,
   AppShellHeaderProps,
   Burger,
@@ -30,6 +31,7 @@ import {
   useMantineTheme,
 } from '@mantine/core'
 import type { JSX } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { cn } from '../../utils'
 import { SearchBar, ThemeSelector, UserMenu } from './components'
@@ -49,6 +51,8 @@ export function Header({
   className,
   ...props
 }: Props): JSX.Element {
+  const { t } = useTranslation()
+
   const theme = useMantineTheme()
 
   return (
@@ -57,7 +61,15 @@ export function Header({
       {...props}
       className={cn('p-md z-100 sm:ml-0', className)}
     >
-      <Flex className="h-full items-center justify-between">
+      <Flex className="gap-md h-full items-center justify-between">
+        <Anchor
+          className="not-focus-visible:sr-only"
+          variant="transparent"
+          href="#main-content"
+        >
+          {t('header.skipToMainContent')}
+        </Anchor>
+
         <Burger
           opened={isOpen}
           onClick={() => {
@@ -71,7 +83,7 @@ export function Header({
 
         <SearchBar />
 
-        <Group className="flex-nowrap justify-between">
+        <Group className="ml-auto flex-nowrap justify-between">
           {environment && (
             <Code className="mr-[20px] overflow-visible">
               <span className="uppercase">{environment}</span>

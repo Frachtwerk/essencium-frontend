@@ -88,6 +88,16 @@ Removed files are:
 
 - Added additional translations for `usersView.table.active`
 
+### Implement a Skip Link
+
+#### `packages/app/src/components/layouts/AuthLayout.tsx`
+
+- Added `id="main-content"` to the AppShellMain
+
+#### `packages/app/public/locales/de|en/common.json`
+
+- Added translation for `header.skipToMainContent`
+
 ### Improve Darkmode Styling of Checkboxes
 
 #### `packages/app/src/config/Theme.module.css`
