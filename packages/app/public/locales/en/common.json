@@ -214,7 +214,10 @@
   "usersView": {
     "title": "Users",
     "action": {
-      "add": "Add User"
+      "add": "Add User",
+      "edit": "Edit User",
+      "delete": "Delete User",
+      "additionalActions": "Additional Actions"
     },
     "table": {
       "id": "ID",
@@ -301,7 +304,9 @@
   "rolesView": {
     "title": "Roles",
     "action": {
-      "add": "Add Role"
+      "add": "Add Role",
+      "edit": "Edit Role",
+      "delete": "Delete Role"
     },
     "table": {
       "name": "Name",

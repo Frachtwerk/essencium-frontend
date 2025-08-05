@@ -98,6 +98,20 @@ Removed files are:
 
 - Added translation for `header.skipToMainContent`
 
+### Fix Accessibility Issues with Table Actions
+
+#### `packages/app/src/app/[locale]/(main)/admin/users/UsersView.tsx`
+
+- Changed all table actions to improve accessibility
+
+#### `packages/app/src/app/[locale]/(main)/admin/roles/RolesView.tsx`
+
+- Changed all table actions to improve accessibility
+
+#### `packages/app/public/locales/de|en/common.json`
+
+- Added translation keys for `usersView.action` and `rightsView.action` for `edit`, `delete`, and `additonalActions`
+
 ### Improve Darkmode Styling of Checkboxes
 
 #### `packages/app/src/config/Theme.module.css`
