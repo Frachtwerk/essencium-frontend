@@ -102,33 +102,45 @@ export function Table<T>({
             {(tableModel.getRowModel().rows.length
               ? tableModel.getRowModel().rows
               : rowsDebounced
-            ).map(row => (
-              <MantineTable.Tr
-                key={row.id}
-                onClick={
-                  row.getToggleExpandedHandler() &&
-                  row.getToggleExpandedHandler()
-                }
-                className={cn(
-                  firstColSticky &&
-                    'dark:even:bg-dark-700 odd:bg-(--table-striped-color) even:bg-white',
-                  row.getCanExpand() && 'cursor-pointer',
-                )}
-              >
-                {row.getVisibleCells().map(cell => (
-                  <MantineTable.Td
-                    key={cell.id}
-                    width={cell.column.getSize()}
-                    className={cn(
-                      firstColSticky &&
-                        'first:sticky first:left-0 first:z-10 first:bg-inherit',
-                    )}
-                  >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </MantineTable.Td>
-                ))}
-              </MantineTable.Tr>
-            ))}
+            ).map(row => {
+              const canExpand = row.getCanExpand()
+              const toggleExpandedHandler = row.getToggleExpandedHandler()
+
+              return (
+                <MantineTable.Tr
+                  key={row.id}
+                  onClick={toggleExpandedHandler}
+                  tabIndex={canExpand ? 0 : -1}
+                  className={cn(
+                    firstColSticky &&
+                      'dark:even:bg-dark-700 odd:bg-(--table-striped-color) even:bg-white',
+                    canExpand && 'cursor-pointer',
+                  )}
+                  onKeyDown={e => {
+                    if (canExpand && (e.key === 'Enter' || e.key === ' ')) {
+                      e.preventDefault()
+                      toggleExpandedHandler()
+                    }
+                  }}
+                >
+                  {row.getVisibleCells().map(cell => (
+                    <MantineTable.Td
+                      key={cell.id}
+                      width={cell.column.getSize()}
+                      className={cn(
+                        firstColSticky &&
+                          'first:sticky first:left-0 first:z-10 first:bg-inherit',
+                      )}
+                    >
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </MantineTable.Td>
+                  ))}
+                </MantineTable.Tr>
+              )
+            })}
           </MantineTable.Tbody>
 
           <MantineTable.Tfoot aria-label="footer-row">
