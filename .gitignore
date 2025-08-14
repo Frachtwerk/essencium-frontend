@@ -2,5 +2,5 @@ node_modules
 dist
 .DS_Store
 .rollup.cache
-
+.idea/
 playwright/.auth
