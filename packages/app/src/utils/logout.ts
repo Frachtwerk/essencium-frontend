@@ -17,8 +17,23 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export function logout(): void {
-  localStorage.removeItem('authToken')
+'use client'
 
+export function logout(): void {
+  const authToken = JSON.parse(localStorage.getItem('authToken') as string)
+  localStorage.removeItem('authToken')
   localStorage.removeItem('user')
+
+  const logoutUrl = 'http://localhost:8098/auth/logout'
+  const redirectUrl = 'https://localhost:3000/login'
+
+  if (authToken) {
+    fetch(`${logoutUrl}?redirectUrl=${encodeURIComponent(redirectUrl)}`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+        'Content-Type': 'application/json',
+      },
+    })
+  }
 }
