@@ -360,11 +360,7 @@ export function FeedbackWidget({
 
                   {!isLoading && !showSuccessMessage && !showErrorMessage ? (
                     <Box>
-                      <Group
-                        justify="apart"
-                        gap="xs"
-                        className="gap-xs mb-md justify-evenly"
-                      >
+                      <Group className="gap-xs mb-md justify-evenly">
                         {Object.keys(OpenInput).map(key => {
                           const inputKey = key as keyof typeof OpenInput
 
