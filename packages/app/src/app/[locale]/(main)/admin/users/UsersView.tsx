@@ -88,7 +88,7 @@ export const FORM_DEFAULTS_USERS_VIEW = {
   roles: [ROLES.USER],
 }
 
-const DEFAULT_SORTING: SortingState = [{ id: 'firstName', desc: false }]
+const DEFAULT_SORTING: SortingState = [{ id: 'name', desc: false }]
 
 export default function UsersView(): JSX.Element {
   const userRights = useAtomValue(userRightsAtom)
@@ -193,7 +193,7 @@ export default function UsersView(): JSX.Element {
         enableColumnFilter: false,
       },
       {
-        accessorKey: 'firstName',
+        accessorKey: 'name',
         header: () => <Text inherit>{t('usersView.table.name')}</Text>,
         cell: info => {
           const rowUser = info.row.original
