@@ -138,6 +138,12 @@ Removed files are:
 
 - Changed Add User button to render a NextLink as polymorphic button
 
+### Fix sorting & filtering of user table by name
+
+#### `src/app/[locale]/(main)/admin/users/UsersView.tsx`
+
+- fix `accessorKey` for column `name` again after the backend now supports both filtering and sorting of users by their `name`-property
+
 ## [9.3.0 (2025-06-23)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.3.0)
 
 ### Add refresh token logic
