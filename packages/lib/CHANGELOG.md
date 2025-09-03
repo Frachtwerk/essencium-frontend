@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.4.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.4.0...essencium-lib-v9.4.1) (2025-09-03)
+
+
+### Bug Fixes
+
+* :bug: fixed a bug where the lib didn't include globals.css in it… ([578e17c](https://github.com/Frachtwerk/essencium-frontend/commit/578e17c28f71bca17b740c4c50ec34a18b7f3a1c))
+* :bug: fixed a bug where the lib didn't include globals.css in it's build ([c82b60f](https://github.com/Frachtwerk/essencium-frontend/commit/c82b60f01188db6e06f03d213febfd5954f7a4e9))
+
 ## [9.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.3.0...essencium-lib-v9.4.0) (2025-09-03)
 
 
