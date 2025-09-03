@@ -2,6 +2,14 @@
 
 ## [9.X.X (XXXX-XX-XX)]()
 
+### Fix tailwindcss implementation
+
+#### `packages/app/src/globals.css`
+
+- changed first line into `@import '@frachtwerk/essencium-lib/index.css';`
+
+## [9.4.0 (2025-09-03)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.4.0)
+
 ### Refactor codebase with tailwind css
 
 #### Essential Migrations
