@@ -1,5 +1,32 @@
 # Changelog
 
+## [9.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.3.0...essencium-app-v9.4.0) (2025-09-03)
+
+
+### Features
+
+* :sparkles: implemented a skip link ([5add696](https://github.com/Frachtwerk/essencium-frontend/commit/5add6967d1e40604d2e819ce7657693b3b844233))
+* :sparkles: implemented a skip link ([aa63586](https://github.com/Frachtwerk/essencium-frontend/commit/aa635863027e01ca833174eeea2230752cca6028))
+* **ci:** add explicit test, development & production environment definitions ([0c6df4a](https://github.com/Frachtwerk/essencium-frontend/commit/0c6df4a779a25b323e0f520d27bf7179bcd55c4f))
+* **e2e:** add support for node environments to playwright config ([e298689](https://github.com/Frachtwerk/essencium-frontend/commit/e298689ce2f6c97e9057254cec88549e0f6bdcd4))
+* install prettier plugin tailwindcss ([14503a0](https://github.com/Frachtwerk/essencium-frontend/commit/14503a02d7a99f9632d408050f83ce2d035b9572))
+
+
+### Bug Fixes
+
+* :wheelchair: added aria attributes in translations view ([61e8ba8](https://github.com/Frachtwerk/essencium-frontend/commit/61e8ba8b014ce48dc5b48d59889d4fd7d60f8f7f))
+* :wheelchair: added aria attributes in translations view ([c4116df](https://github.com/Frachtwerk/essencium-frontend/commit/c4116df892d450c110b94dfb391e5c37f0099676))
+* **app:** :bug: fixed accessibility issues with table actions ([4397b72](https://github.com/Frachtwerk/essencium-frontend/commit/4397b72ac8e0423c653596f6979aabdd9c790939))
+* **app:** :wheelchair: improved accessibility for users view table ([baf8221](https://github.com/Frachtwerk/essencium-frontend/commit/baf8221ca8b880ab1ee3d11c5c9f56f531fdec68))
+* **app:** :wheelchair: improved accessibility for users view table ([31e9e30](https://github.com/Frachtwerk/essencium-frontend/commit/31e9e305be21494031feaf4263e294e6141ab68b))
+* **app:** adjust users sorting by name ([953755b](https://github.com/Frachtwerk/essencium-frontend/commit/953755bf5447963ec3398766325575939fa3eb32))
+* **app:** adjust users sorting by name ([fcb76ff](https://github.com/Frachtwerk/essencium-frontend/commit/fcb76ff067b68b1215790faec05fb8358aa58a89))
+* fixed an issue where tailwind would not include classes from the lib package ([86229a6](https://github.com/Frachtwerk/essencium-frontend/commit/86229a6bb8673304c36e4574f4daefddf6a2c132))
+* **frontend:** resolve next and form-data vulnerabilities ([#879](https://github.com/Frachtwerk/essencium-frontend/issues/879)) ([75ce949](https://github.com/Frachtwerk/essencium-frontend/commit/75ce949e68fd7ab6ecf21f92b2d63c5780de12ff))
+* **lib:** :wheelchair: imporoved accessibility of table pagination ([cd8d3c4](https://github.com/Frachtwerk/essencium-frontend/commit/cd8d3c4e32a3df9dcfb4bd1a54e7185ae6818182))
+* render NextLink using other mantine components as polymorphic co… ([314df73](https://github.com/Frachtwerk/essencium-frontend/commit/314df73b1f818a80901dfbeda3b66a27728a08a4))
+* render NextLink using other mantine components as polymorphic component ([28083d4](https://github.com/Frachtwerk/essencium-frontend/commit/28083d476a539118506a2edb76617624c7c65f48))
+
 ## [9.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.2.0...essencium-app-v9.3.0) (2025-07-08)
 
 
