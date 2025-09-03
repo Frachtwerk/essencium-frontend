@@ -63,4 +63,14 @@ export default [
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     plugins: [dts()],
   },
+  {
+    input: 'src/globals.css',
+    output: [{ file: 'dist/index.css', format: 'es' }],
+    plugins: [
+      postcss({
+        extract: true,
+        minimize: true,
+      }),
+    ],
+  },
 ]
