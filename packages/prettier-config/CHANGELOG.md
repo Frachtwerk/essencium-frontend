@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/Frachtwerk/essencium-frontend/compare/prettier-config-essencium-v1.4.0...prettier-config-essencium-v1.5.0) (2025-09-03)
+
+
+### Features
+
+* install prettier plugin tailwindcss ([14503a0](https://github.com/Frachtwerk/essencium-frontend/commit/14503a02d7a99f9632d408050f83ce2d035b9572))
+
 ## [1.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/prettier-config-essencium-v1.3.0...prettier-config-essencium-v1.4.0) (2025-06-23)
 
 

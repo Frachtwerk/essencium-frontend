@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.4.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.4.0...essencium-docs-v4.4.1) (2025-09-03)
+
+
+### Bug Fixes
+
+* **frontend:** resolve next and form-data vulnerabilities ([#879](https://github.com/Frachtwerk/essencium-frontend/issues/879)) ([75ce949](https://github.com/Frachtwerk/essencium-frontend/commit/75ce949e68fd7ab6ecf21f92b2d63c5780de12ff))
+
 ## [4.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.3.3...essencium-docs-v4.4.0) (2025-06-23)
 
 
