@@ -1,4 +1,6 @@
-@import '@frachtwerk/essencium-lib/styles.css';
+/* When Using essencium-lib as package: */
+/* @import '@frachtwerk/essencium-lib/dist/globals.css'; */
+@import '@frachtwerk/essencium-lib/src/globals.css';
 
 @theme {
   --animate-fade-in: fade-in 3s forwards 1s;
