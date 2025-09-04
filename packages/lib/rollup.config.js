@@ -65,7 +65,7 @@ export default [
   },
   {
     input: 'src/globals.css',
-    output: [{ file: 'dist/index.css', format: 'es' }],
+    output: [{ file: '/dist/css/index.css', format: 'es' }],
     plugins: [
       postcss({
         extract: true,

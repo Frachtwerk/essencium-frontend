@@ -21,7 +21,7 @@
   "author": "Frachtwerk GmbH",
   "type": "module",
   "exports": {
-    "./index.css": "./src/globals.css"
+    "./dist/css/index.css": "./src/globals.css"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

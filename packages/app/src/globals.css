@@ -1,4 +1,4 @@
-@import '@frachtwerk/essencium-lib/index.css';
+@import '@frachtwerk/essencium-lib/dist/css/index.css';
 
 @theme {
   --animate-fade-in: fade-in 3s forwards 1s;
