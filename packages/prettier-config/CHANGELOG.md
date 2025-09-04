@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/Frachtwerk/essencium-frontend/compare/prettier-config-essencium-v1.5.0...prettier-config-essencium-v1.5.1) (2025-09-04)
+
+
+### Bug Fixes
+
+* change import of lib css to flat styles.css ([f244c6f](https://github.com/Frachtwerk/essencium-frontend/commit/f244c6fb0388062fefe9626ed61140b061d7d5f0))
+
 ## [1.5.0](https://github.com/Frachtwerk/essencium-frontend/compare/prettier-config-essencium-v1.4.0...prettier-config-essencium-v1.5.0) (2025-09-03)
 
 
