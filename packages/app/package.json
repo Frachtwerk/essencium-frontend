@@ -1,6 +1,6 @@
 {
   "name": "@frachtwerk/essencium-app",
-  "version": "9.4.2",
+  "version": "9.4.3",
   "private": true,
   "description": "This is the boilerplate based on the Essencium frontend library.",
   "scripts": {

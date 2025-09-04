@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.4.3](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.4.2...essencium-app-v9.4.3) (2025-09-04)
+
+
+### Bug Fixes
+
+* :bug: fixed a bug importing globals.css in production ([f02fb47](https://github.com/Frachtwerk/essencium-frontend/commit/f02fb472b02becb3b0dac525d2e8612eb5c9ae2b))
+* :bug: fixed a bug importing globals.css in production ([9efda34](https://github.com/Frachtwerk/essencium-frontend/commit/9efda34ab60910061cb516d8b1499ea513e0539e))
+
 ## [9.4.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.4.1...essencium-app-v9.4.2) (2025-09-04)
 
 
