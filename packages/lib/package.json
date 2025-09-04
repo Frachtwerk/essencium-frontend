@@ -20,9 +20,6 @@
   "license": "MIT",
   "author": "Frachtwerk GmbH",
   "type": "module",
-  "exports": {
-    "./styles.css": "./src/globals.css"
-  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
