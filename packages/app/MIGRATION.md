@@ -6,7 +6,7 @@
 
 #### `packages/app/src/globals.css`
 
-- changed first line into `@import '@frachtwerk/essencium-lib/dist/css/index.css';`
+- changed first line into `@import '@frachtwerk/essencium-lib/styles.css';`
 
 ## [9.4.1 (2025-09-04)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.4.1)
 
