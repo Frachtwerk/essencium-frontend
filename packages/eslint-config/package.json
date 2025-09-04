@@ -1,6 +1,6 @@
 {
   "name": "@frachtwerk/eslint-config-essencium",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "This is the shared ESLint config for Essencium.",
   "keywords": [
     "eslint",

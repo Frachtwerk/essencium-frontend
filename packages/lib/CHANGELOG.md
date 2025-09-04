@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.4.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.4.1...essencium-lib-v9.4.2) (2025-09-04)
+
+
+### Bug Fixes
+
+* change import of lib css to flat styles.css ([f244c6f](https://github.com/Frachtwerk/essencium-frontend/commit/f244c6fb0388062fefe9626ed61140b061d7d5f0))
+* change import of lib css to flat styles.css ([388c1e9](https://github.com/Frachtwerk/essencium-frontend/commit/388c1e95df3cb86a090fde990bacceb6d16eaa3c))
+
 ## [9.4.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.4.0...essencium-lib-v9.4.1) (2025-09-03)
 
 
