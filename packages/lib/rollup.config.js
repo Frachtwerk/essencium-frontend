@@ -73,4 +73,14 @@ export default [
       }),
     ],
   },
+  {
+    input: 'src/theme.css',
+    output: [{ file: 'dist/theme.css', format: 'es' }],
+    plugins: [
+      postcss({
+        extract: true,
+        minimize: true,
+      }),
+    ],
+  },
 ]

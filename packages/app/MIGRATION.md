@@ -1,12 +1,12 @@
 # Migrations
 
-## [9.4.3 (2025-09-04)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.4.3)
+## [9.4.4 (2025-09-05)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.4.3)
 
 ### Fix tailwindcss implementation
 
-#### `packages/app/src/globals.css`
+##### `packages/app/src/globals.css`
 
-- import globals.css as `@import '@frachtwerk/essencium-lib/src/globals.css';` in essencium, and `@import '@frachtwerk/essencium-lib/dist/globals.css';` in apps using essencium-lib
+- completely revamped `globals.css` to work in development as well as in apps using essencium-lib as package
 
 ## [9.4.0 (2025-09-03)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.4.0)
 
