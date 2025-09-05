@@ -1,7 +1,17 @@
-/* When Using essencium-lib as package: */
-/* @import '@frachtwerk/essencium-lib/dist/globals.css'; */
-@import '@frachtwerk/essencium-lib/src/globals.css';
+@layer theme, base, mantine, components, utilities;
 
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+@import '@mantine/core/styles.layer.css';
+
+/* CSS classes used in essencium-lib */
+@import '@frachtwerk/essencium-lib/dist/globals.css';
+
+/* Mantine theme for tailwindcss */
+@import '@frachtwerk/essencium-lib/dist/theme.css';
+
+/* Custom theme for the app */
 @theme {
   --animate-fade-in: fade-in 3s forwards 1s;
 

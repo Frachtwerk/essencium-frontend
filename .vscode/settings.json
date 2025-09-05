@@ -2,7 +2,7 @@
   "i18n-ally.localesPaths": ["packages", "packages/app/public/locales"],
 
   // Enable Tailwind CSS IntelliSense for all packages
-  "tailwindCSS.experimental.configFile": "packages/lib/src/globals.css",
+  "tailwindCSS.experimental.configFile": "packages/app/src/globals.css",
 
   // Enable Tailwind CSS IntelliSense in classNames property
   "tailwindCSS.classAttributes": ["class", "className", "classNames"],
@@ -10,5 +10,6 @@
   // Enable Tailwind CSS IntelliSense using cn() function
   "tailwindCSS.experimental.classRegex": [
     ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
-  ]
+  ],
+  "conventionalCommits.scopes": ["lib", "app"]
 }

@@ -24,7 +24,7 @@
     "build": "pnpm --stream -r build",
     "clean": "pnpm --stream -r clean && rimraf dist node_modules",
     "clean:install": "pnpm i -w && pnpm clean && pnpm install",
-    "dev": "pnpm --filter @frachtwerk/essencium-app dev",
+    "dev": "pnpm run --parallel --filter @frachtwerk/essencium-app --filter @frachtwerk/essencium-lib dev",
     "dev:docs": "pnpm --dir ./packages/docs dev",
     "format:check": "pnpm --stream -r format:check",
     "format:write": "pnpm --stream -r format:write",
