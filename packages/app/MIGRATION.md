@@ -2,7 +2,7 @@
 
 ## [9.4.4 (2025-09-05)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.4.3)
 
-### Fix tailwindcss implementation
+### Fix tailwindcss implementation (https://github.com/Frachtwerk/essencium-frontend/pull/888)
 
 ##### `packages/app/src/globals.css`
 
@@ -10,7 +10,7 @@
 
 ## [9.4.0 (2025-09-03)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.4.0)
 
-### Refactor codebase with tailwind css
+### Refactor codebase with tailwind css (https://github.com/Frachtwerk/essencium-frontend/pull/761)
 
 #### Essential Migrations
 
@@ -69,7 +69,7 @@ Removed files are:
 - `packages/app/src/components/layouts/AuthLayout.module.css`
 - `packages/app/src/config/Theme.module.css`
 
-### Improve Accessibility of TranslationsChangeForm
+### Improve Accessibility of TranslationsChangeForm (https://github.com/Frachtwerk/essencium-frontend/pull/866)
 
 #### `packages/app/src/app/[locale]/(main)/translations/_components/TranslationsChangeForm.tsx`
 
@@ -79,13 +79,13 @@ Removed files are:
 
 - added translations for `translationsView.form.input|save|delete`
 
-### Improve Accessibility of Table Pagination
+### Improve Accessibility of Table Pagination (https://github.com/Frachtwerk/essencium-frontend/pull/863)
 
 #### `packages/app/public/locales/de|en/common.json`
 
 - added `table.footer.pagination.previous|next|first|last` translations
 
-### Improve Accessibility of UsersView Table
+### Improve Accessibility of UsersView Table (https://github.com/Frachtwerk/essencium-frontend/pull/864)
 
 #### `packages/app/[locale]/(main)/admin/users/UsersView.tsx`
 
@@ -96,7 +96,7 @@ Removed files are:
 
 - Added additional translations for `usersView.table.active`
 
-### Implement a Skip Link
+### Implement a Skip Link (https://github.com/Frachtwerk/essencium-frontend/pull/861)
 
 #### `packages/app/src/components/layouts/AuthLayout.tsx`
 
@@ -106,7 +106,7 @@ Removed files are:
 
 - Added translation for `header.skipToMainContent`
 
-### Fix Accessibility Issues with Table Actions
+### Fix Accessibility Issues with Table Actions (https://github.com/Frachtwerk/essencium-frontend/pull/859)
 
 #### `packages/app/src/app/[locale]/(main)/admin/users/UsersView.tsx`
 
@@ -120,7 +120,7 @@ Removed files are:
 
 - Added translation keys for `usersView.action` and `rightsView.action` for `edit`, `delete`, and `additonalActions`
 
-### Improve Darkmode Styling of Checkboxes
+### Improve Darkmode Styling of Checkboxes (https://github.com/Frachtwerk/essencium-frontend/pull/850)
 
 #### `packages/app/src/config/Theme.module.css`
 
@@ -134,7 +134,7 @@ Removed files are:
 
 - Updated mantine to 8.2.0
 
-### Fix Accessibility Issues SSO login button
+### Fix Accessibility Issues SSO login button (https://github.com/Frachtwerk/essencium-frontend/pull/853)
 
 #### `packages/app/src/app/[locale]/(public)/login/LoginView.tsx`
 
@@ -146,7 +146,7 @@ Removed files are:
 
 - Changed Add User button to render a NextLink as polymorphic button
 
-### Fix sorting & filtering of user table by name
+### Fix sorting & filtering of user table by name (https://github.com/Frachtwerk/essencium-frontend/pull/875)
 
 #### `src/app/[locale]/(main)/admin/users/UsersView.tsx`
 
