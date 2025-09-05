@@ -29,10 +29,18 @@ import {
   Flex,
   NavLink as MantineNavLink,
 } from '@mantine/core'
+import { useFocusWithin } from '@mantine/hooks'
 import { IconLogout, IconPinFilled, IconPinnedOff } from '@tabler/icons-react'
 import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
-import { Dispatch, type JSX, SetStateAction, useEffect, useState } from 'react'
+import {
+  Dispatch,
+  type JSX,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 
 import { cn } from '../../utils/cn'
 import { NavLinks } from './components'
@@ -68,6 +76,26 @@ export function NavBar({
 }: Props): JSX.Element {
   const { t } = useTranslation()
 
+  const fixedNavRef = useRef(fixedNav)
+  const isMobileRef = useRef(isMobile)
+
+  useEffect(() => {
+    fixedNavRef.current = fixedNav
+  }, [fixedNav])
+
+  useEffect(() => {
+    isMobileRef.current = isMobile
+  }, [isMobile])
+
+  const { ref: navBarRef } = useFocusWithin({
+    onFocus: () => {
+      if (!isMobileRef.current && !fixedNavRef.current) setFoldedNav(false)
+    },
+    onBlur: () => {
+      if (!isMobileRef.current && !fixedNavRef.current) setFoldedNav(true)
+    },
+  })
+
   const [currentTimeOutId, setCurrentTimeOutId] = useState<
     string | number | NodeJS.Timeout | undefined
   >(undefined)
@@ -88,6 +116,7 @@ export function NavBar({
 
   return (
     <AppShellNavbar
+      ref={navBarRef}
       onMouseEnter={() => {
         if (!fixedNav && !isMobile) {
           handleMouse(true)
@@ -103,7 +132,7 @@ export function NavBar({
         'p-sm flex flex-col',
         isMobile
           ? 'fixed left-0 z-300 h-[95%] w-full overflow-auto'
-          : 'transition-[width] duration-300 ease-in-out hover:w-[250px]',
+          : 'transition-[width] duration-300 ease-in-out focus-within:w-[250px] hover:w-[250px]',
         className,
       )}
       {...props}
