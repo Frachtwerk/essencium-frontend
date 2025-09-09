@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.4.4](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.4.3...essencium-app-v9.4.4) (2025-09-09)
+
+
+### Bug Fixes
+
+* :bug: fixed a bug with the way tailwindcss classes where importe… ([22c98f7](https://github.com/Frachtwerk/essencium-frontend/commit/22c98f74932ab1f9211893f0710c5e53848a0550))
+* :bug: fixed a bug with the way tailwindcss classes where imported in the app ([2354a17](https://github.com/Frachtwerk/essencium-frontend/commit/2354a173126dcf8233340fda01afa690e7a15d94))
+
 ## [9.4.3](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.4.2...essencium-app-v9.4.3) (2025-09-04)
 
 
