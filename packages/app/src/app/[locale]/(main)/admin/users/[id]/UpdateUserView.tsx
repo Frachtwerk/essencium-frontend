@@ -21,7 +21,7 @@
 
 import { UserForm } from '@frachtwerk/essencium-lib'
 import { UserUpdate, userUpdateSchema } from '@frachtwerk/essencium-types'
-import { Card, Flex, Text, Title } from '@mantine/core'
+import { Card, Title } from '@mantine/core'
 import { IconUserEdit } from '@tabler/icons-react'
 import { useRouter } from 'next/navigation'
 import { type JSX, useEffect } from 'react'
@@ -89,12 +89,10 @@ export default function UpdateUserView({
 
   return (
     <>
-      <Title className="py-md" order={2}>
-        <Flex>
-          <IconUserEdit className="size-8" />
+      <Title className="py-md gap-xs flex items-center">
+        <IconUserEdit className="size-8" aria-hidden />
 
-          <Text className="ml-xs">{t('addUpdateUserView.update.title')}</Text>
-        </Flex>
+        {t('addUpdateUserView.update.title')}
       </Title>
 
       <Card withBorder className="p-lg max-w-[82.25rem] rounded-sm shadow-sm">

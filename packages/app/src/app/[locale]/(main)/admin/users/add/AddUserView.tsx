@@ -21,7 +21,7 @@
 
 import { UserForm } from '@frachtwerk/essencium-lib'
 import { UserInput, userInputSchema } from '@frachtwerk/essencium-types'
-import { Card, Flex, Text, Title } from '@mantine/core'
+import { Card, Title } from '@mantine/core'
 import { IconUserPlus } from '@tabler/icons-react'
 import { useRouter } from 'next/navigation'
 import type { JSX } from 'react'
@@ -65,12 +65,10 @@ export default function AddUserView(): JSX.Element {
 
   return (
     <>
-      <Title className="py-md" order={2}>
-        <Flex className="items-center">
-          <IconUserPlus className="size-8" />
+      <Title className="gap-xs py-md flex items-center">
+        <IconUserPlus className="size-8" aria-hidden />
 
-          <Text className="ml-xs">{t('addUpdateUserView.add.title')}</Text>
-        </Flex>
+        {t('addUpdateUserView.add.title')}
       </Title>
 
       <Card

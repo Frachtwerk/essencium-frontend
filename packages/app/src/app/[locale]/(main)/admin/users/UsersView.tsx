@@ -375,12 +375,10 @@ export default function UsersView(): JSX.Element {
       />
 
       <Flex className="py-md items-center justify-between">
-        <Title order={2}>
-          <Flex className="gap-xs items-center">
-            <IconUsers className="size-8" />
+        <Title className="gap-xs flex items-center">
+          <IconUsers className="size-8" aria-hidden />
 
-            <Text inherit>{t('usersView.title')}</Text>
-          </Flex>
+          {t('usersView.title')}
         </Title>
 
         <Switch
