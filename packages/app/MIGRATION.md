@@ -1,5 +1,11 @@
 # Migrations
 
+## [9.X.X (XXXX-XX-XX)]()
+
+### Improve headings accessibility (https://github.com/Frachtwerk/essencium-frontend/pull/892)
+
+- Note: h1 font is kind of large, but the tag is semantically correct. If the font is too large for the app's styling, it can be changed globally using mantines theming engine.
+
 ## [9.4.4 (2025-09-05)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.4.3)
 
 ### Fix tailwindcss implementation (https://github.com/Frachtwerk/essencium-frontend/pull/888)

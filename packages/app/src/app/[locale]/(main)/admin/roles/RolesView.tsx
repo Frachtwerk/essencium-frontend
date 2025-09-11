@@ -290,12 +290,10 @@ export default function RolesView(): JSX.Element {
       />
 
       <Flex className="py-md items-center justify-between">
-        <Title order={2}>
-          <Flex className="gap-xs items-center">
-            <IconUserStar className="size-8" />
+        <Title className="gap-xs flex items-center">
+          <IconUserStar className="size-8" aria-hidden />
 
-            <Text inherit>{t('rolesView.title')}</Text>
-          </Flex>
+          {t('rolesView.title')}
         </Title>
 
         {hasRequiredRights(userRights, RIGHTS.ROLE_CREATE) ? (

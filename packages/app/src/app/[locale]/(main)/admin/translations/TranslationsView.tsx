@@ -25,7 +25,7 @@ import type {
   TranslationOutput,
   TranslationTableRow,
 } from '@frachtwerk/essencium-types'
-import { Box, Flex, Group, Select, Text, TextInput, Title } from '@mantine/core'
+import { Box, Group, Select, Text, TextInput, Title } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
 import {
   IconChevronDown,
@@ -306,11 +306,10 @@ export default function TranlsationView({ resources }: Props): JSX.Element {
 
   return (
     <>
-      <Title className="py-md text-h2">
-        <Flex className="gap-xs items-center">
-          <IconLanguage className="size-8" />
-          <Text inherit>{t('translationsView.title')}</Text>
-        </Flex>
+      <Title className="py-md gap-xs flex items-center">
+        <IconLanguage className="size-8" aria-hidden />
+
+        {t('translationsView.title')}
       </Title>
 
       <Group className="gap-md mt-lg">
