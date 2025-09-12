@@ -155,30 +155,26 @@ export default function RightsView(): JSX.Element {
             rights: getUpdatedRights(role, rightRow),
           }
 
-          if (
-            role.name === ROLES.ADMIN ||
-            role.protected ||
-            !hasRequiredRights(userRights, [
-              RIGHTS.ROLE_UPDATE,
-              RIGHTS.RIGHT_UPDATE,
-            ])
-          ) {
-            return (
-              <Checkbox
-                disabled
-                checked={hasRight(rightRow.authority, role.name)}
-              />
-            )
-          }
-
           return (
             <Checkbox
+              disabled={
+                role.name === ROLES.ADMIN ||
+                role.protected ||
+                !hasRequiredRights(userRights, [
+                  RIGHTS.ROLE_UPDATE,
+                  RIGHTS.RIGHT_UPDATE,
+                ])
+              }
               onChange={() =>
                 handleUpdateRole({
                   ...updatedRole,
                   rights: updatedRole.rights.map(right => right.authority),
                 })
               }
+              aria-label={t('rightsView.table.checkbox', {
+                right: rightRow.authority,
+                role: role.name,
+              })}
               checked={hasRight(rightRow.authority, role.name)}
             />
           )

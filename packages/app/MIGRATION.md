@@ -1,5 +1,11 @@
 # Migrations
 
+## [9.X.X (XXXX-XX-XX)]()
+
+### Improve Accessibility of Rights View (https://github.com/Frachtwerk/essencium-frontend/pull/867/files)
+
+Added aria-label and simplified code by removing if statement and conditionally disabling the checkbox instead
+
 ## [9.4.4 (2025-09-05)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v9.4.3)
 
 ### Fix tailwindcss implementation (https://github.com/Frachtwerk/essencium-frontend/pull/888)
