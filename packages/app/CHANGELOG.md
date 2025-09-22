@@ -1,5 +1,14 @@
 # Changelog
 
+## [9.4.5](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.4.4...essencium-app-v9.4.5) (2025-09-22)
+
+
+### Bug Fixes
+
+* :wheelchair: added aria-label to checkboxes in rights view ([f5770ea](https://github.com/Frachtwerk/essencium-frontend/commit/f5770ea136a0f02756e9b57c43fe4c74ea94ef70))
+* :wheelchair: added aria-label to checkboxes in rights view ([f4a5fc0](https://github.com/Frachtwerk/essencium-frontend/commit/f4a5fc01547d5cde2e98a0aad9ffbd9e17015de6))
+* resolve vite and axios CVEs ([#897](https://github.com/Frachtwerk/essencium-frontend/issues/897)) ([9ebeee4](https://github.com/Frachtwerk/essencium-frontend/commit/9ebeee4c311656187548a60b1dfd6105ae7e99e5))
+
 ## [9.4.4](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.4.3...essencium-app-v9.4.4) (2025-09-09)
 
 

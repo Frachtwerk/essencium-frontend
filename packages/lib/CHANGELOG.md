@@ -1,5 +1,14 @@
 # Changelog
 
+## [9.4.5](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.4.4...essencium-lib-v9.4.5) (2025-09-22)
+
+
+### Bug Fixes
+
+* **lib:** :bug: fix focus errors with the feedback widget ([5eb42aa](https://github.com/Frachtwerk/essencium-frontend/commit/5eb42aa9ea5cd672b74d15aa2bc75724c2d839ec))
+* **lib:** :wheelchair: improve navbar accessibility ([88dd605](https://github.com/Frachtwerk/essencium-frontend/commit/88dd605ffa96a78ba3ecf201b895fc14a6e95226))
+* resolve vite and axios CVEs ([#897](https://github.com/Frachtwerk/essencium-frontend/issues/897)) ([9ebeee4](https://github.com/Frachtwerk/essencium-frontend/commit/9ebeee4c311656187548a60b1dfd6105ae7e99e5))
+
 ## [9.4.4](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.4.3...essencium-lib-v9.4.4) (2025-09-09)
 
 
