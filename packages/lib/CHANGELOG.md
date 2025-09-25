@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.5.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.4.5...essencium-lib-v9.5.0) (2025-09-25)
+
+
+### Features
+
+* add MonthPickerInput as new filter option ([bf6646c](https://github.com/Frachtwerk/essencium-frontend/commit/bf6646ca752573e54776c8a59baa1a3bb9c25e90))
+
 ## [9.4.5](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.4.4...essencium-lib-v9.4.5) (2025-09-22)
 
 
