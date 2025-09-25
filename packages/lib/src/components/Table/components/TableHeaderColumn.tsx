@@ -69,7 +69,7 @@ function getFilterType<T>(
 ): TABLEFILTERTYPE {
   if (
     !filterData?.[column.id] &&
-    column.columnDef.meta?.filterType !== TABLEFILTERTYPE.MONTH_PiCKER
+    column.columnDef.meta?.filterType !== TABLEFILTERTYPE.MONTH_PICKER
   ) {
     return TABLEFILTERTYPE.TEXT
   }
@@ -157,7 +157,7 @@ export function FilterInput<T>({
           }}
         />
       )
-    case TABLEFILTERTYPE.MONTH_PiCKER:
+    case TABLEFILTERTYPE.MONTH_PICKER:
       return (
         <MonthPickerInput
           locale={i18n.language}
@@ -166,11 +166,7 @@ export function FilterInput<T>({
           valueFormat="MM.YYYY"
           type="range"
           allowSingleDateInRange
-          value={
-            header.column.getFilterValue() as
-              | DatesRangeValue<DateValue>
-              | undefined
-          }
+          value={header.column.getFilterValue() as DatesRangeValue<DateValue>}
           onChange={value => {
             let [start, end] = value
 
