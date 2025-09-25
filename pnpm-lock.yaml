@@ -338,6 +338,9 @@ importers:
 
   packages/lib:
     dependencies:
+      dayjs:
+        specifier: 1.11.13
+        version: 1.11.13
       react-window:
         specifier: ^1.8.11
         version: 1.8.11(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -447,9 +450,6 @@ importers:
       clsx:
         specifier: 2.1.1
         version: 2.1.1
-      dayjs:
-        specifier: 1.11.13
-        version: 1.11.13
       eslint:
         specifier: 8.56.0
         version: 8.56.0
