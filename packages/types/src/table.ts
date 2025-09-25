@@ -21,4 +21,5 @@ export enum TABLEFILTERTYPE {
   TEXT = 'text',
   SELECT = 'select',
   MULTI_SELECT = 'multi-select',
+  MONTH_PiCKER = 'month-picker',
 }

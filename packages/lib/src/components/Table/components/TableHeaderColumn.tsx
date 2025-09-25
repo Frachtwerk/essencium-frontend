@@ -17,6 +17,8 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import 'dayjs/locale/de'
+
 import { BasicEntityOutput, TABLEFILTERTYPE } from '@frachtwerk/essencium-types'
 import {
   Flex,
@@ -25,6 +27,7 @@ import {
   Table as MantineTable,
   TextInput,
 } from '@mantine/core'
+import { DatesRangeValue, DateValue, MonthPickerInput } from '@mantine/dates'
 import {
   IconArrowsSort,
   IconSortAscending2,
@@ -32,6 +35,7 @@ import {
   IconX,
 } from '@tabler/icons-react'
 import { Column, flexRender, Header } from '@tanstack/react-table'
+import dayjs from 'dayjs'
 import { useTranslation } from 'next-i18next'
 import { type JSX } from 'react'
 
@@ -63,7 +67,10 @@ function getFilterType<T>(
   column: Column<T, unknown>,
   filterData?: Record<string, Array<string | BasicEntityOutput>>,
 ): TABLEFILTERTYPE {
-  if (!filterData?.[column.id]) {
+  if (
+    !filterData?.[column.id] &&
+    column.columnDef.meta?.filterType !== TABLEFILTERTYPE.MONTH_PiCKER
+  ) {
     return TABLEFILTERTYPE.TEXT
   }
   return column.columnDef.meta?.filterType
@@ -77,7 +84,7 @@ export function FilterInput<T>({
   filterData,
   filterValue,
 }: InputProps<T>): JSX.Element | null {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const filterType = getFilterType(header.column, filterData)
   const filterOptions = filterData?.[header.column.id] || []
   // Helper to map filter options to Mantine format
@@ -92,6 +99,7 @@ export function FilterInput<T>({
   const parsedFilterValue =
     filterValue?.[header.column.id] ||
     ((header.column.getFilterValue() ?? '') as string)
+
   switch (filterType) {
     case TABLEFILTERTYPE.TEXT:
       return (
@@ -146,6 +154,41 @@ export function FilterInput<T>({
           }
           onChange={value => {
             onFilterChange(header, value.join(','))
+          }}
+        />
+      )
+    case TABLEFILTERTYPE.MONTH_PiCKER:
+      return (
+        <MonthPickerInput
+          locale={i18n.language}
+          className="my-xs"
+          placeholder={t('table.filter.placeholder')}
+          valueFormat="MM.YYYY"
+          type="range"
+          allowSingleDateInRange
+          value={
+            header.column.getFilterValue() as
+              | DatesRangeValue<DateValue>
+              | undefined
+          }
+          onChange={value => {
+            let [start, end] = value
+
+            if (start && end) {
+              const startDay = dayjs(start)
+
+              const endDay = dayjs(end)
+
+              start = startDay.startOf('month').format('YYYY-MM-DD')
+
+              end = endDay.endOf('month').format('YYYY-MM-DD')
+            }
+
+            header.column.setFilterValue([start, end])
+          }}
+          clearable
+          clearButtonProps={{
+            onClick: () => header.column.setFilterValue([undefined, undefined]),
           }}
         />
       )
