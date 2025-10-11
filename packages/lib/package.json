@@ -87,7 +87,7 @@
     "eslint-plugin-react": "7.32.2",
     "eslint-plugin-react-hooks": "4.6.2",
     "eslint-plugin-simple-import-sort": "10.0.0",
-    "happy-dom": "15.10.8",
+    "happy-dom": "20.0.0",
     "html2canvas-pro": "1.5.8",
     "i18next": "23.11.5",
     "jotai": "2.0.4",
