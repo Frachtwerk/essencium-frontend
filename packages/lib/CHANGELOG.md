@@ -1,5 +1,17 @@
 # Changelog
 
+## [9.5.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.4.5...essencium-lib-v9.5.0) (2025-10-15)
+
+
+### Features
+
+* add MonthPickerInput as new filter option ([bf6646c](https://github.com/Frachtwerk/essencium-frontend/commit/bf6646ca752573e54776c8a59baa1a3bb9c25e90))
+
+
+### Bug Fixes
+
+* **frontend:** update axios, nodemailer and happy dom deps ([#904](https://github.com/Frachtwerk/essencium-frontend/issues/904)) ([ee9b3b7](https://github.com/Frachtwerk/essencium-frontend/commit/ee9b3b7d17cb196315f96f6075491f1183fa05c4))
+
 ## [9.4.5](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.4.4...essencium-lib-v9.4.5) (2025-09-22)
 
 

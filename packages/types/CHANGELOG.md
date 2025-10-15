@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v6.2.1...essencium-types-v6.3.0) (2025-10-15)
+
+
+### Features
+
+* add MonthPickerInput as new filter option ([bf6646c](https://github.com/Frachtwerk/essencium-frontend/commit/bf6646ca752573e54776c8a59baa1a3bb9c25e90))
+
 ## [6.2.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v6.2.0...essencium-types-v6.2.1) (2025-09-04)
 
 
