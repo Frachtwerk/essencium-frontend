@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.4.6](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.4.5...essencium-app-v9.4.6) (2025-10-15)
+
+
+### Bug Fixes
+
+* **frontend:** update axios, nodemailer and happy dom deps ([#904](https://github.com/Frachtwerk/essencium-frontend/issues/904)) ([ee9b3b7](https://github.com/Frachtwerk/essencium-frontend/commit/ee9b3b7d17cb196315f96f6075491f1183fa05c4))
+
 ## [9.4.5](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.4.4...essencium-app-v9.4.5) (2025-09-22)
 
 
