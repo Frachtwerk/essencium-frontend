@@ -45,7 +45,7 @@ export const useGetRights = ({
     queryKey: ['rights', { page, size, sort }],
     queryFn: () =>
       api
-        .get<RightOutput[]>('/rights', {
+        .get<RightsResponse>('/rights', {
           params: {
             page,
             size,
