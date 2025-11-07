@@ -185,7 +185,7 @@ importers:
         version: 2.0.4(react@19.2.0)
       next:
         specifier: 16.0.1
-        version: 16.0.1(@playwright/test@1.45.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 16.0.1(@playwright/test@1.45.3)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       next-i18n-router:
         specifier: 5.5.1
         version: 5.5.1
@@ -450,6 +450,9 @@ importers:
       axios:
         specifier: 1.12.0
         version: 1.12.0
+      babel-plugin-react-compiler:
+        specifier: ^1.0.0
+        version: 1.0.0
       clsx:
         specifier: 2.1.1
         version: 2.1.1
@@ -497,13 +500,13 @@ importers:
         version: 2.0.4(react@19.0.0)
       next:
         specifier: 15.4.7
-        version: 15.4.7(@babel/core@7.24.9)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 15.4.7(@babel/core@7.24.9)(babel-plugin-react-compiler@1.0.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       next-i18next:
         specifier: 15.3.1
-        version: 15.3.1(i18next@23.11.5)(next@15.4.7(@babel/core@7.24.9)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-i18next@14.1.3(i18next@23.11.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
+        version: 15.3.1(i18next@23.11.5)(next@15.4.7(@babel/core@7.24.9)(babel-plugin-react-compiler@1.0.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-i18next@14.1.3(i18next@23.11.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
       next-router-mock:
         specifier: 0.9.13
-        version: 0.9.13(next@15.4.7(@babel/core@7.24.9)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
+        version: 0.9.13(next@15.4.7(@babel/core@7.24.9)(babel-plugin-react-compiler@1.0.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
       postcss:
         specifier: 8.4.49
         version: 8.4.49
@@ -2192,6 +2195,9 @@ packages:
   babel-plugin-macros@3.1.0:
     resolution: {integrity: sha512-Cg7TFGpIr01vOQNODXOOaGz2NpCU5gl8x1qJFbb6hbZxR7XrcE2vtbAsTAbJ7/xwJtUuJEw8K8Zr/AE0LHlesg==}
     engines: {node: '>=10', npm: '>=6'}
+
+  babel-plugin-react-compiler@1.0.0:
+    resolution: {integrity: sha512-Ixm8tFfoKKIPYdCCKYTsqv+Fd4IJ0DQqMyEimo+pxUOMUR9cVPlwTrFt9Avu+3cb6Zp3mAzl+t1MrG2fxxKsxw==}
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -6840,6 +6846,10 @@ snapshots:
       cosmiconfig: 7.1.0
       resolve: 1.22.10
 
+  babel-plugin-react-compiler@1.0.0:
+    dependencies:
+      '@babel/types': 7.27.0
+
   balanced-match@1.0.2: {}
 
   base16@1.0.0: {}
@@ -8516,7 +8526,7 @@ snapshots:
       '@formatjs/intl-localematcher': 0.5.10
       negotiator: 0.6.4
 
-  next-i18next@15.3.1(i18next@23.11.5)(next@15.4.7(@babel/core@7.24.9)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-i18next@14.1.3(i18next@23.11.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0):
+  next-i18next@15.3.1(i18next@23.11.5)(next@15.4.7(@babel/core@7.24.9)(babel-plugin-react-compiler@1.0.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-i18next@14.1.3(i18next@23.11.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0):
     dependencies:
       '@babel/runtime': 7.27.0
       '@types/hoist-non-react-statics': 3.3.6
@@ -8524,16 +8534,16 @@ snapshots:
       hoist-non-react-statics: 3.3.2
       i18next: 23.11.5
       i18next-fs-backend: 2.6.0
-      next: 15.4.7(@babel/core@7.24.9)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      next: 15.4.7(@babel/core@7.24.9)(babel-plugin-react-compiler@1.0.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
       react-i18next: 14.1.3(i18next@23.11.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
 
-  next-router-mock@0.9.13(next@15.4.7(@babel/core@7.24.9)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0):
+  next-router-mock@0.9.13(next@15.4.7(@babel/core@7.24.9)(babel-plugin-react-compiler@1.0.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0):
     dependencies:
-      next: 15.4.7(@babel/core@7.24.9)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      next: 15.4.7(@babel/core@7.24.9)(babel-plugin-react-compiler@1.0.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
 
-  next@15.4.7(@babel/core@7.24.9)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  next@15.4.7(@babel/core@7.24.9)(babel-plugin-react-compiler@1.0.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       '@next/env': 15.4.7
       '@swc/helpers': 0.5.15
@@ -8551,12 +8561,13 @@ snapshots:
       '@next/swc-linux-x64-musl': 15.4.7
       '@next/swc-win32-arm64-msvc': 15.4.7
       '@next/swc-win32-x64-msvc': 15.4.7
+      babel-plugin-react-compiler: 1.0.0
       sharp: 0.34.4
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
 
-  next@16.0.1(@playwright/test@1.45.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  next@16.0.1(@playwright/test@1.45.3)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
       '@next/env': 16.0.1
       '@swc/helpers': 0.5.15
@@ -8575,6 +8586,7 @@ snapshots:
       '@next/swc-win32-arm64-msvc': 16.0.1
       '@next/swc-win32-x64-msvc': 16.0.1
       '@playwright/test': 1.45.3
+      babel-plugin-react-compiler: 1.0.0
       sharp: 0.34.4
     transitivePeerDependencies:
       - '@babel/core'
