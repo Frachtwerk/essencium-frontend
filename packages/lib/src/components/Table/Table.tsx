@@ -46,6 +46,10 @@ type Props<T> = TableProps & {
   setActivePage?: (activePage: PaginatedResponse<T>['number']) => void
 }
 
+// There is an open issue with tanstack-table and the react compiler.
+// Until those issues are solved auto-memoization has to be disabled for all tables. See:
+// https://github.com/TanStack/table/issues/5567
+// https://github.com/facebook/react/issues/33057
 export function Table<T>({
   tableModel,
   onFilterChange,
@@ -57,6 +61,8 @@ export function Table<T>({
   setActivePage,
   ...props
 }: Props<T>): JSX.Element {
+  'use no memo'
+
   const [rowsDebounced] = useDebouncedValue(tableModel.getRowModel().rows, 150)
 
   function handleFilterChange(
