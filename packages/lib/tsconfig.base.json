@@ -7,7 +7,7 @@
     "declarationDir": "types",
     "declarationMap": true,
     "sourceMap": false,
-    "moduleResolution": "node"
+    "moduleResolution": "bundler"
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "./*.d.ts", "rollup.config.js"],
   "exclude": ["dist", "node_modules", ".rollup.cache"]
