@@ -17,6 +17,8 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import './config'
+
 export * from './auth'
 export * from './base'
 export * from './basic'
