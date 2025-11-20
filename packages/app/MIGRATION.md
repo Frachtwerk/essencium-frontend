@@ -10,6 +10,8 @@
 
 - New global Zod configuration has been added to `packages/types/src/config.ts` to set error messages for common validations. Some translation variables have been changed accordingly.
 
+- `useZodForm` hook in `packages/app/src/hooks/useZodForm.ts` has been removed. Please import `useZodForm` from `essencium-lib` instead.
+
 ### Improve Accessibility of Rights View (https://github.com/Frachtwerk/essencium-frontend/pull/867/files)
 
 Added aria-label and simplified code by removing if statement and conditionally disabling the checkbox instead
