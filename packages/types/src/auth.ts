@@ -18,55 +18,54 @@ export const passwordStrengthBaseSchema = z
       PasswordStrengthRules.number.test(password) &&
       PasswordStrengthRules.specialCharacter.test(password),
     {
-      error:
-        'profileView.dataCard.tabs.passwordChange.passwordStrength.validationError',
+      error: 'validation.password.strength',
     },
   )
 
 export const passwordStrengthSchemaUser = passwordStrengthBaseSchema.and(
-  z
-    .string()
-    .min(
-      12,
-      'profileView.dataCard.tabs.passwordChange.passwordStrength.validationError',
-    ),
+  z.string().min(12, 'validation.password.minLengthUser'),
 )
 
 export const passwordStrengthSchemaAdmin = passwordStrengthBaseSchema.and(
-  z
-    .string()
-    .min(
-      20,
-      'profileView.dataCard.tabs.passwordChange.passwordStrength.validationError',
-    ),
+  z.string().min(20, 'validation.password.minLengthAdmin'),
 )
 
-const passwordChangeBaseSchema = z
-  .object({
-    verification: stringSchema,
+const passwordChangeBaseSchema = z.object({
+  verification: stringSchema,
 
-    password: stringSchema,
-    confirmPassword: stringSchema,
+  password: stringSchema,
+  confirmPassword: stringSchema,
+})
+
+export const passwordChangeSchemaUser = passwordChangeBaseSchema
+  .extend({
+    password: passwordStrengthSchemaUser,
   })
   .refine(data => data.password === data.confirmPassword, {
     error: 'validation.password.confirmError',
     path: ['confirmPassword'],
     when(payload) {
-      return passwordChangeBaseSchema
+      return passwordChangeSchemaUser
         .pick({ password: true, confirmPassword: true })
         .safeParse(payload.value).success
     },
   })
 
-export const passwordChangeSchemaUser = passwordChangeBaseSchema.extend({
-  password: passwordStrengthSchemaUser,
-})
-
 export type PasswordChange = z.infer<typeof passwordChangeSchemaUser>
 
-export const passwordChangeSchemaAdmin = passwordChangeBaseSchema.extend({
-  password: passwordStrengthSchemaAdmin,
-})
+export const passwordChangeSchemaAdmin = passwordChangeBaseSchema
+  .extend({
+    password: passwordStrengthSchemaAdmin,
+  })
+  .refine(data => data.password === data.confirmPassword, {
+    error: 'validation.password.confirmError',
+    path: ['confirmPassword'],
+    when(payload) {
+      return passwordChangeSchemaAdmin
+        .pick({ password: true, confirmPassword: true })
+        .safeParse(payload.value).success
+    },
+  })
 
 export type PasswordChangeAdmin = z.infer<typeof passwordChangeSchemaAdmin>
 
@@ -91,6 +90,11 @@ export const setPasswordFormSchema = z
   .refine(data => data.password === data.confirmPassword, {
     error: 'validation.password.confirmError',
     path: ['confirmPassword'],
+    when(payload) {
+      return passwordChangeSchemaAdmin
+        .pick({ password: true, confirmPassword: true })
+        .safeParse(payload.value).success
+    },
   })
 
 export type SetPasswordFormType = z.infer<typeof setPasswordFormSchema>

@@ -19,8 +19,8 @@
 
 import {
   PasswordChange,
+  UserInput,
   UserOutput,
-  UserUpdate,
 } from '@frachtwerk/essencium-types'
 import {
   useMutation,
@@ -50,13 +50,13 @@ export function useGetMe(): UseQueryResult<UserOutput, unknown> {
 export function useUpdateMe(): UseMutationResult<
   UserOutput,
   AxiosError,
-  UserUpdate
+  UserInput
 > {
-  const mutation = useMutation<UserOutput, AxiosError, UserUpdate>({
+  const mutation = useMutation<UserOutput, AxiosError, UserInput>({
     mutationKey: ['useUpdateMe'],
-    mutationFn: (user: UserUpdate) =>
+    mutationFn: (user: UserInput) =>
       api
-        .put<UserOutput, UserUpdate>('/users/me', user)
+        .put<UserOutput, UserInput>('/users/me', user)
         .then(response => response.data),
     meta: {
       errorNotification: {

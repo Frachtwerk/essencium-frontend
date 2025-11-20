@@ -22,7 +22,6 @@ import {
   PaginatedResponse,
   UserInput,
   UserOutput,
-  UserUpdate,
 } from '@frachtwerk/essencium-types'
 import {
   useMutation,
@@ -108,13 +107,13 @@ export function useCreateUser(): UseMutationResult<
 export function useUpdateUser(): UseMutationResult<
   UserOutput,
   AxiosError,
-  UserUpdate
+  UserInput
 > {
-  const mutation = useMutation<UserOutput, AxiosError, UserUpdate>({
+  const mutation = useMutation<UserOutput, AxiosError, UserInput>({
     mutationKey: ['useUpdateUser'],
-    mutationFn: (user: UserUpdate) =>
+    mutationFn: (user: UserInput) =>
       api
-        .put<UserOutput, UserUpdate>(`/users/${user.id}`, user)
+        .put<UserOutput, UserInput>(`/users/${user.id}`, user)
         .then(response => response.data),
     meta: {
       errorNotification: {

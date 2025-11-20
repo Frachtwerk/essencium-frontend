@@ -28,9 +28,9 @@ import {
 import { baseInputSchema, basePropertiesSchema, stringSchema } from './base'
 import { roleOutputSchema, ROLES } from './role'
 
-export const UserSource = {
-  LOCAL: 'local',
-} as const
+export enum UserSource {
+  LOCAL = 'local',
+}
 
 const sharedPropertiesSchema = z.object({
   email: z.email(),
@@ -57,15 +57,18 @@ export const userOutputSchema = basePropertiesSchema
 
 export type UserOutput = z.infer<typeof userOutputSchema>
 
-// TODO: Check if error messages mapping with minimum works
 export const userInputSchema = baseInputSchema
   .extend({
     password: passwordStrengthBaseSchema.or(z.literal('')).optional(),
-    roles: z.array(roleOutputSchema.shape.name),
+    roles: z
+      .array(roleOutputSchema.shape.name)
+      .min(1, 'validation.role.isRequired'),
   })
   .extend(sharedPropertiesSchema.shape)
   .refine(
     data => {
+      if (!data.password) return true
+
       if (data.roles.includes(ROLES.ADMIN)) {
         return passwordStrengthSchemaAdmin.safeParse(data.password).success
       }
@@ -73,9 +76,13 @@ export const userInputSchema = baseInputSchema
     },
     {
       path: ['password'],
-      error: () => {
-        // console.log(iss.minimum)
-        return 'validation.password.strength'
+      error: iss => {
+        const data = iss.input as z.infer<typeof userInputSchema>
+
+        if (data.roles.includes(ROLES.ADMIN)) {
+          return 'validation.password.minLengthAdmin'
+        }
+        return 'validation.password.minLengthUser'
       },
       when(payload) {
         return userInputSchema

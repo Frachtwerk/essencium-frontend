@@ -123,7 +123,9 @@ describe('LoginForm', () => {
 
     expect(emailInput.value).toBe('meexample.de')
 
-    expect(await screen.findByText('validation.email.notValid')).toBeDefined()
+    expect(
+      await screen.findByText('validation.general.invalidEmail'),
+    ).toBeDefined()
   })
 
   it('should display an error messages for the password field if input is invalid', async () => {
@@ -176,7 +178,9 @@ describe('LoginForm', () => {
     expect(emailInput.value).toBe('me@example.de')
     expect(passwordInput.value).toBe('thisIsALongPassword')
 
-    expect(screen.queryAllByText('validation.email.notValid')).toHaveLength(0)
+    expect(
+      screen.queryAllByText('validation.general.invalidEmail'),
+    ).toHaveLength(0)
     expect(screen.queryAllByText('validation.password.minLength')).toHaveLength(
       0,
     )

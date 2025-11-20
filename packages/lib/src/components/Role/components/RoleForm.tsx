@@ -19,12 +19,7 @@
 
 'use client'
 
-import {
-  RightOutput,
-  RoleInput,
-  RoleOutput,
-  RoleUpdate,
-} from '@frachtwerk/essencium-types'
+import { RightOutput, RoleInput, RoleOutput } from '@frachtwerk/essencium-types'
 import { Box, Button, Chip, Divider, Flex, Space } from '@mantine/core'
 import { IconShieldCheck } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
@@ -37,7 +32,7 @@ type Props = {
   rights: RightOutput[]
   toggleRight: (right: RightOutput) => void
   onSubmit: () => void
-  control: Control<RoleInput | RoleUpdate>
+  control: Control<RoleInput>
   reset?: () => void
   onClose: () => void
   role?: RoleOutput

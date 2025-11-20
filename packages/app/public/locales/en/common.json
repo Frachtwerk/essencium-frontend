@@ -115,7 +115,6 @@
             "savePassword": "Save Password"
           },
           "passwordStrength": {
-            "validationError": "Password does not meet the requirements",
             "number": "At least one number",
             "lowercase": "At least one lowercase letter",
             "uppercase": "At least one uppercase letter",
@@ -351,12 +350,18 @@
     "contactInformation": "Contact Information"
   },
   "validation": {
-    "email": {
-      "notValid": "E-Mail is not valid"
+    "general": {
+      "required": "This field is required",
+      "invalidString": "Invalid string",
+      "invalidNumber": "Invalid number",
+      "invalidEmail": "Invalid email address"
     },
     "password": {
       "minLength": "Password must be at least 8 characters long",
-      "confirmError": "The passwords you entered did not match."
+      "minLengthUser": "Password must be at least 12 characters long",
+      "minLengthAdmin": "Password must be at least 20 characters long",
+      "confirmError": "The passwords you entered did not match",
+      "strength": "Password does not meet the requirements"
     },
     "firstName": {
       "minLength": "First Name must be at least 2 characters long"
@@ -371,7 +376,6 @@
       "minLength": "Role name must be at least 2 characters long."
     },
     "contact": {
-      "name": "Name must be at least 2 characters long.",
       "subject": "Subject must be at least 2 characters long.",
       "message": "Message must be at least 10 characters long."
     },
