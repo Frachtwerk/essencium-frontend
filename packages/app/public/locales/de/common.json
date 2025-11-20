@@ -115,7 +115,6 @@
             "savePassword": "Passwort speichern"
           },
           "passwordStrength": {
-            "validationError": "Passwort entspricht nicht den Anforderungen",
             "number": "Mindestens eine Zahl",
             "lowercase": "Mindestens ein Kleinbuchstabe",
             "uppercase": "Mindestens ein Großbuchstabe",
@@ -351,12 +350,18 @@
     "contactInformation": "Kontaktinformationen"
   },
   "validation": {
-    "email": {
-      "notValid": "E-Mail ist nicht gültig"
+    "general": {
+      "required": "Dieses Feld ist erforderlich",
+      "invalidString": "Ungültige Zeichenkette",
+      "invalidNumber": "Ungültige Zahl",
+      "invalidEmail": "Ungültige E-Mail-Adresse"
     },
     "password": {
       "minLength": "Passwort muss mindestens 8 Zeichen lang sein",
-      "confirmError": "Die eingegebenen Passwörter stimmen nicht überein."
+      "minLengthUser": "Passwort muss mindestens 12 Zeichen lang sein",
+      "minLengthAdmin": "Passwort muss mindestens 20 Zeichen lang sein",
+      "confirmError": "Die eingegebenen Passwörter stimmen nicht überein",
+      "strength": "Passwort entspricht nicht den Anforderungen"
     },
     "firstName": {
       "minLength": "Vorname muss mindestens 2 Zeichen lang sein"
@@ -371,7 +376,6 @@
       "minLength": "Rollenname muss mindestens 2 Zeichen lang sein."
     },
     "contact": {
-      "name": "Name muss mindestens zwei Zeichen lang sein",
       "subject": "Der Betreff muss mindestens zwei Zeichen lang sein.",
       "message": "Die Nachricht muss mindestens zehn Zeichen lang sein."
     },

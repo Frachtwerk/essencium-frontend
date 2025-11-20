@@ -18,9 +18,9 @@
  */
 
 import {
+  UserInput,
+  userInputSchema,
   UserOutput,
-  UserUpdate,
-  userUpdateSchema,
 } from '@frachtwerk/essencium-types'
 import { Button, Grid } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
@@ -32,7 +32,7 @@ import { ControlledSelect, ControlledTextInput } from '../../../../Form'
 type Props = {
   isSso: boolean
   user: UserOutput
-  handleUpdate: (data: UserUpdate) => void
+  handleUpdate: (data: UserInput) => void
   isLoading: boolean
 }
 
@@ -49,7 +49,7 @@ export function PersonalDataForm({
     control,
     reset: resetAndFillForm,
   } = useZodForm({
-    schema: userUpdateSchema,
+    schema: userInputSchema,
     defaultValues: {
       firstName: '',
       lastName: '',
@@ -65,7 +65,7 @@ export function PersonalDataForm({
 
   useEffect(() => {
     if (user) {
-      const parsedUser = userUpdateSchema.parse({
+      const parsedUser = userInputSchema.parse({
         ...user,
         roles: user.roles.map(role => role.name),
         enabled: true,
@@ -75,7 +75,7 @@ export function PersonalDataForm({
     }
   }, [user, resetAndFillForm])
 
-  function onSubmit(updatedUser: UserUpdate): void {
+  function onSubmit(updatedUser: UserInput): void {
     handleUpdate(updatedUser)
   }
 

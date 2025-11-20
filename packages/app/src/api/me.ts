@@ -19,8 +19,8 @@
 
 import {
   PasswordChange,
+  UserInput,
   UserOutput,
-  UserUpdate,
 } from '@frachtwerk/essencium-types'
 
 import { createUseFind, createUseUpdate } from './base'
@@ -31,7 +31,7 @@ export const useGetMe = createUseFind<UserOutput>(RESOURCE, {
   url: RESOURCE,
 })
 
-export const useUpdateMe = createUseUpdate<UserOutput, UserUpdate>(RESOURCE, {
+export const useUpdateMe = createUseUpdate<UserOutput, UserInput>(RESOURCE, {
   url: RESOURCE,
 })
 

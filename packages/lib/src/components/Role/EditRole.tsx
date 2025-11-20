@@ -20,9 +20,8 @@
 import {
   RightOutput,
   RoleInput,
+  roleInputSchema,
   RoleOutput,
-  RoleUpdate,
-  roleUpdateSchema,
 } from '@frachtwerk/essencium-types'
 import { Modal } from '@mantine/core'
 import { Dispatch, type JSX, SetStateAction, useEffect } from 'react'
@@ -40,7 +39,7 @@ type Props = {
   rights: RightOutput[]
   role: RoleOutput
   formDefaults: RoleInput
-  updateRole: (data: RoleUpdate) => void
+  updateRole: (data: RoleInput) => void
   toggleRight: (right: RightOutput) => void
   setSelectedRights: Dispatch<SetStateAction<RightOutput[]>>
   isLoading: boolean
@@ -72,13 +71,13 @@ export function EditRole({
     control,
     reset: resetAndFillForm,
   } = useZodForm({
-    schema: roleUpdateSchema,
+    schema: roleInputSchema,
     defaultValues: formDefaults,
   })
 
   useEffect(() => {
     if (role) {
-      const parsedRole = roleUpdateSchema.parse({
+      const parsedRole = roleInputSchema.parse({
         ...role,
         rights: role.rights.map(right => right.authority),
       })

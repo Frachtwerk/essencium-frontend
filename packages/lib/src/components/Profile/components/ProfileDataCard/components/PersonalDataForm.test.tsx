@@ -123,7 +123,9 @@ describe('PersonalDataForm.tsx', () => {
     fireEvent.submit(submitButton)
 
     expect(
-      await ProfileOverviewCardMounted.findByText('validation.email.notValid'),
+      await ProfileOverviewCardMounted.findByText(
+        'validation.general.invalidEmail',
+      ),
     ).toBeDefined()
   })
 

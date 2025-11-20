@@ -21,7 +21,6 @@ import {
   FilterObjectUser,
   UserInput,
   UserOutput,
-  UserUpdate,
 } from '@frachtwerk/essencium-types'
 
 import { createBaseQueries } from './base/baseQueries'
@@ -35,6 +34,4 @@ export const {
   useCreate: useCreateUser,
   useUpdate: useUpdateUser,
   useDelete: useDeleteUser,
-} = createBaseQueries<UserOutput, UserInput, FilterObjectUser, UserUpdate>(
-  RESOURCE,
-)
+} = createBaseQueries<UserOutput, UserInput, FilterObjectUser>(RESOURCE)

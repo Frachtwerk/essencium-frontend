@@ -20,8 +20,8 @@
 import {
   PasswordChange,
   ROLES,
+  UserInput,
   UserOutput,
-  UserUpdate,
 } from '@frachtwerk/essencium-types'
 import { Card, Tabs } from '@mantine/core'
 import { IconLock, IconUser } from '@tabler/icons-react'
@@ -33,7 +33,7 @@ import { PasswordChangeForm, PersonalDataForm } from './components'
 type Props = {
   isSso: boolean
   user: UserOutput
-  handleUpdate: (data: UserUpdate) => void
+  handleUpdate: (data: UserInput) => void
   handlePasswordUpdate: (
     oldPassword: PasswordChange['password'],
     newPassword: PasswordChange['password'],

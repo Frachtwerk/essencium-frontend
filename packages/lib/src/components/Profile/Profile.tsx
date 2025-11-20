@@ -17,7 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { UserOutput, UserUpdate } from '@frachtwerk/essencium-types'
+import { UserInput, UserOutput } from '@frachtwerk/essencium-types'
 import { Grid } from '@mantine/core'
 import type { JSX } from 'react'
 
@@ -26,7 +26,7 @@ import { ProfileDataCard, ProfileOverviewCard } from './components'
 type Props = {
   isSso: boolean
   user: UserOutput
-  handleUpdate: (data: UserUpdate) => void
+  handleUpdate: (data: UserInput) => void
   handlePasswordUpdate: (oldPassword: string, newPassword: string) => void
   isUpdatingUser: boolean
   isUpdatingPassword: boolean
