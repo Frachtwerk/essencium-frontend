@@ -48,10 +48,10 @@
     "rollup-plugin-peer-deps-external": "2.2.4",
     "tslib": "2.8.1",
     "typescript": "5.9.3",
-    "zod": "3.25.76"
+    "zod": "4.1.12"
   },
   "peerDependencies": {
-    "zod": "^3.0.0"
+    "zod": "^4.0.0"
   },
   "engines": {
     "node": ">=20",

@@ -1,5 +1,7 @@
 import { z } from 'zod'
 
+import { stringSchema } from './base'
+
 export const OpenInput = {
   Issue: 'issue',
   Idea: 'idea',
@@ -9,18 +11,16 @@ export const OpenInput = {
 export type OpenInputTypeValues = (typeof OpenInput)[keyof typeof OpenInput]
 
 export const baseFeedbackFormSchema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string().email(),
+  firstName: stringSchema,
+  lastName: stringSchema,
+  email: z.email(),
   feedbackType: z.enum([OpenInput.Issue, OpenInput.Idea, OpenInput.Other]),
-  message: z
-    .string({ required_error: 'feedbackWidget.requiredError' })
-    .min(10, 'feedbackWidget.minLengthError'),
+  message: z.string().min(10, 'validation.feedbackWidget.message'),
   screenshot: z.string().optional(),
-  path: z.string(),
+  path: stringSchema,
 })
 
-export const additionalPropertiesSchema = z.string()
+export const additionalPropertiesSchema = stringSchema
 
 export const feedbackFormSchema = baseFeedbackFormSchema.catchall(
   additionalPropertiesSchema,

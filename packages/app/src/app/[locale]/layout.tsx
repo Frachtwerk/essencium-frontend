@@ -19,6 +19,7 @@
 
 import '@mantine/spotlight/styles.css'
 import '@/globals.css'
+import '@/config/zod'
 
 import { mantineHtmlProps } from '@mantine/core'
 import type { JSX } from 'react'
