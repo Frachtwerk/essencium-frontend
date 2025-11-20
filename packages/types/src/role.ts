@@ -19,40 +19,29 @@
 
 import { z } from 'zod'
 
+import { stringSchema } from './base'
 import { rightOutputSchema } from './right'
 
-export enum ROLES {
-  USER = 'USER',
-  ADMIN = 'ADMIN',
-}
+export const ROLES = {
+  USER: 'USER',
+  ADMIN: 'ADMIN',
+} as const
 
 const sharedPropertiesSchema = z.object({
-  description: z.string(),
+  description: stringSchema,
   editable: z.boolean(),
   name: z.string().min(2, 'validation.roleName.minLength'),
   protected: z.boolean(),
 })
 
-export const roleOutputSchema = z
-  .object({
-    rights: z.array(rightOutputSchema),
-  })
-  .merge(sharedPropertiesSchema)
+export const roleOutputSchema = sharedPropertiesSchema.extend({
+  rights: z.array(rightOutputSchema),
+})
 
 export type RoleOutput = z.infer<typeof roleOutputSchema>
 
-export const roleInputSchema = sharedPropertiesSchema.merge(
-  z.object({
-    rights: z.array(rightOutputSchema.shape.authority),
-  }),
-)
+export const roleInputSchema = sharedPropertiesSchema.extend({
+  rights: z.array(rightOutputSchema.shape.authority),
+})
 
 export type RoleInput = z.infer<typeof roleInputSchema>
-
-export const roleUpdateSchema = roleOutputSchema.merge(
-  z.object({
-    rights: z.array(rightOutputSchema.shape.authority),
-  }),
-)
-
-export type RoleUpdate = z.infer<typeof roleUpdateSchema>

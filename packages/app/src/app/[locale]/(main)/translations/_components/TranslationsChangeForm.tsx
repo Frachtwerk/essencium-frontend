@@ -17,7 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { hasRequiredRights } from '@frachtwerk/essencium-lib'
+import { hasRequiredRights, useZodForm } from '@frachtwerk/essencium-lib'
 import {
   changeTranslationSchema,
   ChangeTranslationSchemaFormType,
@@ -33,7 +33,6 @@ import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import { userRightsAtom } from '@/api'
-import { useZodForm } from '@/hooks'
 
 type Props = {
   currentValue: string

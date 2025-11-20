@@ -19,8 +19,8 @@
 
 'use client'
 
-import { UserForm } from '@frachtwerk/essencium-lib'
-import { UserUpdate, userUpdateSchema } from '@frachtwerk/essencium-types'
+import { UserForm, useZodForm } from '@frachtwerk/essencium-lib'
+import { UserInput, userInputSchema } from '@frachtwerk/essencium-types'
 import { Card, Flex, Text, Title } from '@mantine/core'
 import { IconUserEdit } from '@tabler/icons-react'
 import { useRouter } from 'next/navigation'
@@ -28,7 +28,6 @@ import { type JSX, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useGetRoles, useGetUser, useUpdateUser } from '@/api'
-import { useZodForm } from '@/hooks'
 
 import { FORM_DEFAULTS_USERS_VIEW } from '../UsersView'
 
@@ -51,13 +50,13 @@ export default function UpdateUserView({
     setValue,
     reset: resetAndFillForm,
   } = useZodForm({
-    schema: userUpdateSchema,
+    schema: userInputSchema,
     defaultValues: FORM_DEFAULTS_USERS_VIEW,
   })
 
   useEffect(() => {
     if (user) {
-      const parsedUser = userUpdateSchema.parse({
+      const parsedUser = userInputSchema.parse({
         ...user,
         roles: user.roles.flatMap(role => role.name),
       })
@@ -77,7 +76,7 @@ export default function UpdateUserView({
 
   const roles = rolesResponse?.content || []
 
-  function handleUpdateUser(updatedUser: UserUpdate): void {
+  function handleUpdateUser(updatedUser: UserInput): void {
     updateUser(updatedUser, {
       onSuccess: () => {
         router.push('/admin/users')

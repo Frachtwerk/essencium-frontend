@@ -124,8 +124,8 @@ importers:
         specifier: workspace:*
         version: link:../types
       '@hookform/resolvers':
-        specifier: 2.9.11
-        version: 2.9.11(react-hook-form@7.43.9(react@19.0.0))
+        specifier: 5.2.2
+        version: 5.2.2(react-hook-form@7.66.1(react@19.0.0))
       '@mantine/core':
         specifier: 8.2.0
         version: 8.2.0(@mantine/hooks@8.2.0(react@19.0.0))(@types/react@19.0.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -199,8 +199,8 @@ importers:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
       react-hook-form:
-        specifier: 7.43.9
-        version: 7.43.9(react@19.0.0)
+        specifier: 7.66.1
+        version: 7.66.1(react@19.0.0)
       react-i18next:
         specifier: 14.1.3
         version: 14.1.3(i18next@23.11.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -214,8 +214,8 @@ importers:
         specifier: 5.7.3
         version: 5.7.3
       zod:
-        specifier: 3.22.5
-        version: 3.22.5
+        specifier: 4.1.12
+        version: 4.1.12
     devDependencies:
       '@frachtwerk/eslint-config-essencium':
         specifier: workspace:*
@@ -373,8 +373,8 @@ importers:
         specifier: workspace:*
         version: link:../prettier-config
       '@hookform/resolvers':
-        specifier: 2.9.11
-        version: 2.9.11(react-hook-form@7.43.9(react@19.0.0))
+        specifier: 5.2.2
+        version: 5.2.2(react-hook-form@7.66.1(react@19.0.0))
       '@mantine/core':
         specifier: 8.2.0
         version: 8.2.0(@mantine/hooks@8.2.0(react@19.0.0))(@types/react@19.0.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -517,8 +517,8 @@ importers:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
       react-hook-form:
-        specifier: 7.43.9
-        version: 7.43.9(react@19.0.0)
+        specifier: 7.66.1
+        version: 7.66.1(react@19.0.0)
       react-i18next:
         specifier: 14.1.3
         version: 14.1.3(i18next@23.11.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -559,8 +559,8 @@ importers:
         specifier: 3.0.7
         version: 3.0.7(@types/node@20.14.14)(happy-dom@20.0.1)(jiti@2.4.2)(lightningcss@1.29.2)(sugarss@4.0.1(postcss@8.4.49))(terser@5.39.0)(yaml@2.5.1)
       zod:
-        specifier: 3.22.5
-        version: 3.22.5
+        specifier: 4.1.12
+        version: 4.1.12
 
   packages/prettier-config:
     devDependencies:
@@ -649,8 +649,8 @@ importers:
         specifier: 5.7.3
         version: 5.7.3
       zod:
-        specifier: 3.22.5
-        version: 3.22.5
+        specifier: 4.1.12
+        version: 4.1.12
 
 packages:
 
@@ -1095,10 +1095,10 @@ packages:
       '@fortawesome/fontawesome-svg-core': ~1 || ~6
       react: '>=16.3'
 
-  '@hookform/resolvers@2.9.11':
-    resolution: {integrity: sha512-bA3aZ79UgcHj7tFV7RlgThzwSSHZgvfbt2wprldRkYBcMopdMvHyO17Wwp/twcJasNFischFfS7oz8Katz8DdQ==}
+  '@hookform/resolvers@5.2.2':
+    resolution: {integrity: sha512-A/IxlMLShx3KjV/HeTcTfaMxdwy690+L/ZADoeaTltLx+CVuzkeVIPuybK3jrRfw7YZnmdKsVVHAlEPIAEUNlA==}
     peerDependencies:
-      react-hook-form: ^7.0.0
+      react-hook-form: ^7.55.0
 
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
@@ -1631,6 +1631,9 @@ packages:
     resolution: {integrity: sha512-LWbXUBwn/bcLx2sSsqy7pK5o+Nr+VCoRoAohfJ5C/aBio9nfJmGQqHAhU6pwxV/RmyTk5AqdySma7uwWGlmeuA==}
     cpu: [x64]
     os: [win32]
+
+  '@standard-schema/utils@0.3.0':
+    resolution: {integrity: sha512-e7Mew686owMaPJVNNLs55PUvgz371nKgwsc4vxE49zsODpJEnxgxRo2y/OKrqueavXgZNMDVj3DdHFlaSAeU8g==}
 
   '@swc/helpers@0.5.15':
     resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
@@ -4189,11 +4192,11 @@ packages:
     peerDependencies:
       react: ^19.0.0
 
-  react-hook-form@7.43.9:
-    resolution: {integrity: sha512-AUDN3Pz2NSeoxQ7Hs6OhQhDr6gtF9YRuutGDwPQqhSUAHJSgGl2VeY3qN19MG0SucpjgDiuMJ4iC5T5uB+eaNQ==}
-    engines: {node: '>=12.22.0'}
+  react-hook-form@7.66.1:
+    resolution: {integrity: sha512-2KnjpgG2Rhbi+CIiIBQQ9Df6sMGH5ExNyFl4Hw9qO7pIqMBR8Bvu9RQyjl3JM4vehzCh9soiNUM/xYMswb2EiA==}
+    engines: {node: '>=18.0.0'}
     peerDependencies:
-      react: ^16.8.0 || ^17 || ^18
+      react: ^16.8.0 || ^17 || ^18 || ^19
 
   react-i18next@14.1.3:
     resolution: {integrity: sha512-wZnpfunU6UIAiJ+bxwOiTmBOAaB14ha97MjOEnLGac2RJ+h/maIYXZuTHlmyqQVX1UVHmU1YDTQ5vxLmwfXTjw==}
@@ -5021,8 +5024,8 @@ packages:
     resolution: {integrity: sha512-AyeEbWOu/TAXdxlV9wmGcR0+yh2j3vYPGOECcIj2S7MkrLyC7ne+oye2BKTItt0ii2PHk4cDy+95+LshzbXnGg==}
     engines: {node: '>=12.20'}
 
-  zod@3.22.5:
-    resolution: {integrity: sha512-HqnGsCdVZ2xc0qWPLdO25WnseXThh0kEYKIdV5F/hTHO75hNZFp8thxSeHhiPrHZKrFTo1SOgkAj9po5bexZlw==}
+  zod@4.1.12:
+    resolution: {integrity: sha512-JInaHOamG8pt5+Ey8kGmdcAcg3OL9reK8ltczgHTAwNhMys/6ThXHityHxVV2p3fkw/c+MAvBHFVYHFZDmjMCQ==}
 
 snapshots:
 
@@ -5515,9 +5518,10 @@ snapshots:
       prop-types: 15.8.1
       react: 19.0.0
 
-  '@hookform/resolvers@2.9.11(react-hook-form@7.43.9(react@19.0.0))':
+  '@hookform/resolvers@5.2.2(react-hook-form@7.66.1(react@19.0.0))':
     dependencies:
-      react-hook-form: 7.43.9(react@19.0.0)
+      '@standard-schema/utils': 0.3.0
+      react-hook-form: 7.66.1(react@19.0.0)
 
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
@@ -5917,6 +5921,8 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.37.0':
     optional: true
+
+  '@standard-schema/utils@0.3.0': {}
 
   '@swc/helpers@0.5.15':
     dependencies:
@@ -8766,7 +8772,7 @@ snapshots:
       react: 19.0.0
       scheduler: 0.25.0
 
-  react-hook-form@7.43.9(react@19.0.0):
+  react-hook-form@7.66.1(react@19.0.0):
     dependencies:
       react: 19.0.0
 
@@ -9817,4 +9823,4 @@ snapshots:
 
   yocto-queue@1.2.1: {}
 
-  zod@3.22.5: {}
+  zod@4.1.12: {}

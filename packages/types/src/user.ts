@@ -20,19 +20,24 @@
 
 import { z } from 'zod'
 
-import { basePropertiesSchema } from './base'
-import { roleOutputSchema } from './role'
+import {
+  passwordStrengthBaseSchema,
+  passwordStrengthSchemaAdmin,
+  passwordStrengthSchemaUser,
+} from './auth'
+import { baseInputSchema, basePropertiesSchema, stringSchema } from './base'
+import { roleOutputSchema, ROLES } from './role'
 
-export enum UserSource {
-  LOCAL = 'local',
-}
+export const UserSource = {
+  LOCAL: 'local',
+} as const
 
 const sharedPropertiesSchema = z.object({
-  email: z.string().email('validation.email.notValid'),
+  email: z.email(),
   enabled: z.boolean(),
   firstName: z.string().min(2, 'validation.firstName.minLength'),
   lastName: z.string().min(2, 'validation.lastName.minLength'),
-  locale: z.string(),
+  locale: stringSchema,
   mobile: z
     .string()
     .nullable()
@@ -43,149 +48,41 @@ const sharedPropertiesSchema = z.object({
     .transform(value => (value === null ? '' : value)),
 })
 
-const rolesArray = z.array(roleOutputSchema)
-
 export const userOutputSchema = basePropertiesSchema
-  .merge(
-    z.object({
-      roles: rolesArray,
-      source: z.union([z.literal(UserSource.LOCAL), z.string()]),
-    }),
-  )
-  .merge(sharedPropertiesSchema)
+  .extend({
+    roles: z.array(roleOutputSchema),
+    source: z.union([z.literal(UserSource.LOCAL), stringSchema]),
+  })
+  .extend(sharedPropertiesSchema.shape)
 
 export type UserOutput = z.infer<typeof userOutputSchema>
 
-export const PasswordStrengthRules = {
-  uppercase: /[A-Z]/,
-  lowercase: /[a-z]/,
-  number: /[0-9]/,
-  specialCharacter: /[!@#§$%^&*(),.?":{}|<>[\]\\';'/`~+=_-]/,
-} as const
-
-// release change to trigger a new version, DELETE ME
-const passwordStrengthBaseSchema = z
-  .string()
+// TODO: Check if error messages mapping with minimum works
+export const userInputSchema = baseInputSchema
+  .extend({
+    password: passwordStrengthBaseSchema.or(z.literal('')).optional(),
+    roles: z.array(roleOutputSchema.shape.name),
+  })
+  .extend(sharedPropertiesSchema.shape)
   .refine(
-    password =>
-      PasswordStrengthRules.uppercase.test(password) &&
-      PasswordStrengthRules.lowercase.test(password) &&
-      PasswordStrengthRules.number.test(password) &&
-      PasswordStrengthRules.specialCharacter.test(password),
+    data => {
+      if (data.roles.includes(ROLES.ADMIN)) {
+        return passwordStrengthSchemaAdmin.safeParse(data.password).success
+      }
+      return passwordStrengthSchemaUser.safeParse(data.password).success
+    },
     {
-      message:
-        'profileView.dataCard.tabs.passwordChange.passwordStrength.validationError',
+      path: ['password'],
+      error: () => {
+        // console.log(iss.minimum)
+        return 'validation.password.strength'
+      },
+      when(payload) {
+        return userInputSchema
+          .pick({ roles: true, password: true })
+          .safeParse(payload.value).success
+      },
     },
   )
 
-const passwordStrengthSchemaUser = passwordStrengthBaseSchema.and(
-  z
-    .string()
-    .min(
-      12,
-      'profileView.dataCard.tabs.passwordChange.passwordStrength.validationError',
-    ),
-)
-
-const passwordStrengthSchemaAdmin = passwordStrengthBaseSchema.and(
-  z
-    .string()
-    .min(
-      20,
-      'profileView.dataCard.tabs.passwordChange.passwordStrength.validationError',
-    ),
-)
-export const userInputSchema = sharedPropertiesSchema.merge(
-  z.object({
-    password: passwordStrengthBaseSchema.or(z.literal('')).optional(),
-    roles: roleOutputSchema.shape.name
-      .refine(
-        role =>
-          role !== undefined &&
-          roleOutputSchema.shape.name.safeParse(role).success,
-        {
-          message: 'validation.role.isRequired',
-        },
-      )
-      .array(),
-  }),
-)
-
 export type UserInput = z.infer<typeof userInputSchema>
-
-export const userUpdateSchema = userOutputSchema
-  .merge(
-    z.object({
-      password: passwordStrengthSchemaUser.or(z.literal('')).optional(),
-      roles: roleOutputSchema.shape.name
-        .refine(
-          role =>
-            role !== undefined &&
-            roleOutputSchema.shape.name.safeParse(role).success,
-          {
-            message: 'validation.role.isRequired',
-          },
-        )
-        .array(),
-    }),
-  )
-  .omit({ source: true })
-
-export type UserUpdate = z.infer<typeof userUpdateSchema>
-
-const passwordChangeBaseSchema = z.object({
-  verification: z.string(),
-  confirmPassword: z.string(),
-})
-
-export const passwordChangeSchemaUser = passwordChangeBaseSchema
-  .extend({
-    password: passwordStrengthSchemaUser,
-  })
-  .refine(data => data.password === data.confirmPassword, {
-    message: 'validation.password.confirmError',
-    path: ['confirmPassword'],
-  })
-
-export type PasswordChange = z.infer<typeof passwordChangeSchemaUser>
-
-export const passwordChangeSchemaAdmin = passwordChangeBaseSchema
-  .extend({
-    password: passwordStrengthSchemaAdmin,
-  })
-  .refine(data => data.password === data.confirmPassword, {
-    message: 'validation.password.confirmError',
-    path: ['confirmPassword'],
-  })
-
-export type PasswordChangeAdmin = z.infer<typeof passwordChangeSchemaAdmin>
-
-export const loginFormSchema = z.object({
-  email: z.string().email('validation.email.notValid'),
-  password: z.string().min(8, 'validation.password.minLength'),
-})
-
-export type LoginForm = z.infer<typeof loginFormSchema>
-
-export const resetPasswordSchema = z.object({
-  email: z.string().email('validation.email.notValid'),
-})
-
-export type ResetPassword = z.infer<typeof resetPasswordSchema>
-
-export const setPasswordFormSchema = z
-  .object({
-    password: z.string().min(8, 'validation.password.minLength'),
-    confirmPassword: z.string().min(8, 'validation.password.minLength'),
-  })
-  .refine(data => data.password === data.confirmPassword, {
-    message: 'validation.password.confirmError',
-    path: ['confirmPassword'],
-  })
-
-export type SetPasswordFormType = z.infer<typeof setPasswordFormSchema>
-
-export type SetPasswordInput = {
-  password: string
-  verification: string
-}

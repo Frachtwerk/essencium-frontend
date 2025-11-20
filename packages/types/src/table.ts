@@ -17,9 +17,9 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export enum TABLEFILTERTYPE {
-  TEXT = 'text',
-  SELECT = 'select',
-  MULTI_SELECT = 'multi-select',
-  MONTH_PICKER = 'month-picker',
-}
+export const TABLEFILTERTYPE = {
+  TEXT: 'text',
+  SELECT: 'select',
+  MULTI_SELECT: 'multi-select',
+  MONTH_PICKER: 'month-picker',
+} as const
