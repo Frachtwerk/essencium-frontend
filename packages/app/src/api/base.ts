@@ -114,7 +114,9 @@ export function useGetInfinite<O, F extends Filter>(
   }
 }
 
-export type UseGetAllOptions<F extends Filter> = UseGetInfiniteOptions<F> & {
+export interface UseGetAllOptions<F extends Filter>
+  extends UseQueryOptions,
+    FilterOptions<F> {
   pagination?: Pick<PaginationParams, 'sort'>
 }
 

@@ -27,7 +27,7 @@ import { useRouter } from 'next/navigation'
 import type { JSX } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { useCreateUser, useGetRoles } from '@/api'
+import { useCreateUser, useGetAllRoles } from '@/api'
 import { useZodForm } from '@/hooks'
 
 import { FORM_DEFAULTS_USERS_VIEW } from '../UsersView'
@@ -44,14 +44,7 @@ export default function AddUserView(): JSX.Element {
 
   const { mutate: addUser, isPending } = useCreateUser()
 
-  const { data: rolesResponse } = useGetRoles({
-    pagination: {
-      page: 0,
-      size: 2000,
-    },
-  })
-
-  const roles = rolesResponse?.content || []
+  const { items: roles } = useGetAllRoles()
 
   function handleAddUser(user: UserInput): void {
     addUser(user, {

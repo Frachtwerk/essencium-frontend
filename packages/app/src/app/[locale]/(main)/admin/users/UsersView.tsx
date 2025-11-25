@@ -69,7 +69,7 @@ import { useTranslation } from 'react-i18next'
 
 import {
   useDeleteUser,
-  useGetRoles,
+  useGetAllRoles,
   useGetUsers,
   useInvalidateToken,
   userRightsAtom,
@@ -113,16 +113,14 @@ export default function UsersView(): JSX.Element {
   const [columnFiltersDebounced] = useDebouncedValue(columnFilters, 350)
   const [showFilter, setShowFilter] = useState(false)
 
-  const { data: allRoles } = useGetRoles({
+  const { items: allRoles } = useGetAllRoles({
     pagination: {
-      page: 0,
-      size: 2000,
       sort: 'name,asc',
     },
   })
 
   function getFilterRolesData(): Record<string, Array<string>> {
-    const roles = allRoles?.content.map(role => role.name) || []
+    const roles = allRoles.map(role => role.name)
 
     return {
       roles,

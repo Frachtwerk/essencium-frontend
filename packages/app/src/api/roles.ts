@@ -36,6 +36,9 @@ import {
   UseCreateResult,
   useDelete,
   UseDeleteResult,
+  useGetAll,
+  UseGetAllOptions,
+  UseGetAllResult,
   useGetPage,
   UseGetPageOptions,
   UseGetPageResult,
@@ -44,6 +47,12 @@ import {
 export type RolesResponse = PaginatedResponse<RoleOutput>
 
 const resource = 'roles'
+
+export function useGetAllRoles(
+  options: UseGetAllOptions<Record<string, never>> = {},
+): UseGetAllResult<RoleOutput> {
+  return useGetAll(resource, options)
+}
 
 export function useCreateRole(): UseCreateResult<RoleOutput, RoleInput> {
   return useCreate(resource)

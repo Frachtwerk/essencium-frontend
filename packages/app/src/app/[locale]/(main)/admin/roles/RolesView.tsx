@@ -61,7 +61,7 @@ import { useTranslation } from 'react-i18next'
 import {
   useCreateRole,
   useDeleteRole,
-  useGetRights,
+  useGetAllRights,
   useGetRoles,
   userRightsAtom,
   useUpdateRole,
@@ -112,7 +112,7 @@ export default function RolesView(): JSX.Element {
     },
   })
 
-  const { data: rights } = useGetRights({ pagination: { page: 0, size: 2000 } })
+  const { items: rights } = useGetAllRights()
 
   const { mutate: createRole, isPending: isCreatingRole } = useCreateRole()
 
@@ -300,7 +300,7 @@ export default function RolesView(): JSX.Element {
         onClose={() => {
           addModalHandlers.close()
         }}
-        rights={rights?.content || []}
+        rights={rights}
         createRole={handleCreateRole}
         toggleRight={toggleRight}
         formDefaults={FORM_DEFAULTS_ROLES_VIEW}
@@ -316,7 +316,7 @@ export default function RolesView(): JSX.Element {
           editModalHandlers.close()
           setRoleToEditOrDelete(null)
         }}
-        rights={rights?.content || []}
+        rights={rights}
         updateRole={handleUpdateRole}
         formDefaults={FORM_DEFAULTS_ROLES_VIEW}
         toggleRight={toggleRight}

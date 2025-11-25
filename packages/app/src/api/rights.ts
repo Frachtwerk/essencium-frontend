@@ -19,9 +19,22 @@
 
 import { RightOutput } from '@frachtwerk/essencium-types'
 
-import { useGetPage, UseGetPageOptions, UseGetPageResult } from './base'
+import {
+  useGetAll,
+  UseGetAllOptions,
+  UseGetAllResult,
+  useGetPage,
+  UseGetPageOptions,
+  UseGetPageResult,
+} from './base'
 
 const resource = 'rights'
+
+export function useGetAllRights(
+  options: UseGetAllOptions<Record<string, never>> = {},
+): UseGetAllResult<RightOutput> {
+  return useGetAll(resource, options)
+}
 
 export function useGetRights(
   options: UseGetPageOptions<Record<string, never>> = {},
