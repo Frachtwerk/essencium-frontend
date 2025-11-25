@@ -26,6 +26,7 @@ import {
   useMutation,
   UseMutationResult,
   useQuery,
+  useQueryClient,
   UseQueryResult,
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
@@ -52,6 +53,8 @@ export function useUpdateMe(): UseMutationResult<
   AxiosError,
   UserUpdate
 > {
+  const queryClient = useQueryClient()
+
   const mutation = useMutation<UserOutput, AxiosError, UserUpdate>({
     mutationKey: ['useUpdateMe'],
     mutationFn: (user: UserUpdate) =>
@@ -65,6 +68,9 @@ export function useUpdateMe(): UseMutationResult<
       successNotification: {
         notificationType: 'updated',
       },
+    },
+    onSuccess() {
+      queryClient.invalidateQueries({ queryKey: ['useGetMe'] })
     },
   })
 

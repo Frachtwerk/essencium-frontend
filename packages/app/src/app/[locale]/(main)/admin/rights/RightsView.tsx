@@ -68,15 +68,17 @@ export default function RightsView(): JSX.Element {
     error: errorRights,
     refetch: refetchRights,
   } = useGetRights({
-    page: activePage - 1,
-    size: pageSize,
-    sort: parseSorting(sorting, DEFAULT_SORTING),
+    pagination: {
+      page: activePage - 1,
+      size: pageSize,
+      sort: parseSorting(sorting, DEFAULT_SORTING),
+    },
   })
 
   const { data: roles, refetch: refetchRoles } = useGetRoles({
-    requestConfig: {
+    pagination: {
       page: 0,
-      size: 9999,
+      size: 2000,
       sort: 'name,asc',
     },
   })

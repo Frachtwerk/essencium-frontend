@@ -19,134 +19,49 @@
 
 import {
   FilterObjectUser,
-  PaginatedResponse,
   UserInput,
   UserOutput,
   UserUpdate,
 } from '@frachtwerk/essencium-types'
+
 import {
-  useMutation,
-  UseMutationResult,
-  useQuery,
-  UseQueryResult,
-} from '@tanstack/react-query'
-import { AxiosError } from 'axios'
-import { useAtomValue } from 'jotai'
+  useCreate,
+  UseCreateResult,
+  useDelete,
+  UseDeleteResult,
+  useFind,
+  UseFindOptions,
+  UseFindResult,
+  useGetPage,
+  UseGetPageOptions,
+  UseGetPageResult,
+  useUpdate,
+  UseUpdateResult,
+} from './base'
 
-import { api } from './api'
-import { authTokenAtom } from './auth'
+const resource = 'users'
 
-export type UsersResponse = PaginatedResponse<UserOutput>
-
-export type GetUsersParams = {
-  page: UsersResponse['number']
-  size: UsersResponse['size']
-  sort?: string
-  filter?: FilterObjectUser
-}
-
-export function useGetUsers({
-  page,
-  size,
-  sort,
-  filter,
-}: GetUsersParams): UseQueryResult<UsersResponse, AxiosError> {
-  const authToken = useAtomValue(authTokenAtom)
-
-  return useQuery<UsersResponse, AxiosError>({
-    enabled: Boolean(authToken),
-    queryKey: ['getUsers', { page, size, sort, filter }],
-    queryFn: () =>
-      api
-        .get<UsersResponse>('/users', {
-          params: {
-            page,
-            size,
-            sort,
-            ...filter,
-          },
-        })
-        .then(response => response.data),
-  })
+export function useGetUsers(
+  options: UseGetPageOptions<FilterObjectUser>,
+): UseGetPageResult<UserOutput> {
+  return useGetPage(resource, options)
 }
 
 export function useGetUser(
-  userId: UserOutput['id'],
-): UseQueryResult<UserOutput, AxiosError> {
-  const authToken = useAtomValue(authTokenAtom)
-
-  return useQuery<UserOutput, AxiosError>({
-    enabled: Boolean(authToken) && Boolean(userId),
-    queryKey: ['useGetUser', userId],
-    queryFn: () =>
-      api.get<UserOutput>(`/users/${userId}`).then(response => response.data),
-  })
+  id: UserOutput['id'],
+  options?: UseFindOptions,
+): UseFindResult<UserOutput> {
+  return useFind(id, resource, options)
 }
 
-export function useCreateUser(): UseMutationResult<
-  UserInput,
-  AxiosError,
-  UserInput
-> {
-  const mutation = useMutation<UserInput, AxiosError, UserInput>({
-    mutationKey: ['useCreateUser'],
-    mutationFn: (newUser: UserInput) =>
-      api.post<UserInput, UserInput>('/users', newUser).then(res => res.data),
-    meta: {
-      errorNotification: {
-        notificationType: 'created',
-      },
-      successNotification: {
-        notificationType: 'created',
-      },
-    },
-  })
-
-  return mutation
+export function useCreateUser(): UseCreateResult<UserOutput, UserInput> {
+  return useCreate(resource)
 }
 
-export function useUpdateUser(): UseMutationResult<
-  UserOutput,
-  AxiosError,
-  UserUpdate
-> {
-  const mutation = useMutation<UserOutput, AxiosError, UserUpdate>({
-    mutationKey: ['useUpdateUser'],
-    mutationFn: (user: UserUpdate) =>
-      api
-        .put<UserOutput, UserUpdate>(`/users/${user.id}`, user)
-        .then(response => response.data),
-    meta: {
-      errorNotification: {
-        notificationType: 'updated',
-      },
-      successNotification: {
-        notificationType: 'updated',
-      },
-    },
-  })
-
-  return mutation
+export function useUpdateUser(): UseUpdateResult<UserOutput, UserUpdate> {
+  return useUpdate(resource)
 }
 
-export function useDeleteUser(): UseMutationResult<
-  null,
-  AxiosError,
-  UserOutput['id']
-> {
-  const mutation = useMutation<null, AxiosError, UserOutput['id']>({
-    mutationKey: ['useDeleteUser'],
-    mutationFn: (userId: UserOutput['id']) =>
-      api.delete<null>(`/users/${userId}`).then(response => response.data),
-    meta: {
-      errorNotification: {
-        notificationType: 'deleted',
-      },
-      successNotification: {
-        notificationType: 'deleted',
-      },
-    },
-  })
-
-  return mutation
+export function useDeleteUser(): UseDeleteResult {
+  return useDelete(resource)
 }

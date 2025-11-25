@@ -17,32 +17,20 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { useMutation, UseMutationResult } from '@tanstack/react-query'
-import { AxiosError } from 'axios'
+import { ContactFormType } from '@frachtwerk/essencium-types'
 import { useTranslation } from 'react-i18next'
 
-import { api } from './api'
+import { useCreate, UseCreateResult } from './base'
 
-type ContactInput = {
-  name: string
-  mailAddress: string
-  subject: string
-  message: string
-}
+const resource = 'contact'
 
-export function useSendContactMessage(): UseMutationResult<
+export function useSendContactMessage(): UseCreateResult<
   void,
-  AxiosError,
-  ContactInput
+  ContactFormType
 > {
   const { t } = useTranslation()
 
-  const mutation = useMutation<void, AxiosError, ContactInput>({
-    mutationKey: ['sendContactMessage'],
-    mutationFn: (newMessage: ContactInput) =>
-      api
-        .post<void, ContactInput>('/contact', newMessage)
-        .then(response => response.data),
+  return useCreate(resource, {
     meta: {
       errorNotification: {
         notificationType: 'created',
@@ -54,6 +42,4 @@ export function useSendContactMessage(): UseMutationResult<
       },
     },
   })
-
-  return mutation
 }

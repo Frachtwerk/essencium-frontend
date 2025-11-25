@@ -45,9 +45,9 @@ export default function AddUserView(): JSX.Element {
   const { mutate: addUser, isPending } = useCreateUser()
 
   const { data: rolesResponse } = useGetRoles({
-    requestConfig: {
+    pagination: {
       page: 0,
-      size: 9999,
+      size: 2000,
     },
   })
 

@@ -114,9 +114,9 @@ export default function UsersView(): JSX.Element {
   const [showFilter, setShowFilter] = useState(false)
 
   const { data: allRoles } = useGetRoles({
-    requestConfig: {
+    pagination: {
       page: 0,
-      size: 9999,
+      size: 2000,
       sort: 'name,asc',
     },
   })
@@ -135,11 +135,12 @@ export default function UsersView(): JSX.Element {
     isError: isErrorUsers,
     isFetching: isFetchingUsers,
     error: errorUsers,
-    refetch: refetchUsers,
   } = useGetUsers({
-    page: activePage - 1,
-    size: pageSize,
-    sort: parseSorting(sorting, DEFAULT_SORTING),
+    pagination: {
+      page: activePage - 1,
+      size: pageSize,
+      sort: parseSorting(sorting, DEFAULT_SORTING),
+    },
     filter: columnFiltersDebounced.reduce(
       (acc, { id, value }) => ({ ...acc, [id]: value }),
       {},
@@ -150,17 +151,17 @@ export default function UsersView(): JSX.Element {
 
   const handleDeleteUser = useCallback(
     (userToDelete: UserOutput) => {
+      if (!userToDelete.id) {
+        throw new Error('User ID is undefined')
+      }
+
       deleteUser(userToDelete.id, {
-        onSuccess: () => {
-          deleteModalHandlers.close()
-          refetchUsers()
-        },
-        onError: () => {
+        onSettled() {
           deleteModalHandlers.close()
         },
       })
     },
-    [deleteUser, refetchUsers, deleteModalHandlers],
+    [deleteUser, deleteModalHandlers],
   )
 
   const { mutate: invalidateToken } = useInvalidateToken()

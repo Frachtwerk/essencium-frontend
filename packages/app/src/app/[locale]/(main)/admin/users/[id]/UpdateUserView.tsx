@@ -69,9 +69,9 @@ export default function UpdateUserView({
   const { mutate: updateUser, isPending } = useUpdateUser()
 
   const { data: rolesResponse } = useGetRoles({
-    requestConfig: {
+    pagination: {
       page: 0,
-      size: 9999,
+      size: 2000,
     },
   })
 

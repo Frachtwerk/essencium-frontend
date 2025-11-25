@@ -104,16 +104,15 @@ export default function RolesView(): JSX.Element {
     isFetching: isFetchingRoles,
     isError: isErrorRoles,
     error: errorRoles,
-    refetch: refetchRoles,
   } = useGetRoles({
-    requestConfig: {
+    pagination: {
       page: activePage - 1,
       size: pageSize,
       sort: parseSorting(sorting, DEFAULT_SORTING),
     },
   })
 
-  const { data: rights } = useGetRights({ page: 0, size: 9999 })
+  const { data: rights } = useGetRights({ pagination: { page: 0, size: 2000 } })
 
   const { mutate: createRole, isPending: isCreatingRole } = useCreateRole()
 
@@ -123,11 +122,7 @@ export default function RolesView(): JSX.Element {
 
   function handleDeleteRole(roleName: RoleOutput['name']): void {
     deleteRole(roleName, {
-      onSuccess: () => {
-        deleteModalHandlers.close()
-        refetchRoles()
-      },
-      onError: () => {
+      onSettled: () => {
         deleteModalHandlers.close()
       },
     })
@@ -140,11 +135,7 @@ export default function RolesView(): JSX.Element {
         rights: selectedRights.map(right => right.authority),
       },
       {
-        onSuccess: () => {
-          addModalHandlers.close()
-          refetchRoles()
-        },
-        onError: () => {
+        onSettled: () => {
           addModalHandlers.close()
         },
       },
@@ -158,11 +149,7 @@ export default function RolesView(): JSX.Element {
         rights: selectedRights.map(right => right.authority),
       },
       {
-        onSuccess: () => {
-          editModalHandlers.close()
-          refetchRoles()
-        },
-        onError: () => {
+        onSettled: () => {
           editModalHandlers.close()
         },
       },
