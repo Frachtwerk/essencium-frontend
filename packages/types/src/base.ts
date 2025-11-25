@@ -61,3 +61,11 @@ export type PaginatedResponse<T> = {
   totalElements: number
   totalPages: number
 }
+
+export const paginationParamsSchema = z.object({
+  page: z.number().min(0).default(0),
+  size: z.number().min(1).max(2000).default(10),
+  sort: z.string().optional(),
+})
+
+export type PaginationParams = z.infer<typeof paginationParamsSchema>
