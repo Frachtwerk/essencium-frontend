@@ -17,10 +17,13 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './isBrowserEnvironment'
-export * from './logout'
-export * from './mergeTranslations'
-export * from './pagination'
-export * from './parseJwt'
-export * from './parseSorting'
-export * from './withBaseStylingShowNotification'
+import {
+  PaginationParams,
+  paginationParamsSchema,
+} from '@frachtwerk/essencium-types'
+
+export function parsePaginationParams(
+  params: Partial<PaginationParams> = {},
+): PaginationParams {
+  return paginationParamsSchema.parse(params)
+}
