@@ -70,7 +70,7 @@ export const paginationParamsSchema = z.object({
 
 export type PaginationParams = z.infer<typeof paginationParamsSchema>
 
-export const stringSchema = z.string().min(1)
+export const stringSchema = z.string().trim().min(1)
 
 export const idSchema = z
   .number({
