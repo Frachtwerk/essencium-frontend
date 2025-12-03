@@ -49,7 +49,7 @@ export type RolesResponse = PaginatedResponse<RoleOutput>
 const resource = 'roles'
 
 export function useGetAllRoles(
-  options: UseGetAllOptions<Record<string, never>> = {},
+  options: UseGetAllOptions<RoleOutput, Record<string, never>> = {},
 ): UseGetAllResult<RoleOutput> {
   return useGetAll(resource, options)
 }
@@ -59,7 +59,7 @@ export function useCreateRole(): UseCreateResult<RoleOutput, RoleInput> {
 }
 
 export function useGetRoles(
-  options: UseGetPageOptions<Record<string, never>> = {},
+  options: UseGetPageOptions<RoleOutput, Record<string, never>> = {},
 ): UseGetPageResult<RoleOutput> {
   return useGetPage(resource, options)
 }

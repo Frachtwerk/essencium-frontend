@@ -31,14 +31,16 @@ export function useSendContactMessage(): UseCreateResult<
   const { t } = useTranslation()
 
   return useCreate(resource, {
-    meta: {
-      errorNotification: {
-        notificationType: 'created',
-        message: t('notifications.sendMessageError.message'),
-      },
-      successNotification: {
-        notificationType: 'created',
-        message: t('notifications.sendMessageSuccess.message'),
+    settings: {
+      meta: {
+        errorNotification: {
+          notificationType: 'created',
+          message: t('notifications.sendMessageError.message'),
+        },
+        successNotification: {
+          notificationType: 'created',
+          message: t('notifications.sendMessageSuccess.message'),
+        },
       },
     },
   })

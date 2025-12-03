@@ -31,13 +31,13 @@ import {
 const resource = 'rights'
 
 export function useGetAllRights(
-  options: UseGetAllOptions<Record<string, never>> = {},
+  options: UseGetAllOptions<RightOutput, Record<string, never>> = {},
 ): UseGetAllResult<RightOutput> {
   return useGetAll(resource, options)
 }
 
 export function useGetRights(
-  options: UseGetPageOptions<Record<string, never>> = {},
+  options: UseGetPageOptions<RightOutput, Record<string, never>> = {},
 ): UseGetPageResult<RightOutput> {
   return useGetPage(resource, options)
 }

@@ -25,11 +25,14 @@ import {
 import {
   InfiniteData,
   useInfiniteQuery,
+  UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
   useMutation,
+  UseMutationOptions,
   UseMutationResult,
   useQuery,
   useQueryClient,
+  UseQueryOptions,
   UseQueryResult,
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
@@ -41,53 +44,52 @@ import { parsePaginationParams } from '@/utils/pagination'
 import { api } from './api'
 import { authTokenAtom } from './auth'
 
-type Filter = Record<string, unknown>
+type TBaseFilter = Record<string, unknown>
 
-interface UseQueryOptions {
-  settings?: {
-    enabled?: boolean
-  }
-}
-
-interface UseMutationOptions {
-  invalidateQueryKeys?: Array<string | string[]>
-  meta?: Record<string, unknown>
-}
-
-interface FilterOptions<F extends Filter> {
-  filter?: F
+interface FilterOptions<TFilter extends TBaseFilter> {
+  filter?: TFilter
 }
 
 interface PaginationOptions {
   pagination?: Partial<PaginationParams>
 }
 
-export interface UseGetInfiniteOptions<F extends Filter>
-  extends UseQueryOptions,
-    FilterOptions<F> {
+export interface UseGetInfiniteOptions<TOutput, TFilter extends TBaseFilter>
+  extends FilterOptions<TFilter> {
   pagination?: Omit<PaginationParams, 'page'>
+  settings?: Omit<
+    UseInfiniteQueryOptions<PaginatedResponse<TOutput>, AxiosError>,
+    'queryKey' | 'queryFn' | 'initialPageParam' | 'getNextPageParam' | 'select'
+  >
 }
 
-export type UseGetInfiniteResult<O> = UseInfiniteQueryResult<
-  InfiniteData<PaginatedResponse<O>>,
+export type UseGetInfiniteResult<TOutput> = UseInfiniteQueryResult<
+  InfiniteData<PaginatedResponse<TOutput>>,
   AxiosError
-> & { items: O[] }
+> & { items: TOutput[] }
 
-export function useGetInfinite<O, F extends Filter>(
+export function useGetInfinite<TOutput, TFilter extends TBaseFilter>(
   resource: string,
-  options: UseGetInfiniteOptions<F> = {},
-): UseGetInfiniteResult<O> {
-  const { settings, pagination, filter } = options
+  options: UseGetInfiniteOptions<TOutput, TFilter> = {},
+): UseGetInfiniteResult<TOutput> {
+  const { settings = {}, pagination, filter } = options
 
   const authToken = useAtomValue(authTokenAtom)
 
   const parsedPaginationParams = parsePaginationParams(pagination)
 
-  const query = useInfiniteQuery<PaginatedResponse<O>, AxiosError>({
+  const { enabled: settingsEnabled, ...infiniteSettings } = settings
+
+  const enabled =
+    settingsEnabled !== undefined
+      ? settingsEnabled && Boolean(authToken)
+      : Boolean(authToken)
+
+  const query = useInfiniteQuery<PaginatedResponse<TOutput>, AxiosError>({
     queryKey: [resource, 'infinite', filter, parsedPaginationParams],
     queryFn: ({ pageParam }) =>
       api
-        .get<PaginatedResponse<O>>(`/${resource}`, {
+        .get<PaginatedResponse<TOutput>>(`/${resource}`, {
           params: {
             ...parsedPaginationParams,
             page: pageParam,
@@ -102,10 +104,8 @@ export function useGetInfinite<O, F extends Filter>(
       }
       return undefined
     },
-    enabled:
-      settings?.enabled !== undefined
-        ? settings.enabled && Boolean(authToken)
-        : Boolean(authToken),
+    enabled,
+    ...infiniteSettings,
   })
 
   return {
@@ -114,18 +114,21 @@ export function useGetInfinite<O, F extends Filter>(
   }
 }
 
-export interface UseGetAllOptions<F extends Filter>
-  extends UseQueryOptions,
-    FilterOptions<F> {
+export interface UseGetAllOptions<TOutput, TFilter extends TBaseFilter>
+  extends FilterOptions<TFilter> {
   pagination?: Pick<PaginationParams, 'sort'>
+  settings?: Omit<
+    UseInfiniteQueryOptions<PaginatedResponse<TOutput>, AxiosError>,
+    'queryKey' | 'queryFn' | 'initialPageParam' | 'getNextPageParam' | 'select'
+  >
 }
 
-export type UseGetAllResult<O> = UseGetInfiniteResult<O>
+export type UseGetAllResult<TOutput> = UseGetInfiniteResult<TOutput>
 
-export function useGetAll<O, F extends Filter>(
+export function useGetAll<TOutput, TFilter extends TBaseFilter>(
   resource: string,
-  options: UseGetAllOptions<F> = {},
-): UseGetAllResult<O> {
+  options: UseGetAllOptions<TOutput, TFilter> = {},
+): UseGetAllResult<TOutput> {
   const { settings, pagination, filter } = options
 
   const parsedPaginationParams = parsePaginationParams({
@@ -133,7 +136,7 @@ export function useGetAll<O, F extends Filter>(
     size: 2000,
   })
 
-  const query = useGetInfinite<O, F>(resource, {
+  const query = useGetInfinite<TOutput, TFilter>(resource, {
     settings,
     pagination: parsedPaginationParams,
     filter,
@@ -149,82 +152,123 @@ export function useGetAll<O, F extends Filter>(
   }
 }
 
-export interface UseGetPageOptions<F extends Filter>
-  extends UseQueryOptions,
-    FilterOptions<F>,
-    PaginationOptions {}
+export interface UseGetPageOptions<TOutput, TFilter extends TBaseFilter>
+  extends FilterOptions<TFilter>,
+    PaginationOptions {
+  settings?: Omit<
+    UseQueryOptions<
+      PaginatedResponse<TOutput>,
+      AxiosError<PaginatedResponse<TOutput>>
+    >,
+    'queryKey' | 'queryFn'
+  >
+}
 
-export type UseGetPageResult<O> = UseQueryResult<
-  PaginatedResponse<O>,
-  AxiosError
+export type UseGetPageResult<TOutput> = UseQueryResult<
+  PaginatedResponse<TOutput>,
+  AxiosError<PaginatedResponse<TOutput>>
 >
 
-export function useGetPage<O, F extends Filter>(
+export function useGetPage<TOutput, TFilter extends TBaseFilter>(
   resource: string,
-  options: UseGetPageOptions<F> = {},
-): UseGetPageResult<O> {
-  const { settings, pagination, filter } = options
+  options: UseGetPageOptions<TOutput, TFilter> = {},
+): UseGetPageResult<TOutput> {
+  const { settings = {}, pagination, filter } = options
 
   const authToken = useAtomValue(authTokenAtom)
 
   const parsedPaginationParams = parsePaginationParams(pagination)
 
-  return useQuery<PaginatedResponse<O>, AxiosError<PaginatedResponse<O>>>({
+  const { enabled: settingsEnabled, ...querySettings } = settings
+
+  const enabled =
+    settingsEnabled !== undefined
+      ? settingsEnabled && Boolean(authToken)
+      : Boolean(authToken)
+
+  return useQuery<
+    PaginatedResponse<TOutput>,
+    AxiosError<PaginatedResponse<TOutput>>
+  >({
     queryKey: [resource, 'all', filter, parsedPaginationParams],
     queryFn: () =>
       api
-        .get<PaginatedResponse<O>>(`/${resource}`, {
+        .get<PaginatedResponse<TOutput>>(`/${resource}`, {
           params: {
             ...parsedPaginationParams,
             ...filter,
           },
         })
         .then(response => response.data),
-    enabled:
-      settings?.enabled !== undefined
-        ? settings.enabled && Boolean(authToken)
-        : Boolean(authToken),
+    enabled,
+    ...querySettings,
   })
 }
 
-export type UseFindOptions = UseQueryOptions
+export interface UseFindOptions<TOutput> {
+  settings?: Omit<
+    UseQueryOptions<TOutput, AxiosError<TOutput>>,
+    'queryKey' | 'queryFn'
+  >
+}
 
-export type UseFindResult<O> = UseQueryResult<O, AxiosError>
-
-export function useFind<O>(
+export type UseFindResult<TOutput> = UseQueryResult<
+  TOutput,
+  AxiosError<TOutput>
+>
+export function useFind<TOutput>(
   id: string | number | undefined,
   resource: string,
-  options: UseFindOptions = {},
-): UseFindResult<O> {
-  const { settings } = options
+  options: UseFindOptions<TOutput> = {},
+): UseFindResult<TOutput> {
+  const { settings = {} } = options
 
   const authToken = useAtomValue(authTokenAtom)
 
-  return useQuery<O, AxiosError>({
+  const { enabled: settingsEnabled, ...querySettings } = settings
+
+  const enabled =
+    settingsEnabled !== undefined
+      ? settingsEnabled && Boolean(authToken) && Boolean(id)
+      : Boolean(authToken) && Boolean(id)
+
+  return useQuery<TOutput, AxiosError<TOutput>>({
     queryKey: [resource, 'find', id],
     queryFn: () =>
-      api.get<O>(`/${resource}/${id}`).then(response => response.data),
-    enabled:
-      settings?.enabled !== undefined
-        ? settings.enabled && Boolean(authToken) && Boolean(id)
-        : Boolean(authToken) && Boolean(id),
+      api.get<TOutput>(`/${resource}/${id}`).then(response => response.data),
+    enabled,
+    ...querySettings,
   })
 }
 
-export type UseCreateResult<O, I> = UseMutationResult<O, AxiosError, I>
+export interface UseCreateOptions<TOutput, TInput> {
+  invalidateQueryKeys?: Array<string | string[]>
+  settings?: Omit<
+    UseMutationOptions<TOutput, AxiosError<TOutput>, TInput>,
+    'mutationKey' | 'mutationFn'
+  >
+}
 
-export function useCreate<O, I>(
+export type UseCreateResult<TOutput, TInput> = UseMutationResult<
+  TOutput,
+  AxiosError<TOutput>,
+  TInput
+>
+
+export function useCreate<TOutput, TInput>(
   resource: string,
-  options: UseMutationOptions = {},
-): UseCreateResult<O, I> {
-  const { invalidateQueryKeys = [[resource, 'all']], meta } = options
-
+  options: UseCreateOptions<TOutput, TInput> = {},
+): UseCreateResult<TOutput, TInput> {
   const queryClient = useQueryClient()
 
-  return useMutation<O, AxiosError, I>({
+  const { invalidateQueryKeys = [[resource, 'all']], settings = {} } = options
+
+  const { meta, onSuccess, ...mutationSettings } = settings
+
+  return useMutation<TOutput, AxiosError<TOutput>, TInput>({
     mutationKey: [resource, 'create'],
-    mutationFn: (data: I) =>
-      api.post<O, I>(`/${resource}`, data).then(res => res.data),
+    mutationFn: (data: TInput) =>
+      api.post<TOutput, TInput>(`/${resource}`, data).then(res => res.data),
     meta: {
       errorNotification: {
         notificationType: 'created',
@@ -234,7 +278,9 @@ export function useCreate<O, I>(
       },
       ...meta,
     },
-    onSuccess() {
+    onSuccess(data, variables, context) {
+      onSuccess?.(data, variables, context)
+
       return Promise.all(
         invalidateQueryKeys.map(key =>
           queryClient.invalidateQueries({
@@ -243,23 +289,43 @@ export function useCreate<O, I>(
         ),
       )
     },
+    ...mutationSettings,
   })
 }
 
-export type UseUpdateResult<O, I> = UseMutationResult<O, AxiosError, I>
+export interface UseUpdateOptions<TOutput, TInput> {
+  invalidateQueryKeys?: Array<string | string[]>
+  settings?: Omit<
+    UseMutationOptions<TOutput, AxiosError<TOutput>, TInput>,
+    'mutationKey' | 'mutationFn'
+  >
+}
+
+export type UseUpdateResult<TOutput, TInput> = UseMutationResult<
+  TOutput,
+  AxiosError<TOutput>,
+  TInput
+>
 
 export function useUpdate<
-  O extends BaseProperties,
-  I extends { id?: string | number | undefined },
->(resource: string, options: UseMutationOptions = {}): UseUpdateResult<O, I> {
-  const { invalidateQueryKeys = [[resource, 'all']], meta } = options
-
+  TOutput extends BaseProperties,
+  TInput extends { id?: string | number | undefined },
+>(
+  resource: string,
+  options: UseUpdateOptions<TOutput, TInput> = {},
+): UseUpdateResult<TOutput, TInput> {
   const queryClient = useQueryClient()
 
-  return useMutation<O, AxiosError, I>({
+  const { invalidateQueryKeys = [[resource, 'all']], settings = {} } = options
+
+  const { meta, onSuccess, ...mutationSettings } = settings
+
+  return useMutation<TOutput, AxiosError<TOutput>, TInput>({
     mutationKey: [resource, 'update'],
-    mutationFn: (data: I) =>
-      api.put<O, I>(`/${resource}/${data.id}`, data).then(res => res.data),
+    mutationFn: (data: TInput) =>
+      api
+        .put<TOutput, TInput>(`/${resource}/${data.id}`, data)
+        .then(res => res.data),
     meta: {
       errorNotification: {
         notificationType: 'updated',
@@ -269,7 +335,9 @@ export function useUpdate<
       },
       ...meta,
     },
-    onSuccess(data) {
+    onSuccess(data, variables, context) {
+      onSuccess?.(data, variables, context)
+
       return Promise.all([
         queryClient.invalidateQueries({
           queryKey: [resource, 'find', data.id],
@@ -281,27 +349,37 @@ export function useUpdate<
         ),
       ])
     },
+    ...mutationSettings,
   })
 }
 
-export type UseDeleteResult = UseMutationResult<
-  void,
-  AxiosError,
-  string | number
->
+export interface UseDeleteOptions<TOutput, TInput> {
+  invalidateQueryKeys?: Array<string | string[]>
+  settings?: Omit<
+    UseMutationOptions<TOutput, AxiosError<TOutput>, TInput>,
+    'mutationKey' | 'mutationFn' | 'retry'
+  >
+}
 
-export function useDelete(
+export type UseDeleteResult<
+  TOutput = void,
+  TInput = string | number,
+> = UseMutationResult<TOutput, AxiosError<TOutput>, TInput>
+
+export function useDelete<TOutput = void, TInput = string | number>(
   resource: string,
-  options: UseMutationOptions = {},
-): UseDeleteResult {
-  const { invalidateQueryKeys = [[resource, 'all']], meta } = options
-
+  options: UseDeleteOptions<TOutput, TInput> = {},
+): UseDeleteResult<TOutput, TInput> {
   const queryClient = useQueryClient()
 
-  return useMutation<void, AxiosError, string | number>({
+  const { invalidateQueryKeys = [[resource, 'all']], settings = {} } = options
+
+  const { meta, onSuccess, ...mutationSettings } = settings
+
+  return useMutation<TOutput, AxiosError<TOutput>, TInput>({
     mutationKey: [resource, 'delete'],
-    mutationFn: (id: string | number) =>
-      api.delete<void>(`/${resource}/${id}`).then(response => response.data),
+    mutationFn: (id: TInput) =>
+      api.delete<TOutput>(`/${resource}/${id}`).then(response => response.data),
     meta: {
       errorNotification: {
         notificationType: 'deleted',
@@ -311,7 +389,9 @@ export function useDelete(
       },
       ...meta,
     },
-    onSuccess() {
+    onSuccess(data, variables, context) {
+      onSuccess?.(data, variables, context)
+
       return Promise.all(
         invalidateQueryKeys.map(key =>
           queryClient.invalidateQueries({
@@ -321,5 +401,6 @@ export function useDelete(
       )
     },
     retry: false,
+    ...mutationSettings,
   })
 }

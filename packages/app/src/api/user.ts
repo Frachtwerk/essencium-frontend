@@ -42,14 +42,14 @@ import {
 const resource = 'users'
 
 export function useGetUsers(
-  options: UseGetPageOptions<FilterObjectUser>,
+  options: UseGetPageOptions<UserOutput, FilterObjectUser>,
 ): UseGetPageResult<UserOutput> {
   return useGetPage(resource, options)
 }
 
 export function useGetUser(
   id: UserOutput['id'],
-  options?: UseFindOptions,
+  options?: UseFindOptions<UserOutput>,
 ): UseFindResult<UserOutput> {
   return useFind(id, resource, options)
 }
