@@ -58,14 +58,17 @@ export interface UseGetInfiniteOptions<TOutput, TFilter extends TBaseFilter>
   extends FilterOptions<TFilter> {
   pagination?: Omit<PaginationParams, 'page'>
   settings?: Omit<
-    UseInfiniteQueryOptions<PaginatedResponse<TOutput>, AxiosError>,
+    UseInfiniteQueryOptions<
+      PaginatedResponse<TOutput>,
+      AxiosError<PaginatedResponse<TOutput>>
+    >,
     'queryKey' | 'queryFn' | 'initialPageParam' | 'getNextPageParam' | 'select'
   >
 }
 
 export type UseGetInfiniteResult<TOutput> = UseInfiniteQueryResult<
   InfiniteData<PaginatedResponse<TOutput>>,
-  AxiosError
+  AxiosError<PaginatedResponse<TOutput>>
 > & { items: TOutput[] }
 
 export function useGetInfinite<TOutput, TFilter extends TBaseFilter>(
@@ -85,7 +88,10 @@ export function useGetInfinite<TOutput, TFilter extends TBaseFilter>(
       ? settingsEnabled && Boolean(authToken)
       : Boolean(authToken)
 
-  const query = useInfiniteQuery<PaginatedResponse<TOutput>, AxiosError>({
+  const query = useInfiniteQuery<
+    PaginatedResponse<TOutput>,
+    AxiosError<PaginatedResponse<TOutput>>
+  >({
     queryKey: [resource, 'infinite', filter, parsedPaginationParams],
     queryFn: ({ pageParam }) =>
       api
@@ -118,7 +124,10 @@ export interface UseGetAllOptions<TOutput, TFilter extends TBaseFilter>
   extends FilterOptions<TFilter> {
   pagination?: Pick<PaginationParams, 'sort'>
   settings?: Omit<
-    UseInfiniteQueryOptions<PaginatedResponse<TOutput>, AxiosError>,
+    UseInfiniteQueryOptions<
+      PaginatedResponse<TOutput>,
+      AxiosError<PaginatedResponse<TOutput>>
+    >,
     'queryKey' | 'queryFn' | 'initialPageParam' | 'getNextPageParam' | 'select'
   >
 }
