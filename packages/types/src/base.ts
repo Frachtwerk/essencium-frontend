@@ -23,7 +23,7 @@ import { z } from 'zod'
 // we transform it to 'undefined' because react-form-hooks only works with 'undefined'
 export const basePropertiesSchema = z.object({
   id: z
-    .union([z.string().uuid(), z.number()])
+    .union([z.uuid(), z.number()])
     .transform(value => (value === null ? undefined : value)),
   createdAt: z.string().nullish(),
   createdBy: z.string().nullish(),
@@ -61,3 +61,20 @@ export type PaginatedResponse<T> = {
   totalElements: number
   totalPages: number
 }
+
+export const stringSchema = z.string().trim().min(1)
+
+export const idSchema = z
+  .number({
+    error: iss =>
+      iss.input === null || iss.input === undefined
+        ? 'validation.general.required'
+        : 'validation.general.invalidId',
+  })
+  .gte(1, 'validation.general.invalidId')
+
+export const baseInputSchema = z.object({
+  id: idSchema.optional(),
+})
+
+export type BaseInput = z.infer<typeof baseInputSchema>

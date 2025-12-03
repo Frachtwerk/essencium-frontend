@@ -17,34 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Button, Center, Stack, Text, Title } from '@mantine/core'
-import NextLink from 'next/link'
-import { useTranslation } from 'next-i18next'
-import type { JSX } from 'react'
-
-export function SetPasswordSuccessMessage(): JSX.Element {
-  const { t } = useTranslation()
-
-  return (
-    <Center>
-      <Stack>
-        <Title order={4} className="mb-md">
-          {t('setPasswordView.successMessage.title')}
-        </Title>
-
-        <Text className="text-sm">
-          {t('setPasswordView.successMessage.text')}
-        </Text>
-
-        <Button
-          component={NextLink}
-          href="/login"
-          className="mt-md text-white no-underline"
-          fullWidth
-        >
-          {t('setPasswordView.successMessage.button')}
-        </Button>
-      </Stack>
-    </Center>
-  )
+export interface BasicEntityOutput {
+  id: number
+  name: string
 }

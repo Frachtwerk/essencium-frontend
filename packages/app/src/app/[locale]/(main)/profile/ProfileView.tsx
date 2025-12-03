@@ -20,7 +20,7 @@
 'use client'
 
 import { LoadingSpinner, Profile } from '@frachtwerk/essencium-lib'
-import { PasswordChange, UserUpdate } from '@frachtwerk/essencium-types'
+import { PasswordChange, UserInput } from '@frachtwerk/essencium-types'
 import { Center } from '@mantine/core'
 import { useAtomValue, useSetAtom } from 'jotai'
 import { useRouter } from 'next/navigation'
@@ -66,7 +66,7 @@ export default function ProfileView(): JSX.Element {
   const { mutate: updatePassword, isPending: isUpdatingPassword } =
     useUpdatePassword()
 
-  function handleUpdate(updatedUser: UserUpdate): void {
+  function handleUpdate(updatedUser: UserInput): void {
     updateUser(updatedUser, {
       onSuccess: () => refetchMe(),
     })

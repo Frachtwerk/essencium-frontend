@@ -2,6 +2,16 @@
 
 ## [9.X.X (XXXX-XX-XX)]()
 
+### Upgrade to Zod 4 (https://github.com/Frachtwerk/essencium-frontend/pull/911/files)
+
+- Upgraded Zod to version 4. Please refer to the [Zod 4 migration guide](https://zod.dev/v4/changelog) for detailed information on breaking changes and migration steps.
+
+- Removed `UserUpdate` and `RoleUpdate` because of redundancy with `UserInput` and `RoleInput`. Every instance of `UserUpdate | userUpdateSchema` and `RoleUpdate | roleUpdateSchema` in the codebase has been replaced with `UserInput | userInputSchema` and `RoleInput | roleInputSchema` respectively.
+
+- New global Zod configuration has been added to `packages/types/src/config.ts` to set error messages for common validations. Some translation variables have been changed accordingly.
+
+- `useZodForm` hook in `packages/app/src/hooks/useZodForm.ts` has been removed. Please import `useZodForm` from `essencium-lib` instead.
+
 ### Improve Accessibility of Rights View (https://github.com/Frachtwerk/essencium-frontend/pull/867/files)
 
 Added aria-label and simplified code by removing if statement and conditionally disabling the checkbox instead

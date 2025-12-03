@@ -19,7 +19,7 @@
 
 'use client'
 
-import { UserForm } from '@frachtwerk/essencium-lib'
+import { UserForm, useZodForm } from '@frachtwerk/essencium-lib'
 import { UserInput, userInputSchema } from '@frachtwerk/essencium-types'
 import { Card, Flex, Text, Title } from '@mantine/core'
 import { IconUserPlus } from '@tabler/icons-react'
@@ -28,7 +28,6 @@ import type { JSX } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useCreateUser, useGetRoles } from '@/api'
-import { useZodForm } from '@/hooks'
 
 import { FORM_DEFAULTS_USERS_VIEW } from '../UsersView'
 

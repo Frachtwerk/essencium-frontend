@@ -17,34 +17,27 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Button, Center, Stack, Text, Title } from '@mantine/core'
-import NextLink from 'next/link'
-import { useTranslation } from 'next-i18next'
-import type { JSX } from 'react'
+import { z } from 'zod'
 
-export function SetPasswordSuccessMessage(): JSX.Element {
-  const { t } = useTranslation()
+z.config({
+  customError: iss => {
+    if (iss.code === 'invalid_type') {
+      if (iss.input === null || iss.input === undefined)
+        return 'validation.general.required'
+    }
 
-  return (
-    <Center>
-      <Stack>
-        <Title order={4} className="mb-md">
-          {t('setPasswordView.successMessage.title')}
-        </Title>
+    if (iss.code === 'too_small') {
+      if (iss.minimum === 1) return 'validation.general.required'
+    }
 
-        <Text className="text-sm">
-          {t('setPasswordView.successMessage.text')}
-        </Text>
+    if (iss.code === 'invalid_type') {
+      if (iss.expected === 'string') return 'validation.general.invalidString'
 
-        <Button
-          component={NextLink}
-          href="/login"
-          className="mt-md text-white no-underline"
-          fullWidth
-        >
-          {t('setPasswordView.successMessage.button')}
-        </Button>
-      </Stack>
-    </Center>
-  )
-}
+      if (iss.expected === 'number') return 'validation.general.invalidNumber'
+    }
+
+    if (iss.code === 'invalid_format') {
+      if (iss.format === 'email') return 'validation.general.invalidEmail'
+    }
+  },
+})

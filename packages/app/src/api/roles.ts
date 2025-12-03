@@ -21,7 +21,6 @@ import {
   PaginatedResponse,
   RoleInput,
   RoleOutput,
-  RoleUpdate,
 } from '@frachtwerk/essencium-types'
 import {
   QueryObserverOptions,
@@ -100,13 +99,13 @@ export function useGetRoles({
 export function useUpdateRole(): UseMutationResult<
   RoleOutput,
   AxiosError,
-  RoleUpdate
+  RoleInput
 > {
-  const mutation = useMutation<RoleOutput, AxiosError, RoleUpdate>({
+  const mutation = useMutation<RoleOutput, AxiosError, RoleInput>({
     mutationKey: ['useUpdateRole'],
-    mutationFn: (role: RoleUpdate) =>
+    mutationFn: (role: RoleInput) =>
       api
-        .put<RoleOutput, RoleUpdate>(`/roles/${role.name}`, role)
+        .put<RoleOutput, RoleInput>(`/roles/${role.name}`, role)
         .then(response => response.data),
     meta: {
       errorNotification: {

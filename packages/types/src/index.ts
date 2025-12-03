@@ -17,11 +17,14 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import './config'
+
+export * from './auth'
 export * from './base'
+export * from './basic'
 export * from './contact'
 export * from './feedback'
 export * from './filter'
-export * from './misc'
 export * from './navbar'
 export * from './right'
 export * from './role'

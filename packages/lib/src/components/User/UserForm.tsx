@@ -19,12 +19,7 @@
 
 'use client'
 
-import {
-  RoleOutput,
-  UserInput,
-  UserSource,
-  UserUpdate,
-} from '@frachtwerk/essencium-types'
+import { RoleOutput, UserInput, UserSource } from '@frachtwerk/essencium-types'
 import {
   Badge,
   Button,
@@ -54,8 +49,8 @@ type Props = {
   ssoProvider?: UserSource | string | undefined
   title: string
   roles: RoleOutput[]
-  control: Control<UserInput | UserUpdate>
-  setValue: UseFormSetValue<UserInput | UserUpdate>
+  control: Control<UserInput>
+  setValue: UseFormSetValue<UserInput>
   onSubmit: () => void
   isLoading: boolean
   rolesEnabledForSsoUser?: boolean

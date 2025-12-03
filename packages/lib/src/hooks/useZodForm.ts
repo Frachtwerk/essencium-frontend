@@ -18,17 +18,21 @@
  */
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import {
-  useForm as useRhfForm,
+import type {
+  FieldValues,
+  Resolver,
   UseFormProps,
   UseFormReturn,
 } from 'react-hook-form'
-import { TypeOf, ZodSchema } from 'zod'
+import { useForm } from 'react-hook-form'
+import type { z } from 'zod'
 
-interface UseZodFormProps<Z extends ZodSchema>
-  extends Exclude<UseFormProps<TypeOf<Z>>, 'resolver'> {
-  schema: Z
-}
+type UseZodFormProps<
+  TFieldValues extends FieldValues = FieldValues,
+  TContext = unknown,
+> = {
+  schema: z.ZodType<TFieldValues>
+} & Omit<UseFormProps<TFieldValues, TContext>, 'resolver'>
 
 /**
  * A wrapper around react-hook-form's useForm hook that uses zod for validation.
@@ -37,13 +41,21 @@ interface UseZodFormProps<Z extends ZodSchema>
  * @returns The return value of react-hook-form's useForm hook.
  * @see https://react-hook-form.com/api/useform
  */
-export function useZodForm<Z extends ZodSchema>({
+export function useZodForm<
+  TFieldValues extends FieldValues = FieldValues,
+  TContext = unknown,
+>({
   schema,
   ...formProps
-}: UseZodFormProps<Z>): UseFormReturn<TypeOf<Z>, Z> {
-  return useRhfForm({
+}: UseZodFormProps<TFieldValues, TContext>): UseFormReturn<
+  TFieldValues,
+  TContext,
+  TFieldValues
+> {
+  return useForm<TFieldValues, TContext, TFieldValues>({
     ...formProps,
     mode: 'onBlur',
-    resolver: zodResolver(schema),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(schema as any) as Resolver<TFieldValues, TContext>,
   })
 }
