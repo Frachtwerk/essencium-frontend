@@ -62,7 +62,7 @@ export type PaginatedResponse<T> = {
   totalPages: number
 }
 
-export const stringSchema = z.string().min(1)
+export const stringSchema = z.string().trim().min(1)
 
 export const idSchema = z
   .number({
