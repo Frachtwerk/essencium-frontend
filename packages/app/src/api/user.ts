@@ -32,16 +32,16 @@ import {
   createUseUpdate,
 } from './base'
 
-const resource = 'users'
+const RESOURCE = 'users'
 
 export const useGetUsers = createUseGetPage<UserOutput, FilterObjectUser>(
-  resource,
+  RESOURCE,
 )
 
-export const useGetUser = createUseFind<UserOutput>(resource)
+export const useGetUser = createUseFind<UserOutput>(RESOURCE)
 
-export const useCreateUser = createUseCreate<UserOutput, UserInput>(resource)
+export const useCreateUser = createUseCreate<UserOutput, UserInput>(RESOURCE)
 
-export const useUpdateUser = createUseUpdate<UserOutput, UserUpdate>(resource)
+export const useUpdateUser = createUseUpdate<UserOutput, UserUpdate>(RESOURCE)
 
-export const useDeleteUser = createUseDelete(resource)
+export const useDeleteUser = createUseDelete(RESOURCE)

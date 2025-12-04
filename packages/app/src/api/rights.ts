@@ -21,14 +21,14 @@ import { RightOutput } from '@frachtwerk/essencium-types'
 
 import { createUseGetAll, createUseGetPage } from './base'
 
-const resource = 'rights'
+const RESOURCE = 'rights'
 
 export const useGetAllRights = createUseGetAll<
   RightOutput,
   Record<string, never>
->(resource)
+>(RESOURCE)
 
 export const useGetRights = createUseGetPage<
   RightOutput,
   Record<string, never>
->(resource)
+>(RESOURCE)

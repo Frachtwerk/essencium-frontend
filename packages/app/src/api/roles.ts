@@ -40,17 +40,17 @@ import {
 
 export type RolesResponse = PaginatedResponse<RoleOutput>
 
-const resource = 'roles'
+const RESOURCE = 'roles'
 
 export const useGetAllRoles = createUseGetAll<
   RoleOutput,
   Record<string, never>
->(resource)
+>(RESOURCE)
 
-export const useCreateRole = createUseCreate<RoleOutput, RoleInput>(resource)
+export const useCreateRole = createUseCreate<RoleOutput, RoleInput>(RESOURCE)
 
 export const useGetRoles = createUseGetPage<RoleOutput, Record<string, never>>(
-  resource,
+  RESOURCE,
 )
 
 // Not implemented with useUpdate because roles are identified by their name istead of an id
@@ -82,4 +82,4 @@ export function useUpdateRole(): UseMutationResult<
   return mutation
 }
 
-export const useDeleteRole = createUseDelete(resource)
+export const useDeleteRole = createUseDelete(RESOURCE)

@@ -27,12 +27,12 @@ import { AxiosError } from 'axios'
 import { api } from './api'
 import { createUseGetPage, UseGetPage } from './base'
 
-const resource = 'translations'
+const RESOURCE = 'translations'
 
 export const useGetTranslations = (
   locale: TranslationInput['locale'],
 ): UseGetPage<TranslationOutput, Record<string, never>> =>
-  createUseGetPage(`${resource}/${locale}`)
+  createUseGetPage(`${RESOURCE}/${locale}`)
 
 export function useUpdateTranslation(): UseMutationResult<
   TranslationOutput,

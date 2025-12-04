@@ -22,7 +22,7 @@ import { useTranslation } from 'react-i18next'
 
 import { createUseCreate, UseCreateResult } from './base'
 
-const resource = 'contact'
+const RESOURCE = 'contact'
 
 export function useSendContactMessage(): UseCreateResult<
   void,
@@ -30,7 +30,7 @@ export function useSendContactMessage(): UseCreateResult<
 > {
   const { t } = useTranslation()
 
-  const useCreate = createUseCreate<void, ContactFormType>(resource)
+  const useCreate = createUseCreate<void, ContactFormType>(RESOURCE)
 
   return useCreate({
     invalidateQueryKeys: [],
