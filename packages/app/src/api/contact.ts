@@ -20,7 +20,7 @@
 import { ContactFormType } from '@frachtwerk/essencium-types'
 import { useTranslation } from 'react-i18next'
 
-import { useCreate, UseCreateResult } from './base'
+import { createUseCreate, UseCreateResult } from './base'
 
 const resource = 'contact'
 
@@ -30,8 +30,11 @@ export function useSendContactMessage(): UseCreateResult<
 > {
   const { t } = useTranslation()
 
-  return useCreate(resource, {
-    settings: {
+  const useCreate = createUseCreate<void, ContactFormType>(resource)
+
+  return useCreate({
+    invalidateQueryKeys: [],
+    mutationOptions: {
       meta: {
         errorNotification: {
           notificationType: 'created',

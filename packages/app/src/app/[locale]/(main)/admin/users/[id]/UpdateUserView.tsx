@@ -66,7 +66,9 @@ export default function UpdateUserView({
     }
   }, [user, resetAndFillForm])
 
-  const { mutate: updateUser, isPending } = useUpdateUser()
+  const { mutate: updateUser, isPending } = useUpdateUser({
+    mutationOptions: {},
+  })
 
   const { items: roles } = useGetAllRoles()
 

@@ -25,17 +25,14 @@ import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 
 import { api } from './api'
-import { useGetPage, UseGetPageResult } from './base'
+import { createUseGetPage, UseGetPage } from './base'
 
 const resource = 'translations'
 
-export function useGetTranslations(
+export const useGetTranslations = (
   locale: TranslationInput['locale'],
-): UseGetPageResult<TranslationOutput> {
-  return useGetPage<TranslationOutput, Record<string, never>>(
-    `${resource}/${locale}`,
-  )
-}
+): UseGetPage<TranslationOutput, Record<string, never>> =>
+  createUseGetPage(`${resource}/${locale}`)
 
 export function useUpdateTranslation(): UseMutationResult<
   TranslationOutput,

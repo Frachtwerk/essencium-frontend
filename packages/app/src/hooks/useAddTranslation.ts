@@ -6,7 +6,7 @@ import { namespace } from '@/config'
 export function useAddTranslations(i18nInstance: i18n): () => void {
   const locale = i18nInstance.language
 
-  const { data: serverTranslations } = useGetTranslations(locale)
+  const { data: serverTranslations } = useGetTranslations(locale)()
 
   function addTranslations(): void {
     if (serverTranslations) {

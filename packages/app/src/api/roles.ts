@@ -32,38 +32,28 @@ import { AxiosError } from 'axios'
 
 import { api } from './api'
 import {
-  useCreate,
-  UseCreateResult,
-  useDelete,
-  UseDeleteResult,
-  useGetAll,
-  UseGetAllOptions,
-  UseGetAllResult,
-  useGetPage,
-  UseGetPageOptions,
-  UseGetPageResult,
+  createUseCreate,
+  createUseDelete,
+  createUseGetAll,
+  createUseGetPage,
 } from './base'
 
 export type RolesResponse = PaginatedResponse<RoleOutput>
 
 const resource = 'roles'
 
-export function useGetAllRoles(
-  options: UseGetAllOptions<RoleOutput, Record<string, never>> = {},
-): UseGetAllResult<RoleOutput> {
-  return useGetAll(resource, options)
-}
+export const useGetAllRoles = createUseGetAll<
+  RoleOutput,
+  Record<string, never>
+>(resource)
 
-export function useCreateRole(): UseCreateResult<RoleOutput, RoleInput> {
-  return useCreate(resource)
-}
+export const useCreateRole = createUseCreate<RoleOutput, RoleInput>(resource)
 
-export function useGetRoles(
-  options: UseGetPageOptions<RoleOutput, Record<string, never>> = {},
-): UseGetPageResult<RoleOutput> {
-  return useGetPage(resource, options)
-}
+export const useGetRoles = createUseGetPage<RoleOutput, Record<string, never>>(
+  resource,
+)
 
+// Not implemented with useUpdate because roles are identified by their name istead of an id
 export function useUpdateRole(): UseMutationResult<
   RoleOutput,
   AxiosError,
@@ -92,6 +82,4 @@ export function useUpdateRole(): UseMutationResult<
   return mutation
 }
 
-export function useDeleteRole(): UseDeleteResult {
-  return useDelete(resource)
-}
+export const useDeleteRole = createUseDelete(resource)

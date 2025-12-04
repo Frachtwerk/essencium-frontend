@@ -25,43 +25,23 @@ import {
 } from '@frachtwerk/essencium-types'
 
 import {
-  useCreate,
-  UseCreateResult,
-  useDelete,
-  UseDeleteResult,
-  useFind,
-  UseFindOptions,
-  UseFindResult,
-  useGetPage,
-  UseGetPageOptions,
-  UseGetPageResult,
-  useUpdate,
-  UseUpdateResult,
+  createUseCreate,
+  createUseDelete,
+  createUseFind,
+  createUseGetPage,
+  createUseUpdate,
 } from './base'
 
 const resource = 'users'
 
-export function useGetUsers(
-  options: UseGetPageOptions<UserOutput, FilterObjectUser>,
-): UseGetPageResult<UserOutput> {
-  return useGetPage(resource, options)
-}
+export const useGetUsers = createUseGetPage<UserOutput, FilterObjectUser>(
+  resource,
+)
 
-export function useGetUser(
-  id: UserOutput['id'],
-  options?: UseFindOptions<UserOutput>,
-): UseFindResult<UserOutput> {
-  return useFind(id, resource, options)
-}
+export const useGetUser = createUseFind<UserOutput>(resource)
 
-export function useCreateUser(): UseCreateResult<UserOutput, UserInput> {
-  return useCreate(resource)
-}
+export const useCreateUser = createUseCreate<UserOutput, UserInput>(resource)
 
-export function useUpdateUser(): UseUpdateResult<UserOutput, UserUpdate> {
-  return useUpdate(resource)
-}
+export const useUpdateUser = createUseUpdate<UserOutput, UserUpdate>(resource)
 
-export function useDeleteUser(): UseDeleteResult {
-  return useDelete(resource)
-}
+export const useDeleteUser = createUseDelete(resource)
