@@ -22,88 +22,23 @@ import {
   UserOutput,
   UserUpdate,
 } from '@frachtwerk/essencium-types'
-import {
-  useMutation,
-  UseMutationResult,
-  useQuery,
-  useQueryClient,
-  UseQueryResult,
-} from '@tanstack/react-query'
-import { AxiosError } from 'axios'
-import { useAtomValue } from 'jotai'
 
-import { api } from './api'
-import { authTokenAtom } from './auth'
+import { createUseFind, createUseUpdate } from './base'
 
-export function useGetMe(): UseQueryResult<UserOutput, unknown> {
-  const authToken = useAtomValue(authTokenAtom)
+const RESOURCE = '/users/me'
 
-  const query = useQuery({
-    enabled: Boolean(authToken),
-    queryKey: ['useGetMe'],
-    queryFn: () =>
-      api.get<UserOutput>('/users/me').then(response => response.data),
-  })
+export const useGetMe = createUseFind<UserOutput>(RESOURCE, {
+  url: RESOURCE,
+})
 
-  return query
-}
+export const useUpdateMe = createUseUpdate<UserOutput, UserUpdate>(RESOURCE, {
+  url: RESOURCE,
+})
 
-export function useUpdateMe(): UseMutationResult<
+// { id?: undefined } to trick typescript, the url gets overwritten anyway
+export const useUpdatePassword = createUseUpdate<
   UserOutput,
-  AxiosError,
-  UserUpdate
-> {
-  const queryClient = useQueryClient()
-
-  const mutation = useMutation<UserOutput, AxiosError, UserUpdate>({
-    mutationKey: ['useUpdateMe'],
-    mutationFn: (user: UserUpdate) =>
-      api
-        .put<UserOutput, UserUpdate>('/users/me', user)
-        .then(response => response.data),
-    meta: {
-      errorNotification: {
-        notificationType: 'updated',
-      },
-      successNotification: {
-        notificationType: 'updated',
-      },
-    },
-    onSuccess() {
-      queryClient.invalidateQueries({ queryKey: ['useGetMe'] })
-    },
-  })
-
-  return mutation
-}
-
-export function useUpdatePassword(): UseMutationResult<
-  UserOutput,
-  AxiosError,
-  Omit<PasswordChange, 'confirmPassword'>
-> {
-  const mutation = useMutation<
-    UserOutput,
-    AxiosError,
-    Omit<PasswordChange, 'confirmPassword'>
-  >({
-    mutationKey: ['useChangePassword'],
-    mutationFn: (passwordData: Omit<PasswordChange, 'confirmPassword'>) =>
-      api
-        .put<UserOutput, Omit<PasswordChange, 'confirmPassword'>>(
-          '/users/me/password',
-          passwordData,
-        )
-        .then(response => response.data),
-    meta: {
-      errorNotification: {
-        notificationType: 'updated',
-      },
-      successNotification: {
-        notificationType: 'updated',
-      },
-    },
-  })
-
-  return mutation
-}
+  Omit<PasswordChange & { id?: undefined }, 'confirmPassword'>
+>(`${RESOURCE}/password`, {
+  url: `${RESOURCE}/password`,
+})

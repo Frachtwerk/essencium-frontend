@@ -30,9 +30,7 @@ export function useSendContactMessage(): UseCreateResult<
 > {
   const { t } = useTranslation()
 
-  const useCreate = createUseCreate<void, ContactFormType>(RESOURCE)
-
-  return useCreate({
+  return createUseCreate<void, ContactFormType>(RESOURCE)({
     invalidateQueryKeys: [],
     mutationOptions: {
       meta: {

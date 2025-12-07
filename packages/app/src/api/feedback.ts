@@ -18,25 +18,14 @@
  */
 
 import { FeedbackInput, FeedbackOutput } from '@frachtwerk/essencium-types'
-import { useMutation, UseMutationResult } from '@tanstack/react-query'
-import { AxiosError } from 'axios'
 
-import { api } from './api'
+import { createUseCreate } from './base'
 
-export function useCreateFeedback(): UseMutationResult<
-  FeedbackOutput,
-  AxiosError,
-  FeedbackInput
-> {
-  const mutation = useMutation<FeedbackOutput, AxiosError, FeedbackInput>({
-    mutationKey: ['useCreateFeedback'],
-    mutationFn: (newFeedback: FeedbackInput) =>
-      api
-        .post<FeedbackOutput, FeedbackInput>('/api/feedback', newFeedback, {
-          baseURL: '/',
-        })
-        .then(response => response.data),
-  })
-
-  return mutation
-}
+export const useCreateFeedback = createUseCreate<FeedbackOutput, FeedbackInput>(
+  'feedback',
+  {
+    invalidateQueryKeys: [],
+    url: '/api/feedback',
+    requestConfig: { baseURL: '/' },
+  },
+)

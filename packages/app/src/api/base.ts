@@ -35,7 +35,7 @@ import {
   UseQueryOptions,
   UseQueryResult,
 } from '@tanstack/react-query'
-import { AxiosError } from 'axios'
+import { AxiosError, AxiosRequestConfig } from 'axios'
 import { useAtomValue } from 'jotai'
 import { useEffect } from 'react'
 
@@ -50,12 +50,14 @@ interface FilterOptions<TFilter extends TBaseFilter> {
   filter?: TFilter
 }
 
-interface PaginationOptions {
-  pagination?: Partial<PaginationParams>
+interface RequestOptions {
+  url?: string
+  requestConfig?: AxiosRequestConfig
 }
 
 export interface UseGetInfiniteOptions<TOutput, TFilter extends TBaseFilter>
-  extends FilterOptions<TFilter> {
+  extends FilterOptions<TFilter>,
+    RequestOptions {
   pagination?: Omit<PaginationParams, 'page'>
   infiniteOptions?: Omit<
     UseInfiniteQueryOptions<
@@ -77,9 +79,19 @@ export type UseGetInfinite<TOutput, TFilter extends TBaseFilter> = (
 
 export const createUseGetInfinite = <TOutput, TFilter extends TBaseFilter>(
   resource: string,
+  options: UseGetInfiniteOptions<TOutput, TFilter> = {},
 ): UseGetInfinite<TOutput, TFilter> =>
-  function useGetInfinite(options = {}) {
-    const { infiniteOptions = {}, pagination, filter } = options
+  function useGetInfinite(getInfiniteOptions) {
+    const {
+      url = `/${resource}`,
+      filter,
+      pagination,
+      requestConfig,
+      infiniteOptions = {},
+    } = {
+      ...options,
+      ...getInfiniteOptions,
+    }
 
     const authToken = useAtomValue(authTokenAtom)
 
@@ -99,7 +111,8 @@ export const createUseGetInfinite = <TOutput, TFilter extends TBaseFilter>(
       queryKey: [resource, 'infinite', filter, parsedPaginationParams],
       queryFn: ({ pageParam }) =>
         api
-          .get<PaginatedResponse<TOutput>>(`/${resource}`, {
+          .get<PaginatedResponse<TOutput>>(url, {
+            ...requestConfig,
             params: {
               ...parsedPaginationParams,
               page: pageParam,
@@ -125,7 +138,8 @@ export const createUseGetInfinite = <TOutput, TFilter extends TBaseFilter>(
   }
 
 export interface UseGetAllOptions<TOutput, TFilter extends TBaseFilter>
-  extends FilterOptions<TFilter> {
+  extends FilterOptions<TFilter>,
+    RequestOptions {
   pagination?: Pick<PaginationParams, 'sort'>
   infiniteOptions?: Omit<
     UseInfiniteQueryOptions<
@@ -144,20 +158,20 @@ export type UseGetAll<TOutput, TFilter extends TBaseFilter> = (
 
 export const createUseGetAll = <TOutput, TFilter extends TBaseFilter>(
   resource: string,
+  options?: UseGetAllOptions<TOutput, TFilter>,
 ): UseGetAll<TOutput, TFilter> =>
-  function useGetAll(options = {}) {
-    const { infiniteOptions, pagination, filter } = options
+  function useGetAll(getAllOptions) {
+    const { pagination, ...mergedOptions } = { ...options, ...getAllOptions }
 
     const parsedPaginationParams = parsePaginationParams({
       ...pagination,
       size: 2000,
     })
 
-    const query = createUseGetInfinite<TOutput, TFilter>(resource)({
-      infiniteOptions,
+    const query = createUseGetInfinite<TOutput, TFilter>(resource, {
       pagination: parsedPaginationParams,
-      filter,
-    })
+      ...mergedOptions,
+    })()
 
     useEffect(() => {
       if (!query.isLoading && query.hasNextPage) query.fetchNextPage()
@@ -171,7 +185,8 @@ export const createUseGetAll = <TOutput, TFilter extends TBaseFilter>(
 
 export interface UseGetPageOptions<TOutput, TFilter extends TBaseFilter>
   extends FilterOptions<TFilter>,
-    PaginationOptions {
+    RequestOptions {
+  pagination?: Partial<PaginationParams>
   queryOptions?: Omit<
     UseQueryOptions<
       PaginatedResponse<TOutput>,
@@ -192,9 +207,16 @@ export type UseGetPage<TOutput, TFilter extends TBaseFilter> = (
 
 export const createUseGetPage = <TOutput, TFilter extends TBaseFilter>(
   resource: string,
+  options?: UseGetPageOptions<TOutput, TFilter>,
 ): UseGetPage<TOutput, TFilter> =>
-  function useGetPage(options = {}) {
-    const { queryOptions = {}, pagination, filter } = options
+  function useGetPage(getPageOptions) {
+    const {
+      url = `/${resource}`,
+      pagination,
+      filter,
+      requestConfig,
+      queryOptions = {},
+    } = { ...options, ...getPageOptions }
 
     const authToken = useAtomValue(authTokenAtom)
 
@@ -214,7 +236,8 @@ export const createUseGetPage = <TOutput, TFilter extends TBaseFilter>(
       queryKey: [resource, 'all', filter, parsedPaginationParams],
       queryFn: () =>
         api
-          .get<PaginatedResponse<TOutput>>(`/${resource}`, {
+          .get<PaginatedResponse<TOutput>>(url, {
+            ...requestConfig,
             params: {
               ...parsedPaginationParams,
               ...filter,
@@ -226,7 +249,7 @@ export const createUseGetPage = <TOutput, TFilter extends TBaseFilter>(
     })
   }
 
-export interface UseFindOptions<TOutput> {
+export interface UseFindOptions<TOutput> extends RequestOptions {
   queryOptions?: Omit<
     UseQueryOptions<TOutput, AxiosError<TOutput>>,
     'queryKey' | 'queryFn'
@@ -243,13 +266,21 @@ export type UseFind<TOutput> = (
   options?: UseFindOptions<TOutput>,
 ) => UseFindResult<TOutput>
 
-export const createUseFind = <TOutput>(resource: string): UseFind<TOutput> =>
-  function useFind(id, options = {}) {
-    const { queryOptions = {} } = options
+export const createUseFind = <TOutput>(
+  resource: string,
+  options: UseFindOptions<TOutput> = {},
+): UseFind<TOutput> =>
+  function useFind(id, useFindOptions) {
+    const {
+      url = `/${resource}/${id}`,
+      requestConfig,
+      queryOptions = {},
+    } = { ...options, ...useFindOptions }
 
     const authToken = useAtomValue(authTokenAtom)
 
     const { enabled: settingsEnabled, ...restQueryOptions } = queryOptions
+
     const enabled =
       settingsEnabled !== undefined
         ? settingsEnabled && Boolean(authToken) && Boolean(id)
@@ -258,13 +289,13 @@ export const createUseFind = <TOutput>(resource: string): UseFind<TOutput> =>
     return useQuery<TOutput, AxiosError<TOutput>>({
       queryKey: [resource, 'find', id],
       queryFn: () =>
-        api.get<TOutput>(`/${resource}/${id}`).then(response => response.data),
+        api.get<TOutput>(url, requestConfig).then(response => response.data),
       enabled,
       ...restQueryOptions,
     })
   }
 
-export interface UseCreateOptions<TOutput, TInput> {
+export interface UseCreateOptions<TOutput, TInput> extends RequestOptions {
   invalidateQueryKeys?: Array<string | string[]>
   mutationOptions?: Omit<
     UseMutationOptions<TOutput, AxiosError<TOutput>, TInput>,
@@ -284,19 +315,26 @@ export type UseCreate<TOutput, TInput> = (
 
 export const createUseCreate = <TOutput, TInput>(
   resource: string,
+  options?: UseCreateOptions<TOutput, TInput>,
 ): UseCreate<TOutput, TInput> =>
-  function useCreate(options = {}) {
-    const queryClient = useQueryClient()
+  function useCreate(createOptions) {
+    const {
+      url = `/${resource}`,
+      invalidateQueryKeys = [[resource, 'all']],
+      requestConfig,
+      mutationOptions = {},
+    } = { ...options, ...createOptions }
 
-    const { invalidateQueryKeys = [[resource, 'all']], mutationOptions = {} } =
-      options
+    const queryClient = useQueryClient()
 
     const { meta, onSuccess, ...restMutationOptions } = mutationOptions
 
     return useMutation<TOutput, AxiosError<TOutput>, TInput>({
       mutationKey: [resource, 'create'],
       mutationFn: (data: TInput) =>
-        api.post<TOutput, TInput>(`/${resource}`, data).then(res => res.data),
+        api
+          .post<TOutput, TInput>(url, data, requestConfig)
+          .then(res => res.data),
       meta: {
         errorNotification: {
           notificationType: 'created',
@@ -321,7 +359,7 @@ export const createUseCreate = <TOutput, TInput>(
     })
   }
 
-export interface UseUpdateOptions<TOutput, TInput> {
+export interface UseUpdateOptions<TOutput, TInput> extends RequestOptions {
   invalidateQueryKeys?: Array<string | string[]>
   mutationOptions?: Omit<
     UseMutationOptions<TOutput, AxiosError<TOutput>, TInput>,
@@ -344,12 +382,17 @@ export const createUseUpdate = <
   TInput extends { id?: string | number | undefined },
 >(
   resource: string,
+  options?: UseUpdateOptions<TOutput, TInput>,
 ): UseUpdate<TOutput, TInput> =>
-  function useUpdate(options = {}) {
-    const queryClient = useQueryClient()
+  function useUpdate(updateOptions) {
+    const {
+      url,
+      invalidateQueryKeys = [[resource, 'all']],
+      requestConfig,
+      mutationOptions = {},
+    } = { ...options, ...updateOptions }
 
-    const { invalidateQueryKeys = [[resource, 'all']], mutationOptions = {} } =
-      options
+    const queryClient = useQueryClient()
 
     const { meta, onSuccess, ...restMutationOptions } = mutationOptions
 
@@ -357,7 +400,11 @@ export const createUseUpdate = <
       mutationKey: [resource, 'update'],
       mutationFn: (data: TInput) =>
         api
-          .put<TOutput, TInput>(`/${resource}/${data.id}`, data)
+          .put<TOutput, TInput>(
+            url ?? `/${resource}/${data.id}`,
+            data,
+            requestConfig,
+          )
           .then(res => res.data),
       meta: {
         errorNotification: {
@@ -386,7 +433,7 @@ export const createUseUpdate = <
     })
   }
 
-export interface UseDeleteOptions<TOutput, TInput> {
+export interface UseDeleteOptions<TOutput, TInput> extends RequestOptions {
   invalidateQueryKeys?: Array<string | string[]>
   mutationOptions?: Omit<
     UseMutationOptions<TOutput, AxiosError<TOutput>, TInput>,
@@ -405,12 +452,17 @@ export type UseDelete<TOutput = void, TInput = string | number> = (
 
 export const createUseDelete = <TOutput = void, TInput = string | number>(
   resource: string,
+  options?: UseDeleteOptions<TOutput, TInput>,
 ): UseDelete<TOutput, TInput> =>
-  function useDelete(options = {}) {
-    const queryClient = useQueryClient()
+  function useDelete(deleteOptions) {
+    const {
+      url,
+      invalidateQueryKeys = [[resource, 'all']],
+      requestConfig,
+      mutationOptions = {},
+    } = { ...options, ...deleteOptions }
 
-    const { invalidateQueryKeys = [[resource, 'all']], mutationOptions = {} } =
-      options
+    const queryClient = useQueryClient()
 
     const { meta, onSuccess, ...restMutationOptions } = mutationOptions
 
@@ -418,7 +470,7 @@ export const createUseDelete = <TOutput = void, TInput = string | number>(
       mutationKey: [resource, 'delete'],
       mutationFn: (id: TInput) =>
         api
-          .delete<TOutput>(`/${resource}/${id}`)
+          .delete<TOutput>(url ?? `/${resource}/${id}`, requestConfig)
           .then(response => response.data),
       meta: {
         errorNotification: {
