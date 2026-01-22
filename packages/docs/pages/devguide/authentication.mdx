@@ -1,0 +1,100 @@
+# Authentication
+
+This guide covers authentication-related functionality in the Essencium Frontend application.
+
+## Overview
+
+The application uses JWT token-based authentication with the Essencium Backend. Authentication state is managed using Jotai atoms and TanStack Query hooks.
+
+## Login
+
+Users authenticate via the login page which calls the backend `/auth/token` endpoint. Upon successful login:
+
+1. The JWT token is stored in `localStorage` as `authToken`
+2. The token is also stored in a Jotai atom for reactive state management
+3. The user is redirected to the protected area or their intended destination
+
+See the `useCreateToken` hook in `packages/app/src/api/auth.ts` for implementation details.
+
+## Logout
+
+The application integrates with the backend's logout endpoint to properly terminate sessions both on the client and server side.
+
+### Using the Logout Hook
+
+The recommended way to implement logout functionality is using the `useLogout` hook:
+
+```typescript
+import { useLogout } from '@/api'
+
+function MyComponent() {
+  const { mutate: logout, isPending } = useLogout()
+  
+  const handleLogout = () => {
+    logout() // Calls backend, clears local storage, and redirects to login
+  }
+  
+  return (
+    <Button onClick={handleLogout} loading={isPending}>
+      Logout
+    </Button>
+  )
+}
+```
+
+### What happens during logout
+
+When `logout()` is called, the following steps occur:
+
+1. **Backend Call**: A POST request is sent to `{API_URL}/auth/logout` with:
+   - The current auth token in the `Authorization` header
+   - A `redirectUrl` query parameter pointing to the frontend login page
+
+2. **Local Cleanup** (happens regardless of backend response):
+   - `authToken` is removed from `localStorage`
+   - `user` data is removed from `localStorage`
+   - Jotai auth atom is reset to `null`
+   - User is redirected to `/login`
+
+3. **Backend Session Termination**: The backend invalidates the session/token server-side
+
+### Environment Variables Required
+
+The logout functionality requires the following environment variables:
+
+**For Backend API URL:**
+- `NEXT_PUBLIC_API_URL` (when `NEXT_PUBLIC_DISABLE_INSTRUMENTATION` is true)
+- `window.runtimeConfig.required.API_URL` (in production)
+
+**For Frontend Redirect URL:**
+- `NEXT_PUBLIC_APP_URL` (when `NEXT_PUBLIC_DISABLE_INSTRUMENTATION` is true)
+- `window.runtimeConfig.required.APP_URL` (in production)
+
+Example `.env.local`:
+
+```bash
+NEXT_PUBLIC_API_URL=http://localhost:8098
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
+
+### Automatic Logout on 401
+
+The application automatically logs users out when receiving a 401 Unauthorized response from any API call. This is handled by an Axios interceptor in `packages/app/src/api/api.ts`.
+
+**Note**: The automatic 401 logout only clears local state and redirects - it does **not** call the backend logout endpoint. This is intentional as the token is already invalid at that point.
+
+## Token Renewal
+
+The application automatically renews JWT tokens before they expire using the `useScheduleTokenRenewal` hook. This ensures users remain logged in during active sessions.
+
+See `packages/app/src/hooks/useScheduleTokenRenewal.ts` for implementation details.
+
+## Protected Routes
+
+All routes under `packages/app/src/app/[locale]/(main)/` are protected and require authentication. The `AuthLayout` component checks for a valid token in `localStorage` and redirects unauthenticated users to `/login`.
+
+## SSO Authentication
+
+The application supports OAuth/SSO authentication via the `useGetSsoApplications` hook. SSO providers are configured in the backend.
+
+Users with SSO accounts have limited profile editing capabilities (see `isSsoAtom` in `packages/app/src/api/auth.ts`).
