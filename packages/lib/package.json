@@ -93,7 +93,7 @@
     "@mantine/spotlight": "^8.0.0",
     "@tabler/icons-react": "^3.0.0",
     "@tanstack/react-table": "^8.0.0",
-    "dayjs": "^1.0.0",
+    "dayjs": "^1.11.0",
     "html2canvas-pro": "^1.0.0",
     "i18next": "^23.0.0",
     "next": "^15.0.0",
