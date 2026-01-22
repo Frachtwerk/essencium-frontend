@@ -32,6 +32,7 @@ import {
 import { AxiosError } from 'axios'
 import { atom, useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
+import { useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 
 import { api } from './api'
@@ -218,5 +219,39 @@ export function useGetSsoApplications(): UseQueryResult<SsoApplications> {
           }/auth`,
         })
         .then(response => response.data),
+  })
+}
+
+export function useLogout(): UseMutationResult<void, AxiosError, void> {
+  const router = useRouter()
+  const resetAuthToken = useSetAtom(authTokenAtom)
+
+  return useMutation<void, AxiosError, void>({
+    mutationKey: ['useLogout'],
+    mutationFn: async () => {
+      const baseURL = process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
+        ? process.env.NEXT_PUBLIC_API_URL
+        : window.runtimeConfig.required.API_URL
+
+      const appURL = process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
+        ? process.env.NEXT_PUBLIC_APP_URL
+        : window.runtimeConfig.required.APP_URL
+
+      const redirectUrl = `${appURL}/login`
+
+      await api.post(
+        `/logout?redirectUrl=${encodeURIComponent(redirectUrl)}`,
+        undefined,
+        { baseURL: `${baseURL}/auth` },
+      )
+    },
+    onSettled: () => {
+      localStorage.removeItem('authToken')
+      localStorage.removeItem('user')
+
+      resetAuthToken(null)
+
+      router.push('/login')
+    },
   })
 }
