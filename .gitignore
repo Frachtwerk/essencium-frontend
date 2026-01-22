@@ -3,4 +3,6 @@ dist
 .DS_Store
 .rollup.cache
 .idea/
+.github
+
 playwright/.auth
