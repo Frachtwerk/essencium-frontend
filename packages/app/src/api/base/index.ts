@@ -17,24 +17,12 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {
-  FilterObjectUser,
-  UserInput,
-  UserOutput,
-  UserUpdate,
-} from '@frachtwerk/essencium-types'
-
-import { createBaseQueries } from './base/baseQueries'
-
-const RESOURCE = 'users'
-
-export const {
-  queryKeys: userQueryKeys,
-  useGetPage: useGetUsers,
-  useFind: useGetUser,
-  useCreate: useCreateUser,
-  useUpdate: useUpdateUser,
-  useDelete: useDeleteUser,
-} = createBaseQueries<UserOutput, UserInput, FilterObjectUser, UserUpdate>(
-  RESOURCE,
-)
+export * from './all'
+export * from './baseQueries'
+export * from './create'
+export * from './delete'
+export * from './find'
+export * from './infinite'
+export * from './page'
+export * from './types'
+export * from './update'

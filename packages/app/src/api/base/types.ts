@@ -17,24 +17,15 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {
-  FilterObjectUser,
-  UserInput,
-  UserOutput,
-  UserUpdate,
-} from '@frachtwerk/essencium-types'
+import { AxiosRequestConfig } from 'axios'
 
-import { createBaseQueries } from './base/baseQueries'
+export type TBaseFilter = Record<string, unknown>
 
-const RESOURCE = 'users'
+export interface FilterOptions<TFilter extends TBaseFilter> {
+  filter?: TFilter
+}
 
-export const {
-  queryKeys: userQueryKeys,
-  useGetPage: useGetUsers,
-  useFind: useGetUser,
-  useCreate: useCreateUser,
-  useUpdate: useUpdateUser,
-  useDelete: useDeleteUser,
-} = createBaseQueries<UserOutput, UserInput, FilterObjectUser, UserUpdate>(
-  RESOURCE,
-)
+export interface RequestOptions {
+  url?: string
+  requestConfig?: AxiosRequestConfig
+}
