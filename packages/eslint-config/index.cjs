@@ -67,6 +67,7 @@ module.exports = {
           '**/*.test.tsx',
           '**/*.config.js',
           '**/*.config.ts',
+          '**/vitest.config.app.ts',
         ],
       },
     ],
