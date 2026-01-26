@@ -110,7 +110,7 @@ export const setPasswordFormSchema = z
     error: 'validation.password.confirmError',
     path: ['confirmPassword'],
     when(payload) {
-      return passwordChangeSchemaAdmin
+      return setPasswordFormSchema
         .pick({ password: true, confirmPassword: true })
         .safeParse(payload.value).success
     },
