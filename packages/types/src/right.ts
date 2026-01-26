@@ -45,7 +45,7 @@ export const RIGHTS = {
 
 export const rightOutputSchema = z.object({
   authority: stringSchema,
-  description: z.string().nullish(),
+  description: z.string().nullable(),
 })
 
 export type RightOutput = z.infer<typeof rightOutputSchema>
