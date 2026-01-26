@@ -35,7 +35,13 @@ export const useUpdateMe = createUseUpdate<UserOutput, UserUpdate>(RESOURCE, {
   url: RESOURCE,
 })
 
-// { id?: undefined } to trick typescript, the url gets overwritten anyway
+// `createUseUpdate` expects a payload type that includes an `id` property.
+// For the `/users/me/password` endpoint, the backend determines the user from
+// the authenticated session and the fixed URL (`/users/me/password`), so no
+// `id` is actually required or used in the request body. We therefore extend
+// `PasswordChange` with an optional `id` that is always `undefined` purely to
+// satisfy this generic constraint; the request URL is explicitly set to
+// `${RESOURCE}/password`, so the `id` field is ignored by the API.
 export const useUpdatePassword = createUseUpdate<
   UserOutput,
   Omit<PasswordChange & { id?: undefined }, 'confirmPassword'>
