@@ -27,7 +27,7 @@ import { useRouter } from 'next/navigation'
 import { type JSX, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { useGetRoles, useGetUser, useUpdateUser } from '@/api'
+import { useGetAllRoles, useGetUser, useUpdateUser } from '@/api'
 import { useZodForm } from '@/hooks'
 
 import { FORM_DEFAULTS_USERS_VIEW } from '../UsersView'
@@ -66,16 +66,11 @@ export default function UpdateUserView({
     }
   }, [user, resetAndFillForm])
 
-  const { mutate: updateUser, isPending } = useUpdateUser()
-
-  const { data: rolesResponse } = useGetRoles({
-    requestConfig: {
-      page: 0,
-      size: 9999,
-    },
+  const { mutate: updateUser, isPending } = useUpdateUser({
+    mutationOptions: {},
   })
 
-  const roles = rolesResponse?.content || []
+  const { items: roles } = useGetAllRoles()
 
   function handleUpdateUser(updatedUser: UserUpdate): void {
     updateUser(updatedUser, {

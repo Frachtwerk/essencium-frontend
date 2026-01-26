@@ -152,10 +152,10 @@ export default function TranlsationView({ resources }: Props): JSX.Element {
   const [isDelete, setIsDelete] = useState<boolean>(false)
 
   const { data: serverTranslationsDe, refetch: refetchServerTranslationsDe } =
-    useGetTranslations('de')
+    useGetTranslations('de')()
 
   const { data: serverTranslationsEn, refetch: refetchServerTranslationsEn } =
-    useGetTranslations('en')
+    useGetTranslations('en')()
 
   const { mutate: updateTranslation } = useUpdateTranslation()
 

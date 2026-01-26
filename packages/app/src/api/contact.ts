@@ -17,43 +17,32 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { useMutation, UseMutationResult } from '@tanstack/react-query'
-import { AxiosError } from 'axios'
+import { ContactFormType } from '@frachtwerk/essencium-types'
 import { useTranslation } from 'react-i18next'
 
-import { api } from './api'
+import { createUseCreate, UseCreateResult } from './base'
 
-type ContactInput = {
-  name: string
-  mailAddress: string
-  subject: string
-  message: string
-}
+const RESOURCE = 'contact'
 
-export function useSendContactMessage(): UseMutationResult<
+export function useSendContactMessage(): UseCreateResult<
   void,
-  AxiosError,
-  ContactInput
+  ContactFormType
 > {
   const { t } = useTranslation()
 
-  const mutation = useMutation<void, AxiosError, ContactInput>({
-    mutationKey: ['sendContactMessage'],
-    mutationFn: (newMessage: ContactInput) =>
-      api
-        .post<void, ContactInput>('/contact', newMessage)
-        .then(response => response.data),
-    meta: {
-      errorNotification: {
-        notificationType: 'created',
-        message: t('notifications.sendMessageError.message'),
-      },
-      successNotification: {
-        notificationType: 'created',
-        message: t('notifications.sendMessageSuccess.message'),
+  return createUseCreate<void, ContactFormType>(RESOURCE)({
+    invalidateQueryKeys: [],
+    mutationOptions: {
+      meta: {
+        errorNotification: {
+          notificationType: 'created',
+          message: t('notifications.sendMessageError.message'),
+        },
+        successNotification: {
+          notificationType: 'created',
+          message: t('notifications.sendMessageSuccess.message'),
+        },
       },
     },
   })
-
-  return mutation
 }

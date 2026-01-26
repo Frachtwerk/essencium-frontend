@@ -46,7 +46,12 @@ import { useAtomValue } from 'jotai'
 import { type JSX, useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { useGetRights, useGetRoles, userRightsAtom, useUpdateRole } from '@/api'
+import {
+  useGetAllRoles,
+  useGetRights,
+  userRightsAtom,
+  useUpdateRole,
+} from '@/api'
 import { parseSorting } from '@/utils'
 
 const DEFAULT_SORTING: SortingState = [{ id: 'authority', desc: false }]
@@ -68,15 +73,15 @@ export default function RightsView(): JSX.Element {
     error: errorRights,
     refetch: refetchRights,
   } = useGetRights({
-    page: activePage - 1,
-    size: pageSize,
-    sort: parseSorting(sorting, DEFAULT_SORTING),
+    pagination: {
+      page: activePage - 1,
+      size: pageSize,
+      sort: parseSorting(sorting, DEFAULT_SORTING),
+    },
   })
 
-  const { data: roles, refetch: refetchRoles } = useGetRoles({
-    requestConfig: {
-      page: 0,
-      size: 9999,
+  const { items: roles, refetch: refetchRoles } = useGetAllRoles({
+    pagination: {
       sort: 'name,asc',
     },
   })
@@ -99,20 +104,20 @@ export default function RightsView(): JSX.Element {
 
   const hasRight = useCallback(
     (rightAuthority: string, roleName: string) => {
-      if (!roles?.content) {
+      if (!roles.length) {
         return false
       }
 
-      const matchedRole = roles.content.find(role => role.name === roleName)
+      const matchedRole = roles.find(role => role.name === roleName)
 
       if (!matchedRole)
-        throw Error(`Role ${roleName} does not exist in ${roles.content}`)
+        throw Error(`Role '${roleName}' does not exist.`)
 
       return matchedRole.rights.some(
         right => right.authority === rightAuthority,
       )
     },
-    [roles?.content],
+    [roles],
   )
 
   // returns rights array for role after activating/deactivating a right
@@ -137,50 +142,48 @@ export default function RightsView(): JSX.Element {
   }
 
   const columns = useMemo<ColumnDef<RightOutput>[]>(() => {
-    const roleColumns: ColumnDef<RightOutput>[] = (roles?.content || []).map(
-      role => ({
-        accessorKey: `${role.name}`,
-        size: 100,
-        header: () => (
-          <Text inherit c={role.protected ? 'grey' : 'primary'}>
-            {role.name}
-          </Text>
-        ),
-        enableSorting: false,
-        cell: info => {
-          const rightRow = info.row.original
+    const roleColumns: ColumnDef<RightOutput>[] = roles.map(role => ({
+      accessorKey: `${role.name}`,
+      size: 100,
+      header: () => (
+        <Text inherit c={role.protected ? 'grey' : 'primary'}>
+          {role.name}
+        </Text>
+      ),
+      enableSorting: false,
+      cell: info => {
+        const rightRow = info.row.original
 
-          const updatedRole = {
-            ...role,
-            rights: getUpdatedRights(role, rightRow),
-          }
+        const updatedRole = {
+          ...role,
+          rights: getUpdatedRights(role, rightRow),
+        }
 
-          return (
-            <Checkbox
-              disabled={
-                role.name === ROLES.ADMIN ||
-                role.protected ||
-                !hasRequiredRights(userRights, [
-                  RIGHTS.ROLE_UPDATE,
-                  RIGHTS.RIGHT_UPDATE,
-                ])
-              }
-              onChange={() =>
-                handleUpdateRole({
-                  ...updatedRole,
-                  rights: updatedRole.rights.map(right => right.authority),
-                })
-              }
-              aria-label={t('rightsView.table.checkbox', {
-                right: rightRow.authority,
-                role: role.name,
-              })}
-              checked={hasRight(rightRow.authority, role.name)}
-            />
-          )
-        },
-      }),
-    )
+        return (
+          <Checkbox
+            disabled={
+              role.name === ROLES.ADMIN ||
+              role.protected ||
+              !hasRequiredRights(userRights, [
+                RIGHTS.ROLE_UPDATE,
+                RIGHTS.RIGHT_UPDATE,
+              ])
+            }
+            onChange={() =>
+              handleUpdateRole({
+                ...updatedRole,
+                rights: updatedRole.rights.map(right => right.authority),
+              })
+            }
+            aria-label={t('rightsView.table.checkbox', {
+              right: rightRow.authority,
+              role: role.name,
+            })}
+            checked={hasRight(rightRow.authority, role.name)}
+          />
+        )
+      },
+    }))
 
     return [
       {
@@ -191,7 +194,7 @@ export default function RightsView(): JSX.Element {
       },
       ...roleColumns,
     ]
-  }, [t, hasRight, handleUpdateRole, roles?.content, userRights])
+  }, [t, hasRight, handleUpdateRole, roles, userRights])
 
   const table = useReactTable({
     data: rights?.content || [],

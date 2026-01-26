@@ -17,10 +17,15 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './isBrowserEnvironment'
-export * from './logout'
-export * from './mergeTranslations'
-export * from './pagination'
-export * from './parseJwt'
-export * from './parseSorting'
-export * from './withBaseStylingShowNotification'
+import { AxiosRequestConfig } from 'axios'
+
+export type TBaseFilter = Record<string, unknown>
+
+export interface FilterOptions<TFilter extends TBaseFilter> {
+  filter?: TFilter
+}
+
+export interface RequestOptions {
+  url?: string
+  requestConfig?: AxiosRequestConfig
+}

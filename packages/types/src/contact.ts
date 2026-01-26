@@ -20,6 +20,8 @@
 import { z } from 'zod'
 
 export const contactFormSchema = z.object({
+  mailAddress: z.string(),
+  name: z.string(),
   subject: z.string().min(2, 'validation.contact.subject'),
   message: z.string().min(10, 'validation.contact.message'),
 })

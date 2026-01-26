@@ -11,5 +11,5 @@
   "tailwindCSS.experimental.classRegex": [
     ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ],
-  "conventionalCommits.scopes": ["lib", "app"]
+  "conventionalCommits.scopes": ["lib", "app", "types"]
 }

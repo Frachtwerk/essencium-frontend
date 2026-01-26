@@ -22,82 +22,29 @@ import {
   UserOutput,
   UserUpdate,
 } from '@frachtwerk/essencium-types'
-import {
-  useMutation,
-  UseMutationResult,
-  useQuery,
-  UseQueryResult,
-} from '@tanstack/react-query'
-import { AxiosError } from 'axios'
-import { useAtomValue } from 'jotai'
 
-import { api } from './api'
-import { authTokenAtom } from './auth'
+import { createUseFind, createUseUpdate } from './base'
 
-export function useGetMe(): UseQueryResult<UserOutput, unknown> {
-  const authToken = useAtomValue(authTokenAtom)
+const RESOURCE = '/users/me'
 
-  const query = useQuery({
-    enabled: Boolean(authToken),
-    queryKey: ['useGetMe'],
-    queryFn: () =>
-      api.get<UserOutput>('/users/me').then(response => response.data),
-  })
+export const useGetMe = createUseFind<UserOutput>(RESOURCE, {
+  url: RESOURCE,
+})
 
-  return query
-}
+export const useUpdateMe = createUseUpdate<UserOutput, UserUpdate>(RESOURCE, {
+  url: RESOURCE,
+})
 
-export function useUpdateMe(): UseMutationResult<
+// `createUseUpdate` expects a payload type that includes an `id` property.
+// For the `/users/me/password` endpoint, the backend determines the user from
+// the authenticated session and the fixed URL (`/users/me/password`), so no
+// `id` is actually required or used in the request body. We therefore extend
+// `PasswordChange` with an optional `id` that is always `undefined` purely to
+// satisfy this generic constraint; the request URL is explicitly set to
+// `${RESOURCE}/password`, so the `id` field is ignored by the API.
+export const useUpdatePassword = createUseUpdate<
   UserOutput,
-  AxiosError,
-  UserUpdate
-> {
-  const mutation = useMutation<UserOutput, AxiosError, UserUpdate>({
-    mutationKey: ['useUpdateMe'],
-    mutationFn: (user: UserUpdate) =>
-      api
-        .put<UserOutput, UserUpdate>('/users/me', user)
-        .then(response => response.data),
-    meta: {
-      errorNotification: {
-        notificationType: 'updated',
-      },
-      successNotification: {
-        notificationType: 'updated',
-      },
-    },
-  })
-
-  return mutation
-}
-
-export function useUpdatePassword(): UseMutationResult<
-  UserOutput,
-  AxiosError,
-  Omit<PasswordChange, 'confirmPassword'>
-> {
-  const mutation = useMutation<
-    UserOutput,
-    AxiosError,
-    Omit<PasswordChange, 'confirmPassword'>
-  >({
-    mutationKey: ['useChangePassword'],
-    mutationFn: (passwordData: Omit<PasswordChange, 'confirmPassword'>) =>
-      api
-        .put<UserOutput, Omit<PasswordChange, 'confirmPassword'>>(
-          '/users/me/password',
-          passwordData,
-        )
-        .then(response => response.data),
-    meta: {
-      errorNotification: {
-        notificationType: 'updated',
-      },
-      successNotification: {
-        notificationType: 'updated',
-      },
-    },
-  })
-
-  return mutation
-}
+  Omit<PasswordChange & { id?: undefined }, 'confirmPassword'>
+>(`${RESOURCE}/password`, {
+  url: `${RESOURCE}/password`,
+})

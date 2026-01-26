@@ -17,41 +17,18 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { PaginatedResponse, RightOutput } from '@frachtwerk/essencium-types'
-import { useQuery, UseQueryResult } from '@tanstack/react-query'
-import { AxiosError } from 'axios'
-import { useAtomValue } from 'jotai'
+import { RightOutput } from '@frachtwerk/essencium-types'
 
-import { api } from './api'
-import { authTokenAtom } from './auth'
+import { createUseGetAll, createUseGetPage } from './base'
 
-export type RightsResponse = PaginatedResponse<RightOutput>
+const RESOURCE = 'rights'
 
-export type GetRightsParams = {
-  page: RightsResponse['number']
-  size: RightsResponse['size']
-  sort?: string
-}
+export const useGetAllRights = createUseGetAll<
+  RightOutput,
+  Record<string, never>
+>(RESOURCE)
 
-export const useGetRights = ({
-  page,
-  size,
-  sort,
-}: GetRightsParams): UseQueryResult<RightsResponse, AxiosError> => {
-  const authToken = useAtomValue(authTokenAtom)
-
-  return useQuery({
-    enabled: Boolean(authToken),
-    queryKey: ['rights', { page, size, sort }],
-    queryFn: () =>
-      api
-        .get<RightOutput[]>('/rights', {
-          params: {
-            page,
-            size,
-            sort,
-          },
-        })
-        .then(response => response.data),
-  })
-}
+export const useGetRights = createUseGetPage<
+  RightOutput,
+  Record<string, never>
+>(RESOURCE)

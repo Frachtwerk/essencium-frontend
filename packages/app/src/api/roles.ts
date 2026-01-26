@@ -24,84 +24,43 @@ import {
   RoleUpdate,
 } from '@frachtwerk/essencium-types'
 import {
-  QueryObserverOptions,
   useMutation,
   UseMutationResult,
-  useQuery,
-  UseQueryResult,
+  useQueryClient,
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { useAtomValue } from 'jotai'
 
 import { api } from './api'
-import { authTokenAtom } from './auth'
+import {
+  createUseCreate,
+  createUseDelete,
+  createUseGetAll,
+  createUseGetPage,
+} from './base'
 
 export type RolesResponse = PaginatedResponse<RoleOutput>
 
-export function useCreateRole(): UseMutationResult<
+const RESOURCE = 'roles'
+
+export const useGetAllRoles = createUseGetAll<
   RoleOutput,
-  AxiosError,
-  RoleInput
-> {
-  const mutation = useMutation<RoleOutput, AxiosError, RoleInput>({
-    mutationKey: ['useCreateRole'],
-    mutationFn: (role: RoleInput) =>
-      api
-        .post<RoleOutput, RoleInput>('/roles', role)
-        .then(response => response.data),
-    meta: {
-      errorNotification: {
-        notificationType: 'created',
-      },
-      successNotification: {
-        notificationType: 'created',
-      },
-    },
-  })
+  Record<string, never>
+>(RESOURCE)
 
-  return mutation
-}
+export const useCreateRole = createUseCreate<RoleOutput, RoleInput>(RESOURCE)
 
-export type UseGetRolesParams = {
-  requestConfig?: {
-    page: RolesResponse['number']
-    size: RolesResponse['size']
-    sort?: string
-  }
-  queryConfig?: QueryObserverOptions
-}
+export const useGetRoles = createUseGetPage<RoleOutput, Record<string, never>>(
+  RESOURCE,
+)
 
-export function useGetRoles({
-  requestConfig,
-  queryConfig,
-}: UseGetRolesParams): UseQueryResult<RolesResponse, AxiosError> {
-  const authToken = useAtomValue(authTokenAtom)
-
-  const isDisabled = queryConfig?.enabled === false
-
-  const { page, size, sort } = requestConfig || {}
-
-  return useQuery<RolesResponse, AxiosError>({
-    enabled: Boolean(authToken) && !isDisabled,
-    queryKey: ['getRoles', { page, size, sort }],
-    queryFn: () =>
-      api
-        .get<RolesResponse>('/roles', {
-          params: {
-            page,
-            size,
-            sort,
-          },
-        })
-        .then(response => response.data),
-  })
-}
-
+// Not implemented with useUpdate because roles are identified by their name instead of an id
 export function useUpdateRole(): UseMutationResult<
   RoleOutput,
   AxiosError,
   RoleUpdate
 > {
+  const queryClient = useQueryClient()
+
   const mutation = useMutation<RoleOutput, AxiosError, RoleUpdate>({
     mutationKey: ['useUpdateRole'],
     mutationFn: (role: RoleUpdate) =>
@@ -116,29 +75,11 @@ export function useUpdateRole(): UseMutationResult<
         notificationType: 'updated',
       },
     },
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ['roles', 'all'] }),
   })
 
   return mutation
 }
 
-export function useDeleteRole(): UseMutationResult<
-  null,
-  AxiosError,
-  RoleOutput['name']
-> {
-  const mutation = useMutation<null, AxiosError, RoleOutput['name']>({
-    mutationKey: ['useDeleteRole'],
-    mutationFn: (roleId: RoleOutput['name']) =>
-      api.delete<null>(`/roles/${roleId}`).then(response => response.data),
-    meta: {
-      errorNotification: {
-        notificationType: 'deleted',
-      },
-      successNotification: {
-        notificationType: 'deleted',
-      },
-    },
-  })
-
-  return mutation
-}
+export const useDeleteRole = createUseDelete(RESOURCE)

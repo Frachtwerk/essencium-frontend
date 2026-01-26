@@ -21,27 +21,18 @@ import {
   TranslationInput,
   TranslationOutput,
 } from '@frachtwerk/essencium-types'
-import {
-  useMutation,
-  UseMutationResult,
-  useQuery,
-  UseQueryResult,
-} from '@tanstack/react-query'
+import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 
 import { api } from './api'
+import { createUseGetPage, UseGetPage } from './base'
 
-export function useGetTranslations(
+const RESOURCE = 'translations'
+
+export const useGetTranslations = (
   locale: TranslationInput['locale'],
-): UseQueryResult<TranslationOutput, AxiosError> {
-  return useQuery<TranslationOutput, AxiosError>({
-    queryKey: [`useGetTranslations-${locale}`],
-    queryFn: () =>
-      api
-        .get<TranslationOutput>(`/translations/${locale}`)
-        .then(response => response.data),
-  })
-}
+): UseGetPage<TranslationOutput, Record<string, never>> =>
+  createUseGetPage(`${RESOURCE}/${locale}`)
 
 export function useUpdateTranslation(): UseMutationResult<
   TranslationOutput,

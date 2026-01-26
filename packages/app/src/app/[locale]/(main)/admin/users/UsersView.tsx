@@ -69,7 +69,7 @@ import { useTranslation } from 'react-i18next'
 
 import {
   useDeleteUser,
-  useGetRoles,
+  useGetAllRoles,
   useGetUsers,
   useInvalidateToken,
   userRightsAtom,
@@ -113,16 +113,14 @@ export default function UsersView(): JSX.Element {
   const [columnFiltersDebounced] = useDebouncedValue(columnFilters, 350)
   const [showFilter, setShowFilter] = useState(false)
 
-  const { data: allRoles } = useGetRoles({
-    requestConfig: {
-      page: 0,
-      size: 9999,
+  const { items: allRoles } = useGetAllRoles({
+    pagination: {
       sort: 'name,asc',
     },
   })
 
   function getFilterRolesData(): Record<string, Array<string>> {
-    const roles = allRoles?.content.map(role => role.name) || []
+    const roles = allRoles.map(role => role.name)
 
     return {
       roles,
@@ -135,11 +133,12 @@ export default function UsersView(): JSX.Element {
     isError: isErrorUsers,
     isFetching: isFetchingUsers,
     error: errorUsers,
-    refetch: refetchUsers,
   } = useGetUsers({
-    page: activePage - 1,
-    size: pageSize,
-    sort: parseSorting(sorting, DEFAULT_SORTING),
+    pagination: {
+      page: activePage - 1,
+      size: pageSize,
+      sort: parseSorting(sorting, DEFAULT_SORTING),
+    },
     filter: columnFiltersDebounced.reduce(
       (acc, { id, value }) => ({ ...acc, [id]: value }),
       {},
@@ -150,17 +149,17 @@ export default function UsersView(): JSX.Element {
 
   const handleDeleteUser = useCallback(
     (userToDelete: UserOutput) => {
+      if (!userToDelete.id) {
+        throw new Error('Cannot delete user: User ID is missing or invalid.')
+      }
+
       deleteUser(userToDelete.id, {
-        onSuccess: () => {
-          deleteModalHandlers.close()
-          refetchUsers()
-        },
-        onError: () => {
+        onSettled() {
           deleteModalHandlers.close()
         },
       })
     },
-    [deleteUser, refetchUsers, deleteModalHandlers],
+    [deleteUser, deleteModalHandlers],
   )
 
   const { mutate: invalidateToken } = useInvalidateToken()
