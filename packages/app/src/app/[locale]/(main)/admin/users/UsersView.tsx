@@ -150,7 +150,7 @@ export default function UsersView(): JSX.Element {
   const handleDeleteUser = useCallback(
     (userToDelete: UserOutput) => {
       if (!userToDelete.id) {
-        throw new Error('User ID is undefined')
+        throw new Error('Cannot delete user: User ID is missing or invalid.')
       }
 
       deleteUser(userToDelete.id, {
