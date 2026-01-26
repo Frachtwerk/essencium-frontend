@@ -53,7 +53,7 @@ export const useGetRoles = createUseGetPage<RoleOutput, Record<string, never>>(
   RESOURCE,
 )
 
-// Not implemented with useUpdate because roles are identified by their name istead of an id
+// Not implemented with useUpdate because roles are identified by their name instead of an id
 export function useUpdateRole(): UseMutationResult<
   RoleOutput,
   AxiosError,
