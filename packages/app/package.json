@@ -40,7 +40,7 @@
     "i18next": "23.11.5",
     "i18next-resources-to-backend": "1.2.1",
     "jotai": "2.0.4",
-    "next": "16.0.1",
+    "next": "16.1.5",
     "next-i18n-router": "5.5.1",
     "nodemailer": "7.0.13",
     "react": "19.2.0",
