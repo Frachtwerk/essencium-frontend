@@ -3,13 +3,13 @@
 @import 'tailwindcss/theme.css' layer(theme);
 @import 'tailwindcss/utilities.css' layer(utilities);
 
+/* Mantine theme for tailwindcss - import at root level since it contains @custom-variant */
+@import '@frachtwerk/essencium-lib/dist/theme.css';
+
 @import '@mantine/core/styles.layer.css';
 
 /* CSS classes used in essencium-lib */
 @import '@frachtwerk/essencium-lib/dist/globals.css';
-
-/* Mantine theme for tailwindcss */
-@import '@frachtwerk/essencium-lib/dist/theme.css';
 
 /* Custom theme for the app */
 @theme {

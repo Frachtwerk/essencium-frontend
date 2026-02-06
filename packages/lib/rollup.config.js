@@ -3,6 +3,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
 import terser from '@rollup/plugin-terser'
 import typescript from '@rollup/plugin-typescript'
+import copy from 'rollup-plugin-copy'
 import dts from 'rollup-plugin-dts'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import postcss from 'rollup-plugin-postcss'
@@ -57,21 +58,17 @@ export default [
   {
     input: 'dist/types/index.d.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
-    plugins: [dts()],
-  },
-  {
-    input: 'src/globals.css',
-    output: [{ file: 'dist/globals.css', format: 'es' }],
     plugins: [
-      postcss({
-        extract: true,
-        minimize: true,
+      dts(),
+      copy({
+        targets: [{ src: 'src/theme.css', dest: 'dist' }],
+        hook: 'writeBundle',
       }),
     ],
   },
   {
-    input: 'src/theme.css',
-    output: [{ file: 'dist/theme.css', format: 'es' }],
+    input: 'src/globals.css',
+    output: [{ file: 'dist/globals.css', format: 'es' }],
     plugins: [
       postcss({
         extract: true,
