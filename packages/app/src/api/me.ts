@@ -36,7 +36,7 @@ export function useGetMe(): UseQueryResult<UserOutput, AxiosError<UserOutput>> {
   const authToken = useAtomValue(authTokenAtom)
 
   return useQuery<UserOutput, AxiosError<UserOutput>>({
-    queryKey: [RESOURCE],
+    queryKey: [RESOURCE, authToken],
     queryFn: () => api.get<UserOutput>(RESOURCE).then(res => res.data),
     enabled: !!authToken,
   })
