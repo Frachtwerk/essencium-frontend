@@ -2,6 +2,10 @@
 
 ## [9.4.X (XXXX-XX-XX)]()
 
+### Remove next-i18n-router (https://github.com/Frachtwerk/essencium-frontend/pull/924)
+
+- The package `next-i18n-router` has been removed because of an issue with rendering components from the lib package. Note the changes in packages/app/src/proxy.ts
+
 ### Enable React Compiler (https://github.com/Frachtwerk/essencium-frontend/pull/908)
 
 - Changes in the app package mainly resulted from the update to next v16

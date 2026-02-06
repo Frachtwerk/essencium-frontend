@@ -36,8 +36,7 @@ import { authTokenAtom } from '../auth'
 import { FilterOptions, RequestOptions, TBaseFilter } from './types'
 
 export interface UseGetPageOptions<TOutput, TFilter extends TBaseFilter>
-  extends FilterOptions<TFilter>,
-    RequestOptions {
+  extends FilterOptions<TFilter>, RequestOptions {
   pagination?: Partial<PaginationParams>
   queryOptions?: Omit<
     UseQueryOptions<

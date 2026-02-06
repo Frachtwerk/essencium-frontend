@@ -18,11 +18,12 @@
  */
 
 import { BaseProperties } from '@frachtwerk/essencium-types/src/base'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import {
+  useMutation,
   UseMutationOptions,
   UseMutationResult,
-} from '@tanstack/react-query/build/legacy/types'
+  useQueryClient,
+} from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 
 import { api } from '../api'
@@ -69,11 +70,10 @@ export const createUseUpdate = <
       mutationKey: [resource, 'update'],
       mutationFn: (data: TInput) =>
         api
-          .put<TOutput, TInput>(
-            url ?? `/${resource}/${data.id}`,
-            data,
-            requestConfig,
-          )
+          .put<
+            TOutput,
+            TInput
+          >(url ?? `/${resource}/${data.id}`, data, requestConfig)
           .then(res => res.data),
       meta: {
         errorNotification: {
@@ -84,8 +84,8 @@ export const createUseUpdate = <
         },
         ...meta,
       },
-      onSuccess(data, variables, context) {
-        onSuccess?.(data, variables, context)
+      onSuccess(data, variables, onMutateResult, context) {
+        onSuccess?.(data, variables, onMutateResult, context)
 
         return Promise.all([
           queryClient.invalidateQueries({

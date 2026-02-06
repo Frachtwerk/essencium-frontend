@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
+    "outDir": "./dist",
     "paths": {
       "@frachtwerk/essencium-types": ["../types/dist"]
     }

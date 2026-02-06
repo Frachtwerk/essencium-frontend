@@ -77,8 +77,8 @@ export const createUseCreate = <TOutput, TInput>(
         },
         ...meta,
       },
-      onSuccess(data, variables, context) {
-        onSuccess?.(data, variables, context)
+      onSuccess(data, variables, onMutateResult, context) {
+        onSuccess?.(data, variables, onMutateResult, context)
 
         return Promise.all(
           invalidateQueryKeys.map(key =>

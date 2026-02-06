@@ -22,17 +22,29 @@ import {
   UserOutput,
   UserUpdate,
 } from '@frachtwerk/essencium-types'
+import { useQuery, UseQueryResult } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
+import { useAtomValue } from 'jotai'
 
-import { createUseFind, createUseUpdate } from './base'
+import { api } from './api'
+import { authTokenAtom } from './auth'
+import { createUseUpdate } from './base'
 
 const RESOURCE = '/users/me'
 
-export const useGetMe = createUseFind<UserOutput>(RESOURCE, {
-  url: RESOURCE,
-})
+export function useGetMe(): UseQueryResult<UserOutput, AxiosError<UserOutput>> {
+  const authToken = useAtomValue(authTokenAtom)
+
+  return useQuery<UserOutput, AxiosError<UserOutput>>({
+    queryKey: [RESOURCE, authToken],
+    queryFn: () => api.get<UserOutput>(RESOURCE).then(res => res.data),
+    enabled: !!authToken,
+  })
+}
 
 export const useUpdateMe = createUseUpdate<UserOutput, UserUpdate>(RESOURCE, {
   url: RESOURCE,
+  invalidateQueryKeys: [[RESOURCE]],
 })
 
 // `createUseUpdate` expects a payload type that includes an `id` property.
@@ -47,4 +59,5 @@ export const useUpdatePassword = createUseUpdate<
   Omit<PasswordChange & { id?: undefined }, 'confirmPassword'>
 >(`${RESOURCE}/password`, {
   url: `${RESOURCE}/password`,
+  invalidateQueryKeys: [[RESOURCE]],
 })

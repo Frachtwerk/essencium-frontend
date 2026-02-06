@@ -23,9 +23,6 @@
   },
   "devDependencies": {
     "@frachtwerk/prettier-config-essencium": "workspace:*",
-    "prettier": "3.0.3"
-  },
-  "peerDependencies": {
     "@typescript-eslint/eslint-plugin": "7.18.0",
     "@typescript-eslint/parser": "7.18.0",
     "eslint": "8.56.0",
@@ -37,14 +34,11 @@
     "eslint-plugin-prettier": "5.0.1",
     "eslint-plugin-react": "7.32.2",
     "eslint-plugin-react-hooks": "4.6.2",
-    "eslint-plugin-simple-import-sort": "10.0.0"
+    "eslint-plugin-simple-import-sort": "10.0.0",
+    "prettier": "3.8.1"
   },
   "engines": {
     "node": ">=20",
     "pnpm": "10"
-  },
-  "volta": {
-    "node": "20.15.0",
-    "pnpm": "10.10.0"
   }
 }

@@ -28,7 +28,7 @@ const CONFIG = {
   AVAILABLE_LOCALES: ['en', 'de'],
   ADMIN_USERNAME: '',
   ADMIN_PASSWORD: '',
-  BASE_URL: 'https://backend.staging.essencium.dev',
+  BASE_URL: 'https://localhost:8098',
   ROLES_TO_KEEP: ['ADMIN', 'USER'],
 }
 

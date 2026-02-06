@@ -3,8 +3,9 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "module": "ES6",
+    "outDir": "dist",
     "declaration": true,
-    "declarationDir": "types",
+    "declarationDir": "dist/types",
     "declarationMap": false,
     "sourceMap": false,
     "moduleResolution": "bundler"
