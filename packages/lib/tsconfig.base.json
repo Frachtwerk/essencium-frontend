@@ -4,7 +4,7 @@
     "esModuleInterop": true,
     "module": "ES2020",
     "declaration": true,
-    "declarationDir": "types",
+    "declarationDir": "dist/types",
     "declarationMap": true,
     "sourceMap": false,
     "moduleResolution": "bundler"
