@@ -69,8 +69,8 @@ export function withBaseStylingShowNotification(
       props.color === 'success'
         ? 'green'
         : props.color === 'error'
-        ? 'red'
-        : 'blue',
+          ? 'red'
+          : 'blue',
     style: props.style ?? {
       position: 'fixed',
       top: '20px',

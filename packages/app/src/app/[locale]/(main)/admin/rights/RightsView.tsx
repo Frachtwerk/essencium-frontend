@@ -110,8 +110,7 @@ export default function RightsView(): JSX.Element {
 
       const matchedRole = roles.find(role => role.name === roleName)
 
-      if (!matchedRole)
-        throw Error(`Role '${roleName}' does not exist.`)
+      if (!matchedRole) throw Error(`Role '${roleName}' does not exist.`)
 
       return matchedRole.rights.some(
         right => right.authority === rightAuthority,
