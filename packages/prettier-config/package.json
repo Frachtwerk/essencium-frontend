@@ -25,8 +25,8 @@
     "sort-package-json": "sort-package-json"
   },
   "devDependencies": {
-    "prettier": "3.0.3",
-    "prettier-plugin-tailwindcss": "0.6.13"
+    "prettier": "3.8.1",
+    "prettier-plugin-tailwindcss": "0.7.2"
   },
   "peerDependencies": {
     "prettier": "3.0.3"
@@ -34,9 +34,5 @@
   "engines": {
     "node": ">=20",
     "pnpm": "10"
-  },
-  "volta": {
-    "node": "20.15.0",
-    "pnpm": "10.10.0"
   }
 }
