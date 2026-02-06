@@ -21,7 +21,7 @@ import {
   PaginatedResponse,
   PaginationParams,
 } from '@frachtwerk/essencium-types'
-import { UseInfiniteQueryOptions } from '@tanstack/react-query/build/legacy/types'
+import { UseInfiniteQueryOptions } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useEffect } from 'react'
 
@@ -31,8 +31,7 @@ import { createUseGetInfinite, UseGetInfiniteResult } from './infinite'
 import { FilterOptions, RequestOptions, TBaseFilter } from './types'
 
 export interface UseGetAllOptions<TOutput, TFilter extends TBaseFilter>
-  extends FilterOptions<TFilter>,
-    RequestOptions {
+  extends FilterOptions<TFilter>, RequestOptions {
   pagination?: Pick<PaginationParams, 'sort'>
   infiniteOptions?: Omit<
     UseInfiniteQueryOptions<

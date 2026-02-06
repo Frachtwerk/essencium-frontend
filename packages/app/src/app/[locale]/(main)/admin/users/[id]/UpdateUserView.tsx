@@ -92,7 +92,7 @@ export default function UpdateUserView({
         </Flex>
       </Title>
 
-      <Card withBorder className="p-lg max-w-[82.25rem] rounded-sm shadow-sm">
+      <Card withBorder className="p-lg max-w-329 rounded-sm shadow-sm">
         <UserForm
           ssoProvider={ssoProvider}
           title={t('addUpdateUserView.form.userDataHeading')}
