@@ -10,5 +10,13 @@
   },
   "ignorePatterns": [
     "next-env.d.ts"
+  ],
+  "overrides": [
+    {
+      "files": ["e2e/**/*.ts", "playwright/**/*.ts"],
+      "rules": {
+        "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
+      }
+    }
   ]
 }

@@ -42,7 +42,7 @@ export type UseFindResult<TOutput> = UseQueryResult<
 >
 
 export type UseFind<TOutput> = (
-  id: string | number | undefined,
+  id?: string | number | undefined,
   options?: UseFindOptions<TOutput>,
 ) => UseFindResult<TOutput>
 

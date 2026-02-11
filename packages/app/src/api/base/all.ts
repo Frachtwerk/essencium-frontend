@@ -21,7 +21,7 @@ import {
   PaginatedResponse,
   PaginationParams,
 } from '@frachtwerk/essencium-types'
-import { UseInfiniteQueryOptions } from '@tanstack/react-query/build/legacy/types'
+import { UseInfiniteQueryOptions } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useEffect } from 'react'
 
