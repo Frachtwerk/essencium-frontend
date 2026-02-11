@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.6.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.5.0...essencium-lib-v9.6.0) (2026-02-11)
+
+
+### Features
+
+* **lib:** react compiler for essencium-lib ([edbf676](https://github.com/Frachtwerk/essencium-frontend/commit/edbf676e4412d1c20f5d326c1a511241f7c8abad))
+
 ## [9.5.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.4.5...essencium-lib-v9.5.0) (2025-10-15)
 
 
