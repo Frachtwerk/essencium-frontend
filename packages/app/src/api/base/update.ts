@@ -18,11 +18,12 @@
  */
 
 import { BaseProperties } from '@frachtwerk/essencium-types/src/base'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import {
+  useMutation,
   UseMutationOptions,
   UseMutationResult,
-} from '@tanstack/react-query/build/legacy/types'
+  useQueryClient,
+} from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 
 import { api } from '../api'
@@ -84,8 +85,8 @@ export const createUseUpdate = <
         },
         ...meta,
       },
-      onSuccess(data, variables, context) {
-        onSuccess?.(data, variables, context)
+      onSuccess(data, variables, context, mutation) {
+        onSuccess?.(data, variables, context, mutation)
 
         return Promise.all([
           queryClient.invalidateQueries({
