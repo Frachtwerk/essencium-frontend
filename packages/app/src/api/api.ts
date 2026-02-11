@@ -25,7 +25,7 @@ import axios, {
   InternalAxiosRequestConfig,
 } from 'axios'
 
-import { isBrowserEnvironment, logout } from '@/utils'
+import { isBrowserEnvironment } from '@/utils'
 
 export type GetFilterParams = {
   page: number
@@ -119,11 +119,16 @@ api.interceptors.request.use(
   },
 )
 
+function clearAuthState(): void {
+  localStorage.removeItem('authToken')
+  localStorage.removeItem('user')
+}
+
 api.interceptors.response.use(
   response => response,
   (error: AxiosError) => {
     if (error?.response?.status === 401) {
-      logout()
+      clearAuthState()
 
       if (window.location.pathname !== '/login') {
         window.location.href = `/login?redirect=${window.location.pathname}`

@@ -3,6 +3,7 @@ export default {
   'codestyle-and-linting': 'Code style and linting',
   packageResponsibilities: 'Package responsibilities',
   dependencies: 'Dependencies',
+  authentication: 'Authentication',
   'new-page': 'New Page',
   'new-component': 'New Component',
   testing: 'Testing',

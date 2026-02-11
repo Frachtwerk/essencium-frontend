@@ -30,11 +30,11 @@ import { useTranslation } from 'react-i18next'
 import {
   isSsoAtom,
   useGetMe,
+  useLogout,
   userAtom,
   useUpdateMe,
   useUpdatePassword,
 } from '@/api'
-import { logout } from '@/utils'
 
 export default function ProfileView(): JSX.Element {
   const { t } = useTranslation()
@@ -61,6 +61,8 @@ export default function ProfileView(): JSX.Element {
 
   const { mutate: updatePassword, isPending: isUpdatingPassword } =
     useUpdatePassword()
+
+  const { mutate: logout } = useLogout()
 
   function handleUpdate(updatedUser: UserUpdate): void {
     updateUser(updatedUser)
