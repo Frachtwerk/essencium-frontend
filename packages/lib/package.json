@@ -44,9 +44,11 @@
   },
   "devDependencies": {
     "@babel/core": "7.24.9",
+    "babel-plugin-react-compiler": "^1.0.0",
     "@frachtwerk/eslint-config-essencium": "workspace:*",
     "@frachtwerk/essencium-types": "workspace:*",
     "@frachtwerk/prettier-config-essencium": "workspace:*",
+    "@rollup/plugin-babel": "^6.1.0",
     "@rollup/plugin-commonjs": "28.0.2",
     "@rollup/plugin-node-resolve": "15.3.1",
     "@rollup/plugin-terser": "0.4.4",
