@@ -40,18 +40,18 @@
     "test:unit:watch": "pnpm --stream -r test:unit:watch"
   },
   "dependencies": {
-    "sort-package-json": "2.10.0"
+    "sort-package-json": "3.6.1"
   },
   "devDependencies": {
     "@commitlint/cli": "20.4.1",
     "@commitlint/config-conventional": "20.4.1",
-    "@faker-js/faker": "10.2.0",
+    "@faker-js/faker": "10.3.0",
     "@frachtwerk/eslint-config-essencium": "workspace:*",
     "@frachtwerk/essencium-types": "workspace:*",
     "@frachtwerk/prettier-config-essencium": "workspace:*",
     "@typescript-eslint/eslint-plugin": "7.18.0",
     "@typescript-eslint/parser": "7.18.0",
-    "axios": "1.13.4",
+    "axios": "1.13.5",
     "eslint": "8.56.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "18.0.0",

@@ -17,7 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* eslint-disable no-console */
+/* eslint-disable no-console, @typescript-eslint/no-floating-promises */
 
 import { faker } from '@faker-js/faker'
 import { RoleOutput, UserOutput } from '@frachtwerk/essencium-types'
@@ -26,8 +26,8 @@ import axios, { AxiosError, AxiosResponse } from 'axios'
 const CONFIG = {
   NUM_ENTITIES: 15,
   AVAILABLE_LOCALES: ['en', 'de'],
-  ADMIN_USERNAME: '',
-  ADMIN_PASSWORD: '',
+  ADMIN_USERNAME: 'devnull@frachtwerk.de',
+  ADMIN_PASSWORD: 'adminAdminAdmin',
   BASE_URL: 'https://localhost:8098',
   ROLES_TO_KEEP: ['ADMIN', 'USER'],
 }
@@ -119,25 +119,23 @@ async function seedDatabase(): Promise<void> {
   console.log('➡ Creating new roles and users')
 
   const createdRolesResponse = await Promise.all(
-    Array(CONFIG.NUM_ENTITIES)
-      .fill(null)
-      .map((_, index) => {
-        return axiosInstance
-          .post<RoleOutput>('/v1/roles', {
-            description: faker.name.jobTitle(),
-            editable: faker.datatype.boolean(),
-            name: ROLES_TO_CREATE[index],
-            protected: false,
-            rights: [],
-          })
-          .catch((error: AxiosError) => {
-            if (error?.response?.status !== 409) {
-              console.log(error?.response?.data)
-            }
+    new Array(CONFIG.NUM_ENTITIES).fill(null).map((_, index) => {
+      return axiosInstance
+        .post<RoleOutput>('/v1/roles', {
+          description: faker.person.jobTitle(),
+          editable: faker.datatype.boolean(),
+          name: ROLES_TO_CREATE[index],
+          protected: false,
+          rights: [],
+        })
+        .catch((error: AxiosError) => {
+          if (error?.response?.status !== 409) {
+            console.log(error?.response?.data)
+          }
 
-            return null
-          })
-      }),
+          return null
+        })
+    }),
   )
 
   const createdRoles = createdRolesResponse
@@ -147,32 +145,34 @@ async function seedDatabase(): Promise<void> {
     .map(response => response.data)
 
   await Promise.all(
-    Array(CONFIG.NUM_ENTITIES)
-      .fill(null)
-      .map(() => {
-        return axiosInstance
-          .post('/v1/users', {
-            email: faker.internet.email(),
-            enabled: faker.datatype.boolean(),
-            firstName: faker.name.firstName(),
-            lastName: faker.name.lastName(),
-            locale: faker.helpers.arrayElement(CONFIG.AVAILABLE_LOCALES),
-            mobile: faker.phone.number(),
-            role: faker.helpers.arrayElement(
-              createdRoles.map((role: RoleOutput) => role.name),
-            ),
-          })
-          .catch((error: AxiosError) => {
-            if (error?.response?.status !== 409) {
-              console.log(error?.response?.data)
-            }
+    new Array(CONFIG.NUM_ENTITIES).fill(null).map(() => {
+      return axiosInstance
+        .post('/v1/users', {
+          email: faker.internet.email(),
+          enabled: faker.datatype.boolean(),
+          firstName: faker.person.firstName(),
+          lastName: faker.person.lastName(),
+          locale: faker.helpers.arrayElement(CONFIG.AVAILABLE_LOCALES),
+          mobile: faker.phone.number(),
+          role: faker.helpers.arrayElement(
+            createdRoles.map((role: RoleOutput) => role.name),
+          ),
+        })
+        .catch((error: AxiosError) => {
+          if (error?.response?.status !== 409) {
+            console.log(error?.response?.data)
+          }
 
-            return null
-          })
-      }),
+          return null
+        })
+    }),
   )
 
   console.log('✅ Seeding successful')
 }
 
-seedDatabase()
+// prettier-ignore
+// eslint-disable-next-line
+;(async () => {
+  await seedDatabase()
+})()
