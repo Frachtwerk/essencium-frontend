@@ -18,7 +18,6 @@
  */
 
 export * from './isBrowserEnvironment'
-export * from './logout'
 export * from './mergeTranslations'
 export * from './pagination'
 export * from './parseJwt'

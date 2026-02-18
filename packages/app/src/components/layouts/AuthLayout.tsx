@@ -49,15 +49,11 @@ import { usePathname, useRouter } from 'next/navigation'
 import React, { type JSX, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { useGetMe, userAtom, userRightsAtom } from '@/api'
+import { useGetMe, useLogout, userAtom, userRightsAtom } from '@/api'
 import { useCreateFeedback } from '@/api/feedback'
 import { theme } from '@/config'
 import { useAddTranslations, useScheduleTokenRenewal } from '@/hooks'
-import {
-  isBrowserEnvironment,
-  logout,
-  withBaseStylingShowNotification,
-} from '@/utils'
+import { isBrowserEnvironment, withBaseStylingShowNotification } from '@/utils'
 
 import packageJson from '../../../package.json'
 
@@ -249,6 +245,8 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
   }, [user, router, path])
 
   useScheduleTokenRenewal()
+
+  const { mutate: logout } = useLogout()
 
   function handleLogout(): void {
     logout()
