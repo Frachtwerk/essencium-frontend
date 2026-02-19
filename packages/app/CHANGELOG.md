@@ -1,5 +1,16 @@
 # Changelog
 
+## [9.5.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.4.6...essencium-app-v9.5.0) (2026-02-19)
+
+
+### Features
+
+* **app:** add base api functions to simplify basic crud operations ([13e1252](https://github.com/Frachtwerk/essencium-frontend/commit/13e125255823825e405dd000eb72bcb05901f274))
+* **app:** add pagination parser to utils ([52b2649](https://github.com/Frachtwerk/essencium-frontend/commit/52b2649e9062dbd3d75e81cab1cace477317beca))
+* **app:** base api functions accept all react-query options ([e3edf67](https://github.com/Frachtwerk/essencium-frontend/commit/e3edf672cdfb68054bdc94a2fbd9e3b016034c3a))
+* **app:** implement getAll ([a695b77](https://github.com/Frachtwerk/essencium-frontend/commit/a695b7780df478efebd5982c6209f7f06685451c))
+* **app:** react compiler for essencium-app ([79028d7](https://github.com/Frachtwerk/essencium-frontend/commit/79028d71aaae672afe02921ac72f5ea70967f3a4))
+
 ## [9.4.6](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.4.5...essencium-app-v9.4.6) (2025-10-15)
 
 
