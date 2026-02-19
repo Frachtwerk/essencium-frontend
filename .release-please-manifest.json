@@ -1,7 +1,7 @@
 {
-  "packages/types": "6.3.0",
-  "packages/lib": "9.5.0",
-  "packages/app": "9.4.6",
+  "packages/types": "6.4.0",
+  "packages/lib": "9.6.0",
+  "packages/app": "9.5.0",
   "packages/docs": "4.4.2",
   "packages/prettier-config": "1.5.1",
   "packages/eslint-config": "2.4.1"

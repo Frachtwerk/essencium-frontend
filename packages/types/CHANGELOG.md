@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v6.3.0...essencium-types-v6.4.0) (2026-02-19)
+
+
+### Features
+
+* **types:** add pagination input types ([d564e5e](https://github.com/Frachtwerk/essencium-frontend/commit/d564e5e81528361cdfa0e5caa35b5d9d1f98d558))
+
 ## [6.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v6.2.1...essencium-types-v6.3.0) (2025-10-15)
 
 
