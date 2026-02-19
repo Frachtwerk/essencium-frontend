@@ -255,7 +255,7 @@ importers:
         version: 7.2.2(@types/node@22.12.0)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.5.1)
       vitest:
         specifier: 4.0.8
-        version: 4.0.8(@types/node@22.12.0)(happy-dom@20.0.10)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.5.1)
+        version: 4.0.8(@types/debug@4.1.12)(@types/node@22.12.0)(happy-dom@20.0.10)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.5.1)
 
   packages/eslint-config:
     dependencies:
@@ -491,7 +491,7 @@ importers:
         version: 5.7.3
       vitest:
         specifier: 3.0.7
-        version: 3.0.7(@types/node@22.12.0)(happy-dom@20.0.10)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.5.1)
+        version: 3.0.7(@types/debug@4.1.12)(@types/node@22.12.0)(happy-dom@20.0.10)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.5.1)
 
   packages/prettier-config:
     devDependencies:
@@ -1916,6 +1916,9 @@ packages:
   '@types/conventional-commits-parser@5.0.1':
     resolution: {integrity: sha512-7uz5EHdzz2TqoMfV7ee61Egf5y6NkcO4FB/1iCCQnbeiI1F3xzv3vK5dBCXUCLQgGYS+mUeigK1iKQzvED+QnQ==}
 
+  '@types/debug@4.1.12':
+    resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
+
   '@types/deep-eql@4.0.2':
     resolution: {integrity: sha512-c9h9dVVMigMPc4bwTvC5dxqtqJZwQPePsWjPlpSOnojbor6pGqdk541lfA7AqFQr5pB1BRdq0juY9db81BwyFw==}
 
@@ -1934,8 +1937,11 @@ packages:
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
 
-  '@types/node@20.14.14':
-    resolution: {integrity: sha512-d64f00982fS9YoOgJkAMolK7MN8Iq3TDdVjchbYHdEmjth/DHowx82GnoA+tVUAN+7vxfYUgAzi+JXbKNd2SDQ==}
+  '@types/ms@2.1.0':
+    resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
+
+  '@types/node@20.11.30':
+    resolution: {integrity: sha512-dHM6ZxwlmuZaRmUPfv1p+KrdD1Dci04FbdEm/9wEMouFqxYoFl5aMkt0VMAUtYRQDyYvD41WJLukhq/ha3YuTw==}
 
   '@types/node@22.12.0':
     resolution: {integrity: sha512-Fll2FZ1riMjNmlmJOdAyY5pUbkftXslB5DgEzlIuNaiWhXd00FhWxVC/r4yV/4wBb9JfImTu+jiSvXTkJ7F/gA==}
@@ -5518,7 +5524,7 @@ snapshots:
   '@eslint/eslintrc@2.1.4':
     dependencies:
       ajv: 6.12.6
-      debug: 4.4.0
+      debug: 4.4.3
       espree: 9.6.1
       globals: 13.24.0
       ignore: 5.3.2
@@ -5569,7 +5575,7 @@ snapshots:
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
       '@humanwhocodes/object-schema': 2.0.3
-      debug: 4.4.0
+      debug: 4.4.3
       minimatch: 3.1.2
     transitivePeerDependencies:
       - supports-color
@@ -6239,6 +6245,11 @@ snapshots:
     dependencies:
       '@types/node': 22.12.0
 
+  '@types/debug@4.1.12':
+    dependencies:
+      '@types/ms': 2.1.0
+    optional: true
+
   '@types/deep-eql@4.0.2': {}
 
   '@types/estree@1.0.6': {}
@@ -6254,7 +6265,10 @@ snapshots:
 
   '@types/json5@0.0.29': {}
 
-  '@types/node@20.14.14':
+  '@types/ms@2.1.0':
+    optional: true
+
+  '@types/node@20.11.30':
     dependencies:
       undici-types: 5.26.5
 
@@ -7458,7 +7472,7 @@ snapshots:
       ajv: 6.12.6
       chalk: 4.1.2
       cross-spawn: 7.0.6
-      debug: 4.4.0
+      debug: 4.4.3
       doctrine: 3.0.0
       escape-string-regexp: 4.0.0
       eslint-scope: 7.2.2
@@ -7738,7 +7752,7 @@ snapshots:
 
   happy-dom@20.0.10:
     dependencies:
-      '@types/node': 20.14.14
+      '@types/node': 20.11.30
       '@types/whatwg-mimetype': 3.0.2
       whatwg-mimetype: 3.0.0
 
@@ -9564,7 +9578,7 @@ snapshots:
       terser: 5.39.0
       yaml: 2.5.1
 
-  vitest@3.0.7(@types/node@22.12.0)(happy-dom@20.0.10)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.5.1):
+  vitest@3.0.7(@types/debug@4.1.12)(@types/node@22.12.0)(happy-dom@20.0.10)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.5.1):
     dependencies:
       '@vitest/expect': 3.0.7
       '@vitest/mocker': 3.0.7(vite@6.3.6(@types/node@22.12.0)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.5.1))
@@ -9587,6 +9601,7 @@ snapshots:
       vite-node: 3.0.7(@types/node@22.12.0)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.5.1)
       why-is-node-running: 2.3.0
     optionalDependencies:
+      '@types/debug': 4.1.12
       '@types/node': 22.12.0
       happy-dom: 20.0.10
     transitivePeerDependencies:
@@ -9603,7 +9618,7 @@ snapshots:
       - tsx
       - yaml
 
-  vitest@4.0.8(@types/node@22.12.0)(happy-dom@20.0.10)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.5.1):
+  vitest@4.0.8(@types/debug@4.1.12)(@types/node@22.12.0)(happy-dom@20.0.10)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.5.1):
     dependencies:
       '@vitest/expect': 4.0.8
       '@vitest/mocker': 4.0.8(vite@7.2.2(@types/node@22.12.0)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.5.1))
@@ -9626,6 +9641,7 @@ snapshots:
       vite: 7.2.2(@types/node@22.12.0)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.5.1)
       why-is-node-running: 2.3.0
     optionalDependencies:
+      '@types/debug': 4.1.12
       '@types/node': 22.12.0
       happy-dom: 20.0.10
     transitivePeerDependencies:
