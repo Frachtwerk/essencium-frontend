@@ -85,8 +85,8 @@ export const createUseUpdate = <
         },
         ...meta,
       },
-      onSuccess(data, variables, context, mutation) {
-        onSuccess?.(data, variables, context, mutation)
+      onSuccess(data, variables, onMutateResult, context) {
+        onSuccess?.(data, variables, onMutateResult, context)
 
         return Promise.all([
           queryClient.invalidateQueries({
