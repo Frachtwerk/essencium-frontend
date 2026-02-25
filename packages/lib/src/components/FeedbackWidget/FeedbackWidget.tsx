@@ -388,7 +388,6 @@ export function FeedbackWidget({
                       <form onSubmit={handleSubmit(onSubmit)}>
                         <Stack>
                           <ControlledTextarea
-                            autoFocus
                             name="message"
                             control={control}
                             className="rounded-[50px]"
