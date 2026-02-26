@@ -15,7 +15,6 @@ export default async function initTranslations(
   i18nInstance?: i18n,
   resources?: Resource,
 ) {
-  // eslint-disable-next-line no-param-reassign
   i18nInstance = i18nInstance || createInstance()
 
   i18nInstance.use(initReactI18next)

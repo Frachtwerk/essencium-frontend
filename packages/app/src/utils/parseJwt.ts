@@ -11,7 +11,7 @@ export function parseJwt(token: string): Record<string, number> | null {
     const parsedToken = JSON.parse(jsonPayload)
     const expiringIn = new Date(parsedToken.exp * 1000).getTime() - Date.now()
     return { expiringIn, ...parsedToken }
-  } catch (error) {
+  } catch {
     return null
   }
 }

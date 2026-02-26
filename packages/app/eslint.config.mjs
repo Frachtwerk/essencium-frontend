@@ -31,7 +31,7 @@ export default [
       },
     },
     rules: {
-      'no-console': 'off', // Console ist in public files OK
+      'no-console': 'off', // Allow console statements in public JS files
     },
   },
   {
