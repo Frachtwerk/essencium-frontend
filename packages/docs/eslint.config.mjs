@@ -3,17 +3,16 @@ import essenciumConfig from '@frachtwerk/eslint-config-essencium'
 export default [
   ...essenciumConfig,
   {
-    // Docs-specific ignores
-    ignores: ['.next/**', 'out/**'],
+    ignores: [
+      'dist/**',
+      '.next/**',
+      'out/**',
+      'pages/_app.tsx',
+      'pages/**/_meta.js',
+    ],
   },
   {
-    // Next.js config files
-    files: ['next.config.js', '*.config.{js,ts}'],
-    languageOptions: {
-      parserOptions: {
-        project: false,
-      },
-    },
+    files: ['next.config.{js,mjs}', '*.config.{js,ts,mjs}', 'theme.config.tsx'],
     rules: {
       'no-console': 'off',
       '@typescript-eslint/no-require-imports': 'off',

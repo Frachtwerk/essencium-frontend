@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 import nextra from 'nextra'
 
 const withNextra = nextra({
