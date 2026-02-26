@@ -1,7 +1,7 @@
 /**
  * Legacy CommonJS compatibility for ESLint v8 projects
  * This maintains backward compatibility during migration
- * 
+ *
  * Copyright (C) 2024 Frachtwerk GmbH
  */
 
@@ -71,4 +71,4 @@ module.exports = {
     'dot-notation': 'off',
     '@typescript-eslint/dot-notation': ['off'],
   },
-};
+}

@@ -1,6 +1,6 @@
 # Code style and linting
 
-For enforcing code style and utilizing static code analyzing we use [ESLint](https://eslint.org/) along with a bunch of rulesets and [Prettier](https://prettier.io/). The most
+For enforcing code style and utilizing static code analyzing we use [ESLint v9](https://eslint.org/) with Flat Config along with a bunch of rulesets and [Prettier](https://prettier.io/). The most
 noteworthy ruleset is the [Airbnb JavaScript Style Guide](https://airbnb.io/javascript/react/).
 
 We choose this approach because it provides strict but conventional rules. You can always execute the commands
@@ -67,48 +67,9 @@ To keep our export order consistent we chose to let it auto-sort by this ESLint 
 
 If any rule from the `.prettierrc.json` is not met, throw an error.
 
-### `"import/extensions"`
+### Import/Export Rules
 
-```json
-[
-  2,
-  "ignorePackages",
-  {
-    "": "never",
-    "js": "never",
-    "jsx": "never",
-    "ts": "never",
-    "tsx": "never"
-  }
-]
-```
-
-Allow omitting file extensions when importing either a `.js`, `.jsx`, `.ts` or `.tsx` file.
-
-### `"import/no-extraneous-dependencies"`
-
-```json
-[
-  "error",
-  {
-    "devDependencies": [
-      "**/*.test.ts",
-      "**/*.test.tsx",
-      "**/*.config.js",
-      "**/*.config.ts",
-      "./scripts/sync-versions.ts",
-      "./scripts/seed-db.ts"
-    ]
-  }
-]
-```
-
-Forbid the import of external modules that are not declared in the `package.json`'s dependencies, devDependencies,
-optionalDependencies, peerDependencies, or bundledDependencies.
-
-### `"import/prefer-default-export": "off"`
-
-Do not prefer default export.
+Import and export rules are now handled by the `simple-import-sort` plugin which provides automatic sorting without the complexity of the legacy import plugin rules.
 
 ### `"@typescript-eslint/explicit-function-return-type"`
 
