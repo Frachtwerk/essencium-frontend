@@ -17,7 +17,12 @@
   },
   "license": "MIT",
   "author": "Frachtwerk GmbH",
-  "main": "index.cjs",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./legacy": "./src/legacy.cjs"
+  },
   "scripts": {
     "sort-package-json": "sort-package-json"
   },
@@ -26,18 +31,18 @@
     "prettier": "3.0.3"
   },
   "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": "7.18.0",
-    "@typescript-eslint/parser": "7.18.0",
-    "eslint": "8.56.0",
-    "eslint-config-airbnb": "19.0.4",
-    "eslint-config-airbnb-typescript": "18.0.0",
-    "eslint-config-prettier": "9.0.0",
-    "eslint-plugin-import": "2.29.1",
-    "eslint-plugin-jsx-a11y": "6.7.1",
-    "eslint-plugin-prettier": "5.0.1",
-    "eslint-plugin-react": "7.32.2",
-    "eslint-plugin-react-hooks": "4.6.2",
-    "eslint-plugin-simple-import-sort": "10.0.0"
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "typescript": ">=4.8.0 <6.0.0",
+    "typescript-eslint": "^8.0.0"
+  },
+  "dependencies": {
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.1"
   },
   "engines": {
     "node": ">=20",

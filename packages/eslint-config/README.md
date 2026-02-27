@@ -8,7 +8,7 @@
 
 ### [Check out the docs](https://docs.essencium.dev)
 
-For enforcing code style and utilizing static code analyzing we use ESLint along with a bunch of rulesets. The most noteworthy ruleset is the Airbnb JavaScript Style Guide
+For enforcing code style and utilizing static code analyzing we use ESLint v9 with Flat Config. This configuration includes React, TypeScript, JSX A11y, and Prettier integration with Essencium-specific rule overrides.
 
 [Report an issue](https://github.com/Frachtwerk/essencium-frontend/issues)
 </div>
@@ -17,5 +17,7 @@ For enforcing code style and utilizing static code analyzing we use ESLint along
 
 ## [Eslint-config documentation](https://docs.essencium.dev/devguide/codestyle-and-linting)
 
-- exports a ESLint config that is consumed by the other packages
+- exports ESLint v9 Flat Config for modern JavaScript/TypeScript projects
+- includes React, TypeScript, JSX A11y, and Prettier integration
+- provides both modern flat config and legacy support
 - is published as a npm package

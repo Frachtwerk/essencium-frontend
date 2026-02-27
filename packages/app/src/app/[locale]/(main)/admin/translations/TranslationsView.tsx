@@ -55,8 +55,6 @@ import { mergeTranslations } from '@/utils/mergeTranslations'
 
 import { TranslationChangeForm } from '../../translations/_components/TranslationsChangeForm'
 
-/* eslint-disable react/no-unstable-nested-components */
-
 type Props = {
   resources: Resource
 }
@@ -108,8 +106,7 @@ const searchTableRowsAndReturnPath = (
     }
 
     // Check if the current row or any subRow matches the search query
-    const isMatch =
-      currentRow.value && currentRow.value.toLowerCase().includes(searchQuery)
+    const isMatch = currentRow.value?.toLowerCase().includes(searchQuery)
 
     if (isMatch || matchedSubRows.length > 0) {
       // Include the current row, and only add non-empty matchedSubRows
@@ -199,7 +196,6 @@ export default function TranlsationView({ resources }: Props): JSX.Element {
 
   const mergedTranslations = useMemo(() => {
     return mergeTranslations(
-      // eslint-disable-next-line react/destructuring-assignment
       resources[locale]?.common,
       locale === 'de' ? serverTranslationsDe : serverTranslationsEn,
     )

@@ -65,7 +65,6 @@ export function withBaseStylingShowNotification(
     title: getTitleOrMessage('title'),
     message: getTitleOrMessage('message'),
     color:
-      // eslint-disable-next-line no-nested-ternary
       props.color === 'success'
         ? 'green'
         : props.color === 'error'
