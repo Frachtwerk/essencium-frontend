@@ -18,7 +18,7 @@
  */
 
 import { UserOutput } from '@frachtwerk/essencium-types'
-import { AppShell, MantineProvider } from '@mantine/core'
+import { AppShell, AppShellNavbar, MantineProvider, Box } from '@mantine/core'
 import { render, RenderResult } from '@testing-library/react'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 
@@ -56,12 +56,19 @@ describe('Header.tsx', () => {
   beforeAll(() => {
     HeaderMounted = render(
       <MantineProvider>
-        <AppShell>
+        <AppShell
+          navbar={{ width: 256, breakpoint: 'sm', collapsed: { mobile: !true } }}
+          padding="md"
+        >
+          <AppShellNavbar>
+            <Box p="md">Mock Navbar</Box>
+          </AppShellNavbar>
+          
           <Header
             isOpen
             handleOpenNav={() => {}}
             user={MOCK_USER}
-            marginLeft="0"
+            environment="test"
           />
         </AppShell>
       </MantineProvider>,

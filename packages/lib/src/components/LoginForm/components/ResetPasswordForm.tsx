@@ -17,7 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-'use client'
 
 import { ResetPassword, resetPasswordSchema } from '@frachtwerk/essencium-types'
 import { Button, Container, Group, Text } from '@mantine/core'

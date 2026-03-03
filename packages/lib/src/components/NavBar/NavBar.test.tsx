@@ -81,6 +81,7 @@ describe('NavBar', () => {
   const sharedProps = {
     links: NAV_LINKS,
     handleLogout: () => {},
+    handleOpenNav: () => {},
     isMobile: false,
     fixedNav: false,
     setFixedNav: vi.fn(),

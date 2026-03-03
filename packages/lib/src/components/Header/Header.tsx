@@ -17,8 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-'use client'
-
 import { UserOutput } from '@frachtwerk/essencium-types'
 import {
   Anchor,
@@ -59,7 +57,7 @@ export function Header({
     <AppShellHeader
       withBorder={false}
       {...props}
-      className={cn('p-md z-100 sm:ml-0', className)}
+      className={cn('p-md z-100', className)}
     >
       <Flex className="gap-md h-full items-center justify-between">
         <Anchor
