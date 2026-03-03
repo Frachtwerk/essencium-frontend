@@ -70,11 +70,10 @@ export const createUseUpdate = <
       mutationKey: [resource, 'update'],
       mutationFn: (data: TInput) =>
         api
-          .put<TOutput, TInput>(
-            url ?? `/${resource}/${data.id}`,
-            data,
-            requestConfig,
-          )
+          .put<
+            TOutput,
+            TInput
+          >(url ?? `/${resource}/${data.id}`, data, requestConfig)
           .then(res => res.data),
       meta: {
         errorNotification: {

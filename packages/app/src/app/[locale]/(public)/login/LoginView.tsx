@@ -109,7 +109,7 @@ export default function LoginView(): JSX.Element {
 
   return (
     <Suspense>
-      <Container className="p-0 size-full" fluid>
+      <Container className="size-full p-0" fluid>
         {!oauthToken ? (
           <Flex
             className={cn(
@@ -119,7 +119,7 @@ export default function LoginView(): JSX.Element {
             )}
           >
             <Flex
-              className="items-center justify-center h-screen"
+              className="h-screen items-center justify-center"
               w={matches ? '50%' : '100%'}
             >
               <Card className="rounded-sm shadow-sm" withBorder>
@@ -152,7 +152,7 @@ export default function LoginView(): JSX.Element {
                               <Image
                                 src={ssoApplications[application].imageUrl}
                                 alt={ssoApplications[application].name}
-                                className="w-auto h-5"
+                                className="h-5 w-auto"
                               />
                             }
                           >

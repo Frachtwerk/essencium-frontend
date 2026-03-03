@@ -25,8 +25,10 @@ import {
 } from 'react-hook-form'
 import { TypeOf, ZodSchema } from 'zod'
 
-interface UseZodFormProps<Z extends ZodSchema>
-  extends Exclude<UseFormProps<TypeOf<Z>>, 'resolver'> {
+interface UseZodFormProps<Z extends ZodSchema> extends Exclude<
+  UseFormProps<TypeOf<Z>>,
+  'resolver'
+> {
   schema: Z
 }
 
