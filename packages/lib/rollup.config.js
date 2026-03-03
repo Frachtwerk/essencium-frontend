@@ -20,7 +20,7 @@ export default [
     plugins: [
       babel({
         plugins: ['babel-plugin-react-compiler'],
-        babelHelpers: 'bundled'
+        babelHelpers: 'bundled',
       }),
       peerDepsExternal(),
       postcss({

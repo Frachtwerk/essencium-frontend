@@ -17,7 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 import { UserOutput, UserSource } from '@frachtwerk/essencium-types'
 import {
   Avatar,

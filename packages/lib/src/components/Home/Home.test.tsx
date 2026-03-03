@@ -57,10 +57,7 @@ describe('Home', () => {
     render(
       <MantineProvider>
         <AppShell>
-          <Home 
-            onClickButton={() => {}}
-            showUsersPageButton={true}
-          />
+          <Home onClickButton={() => {}} showUsersPageButton />
         </AppShell>
       </MantineProvider>,
     )

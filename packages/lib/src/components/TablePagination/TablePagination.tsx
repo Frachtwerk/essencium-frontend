@@ -17,7 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 import { PaginatedResponse } from '@frachtwerk/essencium-types'
 import { Flex, Pagination, PaginationProps } from '@mantine/core'
 import { Table as TanstackTable } from '@tanstack/react-table'
@@ -69,7 +68,7 @@ export function TablePagination<T>({
 
     if (
       enteredPageAsNumber > 0 &&
-      enteredPageAsNumber <= (table ? table.getPageCount() : pageCount ?? 1)
+      enteredPageAsNumber <= (table ? table.getPageCount() : (pageCount ?? 1))
     ) {
       setActivePage(enteredPageAsNumber)
     }
@@ -105,7 +104,7 @@ export function TablePagination<T>({
       </Flex>
 
       <Pagination
-        total={table ? table.getPageCount() : pageCount ?? 1}
+        total={table ? table.getPageCount() : (pageCount ?? 1)}
         value={activePage}
         onChange={e => {
           setActivePage(e)
@@ -127,7 +126,7 @@ export function TablePagination<T>({
           wrapper: 'w-[125px]',
         }}
         data={Array.from(
-          { length: table ? table.getPageCount() : pageCount ?? 1 },
+          { length: table ? table.getPageCount() : (pageCount ?? 1) },
           (_, i) => String(i + 1),
         )}
         limit={jumpToLimit}

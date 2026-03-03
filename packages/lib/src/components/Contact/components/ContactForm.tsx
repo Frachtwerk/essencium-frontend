@@ -17,7 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 import { ContactFormType } from '@frachtwerk/essencium-types'
 import { Button, Card, Group, Stack, Title } from '@mantine/core'
 import { IconSend } from '@tabler/icons-react'

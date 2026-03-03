@@ -17,7 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 import {
   RightOutput,
   RoleInput,
@@ -97,10 +96,10 @@ export function RoleForm({
                 <Chip
                   defaultChecked={Boolean(
                     role &&
-                      role.rights.length > 0 &&
-                      role?.rights.find(
-                        item => item.authority === right.authority,
-                      ),
+                    role.rights.length > 0 &&
+                    role?.rights.find(
+                      item => item.authority === right.authority,
+                    ),
                   )}
                   key={right.authority}
                   value={right.authority}
