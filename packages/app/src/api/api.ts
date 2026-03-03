@@ -25,8 +25,6 @@ import axios, {
   InternalAxiosRequestConfig,
 } from 'axios'
 
-import { isBrowserEnvironment } from '@/utils'
-
 export type GetFilterParams = {
   page: number
   size: number
@@ -86,24 +84,23 @@ function createApi(instance: AxiosInstance): CreateApi {
   }
 }
 
-export const api = process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
-  ? createApi(
-      axios.create({
-        baseURL: `${process.env.NEXT_PUBLIC_API_URL}/v1`,
-      }),
-    )
-  : createApi(
-      axios.create({
-        baseURL: isBrowserEnvironment()
-          ? `${window.runtimeConfig?.required.API_URL}/v1`
-          : '',
-      }),
-    )
+const axiosInstance = axios.create()
+
+export const api = createApi(axiosInstance)
 
 api.interceptors.request.use(
   (request: InternalAxiosRequestConfig<AxiosRequestConfig>) => {
     // Need to check if window is defined because this code is also used on server side
     if (typeof window === 'undefined') return request
+
+    if (!request.baseURL) {
+      const apiUrl = window.runtimeConfig?.required?.API_URL
+      if (apiUrl) {
+        request.baseURL = `${apiUrl}/v1`
+
+        axiosInstance.defaults.baseURL = `${apiUrl}/v1`
+      }
+    }
 
     const authToken = JSON.parse(localStorage.getItem('authToken') as string)
 
