@@ -12,9 +12,12 @@ import path from 'path'
 
 const NODE_ENV = process.env.NODE_ENV || 'development'
 
-dotenv.config({ path: path.resolve(__dirname, `.env.${NODE_ENV}`) })
-dotenv.config({ path: path.resolve(__dirname, '.env.local') })
-dotenv.config({ path: path.resolve(__dirname, '.env') })
+dotenv.config({
+  path: path.resolve(__dirname, `.env.${NODE_ENV}`),
+  quiet: true,
+})
+dotenv.config({ path: path.resolve(__dirname, '.env.local'), quiet: true })
+dotenv.config({ path: path.resolve(__dirname, '.env'), quiet: true })
 
 export const BASE_URL_DOCS = 'https://docs.essencium.dev'
 

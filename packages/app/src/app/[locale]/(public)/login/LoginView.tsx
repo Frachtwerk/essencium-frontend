@@ -109,17 +109,17 @@ export default function LoginView(): JSX.Element {
 
   return (
     <Suspense>
-      <Container className="size-full p-0" fluid>
+      <Container className="p-0 size-full" fluid>
         {!oauthToken ? (
           <Flex
             className={cn(
               'flex-row',
               !matches &&
-                'gap-md to-dark-700 h-screen flex-col items-center justify-center bg-radial from-blue-700 transition-[background] duration-500',
+                'gap-md to-dark-700 h-screen flex-col items-center justify-center bg-radial from-cyan-700 transition-[background] duration-500',
             )}
           >
             <Flex
-              className="h-screen items-center justify-center"
+              className="items-center justify-center h-screen"
               w={matches ? '50%' : '100%'}
             >
               <Card className="rounded-sm shadow-sm" withBorder>
@@ -152,7 +152,7 @@ export default function LoginView(): JSX.Element {
                               <Image
                                 src={ssoApplications[application].imageUrl}
                                 alt={ssoApplications[application].name}
-                                className="h-5 w-auto"
+                                className="w-auto h-5"
                               />
                             }
                           >
@@ -184,14 +184,14 @@ export default function LoginView(): JSX.Element {
             </Flex>
 
             {matches ? (
-              <Flex className="gap-md to-dark-700 h-screen w-1/2 flex-col items-center justify-center bg-radial from-blue-700 transition-[background] duration-500">
+              <Flex className="gap-md to-dark-700 h-screen w-1/2 flex-col items-center justify-center bg-radial from-cyan-600 transition-[background] duration-500">
                 <Image
-                  className="animate-fade-in mx-auto aspect-4/1 h-auto w-[300px] origin-bottom -translate-y-[10px] self-end opacity-0 drop-shadow-xl drop-shadow-blue-900"
+                  className="animate-fade-in mx-auto aspect-4/1 h-auto w-75 origin-bottom -translate-y-2.5 self-end opacity-0 drop-shadow-xl drop-shadow-cyan-900"
                   src="/img/web/logotype_weiß_400x100px.svg"
                   alt={t('header.logo')}
                 />
 
-                <Text className="animate-fade-in-delay w-4/5 -translate-y-[10px] text-center text-lg font-medium text-white opacity-0">
+                <Text className="animate-fade-in-delay w-4/5 -translate-y-2.5 text-center text-lg font-medium text-white opacity-0">
                   {t('loginView.slogan')}
                 </Text>
               </Flex>
