@@ -1,5 +1,20 @@
 # Changelog
 
+## [9.6.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.5.0...essencium-lib-v9.6.0) (2026-03-10)
+
+
+### Features
+
+* eslint upgrade ([#941](https://github.com/Frachtwerk/essencium-frontend/issues/941)) ([5aba1f0](https://github.com/Frachtwerk/essencium-frontend/commit/5aba1f005c1be4511635b43f144e8fa9ef752822))
+* react compiler for essencium-lib ([edbf676](https://github.com/Frachtwerk/essencium-frontend/commit/edbf676e4412d1c20f5d326c1a511241f7c8abad))
+
+
+### Bug Fixes
+
+* update vulnerable dependencies identified by Dependabot ([#938](https://github.com/Frachtwerk/essencium-frontend/issues/938)) ([35e86b2](https://github.com/Frachtwerk/essencium-frontend/commit/35e86b2ac15c0a9f294257e33d54b6ec42475053))
+* fix a problem where theme selector was not accessible ([ee4896a](https://github.com/Frachtwerk/essencium-frontend/commit/ee4896ab8099d95100a9652cbea3f4cafb1c34fb))
+* update dependencies ([5ea50c4](https://github.com/Frachtwerk/essencium-frontend/commit/5ea50c4fa696e7855db1582edead3fc435d7ca0d))
+
 ## [9.5.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.4.5...essencium-lib-v9.5.0) (2025-10-15)
 
 
@@ -10,15 +25,15 @@
 
 ### Bug Fixes
 
-* **frontend:** update axios, nodemailer and happy dom deps ([#904](https://github.com/Frachtwerk/essencium-frontend/issues/904)) ([ee9b3b7](https://github.com/Frachtwerk/essencium-frontend/commit/ee9b3b7d17cb196315f96f6075491f1183fa05c4))
+* update axios, nodemailer and happy dom deps ([#904](https://github.com/Frachtwerk/essencium-frontend/issues/904)) ([ee9b3b7](https://github.com/Frachtwerk/essencium-frontend/commit/ee9b3b7d17cb196315f96f6075491f1183fa05c4))
 
 ## [9.4.5](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.4.4...essencium-lib-v9.4.5) (2025-09-22)
 
 
 ### Bug Fixes
 
-* **lib:** :bug: fix focus errors with the feedback widget ([5eb42aa](https://github.com/Frachtwerk/essencium-frontend/commit/5eb42aa9ea5cd672b74d15aa2bc75724c2d839ec))
-* **lib:** :wheelchair: improve navbar accessibility ([88dd605](https://github.com/Frachtwerk/essencium-frontend/commit/88dd605ffa96a78ba3ecf201b895fc14a6e95226))
+* fix focus errors with the feedback widget ([5eb42aa](https://github.com/Frachtwerk/essencium-frontend/commit/5eb42aa9ea5cd672b74d15aa2bc75724c2d839ec))
+* improve navbar accessibility ([88dd605](https://github.com/Frachtwerk/essencium-frontend/commit/88dd605ffa96a78ba3ecf201b895fc14a6e95226))
 * resolve vite and axios CVEs ([#897](https://github.com/Frachtwerk/essencium-frontend/issues/897)) ([9ebeee4](https://github.com/Frachtwerk/essencium-frontend/commit/9ebeee4c311656187548a60b1dfd6105ae7e99e5))
 
 ## [9.4.4](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.4.3...essencium-lib-v9.4.4) (2025-09-09)
@@ -26,16 +41,16 @@
 
 ### Bug Fixes
 
-* :bug: fixed a bug with the way tailwindcss classes where importe… ([22c98f7](https://github.com/Frachtwerk/essencium-frontend/commit/22c98f74932ab1f9211893f0710c5e53848a0550))
-* :bug: fixed a bug with the way tailwindcss classes where imported in the app ([2354a17](https://github.com/Frachtwerk/essencium-frontend/commit/2354a173126dcf8233340fda01afa690e7a15d94))
+* fixed a bug with the way tailwindcss classes where importe… ([22c98f7](https://github.com/Frachtwerk/essencium-frontend/commit/22c98f74932ab1f9211893f0710c5e53848a0550))
+* fixed a bug with the way tailwindcss classes where imported in the app ([2354a17](https://github.com/Frachtwerk/essencium-frontend/commit/2354a173126dcf8233340fda01afa690e7a15d94))
 
 ## [9.4.3](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.4.2...essencium-lib-v9.4.3) (2025-09-04)
 
 
 ### Bug Fixes
 
-* :bug: fixed a bug importing globals.css in production ([f02fb47](https://github.com/Frachtwerk/essencium-frontend/commit/f02fb472b02becb3b0dac525d2e8612eb5c9ae2b))
-* :bug: fixed a bug importing globals.css in production ([9efda34](https://github.com/Frachtwerk/essencium-frontend/commit/9efda34ab60910061cb516d8b1499ea513e0539e))
+* fixed a bug importing globals.css in production ([f02fb47](https://github.com/Frachtwerk/essencium-frontend/commit/f02fb472b02becb3b0dac525d2e8612eb5c9ae2b))
+* fixed a bug importing globals.css in production ([9efda34](https://github.com/Frachtwerk/essencium-frontend/commit/9efda34ab60910061cb516d8b1499ea513e0539e))
 
 ## [9.4.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-lib-v9.4.1...essencium-lib-v9.4.2) (2025-09-04)
 

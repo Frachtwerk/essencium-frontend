@@ -1,9 +1,10 @@
 # Migrations
 
-## [9.4.X (XXXX-XX-XX)]()
+## [9.5.0 (2026-03-10)]()
 
 ### Enable React Compiler (https://github.com/Frachtwerk/essencium-frontend/pull/908)
 
+- New ESLint version support is ensured, also backwards compatible with legacy ESLint
 - Changes in the app package mainly resulted from the update to next v16
 - There is an ongoing issue with the React Compiler and Tanstack Table. For now `'use no memo'` is needed in tables. See https://github.com/TanStack/table/issues/5567 and https://github.com/facebook/react/issues/33057
 - For output "standalone" is a new Ppath required: `/.next/standalone/frontend`

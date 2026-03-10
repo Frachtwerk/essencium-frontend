@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v6.3.0...essencium-types-v6.4.0) (2026-03-10)
+
+
+### Features
+
+* **eslint-config:** 940 eslint upgrade ([#941](https://github.com/Frachtwerk/essencium-frontend/issues/941)) ([5aba1f0](https://github.com/Frachtwerk/essencium-frontend/commit/5aba1f005c1be4511635b43f144e8fa9ef752822))
+* **types:** add pagination input types ([d564e5e](https://github.com/Frachtwerk/essencium-frontend/commit/d564e5e81528361cdfa0e5caa35b5d9d1f98d558))
+
+
+### Bug Fixes
+
+* update dependencies ([5ea50c4](https://github.com/Frachtwerk/essencium-frontend/commit/5ea50c4fa696e7855db1582edead3fc435d7ca0d))
+
 ## [6.3.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v6.2.1...essencium-types-v6.3.0) (2025-10-15)
 
 

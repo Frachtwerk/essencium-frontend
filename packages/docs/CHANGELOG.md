@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.5.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.4.2...essencium-docs-v4.5.0) (2026-03-10)
+
+
+### Features
+
+* eslint upgrade ([#941](https://github.com/Frachtwerk/essencium-frontend/issues/941)) ([5aba1f0](https://github.com/Frachtwerk/essencium-frontend/commit/5aba1f005c1be4511635b43f144e8fa9ef752822))
+
+
+### Bug Fixes
+
+* update dependencies ([5ea50c4](https://github.com/Frachtwerk/essencium-frontend/commit/5ea50c4fa696e7855db1582edead3fc435d7ca0d))
+
 ## [4.4.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.4.1...essencium-docs-v4.4.2) (2025-09-04)
 
 

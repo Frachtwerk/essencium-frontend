@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.2](https://github.com/Frachtwerk/essencium-frontend/compare/prettier-config-essencium-v1.5.1...prettier-config-essencium-v1.5.2) (2026-03-10)
+
+
+### Bug Fixes
+
+* update dependencies ([5ea50c4](https://github.com/Frachtwerk/essencium-frontend/commit/5ea50c4fa696e7855db1582edead3fc435d7ca0d))
+
 ## [1.5.1](https://github.com/Frachtwerk/essencium-frontend/compare/prettier-config-essencium-v1.5.0...prettier-config-essencium-v1.5.1) (2025-09-04)
 
 

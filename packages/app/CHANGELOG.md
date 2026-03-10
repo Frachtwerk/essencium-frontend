@@ -1,19 +1,36 @@
 # Changelog
 
+## [9.5.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.4.6...essencium-app-v9.5.0) (2026-03-10)
+
+
+### Features
+
+* add base api functions to simplify basic crud operations ([13e1252](https://github.com/Frachtwerk/essencium-frontend/commit/13e125255823825e405dd000eb72bcb05901f274))
+* add pagination parser to utils ([52b2649](https://github.com/Frachtwerk/essencium-frontend/commit/52b2649e9062dbd3d75e81cab1cace477317beca))
+* base api functions accept all react-query options ([e3edf67](https://github.com/Frachtwerk/essencium-frontend/commit/e3edf672cdfb68054bdc94a2fbd9e3b016034c3a))
+* implement getAll ([a695b77](https://github.com/Frachtwerk/essencium-frontend/commit/a695b7780df478efebd5982c6209f7f06685451c))
+* react compiler for essencium-app ([79028d7](https://github.com/Frachtwerk/essencium-frontend/commit/79028d71aaae672afe02921ac72f5ea70967f3a4))
+* eslint upgrade ([#941](https://github.com/Frachtwerk/essencium-frontend/issues/941)) ([5aba1f0](https://github.com/Frachtwerk/essencium-frontend/commit/5aba1f005c1be4511635b43f144e8fa9ef752822))
+
+
+### Bug Fixes
+
+* update dependencies ([5ea50c4](https://github.com/Frachtwerk/essencium-frontend/commit/5ea50c4fa696e7855db1582edead3fc435d7ca0d))
+
 ## [9.4.6](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.4.5...essencium-app-v9.4.6) (2025-10-15)
 
 
 ### Bug Fixes
 
-* **frontend:** update axios, nodemailer and happy dom deps ([#904](https://github.com/Frachtwerk/essencium-frontend/issues/904)) ([ee9b3b7](https://github.com/Frachtwerk/essencium-frontend/commit/ee9b3b7d17cb196315f96f6075491f1183fa05c4))
+* update axios, nodemailer and happy dom deps ([#904](https://github.com/Frachtwerk/essencium-frontend/issues/904)) ([ee9b3b7](https://github.com/Frachtwerk/essencium-frontend/commit/ee9b3b7d17cb196315f96f6075491f1183fa05c4))
 
 ## [9.4.5](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.4.4...essencium-app-v9.4.5) (2025-09-22)
 
 
 ### Bug Fixes
 
-* :wheelchair: added aria-label to checkboxes in rights view ([f5770ea](https://github.com/Frachtwerk/essencium-frontend/commit/f5770ea136a0f02756e9b57c43fe4c74ea94ef70))
-* :wheelchair: added aria-label to checkboxes in rights view ([f4a5fc0](https://github.com/Frachtwerk/essencium-frontend/commit/f4a5fc01547d5cde2e98a0aad9ffbd9e17015de6))
+* added aria-label to checkboxes in rights view ([f5770ea](https://github.com/Frachtwerk/essencium-frontend/commit/f5770ea136a0f02756e9b57c43fe4c74ea94ef70))
+* added aria-label to checkboxes in rights view ([f4a5fc0](https://github.com/Frachtwerk/essencium-frontend/commit/f4a5fc01547d5cde2e98a0aad9ffbd9e17015de6))
 * resolve vite and axios CVEs ([#897](https://github.com/Frachtwerk/essencium-frontend/issues/897)) ([9ebeee4](https://github.com/Frachtwerk/essencium-frontend/commit/9ebeee4c311656187548a60b1dfd6105ae7e99e5))
 
 ## [9.4.4](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.4.3...essencium-app-v9.4.4) (2025-09-09)
@@ -21,16 +38,16 @@
 
 ### Bug Fixes
 
-* :bug: fixed a bug with the way tailwindcss classes where importe… ([22c98f7](https://github.com/Frachtwerk/essencium-frontend/commit/22c98f74932ab1f9211893f0710c5e53848a0550))
-* :bug: fixed a bug with the way tailwindcss classes where imported in the app ([2354a17](https://github.com/Frachtwerk/essencium-frontend/commit/2354a173126dcf8233340fda01afa690e7a15d94))
+* fixed a bug with the way tailwindcss classes where importe… ([22c98f7](https://github.com/Frachtwerk/essencium-frontend/commit/22c98f74932ab1f9211893f0710c5e53848a0550))
+* fixed a bug with the way tailwindcss classes where imported in the app ([2354a17](https://github.com/Frachtwerk/essencium-frontend/commit/2354a173126dcf8233340fda01afa690e7a15d94))
 
 ## [9.4.3](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.4.2...essencium-app-v9.4.3) (2025-09-04)
 
 
 ### Bug Fixes
 
-* :bug: fixed a bug importing globals.css in production ([f02fb47](https://github.com/Frachtwerk/essencium-frontend/commit/f02fb472b02becb3b0dac525d2e8612eb5c9ae2b))
-* :bug: fixed a bug importing globals.css in production ([9efda34](https://github.com/Frachtwerk/essencium-frontend/commit/9efda34ab60910061cb516d8b1499ea513e0539e))
+* fixed a bug importing globals.css in production ([f02fb47](https://github.com/Frachtwerk/essencium-frontend/commit/f02fb472b02becb3b0dac525d2e8612eb5c9ae2b))
+* fixed a bug importing globals.css in production ([9efda34](https://github.com/Frachtwerk/essencium-frontend/commit/9efda34ab60910061cb516d8b1499ea513e0539e))
 
 ## [9.4.2](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.4.1...essencium-app-v9.4.2) (2025-09-04)
 
@@ -45,33 +62,33 @@
 
 ### Bug Fixes
 
-* :bug: fixed a bug where the lib didn't include globals.css in it… ([578e17c](https://github.com/Frachtwerk/essencium-frontend/commit/578e17c28f71bca17b740c4c50ec34a18b7f3a1c))
-* :bug: fixed a bug where the lib didn't include globals.css in it's build ([c82b60f](https://github.com/Frachtwerk/essencium-frontend/commit/c82b60f01188db6e06f03d213febfd5954f7a4e9))
+* fixed a bug where the lib didn't include globals.css in it… ([578e17c](https://github.com/Frachtwerk/essencium-frontend/commit/578e17c28f71bca17b740c4c50ec34a18b7f3a1c))
+* fixed a bug where the lib didn't include globals.css in it's build ([c82b60f](https://github.com/Frachtwerk/essencium-frontend/commit/c82b60f01188db6e06f03d213febfd5954f7a4e9))
 
 ## [9.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.3.0...essencium-app-v9.4.0) (2025-09-03)
 
 
 ### Features
 
-* :sparkles: implemented a skip link ([5add696](https://github.com/Frachtwerk/essencium-frontend/commit/5add6967d1e40604d2e819ce7657693b3b844233))
-* :sparkles: implemented a skip link ([aa63586](https://github.com/Frachtwerk/essencium-frontend/commit/aa635863027e01ca833174eeea2230752cca6028))
-* **ci:** add explicit test, development & production environment definitions ([0c6df4a](https://github.com/Frachtwerk/essencium-frontend/commit/0c6df4a779a25b323e0f520d27bf7179bcd55c4f))
-* **e2e:** add support for node environments to playwright config ([e298689](https://github.com/Frachtwerk/essencium-frontend/commit/e298689ce2f6c97e9057254cec88549e0f6bdcd4))
+* implemented a skip link ([5add696](https://github.com/Frachtwerk/essencium-frontend/commit/5add6967d1e40604d2e819ce7657693b3b844233))
+* implemented a skip link ([aa63586](https://github.com/Frachtwerk/essencium-frontend/commit/aa635863027e01ca833174eeea2230752cca6028))
+* add explicit test, development & production environment definitions ([0c6df4a](https://github.com/Frachtwerk/essencium-frontend/commit/0c6df4a779a25b323e0f520d27bf7179bcd55c4f))
+* add support for node environments to playwright config ([e298689](https://github.com/Frachtwerk/essencium-frontend/commit/e298689ce2f6c97e9057254cec88549e0f6bdcd4))
 * install prettier plugin tailwindcss ([14503a0](https://github.com/Frachtwerk/essencium-frontend/commit/14503a02d7a99f9632d408050f83ce2d035b9572))
 
 
 ### Bug Fixes
 
-* :wheelchair: added aria attributes in translations view ([61e8ba8](https://github.com/Frachtwerk/essencium-frontend/commit/61e8ba8b014ce48dc5b48d59889d4fd7d60f8f7f))
-* :wheelchair: added aria attributes in translations view ([c4116df](https://github.com/Frachtwerk/essencium-frontend/commit/c4116df892d450c110b94dfb391e5c37f0099676))
-* **app:** :bug: fixed accessibility issues with table actions ([4397b72](https://github.com/Frachtwerk/essencium-frontend/commit/4397b72ac8e0423c653596f6979aabdd9c790939))
-* **app:** :wheelchair: improved accessibility for users view table ([baf8221](https://github.com/Frachtwerk/essencium-frontend/commit/baf8221ca8b880ab1ee3d11c5c9f56f531fdec68))
-* **app:** :wheelchair: improved accessibility for users view table ([31e9e30](https://github.com/Frachtwerk/essencium-frontend/commit/31e9e305be21494031feaf4263e294e6141ab68b))
-* **app:** adjust users sorting by name ([953755b](https://github.com/Frachtwerk/essencium-frontend/commit/953755bf5447963ec3398766325575939fa3eb32))
-* **app:** adjust users sorting by name ([fcb76ff](https://github.com/Frachtwerk/essencium-frontend/commit/fcb76ff067b68b1215790faec05fb8358aa58a89))
+* added aria attributes in translations view ([61e8ba8](https://github.com/Frachtwerk/essencium-frontend/commit/61e8ba8b014ce48dc5b48d59889d4fd7d60f8f7f))
+* added aria attributes in translations view ([c4116df](https://github.com/Frachtwerk/essencium-frontend/commit/c4116df892d450c110b94dfb391e5c37f0099676))
+* fixed accessibility issues with table actions ([4397b72](https://github.com/Frachtwerk/essencium-frontend/commit/4397b72ac8e0423c653596f6979aabdd9c790939))
+* improved accessibility for users view table ([baf8221](https://github.com/Frachtwerk/essencium-frontend/commit/baf8221ca8b880ab1ee3d11c5c9f56f531fdec68))
+* improved accessibility for users view table ([31e9e30](https://github.com/Frachtwerk/essencium-frontend/commit/31e9e305be21494031feaf4263e294e6141ab68b))
+* adjust users sorting by name ([953755b](https://github.com/Frachtwerk/essencium-frontend/commit/953755bf5447963ec3398766325575939fa3eb32))
+* adjust users sorting by name ([fcb76ff](https://github.com/Frachtwerk/essencium-frontend/commit/fcb76ff067b68b1215790faec05fb8358aa58a89))
 * fixed an issue where tailwind would not include classes from the lib package ([86229a6](https://github.com/Frachtwerk/essencium-frontend/commit/86229a6bb8673304c36e4574f4daefddf6a2c132))
-* **frontend:** resolve next and form-data vulnerabilities ([#879](https://github.com/Frachtwerk/essencium-frontend/issues/879)) ([75ce949](https://github.com/Frachtwerk/essencium-frontend/commit/75ce949e68fd7ab6ecf21f92b2d63c5780de12ff))
-* **lib:** :wheelchair: imporoved accessibility of table pagination ([cd8d3c4](https://github.com/Frachtwerk/essencium-frontend/commit/cd8d3c4e32a3df9dcfb4bd1a54e7185ae6818182))
+* resolve next and form-data vulnerabilities ([#879](https://github.com/Frachtwerk/essencium-frontend/issues/879)) ([75ce949](https://github.com/Frachtwerk/essencium-frontend/commit/75ce949e68fd7ab6ecf21f92b2d63c5780de12ff))
+* imporoved accessibility of table pagination ([cd8d3c4](https://github.com/Frachtwerk/essencium-frontend/commit/cd8d3c4e32a3df9dcfb4bd1a54e7185ae6818182))
 * render NextLink using other mantine components as polymorphic co… ([314df73](https://github.com/Frachtwerk/essencium-frontend/commit/314df73b1f818a80901dfbeda3b66a27728a08a4))
 * render NextLink using other mantine components as polymorphic component ([28083d4](https://github.com/Frachtwerk/essencium-frontend/commit/28083d476a539118506a2edb76617624c7c65f48))
 
@@ -80,15 +97,15 @@
 
 ### Features
 
-* **frontend:** implement refresh token logic ([#814](https://github.com/Frachtwerk/essencium-frontend/issues/814)) ([d79e0da](https://github.com/Frachtwerk/essencium-frontend/commit/d79e0da0f7c78bb6649ade72464e38f08a57eadc))
+* implement refresh token logic ([#814](https://github.com/Frachtwerk/essencium-frontend/issues/814)) ([d79e0da](https://github.com/Frachtwerk/essencium-frontend/commit/d79e0da0f7c78bb6649ade72464e38f08a57eadc))
 
 ## [9.2.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.1.0...essencium-app-v9.2.0) (2025-06-23)
 
 
 ### Features
 
-* **dependencies:** update pnpm to v10 ([4c08d51](https://github.com/Frachtwerk/essencium-frontend/commit/4c08d51777281b92966feb2f02da35d3cc4157d4))
-* **dependencies:** update pnpm to v10 ([92411a2](https://github.com/Frachtwerk/essencium-frontend/commit/92411a2bd12bc32d7bed55ef74dd932fb4926be3))
+* update pnpm to v10 ([4c08d51](https://github.com/Frachtwerk/essencium-frontend/commit/4c08d51777281b92966feb2f02da35d3cc4157d4))
+* update pnpm to v10 ([92411a2](https://github.com/Frachtwerk/essencium-frontend/commit/92411a2bd12bc32d7bed55ef74dd932fb4926be3))
 * implement tableFilterTypes by prop ([bf86d18](https://github.com/Frachtwerk/essencium-frontend/commit/bf86d182a44855a47d1fa421516d251123e50f0f))
 
 
@@ -113,7 +130,7 @@
 
 ### Bug Fixes
 
-* **frontend:** fix vulnerability in vite package ([#793](https://github.com/Frachtwerk/essencium-frontend/issues/793)) ([fb35535](https://github.com/Frachtwerk/essencium-frontend/commit/fb35535a12f5ab5dedd0e52594d4f001955c6099))
+* fix vulnerability in vite package ([#793](https://github.com/Frachtwerk/essencium-frontend/issues/793)) ([fb35535](https://github.com/Frachtwerk/essencium-frontend/commit/fb35535a12f5ab5dedd0e52594d4f001955c6099))
 
 ## [9.0.1](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.0.0...essencium-app-v9.0.1) (2025-04-22)
 
