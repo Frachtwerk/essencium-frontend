@@ -17,8 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-'use client'
-
 import { NavLink } from '@frachtwerk/essencium-types'
 import { NavLink as MantineNavLink } from '@mantine/core'
 import NextLink from 'next/link'

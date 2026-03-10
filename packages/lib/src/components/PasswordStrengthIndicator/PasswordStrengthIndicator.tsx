@@ -17,8 +17,6 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-'use client'
-
 import { PasswordStrengthRules } from '@frachtwerk/essencium-types'
 import { Popover, PopoverProps } from '@mantine/core'
 import { type JSX, useState } from 'react'

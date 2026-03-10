@@ -31,8 +31,7 @@ import { createUseGetInfinite, UseGetInfiniteResult } from './infinite'
 import { FilterOptions, RequestOptions, TBaseFilter } from './types'
 
 export interface UseGetAllOptions<TOutput, TFilter extends TBaseFilter>
-  extends FilterOptions<TFilter>,
-    RequestOptions {
+  extends FilterOptions<TFilter>, RequestOptions {
   pagination?: Pick<PaginationParams, 'sort'>
   infiniteOptions?: Omit<
     UseInfiniteQueryOptions<
