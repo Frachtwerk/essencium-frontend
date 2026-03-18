@@ -33,12 +33,14 @@
     "react-dom": "19.2.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.0.0",
     "@frachtwerk/eslint-config-essencium": "2.5.0",
     "@frachtwerk/prettier-config-essencium": "1.5.2",
     "@types/node": "20.19.37",
-    "eslint": "8.57.1",
+    "eslint": "^9.0.0",
     "prettier": "3.8.1",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "typescript-eslint": "^8.0.0"
   },
   "packageManager": "pnpm@10.10.0",
   "engines": {
