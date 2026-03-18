@@ -43,16 +43,16 @@
     "sort-package-json": "3.6.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "20.4.2",
-    "@commitlint/config-conventional": "20.4.2",
+    "@commitlint/cli": "20.5.0",
+    "@commitlint/config-conventional": "20.5.0",
     "@faker-js/faker": "10.3.0",
     "@frachtwerk/eslint-config-essencium": "workspace:*",
     "@frachtwerk/essencium-types": "workspace:*",
     "@frachtwerk/prettier-config-essencium": "workspace:*",
     "axios": "1.13.6",
-    "eslint": "9.39.3",
+    "eslint": "9.39.4",
     "husky": "9.1.7",
-    "lint-staged": "16.3.1",
+    "lint-staged": "16.4.0",
     "prettier": "3.8.1",
     "prettier-plugin-tailwindcss": "0.7.2",
     "rimraf": "6.1.3",
@@ -69,6 +69,10 @@
     "pnpm": "10.10.0"
   },
   "pnpm": {
+    "overrides": {
+      "react": "19.2.4",
+      "react-dom": "19.2.4"
+    },
     "onlyBuiltDependencies": [
       "esbuild",
       "sharp"
