@@ -43,9 +43,12 @@ import { type JSX } from 'react'
 
 import {
   authTokenAtom,
+  getAuthStateFromToken,
   useCreateToken,
   useGetSsoApplications,
+  userAtom,
   useResetPassword,
+  userRightsAtom,
 } from '@/api'
 import { isBrowserEnvironment } from '@/utils'
 
@@ -72,14 +75,24 @@ export default function LoginView(): JSX.Element {
   const oauthToken = searchParams.get('token')
 
   const setAuthToken = useSetAtom(authTokenAtom)
+  const setUser = useSetAtom(userAtom)
+  const setUserRights = useSetAtom(userRightsAtom)
 
   useEffect(() => {
     if (oauthToken) {
       setAuthToken(oauthToken)
+      localStorage.setItem('authToken', JSON.stringify(oauthToken))
+
+      const authState = getAuthStateFromToken(oauthToken)
+
+      if (authState) {
+        setUser(authState.user)
+        setUserRights(authState.rights)
+      }
 
       router.push(searchParams.get('redirect') || '/')
     }
-  }, [oauthToken, router, searchParams, setAuthToken])
+  }, [oauthToken, router, searchParams, setAuthToken, setUser, setUserRights])
 
   const { mutate: resetPassword, isPending: isResettingPassword } =
     useResetPassword()

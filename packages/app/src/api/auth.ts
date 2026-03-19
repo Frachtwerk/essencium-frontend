@@ -35,7 +35,21 @@ import { atomWithStorage } from 'jotai/utils'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
+import { parseJwt } from '@/utils'
+
 import { api } from './api'
+
+function getAuthBaseUrl(): string {
+  if (process.env.NEXT_PUBLIC_USE_API_PROXY !== 'false') {
+    return '/auth'
+  }
+
+  const apiUrl = process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
+    ? process.env.NEXT_PUBLIC_API_URL
+    : window.runtimeConfig.required.API_URL
+
+  return `${apiUrl}/auth`
+}
 
 type TokenResponse = {
   token: string
@@ -44,6 +58,91 @@ type TokenResponse = {
 type LoginCredentials = {
   username: string
   password: string
+}
+
+type UserFromToken = {
+  user: UserOutput
+  rights: string[]
+}
+
+function getStringClaim(
+  tokenPayload: Record<string, unknown>,
+  key: string,
+): string | undefined {
+  const value = tokenPayload[key]
+
+  return typeof value === 'string' ? value : undefined
+}
+
+function getStringArrayClaim(
+  tokenPayload: Record<string, unknown>,
+  key: string,
+): string[] {
+  const value = tokenPayload[key]
+
+  if (!Array.isArray(value)) {
+    return []
+  }
+
+  return value.filter((entry): entry is string => typeof entry === 'string')
+}
+
+export function getAuthStateFromToken(token: string): UserFromToken | null {
+  const tokenPayload = parseJwt(token)
+
+  if (!tokenPayload) {
+    return null
+  }
+
+  const userId = tokenPayload.uid
+
+  if (typeof userId !== 'string' && typeof userId !== 'number') {
+    return null
+  }
+
+  const email = getStringClaim(tokenPayload, 'sub')
+  const firstName =
+    getStringClaim(tokenPayload, 'given_name') ??
+    getStringClaim(tokenPayload, 'firstName')
+  const lastName =
+    getStringClaim(tokenPayload, 'family_name') ??
+    getStringClaim(tokenPayload, 'lastName')
+
+  if (!email || !firstName || !lastName) {
+    return null
+  }
+
+  const rights = getStringArrayClaim(tokenPayload, 'rights')
+  const roles = getStringArrayClaim(tokenPayload, 'roles')
+
+  return {
+    user: {
+      id: userId,
+      createdAt: undefined,
+      createdBy: undefined,
+      updatedAt: undefined,
+      updatedBy: undefined,
+      email,
+      enabled: true,
+      firstName,
+      lastName,
+      locale: getStringClaim(tokenPayload, 'locale') ?? 'en',
+      mobile: getStringClaim(tokenPayload, 'mobile') ?? '',
+      phone: getStringClaim(tokenPayload, 'phone') ?? '',
+      source:
+        getStringClaim(tokenPayload, 'source') ??
+        getStringClaim(tokenPayload, 'userSource') ??
+        UserSource.LOCAL,
+      roles: roles.map(role => ({
+        description: '',
+        editable: false,
+        name: role,
+        protected: false,
+        rights: rights.map(right => ({ authority: right, description: null })),
+      })),
+    },
+    rights,
+  }
 }
 
 export const authTokenAtom = atomWithStorage<string | null>('authToken', null)
@@ -57,23 +156,28 @@ export function useCreateToken(): UseMutationResult<
 > {
   const t = useTranslations()
   const setAuthToken = useSetAtom(authTokenAtom)
+  const setUser = useSetAtom(userAtom)
+  const setUserRights = useSetAtom(userRightsAtom)
 
   const mutation = useMutation<TokenResponse, AxiosError, LoginCredentials>({
     mutationKey: ['useCreateToken'],
     mutationFn: (loginCredentials: LoginCredentials) =>
       api
         .post<TokenResponse, LoginCredentials>('/token', loginCredentials, {
-          baseURL: `${
-            process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
-              ? process.env.NEXT_PUBLIC_API_URL
-              : window.runtimeConfig.required.API_URL
-          }/auth`,
+          baseURL: getAuthBaseUrl(),
         })
         .then(response => response.data),
     onSuccess: data => {
       setAuthToken(data.token)
 
       localStorage.setItem('authToken', JSON.stringify(data.token))
+
+      const userFromToken = getAuthStateFromToken(data.token)
+
+      if (userFromToken) {
+        setUser(userFromToken.user)
+        setUserRights(userFromToken.rights)
+      }
     },
     meta: {
       errorNotification: {
@@ -97,15 +201,10 @@ export function useRenewToken(): UseMutationResult<
   return useMutation<TokenResponse, AxiosError, void>({
     mutationKey: ['useRenewToken'],
     mutationFn: async () => {
-      // No need to send the refresh token. The backend uses the cookie.
-      const baseURL = process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
-        ? process.env.NEXT_PUBLIC_API_URL
-        : window.runtimeConfig.required.API_URL
-
       const { data } = await api.post<TokenResponse, undefined>(
         '/renew',
         undefined,
-        { baseURL: `${baseURL}/auth` },
+        { baseURL: getAuthBaseUrl() },
       )
       return data
     },
@@ -212,11 +311,7 @@ export function useGetSsoApplications(): UseQueryResult<SsoApplications> {
     queryFn: () =>
       api
         .get<SsoApplications>('/oauth-registrations', {
-          baseURL: `${
-            process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
-              ? process.env.NEXT_PUBLIC_API_URL
-              : window.runtimeConfig.required.API_URL
-          }/auth`,
+          baseURL: getAuthBaseUrl(),
         })
         .then(response => response.data),
   })
@@ -225,14 +320,12 @@ export function useGetSsoApplications(): UseQueryResult<SsoApplications> {
 export function useLogout(): UseMutationResult<void, AxiosError, void> {
   const router = useRouter()
   const resetAuthToken = useSetAtom(authTokenAtom)
+  const resetUser = useSetAtom(userAtom)
+  const resetUserRights = useSetAtom(userRightsAtom)
 
   return useMutation<void, AxiosError, void>({
     mutationKey: ['useLogout'],
     mutationFn: async () => {
-      const baseURL = process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
-        ? process.env.NEXT_PUBLIC_API_URL
-        : window.runtimeConfig.required.API_URL
-
       const appURL = process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
         ? process.env.NEXT_PUBLIC_APP_URL
         : window.runtimeConfig.required.APP_URL
@@ -242,14 +335,17 @@ export function useLogout(): UseMutationResult<void, AxiosError, void> {
       await api.post(
         `/logout?redirectUrl=${encodeURIComponent(redirectUrl)}`,
         undefined,
-        { baseURL: `${baseURL}/auth` },
+        { baseURL: getAuthBaseUrl() },
       )
     },
     onSettled: () => {
       localStorage.removeItem('authToken')
       localStorage.removeItem('user')
+      localStorage.removeItem('rights')
 
       resetAuthToken(null)
+      resetUser(null)
+      resetUserRights(null)
 
       router.push('/login')
     },
