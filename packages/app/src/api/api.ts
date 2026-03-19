@@ -88,6 +88,22 @@ const axiosInstance = axios.create()
 
 export const api = createApi(axiosInstance)
 
+function getStoredAuthToken(): string | null {
+  const authToken = localStorage.getItem('authToken')
+
+  if (!authToken) {
+    return null
+  }
+
+  try {
+    const parsedToken = JSON.parse(authToken)
+
+    return typeof parsedToken === 'string' ? parsedToken : null
+  } catch {
+    return authToken
+  }
+}
+
 api.interceptors.request.use(
   (request: InternalAxiosRequestConfig<AxiosRequestConfig>) => {
     // Need to check if window is defined because this code is also used on server side
@@ -102,11 +118,10 @@ api.interceptors.request.use(
       }
     }
 
-    const authToken = JSON.parse(localStorage.getItem('authToken') as string)
+    const authToken = getStoredAuthToken()
 
     if (authToken) {
       request.headers.Authorization = `Bearer ${authToken}`
-      request.headers.setAuthorization(`Bearer ${authToken}`)
     }
 
     return request
@@ -119,15 +134,20 @@ api.interceptors.request.use(
 function clearAuthState(): void {
   localStorage.removeItem('authToken')
   localStorage.removeItem('user')
+  localStorage.removeItem('rights')
 }
 
 api.interceptors.response.use(
   response => response,
   (error: AxiosError) => {
+    if (typeof window === 'undefined') {
+      throw error
+    }
+
     if (error?.response?.status === 401) {
       clearAuthState()
 
-      if (window.location.pathname !== '/login') {
+      if (!window.location.pathname.includes('/login')) {
         window.location.href = `/login?redirect=${window.location.pathname}`
       }
     }

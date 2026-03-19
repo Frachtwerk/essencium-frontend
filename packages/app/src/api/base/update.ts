@@ -84,8 +84,8 @@ export const createUseUpdate = <
         },
         ...meta,
       },
-      onSuccess(data, variables, onMutateResult, context) {
-        onSuccess?.(data, variables, onMutateResult, context)
+      async onSuccess(data, variables, onMutateResult, context) {
+        await onSuccess?.(data, variables, onMutateResult, context)
 
         return Promise.all([
           queryClient.invalidateQueries({

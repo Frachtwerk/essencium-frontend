@@ -40,10 +40,6 @@ import { parseJwt } from '@/utils'
 import { api } from './api'
 
 function getAuthBaseUrl(): string {
-  if (process.env.NEXT_PUBLIC_USE_API_PROXY !== 'false') {
-    return '/auth'
-  }
-
   const apiUrl = process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
     ? process.env.NEXT_PUBLIC_API_URL
     : window.runtimeConfig.required.API_URL
@@ -65,80 +61,60 @@ type UserFromToken = {
   rights: string[]
 }
 
-function getStringClaim(
-  tokenPayload: Record<string, unknown>,
-  key: string,
-): string | undefined {
-  const value = tokenPayload[key]
-
-  return typeof value === 'string' ? value : undefined
-}
-
-function getStringArrayClaim(
-  tokenPayload: Record<string, unknown>,
-  key: string,
-): string[] {
-  const value = tokenPayload[key]
-
-  if (!Array.isArray(value)) {
-    return []
-  }
-
-  return value.filter((entry): entry is string => typeof entry === 'string')
+function getStringArray(value: unknown): string[] {
+  return Array.isArray(value)
+    ? value.filter((v): v is string => typeof v === 'string')
+    : []
 }
 
 export function getAuthStateFromToken(token: string): UserFromToken | null {
-  const tokenPayload = parseJwt(token)
+  const payload = parseJwt(token)
+  if (!payload) return null
 
-  if (!tokenPayload) {
+  // Validate required fields with proper type checking
+  if (
+    (typeof payload.uid !== 'string' && typeof payload.uid !== 'number') ||
+    typeof payload.sub !== 'string'
+  ) {
     return null
   }
 
-  const userId = tokenPayload.uid
+  const firstName = payload.given_name || payload.firstName
+  const lastName = payload.family_name || payload.lastName
 
-  if (typeof userId !== 'string' && typeof userId !== 'number') {
+  if (typeof firstName !== 'string' || typeof lastName !== 'string') {
     return null
   }
 
-  const email = getStringClaim(tokenPayload, 'sub')
-  const firstName =
-    getStringClaim(tokenPayload, 'given_name') ??
-    getStringClaim(tokenPayload, 'firstName')
-  const lastName =
-    getStringClaim(tokenPayload, 'family_name') ??
-    getStringClaim(tokenPayload, 'lastName')
-
-  if (!email || !firstName || !lastName) {
-    return null
-  }
-
-  const rights = getStringArrayClaim(tokenPayload, 'rights')
-  const roles = getStringArrayClaim(tokenPayload, 'roles')
+  const rights = getStringArray(payload.rights)
+  const roles = getStringArray(payload.roles)
+  const locale = typeof payload.locale === 'string' ? payload.locale : 'en'
+  const mobile = typeof payload.mobile === 'string' ? payload.mobile : ''
+  const phone = typeof payload.phone === 'string' ? payload.phone : ''
+  const source =
+    typeof payload.source === 'string'
+      ? payload.source
+      : typeof payload.userSource === 'string'
+        ? payload.userSource
+        : UserSource.LOCAL
 
   return {
     user: {
-      id: userId,
-      createdAt: undefined,
-      createdBy: undefined,
-      updatedAt: undefined,
-      updatedBy: undefined,
-      email,
-      enabled: true,
+      id: payload.uid,
+      email: payload.sub,
       firstName,
       lastName,
-      locale: getStringClaim(tokenPayload, 'locale') ?? 'en',
-      mobile: getStringClaim(tokenPayload, 'mobile') ?? '',
-      phone: getStringClaim(tokenPayload, 'phone') ?? '',
-      source:
-        getStringClaim(tokenPayload, 'source') ??
-        getStringClaim(tokenPayload, 'userSource') ??
-        UserSource.LOCAL,
-      roles: roles.map(role => ({
+      enabled: true,
+      locale,
+      mobile,
+      phone,
+      source,
+      roles: roles.map(name => ({
+        name,
         description: '',
         editable: false,
-        name: role,
         protected: false,
-        rights: rights.map(right => ({ authority: right, description: null })),
+        rights: rights.map(authority => ({ authority, description: null })),
       })),
     },
     rights,
@@ -170,10 +146,7 @@ export function useCreateToken(): UseMutationResult<
     onSuccess: data => {
       setAuthToken(data.token)
 
-      localStorage.setItem('authToken', JSON.stringify(data.token))
-
       const userFromToken = getAuthStateFromToken(data.token)
-
       if (userFromToken) {
         setUser(userFromToken.user)
         setUserRights(userFromToken.rights)
@@ -210,7 +183,6 @@ export function useRenewToken(): UseMutationResult<
     },
     onSuccess: data => {
       setAuthToken(data.token)
-      localStorage.setItem('authToken', JSON.stringify(data.token))
     },
   })
 }
@@ -339,14 +311,9 @@ export function useLogout(): UseMutationResult<void, AxiosError, void> {
       )
     },
     onSettled: () => {
-      localStorage.removeItem('authToken')
-      localStorage.removeItem('user')
-      localStorage.removeItem('rights')
-
       resetAuthToken(null)
       resetUser(null)
       resetUserRights(null)
-
       router.push('/login')
     },
   })
