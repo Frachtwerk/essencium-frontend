@@ -31,8 +31,6 @@ describe('Contact', () => {
       useZodForm({
         schema: contactFormSchema,
         defaultValues: {
-          mailAddress: '',
-          name: '',
           subject: '',
           message: '',
         },

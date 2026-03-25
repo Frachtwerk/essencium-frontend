@@ -29,9 +29,9 @@ import {
 import {
   RightOutput,
   RIGHTS,
+  RoleInput,
   RoleOutput,
   ROLES,
-  RoleUpdate,
 } from '@frachtwerk/essencium-types'
 import { Checkbox, Flex, Text, Title } from '@mantine/core'
 import { IconShieldHalf } from '@tabler/icons-react'
@@ -93,7 +93,7 @@ export default function RightsView(): JSX.Element {
   const { mutate: updateRole } = useUpdateRole()
 
   const handleUpdateRole = useCallback(
-    (updatedRole: RoleUpdate): void => {
+    (updatedRole: RoleInput): void => {
       updateRole(updatedRole, {
         onSuccess: handleRefetch,
       })
