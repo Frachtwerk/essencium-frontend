@@ -60,7 +60,7 @@
     "@types/react-window": "1.8.8",
     "@vitejs/plugin-react": "5.2.0",
     "eslint": "9.39.4",
-    "happy-dom": "20.8.4",
+    "happy-dom": "20.8.9",
     "next-router-mock": "1.0.5",
     "postcss": "8.5.8",
     "postcss-preset-mantine": "1.18.0",
