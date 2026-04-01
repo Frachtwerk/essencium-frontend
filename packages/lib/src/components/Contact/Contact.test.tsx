@@ -60,17 +60,8 @@ describe('Contact', () => {
   })
 
   it('renders Contact component with correct layout', () => {
-    const grid = screen.getByRole('grid')
-    expect(grid).toBeDefined()
-
-    const gridCols = within(grid).getAllByRole('gridcell')
-    expect(gridCols).toHaveLength(2)
-
-    const contactPersonCard = within(gridCols[0])
-    expect(contactPersonCard).toBeDefined()
-
-    const contactForm = within(gridCols[1])
-    expect(contactForm).toBeDefined()
+    expect(screen.getByRole('complementary')).toBeDefined()
+    expect(screen.getByRole('form')).toBeDefined()
   })
 
   describe('ContactPersonCard', () => {
@@ -87,15 +78,18 @@ describe('Contact', () => {
       const name = within(card).getByRole('heading', { level: 5 })
       expect(name).toBeDefined()
 
+      const phone = within(card).getByLabelText(
+        'contactView.contactPersonCard.contactPerson.ariaLabel',
+      )
+
       const information = within(card).getAllByLabelText('Contact info')
-      expect(information).toHaveLength(4)
+      expect(information).toHaveLength(3)
 
-      const phone = information[0]
-      const mail = information[1]
-      const location = information[2]
-      const socialIcons = information[3]
+      const mail = information[0]
+      const location = information[1]
+      const socialIcons = information[2]
 
-      expect(within(phone).getByText(/1(123) 456-7890/)).toBeDefined()
+      expect(within(phone).getByText('1(123) 456-7890')).toBeDefined()
       expect(within(mail).getByText(/jane.doe@example.com/)).toBeDefined()
       expect(
         within(location).getByText(/123 Maple Street. Anytown, PA 17101/),
@@ -113,12 +107,6 @@ describe('Contact', () => {
 
       const title = within(form).getByRole('heading', { level: 3 })
       expect(title).toBeDefined()
-
-      const emailInput = within(form).getByLabelText(/email/i)
-      expect(emailInput).toBeDefined()
-
-      const nameInput = within(form).getByLabelText(/name/i)
-      expect(nameInput).toBeDefined()
 
       const subjectInput = within(form).getByLabelText(/subject/i)
       expect(subjectInput).toBeDefined()

@@ -17,8 +17,8 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { MantineProvider } from '@mantine/core'
 import { render, RenderResult, screen } from '@testing-library/react'
-import ReactDOM from 'react-dom'
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { HttpNotification } from './HttpNotification'
@@ -27,14 +27,9 @@ describe('HttpNotification', () => {
   let mountedHttpNotificaton: RenderResult
 
   beforeAll(() => {
-    vi.mock('react-dom', async (): Promise<Awaited<typeof ReactDOM>> => {
-      const actual = await vi.importActual<typeof ReactDOM>('react-dom')
-
-      return {
-        ...actual,
-        createPortal: vi.fn().mockImplementation(children => children),
-      }
-    })
+    const notificationDiv = document.createElement('div')
+    notificationDiv.setAttribute('id', 'notification')
+    document.body.appendChild(notificationDiv)
   })
 
   beforeEach(() => {
@@ -45,7 +40,9 @@ describe('HttpNotification', () => {
 
   it('returns nothing if no truthy loading or error state', () => {
     mountedHttpNotificaton = render(
-      <HttpNotification isLoading={false} isError={false} />,
+      <MantineProvider>
+        <HttpNotification isLoading={false} isError={false} />
+      </MantineProvider>,
     )
 
     expect(screen.queryByRole('alert')).toBeNull()
@@ -53,12 +50,14 @@ describe('HttpNotification', () => {
 
   it('returns loading state if loading property is true', () => {
     mountedHttpNotificaton = render(
-      <HttpNotification
-        isLoading
-        isError={false}
-        loadingTitle="Loading..."
-        loadingMessage="Retrieving data from the server"
-      />,
+      <MantineProvider>
+        <HttpNotification
+          isLoading
+          isError={false}
+          loadingTitle="Loading..."
+          loadingMessage="Retrieving data from the server"
+        />
+      </MantineProvider>,
     )
 
     expect(screen.queryByRole('alert')).toBeDefined()
@@ -68,12 +67,14 @@ describe('HttpNotification', () => {
 
   it('returns error state if error property is true', () => {
     mountedHttpNotificaton = render(
-      <HttpNotification
-        isLoading={false}
-        isError
-        errorTitle="Error"
-        errorMessage="Unable to fetch data"
-      />,
+      <MantineProvider>
+        <HttpNotification
+          isLoading={false}
+          isError
+          errorTitle="Error"
+          errorMessage="Unable to fetch data"
+        />
+      </MantineProvider>,
     )
 
     expect(screen.queryByRole('alert')).toBeDefined()

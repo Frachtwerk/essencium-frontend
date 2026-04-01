@@ -80,7 +80,11 @@ describe('Header.tsx', () => {
   })
 
   it('should render the spotlight search bar', () => {
-    expect(HeaderMounted.getByRole('searchbox')).toBeDefined()
+    expect(
+      HeaderMounted.getByRole('button', {
+        name: 'header.spotlight.placeholder',
+      }),
+    ).toBeDefined()
   })
 
   it('should render the theme selector', () => {

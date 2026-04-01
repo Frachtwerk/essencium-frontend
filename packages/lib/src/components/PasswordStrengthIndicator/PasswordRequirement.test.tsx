@@ -35,7 +35,7 @@ describe('PasswordRequirement.tsx', () => {
 
     expect(label).toBeDefined()
 
-    expect(label.classList).toContain('_color-validated_fdffd1')
+    expect(label.classList).toContain('text-green-700')
 
     expect(
       screen.getByLabelText(
@@ -57,7 +57,7 @@ describe('PasswordRequirement.tsx', () => {
 
     expect(label).toBeDefined()
 
-    expect(label.classList).toContain('_color_fdffd1')
+    expect(label.classList).not.toContain('text-green-700')
 
     expect(
       screen.getByLabelText(

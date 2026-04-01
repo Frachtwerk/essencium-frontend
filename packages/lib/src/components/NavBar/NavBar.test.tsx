@@ -26,16 +26,37 @@ import {
   IconUsers,
   IconUserStar,
 } from '@tabler/icons-react'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { NextIntlClientProvider } from 'next-intl'
 import { type JSX, ReactNode } from 'react'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { NavBar } from './NavBar'
 
 const BASE_PATH = 'http://localhost:3000'
 
+vi.mock('react-i18next', async () => {
+  const reactI18next = (await vi.importActual('react-i18next')) as Record<
+    string,
+    unknown
+  >
+
+  return {
+    ...reactI18next,
+    getI18n: () => ({ language: 'en' }),
+  }
+})
+
+vi.mock('next/navigation', () => ({
+  usePathname: () => '/en/admin/users',
+}))
+
 describe('NavBar', () => {
+  afterEach(() => {
+    cleanup()
+    vi.clearAllMocks()
+  })
+
   const NAV_LINKS: NavLink[] = [
     {
       icon: <IconHome />,
@@ -153,19 +174,19 @@ describe('NavBar', () => {
 
     expect(
       screen.getByText('navigation.users.label').closest('a'),
-    ).toHaveProperty('href', `${BASE_PATH}/admin/users`)
+    ).toHaveProperty('href', `${BASE_PATH}/users`)
 
     expect(
       screen.getByText('navigation.roles.label').closest('a'),
-    ).toHaveProperty('href', `${BASE_PATH}/admin/roles`)
+    ).toHaveProperty('href', `${BASE_PATH}/roles`)
 
     expect(
       screen.getByText('navigation.rights.label').closest('a'),
-    ).toHaveProperty('href', `${BASE_PATH}/admin/rights`)
+    ).toHaveProperty('href', `${BASE_PATH}/rights`)
 
     expect(
       screen.getByText('navigation.translations.label').closest('a'),
-    ).toHaveProperty('href', `${BASE_PATH}/admin/translations`)
+    ).toHaveProperty('href', `${BASE_PATH}/translations`)
 
     renderedComponent.unmount()
   })
@@ -181,15 +202,15 @@ describe('NavBar', () => {
 
     expect(
       screen.getByText('navigation.users.label').closest('a'),
-    ).toHaveProperty('href', `${BASE_PATH}/admin/users`)
+    ).toHaveProperty('href', `${BASE_PATH}/users`)
 
     expect(
       screen.getByText('navigation.roles.label').closest('a'),
-    ).toHaveProperty('href', `${BASE_PATH}/admin/roles`)
+    ).toHaveProperty('href', `${BASE_PATH}/roles`)
 
     expect(
       screen.getByText('navigation.rights.label').closest('a'),
-    ).toHaveProperty('href', `${BASE_PATH}/admin/rights`)
+    ).toHaveProperty('href', `${BASE_PATH}/rights`)
 
     expect(screen.queryByText('navigation.translations.label')).toBeNull()
 
