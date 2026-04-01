@@ -19,7 +19,7 @@
 
 import { MantineProvider } from '@mantine/core'
 import { render, RenderResult, screen } from '@testing-library/react'
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest'
 
 import { HttpNotification } from './HttpNotification'
 
