@@ -1,0 +1,65 @@
+name: Dependabot lockfile update
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: dependabot-lockfile-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  update-lockfiles:
+    if: >-
+      ${{
+        github.event.pull_request.user.login == 'dependabot[bot]' &&
+        github.event.pull_request.head.repo.full_name == github.event.pull_request.base.repo.full_name
+      }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.10.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          cache-dependency-path: |
+            pnpm-lock.yaml
+            packages/docs/pnpm-lock.yaml
+
+      - name: Update root lockfile
+        run: pnpm install --lockfile-only --ignore-scripts
+
+      - name: Update docs lockfile
+        working-directory: packages/docs
+        run: pnpm install --lockfile-only --ignore-scripts --ignore-workspace
+
+      - name: Commit and push lockfile changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add pnpm-lock.yaml packages/docs/pnpm-lock.yaml
+
+          if git diff --cached --quiet; then
+            echo "No lockfile changes to commit."
+            exit 0
+          fi
+
+          git commit -m "chore: update pnpm lockfiles"
+          git push
