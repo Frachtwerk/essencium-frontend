@@ -3,6 +3,9 @@ dist
 .DS_Store
 .rollup.cache
 .idea/
-.github
+/.github/*
+!/.github/workflows/
+!/.github/workflows/**
+!/.github/dependabot.yml
 
 playwright/.auth
