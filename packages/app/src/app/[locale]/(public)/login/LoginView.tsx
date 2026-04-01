@@ -115,7 +115,7 @@ export default function LoginView(): JSX.Element {
             className={cn(
               'flex-row',
               !matches &&
-                'gap-md to-dark-700 h-screen flex-col items-center justify-center bg-radial from-cyan-700 transition-[background] duration-500',
+                'gap-md h-screen flex-col items-center justify-center bg-radial from-cyan-700 to-slate-700 transition-[background] duration-500',
             )}
           >
             <Flex
@@ -184,7 +184,7 @@ export default function LoginView(): JSX.Element {
             </Flex>
 
             {matches ? (
-              <Flex className="gap-md to-dark-700 h-screen w-1/2 flex-col items-center justify-center bg-radial from-cyan-600 transition-[background] duration-500">
+              <Flex className="gap-md h-screen w-1/2 flex-col items-center justify-center bg-radial from-cyan-600 to-slate-700 transition-[background] duration-500">
                 <Image
                   className="animate-fade-in mx-auto aspect-4/1 h-auto w-75 origin-bottom -translate-y-2.5 self-end opacity-0 drop-shadow-xl drop-shadow-cyan-900"
                   src="/img/web/logotype_weiß_400x100px.svg"
