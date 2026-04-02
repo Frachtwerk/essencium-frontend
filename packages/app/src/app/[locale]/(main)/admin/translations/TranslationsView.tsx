@@ -40,23 +40,23 @@ import {
   getExpandedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
-import { Resource } from 'i18next'
+import { useRouter } from 'next/navigation'
+import { useLocale, useTranslations } from 'next-intl'
 import type { JSX } from 'react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { getI18n, useTranslation } from 'react-i18next'
 
 import {
   useDeleteTranslation,
   useGetTranslations,
   useUpdateTranslation,
 } from '@/api'
-import { i18nConfig } from '@/config'
+import { routing } from '@/i18n/routing'
 import { mergeTranslations } from '@/utils/mergeTranslations'
 
 import { TranslationChangeForm } from '../../translations/_components/TranslationsChangeForm'
 
 type Props = {
-  resources: Resource
+  staticMessages: Record<string, Record<string, TranslationOutput>>
 }
 
 export function transformData(
@@ -122,12 +122,15 @@ const searchTableRowsAndReturnPath = (
   return result
 }
 
-export default function TranlsationView({ resources }: Props): JSX.Element {
-  const i18n = getI18n()
+export default function TranslationsView({
+  staticMessages,
+}: Props): JSX.Element {
+  const currentLocale = useLocale()
+  const router = useRouter()
 
-  const { t } = useTranslation()
+  const t = useTranslations()
 
-  const [locale, setLocale] = useState(i18n.language)
+  const [locale, setLocale] = useState(currentLocale)
 
   const [searchQuery, setSearchQuery] = useState<string | null>(null)
 
@@ -163,8 +166,9 @@ export default function TranlsationView({ resources }: Props): JSX.Element {
       updateTranslation(translationInput, {
         onSuccess: async () => {
           await refetchServerTranslationsDe()
-
           await refetchServerTranslationsEn()
+          // Refresh server components to reload merged translations
+          router.refresh()
         },
       })
     },
@@ -172,6 +176,7 @@ export default function TranlsationView({ resources }: Props): JSX.Element {
       updateTranslation,
       refetchServerTranslationsDe,
       refetchServerTranslationsEn,
+      router,
     ],
   )
 
@@ -180,10 +185,10 @@ export default function TranlsationView({ resources }: Props): JSX.Element {
       deleteTranslation(keyPath, {
         onSuccess: async () => {
           await refetchServerTranslationsDe()
-
           await refetchServerTranslationsEn()
-
           setIsDelete(true)
+          // Refresh server components to reload merged translations
+          router.refresh()
         },
       })
     },
@@ -191,29 +196,22 @@ export default function TranlsationView({ resources }: Props): JSX.Element {
       deleteTranslation,
       refetchServerTranslationsDe,
       refetchServerTranslationsEn,
+      router,
     ],
   )
 
   const mergedTranslations = useMemo(() => {
     return mergeTranslations(
-      resources[locale]?.common,
+      staticMessages[locale] as TranslationOutput,
       locale === 'de' ? serverTranslationsDe : serverTranslationsEn,
     )
-  }, [resources, serverTranslationsDe, serverTranslationsEn, locale])
+  }, [staticMessages, serverTranslationsDe, serverTranslationsEn, locale])
 
   useEffect(() => {
-    i18n?.addResourceBundle(
-      locale,
-      'common',
-      locale === 'de' ? serverTranslationsDe || {} : serverTranslationsEn || {},
-      true,
-      true,
-    )
-
     if (isDelete) {
       window.location.reload()
     }
-  }, [i18n, locale, serverTranslationsDe, serverTranslationsEn, isDelete])
+  }, [isDelete])
 
   useEffect(() => {
     setUpdatedTranslations(mergedTranslations)
@@ -233,11 +231,17 @@ export default function TranlsationView({ resources }: Props): JSX.Element {
     debouncedSearchQuery,
   ])
 
+  // Pre-compute translated headers outside useMemo to avoid
+  // unstable `t` reference causing constant column recalculation
+  // which remounts TranslationChangeForm and resets form state
+  const headerKey = t('translationsView.table.key')
+  const headerValue = t('translationsView.table.value')
+
   const columns = useMemo<ColumnDef<TranslationTableRow>[]>(
     () => [
       {
         accessorKey: 'key',
-        header: t('translationsView.table.key'),
+        header: headerKey,
         cell: ({ row }) => {
           const rowContent = row.original
 
@@ -268,7 +272,7 @@ export default function TranlsationView({ resources }: Props): JSX.Element {
       },
       {
         accessorKey: 'value',
-        header: t('translationsView.table.value'),
+        header: headerValue,
         cell: ({ row }) => {
           const rowContent = row.original
 
@@ -286,7 +290,7 @@ export default function TranlsationView({ resources }: Props): JSX.Element {
         enableSorting: false,
       },
     ],
-    [onUpdateTranslation, locale, onDeleteTranslation, t],
+    [onUpdateTranslation, locale, onDeleteTranslation, headerKey, headerValue],
   )
 
   const table = useReactTable({
@@ -311,9 +315,9 @@ export default function TranlsationView({ resources }: Props): JSX.Element {
 
       <Group className="gap-md mt-lg">
         <Select
-          data={i18nConfig.locales}
-          onChange={value => setLocale(value || i18n.language)}
-          defaultValue={i18n.language}
+          data={[...routing.locales]}
+          onChange={value => setLocale(value || currentLocale)}
+          defaultValue={currentLocale}
           label={t('translationsView.select')}
           className="mb-md w-1/5"
         />
