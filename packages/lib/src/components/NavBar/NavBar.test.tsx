@@ -199,7 +199,7 @@ describe('NavBar', () => {
     })
 
     const pinIcon = screen.queryByLabelText(
-      'navigation.toggleFixedNavIcon.arialabel',
+      'navigation.toggleFixedNavIcon.ariaLabel',
     )
 
     expect(pinIcon).toBeNull()
@@ -213,7 +213,7 @@ describe('NavBar', () => {
     })
 
     const pinIcon = screen.getByLabelText(
-      'navigation.toggleFixedNavIcon.arialabel',
+      'navigation.toggleFixedNavIcon.ariaLabel',
     ) as HTMLInputElement
 
     expect(pinIcon).toBeDefined()
