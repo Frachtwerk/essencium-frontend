@@ -114,7 +114,7 @@ export function TranslationChangeForm({
           {userRightUpdate ? (
             <ActionIcon
               type="submit"
-              disabled={!fieldValue || !fieldValue.length}
+              disabled={!fieldValue?.length}
               aria-label={t('translationsView.form.save')}
             >
               <IconDeviceFloppy className="size-5" aria-hidden />
