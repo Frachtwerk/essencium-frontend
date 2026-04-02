@@ -28,7 +28,7 @@ import {
 } from '@mantine/core'
 import { IconCopyright } from '@tabler/icons-react'
 import NextLink from 'next/link'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import type { JSX } from 'react'
 
 type Props = AppShellFooterProps & {
@@ -42,7 +42,7 @@ export function Footer({
   children,
   ...props
 }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   return (
     <AppShellFooter {...props} className={props.className}>

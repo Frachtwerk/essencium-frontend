@@ -19,7 +19,7 @@
 
 import { ResetPassword, resetPasswordSchema } from '@frachtwerk/essencium-types'
 import { Button, Container, Group, Text } from '@mantine/core'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import { Dispatch, type JSX, SetStateAction } from 'react'
 
 import { useZodForm } from '../../../hooks'
@@ -34,7 +34,7 @@ export function ResetPasswordForm({
   setIsPasswordResetFormOpened,
   handlePasswordReset,
 }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const { handleSubmit, control } = useZodForm({
     schema: resetPasswordSchema,

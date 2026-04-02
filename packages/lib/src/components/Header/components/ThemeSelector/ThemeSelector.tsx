@@ -19,7 +19,7 @@
 
 import { ActionIcon, Menu, useMantineColorScheme } from '@mantine/core'
 import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons-react'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import { type JSX } from 'react'
 
 import { cn } from '../../../../utils'
@@ -31,7 +31,7 @@ export const COLOR_SCHEME = {
 } as const
 
 export function ThemeSelector(): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const { setColorScheme, colorScheme, clearColorScheme } =
     useMantineColorScheme()

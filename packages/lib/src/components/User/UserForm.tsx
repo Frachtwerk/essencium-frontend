@@ -36,7 +36,7 @@ import {
 } from '@mantine/core'
 import { IconInfoCircle } from '@tabler/icons-react'
 import { usePathname } from 'next/navigation'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import { type JSX, useState } from 'react'
 import { Control, Controller, UseFormSetValue } from 'react-hook-form'
 
@@ -70,7 +70,7 @@ export function UserForm({
 }: Props): JSX.Element {
   const isSso = Boolean(ssoProvider && ssoProvider !== UserSource.LOCAL)
 
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const pathname = usePathname()
 

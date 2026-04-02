@@ -31,7 +31,7 @@ import {
   Loader,
   Transition,
 } from '@mantine/core'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import { Dispatch, type JSX, SetStateAction } from 'react'
 
 import { useZodForm } from '../../hooks'
@@ -55,7 +55,7 @@ export function LoginForm({
   isResetPasswordSent,
   isResettingPassword,
 }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const { handleSubmit, control } = useZodForm({
     schema: loginFormSchema,

@@ -53,7 +53,7 @@ import {
 } from '@tabler/icons-react'
 import html2canvas from 'html2canvas-pro'
 import { usePathname } from 'next/navigation'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import { type JSX, ReactNode, useEffect, useRef, useState } from 'react'
 
 import { useZodForm } from '../../hooks'
@@ -90,7 +90,7 @@ export function FeedbackWidget({
   createNotification,
   additionalInformation,
 }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const [opened, { toggle, close }] = useDisclosure(false)
 

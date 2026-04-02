@@ -18,7 +18,7 @@
  */
 
 import { Button, Flex, Modal, Text, Title } from '@mantine/core'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import type { JSX } from 'react'
 
 type Props = {
@@ -36,7 +36,7 @@ export function DeleteDialog({
   opened,
   onClose,
 }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
   return (
     <Modal
       opened={opened}

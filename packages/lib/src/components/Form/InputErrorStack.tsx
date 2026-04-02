@@ -18,8 +18,8 @@
  */
 
 import { Input, Stack } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 import type { JSX, ReactNode } from 'react'
-import { useTranslation } from 'react-i18next'
 
 type InputErrorStackProps = {
   children: ReactNode
@@ -30,7 +30,7 @@ export function InputErrorStack({
   message,
   children,
 }: InputErrorStackProps): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   return (
     <Stack className="gap-[calc(var(--spacing-xs)/2)]">

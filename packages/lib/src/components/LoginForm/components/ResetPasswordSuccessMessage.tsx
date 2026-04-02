@@ -19,11 +19,11 @@
 
 import { Center, Stack, Text, Title } from '@mantine/core'
 import { IconMailForward } from '@tabler/icons-react'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import type { JSX } from 'react'
 
 export function ResetPasswordSuccessMessage(): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   return (
     <Center className="mx-auto h-[200px]">

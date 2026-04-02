@@ -19,11 +19,11 @@
 
 import { Button, Center, Stack, Text, Title } from '@mantine/core'
 import NextLink from 'next/link'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import type { JSX } from 'react'
 
 export function SetPasswordSuccessMessage(): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   return (
     <Center>

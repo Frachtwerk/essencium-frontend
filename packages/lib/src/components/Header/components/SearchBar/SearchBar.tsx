@@ -20,7 +20,7 @@
 import { Group, UnstyledButton } from '@mantine/core'
 import { openSpotlight } from '@mantine/spotlight'
 import { IconSearch } from '@tabler/icons-react'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import type { JSX } from 'react'
 
 import { cn } from '../../../../utils'
@@ -34,7 +34,7 @@ type Props = {
 }
 
 export function SearchBar({ className }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   return (
     <UnstyledButton

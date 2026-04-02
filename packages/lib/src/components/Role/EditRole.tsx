@@ -25,8 +25,8 @@ import {
   roleUpdateSchema,
 } from '@frachtwerk/essencium-types'
 import { Modal } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 import { Dispatch, type JSX, SetStateAction, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import { useZodForm } from '../../hooks'
 import { RoleForm } from './components/RoleForm'
@@ -60,7 +60,7 @@ export function EditRole({
   setSelectedRights,
   isLoading,
 }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   useEffect(() => {
     if (!role) return

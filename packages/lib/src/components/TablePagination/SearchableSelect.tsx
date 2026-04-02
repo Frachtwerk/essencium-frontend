@@ -25,7 +25,7 @@ import {
   Text,
   useCombobox,
 } from '@mantine/core'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import { type JSX, useEffect, useMemo, useRef, useState } from 'react'
 import { FixedSizeList as List } from 'react-window'
 
@@ -48,7 +48,7 @@ export function SearchableSelect({
   value,
   ...props
 }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const listRef = useRef<List>(null)
 

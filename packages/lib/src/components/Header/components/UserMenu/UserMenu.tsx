@@ -28,7 +28,7 @@ import {
 } from '@mantine/core'
 import { IconChevronRight } from '@tabler/icons-react'
 import NextLink from 'next/link'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import type { JSX } from 'react'
 
 import { cn } from '../../../../utils'
@@ -44,7 +44,7 @@ type Props = {
 }
 
 export function UserMenu({ user, className, avatarColor }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const theme = useMantineTheme()
 

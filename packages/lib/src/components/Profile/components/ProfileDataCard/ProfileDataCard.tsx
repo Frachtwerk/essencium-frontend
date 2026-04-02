@@ -25,7 +25,7 @@ import {
 } from '@frachtwerk/essencium-types'
 import { Card, Tabs } from '@mantine/core'
 import { IconLock, IconUser } from '@tabler/icons-react'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import type { JSX } from 'react'
 
 import { PasswordChangeForm, PersonalDataForm } from './components'
@@ -50,7 +50,7 @@ export function ProfileDataCard({
   isUpdatingPassword,
   isUpdatingUser,
 }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   return (
     <Card withBorder className="p-lg rounded-sm shadow-sm">
