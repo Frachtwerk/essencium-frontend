@@ -26,6 +26,7 @@
   "actions": {
     "delete": "Löschen",
     "cancel": "Abbrechen",
+    "close": "Schließen",
     "backToHome": "Zurück zur Startseite"
   },
   "navigation": {
@@ -55,6 +56,10 @@
     "logout": {
       "label": "Logout",
       "description": "Benutzer ausloggen"
+    },
+    "apiTokens": {
+      "label": "API Tokens",
+      "description": "API Tokens verwalten"
     },
     "toggleFixedNavIcon": {
       "ariaLabel": "Navigationsleiste fixieren"
@@ -129,7 +134,12 @@
         }
       }
     },
-    "userNotFound": "Benutzer nicht gefunden"
+    "userNotFound": "Benutzer nicht gefunden",
+    "apiTokens": {
+      "title": "API Tokens",
+      "description": "Verwalten Sie Ihre API Tokens für programmatischen Zugriff.",
+      "empty": "Keine API Tokens vorhanden."
+    }
   },
   "contactView": {
     "title": "Kontakt",
@@ -477,6 +487,53 @@
     "save": "Speichern",
     "cancel": "Abbrechen",
     "reset": "Zurücksetzen"
+  },
+  "apiTokensView": {
+    "title": "API Tokens",
+    "table": {
+      "description": "Beschreibung",
+      "status": "Status",
+      "validUntil": "Gültig bis",
+      "rights": "Rechte",
+      "createdAt": "Erstellt am",
+      "linkedUser": "Benutzer",
+      "actions": "Aktionen"
+    },
+    "action": {
+      "create": "Token erstellen",
+      "revoke": "Widerrufen",
+      "delete": "Löschen"
+    },
+    "createModal": {
+      "title": "API Token erstellen",
+      "description": "Beschreibung",
+      "validUntil": "Gültig bis",
+      "rights": "Rechte",
+      "submit": "Erstellen"
+    },
+    "tokenCreated": {
+      "title": "Token erstellt",
+      "warning": "Dieser Token wird nicht erneut angezeigt. Bitte kopieren Sie ihn jetzt.",
+      "copy": "Token kopieren",
+      "copied": "Kopiert!"
+    },
+    "deleteDialog": {
+      "title": "Token löschen",
+      "text": "Möchten Sie diesen Token wirklich löschen?"
+    },
+    "revokeDialog": {
+      "title": "Token widerrufen",
+      "text": "Möchten Sie diesen Token wirklich widerrufen?"
+    },
+    "status": {
+      "ACTIVE": "Aktiv",
+      "REVOKED": "Widerrufen",
+      "REVOKED_ROLE_CHANGED": "Widerrufen (Rolle geändert)",
+      "REVOKED_RIGHTS_CHANGED": "Widerrufen (Rechte geändert)",
+      "REVOKED_USER_CHANGED": "Widerrufen (Benutzer geändert)",
+      "EXPIRED": "Abgelaufen",
+      "USER_DELETED": "Benutzer gelöscht"
+    }
   },
   "feedbackWidget": {
     "title": "Feedback geben",
