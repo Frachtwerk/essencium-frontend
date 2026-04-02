@@ -17,6 +17,7 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+export * from './apiToken'
 export * from './base'
 export * from './contact'
 export * from './feedback'
