@@ -47,13 +47,13 @@ import {
 import { useAtom, useSetAtom } from 'jotai'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
+import { useLocale, useTranslations } from 'next-intl'
 import React, { type JSX, useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import { useGetMe, useLogout, userAtom, userRightsAtom } from '@/api'
 import { useCreateFeedback } from '@/api/feedback'
 import { theme } from '@/config'
-import { useAddTranslations, useScheduleTokenRenewal } from '@/hooks'
+import { useScheduleTokenRenewal } from '@/hooks'
 import { isBrowserEnvironment, withBaseStylingShowNotification } from '@/utils'
 
 import packageJson from '../../../package.json'
@@ -179,7 +179,8 @@ export const SEARCH_ITEMS: NavLink[] = [
 export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
   const router = useRouter()
 
-  const { t, i18n } = useTranslation()
+  const t = useTranslations()
+  const locale = useLocale()
 
   const [mobileNavBarOpened, { toggle: toggleMobileNavBar }] = useDisclosure()
 
@@ -192,8 +193,6 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
   const setUser = useSetAtom(userAtom)
 
   const [userRights, setUserRights] = useAtom(userRightsAtom)
-
-  const addTranslations = useAddTranslations(i18n)
 
   useEffect(() => {
     if (user) {
@@ -266,7 +265,7 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
 
   const isNotMobile = useMediaQuery('(min-width: 48em)') // equals mantine breakpoint sm
 
-  const currentLocale = i18n.language
+  const currentLocale = locale
   const pathname = usePathname()
 
   useEffect(() => {
@@ -279,8 +278,6 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
       const expires = date.toUTCString()
       document.cookie = `NEXT_LOCALE=${user?.locale};expires=${expires};path=/`
 
-      i18n.changeLanguage(user?.locale)
-
       if (pathname.includes(currentLocale)) {
         router.push(pathname.replace(`/${currentLocale}`, `/${user?.locale}`))
       } else {
@@ -289,11 +286,7 @@ export function AuthLayout({ children, ...props }: Props): JSX.Element | null {
 
       router.refresh()
     }
-  }, [pathname, user, router, currentLocale, i18n])
-
-  useEffect(() => {
-    addTranslations()
-  }, [currentLocale, addTranslations])
+  }, [pathname, user, router, currentLocale])
 
   return (
     <>

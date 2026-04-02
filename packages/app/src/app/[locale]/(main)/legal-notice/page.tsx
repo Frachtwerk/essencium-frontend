@@ -1,19 +1,11 @@
 import { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 import type { JSX } from 'react'
-
-import initTranslations from '@/config/i18n'
 
 import LegalNoticeView from './LegalNoticeView'
 
-type Props = {
-  params: Promise<{ locale: string }>
-}
-
-export async function generateMetadata(props: Props): Promise<Metadata> {
-  const params = await props.params
-  const { locale } = params
-
-  const { t } = await initTranslations(locale)
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations()
 
   return {
     title: t('legalNoticeView.title'),

@@ -18,10 +18,9 @@
  */
 
 import { Metadata, ResolvingMetadata } from 'next'
+import { getTranslations } from 'next-intl/server'
+import type { JSX } from 'react'
 import { Suspense } from 'react'
-import { type JSX } from 'react'
-
-import initTranslations from '@/config/i18n'
 
 import LoginView from './LoginView'
 
@@ -30,22 +29,19 @@ type Props = {
 }
 
 export async function generateMetadata(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   props: Props,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
-  const params = await props.params
-  const { locale } = params
-
-  const { t } = await initTranslations(locale)
+  const t = await getTranslations()
 
   return {
     title: t('loginView.title'),
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default async function page({ params }: Props): Promise<JSX.Element> {
+export default async function page(): Promise<JSX.Element> {
   return (
     <Suspense fallback={null}>
       <LoginView />

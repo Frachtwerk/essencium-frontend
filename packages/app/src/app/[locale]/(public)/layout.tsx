@@ -1,5 +1,3 @@
-'use client'
-
 /*
  * Copyright (C) 2023 Frachtwerk GmbH, Leopoldstraße 7C, 76133 Karlsruhe.
  *
@@ -20,25 +18,12 @@
  */
 
 import { Center } from '@mantine/core'
-import { type JSX, useEffect } from 'react'
-import { getI18n } from 'react-i18next'
-
-import { useAddTranslations } from '@/hooks'
+import type { JSX } from 'react'
 
 type Props = {
   children: React.ReactNode
 }
 
-export default function PublicLayout({ children }: Props): JSX.Element | null {
-  const i18n = getI18n()
-
-  const addTranslations = useAddTranslations(i18n)
-
-  useEffect(() => {
-    i18n.init(() => {
-      addTranslations()
-    })
-  }, [i18n, addTranslations])
-
+export default function PublicLayout({ children }: Props): JSX.Element {
   return <Center>{children}</Center>
 }

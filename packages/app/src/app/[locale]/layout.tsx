@@ -21,15 +21,16 @@ import '@mantine/spotlight/styles.css'
 import '@/globals.css'
 
 import { mantineHtmlProps } from '@mantine/core'
+import { NextIntlClientProvider } from 'next-intl'
+import { getMessages } from 'next-intl/server'
 import type { JSX } from 'react'
 
-import TranslationProvider from '@/components/provider/translationProvider'
+import { routing } from '@/i18n/routing'
 
-import initTranslations, { i18nConfig } from '../../config/i18n'
 import { Providers } from './providers'
 
 export function generateStaticParams(): { locale: string }[] {
-  return i18nConfig.locales.map(locale => ({ locale }))
+  return routing.locales.map(locale => ({ locale }))
 }
 
 type Props = {
@@ -44,7 +45,7 @@ export default async function RootLayout(props: Props): Promise<JSX.Element> {
 
   const { children } = props
 
-  const { resources } = await initTranslations(locale)
+  const messages = await getMessages()
 
   return (
     <html lang={locale} {...mantineHtmlProps}>
@@ -55,9 +56,9 @@ export default async function RootLayout(props: Props): Promise<JSX.Element> {
 
       <body>
         <div id="notification" />
-        <TranslationProvider locale={locale} resources={resources}>
-          <Providers locale={locale}>{children}</Providers>
-        </TranslationProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <Providers>{children}</Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   )

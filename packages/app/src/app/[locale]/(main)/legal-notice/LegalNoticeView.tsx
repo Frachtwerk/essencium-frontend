@@ -20,11 +20,11 @@
  */
 
 import { Card, Divider, Stack, Text, Title } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 import type { JSX } from 'react'
-import { useTranslation } from 'react-i18next'
 
 export default function LegalNoticeView(): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   return (
     <Card

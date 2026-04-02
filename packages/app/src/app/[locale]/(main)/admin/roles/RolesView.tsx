@@ -53,8 +53,8 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { useAtomValue } from 'jotai'
+import { useTranslations } from 'next-intl'
 import { type JSX, useMemo, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import {
   useCreateRole,
@@ -77,7 +77,7 @@ export const FORM_DEFAULTS_ROLES_VIEW = {
 }
 
 export default function RolesView(): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const theme = useMantineTheme()
 
