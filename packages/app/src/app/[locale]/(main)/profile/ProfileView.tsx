@@ -19,9 +19,13 @@
 
 'use client'
 
-import { LoadingSpinner, Profile } from '@frachtwerk/essencium-lib'
-import { PasswordChange, UserUpdate } from '@frachtwerk/essencium-types'
-import { Center } from '@mantine/core'
+import {
+  hasRequiredRights,
+  LoadingSpinner,
+  Profile,
+} from '@frachtwerk/essencium-lib'
+import { PasswordChange, RIGHTS, UserUpdate } from '@frachtwerk/essencium-types'
+import { Center, Divider } from '@mantine/core'
 import { useAtomValue, useSetAtom } from 'jotai'
 import { useRouter } from 'next/navigation'
 import { type JSX, useEffect } from 'react'
@@ -32,9 +36,12 @@ import {
   useGetMe,
   useLogout,
   userAtom,
+  userRightsAtom,
   useUpdateMe,
   useUpdatePassword,
 } from '@/api'
+
+import { ApiTokensSection } from './_components/ApiTokensSection'
 
 export default function ProfileView(): JSX.Element {
   const { t } = useTranslation()
@@ -42,6 +49,8 @@ export default function ProfileView(): JSX.Element {
   const router = useRouter()
 
   const isSso = useAtomValue(isSsoAtom)
+
+  const userRights = useAtomValue(userRightsAtom)
 
   const { data: user, isLoading: isLoadingUser } = useGetMe()
 
@@ -86,14 +95,23 @@ export default function ProfileView(): JSX.Element {
 
   if (user) {
     return (
-      <Profile
-        isSso={isSso}
-        user={user}
-        handleUpdate={handleUpdate}
-        handlePasswordUpdate={handlePasswordUpdate}
-        isUpdatingUser={isUpdatingUser}
-        isUpdatingPassword={isUpdatingPassword}
-      />
+      <>
+        <Profile
+          isSso={isSso}
+          user={user}
+          handleUpdate={handleUpdate}
+          handlePasswordUpdate={handlePasswordUpdate}
+          isUpdatingUser={isUpdatingUser}
+          isUpdatingPassword={isUpdatingPassword}
+        />
+
+        {hasRequiredRights(userRights ?? [], RIGHTS.API_TOKEN) ? (
+          <>
+            <Divider className="my-lg" />
+            <ApiTokensSection />
+          </>
+        ) : null}
+      </>
     )
   }
 
