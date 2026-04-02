@@ -1,0 +1,100 @@
+# API Tokens
+
+This guide covers the API token management feature in the Essencium Frontend application.
+
+## Overview
+
+API tokens enable persistent, programmatic API access with defined rights. Users can create long-lived tokens to authenticate against the backend API without using session-based login. Tokens are scoped to a subset of the user's rights and have configurable expiration dates.
+
+The feature consists of two views:
+
+1. **Profile section** — users with the `API_TOKEN` right can manage their own tokens
+2. **Admin view** — users with the `API_TOKEN_ADMIN` right can manage all tokens across all users
+
+## Rights
+
+The following rights control access to API token functionality. They are defined in `AdditionalApplicationRights` on the backend and are **not assigned to any role by default**.
+
+- `API_TOKEN` — manage own API tokens (create, view, revoke)
+- `API_TOKEN_ADMIN` — manage all API tokens (create, view, revoke, delete)
+- `API_DEVELOPER` — access to developer endpoints
+- `SESSION_TOKEN_ADMIN` — manage all session tokens
+
+These rights are registered in the `RIGHTS` enum in `packages/types/src/right.ts`.
+
+## Token Lifecycle
+
+A token goes through the following states, defined in the `ApiTokenStatus` enum:
+
+- `ACTIVE` — token is valid and can be used for API access
+- `REVOKED` — manually revoked by the user or an admin
+- `REVOKED_ROLE_CHANGED` — automatically invalidated because the user's roles changed
+- `REVOKED_RIGHTS_CHANGED` — automatically invalidated because the user's rights changed
+- `REVOKED_USER_CHANGED` — automatically invalidated because the user's profile changed
+- `EXPIRED` — token has passed its `validUntil` date
+- `USER_DELETED` — the associated user account was deleted
+
+## API Hooks
+
+All hooks are exported from `packages/app/src/api/apiToken.ts`:
+
+### User-scoped hooks
+
+- `useGetApiTokens()` — paginated list of the current user's tokens
+- `useGetApiToken()` — single token by ID
+- `useCreateApiToken()` — create a new token with description, rights, and optional expiration
+- `useRevokeApiToken()` — revoke an active token (PATCH with `status: 'REVOKED'`)
+
+### Admin hooks
+
+- `useGetAllApiTokens()` — all tokens across all users (requires `API_TOKEN_ADMIN`)
+- `useGetAllApiTokensGrouped()` — all tokens grouped by user
+- `useDeleteApiToken()` — permanently delete a token (requires `API_TOKEN_ADMIN`)
+
+### Utility hooks
+
+- `useGetTokenExpirationInfo()` — fetch the default token expiration duration (in seconds) from the backend
+
+## Components
+
+### ApiTokensSection
+
+Located at `packages/app/src/app/[locale]/(main)/profile/_components/ApiTokensSection.tsx`.
+
+This component is rendered on the profile page when the user has the `API_TOKEN` right. It displays a paginated, sortable table of the user's tokens with columns for description, status, valid until, rights, and created at. Users can create new tokens and revoke active ones.
+
+### ApiTokensAdminView
+
+Located at `packages/app/src/app/[locale]/(main)/admin/api-tokens/ApiTokensAdminView.tsx`.
+
+The admin view is accessible at `/admin/api-tokens` and requires the `API_TOKEN_ADMIN` right. It shows all tokens across all users in a flat table with a linked user column. Admins can revoke active tokens and permanently delete any token.
+
+### CreateApiTokenModal
+
+A modal form for creating new tokens. Fields are description (required), valid until (date picker with configurable default), and rights (multi-select from the user's available rights). The default expiration is fetched from the backend via `useGetTokenExpirationInfo`, falling back to 30 days.
+
+### TokenCreatedModal
+
+Displayed once after token creation. Shows the raw JWT token with a copy-to-clipboard button and a warning that the token will not be shown again.
+
+## Backend Endpoints
+
+The frontend communicates with the following REST endpoints on the backend:
+
+| Method | Endpoint | Description | Required Right |
+|--------|----------|-------------|----------------|
+| GET | `/v1/api-tokens` | List user's tokens (paginated) | `API_TOKEN` |
+| GET | `/v1/api-tokens/{id}` | Get single token | `API_TOKEN` (owner) |
+| GET | `/v1/api-tokens/all` | List all tokens (admin) | `API_TOKEN_ADMIN` |
+| POST | `/v1/api-tokens` | Create token | `API_TOKEN` |
+| PATCH | `/v1/api-tokens/{id}` | Update status (revoke) | `API_TOKEN` (owner) |
+| DELETE | `/v1/api-tokens/{id}` | Delete token | `API_TOKEN_ADMIN` |
+| GET | `/v1/api-tokens/token-expiration-info` | Get default expiration | — |
+
+## Configuration
+
+The default token expiration is configured on the backend via the property `app.auth.jwt.default-api-token-expiration` (default: 30 days).
+
+## Navigation
+
+The admin view is registered in `AuthLayout.tsx` under the administration section with the `IconKey` icon and the `navigation.apiTokens.label` translation key. It is only visible to users with the `API_TOKEN_ADMIN` right.

@@ -4,6 +4,7 @@ export default {
   packageResponsibilities: 'Package responsibilities',
   dependencies: 'Dependencies',
   authentication: 'Authentication',
+  'api-tokens': 'API Tokens',
   'new-page': 'New Page',
   'new-component': 'New Component',
   testing: 'Testing',
