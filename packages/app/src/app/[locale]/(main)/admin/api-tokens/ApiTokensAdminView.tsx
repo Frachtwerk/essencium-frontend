@@ -43,10 +43,10 @@ import {
   ColumnDef,
   getCoreRowModel,
   getPaginationRowModel,
+  getSortedRowModel,
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
-import dayjs from 'dayjs'
 import { type JSX, useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -55,6 +55,7 @@ import {
   useGetAllApiTokensGrouped,
   useRevokeApiToken,
 } from '@/api'
+import dayjs from '@/utils/dayjs'
 
 import { CreateApiTokenModal } from '../../profile/_components/CreateApiTokenModal'
 import { TokenCreatedModal } from '../../profile/_components/TokenCreatedModal'
@@ -92,7 +93,7 @@ export default function ApiTokensAdminView(): JSX.Element {
   const [selectedToken, setSelectedToken] = useState<ApiTokenOutput | null>(
     null,
   )
-  const [sorting] = useState<SortingState>([])
+  const [sorting, setSorting] = useState<SortingState>([])
 
   const flatTokens = useMemo<ApiTokenOutput[]>(
     () => (groupedTokens ?? []).flatMap(({ tokens }) => tokens),
@@ -170,8 +171,8 @@ export default function ApiTokensAdminView(): JSX.Element {
           <Text inherit>{t('apiTokensView.table.validUntil')}</Text>
         ),
         cell: info => {
-          const val = dayjs(String(info.getValue())).format('DD.MM.YYYY')
-          return val ?? '—'
+          const raw = info.getValue()
+          return raw ? dayjs(String(raw)).format('DD.MM.YYYY') : '—'
         },
         enableColumnFilter: false,
         size: 130,
@@ -199,8 +200,8 @@ export default function ApiTokensAdminView(): JSX.Element {
         accessorKey: 'createdAt',
         header: () => <Text inherit>{t('apiTokensView.table.createdAt')}</Text>,
         cell: info => {
-          const val = dayjs(String(info.getValue())).format('DD.MM.YYYY')
-          return val ?? '—'
+          const raw = info.getValue()
+          return raw ? dayjs(String(raw)).format('DD.MM.YYYY') : '—'
         },
         enableColumnFilter: false,
         size: 130,
@@ -252,7 +253,9 @@ export default function ApiTokensAdminView(): JSX.Element {
     data: flatTokens,
     columns,
     state: { sorting },
+    onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     initialState: { pagination: { pageSize: DEFAULT_PAGE_SIZE } },
   })

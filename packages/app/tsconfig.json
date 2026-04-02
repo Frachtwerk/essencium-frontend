@@ -3,7 +3,7 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"],
-      "@frachtwerk/essencium-lib": ["../lib/dist"],
+      "@frachtwerk/essencium-lib": ["../lib/src"],
       "@frachtwerk/essencium-types": ["../types/src"]
     },
     "plugins": [

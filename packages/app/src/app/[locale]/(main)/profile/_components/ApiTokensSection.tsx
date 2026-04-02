@@ -45,12 +45,12 @@ import {
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
-import dayjs from 'dayjs'
 import { type JSX, useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useGetApiTokens, useRevokeApiToken } from '@/api'
 import { parseSorting } from '@/utils'
+import dayjs from '@/utils/dayjs'
 
 import { CreateApiTokenModal } from './CreateApiTokenModal'
 import { TokenCreatedModal } from './TokenCreatedModal'
@@ -147,8 +147,8 @@ export function ApiTokensSection(): JSX.Element {
           <Text inherit>{t('apiTokensView.table.validUntil')}</Text>
         ),
         cell: info => {
-          const val = dayjs(String(info.getValue())).format('DD.MM.YYYY')
-          return val ?? '—'
+          const raw = info.getValue()
+          return raw ? dayjs(String(raw)).format('DD.MM.YYYY') : '—'
         },
         size: 130,
         enableColumnFilter: false,
@@ -176,8 +176,8 @@ export function ApiTokensSection(): JSX.Element {
         accessorKey: 'createdAt',
         header: () => <Text inherit>{t('apiTokensView.table.createdAt')}</Text>,
         cell: info => {
-          const val = dayjs(String(info.getValue())).format('DD.MM.YYYY')
-          return val ?? '—'
+          const raw = info.getValue()
+          return raw ? dayjs(String(raw)).format('DD.MM.YYYY') : '—'
         },
         size: 130,
         enableColumnFilter: false,

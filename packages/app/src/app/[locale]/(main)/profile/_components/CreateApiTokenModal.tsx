@@ -62,7 +62,7 @@ export function CreateApiTokenModal({
     [expirationSeconds],
   )
 
-  const { handleSubmit, control, reset } = useZodForm({
+  const { handleSubmit, control, reset, setValue } = useZodForm({
     schema: apiTokenInputSchema,
     defaultValues: {
       description: '',
@@ -80,6 +80,15 @@ export function CreateApiTokenModal({
       })
     }
   }, [opened, reset, getDefaultValidUntil])
+
+  useEffect(() => {
+    if (opened && expirationSeconds) {
+      setValue(
+        'validUntil',
+        dayjs().add(expirationSeconds, 'second').format('YYYY-MM-DD'),
+      )
+    }
+  }, [expirationSeconds, opened, setValue])
 
   const { mutate: createToken, isPending } = useCreateApiToken({
     mutationOptions: {
