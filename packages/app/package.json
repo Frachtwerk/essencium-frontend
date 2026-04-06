@@ -37,7 +37,7 @@
     "@tanstack/react-table": "8.21.3",
     "axios": "1.13.6",
     "dayjs": "1.11.20",
-    "i18next": "25.8.18",
+    "i18next": "25.10.10",
     "i18next-resources-to-backend": "1.2.1",
     "jotai": "2.18.1",
     "next": "16.1.7",
