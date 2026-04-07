@@ -49,7 +49,7 @@
     "@frachtwerk/eslint-config-essencium": "workspace:*",
     "@frachtwerk/essencium-types": "workspace:*",
     "@frachtwerk/prettier-config-essencium": "workspace:*",
-    "axios": "1.13.6",
+    "axios": "1.14.0",
     "eslint": "9.39.4",
     "husky": "9.1.7",
     "lint-staged": "16.4.0",
