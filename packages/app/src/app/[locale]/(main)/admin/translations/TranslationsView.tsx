@@ -149,8 +149,6 @@ export default function TranslationsView({
   const [searchedTransformedTranslations, setSearchedTransformedTranslations] =
     useState<TranslationTableRow[] | null>(null)
 
-  const [isDelete, setIsDelete] = useState<boolean>(false)
-
   const { data: serverTranslationsDe, refetch: refetchServerTranslationsDe } =
     useGetTranslations('de')()
 
@@ -186,7 +184,6 @@ export default function TranslationsView({
         onSuccess: async () => {
           await refetchServerTranslationsDe()
           await refetchServerTranslationsEn()
-          setIsDelete(true)
           // Refresh server components to reload merged translations
           router.refresh()
         },
@@ -206,12 +203,6 @@ export default function TranslationsView({
       locale === 'de' ? serverTranslationsDe : serverTranslationsEn,
     )
   }, [staticMessages, serverTranslationsDe, serverTranslationsEn, locale])
-
-  useEffect(() => {
-    if (isDelete) {
-      window.location.reload()
-    }
-  }, [isDelete])
 
   useEffect(() => {
     setUpdatedTranslations(mergedTranslations)

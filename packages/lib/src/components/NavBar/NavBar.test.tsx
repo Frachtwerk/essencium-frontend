@@ -27,6 +27,7 @@ import {
   IconUserStar,
 } from '@tabler/icons-react'
 import { fireEvent, render, screen } from '@testing-library/react'
+import { NextIntlClientProvider } from 'next-intl'
 import { type JSX, ReactNode } from 'react'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 
@@ -116,9 +117,11 @@ describe('NavBar', () => {
   }
 
   const wrapper = ({ children }: { children: ReactNode }): JSX.Element => (
-    <MantineProvider>
-      <AppShell>{children}</AppShell>
-    </MantineProvider>
+    <NextIntlClientProvider locale="en" messages={{}}>
+      <MantineProvider>
+        <AppShell>{children}</AppShell>
+      </MantineProvider>
+    </NextIntlClientProvider>
   )
 
   beforeAll(() => {
