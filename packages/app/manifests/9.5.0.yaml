@@ -1,0 +1,525 @@
+version: "9.5.0"
+from: "9.4.5"
+date: "2026-03-10"
+
+changes:
+  # ── Infrastructure: React Compiler ─────────────────────────────────
+  - type: infrastructure
+    description: "Enable React Compiler via next.config.js `reactCompiler: true`. Tables using TanStack Table need `'use no memo'` directive due to compatibility issues (see https://github.com/TanStack/table/issues/5567)."
+    files:
+      - path: "next.config.js"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  # ── Infrastructure: ESLint flat config migration ───────────────────
+  - type: infrastructure
+    description: "Migrate from legacy .eslintrc.json to ESLint 9 flat config (eslint.config.mjs). Lint script changed from `next lint` to `eslint .`."
+    files:
+      - path: "eslint.config.mjs"
+        action: added
+      - path: "package.json"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/941"
+
+  # ── Infrastructure: TypeScript moduleResolution ────────────────────
+  - type: infrastructure
+    description: "Change TypeScript moduleResolution from 'node' to 'bundler' in tsconfig.base.json and misc/tsconfig.app.json for Next.js 16 compatibility."
+    files:
+      - path: "tsconfig.base.json"
+        action: modified
+      - path: "misc/tsconfig.app.json"
+        action: modified
+
+  # ── Dependency migrations: major / project-wide impact ─────────────
+  - type: dependency_migration
+    package: "next"
+    from: "15.4.7"
+    to: "16.1.6"
+    scope: project_wide
+    reference: "https://nextjs.org/blog/next-16"
+    notes: "Major version upgrade. Middleware renamed to proxy, React Compiler support built-in, output 'standalone' path changed to `/.next/standalone/frontend`."
+
+  - type: dependency_migration
+    package: "react"
+    from: "19.0.0"
+    to: "19.2.0"
+    scope: project_wide
+    reference: "https://github.com/facebook/react/releases"
+    notes: "React 19.2 required for React Compiler support."
+
+  - type: dependency_migration
+    package: "react-dom"
+    from: "19.0.0"
+    to: "19.2.0"
+    scope: project_wide
+    reference: "https://github.com/facebook/react/releases"
+    notes: "Aligned with react 19.2 upgrade."
+
+  - type: dependency_migration
+    package: "eslint"
+    from: "8.56.0"
+    to: "9.39.3"
+    scope: project_wide
+    reference: "https://eslint.org/docs/latest/use/migrate-to-9.0.0"
+    notes: "Major version upgrade. Requires migration to flat config format (eslint.config.mjs). Legacy eslint plugins replaced with typescript-eslint and @eslint/js."
+
+  - type: dependency_migration
+    package: "@tanstack/react-query"
+    from: "5.32.1"
+    to: "5.90.21"
+    scope: package
+    reference: "https://github.com/TanStack/query/releases"
+    notes: "Minor version bump. onSuccess callback signature changed (added extra context parameter)."
+
+  - type: dependency_migration
+    package: "@tanstack/react-table"
+    from: "8.12.0"
+    to: "8.21.3"
+    scope: package
+    reference: "https://github.com/TanStack/table/releases"
+    notes: "Minor version bump. No breaking API changes."
+
+  - type: dependency_migration
+    package: "i18next"
+    from: "23.11.5"
+    to: "25.8.13"
+    scope: project_wide
+    reference: "https://github.com/i18next/i18next/releases"
+    notes: "Major version upgrade (23 -> 25). Review i18next changelog for breaking changes."
+
+  - type: dependency_migration
+    package: "react-i18next"
+    from: "14.1.3"
+    to: "16.5.4"
+    scope: project_wide
+    reference: "https://github.com/i18next/react-i18next/releases"
+    notes: "Major version upgrade (14 -> 16). Aligned with i18next 25 upgrade."
+
+  - type: dependency_migration
+    package: "react-hook-form"
+    from: "7.43.9"
+    to: "7.71.2"
+    scope: package
+    reference: "https://github.com/react-hook-form/react-hook-form/releases"
+    notes: "Minor version bump within v7."
+
+  - type: dependency_migration
+    package: "@hookform/resolvers"
+    from: "2.9.11"
+    to: "4.1.3"
+    scope: project_wide
+    reference: "https://github.com/react-hook-form/resolvers/releases"
+    notes: "Major version upgrade (2 -> 4). Check resolver import path changes."
+
+  - type: dependency_migration
+    package: "@tabler/icons-react"
+    from: "2.11.0"
+    to: "3.38.0"
+    scope: project_wide
+    reference: "https://github.com/tabler/tabler-icons/releases"
+    notes: "Major version upgrade (2 -> 3). Some icon names may have changed."
+
+  - type: dependency_migration
+    package: "nodemailer"
+    from: "6.9.16"
+    to: "8.0.1"
+    scope: project_wide
+    reference: "https://github.com/nodemailer/nodemailer/releases"
+    notes: "Major version upgrade (6 -> 8). Review API changes."
+
+  - type: dependency_migration
+    package: "jotai"
+    from: "2.0.4"
+    to: "2.18.0"
+    scope: package
+    reference: "https://github.com/pmndrs/jotai/releases"
+    notes: "Minor version bump within v2. No breaking changes."
+
+  - type: dependency_migration
+    package: "zod"
+    from: "3.22.5"
+    to: "3.25.76"
+    scope: package
+    reference: "https://github.com/colinhacks/zod/releases"
+    notes: "Minor version bump within v3."
+
+  # ── Dependency migrations: package-scoped / patch bumps ────────────
+  - type: dependency_migration
+    package: "@mantine/core"
+    from: "8.2.0"
+    to: "8.3.15"
+    scope: package
+    reference: "https://mantine.dev/changelog"
+    notes: "Minor version bump. @mantine/modals removed as a dependency."
+
+  - type: dependency_migration
+    package: "@mantine/dates"
+    from: "8.2.0"
+    to: "8.3.15"
+    scope: package
+    reference: "https://mantine.dev/changelog"
+    notes: "Minor version bump."
+
+  - type: dependency_migration
+    package: "@mantine/hooks"
+    from: "8.2.0"
+    to: "8.3.15"
+    scope: package
+    reference: "https://mantine.dev/changelog"
+    notes: "Minor version bump."
+
+  - type: dependency_migration
+    package: "@mantine/notifications"
+    from: "8.2.0"
+    to: "8.3.15"
+    scope: package
+    reference: "https://mantine.dev/changelog"
+    notes: "Minor version bump."
+
+  - type: dependency_migration
+    package: "@mantine/spotlight"
+    from: "8.2.0"
+    to: "8.3.15"
+    scope: package
+    reference: "https://mantine.dev/changelog"
+    notes: "Minor version bump."
+
+  - type: dependency_migration
+    package: "axios"
+    from: "1.12.0"
+    to: "1.13.6"
+    scope: package
+    reference: "https://github.com/axios/axios/releases"
+    notes: "Minor version bump. No API changes."
+
+  - type: dependency_migration
+    package: "dayjs"
+    from: "1.11.13"
+    to: "1.11.19"
+    scope: package
+    reference: "https://github.com/iamkun/dayjs/releases"
+    notes: "Patch version bump."
+
+  - type: dependency_migration
+    package: "next-i18n-router"
+    from: "5.5.1"
+    to: "5.5.6"
+    scope: package
+    reference: "https://github.com/i18nexus/next-i18n-router/releases"
+    notes: "Patch version bump."
+
+  - type: dependency_migration
+    package: "vite"
+    from: "6.3.6"
+    to: "7.3.1"
+    scope: package
+    reference: "https://github.com/vitejs/vite/releases"
+    notes: "Major version upgrade (6 -> 7). Dev dependency only, no downstream config changes required."
+
+  - type: dependency_migration
+    package: "vitest"
+    from: "3.0.7"
+    to: "4.0.18"
+    scope: package
+    reference: "https://github.com/vitest-dev/vitest/releases"
+    notes: "Major version upgrade (3 -> 4). Dev dependency only."
+
+  - type: dependency_migration
+    package: "tailwindcss"
+    from: "4.1.3"
+    to: "4.2.1"
+    scope: package
+    reference: "https://github.com/tailwindlabs/tailwindcss/releases"
+    notes: "Minor version bump."
+
+  - type: dependency_migration
+    package: "typescript"
+    from: "5.7.3"
+    to: "5.9.3"
+    scope: package
+    reference: "https://github.com/microsoft/TypeScript/releases"
+    notes: "Minor version bump. Moved from dependencies to devDependencies."
+
+  # ── New files: base API query factory ──────────────────────────────
+  - type: new_file
+    path: "src/api/base/index.ts"
+    description: "Barrel export for base API query factory modules."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: new_file
+    path: "src/api/base/baseQueries.ts"
+    description: "Factory function createBaseQueries that generates a full CRUD hook set (getAll, getPage, getInfinite, find, create, update, delete) for a given resource."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: new_file
+    path: "src/api/base/types.ts"
+    description: "Shared TypeScript types for base query options (TBaseFilter, FilterOptions, RequestOptions)."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: new_file
+    path: "src/api/base/all.ts"
+    description: "createUseGetAll factory — fetches all pages of a paginated resource using infinite queries."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: new_file
+    path: "src/api/base/infinite.ts"
+    description: "createUseGetInfinite factory — infinite query hook for paginated resources."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: new_file
+    path: "src/api/base/page.ts"
+    description: "createUseGetPage factory — single-page query hook for paginated resources."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: new_file
+    path: "src/api/base/find.ts"
+    description: "createUseFind factory — query hook to fetch a single resource by ID."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: new_file
+    path: "src/api/base/create.ts"
+    description: "createUseCreate factory — mutation hook for creating resources."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: new_file
+    path: "src/api/base/update.ts"
+    description: "createUseUpdate factory — mutation hook for updating resources."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: new_file
+    path: "src/api/base/delete.ts"
+    description: "createUseDelete factory — mutation hook for deleting resources."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: new_file
+    path: "src/utils/pagination.ts"
+    description: "parsePaginationParams utility that validates pagination input through the paginationParamsSchema."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: new_file
+    path: "eslint.config.mjs"
+    description: "ESLint 9 flat config replacing legacy .eslintrc.json."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/941"
+
+  # ── File removals ──────────────────────────────────────────────────
+  - type: file_removal
+    path: ".eslintrc.json"
+    description: "Removed legacy ESLint config, replaced by eslint.config.mjs."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/941"
+
+  - type: file_removal
+    path: "src/utils/logout.ts"
+    description: "logout utility removed. Auth state cleanup moved inline into api.ts interceptor; useLogout hook added to auth.ts for component-level logout."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/874"
+
+  # ── File tracking: API layer refactoring ───────────────────────────
+  - type: file_tracking
+    description: "Refactor axios instance creation: remove compile-time baseURL, set baseURL lazily from runtime config in request interceptor. Replace imported logout() with inline clearAuthState()."
+    files:
+      - path: "src/api/api.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: file_tracking
+    description: "Add useLogout mutation hook that calls the backend /logout endpoint and clears local auth state."
+    files:
+      - path: "src/api/auth.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/874"
+
+  - type: file_tracking
+    description: "Refactor user API to use createBaseQueries factory, replacing manual hook implementations."
+    files:
+      - path: "src/api/user.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: file_tracking
+    description: "Refactor roles API to use base query factories (createUseGetAll, createUseGetPage, createUseCreate, createUseDelete). useUpdateRole kept manual due to name-based identification."
+    files:
+      - path: "src/api/roles.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: file_tracking
+    description: "Refactor rights API to use createUseGetAll and createUseGetPage factories."
+    files:
+      - path: "src/api/rights.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: file_tracking
+    description: "Refactor me API to use createUseFind and createUseUpdate factories."
+    files:
+      - path: "src/api/me.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: file_tracking
+    description: "Refactor contact API to use createUseCreate factory."
+    files:
+      - path: "src/api/contact.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: file_tracking
+    description: "Refactor feedback API to use createUseCreate factory."
+    files:
+      - path: "src/api/feedback.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: file_tracking
+    description: "Refactor translations API: useGetTranslations now returns a factory function (requires extra () call at usage site)."
+    files:
+      - path: "src/api/translations.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  # ── File tracking: view components updated for new API ─────────────
+  - type: file_tracking
+    description: "Update RightsView to use useGetAllRoles (items array) and new pagination options shape. Remove eslint-disable comments."
+    files:
+      - path: "src/app/[locale]/(main)/admin/rights/RightsView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: file_tracking
+    description: "Update RolesView to use useGetAllRights, new pagination shape, and onSettled instead of separate onSuccess/onError. Remove eslint-disable comments."
+    files:
+      - path: "src/app/[locale]/(main)/admin/roles/RolesView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: file_tracking
+    description: "Update UsersView to use useGetAllRoles (items array), new pagination shape, and onSettled callbacks. Remove eslint-disable comments."
+    files:
+      - path: "src/app/[locale]/(main)/admin/users/UsersView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: file_tracking
+    description: "Update UpdateUserView to use useGetAllRoles instead of useGetRoles with manual pagination."
+    files:
+      - path: "src/app/[locale]/(main)/admin/users/[id]/UpdateUserView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: file_tracking
+    description: "Update AddUserView to use useGetAllRoles instead of useGetRoles with manual pagination."
+    files:
+      - path: "src/app/[locale]/(main)/admin/users/add/AddUserView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: file_tracking
+    description: "Update TranslationsView to call useGetTranslations with extra () invocation. Remove eslint-disable comments."
+    files:
+      - path: "src/app/[locale]/(main)/admin/translations/TranslationsView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: file_tracking
+    description: "Remove unused eslint-disable comment from translations page."
+    files:
+      - path: "src/app/[locale]/(main)/admin/translations/page.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/941"
+
+  - type: file_tracking
+    description: "Remove unused eslint-disable comment from user detail page."
+    files:
+      - path: "src/app/[locale]/(main)/admin/users/[id]/page.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/941"
+
+  - type: file_tracking
+    description: "Update ProfileView to use useLogout hook instead of imported logout utility. Simplify handleUpdate (remove manual refetch)."
+    files:
+      - path: "src/app/[locale]/(main)/profile/ProfileView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/874"
+
+  - type: file_tracking
+    description: "Update LoginView: change Tailwind color classes from blue to cyan."
+    files:
+      - path: "src/app/[locale]/(public)/login/LoginView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: file_tracking
+    description: "Update AuthLayout to use useLogout hook instead of imported logout utility."
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/874"
+
+  # ── File tracking: hooks and utilities ─────────────────────────────
+  - type: file_tracking
+    description: "Update useAddTranslation to call useGetTranslations with extra () invocation."
+    files:
+      - path: "src/hooks/useAddTranslation.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: file_tracking
+    description: "Reformat UseZodFormProps interface (extends clause on separate lines)."
+    files:
+      - path: "src/hooks/useZodForm.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: file_tracking
+    description: "Update utils barrel export: remove logout, add pagination."
+    files:
+      - path: "src/utils/index.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: file_tracking
+    description: "Remove unused error variable in catch clause (parseJwt)."
+    files:
+      - path: "src/utils/parseJwt.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/941"
+
+  - type: file_tracking
+    description: "Fix ternary indentation and remove eslint-disable comment (withBaseStylingShowNotification)."
+    files:
+      - path: "src/utils/withBaseStylingShowNotification.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/941"
+
+  - type: file_tracking
+    description: "Remove eslint-disable comment from i18n config init."
+    files:
+      - path: "src/config/i18n.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/941"
+
+  # ── File tracking: renames ─────────────────────────────────────────
+  - type: file_tracking
+    description: "Rename middleware.ts to proxy.ts and rename exported function from middleware() to proxy() for Next.js 16 compatibility."
+    files:
+      - path: "src/proxy.ts"
+        action: added
+      - path: "src/middleware.ts"
+        action: removed
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  - type: file_tracking
+    description: "Rename vitest.config.app.ts to vitest.config.ts (simplified name)."
+    files:
+      - path: "misc/vitest.config.ts"
+        action: added
+      - path: "misc/vitest.config.app.ts"
+        action: removed
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
+
+  # ── File tracking: config and playwright ───────────────────────────
+  - type: file_tracking
+    description: "Add quiet: true to dotenv.config calls in playwright.config.ts to suppress missing .env warnings."
+    files:
+      - path: "playwright.config.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/908"
