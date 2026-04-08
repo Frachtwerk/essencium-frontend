@@ -1,0 +1,119 @@
+version: "7.2.0"
+from: "7.1.1"
+date: "2024-06-12"
+
+changes:
+  # Dependency removal
+  - type: dependency_migration
+    package: "@mantine/next"
+    from: "6.0.21"
+    to: "removed"
+    scope: project_wide
+    reference: ""
+    notes: "Removed @mantine/next as it is no longer necessary with Mantine v7."
+
+  - type: dependency_migration
+    package: "@playwright/test"
+    from: "^1.44.0"
+    to: "^1.44.1"
+    scope: package
+    reference: "https://github.com/microsoft/playwright/releases"
+    notes: "Patch bump for Playwright."
+
+  # New files: RouteProtector component
+  - type: new_file
+    description: "Add RouteProtector component that restricts navigation to routes the user has appropriate rights for, showing an access denied message otherwise"
+    files:
+      - path: "src/components/RouteProtector.tsx"
+        action: added
+      - path: "src/components/RouteProtector.module.css"
+        action: added
+
+  # Feature: extend hasRequiredRights to accept array
+  - type: file_tracking
+    description: "Extend hasRequiredRights utility function to accept an array of rights in addition to a single right string"
+    files:
+      - path: "src/utils/hasRequiredRights.ts"
+        action: modified
+
+  # Feature: implement roles enum like rights
+  - type: file_tracking
+    description: "Implement roles enum similar to rights enum for consistent role handling"
+    files:
+      - path: "src/pages/users/index.tsx"
+        action: modified
+
+  # Bug fix: use next-i18next instead of react-i18next
+  - type: file_tracking
+    description: "Replace react-i18next import with next-i18next in contact API hook"
+    files:
+      - path: "src/api/contact.ts"
+        action: modified
+
+  # Bug fix: spotlight search includes items without required rights
+  - type: file_tracking
+    description: "Also list navigation items that do not require rights in spotlight search results"
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+
+  # Bug fix: replace hard-coded app name with i18n variable
+  - type: file_tracking
+    description: "Replace hard-coded 'Essencium' app name with i18n translation variable in AuthLayout and PublicLayout"
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+      - path: "src/components/layouts/PublicLayout.tsx"
+        action: modified
+
+  # Bug fix: remove buggy no auth storage stage
+  - type: file_tracking
+    description: "Remove noAuth.json storage state usage in LoginView E2E test; navigate directly to login page"
+    files:
+      - path: "e2e/LoginView.spec.ts"
+        action: modified
+
+  # Bug fix: implement route protector and fix language abnormalities
+  - type: file_tracking
+    description: "Wrap page views with RouteProtector component and fix language-related navigation issues"
+    files:
+      - path: "src/pages/rights/index.tsx"
+        action: modified
+      - path: "src/pages/roles/index.tsx"
+        action: modified
+      - path: "src/pages/users/index.tsx"
+        action: modified
+
+  # Infrastructure: fix all E2E tests
+  - type: infrastructure
+    description: "Fix all E2E tests to pass with updated component structure (NavLink role changes from button to link, updated selectors, language setup improvements)"
+    files:
+      - path: "e2e/HomeView.spec.ts"
+        action: modified
+      - path: "e2e/LoginView.spec.ts"
+        action: modified
+      - path: "e2e/NavBar.spec.ts"
+        action: modified
+      - path: "e2e/ProfileView.spec.ts"
+        action: modified
+      - path: "e2e/RolesView.spec.ts"
+        action: modified
+      - path: "e2e/TranslationsView.spec.ts"
+        action: modified
+      - path: "e2e/UsersView.spec.ts"
+        action: modified
+      - path: "playwright/lang.setup.ts"
+        action: modified
+      - path: "playwright.config.ts"
+        action: modified
+
+  # Translation changes
+  - type: translation
+    description: "Add translation keys for route protector and back-to-home action; update footer license year from 2023 to 2024"
+    locales: ["de", "en"]
+    keys_added:
+      - "actions.backToHome"
+      - "routeProtector.message"
+    keys_removed: []
+    keys_changed:
+      - "footer.license"

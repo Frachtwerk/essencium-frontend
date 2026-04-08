@@ -1,0 +1,20 @@
+version: "7.1.0"
+from: "7.0.1"
+date: "2024-05-29"
+
+changes:
+  # New CSS module file for AuthLayout
+  - type: new_file
+    description: "Add AuthLayout.module.css with app-shell padding style"
+    files:
+      - path: "src/components/layouts/AuthLayout.module.css"
+        action: added
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/582"
+
+  # Enable props forwarding for AppShell
+  - type: file_tracking
+    description: "Enable Mantine AppShellProps forwarding on AuthLayout: extend Props type with AppShellProps, spread additional props onto AppShell component, replace inline padding with CSS module class"
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/582"
