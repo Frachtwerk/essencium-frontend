@@ -1,0 +1,181 @@
+version: "7.8.0"
+from: "7.7.0"
+date: "2024-12-19"
+
+changes:
+  # Upgrade Next.js to v15 and React to v19
+  - type: dependency_migration
+    package: "next"
+    from: "14.2.10"
+    to: "15.1.1"
+    scope: project_wide
+    reference: "https://nextjs.org/docs/app/building-your-application/upgrading/version-15"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/705"
+    notes: "Major version bump. Use npx @next/codemod@canary upgrade latest for migration. Page params now return Promise types."
+
+  - type: dependency_migration
+    package: "react"
+    from: "18.2.0"
+    to: "19.0.0"
+    scope: project_wide
+    reference: "https://react.dev/blog/2024/12/05/react-19"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/705"
+    notes: "Major version bump. JSX type now requires explicit import from react."
+
+  - type: dependency_migration
+    package: "react-dom"
+    from: "18.2.0"
+    to: "19.0.0"
+    scope: project_wide
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/705"
+
+  - type: dependency_migration
+    package: "@types/react"
+    from: "18.0.28"
+    to: "19.0.2"
+    scope: project_wide
+
+  - type: dependency_migration
+    package: "@types/react-dom"
+    from: "18.0.11"
+    to: "19.0.2"
+    scope: project_wide
+
+  - type: dependency_migration
+    package: "typescript"
+    from: "4.9.5"
+    to: "5.7.2"
+    scope: project_wide
+    notes: "Major version bump for TypeScript."
+
+  # Mantine packages upgrade
+  - type: dependency_migration
+    package: "@mantine/core"
+    from: "7.5.2"
+    to: "7.15.1"
+    scope: package
+    reference: "https://mantine.dev/changelog/"
+    notes: "Minor bump for all Mantine packages (core, dates, hooks, modals, notifications, spotlight)."
+
+  - type: dependency_migration
+    package: "@typescript-eslint/eslint-plugin"
+    from: "7.8.0"
+    to: "7.18.0"
+    scope: package
+
+  - type: dependency_migration
+    package: "@typescript-eslint/parser"
+    from: "7.8.0"
+    to: "7.18.0"
+    scope: package
+
+  - type: dependency_migration
+    package: "postcss-preset-mantine"
+    from: "1.12.3"
+    to: "1.17.0"
+    scope: package
+
+  - type: dependency_migration
+    package: "vite"
+    from: "5.1.8"
+    to: "5.4.11"
+    scope: package
+    reference: "https://github.com/vitejs/vite/releases"
+
+  # Restructure admin routes under /admin prefix
+  - type: infrastructure
+    description: "Move admin views (users, roles, rights, translations) under /admin route prefix"
+    files:
+      - path: "src/app/[locale]/(main)/admin/rights/RightsView.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/admin/rights/page.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/admin/roles/RolesView.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/admin/roles/page.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/admin/translations/TranslationsView.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/admin/translations/page.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/admin/users/UsersView.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/admin/users/Users.module.css"
+        action: added
+      - path: "src/app/[locale]/(main)/admin/users/[id]/UpdateUserView.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/admin/users/[id]/page.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/admin/users/add/AddUserView.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/admin/users/add/AddUserView.module.css"
+        action: added
+      - path: "src/app/[locale]/(main)/admin/users/add/page.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/admin/users/page.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/HomeView.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/page.tsx"
+        action: added
+    notes: "All admin views renamed from src/app/[locale]/(main)/{view} to src/app/[locale]/(main)/admin/{view}. Links in UsersView updated to /admin/users/... paths."
+
+  # New utility files
+  - type: new_file
+    description: "Add isBrowserEnvironment utility and test"
+    files:
+      - path: "src/utils/isBrowserEnvironment.ts"
+        action: added
+      - path: "src/utils/isBrowserEnvironment.test.ts"
+        action: added
+
+  # next.config.js changes
+  - type: file_tracking
+    description: "Replace instrumentationHook with optimizePackageImports for Mantine tree shaking"
+    files:
+      - path: "next.config.js"
+        action: modified
+    notes: "Removed instrumentationHook config. Added experimental.optimizePackageImports for Mantine packages."
+
+  # Runtime config updates
+  - type: file_tracking
+    description: "Update runtimeConfig.js with concrete default values and restructured variables"
+    files:
+      - path: "public/runtimeConfig.js"
+        action: modified
+    notes: "API_URL and APP_URL now in required. OAUTH_REDIRECT_URI and APP_ENV now in optional. Placeholder values replaced with defaults."
+
+  # Env variable changes
+  - type: env_variable
+    description: "Restructure .env variables: add APP_URL, remove NEXT_PUBLIC_SHOW_VERSION and NEXT_PUBLIC_ENV, move APP_ENV to optional"
+    variables:
+      - name: "APP_URL"
+        action: added
+        notes: "Application URL for server-side use"
+      - name: "NEXT_PUBLIC_SHOW_VERSION"
+        action: removed
+        notes: "Version display now always shown in footer"
+      - name: "NEXT_PUBLIC_ENV"
+        action: removed
+        notes: "Replaced by APP_ENV in runtime config"
+
+  # Page params now async (Next.js 15)
+  - type: file_tracking
+    description: "Update page components to use async params (Next.js 15 requirement)"
+    files:
+      - path: "src/app/[locale]/(main)/admin/rights/page.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/roles/page.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/translations/page.tsx"
+        action: modified
+    notes: "params type changed from { locale: string } to Promise<{ locale: string }>. Pages now async with await props.params."
+
+  # Translation keys
+  - type: translation
+    description: "Add administration nav label"
+    locales: ["de", "en"]
+    keys_added:
+      - "header.administration.label"
+    keys_removed: []
+    keys_changed: []

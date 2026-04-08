@@ -1,0 +1,154 @@
+version: "7.4.0"
+from: "7.3.0"
+date: "2024-09-24"
+
+changes:
+  # Migrate from Pages Router to App Router
+  - type: infrastructure
+    description: "Migrate from Next.js Pages Router to App Router. All pages moved from src/pages/ to src/app/[locale]/ with 'use client' directives and new layout/page structure."
+    files:
+      - path: "src/app/[locale]/layout.tsx"
+        action: added
+      - path: "src/app/[locale]/page.tsx"
+        action: added
+      - path: "src/app/[locale]/providers.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/layout.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/contact/ContactView.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/contact/page.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/profile/ProfileView.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/profile/Profile.module.css"
+        action: added
+      - path: "src/app/[locale]/(main)/profile/page.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/rights/page.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/roles/page.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/translations/page.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/users/page.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/users/[id]/page.tsx"
+        action: added
+      - path: "src/app/[locale]/(main)/users/add/page.tsx"
+        action: added
+      - path: "src/app/[locale]/(public)/login/LoginView.tsx"
+        action: added
+      - path: "src/app/[locale]/(public)/login/page.tsx"
+        action: added
+      - path: "src/app/[locale]/(public)/set-password/page.tsx"
+        action: added
+      - path: "src/middleware.ts"
+        action: added
+      - path: "src/config/i18n.ts"
+        action: added
+      - path: "src/config/index.ts"
+        action: added
+      - path: "src/config/mantine.ts"
+        action: added
+      - path: "src/components/provider/mantineProvider.tsx"
+        action: added
+      - path: "src/components/provider/queryClientProvider.tsx"
+        action: added
+      - path: "src/components/provider/translationProvider.tsx"
+        action: added
+    notes: "Major restructure: pages router files removed in favor of app router. Imports changed from next-i18next to react-i18next. RouteProtector and AuthLayout moved to layout.tsx."
+
+  # Removed Pages Router files
+  - type: file_removal
+    description: "Remove legacy Pages Router files and next-i18next config replaced by app router structure"
+    files:
+      - path: "next-i18next.config.js"
+        action: removed
+      - path: "src/pages/_app.tsx"
+        action: removed
+      - path: "src/pages/login/index.tsx"
+        action: removed
+    notes: "Pages router files replaced by app router equivalents. src/utils/next.ts replaced by src/app/[locale]/(main)/contact/page.tsx."
+
+  # Dependency: next-i18next replaced by next-i18n-router + i18next-resources-to-backend
+  - type: dependency_migration
+    package: "next-i18next"
+    from: "15.3.0"
+    to: "removed"
+    scope: project_wide
+    notes: "Replaced by next-i18n-router 5.5.1 and i18next-resources-to-backend 1.2.1 for app router compatibility."
+
+  - type: dependency_migration
+    package: "next-i18n-router"
+    from: "added"
+    to: "5.5.1"
+    scope: project_wide
+    notes: "New dependency for i18n routing in app router."
+
+  - type: dependency_migration
+    package: "i18next-resources-to-backend"
+    from: "added"
+    to: "1.2.1"
+    scope: project_wide
+    notes: "New dependency for loading i18n resources in app router."
+
+  - type: dependency_migration
+    package: "next"
+    from: "14.2.2"
+    to: "14.2.10"
+    scope: package
+    reference: "https://github.com/vercel/next.js/releases"
+    notes: "Patch bump for Next.js."
+
+  - type: dependency_migration
+    package: "axios"
+    from: "1.6.8"
+    to: "1.7.4"
+    scope: package
+    reference: "https://github.com/axios/axios/releases"
+    notes: "Minor bump for axios."
+
+  - type: dependency_migration
+    package: "vite"
+    from: "5.0.13"
+    to: "5.1.8"
+    scope: package
+    reference: "https://github.com/vitejs/vite/releases"
+    notes: "Minor bump for vite."
+
+  # next.config.js: removed i18n config
+  - type: file_tracking
+    description: "Remove i18n config from next.config.js since app router handles i18n differently"
+    files:
+      - path: "next.config.js"
+        action: modified
+    notes: "Removed import of next-i18next.config.js and i18n key from nextConfig."
+
+  # Import changes: next-i18next -> react-i18next
+  - type: file_tracking
+    description: "Replace next-i18next imports with react-i18next across all API and view files"
+    files:
+      - path: "src/api/auth.ts"
+        action: modified
+      - path: "src/api/contact.ts"
+        action: modified
+    notes: "useTranslation now imported from react-i18next instead of next-i18next."
+
+  # VSCode settings update
+  - type: file_tracking
+    description: "Add i18n-ally.keystyle nested setting to VSCode config"
+    files:
+      - path: ".vscode/settings.json"
+        action: modified
+
+  # Translation keys added
+  - type: translation
+    description: "Add translation keys for navbar toggle, table filter placeholder, and page go-to feature"
+    locales: ["de", "en"]
+    keys_added:
+      - "header.toggleFixedNavIcon.ariaLabel"
+      - "table.filter.placeholder"
+      - "table.footer.pageGoTo"
+    keys_removed: []
+    keys_changed: []

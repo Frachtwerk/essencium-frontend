@@ -1,0 +1,12 @@
+version: "7.5.0"
+from: "7.4.0"
+date: "2024-10-15"
+
+changes:
+  # Sub nav items support and navbar state changes
+  - type: file_tracking
+    description: "Add support for sub nav items and disable local storage persistence for nav bar folded state"
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+    notes: "Removed atomWithStorage for isFixedNav and isFoldedNav atoms, replaced with local useState. isFixedNav defaults to true, isFoldedNav defaults to false."
