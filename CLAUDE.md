@@ -31,9 +31,9 @@ When this repo releases a new version, downstream projects need to migrate. Migr
 
 ## Tech stack
 
-- **Runtime:** Node 20, pnpm 10
-- **App:** Next.js 16, React 19, Mantine 8, Tailwind CSS 4, TanStack Query 5
+- **Runtime:** Node, pnpm
+- **App:** Next.js, React, Mantine, Tailwind CSS, TanStack Query
 - **Lib:** Rollup, React Compiler
-- **Types:** Zod 3, Rollup
+- **Types:** Zod, Rollup
 - **Testing:** Vitest, Playwright
-- **Linting:** ESLint 9 (flat config), Prettier
+- **Linting:** ESLint (flat config), Prettier
