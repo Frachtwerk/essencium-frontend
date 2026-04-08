@@ -217,8 +217,10 @@ claude "/migrate-essencium"
              current and target.
 
 3. SCAN    — Analyze the downstream project:
-             - Which essencium-origin files exist and were customized?
-             - Which are untouched (identical to upstream)?
+             - Which essencium-origin files exist? (Determined by comparing
+               file paths against the app package at the current version tag.)
+             - Which of those were customized vs. untouched?
+               (Diff downstream file against upstream at that version.)
              - What custom code exists (new pages, custom schemas, etc.)?
 
 4. PLAN    — For each version step, generate a project-specific migration
