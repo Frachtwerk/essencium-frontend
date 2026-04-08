@@ -144,16 +144,12 @@ changes:
   # New CSS module files
   - type: new_file
     description: "Add Profile.module.css for profile page styles"
-    files:
-      - path: "src/pages/profile/Profile.module.css"
-        action: added
+    path: "src/pages/profile/Profile.module.css"
     pr: "https://github.com/Frachtwerk/essencium-frontend/pull/566"
 
   - type: new_file
     description: "Add SetPassword.module.css for set-password page styles"
-    files:
-      - path: "src/pages/set-password/SetPassword.module.css"
-        action: added
+    path: "src/pages/set-password/SetPassword.module.css"
     pr: "https://github.com/Frachtwerk/essencium-frontend/pull/566"
 
   # Refactor: move inline styles to CSS modules for profile and set-password

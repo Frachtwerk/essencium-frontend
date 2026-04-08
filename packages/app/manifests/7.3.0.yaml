@@ -46,11 +46,7 @@ changes:
   # Refactor: move hasRequiredRights to lib, remove local copy
   - type: file_removal
     description: "Remove local hasRequiredRights utility in favor of importing from @frachtwerk/essencium-lib"
-    files:
-      - path: "src/utils/hasRequiredRights.ts"
-        action: deleted
-      - path: "src/utils/index.ts"
-        action: modified
+    path: "src/utils/hasRequiredRights.ts"
     pr: "https://github.com/Frachtwerk/essencium-frontend/pull/598"
 
   # Refactor: update imports of hasRequiredRights across pages

@@ -23,11 +23,11 @@ changes:
   # New files: RouteProtector component
   - type: new_file
     description: "Add RouteProtector component that restricts navigation to routes the user has appropriate rights for, showing an access denied message otherwise"
-    files:
-      - path: "src/components/RouteProtector.tsx"
-        action: added
-      - path: "src/components/RouteProtector.module.css"
-        action: added
+    path: "src/components/RouteProtector.tsx"
+
+  - type: new_file
+    description: "Add RouteProtector CSS module with access denied layout styles"
+    path: "src/components/RouteProtector.module.css"
 
   # Feature: extend hasRequiredRights to accept array
   - type: file_tracking

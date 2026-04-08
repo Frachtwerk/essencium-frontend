@@ -169,14 +169,10 @@ changes:
   # New files
   - type: new_file
     description: "Add CSS module for users page with Mantine v7 dark mode mixins and layout classes"
-    files:
-      - path: "src/pages/users/users.module.css"
-        action: added
+    path: "src/pages/users/users.module.css"
     pr: "https://github.com/Frachtwerk/essencium-frontend/pull/496"
 
   - type: new_file
     description: "Add PostCSS config for Mantine v7 preset and breakpoint variables"
-    files:
-      - path: "postcss.config.cjs"
-        action: added
+    path: "postcss.config.cjs"
     pr: "https://github.com/Frachtwerk/essencium-frontend/pull/496"

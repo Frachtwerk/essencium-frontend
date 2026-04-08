@@ -15,9 +15,9 @@ changes:
   # New environment variable for SSO redirect
   - type: env_variable
     description: "Add NEXT_PUBLIC_APP_URL environment variable used as OAuth2 redirect URI for SSO login"
-    variable: "NEXT_PUBLIC_APP_URL"
-    action: added
-    default_value: "http://localhost:3000"
+    variables:
+      - name: "NEXT_PUBLIC_APP_URL"
+        required: true
     pr: "https://github.com/Frachtwerk/essencium-frontend/pull/528"
 
   # Infrastructure — next.config.js updates for SSO
@@ -111,16 +111,12 @@ changes:
   # New files — CSS modules for login and add-user views
   - type: new_file
     description: "Add CSS module for login page with SSO section styles and dark mode support"
-    files:
-      - path: "src/pages/login/Login.module.css"
-        action: added
+    path: "src/pages/login/Login.module.css"
     pr: "https://github.com/Frachtwerk/essencium-frontend/pull/528"
 
   - type: new_file
     description: "Add CSS module for add-user view card with dark mode support"
-    files:
-      - path: "src/pages/users/add/AddUserView.module.css"
-        action: added
+    path: "src/pages/users/add/AddUserView.module.css"
     pr: "https://github.com/Frachtwerk/essencium-frontend/pull/528"
 
   # Translation changes for SSO and header restructuring

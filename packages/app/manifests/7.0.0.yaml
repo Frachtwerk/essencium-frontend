@@ -80,9 +80,9 @@ changes:
   # Environment variable change
   - type: env_variable
     description: "Change NEXT_PUBLIC_APP_URL default from http://localhost:3000 to https://staging.essencium.dev"
-    files:
-      - path: ".env"
-        action: modified
+    variables:
+      - name: "NEXT_PUBLIC_APP_URL"
+        required: true
     pr: "https://github.com/Frachtwerk/essencium-frontend/pull/544"
 
   # Refactor: TanStack Query 5 migration in API hooks

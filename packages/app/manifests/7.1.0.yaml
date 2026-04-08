@@ -6,9 +6,7 @@ changes:
   # New CSS module file for AuthLayout
   - type: new_file
     description: "Add AuthLayout.module.css with app-shell padding style"
-    files:
-      - path: "src/components/layouts/AuthLayout.module.css"
-        action: added
+    path: "src/components/layouts/AuthLayout.module.css"
     pr: "https://github.com/Frachtwerk/essencium-frontend/pull/582"
 
   # Enable props forwarding for AppShell
