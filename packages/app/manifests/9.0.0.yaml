@@ -1,0 +1,27 @@
+version: "9.0.0"
+from: "8.1.1"
+date: "2025-04-15"
+
+changes:
+  # Breaking change: consistent background for all cards in darkmode
+  - type: file_tracking
+    description: "Use consistent dark background for all cards: remove dark mixin from Users.module.css, add Theme.module.css with card-root class, extend Card component in mantine config"
+    files:
+      - path: "src/app/[locale]/(main)/admin/users/Users.module.css"
+        action: modified
+      - path: "src/config/mantine.ts"
+        action: modified
+
+  - type: new_file
+    description: "Add Theme.module.css for consistent dark mode card styling"
+    files:
+      - path: "src/config/Theme.module.css"
+
+  # Fix navbar and pin icon bugs
+  - type: file_tracking
+    description: "Fix multiple navbar pin icon problems: remove isFolded effect, fix scrollbar bug by removing app-shell class and using padding prop instead"
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+      - path: "src/components/layouts/AuthLayout.module.css"
+        action: modified

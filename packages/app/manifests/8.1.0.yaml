@@ -1,0 +1,153 @@
+version: "8.1.0"
+from: "7.10.0"
+date: "2025-03-27"
+
+changes:
+  # Dependency updates
+  - type: dependency_migration
+    package: "axios"
+    from: "1.7.9"
+    to: "1.8.2"
+    scope: package
+    reference: "https://github.com/axios/axios/releases"
+    notes: "Bump axios. No API changes required."
+
+  - type: dependency_migration
+    package: "next"
+    from: "15.1.6"
+    to: "15.2.3"
+    scope: project_wide
+    reference: "https://github.com/vercel/next.js/releases"
+    notes: "Major-minor bump of Next.js. Review release notes for breaking changes."
+
+  - type: dependency_migration
+    package: "@vitejs/plugin-react"
+    from: "4.2.1"
+    to: "4.3.4"
+    scope: package
+    reference: "https://github.com/vitejs/vite-plugin-react/releases"
+    notes: "Bump vite react plugin. No config changes required."
+
+  - type: dependency_migration
+    package: "vite"
+    from: "5.4.14"
+    to: "6.2.3"
+    scope: project_wide
+    reference: "https://github.com/vitejs/vite/releases"
+    notes: "Major version bump of vite. Review vite 6 migration guide for breaking changes."
+
+  - type: dependency_migration
+    package: "vitest"
+    from: "2.1.8"
+    to: "3.0.7"
+    scope: project_wide
+    reference: "https://github.com/vitest-dev/vitest/releases"
+    notes: "Major version bump of vitest. Review vitest 3 migration guide for breaking changes."
+
+  # New environment variables for undeletable default user
+  - type: env_variable
+    description: "Add DEFAULT_USER_EMAIL and NEXT_PUBLIC_DEFAULT_USER_EMAIL env variables for undeletable default user"
+    variables:
+      - name: "DEFAULT_USER_EMAIL"
+        required: false
+        default: ""
+      - name: "NEXT_PUBLIC_DEFAULT_USER_EMAIL"
+        required: false
+        default: ""
+
+  # New legal-notice and privacy-policy pages
+  - type: new_file
+    description: "Add legal-notice page"
+    files:
+      - path: "src/app/[locale]/(main)/legal-notice/LegalNoticeView.module.css"
+      - path: "src/app/[locale]/(main)/legal-notice/LegalNoticeView.tsx"
+      - path: "src/app/[locale]/(main)/legal-notice/page.tsx"
+
+  - type: new_file
+    description: "Add privacy-policy page"
+    files:
+      - path: "src/app/[locale]/(main)/privacy-policy/PrivacyPolicyView.module.css"
+      - path: "src/app/[locale]/(main)/privacy-policy/PrivacyPolicyView.tsx"
+      - path: "src/app/[locale]/(main)/privacy-policy/page.tsx"
+
+  # Refactored contact page (breaking change)
+  - type: file_tracking
+    description: "Refactor contact page: implement avatar initials, add contact person card, set only name and mail as required"
+    files:
+      - path: "src/app/[locale]/(main)/contact/ContactView.tsx"
+        action: modified
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/profile/ProfileView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/726"
+
+  # Various source file modifications
+  - type: file_tracking
+    description: "Persist target page in URL when session token expires"
+    files:
+      - path: "src/api/api.ts"
+        action: modified
+      - path: "src/instrumentation.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/735"
+
+  - type: file_tracking
+    description: "Remove unused refetch buttons and functions from views"
+    files:
+      - path: "src/app/[locale]/(main)/admin/rights/RightsView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/roles/RolesView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/users/UsersView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/725"
+
+  - type: file_tracking
+    description: "Replace custom colors with predefined color scheme; update active column with different icon and colors"
+    files:
+      - path: "src/app/[locale]/(main)/admin/users/UsersView.tsx"
+        action: modified
+      - path: "src/types.ts"
+        action: modified
+
+  - type: file_tracking
+    description: "Add hint for password setting process; remove required role description"
+    files:
+      - path: "src/app/[locale]/(main)/admin/roles/RolesView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/741"
+
+  - type: file_tracking
+    description: "Update URL on language change and auto-refresh user updates"
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/722"
+
+  # Translation changes
+  - type: translation
+    description: "Add translation keys for legal-notice and privacy-policy pages, contact person card, password tooltip; remove refresh and roleDescription keys"
+    locales: ["de", "en"]
+    keys_added:
+      - "contactView.title"
+      - "contactView.contactForm.form.subjectPlaceholder"
+      - "contactView.contactForm.form.messagePlaceholder (changed)"
+      - "usersView.form.passwordTooltip"
+      - "legalNoticeView.title"
+      - "legalNoticeView.companyInformation"
+      - "legalNoticeView.regulatoryAuthority"
+      - "legalNoticeView.dsiclaimer"
+      - "legalNoticeView.copyright"
+      - "privacyPolicyView.title"
+      - "privacyPolicyView.introduction"
+      - "privacyPolicyView.dataCollection"
+      - "privacyPolicyView.dataUsage"
+      - "privacyPolicyView.dataProtection"
+      - "privacyPolicyView.contactInformation"
+    keys_removed:
+      - "actions.refresh"
+      - "usersView.action.refresh"
+      - "contactView.contactPersonCard.avatar.alt"
+      - "validation.roleDescription.minLength"
+    keys_changed: []

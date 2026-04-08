@@ -1,0 +1,23 @@
+version: "9.1.0"
+from: "9.0.1"
+date: "2025-05-05"
+
+changes:
+  # Dependency updates
+  - type: dependency_migration
+    package: "vite"
+    from: "6.2.6"
+    to: "6.2.7"
+    scope: package
+    reference: "https://github.com/vitejs/vite/releases"
+    notes: "Bump vite to resolve vulnerability."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/793"
+
+  # Translation keys added for password warning
+  - type: translation
+    description: "Add password warning translation key for user update form"
+    locales: ["de", "en"]
+    keys_added:
+      - "usersView.form.passwordWarning"
+    keys_removed: []
+    keys_changed: []
