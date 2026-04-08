@@ -57,18 +57,28 @@ changes:
 
   # New legal-notice and privacy-policy pages
   - type: new_file
-    description: "Add legal-notice page"
-    files:
-      - path: "src/app/[locale]/(main)/legal-notice/LegalNoticeView.module.css"
-      - path: "src/app/[locale]/(main)/legal-notice/LegalNoticeView.tsx"
-      - path: "src/app/[locale]/(main)/legal-notice/page.tsx"
+    path: "src/app/[locale]/(main)/legal-notice/LegalNoticeView.module.css"
+    description: "Add legal-notice page CSS module"
 
   - type: new_file
-    description: "Add privacy-policy page"
-    files:
-      - path: "src/app/[locale]/(main)/privacy-policy/PrivacyPolicyView.module.css"
-      - path: "src/app/[locale]/(main)/privacy-policy/PrivacyPolicyView.tsx"
-      - path: "src/app/[locale]/(main)/privacy-policy/page.tsx"
+    path: "src/app/[locale]/(main)/legal-notice/LegalNoticeView.tsx"
+    description: "Add legal-notice page view component"
+
+  - type: new_file
+    path: "src/app/[locale]/(main)/legal-notice/page.tsx"
+    description: "Add legal-notice page route"
+
+  - type: new_file
+    path: "src/app/[locale]/(main)/privacy-policy/PrivacyPolicyView.module.css"
+    description: "Add privacy-policy page CSS module"
+
+  - type: new_file
+    path: "src/app/[locale]/(main)/privacy-policy/PrivacyPolicyView.tsx"
+    description: "Add privacy-policy page view component"
+
+  - type: new_file
+    path: "src/app/[locale]/(main)/privacy-policy/page.tsx"
+    description: "Add privacy-policy page route"
 
   # Refactored contact page (breaking change)
   - type: file_tracking

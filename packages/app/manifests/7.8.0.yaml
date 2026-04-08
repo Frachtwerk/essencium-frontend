@@ -27,25 +27,32 @@ changes:
     from: "18.2.0"
     to: "19.0.0"
     scope: project_wide
+    reference: "https://github.com/facebook/react/releases"
     pr: "https://github.com/Frachtwerk/essencium-frontend/pull/705"
+    notes: "Major version bump aligned with React 19 upgrade."
 
   - type: dependency_migration
     package: "@types/react"
     from: "18.0.28"
     to: "19.0.2"
     scope: project_wide
+    reference: "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react"
+    notes: "Type definitions updated to match React 19."
 
   - type: dependency_migration
     package: "@types/react-dom"
     from: "18.0.11"
     to: "19.0.2"
     scope: project_wide
+    reference: "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react-dom"
+    notes: "Type definitions updated to match React DOM 19."
 
   - type: dependency_migration
     package: "typescript"
     from: "4.9.5"
     to: "5.7.2"
     scope: project_wide
+    reference: "https://github.com/microsoft/TypeScript/releases"
     notes: "Major version bump for TypeScript."
 
   # Mantine packages upgrade
@@ -62,18 +69,24 @@ changes:
     from: "7.8.0"
     to: "7.18.0"
     scope: package
+    reference: "https://github.com/typescript-eslint/typescript-eslint/releases"
+    notes: "Minor bump for typescript-eslint plugin."
 
   - type: dependency_migration
     package: "@typescript-eslint/parser"
     from: "7.8.0"
     to: "7.18.0"
     scope: package
+    reference: "https://github.com/typescript-eslint/typescript-eslint/releases"
+    notes: "Minor bump for typescript-eslint parser, aligned with plugin."
 
   - type: dependency_migration
     package: "postcss-preset-mantine"
     from: "1.12.3"
     to: "1.17.0"
     scope: package
+    reference: "https://github.com/mantinedev/postcss-preset-mantine/releases"
+    notes: "Minor bump for Mantine PostCSS preset."
 
   - type: dependency_migration
     package: "vite"
@@ -81,6 +94,7 @@ changes:
     to: "5.4.11"
     scope: package
     reference: "https://github.com/vitejs/vite/releases"
+    notes: "Minor bump for vite."
 
   # Restructure admin routes under /admin prefix
   - type: infrastructure

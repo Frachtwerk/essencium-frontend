@@ -98,36 +98,87 @@ changes:
 
   # New environment files for different environments
   - type: new_file
-    description: "Add environment-specific .env files for development, production, and test"
-    files:
-      - path: ".env.development"
-      - path: ".env.production"
-      - path: ".env.test"
+    path: ".env.development"
+    description: "Add environment-specific .env file for development"
+
+  - type: new_file
+    path: ".env.production"
+    description: "Add environment-specific .env file for production"
+
+  - type: new_file
+    path: ".env.test"
+    description: "Add environment-specific .env file for test"
 
   # New globals.css for TailwindCSS
   - type: new_file
+    path: "src/globals.css"
     description: "Add globals.css with TailwindCSS imports and custom theme"
-    files:
-      - path: "src/globals.css"
     pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
 
   # Removed CSS module files (replaced by TailwindCSS classes)
   - type: file_removal
-    description: "Remove CSS module files replaced by TailwindCSS utility classes"
-    files:
-      - path: "src/app/[locale]/(main)/admin/translations/TranslationsView.module.css"
-      - path: "src/app/[locale]/(main)/admin/users/Users.module.css"
-      - path: "src/app/[locale]/(main)/admin/users/add/AddUserView.module.css"
-      - path: "src/app/[locale]/(main)/legal-notice/LegalNoticeView.module.css"
-      - path: "src/app/[locale]/(main)/privacy-policy/PrivacyPolicyView.module.css"
-      - path: "src/app/[locale]/(main)/profile/Profile.module.css"
-      - path: "src/app/[locale]/(main)/translations/TranslationsView.module.css"
-      - path: "src/app/[locale]/(main)/translations/_components/TranslationChangeForm.module.css"
-      - path: "src/app/[locale]/(public)/login/Login.module.css"
-      - path: "src/app/[locale]/(public)/set-password/SetPassword.module.css"
-      - path: "src/components/RouteProtector.module.css"
-      - path: "src/components/layouts/AuthLayout.module.css"
-      - path: "src/config/Theme.module.css"
+    path: "src/app/[locale]/(main)/admin/translations/TranslationsView.module.css"
+    description: "Remove TranslationsView CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/app/[locale]/(main)/admin/users/Users.module.css"
+    description: "Remove Users CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/app/[locale]/(main)/admin/users/add/AddUserView.module.css"
+    description: "Remove AddUserView CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/app/[locale]/(main)/legal-notice/LegalNoticeView.module.css"
+    description: "Remove LegalNoticeView CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/app/[locale]/(main)/privacy-policy/PrivacyPolicyView.module.css"
+    description: "Remove PrivacyPolicyView CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/app/[locale]/(main)/profile/Profile.module.css"
+    description: "Remove Profile CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/app/[locale]/(main)/translations/TranslationsView.module.css"
+    description: "Remove TranslationsView CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/app/[locale]/(main)/translations/_components/TranslationChangeForm.module.css"
+    description: "Remove TranslationChangeForm CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/app/[locale]/(public)/login/Login.module.css"
+    description: "Remove Login CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/app/[locale]/(public)/set-password/SetPassword.module.css"
+    description: "Remove SetPassword CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/components/RouteProtector.module.css"
+    description: "Remove RouteProtector CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/components/layouts/AuthLayout.module.css"
+    description: "Remove AuthLayout CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/config/Theme.module.css"
+    description: "Remove Theme CSS module replaced by TailwindCSS"
     pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
 
   # Refactor codebase to use TailwindCSS

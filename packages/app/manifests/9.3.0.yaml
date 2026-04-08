@@ -22,10 +22,13 @@ changes:
     pr: "https://github.com/Frachtwerk/essencium-frontend/pull/814"
 
   - type: new_file
-    description: "Add useScheduleTokenRenewal hook and parseJwt utility for token renewal"
-    files:
-      - path: "src/hooks/useScheduleTokenRenewal.ts"
-      - path: "src/utils/parseJwt.ts"
+    path: "src/hooks/useScheduleTokenRenewal.ts"
+    description: "Add useScheduleTokenRenewal hook for token renewal"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/814"
+
+  - type: new_file
+    path: "src/utils/parseJwt.ts"
+    description: "Add parseJwt utility for decoding JWT tokens"
     pr: "https://github.com/Frachtwerk/essencium-frontend/pull/814"
 
   # E2E test infrastructure: configure playwright baseUrl

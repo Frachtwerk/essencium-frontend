@@ -47,17 +47,13 @@ changes:
 
   # New files
   - type: new_file
+    path: ".env.local.example"
     description: "Add .env.local.example with SMTP and test credentials placeholders"
-    files:
-      - path: ".env.local.example"
-        action: added
     notes: "Template for local secret environment variables."
 
   - type: new_file
+    path: "public/img/web/logotype_weiss_400x100px.svg"
     description: "Add white logotype SVG asset"
-    files:
-      - path: "public/img/web/logotype_weiss_400x100px.svg"
-        action: added
 
   # next.config.js update
   - type: file_tracking

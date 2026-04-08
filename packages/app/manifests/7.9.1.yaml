@@ -22,12 +22,15 @@ changes:
     from: "11.10.6"
     to: "11.10.8"
     scope: package
+    reference: "https://github.com/emotion-js/emotion/releases"
+    notes: "Patch bump for @emotion/react."
 
   - type: dependency_migration
     package: "@mantine/core"
     from: "7.15.1"
     to: "7.15.3"
     scope: package
+    reference: "https://mantine.dev/changelog/"
     notes: "Patch bump for all Mantine packages (core, dates, hooks, modals, notifications, spotlight)."
 
   - type: dependency_migration
@@ -35,105 +38,141 @@ changes:
     from: "1.45.0"
     to: "1.45.3"
     scope: package
+    reference: "https://github.com/microsoft/playwright/releases"
+    notes: "Patch bump for Playwright test runner."
 
   - type: dependency_migration
     package: "@tanstack/react-query"
     from: "5.32.0"
     to: "5.32.1"
     scope: package
+    reference: "https://github.com/TanStack/query/releases"
+    notes: "Patch bump for TanStack React Query."
 
   - type: dependency_migration
     package: "@types/react"
     from: "19.0.2"
     to: "19.0.7"
     scope: package
+    reference: "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react"
+    notes: "Patch bump for React type definitions."
 
   - type: dependency_migration
     package: "@types/react-dom"
     from: "19.0.2"
     to: "19.0.3"
     scope: package
+    reference: "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react-dom"
+    notes: "Patch bump for React DOM type definitions."
 
   - type: dependency_migration
     package: "axios"
     from: "1.7.4"
     to: "1.7.9"
     scope: package
+    reference: "https://github.com/axios/axios/releases"
+    notes: "Patch bump for axios."
 
   - type: dependency_migration
     package: "dayjs"
     from: "1.11.7"
     to: "1.11.13"
     scope: package
+    reference: "https://github.com/iamkun/dayjs/releases"
+    notes: "Patch bump for dayjs."
 
   - type: dependency_migration
     package: "dotenv"
     from: "16.3.1"
     to: "16.3.2"
     scope: package
+    reference: "https://github.com/motdotla/dotenv/releases"
+    notes: "Patch bump for dotenv."
 
   - type: dependency_migration
     package: "i18next"
     from: "23.11.2"
     to: "23.11.5"
     scope: package
+    reference: "https://github.com/i18next/i18next/releases"
+    notes: "Patch bump for i18next."
 
   - type: dependency_migration
     package: "jotai"
     from: "2.0.3"
     to: "2.0.4"
     scope: package
+    reference: "https://github.com/pmndrs/jotai/releases"
+    notes: "Patch bump for jotai."
 
   - type: dependency_migration
     package: "next"
     from: "15.1.1"
     to: "15.1.4"
     scope: package
+    reference: "https://github.com/vercel/next.js/releases"
+    notes: "Patch bump for Next.js."
 
   - type: dependency_migration
     package: "nodemailer"
     from: "6.9.9"
     to: "6.9.16"
     scope: package
+    reference: "https://github.com/nodemailer/nodemailer/releases"
+    notes: "Patch bump for nodemailer."
 
   - type: dependency_migration
     package: "react-hook-form"
     from: "7.43.5"
     to: "7.43.9"
     scope: package
+    reference: "https://github.com/react-hook-form/react-hook-form/releases"
+    notes: "Patch bump for react-hook-form."
 
   - type: dependency_migration
     package: "react-i18next"
     from: "14.1.1"
     to: "14.1.3"
     scope: package
+    reference: "https://github.com/i18next/react-i18next/releases"
+    notes: "Patch bump for react-i18next."
 
   - type: dependency_migration
     package: "zod"
     from: "3.22.4"
     to: "3.22.5"
     scope: package
+    reference: "https://github.com/colinhacks/zod/releases"
+    notes: "Patch bump for zod."
 
   - type: dependency_migration
     package: "@types/nodemailer"
     from: "6.4.14"
     to: "6.4.17"
     scope: package
+    reference: "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/nodemailer"
+    notes: "Patch bump for nodemailer type definitions."
 
   - type: dependency_migration
     package: "eslint-plugin-prettier"
     from: "5.0.0"
     to: "5.0.1"
     scope: package
+    reference: "https://github.com/prettier/eslint-plugin-prettier/releases"
+    notes: "Patch bump for eslint-plugin-prettier."
 
   - type: dependency_migration
     package: "eslint-plugin-react-hooks"
     from: "4.6.0"
     to: "4.6.2"
     scope: package
+    reference: "https://github.com/facebook/react/releases"
+    notes: "Patch bump for eslint-plugin-react-hooks."
 
   - type: dependency_migration
     package: "vitest"
     from: "2.1.4"
     to: "2.1.8"
     scope: package
+    reference: "https://github.com/vitest-dev/vitest/releases"
+    notes: "Patch bump for vitest."

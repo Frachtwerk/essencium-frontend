@@ -61,15 +61,19 @@ changes:
 
   # Removed Pages Router files
   - type: file_removal
-    description: "Remove legacy Pages Router files and next-i18next config replaced by app router structure"
-    files:
-      - path: "next-i18next.config.js"
-        action: removed
-      - path: "src/pages/_app.tsx"
-        action: removed
-      - path: "src/pages/login/index.tsx"
-        action: removed
-    notes: "Pages router files replaced by app router equivalents. src/utils/next.ts replaced by src/app/[locale]/(main)/contact/page.tsx."
+    path: "next-i18next.config.js"
+    description: "Remove legacy next-i18next config replaced by app router structure"
+    notes: "Pages router files replaced by app router equivalents."
+
+  - type: file_removal
+    path: "src/pages/_app.tsx"
+    description: "Remove legacy Pages Router _app.tsx"
+    notes: "Replaced by app router layout.tsx."
+
+  - type: file_removal
+    path: "src/pages/login/index.tsx"
+    description: "Remove legacy Pages Router login page"
+    notes: "Replaced by src/app/[locale]/(public)/login/page.tsx."
 
   # Dependency: next-i18next replaced by next-i18n-router + i18next-resources-to-backend
   - type: dependency_migration

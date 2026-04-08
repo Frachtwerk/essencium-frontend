@@ -13,9 +13,8 @@ changes:
         action: modified
 
   - type: new_file
+    path: "src/config/Theme.module.css"
     description: "Add Theme.module.css for consistent dark mode card styling"
-    files:
-      - path: "src/config/Theme.module.css"
 
   # Fix navbar and pin icon bugs
   - type: file_tracking
