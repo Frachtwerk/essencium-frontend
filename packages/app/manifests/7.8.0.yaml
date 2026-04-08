@@ -136,12 +136,12 @@ changes:
 
   # New utility files
   - type: new_file
-    description: "Add isBrowserEnvironment utility and test"
-    files:
-      - path: "src/utils/isBrowserEnvironment.ts"
-        action: added
-      - path: "src/utils/isBrowserEnvironment.test.ts"
-        action: added
+    path: "src/utils/isBrowserEnvironment.ts"
+    description: "Add isBrowserEnvironment utility for checking runtime environment"
+
+  - type: new_file
+    path: "src/utils/isBrowserEnvironment.test.ts"
+    description: "Add test for isBrowserEnvironment utility"
 
   # next.config.js changes
   - type: file_tracking

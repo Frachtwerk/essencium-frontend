@@ -81,21 +81,24 @@ changes:
     from: "15.3.0"
     to: "removed"
     scope: project_wide
+    reference: "https://github.com/i18next/next-i18next"
     notes: "Replaced by next-i18n-router 5.5.1 and i18next-resources-to-backend 1.2.1 for app router compatibility."
 
   - type: dependency_migration
     package: "next-i18n-router"
-    from: "added"
+    from: null
     to: "5.5.1"
     scope: project_wide
+    reference: "https://github.com/i18nexus/next-i18n-router"
     notes: "New dependency for i18n routing in app router."
 
   - type: dependency_migration
     package: "i18next-resources-to-backend"
-    from: "added"
+    from: null
     to: "1.2.1"
     scope: project_wide
-    notes: "New dependency for loading i18n resources in app router."
+    reference: "https://github.com/i18next/i18next-resources-to-backend"
+    notes: "New dependency for loading i18n resources lazily in app router."
 
   - type: dependency_migration
     package: "next"
