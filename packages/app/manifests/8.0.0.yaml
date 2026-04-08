@@ -1,0 +1,154 @@
+version: "8.0.0"
+from: "7.10.0"
+date: "2025-03-26"
+
+changes:
+  # Breaking change: refactor contact page
+  - type: file_tracking
+    description: "Refactor ContactView: remove name and mailAddress form fields, populate them from current user atom instead. Add contactPerson object prop to Contact component with name, phone, email, address, linkedinUrl, instagramUrl."
+    files:
+      - path: "src/app/[locale]/(main)/contact/ContactView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/726"
+
+  # Feature: avatar initials and contact person
+  - type: file_tracking
+    description: "Implement avatar initials and add contact person card to contact page"
+    files:
+      - path: "src/app/[locale]/(main)/contact/ContactView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/726"
+
+  # Feature: DEFAULT_USER_EMAIL env for undeletable default user
+  - type: env_variable
+    description: "Add DEFAULT_USER_EMAIL and NEXT_PUBLIC_DEFAULT_USER_EMAIL env variables to identify the undeletable default user by email instead of first name"
+    variables:
+      - name: "DEFAULT_USER_EMAIL"
+        required: false
+      - name: "NEXT_PUBLIC_DEFAULT_USER_EMAIL"
+        required: false
+
+  - type: file_tracking
+    description: "Use DEFAULT_USER_EMAIL env variable to determine undeletable default user instead of checking firstName === 'Admin'"
+    files:
+      - path: "src/app/[locale]/(main)/admin/users/UsersView.tsx"
+        action: modified
+      - path: "src/instrumentation.ts"
+        action: modified
+      - path: "src/types.ts"
+        action: modified
+      - path: "public/runtimeConfig.example.js"
+        action: modified
+      - path: ".env"
+        action: modified
+
+  # Fix: update URL on language change and auto-refresh user updates
+  - type: file_tracking
+    description: "Update URL path when user locale changes and call router.refresh() to apply the new locale"
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/722"
+
+  # Fix: refetch user after profile update
+  - type: file_tracking
+    description: "Call refetchMe() on successful profile update so the UI reflects changes immediately"
+    files:
+      - path: "src/app/[locale]/(main)/profile/ProfileView.tsx"
+        action: modified
+
+  # Fix: adjust redirect when user is unauthorized
+  - type: file_tracking
+    description: "Include current pathname as redirect query parameter when redirecting to /login on 401 response"
+    files:
+      - path: "src/api/api.ts"
+        action: modified
+
+  # Fix: remove required role description validation
+  - type: file_tracking
+    description: "Remove required minimum length validation for role description"
+    files:
+      - path: "src/app/[locale]/(main)/admin/roles/RolesView.tsx"
+        action: modified
+
+  # Refactor: remove refresh buttons from views
+  - type: file_tracking
+    description: "Remove manual 'Refresh data' buttons from RightsView, RolesView, and UsersView. Simplify refetch callbacks by inlining refetchRoles/refetchUsers instead of wrapping in useCallback."
+    files:
+      - path: "src/app/[locale]/(main)/admin/rights/RightsView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/roles/RolesView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/users/UsersView.tsx"
+        action: modified
+
+  # Refactor: use colored user status icons
+  - type: file_tracking
+    description: "Replace IconCheck/IconX with IconUserCheck/IconUserX for user enabled status column, with green/red coloring"
+    files:
+      - path: "src/app/[locale]/(main)/admin/users/UsersView.tsx"
+        action: modified
+
+  # E2E test: remove refresh button test
+  - type: file_tracking
+    description: "Remove 'should render the refresh button' test from RightsView e2e spec since the button was removed"
+    files:
+      - path: "e2e/RightsView.spec.ts"
+        action: modified
+
+  # Translation changes
+  - type: translation
+    description: "Add new translation keys for contact page title, subject placeholder, password tooltip. Remove refresh button keys, contact person avatar alt text, and role description validation keys."
+    locales: ["de", "en"]
+    keys_added:
+      - "contactView.title"
+      - "contactView.contactForm.form.subjectPlaceholder"
+      - "usersView.addUser.passwordTooltip"
+    keys_removed:
+      - "actions.refresh"
+      - "usersView.action.refresh"
+      - "contactView.contactPersonCard.avatar.alt"
+      - "validation.roleDescription.minLength"
+    keys_changed:
+      - "contactView.contactForm.form.messagePlaceholder"
+
+  # Dependency migrations
+  - type: dependency_migration
+    package: "axios"
+    from: "1.7.9"
+    to: "1.8.2"
+    scope: package
+    reference: "https://github.com/axios/axios/releases"
+    notes: "Bump axios. No API changes required."
+
+  - type: dependency_migration
+    package: "next"
+    from: "15.1.6"
+    to: "15.2.3"
+    scope: package
+    reference: "https://github.com/vercel/next.js/releases"
+    notes: "Bump Next.js to patched version 15.2.3 to resolve vulnerability."
+
+  - type: dependency_migration
+    package: "@vitejs/plugin-react"
+    from: "4.2.1"
+    to: "4.3.4"
+    scope: package
+    reference: "https://github.com/vitejs/vite-plugin-react/releases"
+    notes: "Bump vite React plugin."
+
+  - type: dependency_migration
+    package: "vite"
+    from: "5.4.14"
+    to: "6.2.3"
+    scope: package
+    reference: "https://github.com/vitejs/vite/releases"
+    notes: "Major bump of vite from v5 to v6 to fix vulnerability. Check vite.config for any breaking changes."
+
+  - type: dependency_migration
+    package: "vitest"
+    from: "2.1.8"
+    to: "3.0.7"
+    scope: package
+    reference: "https://github.com/vitest-dev/vitest/releases"
+    notes: "Major bump of vitest from v2 to v3 to fix vulnerability. Review test config for any breaking changes."
