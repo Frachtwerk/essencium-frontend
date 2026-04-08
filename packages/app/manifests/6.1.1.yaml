@@ -1,0 +1,19 @@
+version: "6.1.1"
+from: "6.1.0"
+date: "2024-03-14"
+
+changes:
+  # Fix API URL construction in .env
+  - type: env_variable
+    description: "Fix how NEXT_PUBLIC_API_URL is constructed: remove trailing slash from NEXT_PUBLIC_API_BASE_URL and add explicit slash separator in URL template"
+    variable: "NEXT_PUBLIC_API_BASE_URL"
+    action: changed
+    default_value: "https://backend.staging.essencium.dev"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/539"
+
+  - type: env_variable
+    description: "Update NEXT_PUBLIC_API_URL template to include explicit slash between base URL and version"
+    variable: "NEXT_PUBLIC_API_URL"
+    action: changed
+    default_value: "${NEXT_PUBLIC_API_BASE_URL}/${NEXT_PUBLIC_API_VERSION}"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/539"
