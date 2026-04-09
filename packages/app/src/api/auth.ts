@@ -109,6 +109,10 @@ export function getAuthStateFromToken(token: string): UserFromToken | null {
       mobile,
       phone,
       source,
+      createdAt: null,
+      createdBy: null,
+      updatedAt: null,
+      updatedBy: null,
       roles: roles.map(name => ({
         name,
         description: '',
@@ -169,6 +173,8 @@ export function useRenewToken(): UseMutationResult<
   void
 > {
   const setAuthToken = useSetAtom(authTokenAtom)
+  const setUser = useSetAtom(userAtom)
+  const setUserRights = useSetAtom(userRightsAtom)
 
   // Token will be set in header automatically by the interceptor.
   return useMutation<TokenResponse, AxiosError, void>({
@@ -183,6 +189,12 @@ export function useRenewToken(): UseMutationResult<
     },
     onSuccess: data => {
       setAuthToken(data.token)
+
+      const userFromToken = getAuthStateFromToken(data.token)
+      if (userFromToken) {
+        setUser(userFromToken.user)
+        setUserRights(userFromToken.rights)
+      }
     },
   })
 }

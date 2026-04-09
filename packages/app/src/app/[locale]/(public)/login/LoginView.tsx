@@ -81,7 +81,6 @@ export default function LoginView(): JSX.Element {
   useEffect(() => {
     if (oauthToken) {
       setAuthToken(oauthToken)
-      localStorage.setItem('authToken', JSON.stringify(oauthToken))
 
       const authState = getAuthStateFromToken(oauthToken)
 
