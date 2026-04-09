@@ -32,7 +32,6 @@ import {
   Badge,
   Button,
   Flex,
-  MantineColor,
   Text,
   Title,
   Tooltip,
@@ -52,23 +51,14 @@ import { useTranslation } from 'react-i18next'
 
 import {
   useDeleteApiToken,
-  useGetAllApiTokensGrouped,
+  useGetAllApiTokens,
   useRevokeApiToken,
 } from '@/api'
-import dayjs from '@/utils/dayjs'
+import { formatDate, STATUS_COLORS } from '@/utils'
 
 import { CreateApiTokenModal } from '../../profile/_components/CreateApiTokenModal'
 import { TokenCreatedModal } from '../../profile/_components/TokenCreatedModal'
 
-const STATUS_COLORS: Record<ApiTokenStatus, MantineColor> = {
-  [ApiTokenStatus.ACTIVE]: 'green',
-  [ApiTokenStatus.REVOKED]: 'red',
-  [ApiTokenStatus.REVOKED_ROLE_CHANGED]: 'red',
-  [ApiTokenStatus.REVOKED_RIGHTS_CHANGED]: 'red',
-  [ApiTokenStatus.REVOKED_USER_CHANGED]: 'red',
-  [ApiTokenStatus.EXPIRED]: 'yellow',
-  [ApiTokenStatus.USER_DELETED]: 'gray',
-}
 
 const DEFAULT_PAGE_SIZE = 20
 
@@ -76,12 +66,12 @@ export default function ApiTokensAdminView(): JSX.Element {
   const { t } = useTranslation()
 
   const {
-    data: groupedTokens,
+    data: allTokens,
     isLoading,
     isFetching,
     isError,
     error,
-  } = useGetAllApiTokensGrouped()
+  } = useGetAllApiTokens()
 
   const { mutate: revokeToken } = useRevokeApiToken()
   const { mutate: deleteToken } = useDeleteApiToken()
@@ -96,8 +86,8 @@ export default function ApiTokensAdminView(): JSX.Element {
   const [sorting, setSorting] = useState<SortingState>([])
 
   const flatTokens = useMemo<ApiTokenOutput[]>(
-    () => (groupedTokens ?? []).flatMap(({ tokens }) => tokens),
-    [groupedTokens],
+    () => Object.values(allTokens ?? {}).flat(),
+    [allTokens],
   )
 
   const handleRevokeClick = useCallback(
@@ -171,8 +161,7 @@ export default function ApiTokensAdminView(): JSX.Element {
           <Text inherit>{t('apiTokensView.table.validUntil')}</Text>
         ),
         cell: info => {
-          const raw = info.getValue()
-          return raw ? dayjs(String(raw)).format('DD.MM.YYYY') : '—'
+          return formatDate(info.getValue())
         },
         enableColumnFilter: false,
         size: 130,
@@ -200,8 +189,7 @@ export default function ApiTokensAdminView(): JSX.Element {
         accessorKey: 'createdAt',
         header: () => <Text inherit>{t('apiTokensView.table.createdAt')}</Text>,
         cell: info => {
-          const raw = info.getValue()
-          return raw ? dayjs(String(raw)).format('DD.MM.YYYY') : '—'
+          return formatDate(info.getValue())
         },
         enableColumnFilter: false,
         size: 130,

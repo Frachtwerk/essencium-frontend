@@ -31,7 +31,6 @@ import {
   Center,
   Flex,
   Loader,
-  MantineColor,
   Stack,
   Text,
   Title,
@@ -49,23 +48,13 @@ import { type JSX, useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useGetApiTokens, useRevokeApiToken } from '@/api'
-import { parseSorting } from '@/utils'
-import dayjs from '@/utils/dayjs'
+import { formatDate, parseSorting, STATUS_COLORS } from '@/utils'
 
 import { CreateApiTokenModal } from './CreateApiTokenModal'
 import { TokenCreatedModal } from './TokenCreatedModal'
 
 const DEFAULT_SORTING: SortingState = [{ id: 'createdAt', desc: true }]
 
-const STATUS_COLORS: Record<ApiTokenStatus, MantineColor> = {
-  [ApiTokenStatus.ACTIVE]: 'green',
-  [ApiTokenStatus.REVOKED]: 'red',
-  [ApiTokenStatus.REVOKED_ROLE_CHANGED]: 'red',
-  [ApiTokenStatus.REVOKED_RIGHTS_CHANGED]: 'red',
-  [ApiTokenStatus.REVOKED_USER_CHANGED]: 'red',
-  [ApiTokenStatus.EXPIRED]: 'yellow',
-  [ApiTokenStatus.USER_DELETED]: 'gray',
-}
 
 export function ApiTokensSection(): JSX.Element {
   const { t } = useTranslation()
@@ -147,8 +136,7 @@ export function ApiTokensSection(): JSX.Element {
           <Text inherit>{t('apiTokensView.table.validUntil')}</Text>
         ),
         cell: info => {
-          const raw = info.getValue()
-          return raw ? dayjs(String(raw)).format('DD.MM.YYYY') : '—'
+          return formatDate(info.getValue())
         },
         size: 130,
         enableColumnFilter: false,
@@ -176,8 +164,7 @@ export function ApiTokensSection(): JSX.Element {
         accessorKey: 'createdAt',
         header: () => <Text inherit>{t('apiTokensView.table.createdAt')}</Text>,
         cell: info => {
-          const raw = info.getValue()
-          return raw ? dayjs(String(raw)).format('DD.MM.YYYY') : '—'
+          return formatDate(info.getValue())
         },
         size: 130,
         enableColumnFilter: false,
