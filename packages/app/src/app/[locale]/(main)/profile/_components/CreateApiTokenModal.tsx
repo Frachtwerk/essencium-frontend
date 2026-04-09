@@ -29,9 +29,9 @@ import {
 import { Button, Flex, Modal, Stack } from '@mantine/core'
 import { DatePickerInput } from '@mantine/dates'
 import { useAtomValue } from 'jotai'
+import { useTranslations } from 'next-intl'
 import { type JSX, useCallback, useEffect } from 'react'
 import { Controller } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
 
 import {
   useCreateApiToken,
@@ -52,7 +52,7 @@ export function CreateApiTokenModal({
   onClose,
   onCreated,
 }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const userRights = useAtomValue(userRightsAtom)
 
