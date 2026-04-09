@@ -43,7 +43,6 @@ export async function generateMetadata(
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default async function page({ params }: Props): Promise<JSX.Element> {
+export default async function page(_props: Props): Promise<JSX.Element> {
   return <ApiTokensAdminView />
 }
