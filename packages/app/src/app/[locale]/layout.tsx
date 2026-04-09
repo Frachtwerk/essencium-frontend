@@ -56,7 +56,7 @@ export default async function RootLayout(props: Props): Promise<JSX.Element> {
       <body>
         <div id="notification" />
         <TranslationProvider locale={locale} resources={resources}>
-          <Providers>{children}</Providers>
+          <Providers locale={locale}>{children}</Providers>
         </TranslationProvider>
       </body>
     </html>

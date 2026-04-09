@@ -17,11 +17,32 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './apiToken'
-export * from './formatDate'
-export * from './isBrowserEnvironment'
-export * from './mergeTranslations'
-export * from './pagination'
-export * from './parseJwt'
-export * from './parseSorting'
-export * from './withBaseStylingShowNotification'
+import { Metadata, ResolvingMetadata } from 'next'
+import type { JSX } from 'react'
+
+import initTranslations from '@/config/i18n'
+
+import ApiTokensAdminView from './ApiTokensAdminView'
+
+type Props = {
+  params: Promise<{ locale: string }>
+}
+
+export async function generateMetadata(
+  props: Props,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const params = await props.params
+  const { locale } = params
+
+  const { t } = await initTranslations(locale)
+
+  return {
+    title: t('navigation.apiTokens.label'),
+  }
+}
+
+export default async function page(): Promise<JSX.Element> {
+  return <ApiTokensAdminView />
+}

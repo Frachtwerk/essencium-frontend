@@ -17,6 +17,9 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import '@/utils/dayjs'
+
+import { DatesProvider } from '@mantine/dates'
 import { Notifications } from '@mantine/notifications'
 import type { JSX } from 'react'
 
@@ -25,15 +28,18 @@ import { QueryProvider } from '@/components/provider/queryClientProvider'
 
 type Props = {
   children: React.ReactNode
+  locale: string
 }
 
-export function Providers({ children }: Props): JSX.Element {
+export function Providers({ children, locale }: Props): JSX.Element {
   return (
     <MantineThemeProvider>
-      <QueryProvider>
-        <Notifications limit={3} />
-        {children}
-      </QueryProvider>
+      <DatesProvider settings={{ locale }}>
+        <QueryProvider>
+          <Notifications limit={3} />
+          {children}
+        </QueryProvider>
+      </DatesProvider>
     </MantineThemeProvider>
   )
 }

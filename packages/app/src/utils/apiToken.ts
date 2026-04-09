@@ -17,11 +17,15 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './apiToken'
-export * from './formatDate'
-export * from './isBrowserEnvironment'
-export * from './mergeTranslations'
-export * from './pagination'
-export * from './parseJwt'
-export * from './parseSorting'
-export * from './withBaseStylingShowNotification'
+import { ApiTokenStatus } from '@frachtwerk/essencium-types'
+import { MantineColor } from '@mantine/core'
+
+export const STATUS_COLORS: Record<ApiTokenStatus, MantineColor> = {
+  [ApiTokenStatus.ACTIVE]: 'green',
+  [ApiTokenStatus.REVOKED]: 'red',
+  [ApiTokenStatus.REVOKED_ROLE_CHANGED]: 'red',
+  [ApiTokenStatus.REVOKED_RIGHTS_CHANGED]: 'red',
+  [ApiTokenStatus.REVOKED_USER_CHANGED]: 'red',
+  [ApiTokenStatus.EXPIRED]: 'yellow',
+  [ApiTokenStatus.USER_DELETED]: 'gray',
+}

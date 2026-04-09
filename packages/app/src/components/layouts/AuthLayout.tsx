@@ -33,6 +33,7 @@ import { useDisclosure, useMediaQuery } from '@mantine/hooks'
 import { Spotlight, SpotlightActionData } from '@mantine/spotlight'
 import {
   IconHome,
+  IconKey,
   IconLanguage,
   IconMessage,
   IconSearch,
@@ -88,6 +89,7 @@ export const NAV_LINKS: NavLink[] = [
         RIGHTS.ROLE_READ,
         RIGHTS.RIGHT_READ,
         RIGHTS.TRANSLATION_READ,
+        RIGHTS.API_TOKEN_ADMIN,
       ],
     ],
     prefetch: false,
@@ -123,6 +125,14 @@ export const NAV_LINKS: NavLink[] = [
         to: '/translations',
         description: 'navigation.translations.description',
         rights: [RIGHTS.TRANSLATION_READ],
+      },
+      {
+        icon: <IconKey />,
+        color: theme.primaryColor,
+        label: 'navigation.apiTokens.label',
+        to: '/api-tokens',
+        description: 'navigation.apiTokens.description',
+        rights: [RIGHTS.API_TOKEN_ADMIN],
       },
     ],
   },

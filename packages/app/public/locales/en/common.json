@@ -26,6 +26,7 @@
   "actions": {
     "delete": "Delete",
     "cancel": "Cancel",
+    "close": "Close",
     "backToHome": "Back to home"
   },
   "navigation": {
@@ -55,6 +56,10 @@
     "logout": {
       "label": "Logout",
       "description": "Logout user"
+    },
+    "apiTokens": {
+      "label": "API Tokens",
+      "description": "Manage API tokens"
     },
     "toggleFixedNavIcon": {
       "ariaLabel": "fix navigation bar"
@@ -129,7 +134,12 @@
         }
       }
     },
-    "userNotFound": "User not found"
+    "userNotFound": "User not found",
+    "apiTokens": {
+      "title": "API Tokens",
+      "description": "Manage your API tokens for programmatic access.",
+      "empty": "No API tokens found."
+    }
   },
   "contactView": {
     "title": "Contact",
@@ -477,6 +487,53 @@
     "save": "Save",
     "cancel": "Cancel",
     "reset": "Reset"
+  },
+  "apiTokensView": {
+    "title": "API Tokens",
+    "table": {
+      "description": "Description",
+      "status": "Status",
+      "validUntil": "Valid until",
+      "rights": "Rights",
+      "createdAt": "Created at",
+      "linkedUser": "User",
+      "actions": "Actions"
+    },
+    "action": {
+      "create": "Create token",
+      "revoke": "Revoke",
+      "delete": "Delete"
+    },
+    "createModal": {
+      "title": "Create API token",
+      "description": "Description",
+      "validUntil": "Valid until",
+      "rights": "Rights",
+      "submit": "Create"
+    },
+    "tokenCreated": {
+      "title": "Token created",
+      "warning": "This token will not be shown again. Please copy it now.",
+      "copy": "Copy token",
+      "copied": "Copied!"
+    },
+    "deleteDialog": {
+      "title": "Delete token",
+      "text": "Are you sure you want to delete this token?"
+    },
+    "revokeDialog": {
+      "title": "Revoke token",
+      "text": "Are you sure you want to revoke this token?"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "REVOKED": "Revoked",
+      "REVOKED_ROLE_CHANGED": "Revoked (role changed)",
+      "REVOKED_RIGHTS_CHANGED": "Revoked (rights changed)",
+      "REVOKED_USER_CHANGED": "Revoked (user changed)",
+      "EXPIRED": "Expired",
+      "USER_DELETED": "User deleted"
+    }
   },
   "feedbackWidget": {
     "title": "Send Feedback",

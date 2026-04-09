@@ -18,6 +18,7 @@
  */
 
 export * from './api'
+export * from './apiToken'
 export * from './auth'
 export * from './contact'
 export * from './me'

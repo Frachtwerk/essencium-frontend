@@ -17,11 +17,8 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './apiToken'
-export * from './formatDate'
-export * from './isBrowserEnvironment'
-export * from './mergeTranslations'
-export * from './pagination'
-export * from './parseJwt'
-export * from './parseSorting'
-export * from './withBaseStylingShowNotification'
+import dayjs from './dayjs'
+
+export function formatDate(value: unknown): string {
+  return value ? dayjs(String(value)).format('DD.MM.YYYY') : '—'
+}

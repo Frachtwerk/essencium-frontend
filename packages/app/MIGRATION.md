@@ -1,5 +1,78 @@
 # Migrations
 
+## [Unreleased]()
+
+### Add API token management (https://github.com/Frachtwerk/essencium-frontend/pull/929)
+
+#### `packages/types/src/right.ts`
+
+- add `API_TOKEN`, `API_TOKEN_ADMIN`, and `SESSION_TOKEN_ADMIN` to the `RIGHTS` enum
+
+#### `packages/types/src/apiToken.ts`
+
+- add file with `ApiTokenOutput`, `ApiTokenInput`, `ApiTokenStatus`, `FilterObjectApiToken` types and Zod schemas
+
+#### `packages/app/src/api/apiToken.ts`
+
+- add file with API hooks: `useGetApiTokens`, `useGetApiToken`, `useCreateApiToken`, `useDeleteApiToken`, `useRevokeApiToken`, `useGetAllApiTokens`, `useGetAllApiTokensGrouped`, `useGetTokenExpirationInfo`
+
+#### `packages/app/src/api/me.ts`
+
+- rewrite `useGetMe` hook with explicit `useQuery` implementation to gate on auth token availability
+
+#### `packages/app/src/utils/dayjs.ts`
+
+- add file with dayjs locale configuration (de/en)
+
+#### `packages/app/src/app/[locale]/providers.tsx`
+
+- wrap app with Mantine `DatesProvider` for date picker locale support
+- accept `locale` prop from layout
+
+#### `packages/app/src/app/[locale]/layout.tsx`
+
+- pass `locale` prop to `Providers`
+
+#### `packages/app/src/globals.css`
+
+- add `@mantine/dates/styles.layer.css` import
+
+#### `packages/app/src/app/[locale]/(main)/profile/_components/ApiTokensSection.tsx`
+
+- add file with user token management table (create, view, revoke)
+
+#### `packages/app/src/app/[locale]/(main)/profile/_components/CreateApiTokenModal.tsx`
+
+- add file with modal for creating new API tokens
+
+#### `packages/app/src/app/[locale]/(main)/profile/_components/TokenCreatedModal.tsx`
+
+- add file with modal displaying the created token with copy functionality
+
+#### `packages/app/src/app/[locale]/(main)/profile/ProfileView.tsx`
+
+- integrate `ApiTokensSection` below profile, visible when user has `API_TOKEN` right
+
+#### `packages/app/src/app/[locale]/(main)/admin/api-tokens/ApiTokensAdminView.tsx`
+
+- add file with admin view for managing all tokens across users (revoke, delete)
+
+#### `packages/app/src/app/[locale]/(main)/admin/api-tokens/page.tsx`
+
+- add file with route page for `/admin/api-tokens`
+
+#### `packages/app/src/components/layouts/AuthLayout.tsx`
+
+- add API Tokens navigation entry under administration section (requires `API_TOKEN_ADMIN`)
+
+#### `packages/app/public/locales/de|en/common.json`
+
+- add translations for `navigation.apiTokens`, `profileView.apiTokens`, `apiTokensView`, and `actions.close`
+
+#### `packages/lib/src/theme.css`
+
+- add directional spacing utilities (`py-*`, `px-*`, `pt-*`, `pb-*`, `pl-*`, `pr-*`, `my-*`, `mx-*`, `mt-*`, `mb-*`, `ml-*`, `mr-*`) mapped to Mantine spacing tokens
+
 ## [9.5.0 (2026-03-10)]()
 
 ### Enable React Compiler (https://github.com/Frachtwerk/essencium-frontend/pull/908)
