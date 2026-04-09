@@ -85,12 +85,9 @@ export function CreateApiTokenModal({
 
   useEffect(() => {
     if (opened && expirationSeconds) {
-      setValue(
-        'validUntil',
-        dayjs().add(expirationSeconds, 'second').format('YYYY-MM-DD'),
-      )
+      setValue('validUntil', getDefaultValidUntil())
     }
-  }, [expirationSeconds, opened, setValue])
+  }, [expirationSeconds, opened, setValue, getDefaultValidUntil])
 
   const { mutate: createToken, isPending } = useCreateApiToken({
     mutationOptions: {
