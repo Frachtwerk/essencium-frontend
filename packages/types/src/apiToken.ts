@@ -65,3 +65,9 @@ export type FilterObjectApiToken = {
   status?: string
   linkedUser?: string
 }
+
+export const FORM_DEFAULTS_API_TOKEN: ApiTokenInput = {
+  description: '',
+  validUntil: null,
+  rights: [],
+}

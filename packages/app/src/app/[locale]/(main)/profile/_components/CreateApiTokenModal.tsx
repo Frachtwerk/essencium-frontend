@@ -21,7 +21,11 @@ import {
   ControlledMultiSelect,
   ControlledTextInput,
 } from '@frachtwerk/essencium-lib'
-import { ApiTokenInput, apiTokenInputSchema } from '@frachtwerk/essencium-types'
+import {
+  ApiTokenInput,
+  apiTokenInputSchema,
+  FORM_DEFAULTS_API_TOKEN,
+} from '@frachtwerk/essencium-types'
 import { Button, Flex, Modal, Stack } from '@mantine/core'
 import { DatePickerInput } from '@mantine/dates'
 import { useAtomValue } from 'jotai'
@@ -65,18 +69,16 @@ export function CreateApiTokenModal({
   const { handleSubmit, control, reset, setValue } = useZodForm({
     schema: apiTokenInputSchema,
     defaultValues: {
-      description: '',
+      ...FORM_DEFAULTS_API_TOKEN,
       validUntil: getDefaultValidUntil(),
-      rights: [],
     },
   })
 
   useEffect(() => {
     if (!opened) {
       reset({
-        description: '',
+        ...FORM_DEFAULTS_API_TOKEN,
         validUntil: getDefaultValidUntil(),
-        rights: [],
       })
     }
   }, [opened, reset, getDefaultValidUntil])
