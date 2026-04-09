@@ -164,11 +164,9 @@ describe('TablePagination.tsx', () => {
       </MantineProvider>,
     )
 
-    const pageSelect = screen.queryByLabelText(
-      'table.footer.pageSize',
-    ) as HTMLInputElement | null
+    const pageSelect = screen.queryByLabelText('table.footer.pageSize')
 
-    expect(pageSelect).toBeDefined()
+    expect(pageSelect).toBeNull()
 
     const paginationButton = screen.getByRole('button', { name: '1' })
 
