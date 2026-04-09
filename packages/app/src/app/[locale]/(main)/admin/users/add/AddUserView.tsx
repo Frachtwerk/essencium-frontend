@@ -24,8 +24,8 @@ import { UserInput, userInputSchema } from '@frachtwerk/essencium-types'
 import { Card, Flex, Text, Title } from '@mantine/core'
 import { IconUserPlus } from '@tabler/icons-react'
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import type { JSX } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import { useCreateUser, useGetAllRoles } from '@/api'
 import { useZodForm } from '@/hooks'
@@ -35,7 +35,7 @@ import { FORM_DEFAULTS_USERS_VIEW } from '../UsersView'
 export default function AddUserView(): JSX.Element {
   const router = useRouter()
 
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const { handleSubmit, control, setValue } = useZodForm({
     schema: userInputSchema,

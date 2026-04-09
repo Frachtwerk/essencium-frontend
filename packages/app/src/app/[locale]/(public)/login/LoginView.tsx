@@ -37,9 +37,9 @@ import { useMediaQuery } from '@mantine/hooks'
 import { useSetAtom } from 'jotai'
 import NextLink from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { Suspense, useEffect, useState } from 'react'
 import { type JSX } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import {
   authTokenAtom,
@@ -57,7 +57,7 @@ const OAUTH_REDIRECT_URI =
     : `${process.env.NEXT_PUBLIC_APP_URL}/login`
 
 export default function LoginView(): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const router = useRouter()
 

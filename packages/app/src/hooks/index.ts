@@ -17,6 +17,5 @@
  * along with Essencium Frontend. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export * from './useAddTranslation'
 export * from './useScheduleTokenRenewal'
 export * from './useZodForm'

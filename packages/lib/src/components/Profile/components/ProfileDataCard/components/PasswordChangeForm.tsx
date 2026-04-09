@@ -23,7 +23,7 @@ import {
   passwordChangeSchemaUser,
 } from '@frachtwerk/essencium-types'
 import { Button, Stack } from '@mantine/core'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import { type JSX, useState } from 'react'
 
 import { useZodForm } from '../../../../../hooks'
@@ -44,7 +44,7 @@ export function PasswordChangeForm({
   isLoading,
   isAdmin,
 }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const [passwordValue, setPasswordValue] = useState<string | null>(null)
 

@@ -20,8 +20,8 @@
 import { Alert, Button, Code, Flex, Modal, Text } from '@mantine/core'
 import { useClipboard } from '@mantine/hooks'
 import { IconAlertTriangle, IconCheck, IconCopy } from '@tabler/icons-react'
+import { useTranslations } from 'next-intl'
 import { type JSX } from 'react'
-import { useTranslation } from 'react-i18next'
 
 type Props = {
   opened: boolean
@@ -34,7 +34,7 @@ export function TokenCreatedModal({
   token,
   onClose,
 }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const clipboard = useClipboard({ timeout: 2000 })
 

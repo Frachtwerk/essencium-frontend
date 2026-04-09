@@ -23,7 +23,7 @@ import {
   SetPasswordInput,
 } from '@frachtwerk/essencium-types'
 import { Button, Stack } from '@mantine/core'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import type { JSX } from 'react'
 
 import { useZodForm } from '../../hooks'
@@ -34,7 +34,7 @@ type Props = {
 }
 
 export function SetPasswordForm({ handleSetPassword }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const { handleSubmit, control } = useZodForm({
     schema: setPasswordFormSchema,

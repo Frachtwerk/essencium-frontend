@@ -19,8 +19,8 @@
 
 import { PasswordStrengthRules } from '@frachtwerk/essencium-types'
 import { Popover, PopoverProps } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 import { type JSX, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import { PasswordRequirement } from './PasswordRequirement'
 
@@ -42,7 +42,7 @@ export function PasswordStrengthIndicator({
   children,
   ...popoverProps
 }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const [popoverOpened, setPopoverOpened] = useState(false)
 

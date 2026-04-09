@@ -21,7 +21,7 @@ import { Button, Center, Container, Flex, Stack } from '@mantine/core'
 import { openSpotlight } from '@mantine/spotlight'
 import { IconSearch, IconUserEdit, IconUsers } from '@tabler/icons-react'
 import Image from 'next/image'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import type { JSX } from 'react'
 
 type Props = {
@@ -33,7 +33,7 @@ export function Home({
   onClickButton,
   showUsersPageButton,
 }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   return (
     <Flex className="gap-lg h-[80vh] flex-col items-center justify-center">

@@ -42,8 +42,8 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { useAtomValue } from 'jotai'
+import { useTranslations } from 'next-intl'
 import { type JSX, useCallback, useMemo, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import {
   useGetAllRoles,
@@ -56,7 +56,7 @@ import { parseSorting } from '@/utils'
 const DEFAULT_SORTING: SortingState = [{ id: 'authority', desc: false }]
 
 export default function RightsView(): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const userRights = useAtomValue(userRightsAtom)
 

@@ -63,8 +63,8 @@ import {
 } from '@tanstack/react-table'
 import { useAtomValue } from 'jotai'
 import NextLink from 'next/link'
+import { useTranslations } from 'next-intl'
 import { type JSX, useCallback, useMemo, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import {
   useDeleteUser,
@@ -96,7 +96,7 @@ export default function UsersView(): JSX.Element {
     ? process.env.NEXT_PUBLIC_DEFAULT_USER_EMAIL
     : window?.runtimeConfig?.optional?.DEFAULT_USER_EMAIL
 
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const [deleteModalOpened, deleteModalHandlers] = useDisclosure(false)
   const [userToBeDeleted, setUserToBeDeleted] = useState<UserOutput | null>(

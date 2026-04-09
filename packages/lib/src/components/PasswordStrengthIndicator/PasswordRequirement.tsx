@@ -19,8 +19,8 @@
 
 import { Group, Text } from '@mantine/core'
 import { IconCircleCheck, IconCircleX } from '@tabler/icons-react'
+import { useTranslations } from 'next-intl'
 import type { JSX } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import { cn } from '../../utils'
 
@@ -30,7 +30,7 @@ type Props = {
 }
 
 export function PasswordRequirement({ meets, label }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const textColorClasses = cn(
     'transition-colors duration-500',

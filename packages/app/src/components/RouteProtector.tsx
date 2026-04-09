@@ -5,11 +5,11 @@ import { NavLink } from '@frachtwerk/essencium-types'
 import { Box, Button, Flex, Title } from '@mantine/core'
 import { useAtomValue } from 'jotai'
 import { usePathname, useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import type { JSX } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import { userRightsAtom } from '@/api'
-import { i18nConfig } from '@/config'
+import { routing } from '@/i18n/routing'
 
 import { AuthLayout, NAV_LINKS } from './layouts'
 
@@ -35,7 +35,7 @@ export function RouteProtector({
 
   const router = useRouter()
 
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const { locale } = params
 
@@ -72,7 +72,7 @@ export function RouteProtector({
    * i.e. /base-data/countries
    */
   const pathnameWithoutLocale =
-    locale === i18nConfig.defaultLocale
+    locale === routing.defaultLocale
       ? pathname
       : `/${pathname.split(`/${locale}/`)[1]}`
 

@@ -27,10 +27,10 @@ import {
 import { ActionIcon, Group, Stack, TextInput } from '@mantine/core'
 import { IconBackspace, IconDeviceFloppy } from '@tabler/icons-react'
 import { useAtomValue } from 'jotai'
+import { useTranslations } from 'next-intl'
 import type { JSX } from 'react'
 import { useEffect } from 'react'
 import { Controller } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
 
 import { userRightsAtom } from '@/api'
 import { useZodForm } from '@/hooks'
@@ -50,7 +50,7 @@ export function TranslationChangeForm({
   updateTranslation,
   deleteTranslation,
 }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const userRights = useAtomValue(userRightsAtom)
 
@@ -62,7 +62,7 @@ export function TranslationChangeForm({
   } = useZodForm({
     schema: changeTranslationSchema,
     defaultValues: {
-      translation: '',
+      translation: currentValue,
     },
   })
 
@@ -84,6 +84,7 @@ export function TranslationChangeForm({
     })
   }
 
+  // Keep form in sync when currentValue changes (e.g., after save)
   useEffect(() => {
     resetAndPrefillForm({ translation: currentValue })
   }, [currentValue, resetAndPrefillForm])
@@ -113,7 +114,7 @@ export function TranslationChangeForm({
           {userRightUpdate ? (
             <ActionIcon
               type="submit"
-              disabled={!fieldValue.length}
+              disabled={!fieldValue?.length}
               aria-label={t('translationsView.form.save')}
             >
               <IconDeviceFloppy className="size-5" aria-hidden />

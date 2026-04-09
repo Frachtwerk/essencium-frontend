@@ -44,8 +44,8 @@ import {
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
+import { useTranslations } from 'next-intl'
 import { type JSX, useCallback, useMemo, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import { useGetApiTokens, useRevokeApiToken } from '@/api'
 import { parseSorting } from '@/utils'
@@ -58,7 +58,7 @@ import { TokenCreatedModal } from './TokenCreatedModal'
 const DEFAULT_SORTING: SortingState = [{ id: 'createdAt', desc: true }]
 
 export function ApiTokensSection(): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const [activePage, setActivePage] = useState(1)
   const [pageSize, setPageSize] = useState(10)

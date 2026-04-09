@@ -20,7 +20,7 @@
 import { ContactFormType } from '@frachtwerk/essencium-types'
 import { Button, Card, Group, Stack, Title } from '@mantine/core'
 import { IconSend } from '@tabler/icons-react'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import type { JSX } from 'react'
 import { Control } from 'react-hook-form'
 
@@ -31,7 +31,7 @@ type Props = {
 }
 
 export function ContactForm({ control }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   return (
     <Card withBorder role="form" className="p-lg rounded-md shadow-sm">

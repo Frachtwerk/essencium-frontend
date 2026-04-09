@@ -20,7 +20,7 @@
 import { PaginatedResponse } from '@frachtwerk/essencium-types'
 import { Flex, Pagination, PaginationProps } from '@mantine/core'
 import { Table as TanstackTable } from '@tanstack/react-table'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import { type JSX, useEffect } from 'react'
 
 import { SearchableSelect } from './SearchableSelect'
@@ -51,7 +51,7 @@ export function TablePagination<T>({
   pageSizeOptions = ['10', '20', '30', '40', '50', '100'],
   ...props
 }: Props<T>): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   useEffect(() => {
     if (!fixedTablePageSize) return

@@ -33,7 +33,7 @@ import { AxiosError } from 'axios'
 import { atom, useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 import { useRouter } from 'next/navigation'
-import { useTranslation } from 'react-i18next'
+import { useTranslations } from 'next-intl'
 
 import { api } from './api'
 
@@ -55,7 +55,7 @@ export function useCreateToken(): UseMutationResult<
   AxiosError,
   LoginCredentials
 > {
-  const { t } = useTranslation()
+  const t = useTranslations()
   const setAuthToken = useSetAtom(authTokenAtom)
 
   const mutation = useMutation<TokenResponse, AxiosError, LoginCredentials>({
@@ -122,7 +122,7 @@ export function useInvalidateToken(): UseMutationResult<
   UserOutput['id'],
   unknown
 > {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const mutation = useMutation<null, AxiosError, UserOutput['id']>({
     mutationKey: ['useInvalidateToken'],

@@ -30,7 +30,7 @@ import {
 import { useFocusWithin } from '@mantine/hooks'
 import { IconLogout, IconPinFilled, IconPinnedOff } from '@tabler/icons-react'
 import NextLink from 'next/link'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import {
   Dispatch,
   type JSX,
@@ -72,7 +72,7 @@ export function NavBar({
   className,
   ...props
 }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const fixedNavRef = useRef(fixedNav)
   const isMobileRef = useRef(isMobile)
@@ -149,7 +149,7 @@ export function NavBar({
               color="text"
               className="mt-xs mr-sm"
               onClick={() => setFixedNav(fixed => !fixed)}
-              aria-label={t('navigation.toggleFixedNavIcon.arialabel')}
+              aria-label={t('navigation.toggleFixedNavIcon.ariaLabel')}
             >
               {fixedNav ? (
                 <IconPinFilled size={20} />

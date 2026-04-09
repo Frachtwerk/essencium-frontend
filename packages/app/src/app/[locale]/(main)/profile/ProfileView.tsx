@@ -28,8 +28,8 @@ import { PasswordChange, RIGHTS, UserUpdate } from '@frachtwerk/essencium-types'
 import { Center, Divider } from '@mantine/core'
 import { useAtomValue, useSetAtom } from 'jotai'
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { type JSX, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import {
   isSsoAtom,
@@ -44,7 +44,7 @@ import {
 import { ApiTokensSection } from './_components/ApiTokensSection'
 
 export default function ProfileView(): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const router = useRouter()
 

@@ -36,7 +36,7 @@ import {
 } from '@tabler/icons-react'
 import { Column, flexRender, Header } from '@tanstack/react-table'
 import dayjs from 'dayjs'
-import { useTranslation } from 'next-i18next'
+import { useLocale, useTranslations } from 'next-intl'
 import { type JSX } from 'react'
 
 import { cn } from '../../../utils'
@@ -84,7 +84,8 @@ export function FilterInput<T>({
   filterData,
   filterValue,
 }: InputProps<T>): JSX.Element | null {
-  const { t, i18n } = useTranslation()
+  const t = useTranslations()
+  const locale = useLocale()
   const filterType = getFilterType(header.column, filterData)
   const filterOptions = filterData?.[header.column.id] || []
   // Helper to map filter options to Mantine format
@@ -160,7 +161,7 @@ export function FilterInput<T>({
     case TABLEFILTERTYPE.MONTH_PICKER:
       return (
         <MonthPickerInput
-          locale={i18n.language}
+          locale={locale}
           className="my-xs"
           placeholder={t('table.filter.placeholder')}
           valueFormat="MM.YYYY"

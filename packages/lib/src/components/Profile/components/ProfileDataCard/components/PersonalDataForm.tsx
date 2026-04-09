@@ -23,7 +23,7 @@ import {
   userUpdateSchema,
 } from '@frachtwerk/essencium-types'
 import { Button, Grid } from '@mantine/core'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import { type JSX, useEffect } from 'react'
 
 import { useZodForm } from '../../../../../hooks'
@@ -42,7 +42,7 @@ export function PersonalDataForm({
   handleUpdate,
   isLoading,
 }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const {
     handleSubmit,

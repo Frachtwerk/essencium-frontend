@@ -21,9 +21,8 @@ import { NavLink } from '@frachtwerk/essencium-types'
 import { NavLink as MantineNavLink } from '@mantine/core'
 import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useTranslation } from 'next-i18next'
+import { useLocale, useTranslations } from 'next-intl'
 import type { JSX } from 'react'
-import { getI18n } from 'react-i18next'
 
 import { hasRequiredRights } from '../../../utils'
 
@@ -42,9 +41,9 @@ export function NavLinks({
   isMobile,
   handleOpenNav,
 }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
-  const currentLocale = getI18n().language
+  const currentLocale = useLocale()
 
   const pathname = usePathname().replace(`/${currentLocale}`, '')
 

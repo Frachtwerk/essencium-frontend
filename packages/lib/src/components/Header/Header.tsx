@@ -28,8 +28,8 @@ import {
   Group,
   useMantineTheme,
 } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 import type { JSX } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import { cn } from '../../utils'
 import { SearchBar, ThemeSelector, UserMenu } from './components'
@@ -49,7 +49,7 @@ export function Header({
   className,
   ...props
 }: Props): JSX.Element {
-  const { t } = useTranslation()
+  const t = useTranslations()
 
   const theme = useMantineTheme()
 
