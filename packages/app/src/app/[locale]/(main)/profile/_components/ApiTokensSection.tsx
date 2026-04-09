@@ -48,13 +48,14 @@ import { type JSX, useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useGetApiTokens, useRevokeApiToken } from '@/api'
-import { formatDate, parseSorting, STATUS_COLORS } from '@/utils'
+import { parseSorting } from '@/utils'
+import { STATUS_COLORS } from '@/utils/apiToken'
+import { formatDate } from '@/utils/formatDate'
 
 import { CreateApiTokenModal } from './CreateApiTokenModal'
 import { TokenCreatedModal } from './TokenCreatedModal'
 
 const DEFAULT_SORTING: SortingState = [{ id: 'createdAt', desc: true }]
-
 
 export function ApiTokensSection(): JSX.Element {
   const { t } = useTranslation()

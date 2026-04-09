@@ -49,16 +49,12 @@ import {
 import { type JSX, useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import {
-  useDeleteApiToken,
-  useGetAllApiTokens,
-  useRevokeApiToken,
-} from '@/api'
-import { formatDate, STATUS_COLORS } from '@/utils'
+import { useDeleteApiToken, useGetAllApiTokens, useRevokeApiToken } from '@/api'
+import { STATUS_COLORS } from '@/utils/apiToken'
+import { formatDate } from '@/utils/formatDate'
 
 import { CreateApiTokenModal } from '../../profile/_components/CreateApiTokenModal'
 import { TokenCreatedModal } from '../../profile/_components/TokenCreatedModal'
-
 
 const DEFAULT_PAGE_SIZE = 20
 

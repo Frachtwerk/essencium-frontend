@@ -43,6 +43,6 @@ export async function generateMetadata(
   }
 }
 
-export default async function page(_props: Props): Promise<JSX.Element> {
+export default async function page(): Promise<JSX.Element> {
   return <ApiTokensAdminView />
 }
