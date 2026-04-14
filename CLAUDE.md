@@ -19,6 +19,10 @@ Multiple projects are built on top of this repo. They install `essencium-lib` an
 
 When this repo releases a new version, downstream projects need to migrate. Migration manifests in `packages/app/manifests/` describe what changed per release. The `/author-migration` skill (in `.claude/skills/`) helps generate these manifests. A separate [migration plugin](https://github.com/Frachtwerk/essencium-frontend-migration-plugin) helps downstream projects apply the changes.
 
+## Release tags
+
+Release tags follow the pattern `essencium-app-vX.Y.Z` (e.g., `essencium-app-v9.5.0`).
+
 ## Commands
 
 - `pnpm build` — Build all packages

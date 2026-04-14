@@ -106,7 +106,7 @@ Check `.env*` files for changes:
 git diff <previous-tag>..<current-ref> -- packages/app/.env*
 ```
 
-Document each added, removed, or changed variable with its name and whether it is required.
+Document each added, removed, or changed variable with its name, whether it is required, and optionally a default value (from `.env.example` or the `.env` file in the diff). The `default` field is recommended wherever a sensible default exists; omit it when the value is project-specific.
 
 #### 3e. `new_file` — Newly added files
 
@@ -188,12 +188,13 @@ changes:                 # Array of change entries
   variables:
     - name: "VARIABLE_NAME"
       required: true | false
+      default: "optional-default-value"  # optional — if present, the migration plugin uses this as the initial value
 ```
 
 #### Key rules for the manifest
 
 - **File paths are ALWAYS relative to the app package root** — use `src/...` not `packages/app/src/...`. Strip the `packages/app/` prefix from all paths.
-- **PR links** should be extracted from commit messages where possible.
+- **PR links** should be included wherever a PR exists. Omit only for changes that span multiple PRs or were direct pushes without a PR.
 - **`scope: project_wide`** on dependency_migration means downstream code using that library may need changes. **`scope: package`** means just bumping the version is sufficient.
 - **Group related changes** — if multiple files were changed in the same PR/feature, put them in a single `file_tracking` entry with multiple files.
 - **Order changes** by type: infrastructure first, then dependency_migration (major/project_wide before minor/package), then new_file, file_removal, file_tracking, translation, env_variable.
