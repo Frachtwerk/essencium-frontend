@@ -1,0 +1,38 @@
+version: "9.4.5"
+from: "9.4.4"
+date: "2025-09-22"
+
+changes:
+  # Dependency updates — CVE fixes for axios and vite
+  - type: dependency_migration
+    package: "axios"
+    from: "1.8.2"
+    to: "1.12.0"
+    scope: package
+    reference: "https://github.com/axios/axios/releases"
+    notes: "Bump axios to resolve CVE. No API changes required."
+
+  - type: dependency_migration
+    package: "vite"
+    from: "6.2.7"
+    to: "6.3.6"
+    scope: package
+    reference: "https://github.com/vitejs/vite/releases"
+    notes: "Bump vite to resolve CVE. No config changes required."
+
+  # Accessibility improvement in RightsView
+  - type: file_tracking
+    description: "Improve accessibility of rights view checkboxes: add aria-label, simplify conditional rendering by using disabled prop instead of separate if-branch"
+    files:
+      - path: "src/app/[locale]/(main)/admin/rights/RightsView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/867"
+
+  # Translation keys added for checkbox aria-labels
+  - type: translation
+    description: "Add aria-label translation key for rights view checkboxes"
+    locales: ["de", "en"]
+    keys_added:
+      - "rightsView.table.checkbox"
+    keys_removed: []
+    keys_changed: []

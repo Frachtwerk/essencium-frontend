@@ -1,0 +1,61 @@
+version: "9.3.0"
+from: "9.2.0"
+date: "2025-07-11"
+
+changes:
+  # Implement refresh token logic
+  - type: file_tracking
+    description: "Implement refresh token logic: add useRenewToken API call, move token storage into onSuccess callback, add useScheduleTokenRenewal hook to AuthLayout"
+    files:
+      - path: "src/api/auth.ts"
+        action: modified
+      - path: "src/api/api.ts"
+        action: modified
+      - path: "src/app/[locale]/(public)/login/LoginView.tsx"
+        action: modified
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+      - path: "src/hooks/index.ts"
+        action: modified
+      - path: "src/utils/index.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/814"
+
+  - type: new_file
+    path: "src/hooks/useScheduleTokenRenewal.ts"
+    description: "Add useScheduleTokenRenewal hook for token renewal"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/814"
+
+  - type: new_file
+    path: "src/utils/parseJwt.ts"
+    description: "Add parseJwt utility for decoding JWT tokens"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/814"
+
+  # E2E test infrastructure: configure playwright baseUrl
+  - type: infrastructure
+    description: "Configure playwright baseURL to use BASE_URL, simplify e2e test URLs to relative paths"
+    files:
+      - path: "playwright.config.ts"
+        action: modified
+      - path: "playwright/auth.setup.ts"
+        action: modified
+      - path: "playwright/lang.setup.ts"
+        action: modified
+      - path: "e2e/HomeView.spec.ts"
+        action: modified
+      - path: "e2e/LoginView.spec.ts"
+        action: modified
+      - path: "e2e/NavBar.spec.ts"
+        action: modified
+      - path: "e2e/ProfileView.spec.ts"
+        action: modified
+      - path: "e2e/RightsView.spec.ts"
+        action: modified
+      - path: "e2e/RolesView.spec.ts"
+        action: modified
+      - path: "e2e/TranslationsView.spec.ts"
+        action: modified
+      - path: "e2e/UsersView.spec.ts"
+        action: modified
+      - path: "e2e/title.spec.ts"
+        action: modified

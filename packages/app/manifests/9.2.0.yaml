@@ -1,0 +1,140 @@
+version: "9.2.0"
+from: "9.1.0"
+date: "2025-06-23"
+
+changes:
+  # Dependency updates — Mantine 7 to 8 (major)
+  - type: dependency_migration
+    package: "@mantine/core"
+    from: "7.15.3"
+    to: "8.0.1"
+    scope: project_wide
+    reference: "https://mantine.dev/changelog/8-0-0/"
+    notes: "Major version bump of Mantine. Review Mantine 8 migration guide for breaking changes."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/803"
+
+  - type: dependency_migration
+    package: "@mantine/dates"
+    from: "7.15.3"
+    to: "8.0.1"
+    scope: project_wide
+    reference: "https://mantine.dev/changelog/8-0-0/"
+    notes: "Major version bump aligned with @mantine/core."
+
+  - type: dependency_migration
+    package: "@mantine/hooks"
+    from: "7.15.3"
+    to: "8.0.1"
+    scope: project_wide
+    reference: "https://mantine.dev/changelog/8-0-0/"
+    notes: "Major version bump aligned with @mantine/core."
+
+  - type: dependency_migration
+    package: "@mantine/modals"
+    from: "7.15.3"
+    to: "8.0.1"
+    scope: project_wide
+    reference: "https://mantine.dev/changelog/8-0-0/"
+    notes: "Major version bump aligned with @mantine/core."
+
+  - type: dependency_migration
+    package: "@mantine/notifications"
+    from: "7.15.3"
+    to: "8.0.1"
+    scope: project_wide
+    reference: "https://mantine.dev/changelog/8-0-0/"
+    notes: "Major version bump aligned with @mantine/core."
+
+  - type: dependency_migration
+    package: "@mantine/spotlight"
+    from: "7.15.3"
+    to: "8.0.1"
+    scope: project_wide
+    reference: "https://mantine.dev/changelog/8-0-0/"
+    notes: "Major version bump aligned with @mantine/core."
+
+  - type: dependency_migration
+    package: "react-window"
+    from: null
+    to: "1.8.11"
+    scope: package
+    reference: "https://github.com/bvaughn/react-window"
+    notes: "New dependency added for virtualized lists."
+
+  # Infrastructure: pnpm 9 to 10, Next.js standalone output
+  - type: infrastructure
+    description: "Upgrade pnpm from v9 to v10 and set volta pnpm to 10.10.0"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/785"
+
+  - type: infrastructure
+    description: "Add 'output: standalone' to next.config.js for Docker support"
+
+  # Simplify form inputs — remove formState prop
+  - type: file_tracking
+    description: "Remove formState prop from UserForm and Contact components; use controlled input components"
+    files:
+      - path: "src/app/[locale]/(main)/admin/users/[id]/UpdateUserView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/users/add/AddUserView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/contact/ContactView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/798"
+
+  # Fix roles filter in users view
+  - type: file_tracking
+    description: "Load all roles using useGetRoles instead of useGetUsers for the roles filter; implement TABLEFILTERTYPE.MULTI_SELECT for roles column"
+    files:
+      - path: "src/app/[locale]/(main)/admin/users/UsersView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/795"
+
+  # Fix SSO button image display in Firefox
+  - type: file_tracking
+    description: "Fix SSO button image not displayed in Firefox: rename width/height props to w/h"
+    files:
+      - path: "src/app/[locale]/(public)/login/LoginView.tsx"
+        action: modified
+
+  # Fix SetPassword height
+  - type: file_tracking
+    description: "Remove fixed height from SetPassword card"
+    files:
+      - path: "src/app/[locale]/(public)/set-password/SetPassword.module.css"
+        action: modified
+
+  # Restore Switch styling for Mantine 8
+  - type: file_tracking
+    description: "Restore previous Switch styling by disabling withThumbIndicator in mantine theme config"
+    files:
+      - path: "src/config/mantine.ts"
+        action: modified
+
+  # E2E test improvements
+  - type: file_tracking
+    description: "Fix and improve e2e tests: update URLs, add explicit waits for API responses, skip flaky tests, update assertions"
+    files:
+      - path: "e2e/HomeView.spec.ts"
+        action: modified
+      - path: "e2e/LoginView.spec.ts"
+        action: modified
+      - path: "e2e/NavBar.spec.ts"
+        action: modified
+      - path: "e2e/ProfileView.spec.ts"
+        action: modified
+      - path: "e2e/RolesView.spec.ts"
+        action: modified
+      - path: "e2e/UsersView.spec.ts"
+        action: modified
+      - path: "e2e/title.spec.ts"
+        action: modified
+
+  # Translation changes
+  - type: translation
+    description: "Add translation keys for feedback min length error and table select nothingFound"
+    locales: ["de", "en"]
+    keys_added:
+      - "table.select.nothingFound"
+      - "feedbackWidget.minLengthError"
+    keys_removed: []
+    keys_changed: []

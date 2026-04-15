@@ -1,0 +1,22 @@
+version: "9.0.1"
+from: "9.0.0"
+date: "2025-04-22"
+
+changes:
+  # Dependency updates
+  - type: dependency_migration
+    package: "vite"
+    from: "6.2.5"
+    to: "6.2.6"
+    scope: package
+    reference: "https://github.com/vitejs/vite/releases"
+    notes: "Bump vite to resolve vulnerability."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/781"
+
+  # Fix sorting by name of user table
+  - type: file_tracking
+    description: "Fix sorting by name of user table: change accessorKey from 'name' to 'firstName'"
+    files:
+      - path: "src/app/[locale]/(main)/admin/users/UsersView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/772"

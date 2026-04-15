@@ -1,0 +1,89 @@
+version: "7.10.0"
+from: "7.9.1"
+date: "2025-01-23"
+
+changes:
+  # Rights-based home page buttons
+  - type: file_tracking
+    description: "Show users page button on home page only when user has USER_READ right"
+    files:
+      - path: "src/app/[locale]/(main)/HomeView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/716"
+    notes: "HomeView now checks for RIGHTS.USER_READ and passes showUsersPageButton prop to Home component."
+
+  # Fix role name display in RightsView
+  - type: file_tracking
+    description: "Display actual role name instead of translation key in RightsView table header"
+    files:
+      - path: "src/app/[locale]/(main)/admin/rights/RightsView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/718"
+    notes: "Changed header from t('rightsView.table.${role.name}') to role.name directly."
+
+  # Prefetch option for nav links
+  - type: file_tracking
+    description: "Add option to stop prefetching on nav links and set prefetch: false for admin route"
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+    notes: "NavLink type now supports optional prefetch property. Administration nav link set to prefetch: false."
+
+  # Mobile responsiveness improvements
+  - type: file_tracking
+    description: "Improve mobile responsiveness: auto-fold navbar, adjust footer height, add overflow to AppShellMain"
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+      - path: "src/components/layouts/AuthLayout.module.css"
+        action: modified
+    notes: "Navbar now auto-folds on mobile. Footer height adjusts for mobile (90px vs 60px). AppShellMain gets overflow: auto. Added handleOpenNav prop to NavBar."
+
+  # Dependency updates
+  - type: dependency_migration
+    package: "@fortawesome/fontawesome-svg-core"
+    from: "6.3.0"
+    to: "6.7.2"
+    scope: package
+    reference: "https://github.com/FortAwesome/Font-Awesome/releases"
+    notes: "Minor bump for Font Awesome SVG core."
+
+  - type: dependency_migration
+    package: "@fortawesome/free-solid-svg-icons"
+    from: "6.3.0"
+    to: "6.7.2"
+    scope: package
+    reference: "https://github.com/FortAwesome/Font-Awesome/releases"
+    notes: "Minor bump for Font Awesome solid icons, aligned with core."
+
+  - type: dependency_migration
+    package: "@fortawesome/react-fontawesome"
+    from: "0.2.0"
+    to: "0.2.2"
+    scope: package
+    reference: "https://github.com/FortAwesome/react-fontawesome/releases"
+    notes: "Patch bump for Font Awesome React component."
+
+  - type: dependency_migration
+    package: "next"
+    from: "15.1.4"
+    to: "15.1.6"
+    scope: package
+    reference: "https://github.com/vercel/next.js/releases"
+    notes: "Patch bump for Next.js."
+
+  - type: dependency_migration
+    package: "typescript"
+    from: "5.7.2"
+    to: "5.7.3"
+    scope: package
+    reference: "https://github.com/microsoft/TypeScript/releases"
+    notes: "Patch bump for TypeScript."
+
+  - type: dependency_migration
+    package: "vite"
+    from: "5.4.11"
+    to: "5.4.14"
+    scope: package
+    reference: "https://github.com/vitejs/vite/releases"
+    notes: "Patch bump for vite."

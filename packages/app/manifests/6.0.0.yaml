@@ -1,0 +1,178 @@
+version: "6.0.0"
+from: "5.0.0"
+date: "2024-02-27"
+
+changes:
+  # Mantine v6 -> v7 migration (major version bump)
+  - type: dependency_migration
+    package: "@mantine/core"
+    from: "6.0.2"
+    to: "7.5.2"
+    scope: project_wide
+    reference: "https://mantine.dev/changelog/7-0-0/"
+    notes: "Major migration to Mantine v7. Requires restructuring AppShell, Spotlight, theme object, and removal of ColorSchemeProvider."
+
+  - type: dependency_migration
+    package: "@mantine/dates"
+    from: "6.0.2"
+    to: "7.5.2"
+    scope: project_wide
+    reference: "https://mantine.dev/changelog/7-0-0/"
+    notes: "Mantine v7 migration — dates package."
+
+  - type: dependency_migration
+    package: "@mantine/hooks"
+    from: "6.0.2"
+    to: "7.5.2"
+    scope: project_wide
+    reference: "https://mantine.dev/changelog/7-0-0/"
+    notes: "Mantine v7 migration — hooks package."
+
+  - type: dependency_migration
+    package: "@mantine/modals"
+    from: "6.0.2"
+    to: "7.5.2"
+    scope: project_wide
+    reference: "https://mantine.dev/changelog/7-0-0/"
+    notes: "Mantine v7 migration — modals package."
+
+  - type: dependency_migration
+    package: "@mantine/notifications"
+    from: "6.0.2"
+    to: "7.5.2"
+    scope: project_wide
+    reference: "https://mantine.dev/changelog/7-0-0/"
+    notes: "Mantine v7 migration — notifications package. NotificationProps renamed to NotificationData."
+
+  - type: dependency_migration
+    package: "@mantine/spotlight"
+    from: "6.0.2"
+    to: "7.5.2"
+    scope: project_wide
+    reference: "https://mantine.dev/changelog/7-0-0/"
+    notes: "Mantine v7 migration — SpotlightProvider replaced by Spotlight component, SpotlightAction renamed to SpotlightActionData."
+
+  - type: dependency_migration
+    package: "@mantine/next"
+    from: "6.0.2"
+    to: "6.0.21"
+    scope: package
+    reference: "https://mantine.dev/guides/next/"
+    notes: "Patch bump for Mantine Next.js integration."
+
+  - type: dependency_migration
+    package: "@tanstack/react-table"
+    from: "8.7.9"
+    to: "8.12.0"
+    scope: package
+    reference: "https://github.com/TanStack/table/releases"
+    notes: "Minor version bump for react-table. No breaking API changes."
+
+  - type: dependency_migration
+    package: "postcss-preset-mantine"
+    from: null
+    to: "1.12.3"
+    scope: project_wide
+    reference: "https://mantine.dev/styles/postcss-preset/"
+    notes: "New devDependency required by Mantine v7 for PostCSS-based styling."
+
+  # PostCSS config for Mantine v7
+  - type: infrastructure
+    description: "Add PostCSS config file required by Mantine v7 with postcss-preset-mantine and breakpoint variables"
+    files:
+      - path: "postcss.config.cjs"
+        action: added
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/496"
+
+  # _app.tsx — theme and provider restructuring for Mantine v7
+  - type: file_tracking
+    description: "Restructure _app.tsx for Mantine v7: import CSS styles, replace ColorSchemeProvider with MantineProvider, use createTheme(), replace ColorScheme type with MantineColorScheme, move theme config outside JSX"
+    files:
+      - path: "src/pages/_app.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/496"
+
+  # _document.tsx — add ColorSchemeScript
+  - type: file_tracking
+    description: "Add ColorSchemeScript to _document.tsx for Mantine v7 color scheme support with Next.js"
+    files:
+      - path: "src/pages/_document.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/496"
+
+  # AuthLayout — new AppShell structure and Spotlight API
+  - type: file_tracking
+    description: "Migrate AuthLayout to Mantine v7 AppShell (header/footer/navbar as props to config objects), replace SpotlightProvider with Spotlight component, update SpotlightAction to SpotlightActionData"
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/496"
+
+  # Rights view — use Text inherit prop
+  - type: file_tracking
+    description: "Use 'inherit' prop on Text components in rights view for table content, replace deprecated 'color' prop with 'c'"
+    files:
+      - path: "src/pages/rights/index.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/496"
+
+  # Roles view — Mantine v7 styling changes
+  - type: file_tracking
+    description: "Migrate roles view to Mantine v7: use Text inherit prop, replace sx with individual style props on Badge, replace Loader with LoadingSpinner, add color prop to action icons"
+    files:
+      - path: "src/pages/roles/index.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/496"
+
+  # Translations view — Text inherit prop
+  - type: file_tracking
+    description: "Use 'inherit' prop on Text component in translations view title"
+    files:
+      - path: "src/pages/translations/index.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/496"
+
+  # Set password view — replace deprecated align prop
+  - type: file_tracking
+    description: "Replace deprecated 'align' prop with 'ta' (text-align) on Title component in set-password view"
+    files:
+      - path: "src/pages/set-password/index.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/496"
+
+  # Profile view — use LoadingSpinner component
+  - type: file_tracking
+    description: "Replace inline Loader with LoadingSpinner component in profile view"
+    files:
+      - path: "src/pages/profile/index.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/495"
+
+  # Users view — CSS module and Mantine v7 prop updates
+  - type: file_tracking
+    description: "Migrate users view to Mantine v7: replace inline styles with CSS module classes, use Text inherit prop, remove useMantineTheme/useMantineColorScheme usage"
+    files:
+      - path: "src/pages/users/index.tsx"
+        action: modified
+      - path: "src/pages/users/users.module.css"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/496"
+
+  # Notification utility — update Mantine v7 types
+  - type: file_tracking
+    description: "Update notification utility to use NotificationData type instead of NotificationProps (Mantine v7 rename)"
+    files:
+      - path: "src/utils/withBaseStylingShowNotification.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/496"
+
+  # New files
+  - type: new_file
+    description: "Add CSS module for users page with Mantine v7 dark mode mixins and layout classes"
+    path: "src/pages/users/users.module.css"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/496"
+
+  - type: new_file
+    description: "Add PostCSS config for Mantine v7 preset and breakpoint variables"
+    path: "postcss.config.cjs"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/496"

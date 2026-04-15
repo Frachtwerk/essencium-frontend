@@ -1,0 +1,104 @@
+version: "7.3.0"
+from: "7.2.0"
+date: "2024-08-06"
+
+changes:
+  # Dependency updates
+  - type: dependency_migration
+    package: "@playwright/test"
+    from: "^1.44.1"
+    to: "^1.45.0"
+    scope: package
+    reference: "https://github.com/microsoft/playwright/releases"
+    notes: "Minor Playwright bump."
+
+  # Infrastructure: upgrade to pnpm 9
+  - type: infrastructure
+    description: "Upgrade pnpm engine requirement from 8 to 9 and update volta config from pnpm 8.14.1 to 9.4.0 and Node from 20.11.1 to 20.15.0"
+    files:
+      - path: "package.json"
+        action: modified
+
+  # Feature: refactor to app router usage
+  - type: file_tracking
+    description: "Begin refactoring from Next.js pages router patterns toward app router usage: use next/router for locale-aware navigation, use useAtomValue for user atom instead of localStorage"
+    files:
+      - path: "src/pages/_app.tsx"
+        action: modified
+      - path: "src/pages/index.tsx"
+        action: modified
+
+  # Bug fix: apply user locale without unnecessary re-renders
+  - type: file_tracking
+    description: "Fix user locale application to avoid unnecessary re-renders by checking router.locale against user.locale before pushing"
+    files:
+      - path: "src/pages/_app.tsx"
+        action: modified
+
+  # Refactor: pass arbitrary key-value pairs to FeedbackWidget
+  - type: file_tracking
+    description: "Refactor feedback API endpoint to support arbitrary additional key-value pairs in feedback email; format email text dynamically"
+    files:
+      - path: "src/pages/api/feedback.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/604"
+
+  # Refactor: move hasRequiredRights to lib, remove local copy
+  - type: file_removal
+    description: "Remove local hasRequiredRights utility in favor of importing from @frachtwerk/essencium-lib"
+    path: "src/utils/hasRequiredRights.ts"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/598"
+
+  # Refactor: update imports of hasRequiredRights across pages
+  - type: file_tracking
+    description: "Update imports of hasRequiredRights from local utils to @frachtwerk/essencium-lib in rights, roles, users views and RouteProtector"
+    files:
+      - path: "src/pages/rights/index.tsx"
+        action: modified
+      - path: "src/pages/roles/index.tsx"
+        action: modified
+      - path: "src/pages/users/index.tsx"
+        action: modified
+      - path: "src/components/RouteProtector.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/598"
+
+  # Refactor: remove FeedbackWidget from AuthLayout
+  - type: file_tracking
+    description: "Remove FeedbackWidget rendering from AuthLayout (moved elsewhere)"
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+
+  # Refactor: profile page useEffect for setUser
+  - type: file_tracking
+    description: "Wrap setUser call in useEffect to avoid setting state during render in profile view; remove router.push on locale change from profile update handler"
+    files:
+      - path: "src/pages/profile/index.tsx"
+        action: modified
+
+  # Refactor: pass onClickButton handler to Home component
+  - type: file_tracking
+    description: "Pass router.push-based onClickButton handler to Home component for navigation"
+    files:
+      - path: "src/pages/index.tsx"
+        action: modified
+
+  # Infrastructure: fix E2E tests
+  - type: infrastructure
+    description: "Fix E2E tests for roles view (add/edit/delete role test) and users view (updated selectors)"
+    files:
+      - path: "e2e/RolesView.spec.ts"
+        action: modified
+      - path: "e2e/UsersView.spec.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/607"
+
+  # Translation keys added
+  - type: translation
+    description: "Add aria-label translation key for feedback widget open button"
+    locales: ["de", "en"]
+    keys_added:
+      - "feedbackWidget.openButton.ariaLabel"
+    keys_removed: []
+    keys_changed: []

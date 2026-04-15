@@ -1,0 +1,67 @@
+version: "7.9.0"
+from: "7.8.0"
+date: "2024-12-30"
+
+changes:
+  # New translation page with tree table
+  - type: infrastructure
+    description: "Replace old translations view with new tree-based table implementation"
+    files:
+      - path: "src/app/[locale]/(main)/admin/translations/TranslationsView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/translations/TranslationsView.module.css"
+        action: added
+      - path: "src/app/[locale]/(main)/translations/_components/TranslationChangeForm.module.css"
+        action: added
+      - path: "src/app/[locale]/(main)/translations/_components/TranslationsChangeForm.tsx"
+        action: added
+    notes: "TranslationsView rewritten to use @tanstack/react-table with expandable sub-rows, search, and locale selector. New TranslationChangeForm component for inline editing."
+
+  # Runtime config renamed to example
+  - type: file_tracking
+    description: "Rename runtimeConfig.js to runtimeConfig.example.js and add to .gitignore"
+    files:
+      - path: "public/runtimeConfig.example.js"
+        action: added
+      - path: ".gitignore"
+        action: modified
+    notes: "runtimeConfig.js renamed to runtimeConfig.example.js. runtimeConfig.js added to .gitignore so actual config is not tracked."
+
+  # Color scheme logic changes
+  - type: file_tracking
+    description: "Remove ColorSchemeScript and custom color scheme logic"
+    files:
+      - path: "src/app/[locale]/layout.tsx"
+        action: modified
+      - path: "src/components/provider/mantineProvider.tsx"
+        action: modified
+    notes: "Simplified theme handling by removing custom color scheme logic."
+
+  # AuthLayout updates
+  - type: file_tracking
+    description: "Set primary color variable for links, convert footer links to NavLink type, extract child routes for spotlight"
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+
+  # Fix child navItems
+  - type: file_tracking
+    description: "Get child navItems with flatMap for proper spotlight search"
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+    notes: "Fixed spotlight search to include child navigation items using flatMap."
+
+  # Translation key changes
+  - type: translation
+    description: "Rename status key to activeStatus and add translation table keys"
+    locales: ["de", "en"]
+    keys_added:
+      - "translationsView.table.key"
+      - "translationsView.table.value"
+    keys_removed:
+      - "addUserView.form.status"
+    keys_changed:
+      - key: "addUserView.form.status"
+        new_key: "addUserView.form.activeStatus"
+        notes: "Renamed from 'Status'/'Status' to 'Aktiv'/'Active'"

@@ -1,0 +1,12 @@
+version: "7.1.1"
+from: "7.1.0"
+date: "2024-05-29"
+
+changes:
+  # Move FeedbackWidget into Footer
+  - type: file_tracking
+    description: "Move FeedbackWidget from standalone AppShell child into Footer component as a child element"
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/585"

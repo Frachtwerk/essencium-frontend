@@ -1,0 +1,65 @@
+version: "8.1.1"
+from: "8.1.0"
+date: "2025-04-08"
+
+changes:
+  # Dependency updates
+  - type: dependency_migration
+    package: "next"
+    from: "15.2.3"
+    to: "15.2.4"
+    scope: package
+    reference: "https://github.com/vercel/next.js/releases"
+    notes: "Patch bump of Next.js."
+
+  - type: dependency_migration
+    package: "vite"
+    from: "6.2.3"
+    to: "6.2.5"
+    scope: package
+    reference: "https://github.com/vitejs/vite/releases"
+    notes: "Patch bump of vite."
+
+  # Fix translation loading logic
+  - type: file_tracking
+    description: "Fix updating translations: remove authToken requirement from getTranslations, add mergeTranslations utility, refactor TranslationsView to accept resources prop, add useAddTranslations hook for public and auth layouts"
+    files:
+      - path: "src/api/translations.ts"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/translations/TranslationsView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/translations/page.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/translations/_components/TranslationsChangeForm.tsx"
+        action: modified
+      - path: "src/app/[locale]/(public)/layout.tsx"
+        action: modified
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+      - path: "src/config/i18n.ts"
+        action: modified
+      - path: "src/hooks/index.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/751"
+
+  # New files for translation fix
+  - type: new_file
+    path: "src/hooks/useAddTranslation.ts"
+    description: "Add useAddTranslation hook for translation loading"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/751"
+
+  - type: new_file
+    path: "src/utils/mergeTranslations.ts"
+    description: "Add mergeTranslations utility for combining translation resources"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/751"
+
+  - type: new_file
+    path: "src/utils/mergeTranslations.test.ts"
+    description: "Add tests for mergeTranslations utility"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/751"
+
+  # Removed file
+  - type: file_removal
+    path: "src/utils/getTranslation.ts"
+    description: "Remove unused getTranslation utility (replaced by mergeTranslations)"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/751"

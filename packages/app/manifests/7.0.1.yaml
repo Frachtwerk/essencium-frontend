@@ -1,0 +1,172 @@
+version: "7.0.1"
+from: "7.0.0"
+date: "2024-05-23"
+
+changes:
+  # Dependency updates
+  - type: dependency_migration
+    package: "axios"
+    from: "1.6.5"
+    to: "1.6.8"
+    scope: package
+    reference: "https://github.com/axios/axios/releases"
+    notes: "Patch bump for axios."
+
+  - type: dependency_migration
+    package: "@playwright/test"
+    from: "^1.41.2"
+    to: "^1.44.0"
+    scope: package
+    reference: "https://github.com/microsoft/playwright/releases"
+    notes: "Minor Playwright bump."
+
+  - type: dependency_migration
+    package: "@testing-library/react"
+    from: "14.0.0"
+    to: "14.3.1"
+    scope: package
+    reference: "https://github.com/testing-library/react-testing-library/releases"
+    notes: "Patch bump for testing-library/react."
+
+  - type: dependency_migration
+    package: "@typescript-eslint/eslint-plugin"
+    from: "6.9.1"
+    to: "7.8.0"
+    scope: project_wide
+    reference: "https://github.com/typescript-eslint/typescript-eslint/releases"
+    notes: "Major bump for typescript-eslint plugin."
+
+  - type: dependency_migration
+    package: "@typescript-eslint/parser"
+    from: "6.9.1"
+    to: "7.8.0"
+    scope: project_wide
+    reference: "https://github.com/typescript-eslint/typescript-eslint/releases"
+    notes: "Major bump for typescript-eslint parser."
+
+  - type: dependency_migration
+    package: "@vitejs/plugin-react"
+    from: "3.1.0"
+    to: "4.2.1"
+    scope: project_wide
+    reference: "https://github.com/vitejs/vite-plugin-react/releases"
+    notes: "Major bump for vite react plugin."
+
+  - type: dependency_migration
+    package: "eslint"
+    from: "8.35.0"
+    to: "8.56.0"
+    scope: package
+    reference: "https://github.com/eslint/eslint/releases"
+    notes: "Minor eslint bump."
+
+  - type: dependency_migration
+    package: "eslint-config-airbnb-typescript"
+    from: "17.1.0"
+    to: "18.0.0"
+    scope: project_wide
+    reference: "https://www.npmjs.com/package/eslint-config-airbnb-typescript"
+    notes: "Major bump for eslint-config-airbnb-typescript."
+
+  - type: dependency_migration
+    package: "eslint-plugin-import"
+    from: "2.27.5"
+    to: "2.29.1"
+    scope: package
+    reference: "https://github.com/import-js/eslint-plugin-import/releases"
+    notes: "Minor bump for eslint-plugin-import."
+
+  - type: dependency_migration
+    package: "vite"
+    from: "4.5.2"
+    to: "5.0.13"
+    scope: project_wide
+    reference: "https://github.com/vitejs/vite/releases"
+    notes: "Major bump from Vite 4 to Vite 5."
+
+  - type: dependency_migration
+    package: "vitest"
+    from: "0.29.2"
+    to: "1.5.3"
+    scope: project_wide
+    reference: "https://github.com/vitest-dev/vitest/releases"
+    notes: "Major bump from Vitest 0.x to 1.x."
+
+  # Bug fix: z-index for notifications
+  - type: file_tracking
+    description: "Add z-index 100 to notification style to fix overlay issues"
+    files:
+      - path: "src/utils/withBaseStylingShowNotification.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/568"
+
+  # Bug fix: load all users for filter
+  - type: file_tracking
+    description: "Add separate API call to load all users for filter select data instead of using paginated data"
+    files:
+      - path: "src/pages/users/index.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/578"
+
+  # Bug fix: highlight parent navLink on child routes
+  - type: file_tracking
+    description: "Fix highlighting of parent NavLink when on child routes"
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+
+  # Refactor: AppShell and NavBar layout
+  - type: file_tracking
+    description: "Refactor Mantine AppShell layout: use useDisclosure for mobile navbar toggle, set navbar width in AppShell, remove getSidebarMargin helper, remove Box wrapper from AppShellMain, pass isMobile prop to NavBar"
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/574"
+
+  # Refactor: CSS classes and styles
+  - type: file_tracking
+    description: "Refactor CSS class naming from BEM double-dash to BEM double-underscore convention, move inline Card shadow/radius styles to CSS modules"
+    files:
+      - path: "src/pages/login/Login.module.css"
+        action: modified
+      - path: "src/pages/login/index.tsx"
+        action: modified
+      - path: "src/pages/users/[id].tsx"
+        action: modified
+      - path: "src/pages/users/add/AddUserView.module.css"
+        action: modified
+      - path: "src/pages/users/add/index.tsx"
+        action: modified
+      - path: "src/pages/users/users.module.css"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/566"
+
+  # New CSS module files
+  - type: new_file
+    description: "Add Profile.module.css for profile page styles"
+    path: "src/pages/profile/Profile.module.css"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/566"
+
+  - type: new_file
+    description: "Add SetPassword.module.css for set-password page styles"
+    path: "src/pages/set-password/SetPassword.module.css"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/566"
+
+  # Refactor: move inline styles to CSS modules for profile and set-password
+  - type: file_tracking
+    description: "Replace inline Mantine style props with CSS module classes in profile and set-password views"
+    files:
+      - path: "src/pages/profile/index.tsx"
+        action: modified
+      - path: "src/pages/set-password/index.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/566"
+
+  # Translation keys added
+  - type: translation
+    description: "Add aria-label translation key for contact person"
+    locales: ["de", "en"]
+    keys_added:
+      - "contactView.contactPerson.ariaLabel"
+    keys_removed: []
+    keys_changed: []

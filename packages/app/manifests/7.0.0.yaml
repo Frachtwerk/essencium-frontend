@@ -1,0 +1,133 @@
+version: "7.0.0"
+from: "6.1.1"
+date: "2024-04-25"
+
+changes:
+  # Major dependency migrations
+  - type: dependency_migration
+    package: "next"
+    from: "13.4.19"
+    to: "14.2.2"
+    scope: project_wide
+    reference: "https://nextjs.org/blog/next-14"
+    notes: "Migration to Next.js 14. No further adjustments needed except installing the new version."
+
+  - type: dependency_migration
+    package: "@tanstack/react-query"
+    from: "4.24.10"
+    to: "5.32.0"
+    scope: project_wide
+    reference: "https://tanstack.com/query/latest/docs/framework/react/guides/migrating-to-v5"
+    notes: "Migration to TanStack Query 5. Use isPending instead of isLoading for mutations. Remove onSuccess/onError from useQuery/useMutation hooks and move handling to QueryClient via QueryCache/MutationCache."
+
+  - type: dependency_migration
+    package: "i18next"
+    from: "22.5.1"
+    to: "23.11.2"
+    scope: project_wide
+    reference: "https://github.com/i18next/i18next/releases"
+    notes: "Major bump of i18next."
+
+  - type: dependency_migration
+    package: "next-i18next"
+    from: "13.3.0"
+    to: "15.3.0"
+    scope: project_wide
+    reference: "https://github.com/i18next/next-i18next/releases"
+    notes: "Major bump of next-i18next to align with Next.js 14."
+
+  - type: dependency_migration
+    package: "react-i18next"
+    from: "12.3.1"
+    to: "14.1.1"
+    scope: project_wide
+    reference: "https://github.com/i18next/react-i18next/releases"
+    notes: "Major bump of react-i18next."
+
+  - type: dependency_migration
+    package: "@types/node"
+    from: "18.14.1"
+    to: "20.11.30"
+    scope: project_wide
+    reference: "https://www.npmjs.com/package/@types/node"
+    notes: "Bump Node.js types to match Node 20 engine requirement."
+
+  - type: dependency_migration
+    package: "@playwright/test"
+    from: "^1.40.1"
+    to: "^1.41.2"
+    scope: package
+    reference: "https://github.com/microsoft/playwright/releases"
+    notes: "Minor Playwright bump."
+
+  # Dev dependency removal
+  - type: dependency_migration
+    package: "eslint-config-next"
+    from: "13.4.4"
+    to: "removed"
+    scope: package
+    reference: ""
+    notes: "Removed eslint-config-next dev dependency."
+
+  # Infrastructure: Node and engine version bump
+  - type: infrastructure
+    description: "Bump minimum Node.js version from 18 to 20 in engines and volta config"
+    files:
+      - path: "package.json"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/543"
+
+  # Environment variable change
+  - type: env_variable
+    description: "Change NEXT_PUBLIC_APP_URL default from http://localhost:3000 to https://staging.essencium.dev"
+    variables:
+      - name: "NEXT_PUBLIC_APP_URL"
+        required: true
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/544"
+
+  # Refactor: TanStack Query 5 migration in API hooks
+  - type: file_tracking
+    description: "Migrate all API hooks from TanStack Query 4 to 5: replace onSuccess/onError callbacks with meta-based notification handling, replace isLoading with isPending for mutations, replace isInitialLoading with isLoading, replace Hydrate with HydrationBoundary"
+    files:
+      - path: "src/api/auth.ts"
+        action: modified
+      - path: "src/api/contact.ts"
+        action: modified
+      - path: "src/api/me.ts"
+        action: modified
+      - path: "src/api/roles.ts"
+        action: modified
+      - path: "src/api/translations.ts"
+        action: modified
+      - path: "src/api/user.ts"
+        action: modified
+      - path: "src/pages/_app.tsx"
+        action: modified
+      - path: "src/pages/login/index.tsx"
+        action: modified
+      - path: "src/pages/profile/index.tsx"
+        action: modified
+      - path: "src/pages/rights/index.tsx"
+        action: modified
+      - path: "src/pages/roles/index.tsx"
+        action: modified
+      - path: "src/pages/users/[id].tsx"
+        action: modified
+      - path: "src/pages/users/add/index.tsx"
+        action: modified
+      - path: "src/pages/users/index.tsx"
+        action: modified
+
+  # Refactor: centralize notification handling in QueryClient
+  - type: file_tracking
+    description: "Add global QueryCache and MutationCache with centralized onError/onSuccess notification handling in _app.tsx, removing per-hook withBaseStylingShowNotification imports"
+    files:
+      - path: "src/pages/_app.tsx"
+        action: modified
+
+  # AuthLayout updates: manage user/rights via useEffect
+  - type: file_tracking
+    description: "Move user and userRights atom updates from useGetMe onSuccess into AuthLayout useEffect; guard FeedbackWidget render with user null-check; use isPending for feedbackSending"
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified

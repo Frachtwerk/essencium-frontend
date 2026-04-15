@@ -1,0 +1,289 @@
+version: "9.4.0"
+from: "9.3.0"
+date: "2025-09-03"
+
+changes:
+  # Dependency updates — Mantine 8.0.1 to 8.2.0
+  - type: dependency_migration
+    package: "@mantine/core"
+    from: "8.0.1"
+    to: "8.2.0"
+    scope: package
+    reference: "https://mantine.dev/changelog/8-2-0/"
+    notes: "Minor bump of Mantine."
+
+  - type: dependency_migration
+    package: "@mantine/dates"
+    from: "8.0.1"
+    to: "8.2.0"
+    scope: package
+    reference: "https://mantine.dev/changelog/8-2-0/"
+    notes: "Minor bump aligned with @mantine/core."
+
+  - type: dependency_migration
+    package: "@mantine/hooks"
+    from: "8.0.1"
+    to: "8.2.0"
+    scope: package
+    reference: "https://mantine.dev/changelog/8-2-0/"
+    notes: "Minor bump aligned with @mantine/core."
+
+  - type: dependency_migration
+    package: "@mantine/modals"
+    from: "8.0.1"
+    to: "8.2.0"
+    scope: package
+    reference: "https://mantine.dev/changelog/8-2-0/"
+    notes: "Minor bump aligned with @mantine/core."
+
+  - type: dependency_migration
+    package: "@mantine/notifications"
+    from: "8.0.1"
+    to: "8.2.0"
+    scope: package
+    reference: "https://mantine.dev/changelog/8-2-0/"
+    notes: "Minor bump aligned with @mantine/core."
+
+  - type: dependency_migration
+    package: "@mantine/spotlight"
+    from: "8.0.1"
+    to: "8.2.0"
+    scope: package
+    reference: "https://mantine.dev/changelog/8-2-0/"
+    notes: "Minor bump aligned with @mantine/core."
+
+  - type: dependency_migration
+    package: "next"
+    from: "15.2.4"
+    to: "15.4.7"
+    scope: project_wide
+    reference: "https://github.com/vercel/next.js/releases"
+    notes: "Minor bump of Next.js to resolve vulnerabilities."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/879"
+
+  - type: dependency_migration
+    package: "tailwindcss"
+    from: null
+    to: "4.1.3"
+    scope: project_wide
+    reference: "https://tailwindcss.com/blog/tailwindcss-v4"
+    notes: "New dependency: TailwindCSS v4 added as part of CSS module to Tailwind refactor."
+
+  - type: dependency_migration
+    package: "@tailwindcss/postcss"
+    from: null
+    to: "4.1.3"
+    scope: project_wide
+    reference: "https://tailwindcss.com/docs/installation/using-postcss"
+    notes: "New dev dependency for TailwindCSS PostCSS integration."
+
+  - type: dependency_migration
+    package: "postcss"
+    from: null
+    to: "8.4.49"
+    scope: package
+    reference: "https://github.com/postcss/postcss/releases"
+    notes: "New explicit dev dependency for PostCSS."
+
+  # Infrastructure: TailwindCSS setup and environment-specific configs
+  - type: infrastructure
+    description: "Install and configure TailwindCSS v4 with PostCSS integration, add prettier-plugin-tailwindcss"
+    files:
+      - path: "postcss.config.cjs"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: infrastructure
+    description: "Add new e2e test scripts for development, production, and test environments; add dev:test script"
+
+  # New environment files for different environments
+  - type: new_file
+    path: ".env.development"
+    description: "Add environment-specific .env file for development"
+
+  - type: new_file
+    path: ".env.production"
+    description: "Add environment-specific .env file for production"
+
+  - type: new_file
+    path: ".env.test"
+    description: "Add environment-specific .env file for test"
+
+  # New globals.css for TailwindCSS
+  - type: new_file
+    path: "src/globals.css"
+    description: "Add globals.css with TailwindCSS imports and custom theme"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  # Removed CSS module files (replaced by TailwindCSS classes)
+  - type: file_removal
+    path: "src/app/[locale]/(main)/admin/translations/TranslationsView.module.css"
+    description: "Remove TranslationsView CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/app/[locale]/(main)/admin/users/Users.module.css"
+    description: "Remove Users CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/app/[locale]/(main)/admin/users/add/AddUserView.module.css"
+    description: "Remove AddUserView CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/app/[locale]/(main)/legal-notice/LegalNoticeView.module.css"
+    description: "Remove LegalNoticeView CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/app/[locale]/(main)/privacy-policy/PrivacyPolicyView.module.css"
+    description: "Remove PrivacyPolicyView CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/app/[locale]/(main)/profile/Profile.module.css"
+    description: "Remove Profile CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/app/[locale]/(main)/translations/TranslationsView.module.css"
+    description: "Remove TranslationsView CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/app/[locale]/(main)/translations/_components/TranslationChangeForm.module.css"
+    description: "Remove TranslationChangeForm CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/app/[locale]/(public)/login/Login.module.css"
+    description: "Remove Login CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/app/[locale]/(public)/set-password/SetPassword.module.css"
+    description: "Remove SetPassword CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/components/RouteProtector.module.css"
+    description: "Remove RouteProtector CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/components/layouts/AuthLayout.module.css"
+    description: "Remove AuthLayout CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  - type: file_removal
+    path: "src/config/Theme.module.css"
+    description: "Remove Theme CSS module replaced by TailwindCSS"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  # Refactor codebase to use TailwindCSS
+  - type: file_tracking
+    description: "Replace CSS modules and Mantine props with TailwindCSS utility classes across the codebase"
+    files:
+      - path: "src/app/[locale]/(main)/admin/rights/RightsView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/roles/RolesView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/translations/TranslationsView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/users/UsersView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/users/[id]/UpdateUserView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/users/add/AddUserView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/legal-notice/LegalNoticeView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/privacy-policy/PrivacyPolicyView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/profile/ProfileView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/translations/_components/TranslationsChangeForm.tsx"
+        action: modified
+      - path: "src/app/[locale]/(public)/login/LoginView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(public)/set-password/SetPasswordView.tsx"
+        action: modified
+      - path: "src/app/[locale]/layout.tsx"
+        action: modified
+      - path: "src/components/RouteProtector.tsx"
+        action: modified
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+      - path: "src/config/mantine.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/761"
+
+  # Accessibility improvements
+  - type: file_tracking
+    description: "Implement skip link for keyboard navigation"
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/861"
+
+  - type: file_tracking
+    description: "Improve accessibility of table actions: add aria-labels for edit, delete, and additional action buttons"
+    files:
+      - path: "src/app/[locale]/(main)/admin/users/UsersView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/859"
+
+  - type: file_tracking
+    description: "Improve accessibility of UsersView table: add aria-labels for active status"
+    files:
+      - path: "src/app/[locale]/(main)/admin/users/UsersView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/864"
+
+  - type: file_tracking
+    description: "Improve accessibility of TranslationsChangeForm: add aria-labels for input, save, and delete buttons"
+    files:
+      - path: "src/app/[locale]/(main)/translations/_components/TranslationsChangeForm.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/866"
+
+  - type: file_tracking
+    description: "Fix SSO login button accessibility: render NextLink as polymorphic button"
+    files:
+      - path: "src/app/[locale]/(public)/login/LoginView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/853"
+
+  # Fix sorting & filtering of user table by name
+  - type: file_tracking
+    description: "Fix sorting and filtering of user table by name"
+    files:
+      - path: "src/app/[locale]/(main)/admin/users/UsersView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/875"
+
+  # Translation changes
+  - type: translation
+    description: "Add translation keys for accessibility improvements: skip link, table actions, pagination, translations form, active status"
+    locales: ["de", "en"]
+    keys_added:
+      - "header.skipToMainContent"
+      - "usersView.action.edit"
+      - "usersView.action.delete"
+      - "usersView.action.additionalActions"
+      - "usersView.table.active.title"
+      - "usersView.table.active.isActive"
+      - "usersView.table.active.isInactive"
+      - "rolesView.action.edit"
+      - "rolesView.action.delete"
+      - "table.footer.pagination.previous"
+      - "table.footer.pagination.next"
+      - "table.footer.pagination.first"
+      - "table.footer.pagination.last"
+      - "translationsView.form.input"
+      - "translationsView.form.save"
+      - "translationsView.form.delete"
+    keys_removed: []
+    keys_changed:
+      - "usersView.table.active (changed from string to object)"

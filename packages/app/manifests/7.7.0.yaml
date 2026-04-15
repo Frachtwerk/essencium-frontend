@@ -1,0 +1,121 @@
+version: "7.7.0"
+from: "7.5.0"
+date: "2024-11-18"
+
+changes:
+  # Runtime config feature
+  - type: infrastructure
+    description: "Add runtime environment variable support via public/runtimeConfig.js and instrumentation hook"
+    files:
+      - path: "src/api/api.ts"
+        action: modified
+      - path: "src/api/auth.ts"
+        action: modified
+      - path: "src/instrumentation.ts"
+        action: added
+      - path: "src/types.ts"
+        action: added
+      - path: "public/runtimeConfig.js"
+        action: added
+    notes: "API base URL now conditionally reads from window.runtimeConfig or NEXT_PUBLIC_API_URL depending on NEXT_PUBLIC_DISABLE_INSTRUMENTATION. Auth endpoints updated to use runtime config."
+
+  # New env variables
+  - type: env_variable
+    description: "Restructure environment variables for runtime config support"
+    variables:
+      - name: "NEXT_PUBLIC_DISABLE_INSTRUMENTATION"
+        action: added
+        notes: "Comment this out for non-Vercel deployments to enable runtime config"
+      - name: "API_URL"
+        action: added
+        notes: "Server-side API URL"
+      - name: "OAUTH_REDIRECT_URI"
+        action: added
+        notes: "OAuth redirect URI for SSO"
+      - name: "APP_ENV"
+        action: added
+        notes: "UI indicator for environment (development, staging, acceptance)"
+      - name: "SHOW_APP_VERSION"
+        action: added
+        notes: "Show version in navbar"
+      - name: "NEXT_PUBLIC_API_VERSION"
+        action: removed
+        notes: "Replaced by runtime config"
+      - name: "NEXT_PUBLIC_API_BASE_URL"
+        action: removed
+        notes: "Replaced by API_URL and NEXT_PUBLIC_API_URL"
+
+  # New files
+  - type: new_file
+    path: ".env.local.example"
+    description: "Add .env.local.example with SMTP and test credentials placeholders"
+    notes: "Template for local secret environment variables."
+
+  - type: new_file
+    path: "public/img/web/logotype_weiss_400x100px.svg"
+    description: "Add white logotype SVG asset"
+
+  # next.config.js update
+  - type: file_tracking
+    description: "Add experimental instrumentationHook and remove oauth2 proxy rewrite"
+    files:
+      - path: "next.config.js"
+        action: modified
+    notes: "Added instrumentationHook controlled by NEXT_PUBLIC_DISABLE_INSTRUMENTATION. Removed oauth2 rewrite rule."
+
+  # RouteProtector fix
+  - type: file_tracking
+    description: "Fix pathname in RouteProtector by passing locale params"
+    files:
+      - path: "src/app/[locale]/(main)/layout.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/645"
+
+  # RightsView refactoring
+  - type: file_tracking
+    description: "Import ROLES enum from types package instead of hard-coded string"
+    files:
+      - path: "src/app/[locale]/(main)/rights/RightsView.tsx"
+        action: modified
+    notes: "Changed role.name === 'ADMIN' to role.name === ROLES.ADMIN."
+
+  # Login page UI refinement
+  - type: file_tracking
+    description: "Refine login page UI with updated CSS animations and layout"
+    files:
+      - path: "src/app/[locale]/(public)/login/Login.module.css"
+        action: modified
+
+  # Dependency bump: vitest
+  - type: dependency_migration
+    package: "vitest"
+    from: "1.5.3"
+    to: "2.1.4"
+    scope: project_wide
+    reference: "https://github.com/vitest-dev/vitest/releases"
+    notes: "Major version bump for vitest."
+
+  # Remove nx config
+  - type: infrastructure
+    description: "Remove nx tags configuration from package.json"
+    files:
+      - path: "package.json"
+        action: modified
+    notes: "Removed nx.tags scope:app section. Project now uses pnpm only."
+
+  # Translation keys
+  - type: translation
+    description: "Add password strength meter and login slogan translation keys"
+    locales: ["de", "en"]
+    keys_added:
+      - "profileView.content.form.changePassword.passwordStrength.validationError"
+      - "profileView.content.form.changePassword.passwordStrength.number"
+      - "profileView.content.form.changePassword.passwordStrength.lowercase"
+      - "profileView.content.form.changePassword.passwordStrength.uppercase"
+      - "profileView.content.form.changePassword.passwordStrength.specialCharacter"
+      - "profileView.content.form.changePassword.passwordStrength.length"
+      - "profileView.content.form.changePassword.passwordStrength.requirements.met"
+      - "profileView.content.form.changePassword.passwordStrength.requirements.unmet"
+      - "loginView.slogan"
+    keys_removed: []
+    keys_changed: []

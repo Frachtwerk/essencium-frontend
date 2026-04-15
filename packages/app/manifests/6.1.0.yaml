@@ -1,0 +1,137 @@
+version: "6.1.0"
+from: "6.0.0"
+date: "2024-03-14"
+
+changes:
+  # Dependency update — nodemailer security bump
+  - type: dependency_migration
+    package: "nodemailer"
+    from: "6.9.7"
+    to: "6.9.9"
+    scope: package
+    reference: "https://github.com/nodemailer/nodemailer/releases"
+    notes: "Patch bump for nodemailer. No API changes required."
+
+  # New environment variable for SSO redirect
+  - type: env_variable
+    description: "Add NEXT_PUBLIC_APP_URL environment variable used as OAuth2 redirect URI for SSO login"
+    variables:
+      - name: "NEXT_PUBLIC_APP_URL"
+        required: true
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/528"
+
+  # Infrastructure — next.config.js updates for SSO
+  - type: infrastructure
+    description: "Add OAuth2 rewrite rule and remote image patterns to next.config.js for SSO provider integration"
+    files:
+      - path: "next.config.js"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/528"
+
+  # Auth API — SSO atoms and OAuth registration endpoint
+  - type: file_tracking
+    description: "Move userAtom and userRightsAtom from me.ts to auth.ts, add isSsoAtom and ssoProviderAtom derived atoms, add useGetSsoApplications query hook for OAuth registrations"
+    files:
+      - path: "src/api/auth.ts"
+        action: modified
+      - path: "src/api/me.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/528"
+
+  # Roles API — restructure useGetRoles params
+  - type: file_tracking
+    description: "Restructure useGetRoles to accept requestConfig and queryConfig objects instead of flat params, add QueryObserverOptions support for disabling queries"
+    files:
+      - path: "src/api/roles.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/528"
+
+  # Login page — SSO support
+  - type: file_tracking
+    description: "Replace Login component with inline Card layout supporting SSO: add OAuth provider buttons, token extraction from URL params, and SSO redirect flow"
+    files:
+      - path: "src/pages/login/index.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/528"
+
+  # AuthLayout — skip redirect query for root path
+  - type: file_tracking
+    description: "Avoid adding redirect query parameter when redirecting to login from the root path"
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/528"
+
+  # Profile page — SSO awareness
+  - type: file_tracking
+    description: "Add SSO awareness to profile page: pass isSso prop to Profile component, remove unused roles fetch"
+    files:
+      - path: "src/pages/profile/index.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/528"
+
+  # Rights view — update useGetRoles call signature
+  - type: file_tracking
+    description: "Update useGetRoles call to use new requestConfig wrapper object"
+    files:
+      - path: "src/pages/rights/index.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/528"
+
+  # Roles view — update useGetRoles call signature
+  - type: file_tracking
+    description: "Update useGetRoles call to use new requestConfig wrapper object"
+    files:
+      - path: "src/pages/roles/index.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/528"
+
+  # Users views — SSO badge and updated API calls
+  - type: file_tracking
+    description: "Add SSO provider badge to user name column, pass ssoProvider to UserForm in update view, update useGetRoles calls to new signature, apply CSS module classes"
+    files:
+      - path: "src/pages/users/index.tsx"
+        action: modified
+      - path: "src/pages/users/[id].tsx"
+        action: modified
+      - path: "src/pages/users/add/index.tsx"
+        action: modified
+      - path: "src/pages/users/users.module.css"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/528"
+
+  # Utility — widen type signature for hasRequiredRights
+  - type: file_tracking
+    description: "Allow undefined in addition to null for userRights parameter in hasRequiredRights utility"
+    files:
+      - path: "src/utils/hasRequiredRights.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/528"
+
+  # New files — CSS modules for login and add-user views
+  - type: new_file
+    description: "Add CSS module for login page with SSO section styles and dark mode support"
+    path: "src/pages/login/Login.module.css"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/528"
+
+  - type: new_file
+    description: "Add CSS module for add-user view card with dark mode support"
+    path: "src/pages/users/add/AddUserView.module.css"
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/528"
+
+  # Translation changes for SSO and header restructuring
+  - type: translation
+    description: "Add SSO login divider text, profile aria-label, and mobile menu aria-label; remove language dropdown and profile settings keys"
+    locales: ["de", "en"]
+    keys_added:
+      - "loginView.sso.or"
+      - "header.profile.arialLabel"
+      - "header.mobile.menu.ariaLabel"
+    keys_removed:
+      - "header.languageDropdown.language.de"
+      - "header.languageDropdown.language.en"
+      - "profileView.tabs.settings.title"
+      - "profileView.tabs.settings.content.status"
+      - "profileView.tabs.settings.content.role"
+      - "profileView.tabs.settings.content.saveSettings"
+    keys_changed: []
