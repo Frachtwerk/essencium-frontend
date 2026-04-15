@@ -20,6 +20,7 @@
 import { RoleOutput, UserOutput } from '@frachtwerk/essencium-types'
 import { MantineProvider } from '@mantine/core'
 import { render } from '@testing-library/react'
+import { NextIntlClientProvider } from 'next-intl'
 import { describe, expect, it, vi } from 'vitest'
 
 import { ProfileDataCard } from './ProfileDataCard'
@@ -48,9 +49,11 @@ const props = {
 
 describe('ProfileDataCard.tsx', () => {
   let ProfileOverviewCardMounted = render(
-    <MantineProvider>
-      <ProfileDataCard {...props} />
-    </MantineProvider>,
+    <NextIntlClientProvider locale="en" messages={{}}>
+      <MantineProvider>
+        <ProfileDataCard {...props} />
+      </MantineProvider>
+    </NextIntlClientProvider>,
   )
 
   it('should render all available tabs (login via mail + password)', () => {
@@ -75,9 +78,11 @@ describe('ProfileDataCard.tsx', () => {
     ProfileOverviewCardMounted.unmount()
 
     ProfileOverviewCardMounted = render(
-      <MantineProvider>
-        <ProfileDataCard {...props} isSso />
-      </MantineProvider>,
+      <NextIntlClientProvider locale="en" messages={{}}>
+        <MantineProvider>
+          <ProfileDataCard {...props} isSso />
+        </MantineProvider>
+      </NextIntlClientProvider>,
     )
 
     expect(ProfileOverviewCardMounted.getByRole('tablist')).toBeDefined()

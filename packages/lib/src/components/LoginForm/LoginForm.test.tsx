@@ -25,6 +25,7 @@ import {
   RenderResult,
   screen,
 } from '@testing-library/react'
+import { NextIntlClientProvider } from 'next-intl'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { LoginForm } from './LoginForm'
@@ -43,19 +44,20 @@ describe('LoginForm', () => {
     const isPasswordResetFormOpened = false
 
     LoginFormMounted = render(
-      <MantineProvider>
-        <AppShell>
-          <LoginForm
-            handleLogin={handleLogin}
-            handlePasswordReset={handlePasswordReset}
-            setIsPasswordResetFormOpened={setIsPasswordResetFormOpened}
-            isResetPasswordSent={isResetPasswordSent}
-            isPasswordResetFormOpened={isPasswordResetFormOpened}
-            isResettingPassword={isResettingPassword}
-          />
-          ,
-        </AppShell>
-      </MantineProvider>,
+      <NextIntlClientProvider locale="en" messages={{}}>
+        <MantineProvider>
+          <AppShell>
+            <LoginForm
+              handleLogin={handleLogin}
+              handlePasswordReset={handlePasswordReset}
+              setIsPasswordResetFormOpened={setIsPasswordResetFormOpened}
+              isResetPasswordSent={isResetPasswordSent}
+              isPasswordResetFormOpened={isPasswordResetFormOpened}
+              isResettingPassword={isResettingPassword}
+            />
+          </AppShell>
+        </MantineProvider>
+      </NextIntlClientProvider>,
     )
   })
 
@@ -86,19 +88,20 @@ describe('LoginForm', () => {
     const isPasswordResetFormOpened = true
 
     LoginFormMounted = render(
-      <MantineProvider>
-        <AppShell>
-          <LoginForm
-            handleLogin={handleLogin}
-            handlePasswordReset={handlePasswordReset}
-            setIsPasswordResetFormOpened={setIsPasswordResetFormOpened}
-            isResetPasswordSent={isResetPasswordSent}
-            isPasswordResetFormOpened={isPasswordResetFormOpened}
-            isResettingPassword={isResettingPassword}
-          />
-          ,
-        </AppShell>
-      </MantineProvider>,
+      <NextIntlClientProvider locale="en" messages={{}}>
+        <MantineProvider>
+          <AppShell>
+            <LoginForm
+              handleLogin={handleLogin}
+              handlePasswordReset={handlePasswordReset}
+              setIsPasswordResetFormOpened={setIsPasswordResetFormOpened}
+              isResetPasswordSent={isResetPasswordSent}
+              isPasswordResetFormOpened={isPasswordResetFormOpened}
+              isResettingPassword={isResettingPassword}
+            />
+          </AppShell>
+        </MantineProvider>
+      </NextIntlClientProvider>,
     )
 
     expect(

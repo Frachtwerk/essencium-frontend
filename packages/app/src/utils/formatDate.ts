@@ -20,5 +20,8 @@
 import dayjs from './dayjs'
 
 export function formatDate(value: unknown): string {
-  return value ? dayjs(String(value)).format('DD.MM.YYYY') : '—'
+  if (!value) return '—'
+  const str = String(value)
+  const datePart = str.includes('T') ? str.split('T')[0] : str
+  return dayjs(datePart).format('DD.MM.YYYY')
 }

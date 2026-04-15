@@ -20,7 +20,7 @@
 import { AppShell, MantineProvider } from '@mantine/core'
 import * as MantineSpotlight from '@mantine/spotlight'
 import { fireEvent, render, screen } from '@testing-library/react'
-import mockRouter from 'next-router-mock'
+import { NextIntlClientProvider } from 'next-intl'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { Home } from './Home'
@@ -53,13 +53,17 @@ vi.mock('@mantine/spotlight', async () => {
 })
 
 describe('Home', () => {
+  const onClickButton = vi.fn()
+
   beforeAll(() => {
     render(
-      <MantineProvider>
-        <AppShell>
-          <Home onClickButton={() => {}} showUsersPageButton />
-        </AppShell>
-      </MantineProvider>,
+      <NextIntlClientProvider locale="en" messages={{}}>
+        <MantineProvider>
+          <AppShell>
+            <Home onClickButton={onClickButton} showUsersPageButton />
+          </AppShell>
+        </MantineProvider>
+      </NextIntlClientProvider>,
     )
   })
 
@@ -82,13 +86,13 @@ describe('Home', () => {
     expect(openSpotlightSpy).toHaveBeenCalledOnce()
   })
 
-  it('should navigate to corresponding routes', () => {
+  it('should call onClickButton with corresponding routes', () => {
     const usersButton = screen.getByText('homeView.action.users')
     fireEvent.click(usersButton)
-    expect(mockRouter.pathname).toEqual('/admin/users')
+    expect(onClickButton).toHaveBeenCalledWith('/admin/users')
 
     const profileButton = screen.getByText('homeView.action.profile')
     fireEvent.click(profileButton)
-    expect(mockRouter.pathname).toEqual('/profile')
+    expect(onClickButton).toHaveBeenCalledWith('/profile')
   })
 })

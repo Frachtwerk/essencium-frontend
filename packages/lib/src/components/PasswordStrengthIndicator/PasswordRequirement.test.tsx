@@ -19,6 +19,7 @@
 
 import { MantineProvider } from '@mantine/core'
 import { render, screen } from '@testing-library/react'
+import { NextIntlClientProvider } from 'next-intl'
 import { describe, expect, it } from 'vitest'
 
 import { PasswordRequirement } from './PasswordRequirement'
@@ -26,16 +27,18 @@ import { PasswordRequirement } from './PasswordRequirement'
 describe('PasswordRequirement.tsx', () => {
   it('should the correct label, color and icon if requirement is met', async () => {
     const renderedComponent = render(
-      <MantineProvider>
-        <PasswordRequirement meets label="label 1" />
-      </MantineProvider>,
+      <NextIntlClientProvider locale="en" messages={{}}>
+        <MantineProvider>
+          <PasswordRequirement meets label="label 1" />
+        </MantineProvider>
+      </NextIntlClientProvider>,
     )
 
     const label = screen.getByText('label 1')
 
     expect(label).toBeDefined()
 
-    expect(label.classList).toContain('_color-validated_fdffd1')
+    expect(label.classList).toContain('text-green-700')
 
     expect(
       screen.getByLabelText(
@@ -48,16 +51,18 @@ describe('PasswordRequirement.tsx', () => {
 
   it('should render the correct label, color and icon if requirement is not met', async () => {
     const renderedComponent = render(
-      <MantineProvider>
-        <PasswordRequirement meets={false} label="label 1" />
-      </MantineProvider>,
+      <NextIntlClientProvider locale="en" messages={{}}>
+        <MantineProvider>
+          <PasswordRequirement meets={false} label="label 1" />
+        </MantineProvider>
+      </NextIntlClientProvider>,
     )
 
     const label = screen.getByText('label 1')
 
     expect(label).toBeDefined()
 
-    expect(label.classList).toContain('_color_fdffd1')
+    expect(label.classList).not.toContain('text-green-700')
 
     expect(
       screen.getByLabelText(

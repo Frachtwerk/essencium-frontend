@@ -20,6 +20,7 @@
 import { RoleOutput, UserOutput } from '@frachtwerk/essencium-types'
 import { MantineProvider } from '@mantine/core'
 import { render, within } from '@testing-library/react'
+import { NextIntlClientProvider } from 'next-intl'
 import { describe, expect, it, vi } from 'vitest'
 
 import { Profile } from '.'
@@ -48,9 +49,11 @@ const props = {
 
 describe('Profile.tsx', () => {
   const ProfileMounted = render(
-    <MantineProvider>
-      <Profile {...props} />
-    </MantineProvider>,
+    <NextIntlClientProvider locale="en" messages={{}}>
+      <MantineProvider>
+        <Profile {...props} />
+      </MantineProvider>
+    </NextIntlClientProvider>,
   )
 
   it('should render ProfileOverviewCard and ProfileDataCard', () => {

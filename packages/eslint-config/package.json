@@ -45,11 +45,11 @@
     "eslint-plugin-prettier": "5.5.5"
   },
   "engines": {
-    "node": ">=20",
+    "node": ">=24",
     "pnpm": "10"
   },
   "volta": {
-    "node": "20.15.0",
+    "node": "24.0.0",
     "pnpm": "10.10.0"
   }
 }

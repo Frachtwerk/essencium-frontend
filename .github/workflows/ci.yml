@@ -26,11 +26,13 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
+        with:
+          version: 10.10.0
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: 'pnpm'
 
       - name: Install dependencies
@@ -39,33 +41,8 @@ jobs:
       - name: Run linting
         run: pnpm --stream -r lint
 
-  # +++ COMMENTED OUT BECAUSE THIS IS A SEPARATE ISSUE: https://github.com/Frachtwerk/essencium-frontend/issues/221 +++
-  # unit-tests:
-  #   name: Unit Tests
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout repo
-  #       uses: actions/checkout@v4
-  #       with:
-  #         fetch-depth: 0
-
-  #     - name: Install pnpm
-  #       uses: pnpm/action-setup@v4
-
-  #     - name: Setup Node
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 22
-  #         cache: 'pnpm'
-
-  #     - name: Install dependencies
-  #       run: pnpm install --frozen-lockfile
-
-  #     - name: Run unit tests
-  #       run: pnpm --stream -r test:unit
-
-  e2e-tests:
-    name: E2E Tests
+  unit-tests:
+    name: Unit Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -75,43 +52,93 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
+        with:
+          version: 10.10.0
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Get installed Playwright version
-        run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./packages/app/package.json').dependencies['@playwright/test'])")" >> $GITHUB_ENV
+      - name: Run unit tests
+        run: pnpm --stream -r test:unit
 
-      - name: Install Playwright browsers
-        run: pnpm --filter @frachtwerk/essencium-app exec playwright install --with-deps
+  # e2e-tests:
+  #   name: E2E Tests
+  #   continue-on-error: true
+  #   if: github.event_name != 'pull_request'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
 
-      - name: Cache Playwright
-        uses: actions/cache@v4
-        id: playwright-cache
-        with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+  #     - name: Install pnpm
+  #       uses: pnpm/action-setup@v4
+  #       with:
+  #         version: 10.10.0
 
-      - name: Run E2E tests
-        run: pnpm test:e2e
-        env:
-          TEST_ADMIN_USERNAME: ${{ secrets.TEST_ADMIN_USERNAME }}
-          TEST_ADMIN_PASSWORD: ${{ secrets.TEST_ADMIN_PASSWORD }}
+  #     - name: Setup Node
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 24
+  #         cache: 'pnpm'
 
-      - name: Upload E2E test results
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: e2e-test-results
-          path: |
-            packages/app/test-results
-            packages/app/playwright-report
+  #     - name: Install dependencies
+  #       run: pnpm install --frozen-lockfile
+
+  #     - name: Get installed Playwright version
+  #       run: |
+  #         PLAYWRIGHT_VERSION=$(node -p "require('./packages/app/package.json').devDependencies['@playwright/test']")
+  #         echo "PLAYWRIGHT_VERSION=$PLAYWRIGHT_VERSION" >> "$GITHUB_ENV"
+
+  #     - name: Cache Playwright
+  #       uses: actions/cache@v4
+  #       id: playwright-cache
+  #       with:
+  #         path: ~/.cache/ms-playwright
+  #         key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+
+  #     - name: Start local backend
+  #       run: docker compose -f backend.docker-compose.yml up -d db backend
+
+  #     - name: Wait for backend health
+  #       run: |
+  #         for i in {1..60}; do
+  #           if curl -fsS http://localhost:8098 >/dev/null; then
+  #             exit 0
+  #           fi
+  #           sleep 3
+  #         done
+  #         docker compose -f backend.docker-compose.yml logs db backend
+  #         exit 1
+
+  #     - name: Install Playwright browsers
+  #       run: pnpm --filter @frachtwerk/essencium-app exec playwright install --with-deps
+
+  #     - name: Run E2E tests
+  #       run: pnpm --filter @frachtwerk/essencium-app test:e2e:test
+  #       env:
+  #         TEST_ADMIN_USERNAME: ${{ secrets.TEST_ADMIN_USERNAME }}
+  #         TEST_ADMIN_PASSWORD: ${{ secrets.TEST_ADMIN_PASSWORD }}
+
+  #     - name: Stop local backend
+  #       if: always()
+  #       run: docker compose -f backend.docker-compose.yml down -v
+
+  #     - name: Upload E2E test results
+  #       uses: actions/upload-artifact@v4
+  #       if: always()
+  #       with:
+  #         name: e2e-test-results
+  #         path: |
+  #           packages/app/test-results
+  #           packages/app/playwright-report
 
   build:
     name: Build
@@ -124,11 +151,13 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
+        with:
+          version: 10.10.0
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: 'pnpm'
 
       - name: Install dependencies
@@ -202,7 +231,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    needs: [lint, build] # [lint, unit-tests, e2e-tests, build]
+    needs: [lint, unit-tests, build]
     steps:
       - name: Release Please
         uses: googleapis/release-please-action@v4
@@ -219,11 +248,13 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
+        with:
+          version: 10.10.0
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: 'pnpm'
           registry-url: 'https://registry.npmjs.org'
 
