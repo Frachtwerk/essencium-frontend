@@ -20,6 +20,7 @@
 import { AppShell, MantineProvider } from '@mantine/core'
 import { getCoreRowModel, useReactTable } from '@tanstack/react-table'
 import { fireEvent, render, screen } from '@testing-library/react'
+import { NextIntlClientProvider } from 'next-intl'
 import { describe, expect, it, vi } from 'vitest'
 
 import { TablePagination } from './TablePagination'
@@ -114,11 +115,13 @@ describe('TablePagination.tsx', () => {
 
   it('should render page select and pagination', () => {
     const renderedComponent = render(
-      <MantineProvider>
-        <AppShell>
-          <TablePagination {...mockedProps} />
-        </AppShell>
-      </MantineProvider>,
+      <NextIntlClientProvider locale="en" messages={{}}>
+        <MantineProvider>
+          <AppShell>
+            <TablePagination {...mockedProps} />
+          </AppShell>
+        </MantineProvider>
+      </NextIntlClientProvider>,
     )
 
     const pageSelectDescription = screen.getByText('table.footer.pageSize')
@@ -150,18 +153,20 @@ describe('TablePagination.tsx', () => {
 
   it('it should render pagination when fixed page size is set ', () => {
     const renderedComponent = render(
-      <MantineProvider>
-        <AppShell>
-          <TablePagination
-            table={mockedProps.table}
-            pageSize={mockedProps.pageSize}
-            activePage={mockedProps.activePage}
-            setPageSize={mockedProps.setPageSize}
-            setActivePage={mockedProps.setActivePage}
-            fixedTablePageSize={2}
-          />
-        </AppShell>
-      </MantineProvider>,
+      <NextIntlClientProvider locale="en" messages={{}}>
+        <MantineProvider>
+          <AppShell>
+            <TablePagination
+              table={mockedProps.table}
+              pageSize={mockedProps.pageSize}
+              activePage={mockedProps.activePage}
+              setPageSize={mockedProps.setPageSize}
+              setActivePage={mockedProps.setActivePage}
+              fixedTablePageSize={2}
+            />
+          </AppShell>
+        </MantineProvider>
+      </NextIntlClientProvider>,
     )
 
     const pageSelect = screen.queryByLabelText('table.footer.pageSize')

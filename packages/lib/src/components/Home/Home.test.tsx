@@ -20,6 +20,7 @@
 import { AppShell, MantineProvider } from '@mantine/core'
 import * as MantineSpotlight from '@mantine/spotlight'
 import { fireEvent, render, screen } from '@testing-library/react'
+import { NextIntlClientProvider } from 'next-intl'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { Home } from './Home'
@@ -56,11 +57,13 @@ describe('Home', () => {
 
   beforeAll(() => {
     render(
-      <MantineProvider>
-        <AppShell>
-          <Home onClickButton={onClickButton} showUsersPageButton />
-        </AppShell>
-      </MantineProvider>,
+      <NextIntlClientProvider locale="en" messages={{}}>
+        <MantineProvider>
+          <AppShell>
+            <Home onClickButton={onClickButton} showUsersPageButton />
+          </AppShell>
+        </MantineProvider>
+      </NextIntlClientProvider>,
     )
   })
 

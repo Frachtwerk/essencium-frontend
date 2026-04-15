@@ -20,6 +20,7 @@
 import { NavLink } from '@frachtwerk/essencium-types'
 import { AppShell, MantineProvider } from '@mantine/core'
 import { render, RenderResult, screen } from '@testing-library/react'
+import { NextIntlClientProvider } from 'next-intl'
 import { CSSProperties } from 'react'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 
@@ -81,11 +82,13 @@ describe('Footer', () => {
     }))
 
     FooterMounted = render(
-      <MantineProvider>
-        <AppShell>
-          <Footer links={FOOTER_LINKS} />)
-        </AppShell>
-      </MantineProvider>,
+      <NextIntlClientProvider locale="en" messages={{}}>
+        <MantineProvider>
+          <AppShell>
+            <Footer links={FOOTER_LINKS} />)
+          </AppShell>
+        </MantineProvider>
+      </NextIntlClientProvider>,
     )
   })
 

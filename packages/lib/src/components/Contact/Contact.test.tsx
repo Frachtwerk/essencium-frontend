@@ -20,6 +20,7 @@
 import { contactFormSchema } from '@frachtwerk/essencium-types'
 import { AppShell, MantineProvider } from '@mantine/core'
 import { render, renderHook, screen, within } from '@testing-library/react'
+import { NextIntlClientProvider } from 'next-intl'
 import { beforeAll, describe, expect, it } from 'vitest'
 
 import { useZodForm } from '../../hooks'
@@ -51,11 +52,13 @@ describe('Contact', () => {
     const { control } = result.current
 
     render(
-      <MantineProvider>
-        <AppShell>
-          <Contact control={control} contactPerson={examplePerson} />,
-        </AppShell>
-      </MantineProvider>,
+      <NextIntlClientProvider locale="en" messages={{}}>
+        <MantineProvider>
+          <AppShell>
+            <Contact control={control} contactPerson={examplePerson} />,
+          </AppShell>
+        </MantineProvider>
+      </NextIntlClientProvider>,
     )
   })
 

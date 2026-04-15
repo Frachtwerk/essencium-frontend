@@ -20,6 +20,7 @@
 import { RoleOutput, UserOutput } from '@frachtwerk/essencium-types'
 import { MantineProvider } from '@mantine/core'
 import { fireEvent, render } from '@testing-library/react'
+import { NextIntlClientProvider } from 'next-intl'
 import { describe, expect, it } from 'vitest'
 
 import { PersonalDataForm } from './PersonalDataForm'
@@ -46,9 +47,11 @@ const props = {
 
 describe('PersonalDataForm.tsx', () => {
   let ProfileOverviewCardMounted = render(
-    <MantineProvider>
-      <PersonalDataForm {...props} />
-    </MantineProvider>,
+    <NextIntlClientProvider locale="en" messages={{}}>
+      <MantineProvider>
+        <PersonalDataForm {...props} />
+      </MantineProvider>
+    </NextIntlClientProvider>,
   )
 
   it('should render error message for firstname if data is invalid', async () => {
@@ -131,9 +134,11 @@ describe('PersonalDataForm.tsx', () => {
     ProfileOverviewCardMounted.unmount()
 
     ProfileOverviewCardMounted = render(
-      <MantineProvider>
-        <PersonalDataForm {...props} />
-      </MantineProvider>,
+      <NextIntlClientProvider locale="en" messages={{}}>
+        <MantineProvider>
+          <PersonalDataForm {...props} />
+        </MantineProvider>
+      </NextIntlClientProvider>,
     )
 
     const submitButton = ProfileOverviewCardMounted.getByRole('button', {

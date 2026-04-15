@@ -19,6 +19,7 @@
 
 import { AppShell, MantineProvider } from '@mantine/core'
 import { render, RenderResult, screen } from '@testing-library/react'
+import { NextIntlClientProvider } from 'next-intl'
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { SetPasswordForm } from './SetPasswordForm'
@@ -30,11 +31,13 @@ describe('SetPassword', () => {
 
   beforeAll(() => {
     SetPasswordFormMounted = render(
-      <MantineProvider>
-        <AppShell>
-          <SetPasswordForm handleSetPassword={handleSetPassword} />,
-        </AppShell>
-      </MantineProvider>,
+      <NextIntlClientProvider locale="en" messages={{}}>
+        <MantineProvider>
+          <AppShell>
+            <SetPasswordForm handleSetPassword={handleSetPassword} />,
+          </AppShell>
+        </MantineProvider>
+      </NextIntlClientProvider>,
     )
   })
 

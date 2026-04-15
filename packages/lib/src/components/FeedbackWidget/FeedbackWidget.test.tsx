@@ -19,6 +19,7 @@
 
 import { AppShell, MantineProvider } from '@mantine/core'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { NextIntlClientProvider } from 'next-intl'
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { FeedbackWidget } from './FeedbackWidget'
@@ -106,18 +107,20 @@ describe('FeedbackWidget', () => {
 
   it('should render the button to open the feedback widget', () => {
     const component = render(
-      <MantineProvider>
-        <AppShell>
-          <FeedbackWidget
-            currentUser={mockedProps.user}
-            createFeedback={mockedProps.spyFunctions.createFeedback}
-            feedbackCreated={false}
-            feedbackFailed={false}
-            feedbackSending={false}
-            createNotification={mockedProps.createNotification}
-          />
-        </AppShell>
-      </MantineProvider>,
+      <NextIntlClientProvider locale="en" messages={{}}>
+        <MantineProvider>
+          <AppShell>
+            <FeedbackWidget
+              currentUser={mockedProps.user}
+              createFeedback={mockedProps.spyFunctions.createFeedback}
+              feedbackCreated={false}
+              feedbackFailed={false}
+              feedbackSending={false}
+              createNotification={mockedProps.createNotification}
+            />
+          </AppShell>
+        </MantineProvider>
+      </NextIntlClientProvider>,
     )
 
     const openButton = screen.getByLabelText(
@@ -154,18 +157,20 @@ describe('FeedbackWidget', () => {
 
   it('should render the feedback form after clicking the issue button', async () => {
     const component = render(
-      <MantineProvider>
-        <AppShell>
-          <FeedbackWidget
-            currentUser={mockedProps.user}
-            createFeedback={mockedProps.spyFunctions.createFeedback}
-            feedbackCreated={false}
-            feedbackFailed={false}
-            feedbackSending={false}
-            createNotification={mockedProps.createNotification}
-          />
-        </AppShell>
-      </MantineProvider>,
+      <NextIntlClientProvider locale="en" messages={{}}>
+        <MantineProvider>
+          <AppShell>
+            <FeedbackWidget
+              currentUser={mockedProps.user}
+              createFeedback={mockedProps.spyFunctions.createFeedback}
+              feedbackCreated={false}
+              feedbackFailed={false}
+              feedbackSending={false}
+              createNotification={mockedProps.createNotification}
+            />
+          </AppShell>
+        </MantineProvider>
+      </NextIntlClientProvider>,
     )
 
     const openButton = screen.getByLabelText(
@@ -210,18 +215,20 @@ describe('FeedbackWidget', () => {
 
   it('should render the success message after submitting the feedback', async () => {
     const renderedComponent = render(
-      <MantineProvider>
-        <AppShell>
-          <FeedbackWidget
-            currentUser={mockedProps.user}
-            createFeedback={mockedProps.spyFunctions.createFeedback}
-            feedbackCreated
-            feedbackFailed={false}
-            feedbackSending={false}
-            createNotification={mockedProps.createNotification}
-          />
-        </AppShell>
-      </MantineProvider>,
+      <NextIntlClientProvider locale="en" messages={{}}>
+        <MantineProvider>
+          <AppShell>
+            <FeedbackWidget
+              currentUser={mockedProps.user}
+              createFeedback={mockedProps.spyFunctions.createFeedback}
+              feedbackCreated
+              feedbackFailed={false}
+              feedbackSending={false}
+              createNotification={mockedProps.createNotification}
+            />
+          </AppShell>
+        </MantineProvider>
+      </NextIntlClientProvider>,
     )
 
     const openButton = screen.getByLabelText(
@@ -248,18 +255,20 @@ describe('FeedbackWidget', () => {
 
   it('should render the error message after not submitting the feedback', async () => {
     const renderedComponent = render(
-      <MantineProvider>
-        <AppShell>
-          <FeedbackWidget
-            currentUser={mockedProps.user}
-            createFeedback={mockedProps.spyFunctions.createFeedback}
-            feedbackCreated={false}
-            feedbackFailed
-            feedbackSending={false}
-            createNotification={mockedProps.createNotification}
-          />
-        </AppShell>
-      </MantineProvider>,
+      <NextIntlClientProvider locale="en" messages={{}}>
+        <MantineProvider>
+          <AppShell>
+            <FeedbackWidget
+              currentUser={mockedProps.user}
+              createFeedback={mockedProps.spyFunctions.createFeedback}
+              feedbackCreated={false}
+              feedbackFailed
+              feedbackSending={false}
+              createNotification={mockedProps.createNotification}
+            />
+          </AppShell>
+        </MantineProvider>
+      </NextIntlClientProvider>,
     )
 
     const openButton = screen.getByLabelText(
