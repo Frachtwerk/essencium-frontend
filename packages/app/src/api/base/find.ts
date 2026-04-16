@@ -51,6 +51,8 @@ export const createUseFind = <TOutput>(
   options: UseFindOptions<TOutput> = {},
 ): UseFind<TOutput> =>
   function useFind(id, useFindOptions) {
+    const hasCustomUrl = Boolean(options.url || useFindOptions?.url)
+
     const {
       url = `/${resource}/${id}`,
       requestConfig,
@@ -61,9 +63,9 @@ export const createUseFind = <TOutput>(
 
     const { enabled: settingsEnabled, ...restQueryOptions } = queryOptions
 
-    const enabled = settingsEnabled
-      ? settingsEnabled && Boolean(authToken) && Boolean(id)
-      : Boolean(authToken) && Boolean(id)
+    const canQuery = Boolean(authToken) && (hasCustomUrl || Boolean(id))
+
+    const enabled = settingsEnabled ? settingsEnabled && canQuery : canQuery
 
     return useQuery<TOutput, AxiosError<TOutput>>({
       queryKey: [resource, 'find', id],

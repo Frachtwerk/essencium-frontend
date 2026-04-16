@@ -30,12 +30,30 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { atom, useSetAtom } from 'jotai'
-import { atomWithStorage } from 'jotai/utils'
+import { useSetAtom } from 'jotai'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
+import { parseJwt } from '@/utils'
+
 import { api } from './api'
+import { authTokenAtom, userAtom, userRightsAtom } from './auth-atoms'
+
+export {
+  authTokenAtom,
+  isSsoAtom,
+  ssoProviderAtom,
+  userAtom,
+  userRightsAtom,
+} from './auth-atoms'
+
+function getAuthBaseUrl(): string {
+  const apiUrl = process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
+    ? process.env.NEXT_PUBLIC_API_URL
+    : window.runtimeConfig.required.API_URL
+
+  return `${apiUrl}/auth`
+}
 
 type TokenResponse = {
   token: string
@@ -46,9 +64,74 @@ type LoginCredentials = {
   password: string
 }
 
-export const authTokenAtom = atomWithStorage<string | null>('authToken', null)
-export const userAtom = atomWithStorage<UserOutput | null>('user', null)
-export const userRightsAtom = atomWithStorage<string[] | null>('rights', null)
+type UserFromToken = {
+  user: UserOutput
+  rights: string[]
+}
+
+function getStringArray(value: unknown): string[] {
+  return Array.isArray(value)
+    ? value.filter((v): v is string => typeof v === 'string')
+    : []
+}
+
+export function getAuthStateFromToken(token: string): UserFromToken | null {
+  const payload = parseJwt(token)
+  if (!payload) return null
+
+  // Validate required fields with proper type checking
+  if (
+    (typeof payload.uid !== 'string' && typeof payload.uid !== 'number') ||
+    typeof payload.sub !== 'string'
+  ) {
+    return null
+  }
+
+  const firstName = payload.given_name || payload.firstName
+  const lastName = payload.family_name || payload.lastName
+
+  if (typeof firstName !== 'string' || typeof lastName !== 'string') {
+    return null
+  }
+
+  const rights = getStringArray(payload.rights)
+  const roles = getStringArray(payload.roles)
+  const locale = typeof payload.locale === 'string' ? payload.locale : 'en'
+  const mobile = typeof payload.mobile === 'string' ? payload.mobile : ''
+  const phone = typeof payload.phone === 'string' ? payload.phone : ''
+  const source =
+    typeof payload.source === 'string'
+      ? payload.source
+      : typeof payload.userSource === 'string'
+        ? payload.userSource
+        : UserSource.LOCAL
+
+  return {
+    user: {
+      id: payload.uid,
+      email: payload.sub,
+      firstName,
+      lastName,
+      enabled: true,
+      locale,
+      mobile,
+      phone,
+      source,
+      createdAt: null,
+      createdBy: null,
+      updatedAt: null,
+      updatedBy: null,
+      roles: roles.map(name => ({
+        name,
+        description: '',
+        editable: false,
+        protected: false,
+        rights: rights.map(authority => ({ authority, description: null })),
+      })),
+    },
+    rights,
+  }
+}
 
 export function useCreateToken(): UseMutationResult<
   TokenResponse,
@@ -57,23 +140,25 @@ export function useCreateToken(): UseMutationResult<
 > {
   const t = useTranslations()
   const setAuthToken = useSetAtom(authTokenAtom)
+  const setUser = useSetAtom(userAtom)
+  const setUserRights = useSetAtom(userRightsAtom)
 
   const mutation = useMutation<TokenResponse, AxiosError, LoginCredentials>({
     mutationKey: ['useCreateToken'],
     mutationFn: (loginCredentials: LoginCredentials) =>
       api
         .post<TokenResponse, LoginCredentials>('/token', loginCredentials, {
-          baseURL: `${
-            process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
-              ? process.env.NEXT_PUBLIC_API_URL
-              : window.runtimeConfig.required.API_URL
-          }/auth`,
+          baseURL: getAuthBaseUrl(),
         })
         .then(response => response.data),
     onSuccess: data => {
       setAuthToken(data.token)
 
-      localStorage.setItem('authToken', JSON.stringify(data.token))
+      const userFromToken = getAuthStateFromToken(data.token)
+      if (userFromToken) {
+        setUser(userFromToken.user)
+        setUserRights(userFromToken.rights)
+      }
     },
     meta: {
       errorNotification: {
@@ -92,26 +177,28 @@ export function useRenewToken(): UseMutationResult<
   void
 > {
   const setAuthToken = useSetAtom(authTokenAtom)
+  const setUser = useSetAtom(userAtom)
+  const setUserRights = useSetAtom(userRightsAtom)
 
   // Token will be set in header automatically by the interceptor.
   return useMutation<TokenResponse, AxiosError, void>({
     mutationKey: ['useRenewToken'],
     mutationFn: async () => {
-      // No need to send the refresh token. The backend uses the cookie.
-      const baseURL = process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
-        ? process.env.NEXT_PUBLIC_API_URL
-        : window.runtimeConfig.required.API_URL
-
       const { data } = await api.post<TokenResponse, undefined>(
         '/renew',
         undefined,
-        { baseURL: `${baseURL}/auth` },
+        { baseURL: getAuthBaseUrl() },
       )
       return data
     },
     onSuccess: data => {
       setAuthToken(data.token)
-      localStorage.setItem('authToken', JSON.stringify(data.token))
+
+      const userFromToken = getAuthStateFromToken(data.token)
+      if (userFromToken) {
+        setUser(userFromToken.user)
+        setUserRights(userFromToken.rights)
+      }
     },
   })
 }
@@ -194,10 +281,6 @@ export function useSetPassword(): UseMutationResult<
   return mutation
 }
 
-export const isSsoAtom = atom(get => get(userAtom)?.source !== UserSource.LOCAL)
-
-export const ssoProviderAtom = atom(get => get(userAtom)?.source)
-
 type SsoApplications = {
   [key: string]: {
     imageUrl: string
@@ -212,11 +295,7 @@ export function useGetSsoApplications(): UseQueryResult<SsoApplications> {
     queryFn: () =>
       api
         .get<SsoApplications>('/oauth-registrations', {
-          baseURL: `${
-            process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
-              ? process.env.NEXT_PUBLIC_API_URL
-              : window.runtimeConfig.required.API_URL
-          }/auth`,
+          baseURL: getAuthBaseUrl(),
         })
         .then(response => response.data),
   })
@@ -225,14 +304,12 @@ export function useGetSsoApplications(): UseQueryResult<SsoApplications> {
 export function useLogout(): UseMutationResult<void, AxiosError, void> {
   const router = useRouter()
   const resetAuthToken = useSetAtom(authTokenAtom)
+  const resetUser = useSetAtom(userAtom)
+  const resetUserRights = useSetAtom(userRightsAtom)
 
   return useMutation<void, AxiosError, void>({
     mutationKey: ['useLogout'],
     mutationFn: async () => {
-      const baseURL = process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
-        ? process.env.NEXT_PUBLIC_API_URL
-        : window.runtimeConfig.required.API_URL
-
       const appURL = process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
         ? process.env.NEXT_PUBLIC_APP_URL
         : window.runtimeConfig.required.APP_URL
@@ -242,15 +319,13 @@ export function useLogout(): UseMutationResult<void, AxiosError, void> {
       await api.post(
         `/logout?redirectUrl=${encodeURIComponent(redirectUrl)}`,
         undefined,
-        { baseURL: `${baseURL}/auth` },
+        { baseURL: getAuthBaseUrl() },
       )
     },
     onSettled: () => {
-      localStorage.removeItem('authToken')
-      localStorage.removeItem('user')
-
       resetAuthToken(null)
-
+      resetUser(null)
+      resetUserRights(null)
       router.push('/login')
     },
   })
