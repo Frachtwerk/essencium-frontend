@@ -24,6 +24,9 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios'
+import { getDefaultStore } from 'jotai/vanilla'
+
+import { authTokenAtom, userAtom, userRightsAtom } from './auth-atoms'
 
 export type GetFilterParams = {
   page: number
@@ -132,9 +135,10 @@ api.interceptors.request.use(
 )
 
 function clearAuthState(): void {
-  localStorage.removeItem('authToken')
-  localStorage.removeItem('user')
-  localStorage.removeItem('rights')
+  const store = getDefaultStore()
+  store.set(authTokenAtom, null)
+  store.set(userAtom, null)
+  store.set(userRightsAtom, null)
 }
 
 api.interceptors.response.use(

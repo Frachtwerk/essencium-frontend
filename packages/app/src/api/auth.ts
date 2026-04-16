@@ -30,14 +30,28 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { atom, useSetAtom } from 'jotai'
-import { atomWithStorage } from 'jotai/utils'
+import { useSetAtom } from 'jotai'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
 import { parseJwt } from '@/utils'
 
 import { api } from './api'
+import {
+  authTokenAtom,
+  isSsoAtom,
+  ssoProviderAtom,
+  userAtom,
+  userRightsAtom,
+} from './auth-atoms'
+
+export {
+  authTokenAtom,
+  isSsoAtom,
+  ssoProviderAtom,
+  userAtom,
+  userRightsAtom,
+} from './auth-atoms'
 
 function getAuthBaseUrl(): string {
   const apiUrl = process.env.NEXT_PUBLIC_DISABLE_INSTRUMENTATION
@@ -124,10 +138,6 @@ export function getAuthStateFromToken(token: string): UserFromToken | null {
     rights,
   }
 }
-
-export const authTokenAtom = atomWithStorage<string | null>('authToken', null)
-export const userAtom = atomWithStorage<UserOutput | null>('user', null)
-export const userRightsAtom = atomWithStorage<string[] | null>('rights', null)
 
 export function useCreateToken(): UseMutationResult<
   TokenResponse,
@@ -276,10 +286,6 @@ export function useSetPassword(): UseMutationResult<
 
   return mutation
 }
-
-export const isSsoAtom = atom(get => get(userAtom)?.source !== UserSource.LOCAL)
-
-export const ssoProviderAtom = atom(get => get(userAtom)?.source)
 
 type SsoApplications = {
   [key: string]: {
