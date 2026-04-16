@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.6.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.5.0...essencium-docs-v4.6.0) (2026-04-16)
+
+
+### Features
+
+* **app:** add API token feature ([#972](https://github.com/Frachtwerk/essencium-frontend/issues/972)) ([106c7e8](https://github.com/Frachtwerk/essencium-frontend/commit/106c7e83a2ddeee9333c8782514d5c2885891494))
+
+
+### Bug Fixes
+
+* **docs:** fix docs deps ([#969](https://github.com/Frachtwerk/essencium-frontend/issues/969)) ([7858a1d](https://github.com/Frachtwerk/essencium-frontend/commit/7858a1d676b34983a8c4b727f68209c0077115ec))
+* exclude flaky e2e from pipeline ([#971](https://github.com/Frachtwerk/essencium-frontend/issues/971)) ([da0c900](https://github.com/Frachtwerk/essencium-frontend/commit/da0c9005d0d1a1ad199808da2ecdf9c3c46a5c73))
+
 ## [4.5.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-docs-v4.4.2...essencium-docs-v4.5.0) (2026-03-10)
 
 

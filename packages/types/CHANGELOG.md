@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.5.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v6.4.0...essencium-types-v6.5.0) (2026-04-16)
+
+
+### Features
+
+* **app:** add API token feature ([#972](https://github.com/Frachtwerk/essencium-frontend/issues/972)) ([106c7e8](https://github.com/Frachtwerk/essencium-frontend/commit/106c7e83a2ddeee9333c8782514d5c2885891494))
+
+
+### Bug Fixes
+
+* exclude flaky e2e from pipeline ([#971](https://github.com/Frachtwerk/essencium-frontend/issues/971)) ([da0c900](https://github.com/Frachtwerk/essencium-frontend/commit/da0c9005d0d1a1ad199808da2ecdf9c3c46a5c73))
+
 ## [6.4.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-types-v6.3.0...essencium-types-v6.4.0) (2026-03-10)
 
 

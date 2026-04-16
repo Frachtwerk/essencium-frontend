@@ -1,5 +1,31 @@
 # Changelog
 
+## [10.0.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.5.0...essencium-app-v10.0.0) (2026-04-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **lib:** Consumers must wrap the app with next-intl's NextIntlClientProvider instead of react-i18next's I18nextProvider.
+
+### Features
+
+* **app:** add API token feature ([#972](https://github.com/Frachtwerk/essencium-frontend/issues/972)) ([106c7e8](https://github.com/Frachtwerk/essencium-frontend/commit/106c7e83a2ddeee9333c8782514d5c2885891494))
+* **app:** hydrate user state from jwt claims ([1f2c6e8](https://github.com/Frachtwerk/essencium-frontend/commit/1f2c6e884477b10bf88b953a2506e7e453149c05))
+
+
+### Bug Fixes
+
+* address code review feedback on migration tooling ([165b89c](https://github.com/Frachtwerk/essencium-frontend/commit/165b89c89184e1ac9131424f10773ffff61d2beb))
+* correct manifest schema violations in v6.0.0 through v7.3.0 ([53b61ef](https://github.com/Frachtwerk/essencium-frontend/commit/53b61efcf92c5f001549573c8e633aab2f6f0740))
+* correct manifest schema violations in v7.4.0 through v9.4.0 ([b4b69bd](https://github.com/Frachtwerk/essencium-frontend/commit/b4b69bd92303fcac4517cbdba4461143b6e74443))
+* exclude flaky e2e from pipeline ([#971](https://github.com/Frachtwerk/essencium-frontend/issues/971)) ([da0c900](https://github.com/Frachtwerk/essencium-frontend/commit/da0c9005d0d1a1ad199808da2ecdf9c3c46a5c73))
+* remaining schema violations in v7.4.0 and v7.8.0 manifests ([1938fc0](https://github.com/Frachtwerk/essencium-frontend/commit/1938fc052ae9f8d8aef15a1d05932b977c797240))
+
+
+### Code Refactoring
+
+* **lib:** migrate all components to next-intl ([f64ca72](https://github.com/Frachtwerk/essencium-frontend/commit/f64ca72616612bced7817414ec4861a2ff12ea16))
+
 ## [9.5.0](https://github.com/Frachtwerk/essencium-frontend/compare/essencium-app-v9.4.6...essencium-app-v9.5.0) (2026-03-10)
 
 
