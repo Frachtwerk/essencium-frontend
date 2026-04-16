@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.1](https://github.com/Frachtwerk/essencium-frontend/compare/eslint-config-essencium-v2.5.0...eslint-config-essencium-v2.5.1) (2026-04-16)
+
+
+### Bug Fixes
+
+* exclude flaky e2e from pipeline ([#971](https://github.com/Frachtwerk/essencium-frontend/issues/971)) ([da0c900](https://github.com/Frachtwerk/essencium-frontend/commit/da0c9005d0d1a1ad199808da2ecdf9c3c46a5c73))
+
 ## [2.5.0](https://github.com/Frachtwerk/essencium-frontend/compare/eslint-config-essencium-v2.4.1...eslint-config-essencium-v2.5.0) (2026-03-10)
 
 ### Features
