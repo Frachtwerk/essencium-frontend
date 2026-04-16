@@ -1,0 +1,495 @@
+version: "10.0.0"
+from: "9.5.0"
+date: "2026-04-16"
+
+changes:
+  # ── BREAKING: i18n stack replaced (i18next → next-intl) ────────────
+  - type: dependency_migration
+    package: "next-intl"
+    from: null
+    to: "4.9.1"
+    scope: project_wide
+    reference: "https://next-intl.dev/docs/getting-started"
+    notes: "BREAKING. Replaces i18next + react-i18next + next-i18n-router stack entirely. All components using useTranslation() must switch to useTranslations() from next-intl. Server-side translation loading restructured around getTranslations()/getMessages(). See MIGRATION.md for per-file details."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  - type: dependency_migration
+    package: "i18next"
+    from: "25.8.13"
+    to: null
+    scope: project_wide
+    notes: "Removed. Replaced by next-intl."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  - type: dependency_migration
+    package: "react-i18next"
+    from: "16.5.4"
+    to: null
+    scope: project_wide
+    notes: "Removed. Replaced by next-intl. useTranslation() → useTranslations(), getI18n() removed."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  - type: dependency_migration
+    package: "next-i18n-router"
+    from: "5.5.6"
+    to: null
+    scope: project_wide
+    notes: "Removed. Routing middleware replaced by next-intl/middleware in src/middleware.ts."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  - type: dependency_migration
+    package: "i18next-resources-to-backend"
+    from: "1.2.1"
+    to: null
+    scope: project_wide
+    notes: "Removed. Backend translation loading now handled server-side in src/i18n/request.ts."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  # ── Dependency migrations: minor/patch bumps ───────────────────────
+  - type: dependency_migration
+    package: "react"
+    from: "19.2.0"
+    to: "19.2.4"
+    scope: package
+    reference: "https://github.com/facebook/react/releases"
+    notes: "Patch bump."
+
+  - type: dependency_migration
+    package: "react-dom"
+    from: "19.2.0"
+    to: "19.2.4"
+    scope: package
+    reference: "https://github.com/facebook/react/releases"
+    notes: "Patch bump, aligned with react."
+
+  - type: dependency_migration
+    package: "next"
+    from: "16.1.6"
+    to: "16.1.7"
+    scope: package
+    reference: "https://github.com/vercel/next.js/releases"
+    notes: "Patch bump."
+
+  - type: dependency_migration
+    package: "jotai"
+    from: "2.18.0"
+    to: "2.18.1"
+    scope: package
+    reference: "https://github.com/pmndrs/jotai/releases"
+    notes: "Patch bump."
+
+  - type: dependency_migration
+    package: "axios"
+    from: "1.13.6"
+    to: "1.15.0"
+    scope: package
+    reference: "https://github.com/axios/axios/releases"
+    notes: "Minor bump."
+
+  - type: dependency_migration
+    package: "@tabler/icons-react"
+    from: "3.38.0"
+    to: "3.40.0"
+    scope: package
+    reference: "https://github.com/tabler/tabler-icons/releases"
+    notes: "Minor bump. New icons available; no existing icons removed."
+
+  - type: dependency_migration
+    package: "nodemailer"
+    from: "8.0.1"
+    to: "8.0.5"
+    scope: package
+    reference: "https://github.com/nodemailer/nodemailer/releases"
+    notes: "Patch bump."
+
+  - type: dependency_migration
+    package: "dayjs"
+    from: "1.11.19"
+    to: "1.11.20"
+    scope: package
+    reference: "https://github.com/iamkun/dayjs/releases"
+    notes: "Patch bump."
+
+  - type: dependency_migration
+    package: "tailwindcss"
+    from: "4.2.1"
+    to: "4.2.2"
+    scope: package
+    reference: "https://github.com/tailwindlabs/tailwindcss/releases"
+    notes: "Patch bump."
+
+  - type: dependency_migration
+    package: "vite"
+    from: "7.3.1"
+    to: "7.3.2"
+    scope: package
+    reference: "https://github.com/vitejs/vite/releases"
+    notes: "Patch bump. Dev dependency only."
+
+  # ── Infrastructure ─────────────────────────────────────────────────
+  - type: infrastructure
+    description: "Convert next.config.js from CJS (module.exports) to ESM (export default), rename to next.config.mjs. Wrap config with withNextIntl() plugin from next-intl/plugin. Add turbopack: {} option."
+    files:
+      - path: "next.config.mjs"
+        action: added
+      - path: "next.config.js"
+        action: removed
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  - type: infrastructure
+    description: "Rename vitest.config.ts to vitest.config.mts (ESM extension)."
+    files:
+      - path: "vitest.config.mts"
+        action: added
+      - path: "vitest.config.ts"
+        action: removed
+
+  - type: infrastructure
+    description: "BREAKING: Raise minimum Node.js version from >=20 to >=24. Update volta.node from 20.15.0 to 24.0.0."
+    files:
+      - path: "package.json"
+        action: modified
+
+  # ── New files: i18n infrastructure (next-intl) ────────────────────
+  - type: new_file
+    path: "src/i18n/routing.ts"
+    description: "Defines locale routing configuration via defineRouting() from next-intl/routing. Exports routing config (locales, defaultLocale) used across the app."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  - type: new_file
+    path: "src/i18n/request.ts"
+    description: "Server-side translation configuration via getRequestConfig() from next-intl/server. Loads static JSON translation files and deep-merges backend translation overrides."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  - type: new_file
+    path: "src/i18n/navigation.ts"
+    description: "Creates locale-aware navigation exports (Link, redirect, usePathname, useRouter, getPathname) via createNavigation() from next-intl/navigation."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  - type: new_file
+    path: "src/middleware.ts"
+    description: "Locale routing middleware using createMiddleware(routing) from next-intl/middleware. Replaces the old src/proxy.ts which used next-i18n-router."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  # ── New files: API Token feature ───────────────────────────────────
+  - type: new_file
+    path: "src/api/apiToken.ts"
+    description: "API hooks for API token management: useGetApiTokens, useGetApiToken, useCreateApiToken, useDeleteApiToken, useRevokeApiToken, useGetAllApiTokens, useGetAllApiTokensGrouped, useGetTokenExpirationInfo."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/972"
+
+  - type: new_file
+    path: "src/app/[locale]/(main)/admin/api-tokens/ApiTokensAdminView.tsx"
+    description: "Admin view for managing all API tokens across users. Supports revoking and deleting tokens."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/972"
+
+  - type: new_file
+    path: "src/app/[locale]/(main)/admin/api-tokens/page.tsx"
+    description: "Route page for /admin/api-tokens with metadata."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/972"
+
+  - type: new_file
+    path: "src/app/[locale]/(main)/profile/_components/ApiTokensSection.tsx"
+    description: "User profile section for managing own API tokens. Shows token table with create, view, and revoke actions."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/972"
+
+  - type: new_file
+    path: "src/app/[locale]/(main)/profile/_components/CreateApiTokenModal.tsx"
+    description: "Modal form for creating new API tokens. Includes validUntil date picker and rights selector."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/972"
+
+  - type: new_file
+    path: "src/app/[locale]/(main)/profile/_components/TokenCreatedModal.tsx"
+    description: "One-time token display modal shown after token creation. Includes copy-to-clipboard functionality."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/972"
+
+  - type: new_file
+    path: "src/utils/apiToken.ts"
+    description: "STATUS_COLORS mapping for ApiTokenStatus enum values (color codes per status)."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/972"
+
+  # ── New files: JWT hydration feature ──────────────────────────────
+  - type: new_file
+    path: "src/api/auth-atoms.ts"
+    description: "Jotai atoms for auth state extracted from auth.ts: authTokenAtom, userAtom, userRightsAtom, isSsoAtom, ssoProviderAtom. Import atoms from here instead of auth.ts."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/996"
+
+  # ── New files: utilities ───────────────────────────────────────────
+  - type: new_file
+    path: "src/utils/dayjs.ts"
+    description: "Side-effect module that registers dayjs locale plugins for de and en. Import once in providers.tsx."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/972"
+
+  - type: new_file
+    path: "src/utils/formatDate.ts"
+    description: "formatDate(value) helper that formats a date value as DD.MM.YYYY using dayjs."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/972"
+
+  # ── File removal ───────────────────────────────────────────────────
+  - type: file_removal
+    path: "src/proxy.ts"
+    description: "Removed. The next-i18n-router based middleware is replaced by src/middleware.ts using next-intl/middleware."
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  # ── File tracking: next-intl migration — layout & providers ───────
+  - type: file_tracking
+    description: "Replace TranslationProvider with NextIntlClientProvider, replace initTranslations(locale) with getMessages() from next-intl/server. generateStaticParams uses routing.locales."
+    files:
+      - path: "src/app/[locale]/layout.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  - type: file_tracking
+    description: "Add DatesProvider from @mantine/dates wrapping children for date picker locale support. Accept locale prop. Add side-effect import of @/utils/dayjs."
+    files:
+      - path: "src/app/[locale]/providers.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  - type: file_tracking
+    description: "Migrate public layout from i18next to next-intl patterns."
+    files:
+      - path: "src/app/[locale]/(public)/layout.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  # ── File tracking: next-intl migration — gutted/deprecated modules ─
+  - type: file_tracking
+    description: "File gutted: initTranslations() removed. Now only re-exports routing as i18nConfig for backwards compatibility. Server-side translation init is handled by next-intl's getRequestConfig in src/i18n/request.ts."
+    files:
+      - path: "src/config/i18n.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  - type: file_tracking
+    description: "TranslationProvider component gutted and deprecated. The root layout now wraps children directly with NextIntlClientProvider from next-intl."
+    files:
+      - path: "src/components/provider/translationProvider.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  - type: file_tracking
+    description: "useAddTranslation hook gutted and deprecated. Backend translation overrides are now loaded server-side in src/i18n/request.ts via getRequestConfig."
+    files:
+      - path: "src/hooks/useAddTranslation.ts"
+        action: modified
+      - path: "src/hooks/index.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  # ── File tracking: next-intl migration — useTranslation → useTranslations in views ──
+  - type: file_tracking
+    description: "Replace useTranslation() from react-i18next with useTranslations() from next-intl. Replace i18n.language with useLocale() from next-intl. Remove useAddTranslations(i18n) calls. Add API Tokens nav entry (requires RIGHTS.API_TOKEN_ADMIN)."
+    files:
+      - path: "src/components/layouts/AuthLayout.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  - type: file_tracking
+    description: "Replace useTranslation from react-i18next with useTranslations from next-intl. Replace i18nConfig with routing from @/i18n/routing."
+    files:
+      - path: "src/components/RouteProtector.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  - type: file_tracking
+    description: "Replace useTranslation() with useTranslations() from next-intl in all view components."
+    files:
+      - path: "src/app/[locale]/(main)/admin/rights/RightsView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/roles/RolesView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/users/UsersView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/users/[id]/UpdateUserView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/users/add/AddUserView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/legal-notice/LegalNoticeView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/privacy-policy/PrivacyPolicyView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/profile/ProfileView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(public)/set-password/SetPasswordView.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/translations/_components/TranslationsChangeForm.tsx"
+        action: modified
+      - path: "src/api/contact.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  # ── File tracking: next-intl migration — page.tsx generateMetadata ─
+  - type: file_tracking
+    description: "Simplify generateMetadata in all page.tsx files: replace initTranslations(locale) with getTranslations() from next-intl/server. Remove Props/params/ResolvingMetadata types. Page components no longer receive params prop."
+    files:
+      - path: "src/app/[locale]/(main)/admin/rights/page.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/roles/page.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/users/page.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/users/[id]/page.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/admin/users/add/page.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/contact/page.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/legal-notice/page.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/privacy-policy/page.tsx"
+        action: modified
+      - path: "src/app/[locale]/(main)/page.tsx"
+        action: modified
+      - path: "src/app/[locale]/(public)/login/page.tsx"
+        action: modified
+      - path: "src/app/[locale]/(public)/set-password/page.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  # ── File tracking: next-intl migration — TranslationsView (complex) ─
+  - type: file_tracking
+    description: "Complex refactor: replace getI18n()/i18n.language with useLocale() from next-intl. Accept staticMessages prop (preloaded by page.tsx). Replace i18n.addResourceBundle() with staticMessages[locale] lookup. Replace window.location.reload() with router.refresh(). Use routing.locales. Fix component name typo (TranlsationView → TranslationsView)."
+    files:
+      - path: "src/app/[locale]/(main)/admin/translations/TranslationsView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  - type: file_tracking
+    description: "Load static translation messages for all locales via dynamic import() and pass as staticMessages prop to TranslationsView."
+    files:
+      - path: "src/app/[locale]/(main)/admin/translations/page.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  # ── File tracking: next-intl migration — withBaseStylingShowNotification ──
+  - type: file_tracking
+    description: "BREAKING for callers: no longer internally calls getI18n(). Now accepts t as an optional TranslateFunction parameter. All callers must pass the t function from useTranslations() explicitly."
+    files:
+      - path: "src/utils/withBaseStylingShowNotification.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  # ── File tracking: JWT hydration feature ──────────────────────────
+  - type: file_tracking
+    description: "Add getAuthStateFromToken(token) that parses JWT claims into UserOutput + rights array. Supports OIDC claims (given_name/family_name). useCreateToken and useRenewToken now hydrate userAtom/userRightsAtom immediately on success. useLogout resets atoms via Jotai setters. Auth atoms extracted to auth-atoms.ts and re-exported. Add getAuthBaseUrl() helper."
+    files:
+      - path: "src/api/auth.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/996"
+
+  - type: file_tracking
+    description: "Add getStoredAuthToken() with safe JSON.parse (handles both raw and JSON-stringified tokens in localStorage). clearAuthState() uses getDefaultStore() from jotai/vanilla to reset atoms. 401 interceptor: add SSR guard (typeof window === 'undefined'), fix login path check to use .includes('/login') for locale-aware paths."
+    files:
+      - path: "src/api/api.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/996"
+
+  - type: file_tracking
+    description: "Rewrite useGetMe from createUseFind factory to a direct useQuery hook. Explicitly depends on authTokenAtom so query is disabled when no token is present."
+    files:
+      - path: "src/api/me.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/996"
+
+  - type: file_tracking
+    description: "Improve enabled logic in createUseFind: if a custom URL is provided, id is no longer required for the query to be enabled."
+    files:
+      - path: "src/api/base/find.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/996"
+
+  - type: file_tracking
+    description: "Make onSuccess callback async in createUseUpdate to properly await the passed-in onSuccess."
+    files:
+      - path: "src/api/base/update.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/996"
+
+  - type: file_tracking
+    description: "On OAuth token receipt, call getAuthStateFromToken(oauthToken) to hydrate user/rights atoms immediately. CSS fix: Tailwind class to-dark-700 → to-slate-700."
+    files:
+      - path: "src/app/[locale]/(public)/login/LoginView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/996"
+
+  - type: file_tracking
+    description: "Change return type from Record<string, number> to JwtPayload (Record<string, unknown> & { expiringIn: number }). Add validation: returns null if payload.exp is not a number."
+    files:
+      - path: "src/utils/parseJwt.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/996"
+
+  # ── File tracking: API token integration ──────────────────────────
+  - type: file_tracking
+    description: "Add ApiTokensSection to ProfileView, visible when user has RIGHTS.API_TOKEN right."
+    files:
+      - path: "src/app/[locale]/(main)/profile/ProfileView.tsx"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/972"
+
+  - type: file_tracking
+    description: "Add export * from './apiToken' to API barrel export."
+    files:
+      - path: "src/api/index.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/972"
+
+  - type: file_tracking
+    description: "Add export * from './apiToken' and export * from './formatDate' to utils barrel export."
+    files:
+      - path: "src/utils/index.ts"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/972"
+
+  # ── File tracking: CSS ─────────────────────────────────────────────
+  - type: file_tracking
+    description: "Add @import '@mantine/dates/styles.layer.css' to enable date picker styles."
+    files:
+      - path: "src/globals.css"
+        action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/972"
+
+  # ── Translation ────────────────────────────────────────────────────
+  - type: translation
+    description: "Add translation keys for API Token feature and close action."
+    locales: ["de", "en"]
+    keys_added:
+      - "actions.close"
+      - "navigation.apiTokens.label"
+      - "navigation.apiTokens.description"
+      - "profileView.apiTokens.title"
+      - "profileView.apiTokens.description"
+      - "profileView.apiTokens.empty"
+      - "apiTokensView.title"
+      - "apiTokensView.table.description"
+      - "apiTokensView.table.status"
+      - "apiTokensView.table.validUntil"
+      - "apiTokensView.table.rights"
+      - "apiTokensView.table.createdAt"
+      - "apiTokensView.table.linkedUser"
+      - "apiTokensView.table.actions"
+      - "apiTokensView.action.create"
+      - "apiTokensView.action.revoke"
+      - "apiTokensView.action.delete"
+      - "apiTokensView.createModal.title"
+      - "apiTokensView.createModal.description"
+      - "apiTokensView.createModal.validUntil"
+      - "apiTokensView.createModal.rights"
+      - "apiTokensView.createModal.submit"
+      - "apiTokensView.tokenCreated.title"
+      - "apiTokensView.tokenCreated.warning"
+      - "apiTokensView.tokenCreated.copy"
+      - "apiTokensView.tokenCreated.copied"
+      - "apiTokensView.deleteDialog.title"
+      - "apiTokensView.deleteDialog.text"
+      - "apiTokensView.revokeDialog.title"
+      - "apiTokensView.revokeDialog.text"
+      - "apiTokensView.status.ACTIVE"
+      - "apiTokensView.status.REVOKED"
+      - "apiTokensView.status.REVOKED_ROLE_CHANGED"
+      - "apiTokensView.status.REVOKED_RIGHTS_CHANGED"
+      - "apiTokensView.status.REVOKED_USER_CHANGED"
+      - "apiTokensView.status.EXPIRED"
+      - "apiTokensView.status.USER_DELETED"
+    keys_removed: []
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/972"

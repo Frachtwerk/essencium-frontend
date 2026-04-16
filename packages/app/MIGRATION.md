@@ -1,8 +1,189 @@
 # Migrations
 
-## [Unreleased]()
+## [10.0.0 (2026-04-16)](https://github.com/Frachtwerk/essencium-frontend/releases/tag/essencium-app-v10.0.0)
 
-### Add API token management (https://github.com/Frachtwerk/essencium-frontend/pull/929)
+### Migrate from i18next to next-intl (https://github.com/Frachtwerk/essencium-frontend/pull/967)
+
+#### `packages/app/package.json`
+
+- remove `i18next`, `react-i18next`, `next-i18n-router`, `i18next-resources-to-backend`
+- add `next-intl`
+
+#### `packages/app/next.config.mjs` (renamed from `next.config.js`)
+
+- convert from CJS (`module.exports`) to ESM (`export default`)
+- wrap config with `withNextIntl()` from `next-intl/plugin`
+- add `turbopack: {}` option
+
+#### `packages/app/src/i18n/routing.ts`
+
+- add file: defines locale routing via `defineRouting()` from `next-intl/routing`
+- exports `routing` (locales, defaultLocale) — used throughout the app
+
+#### `packages/app/src/i18n/request.ts`
+
+- add file: server-side `getRequestConfig()` from `next-intl/server`
+- loads static JSON translation files and deep-merges backend translation overrides
+- replaces the old `initTranslations()` function from `src/config/i18n.ts`
+
+#### `packages/app/src/i18n/navigation.ts`
+
+- add file: locale-aware navigation exports via `createNavigation(routing)`
+- provides `Link`, `redirect`, `usePathname`, `useRouter`, `getPathname`
+- use these instead of `next/navigation` for locale-aware routing
+
+#### `packages/app/src/middleware.ts`
+
+- add file: `createMiddleware(routing)` from `next-intl/middleware`
+- replaces `src/proxy.ts` (which used `next-i18n-router`)
+
+#### `packages/app/src/proxy.ts`
+
+- remove file: replaced by `src/middleware.ts`
+
+#### `packages/app/src/config/i18n.ts`
+
+- `initTranslations()` removed — replaced by next-intl's `getRequestConfig`
+- file now only re-exports `routing as i18nConfig` for backwards compatibility
+
+#### `packages/app/src/components/provider/translationProvider.tsx`
+
+- `TranslationProvider` component gutted and deprecated
+- root layout now wraps children directly with `NextIntlClientProvider` from `next-intl`
+
+#### `packages/app/src/hooks/useAddTranslation.ts`
+
+- hook gutted and deprecated
+- backend translation overrides are now loaded server-side in `src/i18n/request.ts`
+
+#### `packages/app/src/hooks/index.ts`
+
+- remove export of `useAddTranslation`
+
+#### `packages/app/src/app/[locale]/layout.tsx`
+
+- replace `TranslationProvider` with `NextIntlClientProvider` from `next-intl`
+- replace `initTranslations(locale)` with `getMessages()` from `next-intl/server`
+- `generateStaticParams` uses `routing.locales` instead of `i18nConfig.locales`
+- pass `locale` prop to `Providers`
+
+#### `packages/app/src/app/[locale]/providers.tsx`
+
+- add `DatesProvider` from `@mantine/dates` wrapping children for date picker locale support
+- accept `locale` prop from layout
+- add side-effect `import '@/utils/dayjs'` for locale registration
+
+#### `packages/app/src/app/[locale]/(public)/layout.tsx`
+
+- migrate from i18next to next-intl patterns
+
+#### `packages/app/src/components/layouts/AuthLayout.tsx`
+
+- replace `useTranslation()` with `useTranslations()` from `next-intl`
+- replace `i18n.language` with `useLocale()` from `next-intl`
+- remove `useAddTranslations(i18n)` usage
+- remove `i18n.changeLanguage()` call (locale handled via URL)
+
+#### `packages/app/src/components/RouteProtector.tsx`
+
+- replace `useTranslation` with `useTranslations` from `next-intl`
+- replace `i18nConfig` with `routing` from `@/i18n/routing`
+
+#### `packages/app/src/app/[locale]/(main)/admin/translations/TranslationsView.tsx`
+
+- replace `getI18n()` / `i18n.language` with `useLocale()` from `next-intl`
+- accept `staticMessages` prop (preloaded by page.tsx via dynamic `import()`)
+- replace `i18n.addResourceBundle()` with `staticMessages[locale]` lookup
+- replace `window.location.reload()` with `router.refresh()`
+- use `routing.locales` instead of `i18nConfig.locales`
+- fix component name typo: `TranlsationView` → `TranslationsView`
+
+#### `packages/app/src/app/[locale]/(main)/admin/translations/page.tsx`
+
+- load static translation messages for all locales via dynamic `import()`
+- pass as `staticMessages` prop to `TranslationsView`
+
+#### `packages/app/src/utils/withBaseStylingShowNotification.ts`
+
+- **BREAKING for callers:** no longer internally calls `getI18n()`
+- now accepts `t` as an optional `TranslateFunction` parameter
+- all callers must pass the `t` function from `useTranslations()` explicitly
+
+#### All view components
+
+- replace `import { useTranslation } from 'react-i18next'` with `import { useTranslations } from 'next-intl'`
+- replace `const { t } = useTranslation()` with `const t = useTranslations()`
+
+Changed files:
+- `src/app/[locale]/(main)/admin/rights/RightsView.tsx`
+- `src/app/[locale]/(main)/admin/roles/RolesView.tsx`
+- `src/app/[locale]/(main)/admin/users/UsersView.tsx`
+- `src/app/[locale]/(main)/admin/users/[id]/UpdateUserView.tsx`
+- `src/app/[locale]/(main)/admin/users/add/AddUserView.tsx`
+- `src/app/[locale]/(main)/legal-notice/LegalNoticeView.tsx`
+- `src/app/[locale]/(main)/privacy-policy/PrivacyPolicyView.tsx`
+- `src/app/[locale]/(main)/profile/ProfileView.tsx`
+- `src/app/[locale]/(public)/set-password/SetPasswordView.tsx`
+- `src/app/[locale]/(main)/translations/_components/TranslationsChangeForm.tsx`
+- `src/api/contact.ts`
+
+#### All page.tsx files
+
+- simplify `generateMetadata`: replace `initTranslations(locale)` with `getTranslations()` from `next-intl/server`
+- remove `Props`/`params`/`ResolvingMetadata` types — page components no longer receive `params` prop
+
+Changed files:
+- `src/app/[locale]/(main)/admin/rights/page.tsx`
+- `src/app/[locale]/(main)/admin/roles/page.tsx`
+- `src/app/[locale]/(main)/admin/users/page.tsx`
+- `src/app/[locale]/(main)/admin/users/[id]/page.tsx`
+- `src/app/[locale]/(main)/admin/users/add/page.tsx`
+- `src/app/[locale]/(main)/contact/page.tsx`
+- `src/app/[locale]/(main)/legal-notice/page.tsx`
+- `src/app/[locale]/(main)/privacy-policy/page.tsx`
+- `src/app/[locale]/(main)/page.tsx`
+- `src/app/[locale]/(public)/login/page.tsx`
+- `src/app/[locale]/(public)/set-password/page.tsx`
+
+### Raise Node.js minimum version to 24
+
+#### `packages/app/package.json`
+
+- change `engines.node` from `>=20` to `>=24`
+- update `volta.node` from `20.15.0` to `24.0.0`
+
+### Hydrate user state from JWT claims (https://github.com/Frachtwerk/essencium-frontend/pull/996)
+
+#### `packages/app/src/api/auth-atoms.ts`
+
+- add file: Jotai atoms for auth state extracted from `auth.ts`
+- exports `authTokenAtom`, `userAtom`, `userRightsAtom`, `isSsoAtom`, `ssoProviderAtom`
+- import atoms from this file instead of `auth.ts`
+
+#### `packages/app/src/api/auth.ts`
+
+- add `getAuthStateFromToken(token)`: parses JWT claims into `UserOutput` + rights array
+- `useCreateToken` and `useRenewToken`: hydrate `userAtom`/`userRightsAtom` immediately on success
+- `useLogout`: resets atoms via Jotai setters instead of `localStorage.removeItem`
+- auth atoms moved to `auth-atoms.ts` and re-exported
+
+#### `packages/app/src/api/api.ts`
+
+- add `getStoredAuthToken()` with safe JSON.parse (handles raw and JSON-stringified tokens)
+- `clearAuthState()` uses `getDefaultStore()` from `jotai/vanilla` to reset atoms
+- 401 interceptor: add SSR guard, fix login path check to `.includes('/login')` for locale-aware paths
+
+#### `packages/app/src/api/me.ts`
+
+- rewrite `useGetMe` from `createUseFind` factory to a direct `useQuery` hook
+- explicitly depends on `authTokenAtom` so query is disabled when no token is present
+
+#### `packages/app/src/utils/parseJwt.ts`
+
+- return type changed from `Record<string, number>` to `JwtPayload` (`Record<string, unknown> & { expiringIn: number }`)
+- add validation: returns `null` if `payload.exp` is not a number
+
+### Add API token management (https://github.com/Frachtwerk/essencium-frontend/pull/972)
 
 #### `packages/types/src/right.ts`
 
@@ -15,27 +196,6 @@
 #### `packages/app/src/api/apiToken.ts`
 
 - add file with API hooks: `useGetApiTokens`, `useGetApiToken`, `useCreateApiToken`, `useDeleteApiToken`, `useRevokeApiToken`, `useGetAllApiTokens`, `useGetAllApiTokensGrouped`, `useGetTokenExpirationInfo`
-
-#### `packages/app/src/api/me.ts`
-
-- rewrite `useGetMe` hook with explicit `useQuery` implementation to gate on auth token availability
-
-#### `packages/app/src/utils/dayjs.ts`
-
-- add file with dayjs locale configuration (de/en)
-
-#### `packages/app/src/app/[locale]/providers.tsx`
-
-- wrap app with Mantine `DatesProvider` for date picker locale support
-- accept `locale` prop from layout
-
-#### `packages/app/src/app/[locale]/layout.tsx`
-
-- pass `locale` prop to `Providers`
-
-#### `packages/app/src/globals.css`
-
-- add `@mantine/dates/styles.layer.css` import
 
 #### `packages/app/src/app/[locale]/(main)/profile/_components/ApiTokensSection.tsx`
 
@@ -68,10 +228,6 @@
 #### `packages/app/public/locales/de|en/common.json`
 
 - add translations for `navigation.apiTokens`, `profileView.apiTokens`, `apiTokensView`, and `actions.close`
-
-#### `packages/lib/src/theme.css`
-
-- add directional spacing utilities (`py-*`, `px-*`, `pt-*`, `pb-*`, `pl-*`, `pr-*`, `my-*`, `mx-*`, `mt-*`, `mb-*`, `ml-*`, `mr-*`) mapped to Mantine spacing tokens
 
 ## [9.5.0 (2026-03-10)]()
 
