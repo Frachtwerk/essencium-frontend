@@ -37,13 +37,7 @@ import { useTranslations } from 'next-intl'
 import { parseJwt } from '@/utils'
 
 import { api } from './api'
-import {
-  authTokenAtom,
-  isSsoAtom,
-  ssoProviderAtom,
-  userAtom,
-  userRightsAtom,
-} from './auth-atoms'
+import { authTokenAtom, userAtom, userRightsAtom } from './auth-atoms'
 
 export {
   authTokenAtom,

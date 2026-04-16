@@ -1,5 +1,5 @@
 import { UserSource } from '@frachtwerk/essencium-types'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { assert, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { getAuthStateFromToken } from './auth'
 
@@ -69,9 +69,9 @@ describe('getAuthStateFromToken', () => {
 
     const result = getAuthStateFromToken('token')
 
-    expect(result).not.toBeNull()
-    expect(result!.user.firstName).toBe('Jane')
-    expect(result!.user.lastName).toBe('Doe')
+    assert(result !== null)
+    expect(result.user.firstName).toBe('Jane')
+    expect(result.user.lastName).toBe('Doe')
   })
 
   it('maps OIDC given_name/family_name claims as alternative to firstName/lastName', () => {
@@ -84,9 +84,9 @@ describe('getAuthStateFromToken', () => {
 
     const result = getAuthStateFromToken('token')
 
-    expect(result).not.toBeNull()
-    expect(result!.user.firstName).toBe('John')
-    expect(result!.user.lastName).toBe('Smith')
+    assert(result !== null)
+    expect(result.user.firstName).toBe('John')
+    expect(result.user.lastName).toBe('Smith')
   })
 
   it('prefers given_name/family_name over firstName/lastName when both are present', () => {
@@ -98,8 +98,9 @@ describe('getAuthStateFromToken', () => {
 
     const result = getAuthStateFromToken('token')
 
-    expect(result!.user.firstName).toBe('OIDC')
-    expect(result!.user.lastName).toBe('Name')
+    assert(result !== null)
+    expect(result.user.firstName).toBe('OIDC')
+    expect(result.user.lastName).toBe('Name')
   })
 
   it('returns correct user and rights for a valid payload', () => {
@@ -107,8 +108,8 @@ describe('getAuthStateFromToken', () => {
 
     const result = getAuthStateFromToken('token')
 
-    expect(result).not.toBeNull()
-    expect(result!.user).toMatchObject({
+    assert(result !== null)
+    expect(result.user).toMatchObject({
       id: 42,
       email: 'user@example.com',
       firstName: 'Jane',
@@ -123,7 +124,7 @@ describe('getAuthStateFromToken', () => {
       updatedAt: null,
       updatedBy: null,
     })
-    expect(result!.rights).toEqual(['ROLE_READ', 'USER_READ'])
+    expect(result.rights).toEqual(['ROLE_READ', 'USER_READ'])
   })
 
   it('includes explicit null baseProperties fields', () => {
@@ -131,10 +132,11 @@ describe('getAuthStateFromToken', () => {
 
     const result = getAuthStateFromToken('token')
 
-    expect(result!.user.createdAt).toBeNull()
-    expect(result!.user.createdBy).toBeNull()
-    expect(result!.user.updatedAt).toBeNull()
-    expect(result!.user.updatedBy).toBeNull()
+    assert(result !== null)
+    expect(result.user.createdAt).toBeNull()
+    expect(result.user.createdBy).toBeNull()
+    expect(result.user.updatedAt).toBeNull()
+    expect(result.user.updatedBy).toBeNull()
   })
 
   it('handles string uid', () => {
@@ -142,7 +144,8 @@ describe('getAuthStateFromToken', () => {
 
     const result = getAuthStateFromToken('token')
 
-    expect(result!.user.id).toBe('uuid-1234')
+    assert(result !== null)
+    expect(result.user.id).toBe('uuid-1234')
   })
 
   it('returns empty arrays for rights and roles when absent', () => {
@@ -154,8 +157,9 @@ describe('getAuthStateFromToken', () => {
 
     const result = getAuthStateFromToken('token')
 
-    expect(result!.rights).toEqual([])
-    expect(result!.user.roles).toEqual([])
+    assert(result !== null)
+    expect(result.rights).toEqual([])
+    expect(result.user.roles).toEqual([])
   })
 
   it('filters non-string values out of rights and roles arrays', () => {
@@ -167,9 +171,10 @@ describe('getAuthStateFromToken', () => {
 
     const result = getAuthStateFromToken('token')
 
-    expect(result!.rights).toEqual(['ROLE_READ', 'USER_READ'])
-    expect(result!.user.roles).toHaveLength(1)
-    expect(result!.user.roles[0].name).toBe('ADMIN')
+    assert(result !== null)
+    expect(result.rights).toEqual(['ROLE_READ', 'USER_READ'])
+    expect(result.user.roles).toHaveLength(1)
+    expect(result.user.roles[0].name).toBe('ADMIN')
   })
 
   it('uses payload.source when present', () => {
@@ -177,7 +182,8 @@ describe('getAuthStateFromToken', () => {
 
     const result = getAuthStateFromToken('token')
 
-    expect(result!.user.source).toBe('google')
+    assert(result !== null)
+    expect(result.user.source).toBe('google')
   })
 
   it('falls back to payload.userSource when source is absent', () => {
@@ -186,7 +192,8 @@ describe('getAuthStateFromToken', () => {
 
     const result = getAuthStateFromToken('token')
 
-    expect(result!.user.source).toBe('github')
+    assert(result !== null)
+    expect(result.user.source).toBe('github')
   })
 
   it('falls back to UserSource.LOCAL when both source and userSource are absent', () => {
@@ -195,7 +202,8 @@ describe('getAuthStateFromToken', () => {
 
     const result = getAuthStateFromToken('token')
 
-    expect(result!.user.source).toBe(UserSource.LOCAL)
+    assert(result !== null)
+    expect(result.user.source).toBe(UserSource.LOCAL)
   })
 
   it('defaults locale to "en" when missing', () => {
@@ -204,7 +212,8 @@ describe('getAuthStateFromToken', () => {
 
     const result = getAuthStateFromToken('token')
 
-    expect(result!.user.locale).toBe('en')
+    assert(result !== null)
+    expect(result.user.locale).toBe('en')
   })
 
   it('defaults mobile and phone to empty string when missing', () => {
@@ -213,7 +222,8 @@ describe('getAuthStateFromToken', () => {
 
     const result = getAuthStateFromToken('token')
 
-    expect(result!.user.mobile).toBe('')
-    expect(result!.user.phone).toBe('')
+    assert(result !== null)
+    expect(result.user.mobile).toBe('')
+    expect(result.user.phone).toBe('')
   })
 })
