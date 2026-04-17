@@ -2,6 +2,14 @@ version: "10.0.0"
 from: "9.5.0"
 date: "2026-04-16"
 
+downstream_warnings:
+  - check: "Locale JSON files must not contain dots in translation keys"
+    reason: "next-intl interprets dots as nesting separators (e.g., the key '14.1' is treated as { '14': { '1': ... } }), unlike i18next which treated them as literal key names. This causes a runtime crash (INVALID_KEY error) when the dev server starts."
+    action: "Search all locale JSON files for keys containing dots (e.g., '14.1', '29.3') and rename them using underscores or another separator (e.g., '14_1', '29_3') before running the migration. Update any code that references these keys accordingly."
+  - check: "Test files mocking react-i18next need updating to next-intl"
+    reason: "After the i18n stack migration, vi.mock('react-i18next') calls and any i18next-related test setup will fail because react-i18next is no longer installed."
+    action: "Update setupTests.ts (if present) and all test files: replace vi.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key) => key }) })) with vi.mock('next-intl', () => ({ useTranslations: () => (key) => key, useLocale: () => 'en' }))."
+
 changes:
   # ── BREAKING: i18n stack replaced (i18next → next-intl) ────────────
   - type: dependency_migration
@@ -146,9 +154,11 @@ changes:
 
   - type: infrastructure
     description: "BREAKING: Raise minimum Node.js version from >=20 to >=24. Update volta.node from 20.15.0 to 24.0.0."
+    interactive: true
     files:
       - path: "package.json"
         action: modified
+    notes: "Downstream projects may intentionally pin a different Node.js version. Verify your CI/CD pipelines, Docker base images, and deployment environment support Node 24 before applying."
 
   # ── New files: i18n infrastructure (next-intl) ────────────────────
   - type: new_file
@@ -293,6 +303,7 @@ changes:
 
   - type: file_tracking
     description: "Replace useTranslation() with useTranslations() from next-intl in all view components."
+    batch_hint: codemod
     files:
       - path: "src/app/[locale]/(main)/admin/rights/RightsView.tsx"
         action: modified
@@ -321,6 +332,7 @@ changes:
   # ── File tracking: next-intl migration — page.tsx generateMetadata ─
   - type: file_tracking
     description: "Simplify generateMetadata in all page.tsx files: replace initTranslations(locale) with getTranslations() from next-intl/server. Remove Props/params/ResolvingMetadata types. Page components no longer receive params prop."
+    batch_hint: codemod
     files:
       - path: "src/app/[locale]/(main)/admin/rights/page.tsx"
         action: modified
@@ -344,6 +356,17 @@ changes:
         action: modified
       - path: "src/app/[locale]/(public)/set-password/page.tsx"
         action: modified
+    pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
+
+  # ── File tracking: next-intl migration — test infrastructure (downstream) ──
+  - type: file_tracking
+    description: "Update test infrastructure for i18n stack migration. Downstream projects with test suites must update: (1) setupTests.ts/vitest.setup.ts — replace react-i18next global mock with next-intl mock, (2) all test files using vi.mock('react-i18next') — change to vi.mock('next-intl') with updated mock shape."
+    downstream_only: true
+    batch_hint: codemod
+    files:
+      - path: "setupTests.ts"
+        action: modified
+    notes: "The upstream app has no setupTests.ts, but downstream projects cloned from this boilerplate typically have one. Before: vi.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key) => key, i18n: { language: 'en' } }) })). After: vi.mock('next-intl', () => ({ useTranslations: () => (key) => key, useLocale: () => 'en' }))."
     pr: "https://github.com/Frachtwerk/essencium-frontend/pull/967"
 
   # ── File tracking: next-intl migration — TranslationsView (complex) ─
