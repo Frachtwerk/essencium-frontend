@@ -69,6 +69,9 @@ For each changed dependency:
 - Exception: if a minor bump introduces known breaking behavior, use `scope: project_wide` and explain in `notes`
 - Set `reference` to the library's changelog or releases page
 - Write a concise `notes` describing the impact
+- For **breaking changes that swap one library for another** (e.g., i18n stack replacement), the `notes` field MUST also document:
+  - Known incompatibilities between old and new library behavior (e.g., key format differences, implicit assumptions)
+  - Test infrastructure implications (mock patterns, setup files that will need updating)
 
 #### 3b. `infrastructure` — Config/build tool changes
 
@@ -120,6 +123,22 @@ From the `--diff-filter=D` output, create an entry for each deleted file. Explai
 
 All remaining modified files that were not already classified above go here. Group related files into a single entry when they are part of the same PR or feature. Describe what changed and why.
 
+**Test infrastructure check:** When a change involves replacing a foundational library (i18n stack, state management, CSS framework, test runner), explicitly check for test implications and create a dedicated entry if any of these apply:
+- Global test setup files (`setupTests.ts`, `vitest.setup.ts`) need mock updates
+- Test mock patterns change (e.g., `vi.mock('react-i18next')` → `vi.mock('next-intl')`)
+- Test utility/helper functions change their API
+
+Set `downstream_only: true` on the entry if the upstream `packages/app/` has no such file but downstream projects are expected to. Use the `notes` field to describe the exact mock/setup pattern change with before/after examples.
+
+#### 3h. `downstream_warnings` — Pre-migration compatibility checks
+
+After completing all 7 change type classifications, review every `project_wide` dependency change for known incompatibilities that downstream projects must fix *before* running the migration. Create a `downstream_warnings` entry for each incompatibility that:
+- Would cause runtime errors or crashes (not just deprecation warnings)
+- Cannot be detected or fixed automatically by the migration plugin
+- Requires manual inspection of downstream code or config files
+
+Common triggers: key format changes in locale/config files, behavioral differences between the old and new library, implicit assumptions that differ between libraries.
+
 ### Step 4: Generate the manifest YAML
 
 Save the manifest to `packages/app/manifests/<version>.yaml`.
@@ -148,6 +167,7 @@ changes:                 # Array of change entries
 # ── 2. infrastructure — config/build tool changes ────────────────────
 - type: infrastructure
   description: "what changed"
+  interactive: true  # optional — if true, plugin confirms with user before applying (default: false)
   files:
     - path: "relative/to/app/root"
       action: modified | added
@@ -157,10 +177,13 @@ changes:                 # Array of change entries
 # ── 3. file_tracking — modified existing files ───────────────────────
 - type: file_tracking
   description: "what changed and why"
+  batch_hint: codemod  # optional — identical mechanical change across all listed files
+  downstream_only: true  # optional — upstream has no such file, but downstream projects do
   files:
     - path: "relative/to/app/root"
       action: modified
   pr: "https://github.com/Frachtwerk/essencium-frontend/pull/NNN"  # optional
+  notes: "additional context, downstream implications"  # optional
 
 # ── 4. new_file — newly added files ─────────────────────────────────
 - type: new_file
@@ -189,6 +212,12 @@ changes:                 # Array of change entries
     - name: "VARIABLE_NAME"
       required: true | false
       default: "optional-default-value"  # optional — if present, the migration plugin uses this as the initial value
+
+# ── downstream_warnings — pre-migration compatibility checks (optional) ──
+downstream_warnings:
+  - check: "Human-readable description of what to check"
+    reason: "Why this is a problem — what breaks and how"
+    action: "What the user must do before starting the migration"
 ```
 
 #### Key rules for the manifest
@@ -199,6 +228,10 @@ changes:                 # Array of change entries
 - **Group related changes** — if multiple files were changed in the same PR/feature, put them in a single `file_tracking` entry with multiple files.
 - **Order changes** by type: infrastructure first, then dependency_migration (major/project_wide before minor/package), then new_file, file_removal, file_tracking, translation, env_variable.
 - **Use comments** as section separators in the YAML (see existing manifests for style).
+- **`batch_hint: codemod`** on `file_tracking` entries signals that the change is purely mechanical and identical across all listed files (e.g., a find-and-replace). The migration plugin may use this to apply the change via a single codemod script instead of individual file edits.
+- **`interactive: true`** on `infrastructure` entries tells the migration plugin to pause and confirm with the user before applying. Use for changes where downstream projects may have intentionally different values (e.g., Node.js version pinning, Docker base images, CI environment constraints).
+- **`downstream_only: true`** on `file_tracking` entries marks changes that apply to downstream projects but not to the upstream `packages/app/` itself (e.g., a `setupTests.ts` that upstream does not have).
+- **`downstream_warnings`** is an optional top-level array (sibling to `changes`). Use it for incompatibilities that downstream projects must fix *before* starting the migration — things that would cause crashes and cannot be auto-detected by the plugin. Each entry needs `check` (what to look for), `reason` (what breaks), and `action` (how to fix it).
 
 ### Step 5: Validate the YAML
 
