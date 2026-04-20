@@ -35,7 +35,7 @@
   "devDependencies": {
     "@eslint/js": "^9.0.0",
     "@frachtwerk/eslint-config-essencium": "2.5.0",
-    "@frachtwerk/prettier-config-essencium": "1.5.2",
+    "@frachtwerk/prettier-config-essencium": "1.5.3",
     "@types/node": "20.19.39",
     "eslint": "^9.0.0",
     "prettier": "3.8.2",
