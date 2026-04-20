@@ -145,6 +145,34 @@ Changed files:
 - `src/app/[locale]/(public)/login/page.tsx`
 - `src/app/[locale]/(public)/set-password/page.tsx`
 
+### Test infrastructure (downstream projects)
+
+If your project has a `setupTests.ts` or `vitest.setup.ts` with i18next/react-i18next mocks, update them for next-intl.
+
+Before:
+
+```ts
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+    i18n: { language: 'en', changeLanguage: vi.fn() },
+  }),
+}))
+```
+
+After:
+
+```ts
+vi.mock('next-intl', () => ({
+  useTranslations: () => (key: string) => key,
+  useLocale: () => 'en',
+}))
+```
+
+Update all test files that have local `vi.mock('react-i18next')` calls with the same pattern.
+
+> **Note:** next-intl uses dots as nesting separators in translation keys. If your locale JSON files contain keys with literal dots (e.g., `"14.1"`, `"29.3"`), rename them before migrating (e.g., `"14_1"`, `"29_3"`) — otherwise next-intl will crash at startup with an `INVALID_KEY` error. Update any code that references these keys accordingly.
+
 ### Raise Node.js minimum version to 24
 
 #### `packages/app/package.json`
