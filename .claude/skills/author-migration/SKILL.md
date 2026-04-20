@@ -52,7 +52,7 @@ Extract PR numbers from commit messages (look for patterns like `#123`, `pull/12
 
 ### Step 3: Classify changes
 
-Categorize every change into one of 7 types. Process them in this order:
+Categorize every entry in the `changes` array into one of 7 types. Process them in this order:
 
 #### 3a. `dependency_migration` — Dependency version changes
 
@@ -130,16 +130,16 @@ All remaining modified files that were not already classified above go here. Gro
 
 Set `downstream_only: true` on the entry if the upstream `packages/app/` has no such file but downstream projects are expected to. Use the `notes` field to describe the exact mock/setup pattern change with before/after examples.
 
-#### 3h. `downstream_warnings` — Pre-migration compatibility checks
+### Step 4: Identify downstream warnings (top-level field)
 
-After completing all 7 change type classifications, review every `project_wide` dependency change for known incompatibilities that downstream projects must fix *before* running the migration. Create a `downstream_warnings` entry for each incompatibility that:
+This step populates the top-level `downstream_warnings` array — a sibling to `changes`, **not** an entry type inside it. After completing all 7 change type classifications in Step 3, review every `project_wide` dependency change for known incompatibilities that downstream projects must fix *before* running the migration. Create a `downstream_warnings` entry for each incompatibility that:
 - Would cause runtime errors or crashes (not just deprecation warnings)
 - Cannot be detected or fixed automatically by the migration plugin
 - Requires manual inspection of downstream code or config files
 
 Common triggers: key format changes in locale/config files, behavioral differences between the old and new library, implicit assumptions that differ between libraries.
 
-### Step 4: Generate the manifest YAML
+### Step 5: Generate the manifest YAML
 
 Save the manifest to `packages/app/manifests/<version>.yaml`.
 
@@ -177,7 +177,7 @@ changes:                 # Array of change entries
 # ── 3. file_tracking — modified existing files ───────────────────────
 - type: file_tracking
   description: "what changed and why"
-  batch_hint: codemod  # optional — identical mechanical change across all listed files
+  batch_hint: codemod  # optional — identical schematic change (textual or AST-level) across all listed files
   downstream_only: true  # optional — upstream has no such file, but downstream projects do
   files:
     - path: "relative/to/app/root"
@@ -228,12 +228,12 @@ downstream_warnings:
 - **Group related changes** — if multiple files were changed in the same PR/feature, put them in a single `file_tracking` entry with multiple files.
 - **Order changes** by type: infrastructure first, then dependency_migration (major/project_wide before minor/package), then new_file, file_removal, file_tracking, translation, env_variable.
 - **Use comments** as section separators in the YAML (see existing manifests for style).
-- **`batch_hint: codemod`** on `file_tracking` entries signals that the change is purely mechanical and identical across all listed files (e.g., a find-and-replace). The migration plugin may use this to apply the change via a single codemod script instead of individual file edits.
+- **`batch_hint: codemod`** on `file_tracking` entries signals that the change follows the **same schematic transformation** across all listed files. This can be a textual find-and-replace (e.g., `useTranslation` → `useTranslations`) or a structural AST-level transformation (e.g., removing a prop and its type from a function signature across many files). The migration plugin may use this hint to apply one codemod (textual or AST-based) to all listed files instead of editing each individually.
 - **`interactive: true`** on `infrastructure` entries tells the migration plugin to pause and confirm with the user before applying. Use for changes where downstream projects may have intentionally different values (e.g., Node.js version pinning, Docker base images, CI environment constraints).
 - **`downstream_only: true`** on `file_tracking` entries marks changes that apply to downstream projects but not to the upstream `packages/app/` itself (e.g., a `setupTests.ts` that upstream does not have).
 - **`downstream_warnings`** is an optional top-level array (sibling to `changes`). Use it for incompatibilities that downstream projects must fix *before* starting the migration — things that would cause crashes and cannot be auto-detected by the plugin. Each entry needs `check` (what to look for), `reason` (what breaks), and `action` (how to fix it).
 
-### Step 5: Validate the YAML
+### Step 6: Validate the YAML
 
 After writing the file, verify it is valid YAML:
 
@@ -243,7 +243,7 @@ python3 -c "import yaml; yaml.safe_load(open('packages/app/manifests/<version>.y
 
 If validation fails, fix the syntax errors and re-validate.
 
-### Step 6: Present for review
+### Step 7: Present for review
 
 Display the complete manifest to the user. Ask them to:
 1. Review each entry for accuracy
