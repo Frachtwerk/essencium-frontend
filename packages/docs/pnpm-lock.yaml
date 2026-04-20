@@ -34,8 +34,8 @@ importers:
         specifier: 2.5.0
         version: 2.5.0(@eslint/js@9.39.4)(eslint@9.39.4)(prettier@3.8.2)(typescript-eslint@8.58.1(eslint@9.39.4)(typescript@5.9.3))(typescript@5.9.3)
       '@frachtwerk/prettier-config-essencium':
-        specifier: 1.5.2
-        version: 1.5.2(prettier@3.8.2)
+        specifier: 1.5.3
+        version: 1.5.3(prettier@3.8.2)
       '@types/node':
         specifier: 20.19.39
         version: 20.19.39
@@ -216,9 +216,9 @@ packages:
       typescript: '>=4.8.0 <6.0.0'
       typescript-eslint: ^8.0.0
 
-  '@frachtwerk/prettier-config-essencium@1.5.2':
-    resolution: {integrity: sha512-slO2EPRLAoEDkYzhoPoHvTB0R2qud1vfdLq2VVLAi/dxlCMmHbR9tZpz10LypGP5B13+ZNZdkbDYnnWz/Ge/xA==}
-    engines: {node: '>=20', pnpm: '10'}
+  '@frachtwerk/prettier-config-essencium@1.5.3':
+    resolution: {integrity: sha512-7wovFuYTepRli10pcwnkQz5Ns+C4XrGnl7raK/WYhDBDzncRCQeEC6CDFazjQ0FBq/TBm7SK5T28Y7TjDXPmGw==}
+    engines: {node: '>=24', pnpm: '10'}
     peerDependencies:
       prettier: 3.0.3
 
@@ -3177,7 +3177,7 @@ snapshots:
       - prettier
       - supports-color
 
-  '@frachtwerk/prettier-config-essencium@1.5.2(prettier@3.8.2)':
+  '@frachtwerk/prettier-config-essencium@1.5.3(prettier@3.8.2)':
     dependencies:
       prettier: 3.8.2
 
