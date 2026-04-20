@@ -30,7 +30,7 @@
     "@mantine/core": "8.3.15",
     "@mantine/dates": "8.3.15",
     "@mantine/hooks": "8.3.15",
-    "@mantine/notifications": "8.3.15",
+    "@mantine/notifications": "8.3.18",
     "@mantine/spotlight": "8.3.15",
     "@tabler/icons-react": "3.41.1",
     "@tanstack/react-query": "5.90.21",
