@@ -62,7 +62,7 @@
     "eslint": "9.39.4",
     "happy-dom": "20.9.0",
     "next-router-mock": "1.0.5",
-    "postcss": "8.5.8",
+    "postcss": "8.5.10",
     "postcss-preset-mantine": "1.18.0",
     "prettier": "3.8.1",
     "rimraf": "6.1.3",
