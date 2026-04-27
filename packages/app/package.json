@@ -68,7 +68,7 @@
     "eslint-plugin-simple-import-sort": "12.1.1",
     "postcss": "8.5.12",
     "postcss-preset-mantine": "1.18.0",
-    "prettier": "3.8.1",
+    "prettier": "3.8.3",
     "tailwindcss": "4.2.2",
     "@tailwindcss/postcss": "4.2.2",
     "typescript": "5.9.3",
