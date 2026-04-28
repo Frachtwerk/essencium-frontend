@@ -67,5 +67,5 @@ This will build the images based on the current code and start the application.
 The following services will be started:
 
 - `backend`: The API service that handles the business logic and communication with the database. Available at http://localhost:8098.
-- `db`: The PostgreSQL database that stores the application data. Available at http://localhost:5432.
+- `db`: The PostgreSQL database that stores the application data. Available at localhost:5432.
 - `essencium-frontend`: The Next.js frontend that provides the user interface. Available at localhost:3000.
