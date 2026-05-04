@@ -43,7 +43,7 @@
     "sort-package-json": "3.6.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "20.5.0",
+    "@commitlint/cli": "20.5.3",
     "@commitlint/config-conventional": "20.5.0",
     "@faker-js/faker": "10.3.0",
     "@frachtwerk/eslint-config-essencium": "workspace:*",
