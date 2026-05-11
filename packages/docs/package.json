@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "clsx": "2.1.1",
-    "next": "15.5.15",
+    "next": "15.5.18",
     "nextra": "3.3.1",
     "nextra-theme-docs": "3.3.1",
     "react": "19.2.4",
@@ -36,11 +36,11 @@
     "@eslint/js": "^9.0.0",
     "@frachtwerk/eslint-config-essencium": "2.5.1",
     "@frachtwerk/prettier-config-essencium": "1.5.3",
-    "@types/node": "20.19.39",
+    "@types/node": "20.19.40",
     "eslint": "^9.0.0",
     "prettier": "3.8.3",
     "typescript": "5.9.3",
-    "typescript-eslint": "^8.59.1"
+    "typescript-eslint": "^8.59.2"
   },
   "packageManager": "pnpm@10.10.0",
   "engines": {
