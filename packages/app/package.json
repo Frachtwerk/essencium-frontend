@@ -69,7 +69,7 @@
     "postcss": "8.5.13",
     "postcss-preset-mantine": "1.18.0",
     "prettier": "3.8.3",
-    "tailwindcss": "4.2.2",
+    "tailwindcss": "4.3.0",
     "@tailwindcss/postcss": "4.2.2",
     "typescript": "5.9.3",
     "vite": "7.3.2",
