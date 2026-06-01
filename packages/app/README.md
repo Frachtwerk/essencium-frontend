@@ -25,3 +25,47 @@ The package called app is acting as boilerplate and consumes all the other packa
 - routing (via Next.js App Router)
 - error logging (via Sentry)
 - E2E tests (via Playwright)
+
+## Starting the application locally
+
+### Prerequisites
+
+Before starting the application, make sure to complete the setup steps outlined below:
+
+### Docker
+
+To start the application locally, a full Docker environment is available.
+
+#### Authentication
+
+The images are based on [Docker hardened images](https://github.com/docker-hardened-images) that require authentication to pull.  
+Login with the following command using your Docker Hub credentials (username and [PAT](https://docs.docker.com/security/access-tokens/#create-a-personal-access-token)):
+
+```bash
+docker login dhi.io
+```
+
+#### Docker BuildX
+
+To build the images, Docker Buildx is required. You can check if it is available with the following command:
+
+```bash
+docker buildx version
+```
+
+If it is not available, you can install it by following the instructions in the [Docker Buildx documentation](https://github.com/docker/buildx?tab=readme-ov-file#installing).
+
+#### Starting the application
+
+To start the full application, run the following command in the root directory of the repository:
+
+```bash
+docker compose up --build
+```
+
+This will build the images based on the current code and start the application.  
+The following services will be started:
+
+- `backend`: The API service that handles the business logic and communication with the database. Available at http://localhost:8098.
+- `db`: The PostgreSQL database that stores the application data. Available at localhost:5432.
+- `essencium-frontend`: The Next.js frontend that provides the user interface. Available at localhost:3000.

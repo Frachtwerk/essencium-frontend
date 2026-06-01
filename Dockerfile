@@ -2,10 +2,8 @@
 # Based on the official Next.js Dockerfile example
 # https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile
 
-FROM node:lts-alpine3.21 AS base
-
 # Install dependencies only when needed
-FROM base AS deps
+FROM dhi.io/node:24-alpine3.23-dev AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
@@ -21,7 +19,7 @@ RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
     pnpm i --frozen-lockfile --store-dir=/root/.local/share/pnpm/store;
 
 # Rebuild the source code only when needed
-FROM base AS builder
+FROM dhi.io/node:24-alpine3.23-dev AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/packages ./packages
@@ -38,32 +36,31 @@ COPY ./packages/app/.env.${NODE_ENV}* ./packages/app/.env.local
 RUN corepack enable pnpm && pnpm run build;
 
 # Production image, copy all the files and run next
-FROM base AS runner
+FROM dhi.io/node:24-alpine3.23 AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV HOSTNAME="0.0.0.0"
+ENV PORT=3000
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED=1
-
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 
 # Standalone build output is spread across multiple directories for monorepos.
 # See https://github.com/vercel/next.js/discussions/35437
-COPY --from=builder --chown=nextjs:nodejs /app/packages/app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/packages/app/public ./packages/app/public
-COPY --from=builder --chown=nextjs:nodejs /app/packages/app/.next/static ./packages/app/.next/static
+COPY --from=builder --chown=node:node /app/packages/app/.next/standalone ./
+COPY --from=builder --chown=node:node /app/packages/app/public ./packages/app/public
+COPY --from=builder --chown=node:node /app/packages/app/.next/static ./packages/app/.next/static
 
-USER nextjs
+USER node
 
 EXPOSE 3000
 
-ENV PORT=3000
+HEALTHCHECK --interval=60s --timeout=30s --start-period=30s --retries=3 \
+    CMD ["node", "-e", "require('http').get('http://localhost:3000/api/health', res => process.exit(res.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))"]
 
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/config/next-config-js/output
-ENV HOSTNAME="0.0.0.0"
 CMD ["node", "./packages/app/server.js"]
