@@ -43,7 +43,7 @@
     "tailwind-merge": "3.5.0"
   },
   "devDependencies": {
-    "@babel/core": "7.29.0",
+    "@babel/core": "7.29.6",
     "babel-plugin-react-compiler": "1.0.0",
     "@frachtwerk/eslint-config-essencium": "workspace:*",
     "@frachtwerk/essencium-types": "workspace:*",
