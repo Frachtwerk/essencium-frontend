@@ -33,7 +33,7 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "@eslint/js": "^9.0.0",
+    "@eslint/js": "^9.39.5",
     "@frachtwerk/eslint-config-essencium": "2.5.1",
     "@frachtwerk/prettier-config-essencium": "1.5.3",
     "@types/node": "20.19.43",
