@@ -37,7 +37,7 @@
     "@frachtwerk/eslint-config-essencium": "2.5.1",
     "@frachtwerk/prettier-config-essencium": "1.5.3",
     "@types/node": "20.19.43",
-    "eslint": "^9.0.0",
+    "eslint": "^9.39.5",
     "prettier": "3.9.4",
     "typescript": "5.9.3",
     "typescript-eslint": "^8.59.4"
