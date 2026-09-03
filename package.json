@@ -45,7 +45,7 @@
   "devDependencies": {
     "@commitlint/cli": "20.5.3",
     "@commitlint/config-conventional": "20.5.0",
-    "@faker-js/faker": "10.3.0",
+    "@faker-js/faker": "10.5.0",
     "@frachtwerk/eslint-config-essencium": "workspace:*",
     "@frachtwerk/essencium-types": "workspace:*",
     "@frachtwerk/prettier-config-essencium": "workspace:*",
